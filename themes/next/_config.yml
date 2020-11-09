@@ -389,7 +389,7 @@ bookmark:
 
 # `Follow me on GitHub` banner in the top-right corner.
 github_banner:
-  enable: true
+  enable: false
   permalink: https://github.com/woshixty
   title: Follow me on GitHub
 
@@ -456,7 +456,7 @@ disable_baidu_transformation: false
 
 # If true, site-subtitle will be added to index page.
 # Remember to set up your site-subtitle in Hexo `_config.yml` (e.g. subtitle: Subtitle)
-index_with_subtitle: false
+index_with_subtitle: true
 
 # Automatically add external URL with Base64 encrypt & decrypt.
 exturl: false
@@ -995,9 +995,3 @@ vendors:
 css: css
 js: js
 images: images
-
-# # 以下为自己添加的部分
-# # 自动形成摘要
-auto_excerpt:
-  enable: true
-  length: 100
