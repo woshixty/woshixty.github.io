@@ -49,9 +49,9 @@ counter:
     one: 目前共计 1 个分类
     other: "目前共计 %d 个分类"
   archive_posts:
-    zero: 暂无日志。
-    one: 目前共计 1 篇日志。
-    other: "目前共计 %d 篇日志。"
+    zero: 暂无日志
+    one: 目前写了 1 篇日志
+    other: "目前写了 %d 篇日志"
 state:
   posts: 日志
   tags: 标签
@@ -59,13 +59,13 @@ state:
 search:
   placeholder: 搜索...
 cheers:
-  um: 嗯..
+  um: 害
   ok: 还行
   nice: 不错
   good: 很好
   great: 非常好
   excellent: 太棒了
-keep_on: 继续努力。
+keep_on: 打工人 加油
 symbol:
   comma: "，"
   period: "。"
