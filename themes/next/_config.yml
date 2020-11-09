@@ -197,7 +197,7 @@ social_icons:
 links_settings:
   icon: fa fa-link
   title: Links
-  # Available values: block | inline
+  Available values: block | inline
   layout: block
 
 links:
