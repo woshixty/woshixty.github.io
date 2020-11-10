@@ -21,17 +21,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="This is xty Blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hello Programmer">
-<meta property="og:url" content="http://example.com/categories/First-Blog/index.html">
+  <meta name="description" content="参考博客Centos 防火墙命令 (由于自己在使用云服务器的命令的时候常常要百度，故做一点总结) centos防火墙的一些命令 查看开放端口 1firewall-cmd --list-ports   开启端口 1firewall-cmd --zone&#x3D;public --add-port&#x3D;80&#x2F;tcp --permanent   开启范围端口 8080 - 9090范围的端口 1firewall-c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Centos的一些命令">
+<meta property="og:url" content="http://example.com/2020/11/10/Centos%E9%98%B2%E7%81%AB%E5%A2%99%E5%91%BD%E4%BB%A4/index.html">
 <meta property="og:site_name" content="Hello Programmer">
-<meta property="og:description" content="This is xty Blog">
+<meta property="og:description" content="参考博客Centos 防火墙命令 (由于自己在使用云服务器的命令的时候常常要百度，故做一点总结) centos防火墙的一些命令 查看开放端口 1firewall-cmd --list-ports   开启端口 1firewall-cmd --zone&#x3D;public --add-port&#x3D;80&#x2F;tcp --permanent   开启范围端口 8080 - 9090范围的端口 1firewall-c">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-11-10T05:19:02.784Z">
+<meta property="article:modified_time" content="2020-11-10T05:19:02.784Z">
 <meta property="article:author" content="xty">
+<meta property="article:tag" content="centos">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/categories/First-Blog/">
+<link rel="canonical" href="http://example.com/2020/11/10/Centos%E9%98%B2%E7%81%AB%E5%A2%99%E5%91%BD%E4%BB%A4/">
 
 
 <script id="page-configurations">
@@ -39,12 +42,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>分类: First_Blog | Hello Programmer</title>
+  <title>Centos的一些命令 | Hello Programmer</title>
   
 
 
@@ -148,51 +151,115 @@
         <div class="content-wrap">
           
 
-          <div class="content category">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">First_Blog
-          <small>分类</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/10/Centos%E9%98%B2%E7%81%AB%E5%A2%99%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Centos的一些命令
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-10 05:19:02" itemprop="dateCreated datePublished" datetime="2020-11-10T05:19:02+00:00">2020-11-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
+        <p>参考博客<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32923745/article/details/78048822">Centos 防火墙命令</a></p>
+<p>(由于自己在使用云服务器的命令的时候常常要百度，故做一点总结)</p>
+<h3 id="centos防火墙的一些命令"><a href="#centos防火墙的一些命令" class="headerlink" title="centos防火墙的一些命令"></a>centos防火墙的一些命令</h3><blockquote>
+<h4 id="查看开放端口"><a href="#查看开放端口" class="headerlink" title="查看开放端口"></a><strong>查看开放端口</strong></h4></blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall<span class="literal">-cmd</span> -<span class="literal">-list</span><span class="literal">-ports</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<h4 id="开启端口"><a href="#开启端口" class="headerlink" title="开启端口"></a><strong>开启端口</strong></h4></blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall<span class="literal">-cmd</span> -<span class="literal">-zone</span>=public -<span class="literal">-add</span><span class="literal">-port</span>=<span class="number">80</span>/tcp -<span class="literal">-permanent</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<h4 id="开启范围端口-8080-9090范围的端口"><a href="#开启范围端口-8080-9090范围的端口" class="headerlink" title="开启范围端口 8080 - 9090范围的端口"></a><strong>开启范围端口 8080 - 9090范围的端口</strong></h4></blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall<span class="literal">-cmd</span>  -<span class="literal">-zone</span>=public  -<span class="literal">-add</span><span class="literal">-port</span>=<span class="number">8080</span><span class="literal">-9090</span>/tcp -<span class="literal">-permanent</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<h4 id="命令含义"><a href="#命令含义" class="headerlink" title="命令含义"></a><strong>命令含义</strong></h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">–zone                          #作用域</span><br><span class="line">–add-port&#x3D;80&#x2F;tcp               #添加端口，格式为：端口&#x2F;通讯协议</span><br><span class="line">–permanent                     #永久生效，没有此参数重启后失效</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<h4 id="防火墙命令"><a href="#防火墙命令" class="headerlink" title="防火墙命令"></a><strong>防火墙命令</strong></h4></blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">firewall<span class="literal">-cmd</span> -<span class="literal">-reload</span>                  <span class="comment">#重启firewall</span></span><br><span class="line">firewall<span class="literal">-cmd</span>  -<span class="literal">-state</span>                  <span class="comment">#查看防火墙状态</span></span><br><span class="line">systemctl <span class="built_in">start</span> firewalld.service      <span class="comment">#开启firewall</span></span><br><span class="line">systemctl stop firewalld.service       <span class="comment">#停止firewall</span></span><br><span class="line">systemctl disable firewalld.service    <span class="comment">#禁止firewall开机启动</span></span><br></pre></td></tr></table></figure>
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-11-10T05:19:02+00:00"
-              content="2020-11-10">
-          11-10
-        </time>
-      </div>
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/centos/" rel="tag"><i class="fa fa-tag"></i> centos</a>
+          </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/11/10/index/" itemprop="url">
-            <span itemprop="name">Hello Hexo</span>
-          </a>
-      </div>
+        
 
-    </header>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/11/10/index/" rel="prev" title="Hello Hexo">
+      <i class="fa fa-chevron-left"></i> Hello Hexo
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
   </article>
-
-    </div>
-  </div>
   
   
-  
-
   
 
 
@@ -245,6 +312,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#centos%E9%98%B2%E7%81%AB%E5%A2%99%E7%9A%84%E4%B8%80%E4%BA%9B%E5%91%BD%E4%BB%A4"><span class="nav-number">1.</span> <span class="nav-text">centos防火墙的一些命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%BC%80%E6%94%BE%E7%AB%AF%E5%8F%A3"><span class="nav-number">1.1.</span> <span class="nav-text">查看开放端口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%80%E5%90%AF%E7%AB%AF%E5%8F%A3"><span class="nav-number">1.2.</span> <span class="nav-text">开启端口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%80%E5%90%AF%E8%8C%83%E5%9B%B4%E7%AB%AF%E5%8F%A3-8080-9090%E8%8C%83%E5%9B%B4%E7%9A%84%E7%AB%AF%E5%8F%A3"><span class="nav-number">1.3.</span> <span class="nav-text">开启范围端口 8080 - 9090范围的端口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E5%90%AB%E4%B9%89"><span class="nav-number">1.4.</span> <span class="nav-text">命令含义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99%E5%91%BD%E4%BB%A4"><span class="nav-number">1.5.</span> <span class="nav-text">防火墙命令</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -154,7 +154,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/09/index/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/10/Centos%E9%98%B2%E7%81%AB%E5%A2%99%E5%91%BD%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -168,7 +168,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/09/index/" class="post-title-link" itemprop="url">Hello Hexo</a>
+            <a href="/2020/11/10/Centos%E9%98%B2%E7%81%AB%E5%A2%99%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">Centos的一些命令</a>
         </h2>
 
         <div class="post-meta">
@@ -178,7 +178,93 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-11-09 14:23:54" itemprop="dateCreated datePublished" datetime="2020-11-09T14:23:54+00:00">2020-11-09</time>
+              <time title="创建时间：2020-11-10 05:19:02" itemprop="dateCreated datePublished" datetime="2020-11-10T05:19:02+00:00">2020-11-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>参考博客<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32923745/article/details/78048822">Centos 防火墙命令</a></p>
+<p>(由于自己在使用云服务器的命令的时候常常要百度，故做一点总结)</p>
+<h3 id="centos防火墙的一些命令"><a href="#centos防火墙的一些命令" class="headerlink" title="centos防火墙的一些命令"></a>centos防火墙的一些命令</h3><blockquote>
+<h4 id="查看开放端口"><a href="#查看开放端口" class="headerlink" title="查看开放端口"></a><strong>查看开放端口</strong></h4></blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall<span class="literal">-cmd</span> -<span class="literal">-list</span><span class="literal">-ports</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<h4 id="开启端口"><a href="#开启端口" class="headerlink" title="开启端口"></a><strong>开启端口</strong></h4></blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall<span class="literal">-cmd</span> -<span class="literal">-zone</span>=public -<span class="literal">-add</span><span class="literal">-port</span>=<span class="number">80</span>/tcp -<span class="literal">-permanent</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<h4 id="开启范围端口-8080-9090范围的端口"><a href="#开启范围端口-8080-9090范围的端口" class="headerlink" title="开启范围端口 8080 - 9090范围的端口"></a><strong>开启范围端口 8080 - 9090范围的端口</strong></h4></blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall<span class="literal">-cmd</span>  -<span class="literal">-zone</span>=public  -<span class="literal">-add</span><span class="literal">-port</span>=<span class="number">8080</span><span class="literal">-9090</span>/tcp -<span class="literal">-permanent</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<h4 id="命令含义"><a href="#命令含义" class="headerlink" title="命令含义"></a><strong>命令含义</strong></h4></blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">–zone                          #作用域</span><br><span class="line">–add-port&#x3D;80&#x2F;tcp               #添加端口，格式为：端口&#x2F;通讯协议</span><br><span class="line">–permanent                     #永久生效，没有此参数重启后失效</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<h4 id="防火墙命令"><a href="#防火墙命令" class="headerlink" title="防火墙命令"></a><strong>防火墙命令</strong></h4></blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">firewall<span class="literal">-cmd</span> -<span class="literal">-reload</span>                  <span class="comment">#重启firewall</span></span><br><span class="line">firewall<span class="literal">-cmd</span>  -<span class="literal">-state</span>                  <span class="comment">#查看防火墙状态</span></span><br><span class="line">systemctl <span class="built_in">start</span> firewalld.service      <span class="comment">#开启firewall</span></span><br><span class="line">systemctl stop firewalld.service       <span class="comment">#停止firewall</span></span><br><span class="line">systemctl disable firewalld.service    <span class="comment">#禁止firewall开机启动</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/10/index/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/10/index/" class="post-title-link" itemprop="url">Hello Hexo</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-10 05:19:02" itemprop="dateCreated datePublished" datetime="2020-11-10T05:19:02+00:00">2020-11-10</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -233,7 +319,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/09/nginx%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E5%85%A5%E9%97%A8/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/10/nginx%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E5%85%A5%E9%97%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -247,7 +333,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/09/nginx%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">nginx安装以及入门</a>
+            <a href="/2020/11/10/nginx%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">nginx安装以及入门</a>
         </h2>
 
         <div class="post-meta">
@@ -257,7 +343,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-11-09 14:23:54" itemprop="dateCreated datePublished" datetime="2020-11-09T14:23:54+00:00">2020-11-09</time>
+              <time title="创建时间：2020-11-10 05:19:02" itemprop="dateCreated datePublished" datetime="2020-11-10T05:19:02+00:00">2020-11-10</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -498,19 +584,19 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
