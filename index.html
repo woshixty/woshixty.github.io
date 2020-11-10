@@ -154,6 +154,173 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/11/mysql%E5%AE%89%E8%A3%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/11/mysql%E5%AE%89%E8%A3%85/" class="post-title-link" itemprop="url">mysql的安装</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-11 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-11T00:00:00+00:00">2020-11-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-10 12:48:57" itemprop="dateModified" datetime="2020-11-10T12:48:57+00:00">2020-11-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>(之前安装的MySQL又出问题了，干脆直接重装，解决一切问题)</p>
+<h3 id="MySQL卸载"><a href="#MySQL卸载" class="headerlink" title="MySQL卸载"></a>MySQL卸载</h3><h4 id="yum"><a href="#yum" class="headerlink" title="yum"></a>yum</h4><blockquote>
+<p>使用 yum list installed | grep mysql 全都yum remove掉就可以了</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_4_centos ~]<span class="comment"># yum list installed | grep mysql</span></span><br><span class="line"></span><br><span class="line">mysql-community-client.x86_64        5.7.32-1.el7                    @mysql57-community</span><br><span class="line">mysql-community-common.x86_64        5.7.32-1.el7                    @mysql57-community</span><br><span class="line">mysql-community-libs.x86_64          5.7.32-1.el7                    @mysql57-community</span><br><span class="line">mysql-community-server.x86_64        5.7.32-1.el7                    @mysql57-community</span><br><span class="line">mysql57-community-release.noarch     el7-11                          installed  </span><br><span class="line"></span><br><span class="line">[root@VM_0_4_centos ~]<span class="comment"># yum remove mysql-community-client.x86_64</span></span><br><span class="line"></span><br><span class="line">Loaded plugins: fastestmirror, langpacks</span><br><span class="line">Resolving Dependencies</span><br><span class="line">--&gt; Running transaction check</span><br><span class="line">---&gt; Package mysql-community-client.x86_64 0:5.7.32-1.el7 will be erased</span><br><span class="line">--&gt; Processing Dependency: mysql-community-client(x86-64) &gt;= 5.7.9 <span class="keyword">for</span> package: mysql-community-server-5.7.32-1.el7.x86_64</span><br><span class="line">--&gt; Running transaction check</span><br><span class="line">---&gt; Package mysql-community-server.x86_64 0:5.7.32-1.el7 will be erased</span><br><span class="line">--&gt; Finished Dependency Resolution</span><br><span class="line">epel/7/x86_64                                                                                              | 4.7 kB  00:00:00     </span><br><span class="line">epel/7/x86_64/updateinfo                                                                                   | 1.0 MB  00:00:00     </span><br><span class="line">......</span><br><span class="line">Removed:</span><br><span class="line">  mysql-community-client.x86_64 0:5.7.32-1.el7                                                                                    </span><br><span class="line"></span><br><span class="line">Dependency Removed:</span><br><span class="line">  mysql-community-server.x86_64 0:5.7.32-1.el7                                                                                    </span><br><span class="line"></span><br><span class="line">Complete!</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="赶尽杀绝"><a href="#赶尽杀绝" class="headerlink" title="赶尽杀绝"></a>赶尽杀绝</h4><blockquote>
+<p>然后使用 find / -name mysql 依次将文件删除即可</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_4_centos ~]<span class="comment"># find / -name mysql</span></span><br><span class="line"></span><br><span class="line">/var/lib/mysql</span><br><span class="line">/var/lib/mysql/mysql</span><br><span class="line">/usr/share/mysql</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="安装MySql"><a href="#安装MySql" class="headerlink" title="安装MySql"></a>安装MySql</h3><h4 id="下载安装包"><a href="#下载安装包" class="headerlink" title="下载安装包"></a>下载安装包</h4><blockquote>
+<p>先去官网下载安装包，这里我下载的是mysql-5.7.29-1.el7.x86_64.rpm-bundle.tar 然后上传到服务器上</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_4_centos ~]<span class="comment"># ls</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">log</span>  mysql-5.7.29-1.el7.x86_64.rpm-bundle.tar</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="删除系统自带的东西"><a href="#删除系统自带的东西" class="headerlink" title="删除系统自带的东西"></a>删除系统自带的东西</h4><blockquote>
+<p>如果是第一次安装，检查一下系统自带的mariadb-lib以及MySQL 我这边干干净净呢</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_4_centos ~]<span class="comment"># rpm -qa|grep mariadb</span></span><br><span class="line"></span><br><span class="line">[root@VM_0_4_centos ~]<span class="comment"># rpm -qa|grep mysql</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="解压缩"><a href="#解压缩" class="headerlink" title="解压缩"></a>解压缩</h4><blockquote>
+<p>先创建一个目录，然后在目录里 tar -xvf mysql-5.7.29-1.el7.x86_64.rpm-bundle.tar，并赋予目录最大权限</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_4_centos ~]<span class="comment"># mkdir mysql</span></span><br><span class="line"></span><br><span class="line">[root@VM_0_4_centos ~]<span class="comment"># cd mysql/</span></span><br><span class="line"></span><br><span class="line">[root@VM_0_4_centos mysql]<span class="comment"># tar -xvf mysql-5.7.29-1.el7.x86_64.rpm-bundle.tar</span></span><br><span class="line">mysql-community-embedded-devel-5.7.29-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-test-5.7.29-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-embedded-5.7.29-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-embedded-compat-5.7.29-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-libs-5.7.29-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-client-5.7.29-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-server-5.7.29-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-devel-5.7.29-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-libs-compat-5.7.29-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-common-5.7.29-1.el7.x86_64.rpm</span><br><span class="line"></span><br><span class="line">[root@VM_0_4_centos mysql]<span class="comment"># cd ..</span></span><br><span class="line"></span><br><span class="line">[root@VM_0_4_centos ~]<span class="comment"># chmod -R 777 mysql</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="进行安装"><a href="#进行安装" class="headerlink" title="进行安装"></a>进行安装</h4><blockquote>
+<p>严格按照下面四个步骤安装</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_4_centos mysql]<span class="comment"># rpm -ivh mysql-community-common-5.7.29-1.el7.x86_64.rpm </span></span><br><span class="line"></span><br><span class="line">[root@VM_0_4_centos mysql]<span class="comment"># rpm -ivh mysql-community-libs-5.7.29-1.el7.x86_64.rpm </span></span><br><span class="line"></span><br><span class="line">[root@VM_0_4_centos mysql]<span class="comment"># rpm -ivh mysql-community-client-5.7.29-1.el7.x86_64.rpm </span></span><br><span class="line"></span><br><span class="line">[root@VM_0_4_centos mysql]<span class="comment"># rpm -ivh mysql-community-server-5.7.29-1.el7.x86_64.rpm </span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="配置数据库"><a href="#配置数据库" class="headerlink" title="配置数据库"></a>配置数据库</h4><blockquote>
+<p>修改配置文件</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_4_centos mysql]<span class="comment"># vim /etc/my.cnf</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#在[mysqld]下面添加这三行</span></span><br><span class="line"><span class="comment">#skip-grant-tables  跳过登录验证</span></span><br><span class="line"><span class="comment">#character_set_server=utf8  设置默认字符集UTF-8</span></span><br><span class="line"><span class="comment">#init_connect=&#x27;SET NAMES utf8&#x27;  设置默认字符集UTF-8</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="启动MySQL服务"><a href="#启动MySQL服务" class="headerlink" title="启动MySQL服务"></a>启动MySQL服务</h4><blockquote>
+<p>执行下面两个命令</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_4_centos mysql]<span class="comment"># systemctl start mysqld.service</span></span><br><span class="line">[root@VM_0_4_centos mysql]<span class="comment"># mysql</span></span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 2</span><br><span class="line">Server version: 5.7.29 MySQL Community Server (GPL)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type <span class="string">&#x27;help;&#x27;</span> or <span class="string">&#x27;\h&#x27;</span> <span class="keyword">for</span> <span class="built_in">help</span>. Type <span class="string">&#x27;\c&#x27;</span> to clear the current input statement.</span><br><span class="line"></span><br><span class="line">mysql&gt; </span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="设置密码"><a href="#设置密码" class="headerlink" title="设置密码"></a>设置密码</h4><blockquote>
+<p>设置密码并且让他生效</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; update mysql.user <span class="built_in">set</span> authentication_string=password(<span class="string">&#x27;passwd&#x27;</span>) <span class="built_in">where</span> user=<span class="string">&#x27;root&#x27;</span>;</span><br><span class="line">Query OK, 1 row affected, 1 warning (0.00 sec)</span><br><span class="line">Rows matched: 1  Changed: 1  Warnings: 1</span><br><span class="line"></span><br><span class="line">mysql&gt; flush privileges;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>退出mysql并重启mysql服务</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; <span class="built_in">exit</span></span><br><span class="line">Bye</span><br><span class="line"></span><br><span class="line">[root@VM_0_4_centos mysql]<span class="comment"># systemctl stop  mysqld.service</span></span><br><span class="line"></span><br><span class="line">[root@VM_0_4_centos mysql]<span class="comment"># systemctl start mysqld.service</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>编辑my.cnf配置文件将：skip-grant-tables这一行注释掉</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line"><span class="comment">#skip-grant-tables</span></span><br><span class="line">character_set_server=utf8</span><br><span class="line">init_connect=<span class="string">&#x27;SET NAMES utf8&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>此时你进入需要重新设置一个密码，先设置一个复杂的密码，然后设置密码策略，改成自己的密码</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW VARIABLES LIKE <span class="string">&#x27;validate_password%&#x27;</span>;</span><br><span class="line">+--------------------------------------+--------+</span><br><span class="line">| Variable_name                        | Value  |</span><br><span class="line">+--------------------------------------+--------+</span><br><span class="line">| validate_password_check_user_name    | OFF    |</span><br><span class="line">| validate_password_dictionary_file    |        |</span><br><span class="line">| validate_password_length             | 8      |</span><br><span class="line">| validate_password_mixed_case_count   | 1      |</span><br><span class="line">| validate_password_number_count       | 1      |</span><br><span class="line">| validate_password_policy             | MEDIUM |</span><br><span class="line">| validate_password_special_char_count | 1      |</span><br><span class="line">+--------------------------------------+--------+</span><br><span class="line">7 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="built_in">set</span> global validate_password_policy=LOW;</span><br><span class="line">Query OK, 0 rows affected (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="开启远程登录"><a href="#开启远程登录" class="headerlink" title="开启远程登录"></a>开启远程登录</h4><blockquote>
+<p>开放3306端口</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_4_centos mysql]<span class="comment"># firewall-cmd --zone=public --add-port=3306/tcp --permanent</span></span><br><span class="line">success</span><br><span class="line">[root@VM_0_4_centos mysql]<span class="comment"># firewall-cmd --reload</span></span><br><span class="line">success</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>开启远程登录</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; grant all privileges on *.* to <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> identified by <span class="string">&#x27;passwd&#x27;</span> with grant option;</span><br><span class="line">Query OK, 0 rows affected, 1 warning (0.00 sec)</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>至此，安装就结束啦！！！</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/10/Centos%E9%98%B2%E7%81%AB%E5%A2%99%E5%91%BD%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -179,7 +346,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-11-10 15:22:59 / 修改时间：05:47:23" itemprop="dateCreated datePublished" datetime="2020-11-10T15:22:59+00:00">2020-11-10</time>
+              <time title="创建时间：2020-11-10 15:22:59 / 修改时间：12:48:57" itemprop="dateCreated datePublished" datetime="2020-11-10T15:22:59+00:00">2020-11-10</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -272,7 +439,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-10 05:47:23" itemprop="dateModified" datetime="2020-11-10T05:47:23+00:00">2020-11-10</time>
+                <time title="修改时间：2020-11-10 12:48:57" itemprop="dateModified" datetime="2020-11-10T12:48:57+00:00">2020-11-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -368,11 +535,7 @@
 </ul>
 <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#启动服务</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">VM_0_4_centos</span> <span class="type">sbin</span>]<span class="comment"># /usr/local/nginx/sbin/nginx</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#重新加载服务</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">VM_0_4_centos</span> <span class="type">sbin</span>]<span class="comment"># /usr/local/nginx/sbin/nginx -s reload</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#停止服务</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">VM_0_4_centos</span> <span class="type">sbin</span>]<span class="comment"># /usr/local/nginx/sbin/nginx -s stop</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#查看nginx 服务进程</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">VM_0_4_centos</span> <span class="type">sbin</span>]<span class="comment"># ps -ef | grep nginx </span></span><br></pre></td></tr></table></figure>
 
-
-
-
-
-<blockquote>
+<h3 id="nginx简单入门"><a href="#nginx简单入门" class="headerlink" title="nginx简单入门"></a>nginx简单入门</h3><blockquote>
 <p> 什么是nginx?</p>
 </blockquote>
 <p>Nginx是一款轻量级的Web服务器、反向代理服务器，由于它的内存占用少，启动极快，高并发能力强，在互联网项目中广泛应用。</p>
@@ -480,7 +643,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-10 05:47:23" itemprop="dateModified" datetime="2020-11-10T05:47:23+00:00">2020-11-10</time>
+                <time title="修改时间：2020-11-10 12:48:57" itemprop="dateModified" datetime="2020-11-10T12:48:57+00:00">2020-11-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -599,7 +762,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -611,7 +774,7 @@
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
