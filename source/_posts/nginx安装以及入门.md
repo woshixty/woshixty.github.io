@@ -217,9 +217,7 @@ Commercial support is available at
 [root@VM_0_4_centos sbin]# ps -ef | grep nginx 
 ```
 
-
-
-
+### nginx简单入门
 
 >  什么是nginx?
 
