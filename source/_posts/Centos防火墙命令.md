@@ -1,5 +1,6 @@
 ---
 title: Centos的一些命令
+date: 2020-11-10 15:22:59
 tags: [centos]
 categories: linux
 ---

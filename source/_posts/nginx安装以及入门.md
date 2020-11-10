@@ -1,5 +1,7 @@
 ---
 title: nginx安装以及入门
+date: 2020-11-09 15:22:59
+tags: [nginx,centos]
 categories: 工具
 ---
 参考笔记:
