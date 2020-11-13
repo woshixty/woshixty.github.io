@@ -2,7 +2,7 @@
 title: nginx安装以及入门
 date: 2020-11-09 17:22:59
 tags: [nginx, centos]
-categories: 工具
+categories: tools
 ---
 参考笔记:
 
@@ -326,7 +326,7 @@ server {
 
 
 
-> nginx如何删除
+### nginx删除
 
 当有一天，你不再爱nginx时，你将如何删除它呢
 

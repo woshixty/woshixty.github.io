@@ -1,7 +1,7 @@
 ---
-title: Centos的一些命令
+title: Centos的一些命令和windows的一些命令
 date: 2020-11-10 15:22:59
-tags: [centos]
+tags: [centos, windows]
 categories: linux
 ---
 
@@ -109,11 +109,21 @@ root     18130  0.0  0.0 112708   976 pts/0    R+   14:48   0:00 grep --color=au
 
 ### windows端口进程管理
 
-##### 
+##### 查找端口
 
+```bash
+#查找所有端口
+PS C:\Users\qyyzx> netstat -ano
+
+#查找某个端口
+PS C:\Users\qyyzx> netstat -aon|findstr "4000"
+  TCP    0.0.0.0:4000           0.0.0.0:0              LISTENING       21972
+  TCP    [::]:4000              [::]:0                 LISTENING       21972
 ```
 
+##### 杀死使用某个端口的进程
+
+```bash
+PS C:\Users\qyyzx> taskkill /f /pid  21972
+成功: 已终止 PID 为 21972 的进程
 ```
-
-
-

@@ -2,7 +2,7 @@
 title: mysql的安装
 date: 2020-11-11
 tags: [centos, mysql]
-categories: 工具
+categories: tools
 ---
 
 (之前安装的MySQL又出问题了，干脆直接重装，解决一切问题)
