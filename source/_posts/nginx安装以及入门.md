@@ -347,7 +347,7 @@ Complete!
 
 - 查看nginx是否还存在
 
+```bash
+[root@VM_0_4_centos ~]# find / -name nginx
+[root@VM_0_4_centos ~]# 
 ```
-
-```
-

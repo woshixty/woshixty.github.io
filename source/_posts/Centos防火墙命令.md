@@ -12,25 +12,25 @@ categories: linux
 
 ### centos防火墙的一些命令
 
-> #### **查看开放端口**
+##### 查看开放端口
 
 ```powershell
 firewall-cmd --list-ports
 ```
 
-> #### **开启端口**
+##### 开启端口
 
 ```powershell
 firewall-cmd --zone=public --add-port=80/tcp --permanent
 ```
 
-> #### **开启范围端口 8080 - 9090范围的端口**
+##### 开启范围端口 8080 - 9090范围的端口
 
 ```powershell
 firewall-cmd  --zone=public  --add-port=8080-9090/tcp --permanent
 ```
 
-> #### **命令含义**
+##### 命令含义
 
 ```
 –zone                          #作用域
@@ -38,7 +38,7 @@ firewall-cmd  --zone=public  --add-port=8080-9090/tcp --permanent
 –permanent                     #永久生效，没有此参数重启后失效
 ```
 
-> #### **防火墙命令**
+##### 防火墙命令
 
 ```powershell
 firewall-cmd --reload                  #重启firewall
@@ -47,3 +47,73 @@ systemctl start firewalld.service      #开启firewall
 systemctl stop firewalld.service       #停止firewall
 systemctl disable firewalld.service    #禁止firewall开机启动
 ```
+
+
+
+### centos进程管理
+
+```txt
+linux上进程有5种状态:
+1. 运行(正在运行或在运行队列中等待)
+2. 中断(休眠中, 受阻, 在等待某个条件的形成或接受到信号)
+3. 不可中断(收到信号不唤醒和不可运行, 进程必须等待直到有中断发生)
+4. 僵死(进程已终止, 但进程描述符存在, 直到父进程调用wait4()系统调用后释放)
+5. 停止(进程收到SIGSTOP, SIGSTP, SIGTIN, SIGTOU信号后停止运行运行)
+```
+
+##### 查看进程
+
+```bash
+#ps命令查找与进程相关的PID号
+[root@VM_0_4_centos ~]# ps 9827
+  PID TTY      STAT   TIME COMMAND
+ 9827 pts/0    Sl     0:14 java -jar competitionrow-0.0.1-SNAPSHOT.jar
+ 
+#显示现行终端机下的所有程序，包括其他用户的程序
+[root@VM_0_4_centos ~]# ps a
+  PID TTY      STAT   TIME COMMAND
+ 1321 tty1     Ss+    0:00 /sbin/agetty --noclear tty1 linux
+ 1322 ttyS0    Ss+    0:00 /sbin/agetty --keep-baud 115200 38400 9600 ttyS0 vt220
+ 9827 pts/0    Sl     0:14 java -jar competitionrow-0.0.1-SNAPSHOT.jar
+17061 pts/0    R+     0:00 ps a
+22278 pts/0    Ss     0:00 -bash
+
+#显示所有程序
+[root@VM_0_4_centos ~]# ps -A
+  PID TTY          TIME CMD
+    1 ?        00:12:32 systemd
+    2 ?        00:00:02 kthreadd
+    3 ?        00:01:53 ksoftirqd/0
+    5 ?        00:00:00 kworker/0:0H
+    7 ?        00:00:00 migration/0
+    ......  
+    #此处省略100行
+
+#最常用的方法是ps aux,然后再通过管道使用grep命令过滤查找特定的进程,然后再对特定的进程进行操作
+[root@VM_0_4_centos ~]# ps aux | grep java
+root      9827  0.5  8.8 2546924 166932 pts/0  Sl   14:03   0:14 java -jar competitionrow-0.0.1-SNAPSHOT.jar
+root     18130  0.0  0.0 112708   976 pts/0    R+   14:48   0:00 grep --color=auto java
+```
+
+##### 杀死进程
+
+```bash
+#通过进程id来杀
+[root@VM_0_4_centos ~]# kill -9 pid
+
+#通过进程name来杀
+[root@VM_0_4_centos ~]# killall -9 name
+```
+
+
+
+### windows端口进程管理
+
+##### 
+
+```
+
+```
+
+
+
