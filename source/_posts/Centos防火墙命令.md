@@ -24,6 +24,26 @@ firewall-cmd --list-ports
 firewall-cmd --zone=public --add-port=80/tcp --permanent
 ```
 
+##### 查看端口占用情况
+
+```powershell
+[root@VM_0_4_centos ~]# lsof -i tcp:8090
+
+COMMAND   PID USER   FD   TYPE    DEVICE SIZE/OFF NODE NAME
+java    27581 root   19u  IPv6 136588143      0t0  TCP *:8090 (LISTEN)
+
+# lsof输出各列信息的意义如下：
+# COMMAND    进程的名称
+# PID        进程的标识符
+# USER       进程的所有者
+# FD         文件描述符，应用程序通过文件描述符识别该文件，如cwd，txt
+# TYPE       文件类型
+# DEVICE     指定磁盘的名称
+# SIZE/OFF   文件大小
+# NODE       文件在磁盘上的标识
+# NAME       打开文件的确切名称
+```
+
 ##### 开启范围端口 8080 - 9090范围的端口
 
 ```powershell
@@ -32,7 +52,7 @@ firewall-cmd  --zone=public  --add-port=8080-9090/tcp --permanent
 
 ##### 命令含义
 
-```
+```powershell
 –zone                          #作用域
 –add-port=80/tcp               #添加端口，格式为：端口/通讯协议
 –permanent                     #永久生效，没有此参数重启后失效
@@ -47,7 +67,6 @@ systemctl start firewalld.service      #开启firewall
 systemctl stop firewalld.service       #停止firewall
 systemctl disable firewalld.service    #禁止firewall开机启动
 ```
-
 
 
 ### centos进程管理
@@ -104,8 +123,6 @@ root     18130  0.0  0.0 112708   976 pts/0    R+   14:48   0:00 grep --color=au
 #通过进程name来杀
 [root@VM_0_4_centos ~]# killall -9 name
 ```
-
-
 
 ### windows端口进程管理
 

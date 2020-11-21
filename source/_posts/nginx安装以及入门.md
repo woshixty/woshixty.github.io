@@ -4,6 +4,7 @@ date: 2020-11-09 17:22:59
 tags: [nginx, centos]
 categories: tools
 ---
+
 参考笔记:
 
 [CentOS 7 下 yum 安装和配置 Nginx](https://blog.csdn.net/weixin_38118016/article/details/89949131)
