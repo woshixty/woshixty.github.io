@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/3.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/3.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="这几天和几个小伙伴写活动平台的项目 有消息通知的功能需求 故学习一下RabbitMQ  一、RabbitMQ是什么？RabbitMQ是流行的开源消息队列系统，是AMQP（Advanced Message Queuing Protocol高级消息队列协议）的标准实现，用erlang语言开发。RabbitMQ据说具有良好的性能和时效性，同时还能够非常好的支持集群和负载部署，非常适合在较大规模的分布式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RabbitMQ的安装与基本使用">
+<meta property="og:url" content="http://example.com/2020/11/25/RabbitMQ%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="Hello Programmer">
+<meta property="og:description" content="这几天和几个小伙伴写活动平台的项目 有消息通知的功能需求 故学习一下RabbitMQ  一、RabbitMQ是什么？RabbitMQ是流行的开源消息队列系统，是AMQP（Advanced Message Queuing Protocol高级消息队列协议）的标准实现，用erlang语言开发。RabbitMQ据说具有良好的性能和时效性，同时还能够非常好的支持集群和负载部署，非常适合在较大规模的分布式">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2020/11/25/RabbitMQ%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/pics/RabbitMQ1.png">
+<meta property="og:image" content="http://example.com/2020/11/25/RabbitMQ%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/pics/RabbitMQ2.png">
+<meta property="article:published_time" content="2020-11-25T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-11-26T04:26:55.770Z">
+<meta property="article:author" content="xty">
+<meta property="article:tag" content="centos">
+<meta property="article:tag" content="RabbitMQ">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/11/25/RabbitMQ%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/pics/RabbitMQ1.png">
+
+<link rel="canonical" href="http://example.com/2020/11/25/RabbitMQ%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>RabbitMQ的安装与基本使用 | Hello Programmer</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hello Programmer</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/25/RabbitMQ%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          RabbitMQ的安装与基本使用
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-25 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-25T00:00:00+00:00">2020-11-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-26 04:26:55" itemprop="dateModified" datetime="2020-11-26T04:26:55+00:00">2020-11-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tools/" itemprop="url" rel="index"><span itemprop="name">tools</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>这几天和几个小伙伴写活动平台的项目 有消息通知的功能需求 故学习一下RabbitMQ</p>
+</blockquote>
+<h3 id="一、RabbitMQ是什么？"><a href="#一、RabbitMQ是什么？" class="headerlink" title="一、RabbitMQ是什么？"></a>一、RabbitMQ是什么？</h3><p>RabbitMQ是流行的开源消息队列系统，是AMQP（Advanced Message Queuing Protocol高级消息队列协议）的标准实现，用erlang语言开发。RabbitMQ据说具有良好的性能和时效性，同时还能够非常好的支持集群和负载部署，非常适合在较大规模的分布式系统中使用。</p>
+<h3 id="二、RabbitMQ安装步骤"><a href="#二、RabbitMQ安装步骤" class="headerlink" title="二、RabbitMQ安装步骤"></a>二、RabbitMQ安装步骤</h3><blockquote>
+<p>由于RabbitMQ是基于Erlang（面向高并发的语言）语言开发，所以在安装RabbitMQ之前，需要先安装Erlang</p>
+</blockquote>
+<h4 id="安装Erlang和socat-失败安装"><a href="#安装Erlang和socat-失败安装" class="headerlink" title="安装Erlang和socat(失败安装)"></a>安装Erlang和socat(失败安装)</h4><blockquote>
+<p>我们安装最新版本的Erlang到服务器中。 Erlang在默认的YUM存储库中不可用，因此需要安装EPEL存储库。 </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 先执行第一个命令安装EPEL存储库</span></span><br><span class="line">[root@iZ8vbguck7zxavr5aco6knZ ~]<span class="comment"># yum -y install epel-release</span></span><br><span class="line"></span><br><span class="line">Loaded plugins: fastestmirror                                                                             | 3.6 kB  00:00:00     </span><br><span class="line">......</span><br><span class="line"></span><br><span class="line">Installed:</span><br><span class="line">  epel-release.noarch 0:7-13                                                                                                    </span><br><span class="line"></span><br><span class="line">Complete!</span><br><span class="line"></span><br><span class="line"><span class="comment"># 再执行第二个命令安装Erlang和socat</span></span><br><span class="line">[root@iZ8vbguck7zxavr5aco6knZ ~]<span class="comment"># yum -y install erlang socat</span></span><br><span class="line"></span><br><span class="line">Complete!</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>安装完之后看看版本</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@iZ8vbguck7zxavr5aco6knZ ~]<span class="comment"># erl -version</span></span><br><span class="line"></span><br><span class="line">Erlang (SMP,ASYNC_THREADS,HIPE) (BEAM) emulator version 5.10.4</span><br></pre></td></tr></table></figure>
+
+<h4 id="安装RabbitMQ"><a href="#安装RabbitMQ" class="headerlink" title="安装RabbitMQ"></a>安装RabbitMQ</h4><blockquote>
+<p>可以去官网下载rpm包 <a target="_blank" rel="noopener" href="https://www.rabbitmq.com/download.html">点此前往下载</a> 3.8版安装之后没有config文件 <a target="_blank" rel="noopener" href="https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.7.28/rabbitmq-server-3.7.28-1.el7.noarch.rpm">点此下载旧版本</a></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@iZ8vbguck7zxavr5aco6knZ RabbitMQ]<span class="comment"># ls</span></span><br><span class="line"></span><br><span class="line">rabbitmq-server-3.8.9-1.el7.noarch.rpm rabbitmq-server-3.7.28-1.el7.noarch.rpm</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>执行安装程序，这里发生了错误，由于安装的rabbitmq需要的erlang版本得 &gt;= 21.3，而我们是 5.10.4，故erlang得重新安装</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@iZ8vbguck7zxavr5aco6knZ RabbitMQ]<span class="comment"># yum install rabbitmq-server-3.8.9-1.el7.noarch.rpm</span></span><br><span class="line"></span><br><span class="line">Error: Package: rabbitmq-server-3.8.9-1.el7.noarch (/rabbitmq-server-3.8.9-1.el7.noarch)</span><br><span class="line">           Requires: erlang &gt;= 21.3</span><br><span class="line">           Installed: erlang-R16B-03.18.el7.x86_64 (@epel)</span><br><span class="line">               erlang = R16B-03.18.el7</span><br><span class="line"> You could try using --skip-broken to work around the problem</span><br><span class="line"> You could try running: rpm -Va --nofiles --nodigest</span><br><span class="line"> </span><br><span class="line"> [root@iZ8vbguck7zxavr5aco6knZ ~]<span class="comment"># erl -version</span></span><br><span class="line"> </span><br><span class="line">Erlang (SMP,ASYNC_THREADS,HIPE) (BEAM) emulator version 5.10.4</span><br></pre></td></tr></table></figure>
+
+<h4 id="重新安装Erlang和socat-又一次失败了"><a href="#重新安装Erlang和socat-又一次失败了" class="headerlink" title="重新安装Erlang和socat(又一次失败了)"></a>重新安装Erlang和socat(又一次失败了)</h4><blockquote>
+<p>接下来我们使用脚本更新yum存储库，以下命令均不会有提示消息</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入将从2018年12月1日（GMT）开始使用的新PackageCloud密钥</span></span><br><span class="line">[root@iZ8vbguck7zxavr5aco6knZ RabbitMQ]<span class="comment"># rpm --import https://packagecloud.io/rabbitmq/rabbitmq-server/gpgkey</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 导入将在2018年12月1日（GMT）停止使用的旧PackageCloud密钥</span></span><br><span class="line">[root@iZ8vbguck7zxavr5aco6knZ RabbitMQ]<span class="comment"># rpm --import https://packagecloud.io/gpg.key</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 导入RabbitMQ签名密钥 这使RPM工具信任存储库中提供的软件包上的签名。为此，以超级用户身份运行rpm --import</span></span><br><span class="line">[root@iZ8vbguck7zxavr5aco6knZ RabbitMQ]<span class="comment"># rpm --import https://github.com/rabbitmq/signing-keys/releases/download/2.0/rabbitmq-release-signing-key.asc</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>然后发现更新yum存储库以后安装erlang时没有安装包，没办法，apm安装包安装吧！<a target="_blank" rel="noopener" href="https://www.erlang.org/downloads">官网下载</a></p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@iZ8vbguck7zxavr5aco6knZ RabbitMQ]<span class="comment"># sudo yum install erlang-22.2.1-1.el7.x86_64</span></span><br><span class="line"></span><br><span class="line">No package erlang-22.2.1-1.el7.x86_64 available.</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>有可能下载比较慢，需要科学上网</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@iZ8vbguck7zxavr5aco6knZ RabbitMQ]<span class="comment"># ls</span></span><br><span class="line"></span><br><span class="line">otp_src_23.1.tar.gz  rabbitmq-server-3.8.9-1.el7.noarch.rpm</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>开始安装前准备</p>
+</blockquote>
+<p>解压</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xzvf otp_src_23.1.tar.gz </span><br></pre></td></tr></table></figure>
+
+<p>创建安装目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir /opt/erlang_23.1</span><br></pre></td></tr></table></figure>
+
+<p>安装各种依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc-c++</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install ncurses-devel</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install openssl</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install openssl-devel</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install unixODBC-devel</span><br></pre></td></tr></table></figure>
+
+<p>进入otp_src_23.1进行configure，会有警告，忽略即可</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[root@iZ8vbguck7zxavr5aco6knZ otp_src_23.1]<span class="comment"># ./configure --prefix=/opt/erlang_23.1/</span></span><br><span class="line"></span><br><span class="line">......</span><br><span class="line"><span class="comment">#以下为警告信息</span></span><br><span class="line">*********************************************************************</span><br><span class="line">**********************  APPLICATIONS INFORMATION  *******************</span><br><span class="line">*********************************************************************</span><br><span class="line"></span><br><span class="line">wx             : No OpenGL headers found, wx will NOT be usable</span><br><span class="line">No GLU headers (glu.h) found, wx will NOT be usable</span><br><span class="line">wxWidgets not found, wx will NOT be usable</span><br><span class="line"></span><br><span class="line">*********************************************************************</span><br><span class="line">*********************************************************************</span><br><span class="line">**********************  DOCUMENTATION INFORMATION  ******************</span><br><span class="line">*********************************************************************</span><br><span class="line"></span><br><span class="line">documentation  : </span><br><span class="line">                 fop is missing.</span><br><span class="line">                 Using fakefop to generate placeholder PDF files.</span><br><span class="line"></span><br><span class="line">*********************************************************************</span><br></pre></td></tr></table></figure>
+
+<p>现在就可以进行安装啦！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>然鹅装好以后，配置环境变量之后，还是老版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@iZ8vbguck7zxavr5aco6knZ RabbitMQ]<span class="comment"># erl -version</span></span><br><span class="line"></span><br><span class="line">Erlang (SMP,ASYNC_THREADS,HIPE) (BEAM) emulator version 5.10.4</span><br></pre></td></tr></table></figure>
+
+<h4 id="彻底卸载erlang"><a href="#彻底卸载erlang" class="headerlink" title="彻底卸载erlang"></a>彻底卸载erlang</h4><blockquote>
+<p>首先直接删除安装文件</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /opt/erlang_23.1</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>然后执行下面三条命令，基本就可以删除了</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@iZ8vbguck7zxavr5aco6knZ RabbitMQ]<span class="comment"># yum list | grep erlang</span></span><br><span class="line">[root@iZ8vbguck7zxavr5aco6knZ RabbitMQ]<span class="comment"># yum -y remove erlang-*</span></span><br><span class="line">[root@iZ8vbguck7zxavr5aco6knZ RabbitMQ]<span class="comment"># yum remove erlang.x86_64</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="最后试试官方的方法-成功安装最新erlang"><a href="#最后试试官方的方法-成功安装最新erlang" class="headerlink" title="最后试试官方的方法(成功安装最新erlang)"></a>最后试试官方的方法(成功安装最新erlang)</h4><blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/rabbitmq/erlang-rpm">官方</a>的方法，先创建一个文件</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/yum.repos.d/rabbitmq-erlang.repo</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>在其中添加以下内容</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># In /etc/yum.repos.d/rabbitmq_erlang.repo</span></span><br><span class="line">[rabbitmq_erlang]</span><br><span class="line">name=rabbitmq_erlang</span><br><span class="line">baseurl=https://packagecloud.io/rabbitmq/erlang/el/7/<span class="variable">$basearch</span></span><br><span class="line">repo_gpgcheck=1</span><br><span class="line">gpgcheck=1</span><br><span class="line">enabled=1</span><br><span class="line"><span class="comment"># PackageCloud&#x27;s repository key and RabbitMQ package signing key</span></span><br><span class="line">gpgkey=https://packagecloud.io/rabbitmq/erlang/gpgkey</span><br><span class="line">       https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc</span><br><span class="line">sslverify=1</span><br><span class="line">sslcacert=/etc/pki/tls/certs/ca-bundle.crt</span><br><span class="line">metadata_expire=300</span><br><span class="line"></span><br><span class="line">[rabbitmq_erlang-source]</span><br><span class="line">name=rabbitmq_erlang-source</span><br><span class="line">baseurl=https://packagecloud.io/rabbitmq/erlang/el/7/SRPMS</span><br><span class="line">repo_gpgcheck=1</span><br><span class="line">gpgcheck=0</span><br><span class="line">enabled=1</span><br><span class="line"><span class="comment"># PackageCloud&#x27;s repository key and RabbitMQ package signing key</span></span><br><span class="line">gpgkey=https://packagecloud.io/rabbitmq/erlang/gpgkey</span><br><span class="line">       https://dl.bintray.com/rabbitmq/Keys/rabbitmq-release-signing-key.asc</span><br><span class="line">sslverify=1</span><br><span class="line">sslcacert=/etc/pki/tls/certs/ca-bundle.crt</span><br><span class="line">metadata_expire=300</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>执行安装命令</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install erlang</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装RabbitMQ-1"><a href="#安装RabbitMQ-1" class="headerlink" title="安装RabbitMQ"></a>安装RabbitMQ</h3><blockquote>
+<p>rpm安装即可</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@iZ8vbguck7zxavr5aco6knZ RabbitMQ]<span class="comment"># rpm -ivh rabbitmq-server-3.7.28-1.el7.noarch.rpm</span></span><br><span class="line"></span><br><span class="line">Preparing...                          <span class="comment">################################# [100%]</span></span><br><span class="line">Updating / installing...</span><br><span class="line">   1:rabbitmq-server-3.7.28-1.el7     <span class="comment">################################# [100%]</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>默认安装完成后配置文件模板在:/usr/share/doc/rabbitmq-server-3.7.28/rabbitmq.config.example目录中,需要将配置文件复制到/etc/rabbitmq/目录中,并修改名称为rabbitmq.config</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp /usr/share/doc/rabbitmq-server-3.7.28/rabbitmq.config.example /etc/rabbitmq/rabbitmq.config</span><br></pre></td></tr></table></figure>
+
+<p>至此，安装完成！！！</p>
+<h3 id="三、RabbitMQ基本使用"><a href="#三、RabbitMQ基本使用" class="headerlink" title="三、RabbitMQ基本使用"></a>三、RabbitMQ基本使用</h3><blockquote>
+<p>启动RabbitMQ的服务</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start rabbitmq-server</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>停止RabbitMQ的服务</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop rabbitmq-server</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>重启RabbitMQ的服务</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart rabbitmq-server</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>查看RabbitMQ服务状态</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status rabbitmq-server</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>插件管理命令</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rabbitmq-plugins <span class="built_in">enable</span>|list|<span class="built_in">disable</span> </span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>在浏览器访问 <a target="_blank" rel="noopener" href="http://ip:15672/">http://ip:15672/</a> ，会出现以下界面，记得要开放15672端口，或者关闭防火墙</p>
+</blockquote>
+<p><img src="./pics/RabbitMQ1.png" alt="avatar"></p>
+<blockquote>
+<p>通过此用户进入系统  username:  guest    password:  guest，显示如下界面</p>
+</blockquote>
+<p><img src="./pics/RabbitMQ2.png" alt="avatar"></p>
+<h3 id="四、RabbitMQ彻底删除"><a href="#四、RabbitMQ彻底删除" class="headerlink" title="四、RabbitMQ彻底删除"></a>四、RabbitMQ彻底删除</h3><blockquote>
+<p>依次执行下面三条语句</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 停止RabbitMQ</span></span><br><span class="line">[root@iZ8vbguck7zxavr5aco6knZ RabbitMQ]<span class="comment"># systemctl stop rabbitmq-server</span></span><br><span class="line">[root@iZ8vbguck7zxavr5aco6knZ RabbitMQ]<span class="comment"># yum list | grep rabbitmq</span></span><br><span class="line">[root@iZ8vbguck7zxavr5aco6knZ RabbitMQ]<span class="comment"># yum -y remove rabbitmq-server.noarch</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>找出所有文件，赶尽杀绝，在根目录下执行下面这条语句(切记！！！)找出来后后依次删除即可</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -name rabbit*</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h3><p>折腾了快一天，写几个点防止后人踩雷吧</p>
+<ul>
+<li>erlang 和 rabbitMQ 的版本一定要对应，如之前我使用 23.1的erlang 和 3.7.28 的RabbitMQ ，结果 RabbitMQ 不能启动</li>
+<li>我目前安装的最新的版本如 3.8.9 的 RabbitMQ 安装以后 /usr/share/doc/rabbitmq-server-3.8.9/ 下没有配置模板文件</li>
+<li>yum 安装的 erlang 版本一般都比较低，可以去看看官方教程安装最新版</li>
+<li>erlang 和 rabbitMQ 的版本一定要对应！！！切记！！！具体可以去 rabbitMQ 官网查看</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/centos/" rel="tag"><i class="fa fa-tag"></i> centos</a>
+              <a href="/tags/RabbitMQ/" rel="tag"><i class="fa fa-tag"></i> RabbitMQ</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/11/20/Java%E5%90%8E%E7%AB%AF%E7%94%9F%E6%88%90%E4%BA%8C%E7%BB%B4%E7%A0%81/" rel="prev" title="Java后端生成二维码">
+      <i class="fa fa-chevron-left"></i> Java后端生成二维码
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81RabbitMQ%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">一、RabbitMQ是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81RabbitMQ%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4"><span class="nav-number">2.</span> <span class="nav-text">二、RabbitMQ安装步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Erlang%E5%92%8Csocat-%E5%A4%B1%E8%B4%A5%E5%AE%89%E8%A3%85"><span class="nav-number">2.1.</span> <span class="nav-text">安装Erlang和socat(失败安装)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85RabbitMQ"><span class="nav-number">2.2.</span> <span class="nav-text">安装RabbitMQ</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E6%96%B0%E5%AE%89%E8%A3%85Erlang%E5%92%8Csocat-%E5%8F%88%E4%B8%80%E6%AC%A1%E5%A4%B1%E8%B4%A5%E4%BA%86"><span class="nav-number">2.3.</span> <span class="nav-text">重新安装Erlang和socat(又一次失败了)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BD%BB%E5%BA%95%E5%8D%B8%E8%BD%BDerlang"><span class="nav-number">2.4.</span> <span class="nav-text">彻底卸载erlang</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%80%E5%90%8E%E8%AF%95%E8%AF%95%E5%AE%98%E6%96%B9%E7%9A%84%E6%96%B9%E6%B3%95-%E6%88%90%E5%8A%9F%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0erlang"><span class="nav-number">2.5.</span> <span class="nav-text">最后试试官方的方法(成功安装最新erlang)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85RabbitMQ-1"><span class="nav-number">3.</span> <span class="nav-text">安装RabbitMQ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81RabbitMQ%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8"><span class="nav-number">4.</span> <span class="nav-text">三、RabbitMQ基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81RabbitMQ%E5%BD%BB%E5%BA%95%E5%88%A0%E9%99%A4"><span class="nav-number">5.</span> <span class="nav-text">四、RabbitMQ彻底删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%80%BB%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">五、总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="xty"
+      src="/images/4.png">
+  <p class="site-author-name" itemprop="name">xty</p>
+  <div class="site-description" itemprop="description">This is xty Blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/woshixty" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;woshixty" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xty</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script data-pjax>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+    </div>
+</body>
+</html>
