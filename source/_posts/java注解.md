@@ -13,10 +13,9 @@ categories: springboot
 
 > @Data 注解的主要作用是提高代码的简洁，使用这个注解可以省去代码中大量的get()、 set()、 toString()等方法；
 
-```tex
  @Data 注解要先引入lombok，lombok 是什么，它是一个工具类库，可以用简单的注解形式来简化代码，提高开发效率。
- 
- 原理
+
+ 原理：
 - Lombok本质上就是一个实现了“JSR 269 API”的程序。在使用javac的过程中，它产生作用的具体流程如下
 - javac对源代码进行分析，生成了一棵抽象语法树（AST）
 - 运行过程中调用实现了“JSR 269 API”的Lombok程序
@@ -31,7 +30,6 @@ categories: springboot
 缺点：
 不支持多种参数构造器的重载
 虽然省去了手动创建getter/setter方法的麻烦，但大大降低了源代码的可读性和完整性，降低了阅读源代码的舒适度
-```
 
 
 
@@ -50,7 +48,6 @@ categories: springboot
 
 > 依然不是很理解这四大注解的作用, 于是下面摘抄了一些笔记
 
-```tex
 1、@controller 控制器（注入服务）
 用于标注控制层，相当于struts中的action层
 
@@ -62,7 +59,6 @@ categories: springboot
 
 4、@component （把普通pojo实例化到spring容器中，相当于配置文件中的 <bean id="" class=""/>
 泛指各种组件，就是说当我们的类不属于各种归类的时候（不属于@Controller、@Services等的时候），我们就可以使用@Component来标注这个类。
-```
 
 
 
@@ -71,8 +67,8 @@ categories: springboot
 > @Autowired 是一个注释，它可以对类成员变量、方法及构造函数进行标注，让 spring 完成 bean 自动装配的工作。
 >
 > @Autowired 默认是按照类去匹配，配合 @Qualifier 指定按照名称去装配 bean。
->
-> 通俗理解就是 这个注解就是spring可以自动帮你把bean里面引用的对象的setter/getter方法省略，它会自动帮你set/get。
+
+通俗理解就是 这个注解就是spring可以自动帮你把bean里面引用的对象的setter/getter方法省略，它会自动帮你set/get。
 
 常见用法
 
@@ -104,7 +100,6 @@ public class TestController {
 	public TestController(TagService tagService) {
 		this.tagService = tagService; 
 	}
-	
 }
 ```
 
@@ -116,33 +111,37 @@ public class TestController {
 >
 > 所以想要理解@RestController注解就要先了解@Controller和@ResponseBody注解。
 
-```
 在一个类上添加@Controller注解，表明了这个类是一个控制器类。但想要让这个类成为一个处理请求的处理器光有@Controller注解是不够的，他还需要进一步修炼才能成为一个处理器。
 
-第一种方式在spring容器中创建该类的实例
-<bean class="test.controller.MyController" />
-上述这种方式是在spring容器中注入单个bean，当项目比较大，控制器类比较多时，用这种方式向Spring容器中注入bean非常的让人苦恼，索性有第二种方式。
+- 第一种方式在spring容器中创建该类的实例
+  `<bean class="test.controller.MyController" /> `
 
-第二种方式在spring容器中创建该类的实例
-<context:component-scan base-scan="test.controller" />
-这种方式会扫描指定包中的所有类，并生成相应的bean注入到spring容器中。使用这种方式当然能够极大提高我们的开发效率，但是有时候我们不想某一类型的类注入到spring容器中。
-这个时候第二种方式也可以解决
-<context:component-scan base-package="test" >
-  　　<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
-</context:component-scan>
-上述代码表示扫描test包中除有@Service注解之外的类
-```
+  上述这种方式是在spring容器中注入单个bean，当项目比较大，控制器类比较多时，用这种方式向Spring容器中注入bean非常的让人苦恼，索性有第二种方式。
+
+- 第二种方式在spring容器中创建该类的实例
+  `<context:component-scan base-scan="test.controller" /> `
+
+  这种方式会扫描指定包中的所有类，并生成相应的bean注入到spring容器中。使用这种方式当然能够极大提高我们的开发效率，但是有时候我们不想某一类型的类注入到spring容器中，这个时候第下面种方式可以解决。
+
+  ```java
+  <context:component-scan base-package="test" >
+    　　<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+  </context:component-scan>
+  ```
+
+  上述代码表示扫描test包中除有@Service注解之外的类
 
 > 将@Controller注解的类注入Spring容器中，只是该类成为处理器的第一步，想要修炼大成，还需要在该类中添加注解@RequestMapping。
 
-```tex
+- @RequestMapping
+
 @RequestMapping注解是用来映射请求的，即指明处理器可以处理哪些URL请求，该注解既可以用在类上，也可以用在方法上。
 
-当使用@RequestMapping标记控制器类时，方法的请求地址是相对类的请求地址而言的；当没有使用@RequestMapping标记类时，方法的请求地址是绝对路径。
+当使用@RequestMapping标记控制器类时，方法的请求地址是相对类的请求地址而言的；当没有使用@RequestMapping标记类时，方法的请求地址是绝对路
 
-@RequestMapping的地址可以是uri变量，并且通过@PathVariable注解获取作为方法的参数。也可以是通配符来筛选请求地址。
+径；@RequestMapping的地址可以是uri变量，并且通过@PathVariable注解获取作为方法的参数。也可以是通配符来筛选请求地址。
 
-@ResponseBody注解
+- @ResponseBody注解
 
 @ResponseBody表示方法的返回值直接以指定的格式写入Http response body中，而不是解析为跳转路径。
 
@@ -151,5 +150,4 @@ public class TestController {
 如果要求方法返回的是json格式数据，而不是跳转页面，可以直接在类上标注@RestController，而不用在每个方法中标注
 
 @ResponseBody，简化了开发过程。
-```
 

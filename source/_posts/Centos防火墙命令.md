@@ -10,7 +10,7 @@ categories: linux
 
 (由于自己在使用云服务器的命令的时候常常要百度，故做一点总结)
 
-### centos防火墙的一些命令
+#### centos7防火墙命令
 
 ##### 查看开放端口
 
@@ -24,11 +24,15 @@ firewall-cmd --list-ports
 firewall-cmd --zone=public --add-port=80/tcp --permanent
 ```
 
-##### 查看端口占用情况
+##### 查看某个端口占用情况，如8090
+
+```bash
+lsof -i tcp:8090
+```
+
+> 会显示以下信息
 
 ```powershell
-[root@VM_0_4_centos ~]# lsof -i tcp:8090
-
 COMMAND   PID USER   FD   TYPE    DEVICE SIZE/OFF NODE NAME
 java    27581 root   19u  IPv6 136588143      0t0  TCP *:8090 (LISTEN)
 
@@ -52,24 +56,43 @@ firewall-cmd  --zone=public  --add-port=8080-9090/tcp --permanent
 
 ##### 命令含义
 
-```powershell
-–zone                          #作用域
-–add-port=80/tcp               #添加端口，格式为：端口/通讯协议
-–permanent                     #永久生效，没有此参数重启后失效
-```
+- –zone								#作用域
+- –add-port=80/tcp 	      #添加端口，格式为：端口/通讯协议
+- –permanent                     #永久生效，没有此参数重启后失效
 
 ##### 防火墙命令
 
-```powershell
-firewall-cmd --reload                  #重启firewall
-firewall-cmd  --state                  #查看防火墙状态
-systemctl start firewalld.service      #开启firewall
-systemctl stop firewalld.service       #停止firewall
-systemctl disable firewalld.service    #禁止firewall开机启动
+> 重启firewall
+
+```bash
+firewall-cmd --reload
 ```
 
+> 查看防火墙状态
 
-### centos进程管理
+```bash
+firewall-cmd  --state
+```
+
+> 开启firewall
+
+```bash
+systemctl start firewalld.service
+```
+
+> 停止firewall
+
+```bash
+systemctl stop firewalld.service
+```
+
+> 禁止firewall开机启动
+
+```bash
+systemctl disable firewalld.service
+```
+
+#### centos进程管理
 
 ```txt
 linux上进程有5种状态:
@@ -116,31 +139,42 @@ root     18130  0.0  0.0 112708   976 pts/0    R+   14:48   0:00 grep --color=au
 
 ##### 杀死进程
 
-```bash
-#通过进程id来杀
-[root@VM_0_4_centos ~]# kill -9 pid
+> 通过进程id来杀
 
-#通过进程name来杀
-[root@VM_0_4_centos ~]# killall -9 name
+```bash
+kill -9 pid
 ```
 
-### windows端口进程管理
+> 通过进程name来杀
+
+```bash
+killall -9 name
+```
+
+#### windows端口进程管理
 
 ##### 查找端口
 
-```bash
-#查找所有端口
-PS C:\Users\qyyzx> netstat -ano
+> 查找所有端口
 
-#查找某个端口
-PS C:\Users\qyyzx> netstat -aon|findstr "4000"
-  TCP    0.0.0.0:4000           0.0.0.0:0              LISTENING       21972
-  TCP    [::]:4000              [::]:0                 LISTENING       21972
+```bash
+netstat -ano
+```
+
+> 查找某个端口
+
+```bash
+netstat -aon|findstr "4000"
 ```
 
 ##### 杀死使用某个端口的进程
 
+> 通过pid号
+
 ```bash
-PS C:\Users\qyyzx> taskkill /f /pid  21972
-成功: 已终止 PID 为 21972 的进程
+taskkill /f /pid  21972
 ```
+
+> 成功杀死会有以下提示
+
+成功: 已终止 PID 为 21972 的进程
