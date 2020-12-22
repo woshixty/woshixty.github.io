@@ -1,5 +1,5 @@
 ---
-title: java的各种注解
+title: Java的各种注解
 date: 2020-11-15
 tags: [Java, springboot]
 categories: springboot
@@ -150,4 +150,64 @@ public class TestController {
 如果要求方法返回的是json格式数据，而不是跳转页面，可以直接在类上标注@RestController，而不用在每个方法中标注
 
 @ResponseBody，简化了开发过程。
+
+
+
+
+
+### @Component
+
+组件，放在类上，说明这个类呗spring管理了，即bean。他有几个衍生注解，在web开发中会按照三层架构分层，功能类似，代表被spring托管
+
+- dao【@Repository】
+
+- service【@Service】
+
+- controller 【@Controller】
+
+  四个注解功能一样
+
+
+
+
+
+### @Autowried
+
+@Autowried通过类型名字自动装配，如果@Autowried不能自动装配属性，就用@Qualifier(value = "xxx")匹配
+
+
+
+
+
+### @Resource
+
+自动通过名字类型装配
+
+
+
+
+
+### @Scope("singleton")
+
+单例、原型等等模式
+
+
+
+
+
+### @Aspect
+
+标注这个类是一个切面类
+
+
+
+
+
+### @Before("execution(* ...)")
+
+before方法
+
+
+
+
 

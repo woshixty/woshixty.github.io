@@ -244,6 +244,8 @@ metadata_expire=300
 yum install erlang
 ```
 
+
+
 ### 安装RabbitMQ
 
 > rpm安装即可
