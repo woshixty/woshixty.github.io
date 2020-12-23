@@ -23,13 +23,13 @@
 
   <meta name="description" content="平常经常使用springboot注解·，但是并不理解 故做一点总结  @Data 注解 @Data 注解的主要作用是提高代码的简洁，使用这个注解可以省去代码中大量的get()、 set()、 toString()等方法；   @Data 注解要先引入lombok，lombok 是什么，它是一个工具类库，可以用简单的注解形式来简化代码，提高开发效率。  原理：  Lombok本质上就是一个实现了“">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java的各种注解">
+<meta property="og:title" content="Java的各种注解">
 <meta property="og:url" content="http://example.com/2020/11/15/java%E6%B3%A8%E8%A7%A3/index.html">
 <meta property="og:site_name" content="Hello Programmer">
 <meta property="og:description" content="平常经常使用springboot注解·，但是并不理解 故做一点总结  @Data 注解 @Data 注解的主要作用是提高代码的简洁，使用这个注解可以省去代码中大量的get()、 set()、 toString()等方法；   @Data 注解要先引入lombok，lombok 是什么，它是一个工具类库，可以用简单的注解形式来简化代码，提高开发效率。  原理：  Lombok本质上就是一个实现了“">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-15T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-12-13T03:11:23.842Z">
+<meta property="article:modified_time" content="2020-12-23T09:56:17.042Z">
 <meta property="article:author" content="xty">
 <meta property="article:tag" content="Java">
 <meta property="article:tag" content="springboot">
@@ -48,7 +48,7 @@
   };
 </script>
 
-  <title>java的各种注解 | Hello Programmer</title>
+  <title>Java的各种注解 | Hello Programmer</title>
   
 
 
@@ -172,7 +172,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          java的各种注解
+          Java的各种注解
         </h1>
 
         <div class="post-meta">
@@ -189,7 +189,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-12-13 03:11:23" itemprop="dateModified" datetime="2020-12-13T03:11:23+00:00">2020-12-13</time>
+                <time title="修改时间：2020-12-23 09:56:17" itemprop="dateModified" datetime="2020-12-23T09:56:17+00:00">2020-12-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -289,6 +289,21 @@
 <p>格式的转换是通过HttpMessageConverter中的方法实现的，因为它是一个接口，因此由其实现类完成转换。</p>
 <p>如果要求方法返回的是json格式数据，而不是跳转页面，可以直接在类上标注@RestController，而不用在每个方法中标注</p>
 <p>@ResponseBody，简化了开发过程。</p>
+<h3 id="Component"><a href="#Component" class="headerlink" title="@Component"></a>@Component</h3><p>组件，放在类上，说明这个类呗spring管理了，即bean。他有几个衍生注解，在web开发中会按照三层架构分层，功能类似，代表被spring托管</p>
+<ul>
+<li><p>dao【@Repository】</p>
+</li>
+<li><p>service【@Service】</p>
+</li>
+<li><p>controller 【@Controller】</p>
+<p>四个注解功能一样</p>
+</li>
+</ul>
+<h3 id="Autowried"><a href="#Autowried" class="headerlink" title="@Autowried"></a>@Autowried</h3><p>@Autowried通过类型名字自动装配，如果@Autowried不能自动装配属性，就用@Qualifier(value = “xxx”)匹配</p>
+<h3 id="Resource"><a href="#Resource" class="headerlink" title="@Resource"></a>@Resource</h3><p>自动通过名字类型装配</p>
+<h3 id="Scope-“singleton”"><a href="#Scope-“singleton”" class="headerlink" title="@Scope(“singleton”)"></a>@Scope(“singleton”)</h3><p>单例、原型等等模式</p>
+<h3 id="Aspect"><a href="#Aspect" class="headerlink" title="@Aspect"></a>@Aspect</h3><p>标注这个类是一个切面类</p>
+<h3 id="Before-“execution-…-”"><a href="#Before-“execution-…-”" class="headerlink" title="@Before(“execution(* …)”)"></a>@Before(“execution(* …)”)</h3><p>before方法</p>
 
     </div>
 
@@ -374,7 +389,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-%E6%B3%A8%E8%A7%A3"><span class="nav-number">1.</span> <span class="nav-text">@Data 注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Repository-Controller-Service-Component-%E5%9B%9B%E5%A4%A7%E6%B3%A8%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">@Repository @Controller @Service  @Component 四大注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Autowired-%E6%B3%A8%E8%A7%A3"><span class="nav-number">3.</span> <span class="nav-text">@Autowired 注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RestController-Controller-ResponseBody-%E6%B3%A8%E8%A7%A3"><span class="nav-number">4.</span> <span class="nav-text">@RestController @Controller @ResponseBody 注解</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-%E6%B3%A8%E8%A7%A3"><span class="nav-number">1.</span> <span class="nav-text">@Data 注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Repository-Controller-Service-Component-%E5%9B%9B%E5%A4%A7%E6%B3%A8%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">@Repository @Controller @Service  @Component 四大注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Autowired-%E6%B3%A8%E8%A7%A3"><span class="nav-number">3.</span> <span class="nav-text">@Autowired 注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RestController-Controller-ResponseBody-%E6%B3%A8%E8%A7%A3"><span class="nav-number">4.</span> <span class="nav-text">@RestController @Controller @ResponseBody 注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Component"><span class="nav-number">5.</span> <span class="nav-text">@Component</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Autowried"><span class="nav-number">6.</span> <span class="nav-text">@Autowried</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Resource"><span class="nav-number">7.</span> <span class="nav-text">@Resource</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scope-%E2%80%9Csingleton%E2%80%9D"><span class="nav-number">8.</span> <span class="nav-text">@Scope(“singleton”)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Aspect"><span class="nav-number">9.</span> <span class="nav-text">@Aspect</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Before-%E2%80%9Cexecution-%E2%80%A6-%E2%80%9D"><span class="nav-number">10.</span> <span class="nav-text">@Before(“execution(* …)”)</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -390,7 +405,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
