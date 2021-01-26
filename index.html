@@ -154,7 +154,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/09/%E8%B0%B7%E7%B2%92%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/26/Java_IO%E5%AD%A6%E4%B9%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -168,7 +168,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/09/%E8%B0%B7%E7%B2%92%E5%95%86%E5%9F%8E%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2021/01/26/Java_IO%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -178,7 +178,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-01-09 06:34:13" itemprop="dateCreated datePublished" datetime="2021-01-09T06:34:13+00:00">2021-01-09</time>
+              <time title="创建时间：2021-01-26 16:18:43" itemprop="dateCreated datePublished" datetime="2021-01-26T16:18:43+00:00">2021-01-26</time>
             </span>
 
           
@@ -211,7 +211,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/09/Docker%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/26/Docker%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -225,7 +225,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/09/Docker%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2021/01/26/Docker%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -235,7 +235,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-01-09 06:34:13" itemprop="dateCreated datePublished" datetime="2021-01-09T06:34:13+00:00">2021-01-09</time>
+              <time title="创建时间：2021-01-26 16:18:43" itemprop="dateCreated datePublished" datetime="2021-01-26T16:18:43+00:00">2021-01-26</time>
             </span>
 
           
@@ -249,7 +249,254 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <h1 id="注解"><a href="#注解" class="headerlink" title="#注解"></a><a target="_blank" rel="noopener" href="https://baomidou.com/guide/annotation.html#%E6%B3%A8%E8%A7%A3">#</a>注解</h1><blockquote>
+<p>介绍 <code>MybatisPlus</code> 注解包相关类详解(更多详细描述可点击查看源码注释)</p>
+</blockquote>
+<p>注解类包：</p>
+<p>👉 <a target="_blank" rel="noopener" href="https://gitee.com/baomidou/mybatis-plus/tree/3.0/mybatis-plus-annotation/src/main/java/com/baomidou/mybatisplus/annotation">mybatis-plus-annotation(opens new window)</a></p>
+<h2 id="TableName-opens-new-window"><a href="#TableName-opens-new-window" class="headerlink" title="#@TableName(opens new window)"></a><a target="_blank" rel="noopener" href="https://baomidou.com/guide/annotation.html#tablename">#</a><a target="_blank" rel="noopener" href="https://github.com/baomidou/mybatis-plus/blob/3.0/mybatis-plus-annotation/src/main/java/com/baomidou/mybatisplus/annotation/TableName.java">@TableName(opens new window)</a></h2><ul>
+<li>描述：表名注解</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="center">类型</th>
+<th align="center">必须指定</th>
+<th align="center">默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">value</td>
+<td align="center">String</td>
+<td align="center">否</td>
+<td align="center">“”</td>
+<td>表名</td>
+</tr>
+<tr>
+<td align="center">schema</td>
+<td align="center">String</td>
+<td align="center">否</td>
+<td align="center">“”</td>
+<td>schema</td>
+</tr>
+<tr>
+<td align="center">keepGlobalPrefix</td>
+<td align="center">boolean</td>
+<td align="center">否</td>
+<td align="center">false</td>
+<td>是否保持使用全局的 tablePrefix 的值(如果设置了全局 tablePrefix 且自行设置了 value 的值)</td>
+</tr>
+<tr>
+<td align="center">resultMap</td>
+<td align="center">String</td>
+<td align="center">否</td>
+<td align="center">“”</td>
+<td>xml 中 resultMap 的 id</td>
+</tr>
+<tr>
+<td align="center">autoResultMap</td>
+<td align="center">boolean</td>
+<td align="center">否</td>
+<td align="center">false</td>
+<td>是否自动构建 resultMap 并使用(如果设置 resultMap 则不会进行 resultMap 的自动构建并注入)</td>
+</tr>
+<tr>
+<td align="center">excludeProperty</td>
+<td align="center">String[]</td>
+<td align="center">否</td>
+<td align="center">{}</td>
+<td>需要排除的属性名(@since 3.3.1)</td>
+</tr>
+</tbody></table>
+<p>关于<code>autoResultMap</code>的说明:</p>
+<p>mp会自动构建一个<code>ResultMap</code>并注入到mybatis里(一般用不上).下面讲两句: 因为mp底层是mybatis,所以一些mybatis的常识你要知道,mp只是帮你注入了常用crud到mybatis里 注入之前可以说是动态的(根据你entity的字段以及注解变化而变化),但是注入之后是静态的(等于你写在xml的东西) 而对于直接指定<code>typeHandler</code>,mybatis只支持你写在2个地方:</p>
+<ol>
+<li>定义在resultMap里,只作用于select查询的返回结果封装</li>
+<li>定义在<code>insert</code>和<code>update</code>sql的<code>#&#123;property&#125;</code>里的<code>property</code>后面(例:<code>#&#123;property,typehandler=xxx.xxx.xxx&#125;</code>),只作用于<code>设置值</code> 而除了这两种直接指定<code>typeHandler</code>,mybatis有一个全局的扫描你自己的<code>typeHandler</code>包的配置,这是根据你的<code>property</code>的类型去找<code>typeHandler</code>并使用.</li>
+</ol>
+<h2 id="TableId-opens-new-window"><a href="#TableId-opens-new-window" class="headerlink" title="#@TableId(opens new window)"></a><a target="_blank" rel="noopener" href="https://baomidou.com/guide/annotation.html#tableid">#</a><a target="_blank" rel="noopener" href="https://github.com/baomidou/mybatis-plus/blob/3.0/mybatis-plus-annotation/src/main/java/com/baomidou/mybatisplus/annotation/TableId.java">@TableId(opens new window)</a></h2><ul>
+<li>描述：主键注解</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="center">类型</th>
+<th align="center">必须指定</th>
+<th align="center">默认值</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">value</td>
+<td align="center">String</td>
+<td align="center">否</td>
+<td align="center">“”</td>
+<td align="center">主键字段名</td>
+</tr>
+<tr>
+<td align="center">type</td>
+<td align="center">Enum</td>
+<td align="center">否</td>
+<td align="center">IdType.NONE</td>
+<td align="center">主键类型</td>
+</tr>
+</tbody></table>
+<h4 id="IdType-opens-new-window"><a href="#IdType-opens-new-window" class="headerlink" title="#IdType(opens new window)"></a><a target="_blank" rel="noopener" href="https://baomidou.com/guide/annotation.html#idtype">#</a><a target="_blank" rel="noopener" href="https://github.com/baomidou/mybatis-plus/blob/3.0/mybatis-plus-annotation/src/main/java/com/baomidou/mybatisplus/annotation/IdType.java">IdType(opens new window)</a></h4><table>
+<thead>
+<tr>
+<th align="center">值</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">AUTO</td>
+<td align="center">数据库ID自增</td>
+</tr>
+<tr>
+<td align="center">NONE</td>
+<td align="center">无状态,该类型为未设置主键类型(注解里等于跟随全局,全局里约等于 INPUT)</td>
+</tr>
+<tr>
+<td align="center">INPUT</td>
+<td align="center">insert前自行set主键值</td>
+</tr>
+<tr>
+<td align="center">ASSIGN_ID</td>
+<td align="center">分配ID(主键类型为Number(Long和Integer)或String)(since 3.3.0),使用接口<code>IdentifierGenerator</code>的方法<code>nextId</code>(默认实现类为<code>DefaultIdentifierGenerator</code>雪花算法)</td>
+</tr>
+<tr>
+<td align="center">ASSIGN_UUID</td>
+<td align="center">分配UUID,主键类型为String(since 3.3.0),使用接口<code>IdentifierGenerator</code>的方法<code>nextUUID</code>(默认default方法)</td>
+</tr>
+<tr>
+<td align="center">ID_WORKER</td>
+<td align="center">分布式全局唯一ID 长整型类型(please use <code>ASSIGN_ID</code>)</td>
+</tr>
+<tr>
+<td align="center">UUID</td>
+<td align="center">32位UUID字符串(please use <code>ASSIGN_UUID</code>)</td>
+</tr>
+<tr>
+<td align="center">ID_WORKER_STR</td>
+<td align="center">分布式全局唯一ID 字符串类型(please use <code>ASSIGN_ID</code>)</td>
+</tr>
+</tbody></table>
+<h2 id="TableField-opens-new-window"><a href="#TableField-opens-new-window" class="headerlink" title="#@TableField(opens new window)"></a><a target="_blank" rel="noopener" href="https://baomidou.com/guide/annotation.html#tablefield">#</a><a target="_blank" rel="noopener" href="https://github.com/baomidou/mybatis-plus/blob/3.0/mybatis-plus-annotation/src/main/java/com/baomidou/mybatisplus/annotation/TableField.java">@TableField(opens new window)</a></h2><ul>
+<li>描述：字段注解(非主键)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">属性</th>
+<th align="center">类型</th>
+<th align="center">必须指定</th>
+<th align="center">默认值</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">value</td>
+<td align="center">String</td>
+<td align="center">否</td>
+<td align="center">“”</td>
+<td align="center">数据库字段名</td>
+</tr>
+<tr>
+<td align="center">el</td>
+<td align="center">String</td>
+<td align="center">否</td>
+<td align="center">“”</td>
+<td align="center">映射为原生 <code>#&#123; ... &#125;</code> 逻辑,相当于写在 xml 里的 <code>#&#123; ... &#125;</code> 部分</td>
+</tr>
+<tr>
+<td align="center">exist</td>
+<td align="center">boolean</td>
+<td align="center">否</td>
+<td align="center">true</td>
+<td align="center">是否为数据库表字段</td>
+</tr>
+<tr>
+<td align="center">condition</td>
+<td align="center">String</td>
+<td align="center">否</td>
+<td align="center">“”</td>
+<td align="center">字段 <code>where</code> 实体查询比较条件,有值设置则按设置的值为准,没有则为默认全局的 <code>%s=#&#123;%s&#125;</code>,<a target="_blank" rel="noopener" href="https://github.com/baomidou/mybatis-plus/blob/3.0/mybatis-plus-annotation/src/main/java/com/baomidou/mybatisplus/annotation/SqlCondition.java">参考(opens new window)</a></td>
+</tr>
+<tr>
+<td align="center">update</td>
+<td align="center">String</td>
+<td align="center">否</td>
+<td align="center">“”</td>
+<td align="center">字段 <code>update set</code> 部分注入, 例如：update=”%s+1”：表示更新时会set version=version+1(该属性优先级高于 <code>el</code> 属性)</td>
+</tr>
+<tr>
+<td align="center">insertStrategy</td>
+<td align="center">Enum</td>
+<td align="center">N</td>
+<td align="center">DEFAULT</td>
+<td align="center">举例：NOT_NULL: <code>insert into table_a(&lt;if test=&quot;columnProperty != null&quot;&gt;column&lt;/if&gt;) values (&lt;if test=&quot;columnProperty != null&quot;&gt;#&#123;columnProperty&#125;&lt;/if&gt;)</code></td>
+</tr>
+<tr>
+<td align="center">updateStrategy</td>
+<td align="center">Enum</td>
+<td align="center">N</td>
+<td align="center">DEFAULT</td>
+<td align="center">举例：IGNORED: <code>update table_a set column=#&#123;columnProperty&#125;</code></td>
+</tr>
+<tr>
+<td align="center">whereStrategy</td>
+<td align="center">Enum</td>
+<td align="center">N</td>
+<td align="center">DEFAULT</td>
+<td align="center">举例：NOT_EMPTY: <code>where &lt;if test=&quot;columnProperty != null and columnProperty!=&#39;&#39;&quot;&gt;column=#&#123;columnProperty&#125;&lt;/if&gt;</code></td>
+</tr>
+<tr>
+<td align="center">fill</td>
+<td align="center">Enum</td>
+<td align="center">否</td>
+<td align="center">FieldFill.DEFAULT</td>
+<td align="center">字段自动填充策略</td>
+</tr>
+<tr>
+<td align="center">select</td>
+<td align="center">boolean</td>
+<td align="center">否</td>
+<td align="center">true</td>
+<td align="center">是否进行 select 查询</td>
+</tr>
+<tr>
+<td align="center">keepGlobalFormat</td>
+<td align="center">boolean</td>
+<td align="center">否</td>
+<td align="center">false</td>
+<td align="center">是否保持使用全局的 format 进行处理</td>
+</tr>
+<tr>
+<td align="center">jdbcType</td>
+<td align="center">JdbcType</td>
+<td align="center">否</td>
+<td align="center">JdbcType.UNDEFINED</td>
+<td align="center">JDBC类型 (该默认值不代表会按照该值生效)</td>
+</tr>
+<tr>
+<td align="center">typeHandler</td>
+<td align="center">Class&lt;? extends TypeHandler&gt;</td>
+<td align="center">否</td>
+<td align="center">UnknownTypeHandler.class</td>
+<td align="center">类型处理器 (该默认值不代表会按照该值生效)</td>
+</tr>
+<tr>
+<td align="center">numericScale</td>
+<td align="center">String</td>
+<td align="center">否</td>
+<td align="center">“”</td>
+<td align="center">指定小数点后保留的位数</td>
+</tr>
+</tbody></table>
+
       
     </div>
 
@@ -268,7 +515,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/09/Java_IO%E5%AD%A6%E4%B9%A0/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/26/Java%E6%B3%A8%E8%A7%A3%E5%AD%A6%E4%B9%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -282,7 +529,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/09/Java_IO%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2021/01/26/Java%E6%B3%A8%E8%A7%A3%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">Java注解学习</a>
         </h2>
 
         <div class="post-meta">
@@ -291,8 +538,18 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-01-09 06:34:13" itemprop="dateCreated datePublished" datetime="2021-01-09T06:34:13+00:00">2021-01-09</time>
+              <time title="创建时间：2021-01-26 00:00:00 / 修改时间：16:18:43" itemprop="dateCreated datePublished" datetime="2021-01-26T00:00:00+00:00">2021-01-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
             </span>
 
           
@@ -306,7 +563,125 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <blockquote>
+<p>当初学习Java的时候并没有特别去学习和理解注解（Annotation），写了一段时间springboot项目之后，准备回来重修。</p>
+</blockquote>
+<h3 id="一、注解（Annotation）到底是个啥玩意？"><a href="#一、注解（Annotation）到底是个啥玩意？" class="headerlink" title="一、注解（Annotation）到底是个啥玩意？"></a>一、注解（Annotation）到底是个啥玩意？</h3><p>所谓注解（Annotation），其实就是代码里的特殊标记，能够在代码编译、类加载、运行的时候被读取并对它进行相应的处理。说白了其实可以理解为“贴在代码上的便签”，通过使用注解使得程序开发在不改变程序原有逻辑的基础上，在源文件里嵌入一些补充信息。</p>
+<p>注解其实可以为程序元素（类、方法、成员变量等）设置元数据，但到底啥是设置元数据，往后面看就行了。</p>
+<p>需要注意的一点是，注解实际上并不影响程序执行，但是你若想要它发挥一定的做用，你就得通过配套工具对注解中的信息进行处理，就相当于是你在代码上贴了“标签”，你得写一段程序来检查这个“标签”</p>
+<h3 id="二、Java的基本注解"><a href="#二、Java的基本注解" class="headerlink" title="二、Java的基本注解"></a>二、Java的基本注解</h3><h4 id="1-限定重写父类方法：-Override注解"><a href="#1-限定重写父类方法：-Override注解" class="headerlink" title="1. 限定重写父类方法： @Override注解"></a>1. 限定重写父类方法： @Override注解</h4><blockquote>
+<p>这个注解我们太熟悉了！强制子类重写父类方法，它能帮助程序员放置一些低级错误：重写的方法名写错了等</p>
+<p>只要重写的方法名不一致就会报错</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">father</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">info</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">son</span> <span class="keyword">extends</span> <span class="title">father</span> </span>&#123;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">info</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       System.out.println(<span class="string">&quot;Java&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-Java-9增强的-Deprecated"><a href="#2-Java-9增强的-Deprecated" class="headerlink" title="2. Java 9增强的@Deprecated"></a>2. Java 9增强的@Deprecated</h4><blockquote>
+<p>用于标注某个类、方法已过时，当被使用的时候会报警告</p>
+<p>这个注解有两个属性：</p>
+<ul>
+<li>since：该元素哪个版本会过时</li>
+<li>forRemoval：该元素在将来是否会被删除</li>
+</ul>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注意：这个注解时JDK9之后的增强版</span></span><br><span class="line"><span class="meta">@Deprecated( since = &quot;9&quot;, forRemoval = true)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">father</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">info</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-抑制编译器警告：-SuppressWarnings-以及-“堆污染”警告与Java-9增强的：-SafeVarargs"><a href="#3-抑制编译器警告：-SuppressWarnings-以及-“堆污染”警告与Java-9增强的：-SafeVarargs" class="headerlink" title="3. 抑制编译器警告：@SuppressWarnings 以及 “堆污染”警告与Java 9增强的：@SafeVarargs"></a>3. 抑制编译器警告：@SuppressWarnings 以及 “堆污染”警告与Java 9增强的：@SafeVarargs</h4><blockquote>
+<p>感觉这俩注解没啥好说的，我们一般也不会用到</p>
+<ul>
+<li>@SuppressWarnings就是可以让程序元素不报警，包括这个程序元素的所有子元素</li>
+<li>@SafeVarargs防止堆污染</li>
+</ul>
+</blockquote>
+<h4 id="4-函数式接口：-FunctionalInterface"><a href="#4-函数式接口：-FunctionalInterface" class="headerlink" title="4. 函数式接口：@FunctionalInterface"></a>4. 函数式接口：@FunctionalInterface</h4><blockquote>
+<p>保证某个接口一定是函数式接口，即只含有抽象函数的接口，他只能修饰接口</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">func</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">a</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;a&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">b</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;b&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//唯一的抽象方法</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">c</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="三、JDK元注解"><a href="#三、JDK元注解" class="headerlink" title="三、JDK元注解"></a>三、JDK元注解</h3><p>所谓元注解，就是修饰注解的注解（禁止套娃！），我们先来康康几个常用的注解吧</p>
+<h4 id="1-Retention注解"><a href="#1-Retention注解" class="headerlink" title="1. @Retention注解"></a>1. @Retention注解</h4><blockquote>
+<p>@Retention指定被修饰的注解可以存活多长时间，他的value值为以下三个</p>
+<ul>
+<li><p><code>RetentionPolicy.SOURCE</code>–编译器把注解记录在文件中，当运行Java程序时，JVM不可获取注解信息</p>
+</li>
+<li><p><code>RetentionPolicy.CLASS</code>–编译器把注解记录在文件中，当运行Java程序时，JVM可以通过反射获取注解信息</p>
+</li>
+<li><p><code>RetentionPolicy.RUNTIME</code>–只保留在源码中，编译器直接丢弃，例如@data注解，他只是在编译时候让编译器给类加上getter setter之后就被丢弃了</p>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @data注解</span></span><br><span class="line"><span class="meta">@Target(ElementType.TYPE)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.SOURCE)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Data &#123;</span><br><span class="line">   <span class="function">String <span class="title">staticConstructor</span><span class="params">()</span> <span class="keyword">default</span> &quot;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-Target注解"><a href="#2-Target注解" class="headerlink" title="2. @Target注解"></a>2. @Target注解</h4><blockquote>
+<p>@Target指定被修饰的注解能修饰哪些程序单元，这里有很多，就不细讲了，咱们举一个栗子吧！</p>
+<ul>
+<li><code>ElementType.TYPE</code>–可以修饰类、接口（包括注解类型）、枚举定义</li>
+</ul>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这是ElementType枚举类内部</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">ElementType</span> </span>&#123;</span><br><span class="line">    <span class="comment">/** Class, interface (including annotation type), or enum declaration */</span></span><br><span class="line">    TYPE,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Field declaration (includes enum constants) */</span></span><br><span class="line">    FIELD,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Method declaration */</span></span><br><span class="line">    METHOD,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Formal parameter declaration */</span></span><br><span class="line">    PARAMETER,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Constructor declaration */</span></span><br><span class="line">    CONSTRUCTOR,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Local variable declaration */</span></span><br><span class="line">    LOCAL_VARIABLE,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Annotation type declaration */</span></span><br><span class="line">    ANNOTATION_TYPE,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Package declaration */</span></span><br><span class="line">    PACKAGE,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Type parameter declaration</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@since</span> 1.8</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    TYPE_PARAMETER,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Use of a type</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@since</span> 1.8</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    TYPE_USE</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-Documented注解"><a href="#3-Documented注解" class="headerlink" title="3. @Documented注解"></a>3. @Documented注解</h4><blockquote>
+<p>被@Documented修饰的注解可以被javaDoc工具提取成文档</p>
+</blockquote>
+<h4 id="4-Inherited注解"><a href="#4-Inherited注解" class="headerlink" title="4. @Inherited注解"></a>4. @Inherited注解</h4><blockquote>
+<p>@Inherited修饰的注解具有继承性，如@Inherited修饰了@a注解，而@a修饰了father这个基类，则father的子类son也相当于被@a修饰</p>
+<p>可能有点绕哈，来人！上代码！</p>
+</blockquote>
+<p>定义注解：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这是被@Inherited修饰的接口</span></span><br><span class="line"><span class="meta">@Target(ElementType.TYPE)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> inheritedTest &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>定义类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@inheritedTest</span>  <span class="comment">//@inheritedTest具有继承性 </span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">father</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">info</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// son是father的子类，故son也相当于被@inheritedTest修饰了</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">son</span> <span class="keyword">extends</span> <span class="title">father</span> </span>&#123;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">info</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       System.out.println(<span class="string">&quot;Java&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="四、自定义注解"><a href="#四、自定义注解" class="headerlink" title="四、自定义注解"></a>四、自定义注解</h3><h4 id="1-定义注解"><a href="#1-定义注解" class="headerlink" title="1. 定义注解"></a>1. 定义注解</h4><blockquote>
+<p>其实注解就是接口，所以定义注解和定义接口差不多，在关键字<code>interface</code>前加一个<code>@</code>即可，如下定义@MyTag注解：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyTag &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-注解的成员变量"><a href="#2-注解的成员变量" class="headerlink" title="2. 注解的成员变量"></a>2. 注解的成员变量</h4><blockquote>
+<p>成员变量在注解定义中以无参方法的形式来声明，方法名和返回值分别为变量的名字与类型，如下</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyTag &#123;</span><br><span class="line">    <span class="function">String <span class="title">name</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">age</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">String <span class="title">college</span><span class="params">()</span> <span class="keyword">default</span> &quot;计算机学院&quot;</span>;  <span class="comment">// 指定默认值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-提取注解信息"><a href="#3-提取注解信息" class="headerlink" title="3. 提取注解信息"></a>3. 提取注解信息</h4><p>废话不多说，直接上代码！！！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">getInfoTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@inheritedTest</span>  <span class="comment">// 该注解具有继承性</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">father</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">info</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 继承father类</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">son</span> <span class="keyword">extends</span> <span class="title">father</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">info</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Java&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException </span>&#123;</span><br><span class="line">        <span class="comment">// 获取son类上面的所有注解</span></span><br><span class="line">        Annotation[] aArray = Class.forName(<span class="string">&quot;son&quot;</span>).getAnnotations();</span><br><span class="line">        <span class="comment">// 遍历所有注解</span></span><br><span class="line">        <span class="keyword">for</span> (Annotation a:aArray) &#123;</span><br><span class="line">            System.out.println(a);</span><br><span class="line">            <span class="comment">// 如果注解是@inheritedTest类型</span></span><br><span class="line">            <span class="keyword">if</span> (a <span class="keyword">instanceof</span> inheritedTest)</span><br><span class="line">                <span class="comment">// 强转为@inheritedTest类型并取出@inheritedTest中的name值</span></span><br><span class="line">                System.out.println(((inheritedTest) a).name());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="五、自定义注解使用示例"><a href="#五、自定义注解使用示例" class="headerlink" title="五、自定义注解使用示例"></a>五、自定义注解使用示例</h3><p>之前写项目遇到过一个问题：如何比较自由的拦截token</p>
+<p>以前是直接写一个拦截类然后再写一个配置类从而达到拦截部分请求的目的</p>
+<p>使用注解解决方法如下：</p>
+<h4 id="1-定义一个注解"><a href="#1-定义一个注解" class="headerlink" title="1. 定义一个注解"></a>1. 定义一个注解</h4><blockquote>
+<p>定义了注解的目标以及存活时间</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target(&#123;ElementType.METHOD,ElementType.TYPE&#125;)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> AuthenToken &#123;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">required</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">true</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-注解拦截器"><a href="#2-注解拦截器" class="headerlink" title="2. 注解拦截器"></a>2. 注解拦截器</h4><blockquote>
+<p>拦截器就是处理这个”标签”工具</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AuthenticationInterceptor</span> <span class="keyword">implements</span> <span class="title">HandlerInterceptor</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    StudentDao studentDao;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        String token = request.getHeader(<span class="string">&quot;token&quot;</span>);     <span class="comment">//从请求头中获取token</span></span><br><span class="line">        <span class="comment">// 这里就可以写处理逻辑啦！！！</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="六、学无止境"><a href="#六、学无止境" class="headerlink" title="六、学无止境"></a>六、学无止境</h3><p>关于Java注解可以学的东西还有很多，这篇文只讲了其中很小一部分，希望继续多多钻研。</p>
+
       
     </div>
 
@@ -325,7 +700,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/09/Java%E6%B3%A8%E8%A7%A3%E5%AD%A6%E4%B9%A0/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/23/Intellij%20IDEA%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6Unicode%E8%BD%AC%E4%B8%AD%E6%96%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -339,7 +714,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/01/09/Java%E6%B3%A8%E8%A7%A3%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2021/01/23/Intellij%20IDEA%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6Unicode%E8%BD%AC%E4%B8%AD%E6%96%87/" class="post-title-link" itemprop="url">Intellij IDEA properties文件Unicode转中文</a>
         </h2>
 
         <div class="post-meta">
@@ -349,7 +724,23 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-01-09 06:34:13" itemprop="dateCreated datePublished" datetime="2021-01-09T06:34:13+00:00">2021-01-09</time>
+              <time title="创建时间：2021-01-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-23T00:00:00+00:00">2021-01-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-26 16:18:43" itemprop="dateModified" datetime="2021-01-26T16:18:43+00:00">2021-01-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IDEA/" itemprop="url" rel="index"><span itemprop="name">IDEA</span></a>
+                </span>
             </span>
 
           
@@ -363,7 +754,127 @@
     <div class="post-body" itemprop="articleBody">
 
       
+          <blockquote>
+<p>今天遇到一个问题，当我使用IDEA打开一个properties文件文件时，里面的中文字符全部都变成了<code>\u6210\u5668\uFF0C\u914D\u7F6E\u4FE1\u606F</code>介种奇怪的东西，如下所示</p>
+</blockquote>
+<img src="./pics/idea1.png" align='left' />
+
+<h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>于是上网搜索，得到答案：默认情况下，在IDEA中打开properties文件中文会显示unicode格式，即``\u6210`这种，因此我们只要修改一下IDEA的配置就好了</p>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>打开设置，直接搜索<code>File Encodings</code>，按照下图勾上那个勾然后点击Apply就可以啦！！！</p>
+<img src="./pics/idea2.png" align='left' />
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/23/%E4%BD%BF%E7%94%A8renren-fast%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
           
+            <a href="/2021/01/23/%E4%BD%BF%E7%94%A8renren-fast%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81/" class="post-title-link" itemprop="url">使用renren-fast快速生成代码</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-23T00:00:00+00:00">2021-01-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-01-26 16:18:43" itemprop="dateModified" datetime="2021-01-26T16:18:43+00:00">2021-01-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/CrookedWays/" itemprop="url" rel="index"><span itemprop="name">CrookedWays</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>renren-fast是一个轻量级的Spring Boot2.1快速开发平台，它能快速帮我们搭建好一个项目以及生成一些基本的增删改查代码，介样的话我们就能更好地专注于我们自己的一些业务，真香！！！</p>
+</blockquote>
+<p>那么下面我们就开始吧！</p>
+<h3 id="一、创建springboot项目"><a href="#一、创建springboot项目" class="headerlink" title="一、创建springboot项目"></a>一、创建springboot项目</h3><p>我们要先自己创建好数据库，由于自己刚好要写项目，于是我自己就创建的下面这一个springboot项目：</p>
+<img src="./pics/renren-fast1.png" align='left' />
+
+<h3 id="二、克隆renren-fast代码"><a href="#二、克隆renren-fast代码" class="headerlink" title="二、克隆renren-fast代码"></a>二、克隆renren-fast代码</h3><p>人人开源官方gitee地址：<a target="_blank" rel="noopener" href="https://gitee.com/renrenio">人人开源</a></p>
+<p>来到官方网址以后，咱找到仓库里的<code>renren-generator</code>（如下），将他的项目整个clone到我们自己的电脑上。可以看到他有好几个开源项目，之后我们都可以去试试他们</p>
+<p><img src="./pics/renren-fast2.png"></p>
+<h3 id="三、修改配置文件"><a href="#三、修改配置文件" class="headerlink" title="三、修改配置文件"></a>三、修改配置文件</h3><ul>
+<li>数据库</li>
+</ul>
+<p>我们先用IDEA打开我们刚刚下载好的项目，打开我们的<code>application.yml</code>配置文件，修改url、username、password</p>
+<img src="./pics/renren-fast3.png" align='left' />
+
+<ul>
+<li>代码生成配置</li>
+</ul>
+<p>我们再来到<code>generator.properties</code>中，跟据自己的项目来修改即可</p>
+<img src="./pics/renren-fast5.png" align='left' />
+
+<ul>
+<li>修改模板</li>
+</ul>
+<p>来到<code>/resource/template</code>下（如下图），其实模板里面就是对应着代码的生成规则（controller、dao、entity等），我们将<code>Controller.java.vm</code>里的这段代码<code>@RequiresPermissions(&quot;$&#123;moduleName&#125;:$&#123;pathName&#125;:list&quot;)</code>注释掉，记得有5个！然后删除<code>import org.apache.shiro.authz.annotation.RequiresPermissions;</code>就可以啦！</p>
+<img src="./pics/renren-fast6.png" align='left' />
+
+<h3 id="四、生成代码"><a href="#四、生成代码" class="headerlink" title="四、生成代码"></a>四、生成代码</h3><p>激动的心，颤抖的手终于可以生成代码了嘿嘿嘿，我们先来启动我们的项目，并在浏览器中访问<a target="_blank" rel="noopener" href="http://localhost/">localhost</a></p>
+<img src="./pics/renren-fast7.png" align='left' />
+
+<p>生成的压缩包，直接把main文件夹复制粘贴到自己的项目就好啦！</p>
+<h3 id="五、修改代码"><a href="#五、修改代码" class="headerlink" title="五、修改代码"></a>五、修改代码</h3><p>自动生成的代码我们还要进行亿点点修改</p>
+<ul>
+<li>导入依赖</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- spring-web框架 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.3.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- mybatis-plus持久层框架 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.baomidou<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-plus<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- lombok --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.18.16<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
       
     </div>
 
@@ -413,7 +924,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-09 06:34:13" itemprop="dateModified" datetime="2021-01-09T06:34:13+00:00">2021-01-09</time>
+                <time title="修改时间：2021-01-26 16:18:43" itemprop="dateModified" datetime="2021-01-26T16:18:43+00:00">2021-01-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -712,7 +1223,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/05/Redis%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/05/Docker%E5%AE%89%E8%A3%85%E5%85%B6%E4%BB%96%E8%BD%AF%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -726,7 +1237,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/12/05/Redis%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Redis的安装与简单使用</a>
+            <a href="/2020/12/05/Docker%E5%AE%89%E8%A3%85%E5%85%B6%E4%BB%96%E8%BD%AF%E4%BB%B6/" class="post-title-link" itemprop="url">Docker安装Nginx、Tomcat、Redis</a>
         </h2>
 
         <div class="post-meta">
@@ -743,7 +1254,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-09 06:34:13" itemprop="dateModified" datetime="2021-01-09T06:34:13+00:00">2021-01-09</time>
+                <time title="修改时间：2021-01-26 16:18:43" itemprop="dateModified" datetime="2021-01-26T16:18:43+00:00">2021-01-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -766,7 +1277,36 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="Redis其他配置以及集群"><a href="#Redis其他配置以及集群" class="headerlink" title="Redis其他配置以及集群"></a>Redis其他配置以及集群</h3><blockquote>
+          <h3 id="Nginx的安装与部署"><a href="#Nginx的安装与部署" class="headerlink" title="Nginx的安装与部署"></a>Nginx的安装与部署</h3><h4 id="1-搜索nginx镜像"><a href="#1-搜索nginx镜像" class="headerlink" title="1.搜索nginx镜像"></a>1.搜索nginx镜像</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker search nginx</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-拉取下载nginx镜像-直接去Docker搜索可以看到帮助文档"><a href="#2-拉取下载nginx镜像-直接去Docker搜索可以看到帮助文档" class="headerlink" title="2.拉取下载nginx镜像 (直接去Docker搜索可以看到帮助文档)"></a>2.拉取下载nginx镜像 (直接去Docker搜索可以看到帮助文档)</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull nginx</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-康康有没有拉取成功"><a href="#3-康康有没有拉取成功" class="headerlink" title="3.康康有没有拉取成功"></a>3.康康有没有拉取成功</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 显示有以下这一行则表示拉取成功： nginx         latest    ae2feff98a0c   3 weeks ago     133MB</p>
+</blockquote>
+<h4 id="4-启动我们的镜像"><a href="#4-启动我们的镜像" class="headerlink" title="4.启动我们的镜像"></a>4.启动我们的镜像</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name nginx01 -p 3344:80 nginx</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>里面的 “-p 3344:80” 的意思是将 外部的 3344 端口映射到 容器内的 80 端口</p>
+</blockquote>
+<h4 id="5-查看刚刚启动的容器"><a href="#5-查看刚刚启动的容器" class="headerlink" title="5.查看刚刚启动的容器"></a>5.查看刚刚启动的容器</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+
+<p>会显示以下提示信息：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CONTAINER ID   IMAGE       COMMAND                  CREATED         STATUS         PORTS                               NAMES</span><br><span class="line">985e1a5fe8c2   nginx       &quot;/docker-entrypoint.…&quot;   7 seconds ago   Up 6 seconds   0.0.0.0:3344-&gt;80/tcp                nginx01</span><br></pre></td></tr></table></figure>
+
+<p>测一测本机的 3344 端口，可以看到能访问到 nginx</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">[root@iz2ze42tl10pjoj8i0za7hz ~]# curl localhost:3344</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;Welcome to nginx!&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    body &#123;</span><br><span class="line">        width: 35em;</span><br><span class="line">        margin: 0 auto;</span><br><span class="line">        font-family: Tahoma, Verdana, Arial, sans-serif;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;</span><br><span class="line">&lt;p&gt;If you see this page, the nginx web server is successfully installed and</span><br><span class="line">working. Further configuration is required.&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;For online documentation and support please refer to</span><br><span class="line">&lt;a href=&quot;http://nginx.org/&quot;&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;</span><br><span class="line">Commercial support is available at</span><br><span class="line">&lt;a href=&quot;http://nginx.com/&quot;&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-进入容器康康"><a href="#6-进入容器康康" class="headerlink" title="6.进入容器康康"></a>6.进入容器康康</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it nginx01 /bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>进来容器之后我们找一找配置文件，可以进行修改</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root@985e1a5fe8c2:/# whereis nginx</span><br><span class="line">nginx: /usr/sbin/nginx /usr/lib/nginx /etc/nginx /usr/share/nginx</span><br><span class="line">root@985e1a5fe8c2:/# cd /etc/nginx/</span><br><span class="line">root@985e1a5fe8c2:/etc/nginx# ls</span><br><span class="line">conf.d	fastcgi_params	koi-utf  koi-win  mime.types  modules  nginx.conf  scgi_params	uwsgi_params  win-utf</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Tomcat的安装与部署"><a href="#Tomcat的安装与部署" class="headerlink" title="Tomcat的安装与部署"></a>Tomcat的安装与部署</h3><h3 id="Redis配置"><a href="#Redis配置" class="headerlink" title="Redis配置"></a>Redis配置</h3><blockquote>
 <p>修改 /opt/docker_redis/docker-compose.yml 文件，以方便后期修改 Redis 配置信息</p>
 </blockquote>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;3.1&#x27;</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">redis:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">daocloud.io/library/redis:5.0.7</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">redis</span></span><br><span class="line">    <span class="attr">environment:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">TZ=Asia/Shanghai</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="number">6379</span><span class="string">:6379</span></span><br><span class="line">    <span class="comment">#指定一个关于redis的配置文件，映射redis配置文件</span></span><br><span class="line">    <span class="attr">volumes:</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">./conf/redis.conf:/usr/local/redis/redis.conf</span></span><br><span class="line">     <span class="bullet">-</span> <span class="string">./data:/data</span> <span class="comment">#映射data目录</span></span><br><span class="line">    <span class="comment">#运行容器的时候加在它</span></span><br><span class="line">    <span class="attr">command:</span> [<span class="string">&quot;redis-server&quot;</span>,<span class="string">&quot;/usr/local/redis/redis.conf&quot;</span>]</span><br></pre></td></tr></table></figure>
@@ -826,7 +1366,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-09 06:34:13" itemprop="dateModified" datetime="2021-01-09T06:34:13+00:00">2021-01-09</time>
+                <time title="修改时间：2021-01-26 16:18:43" itemprop="dateModified" datetime="2021-01-26T16:18:43+00:00">2021-01-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1070,7 +1610,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-09 06:34:13" itemprop="dateModified" datetime="2021-01-09T06:34:13+00:00">2021-01-09</time>
+                <time title="修改时间：2021-01-26 16:18:43" itemprop="dateModified" datetime="2021-01-26T16:18:43+00:00">2021-01-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1128,7 +1668,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/15/java%E6%B3%A8%E8%A7%A3/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/15/springboot%E5%86%99%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E6%B3%A8%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -1142,7 +1682,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/11/15/java%E6%B3%A8%E8%A7%A3/" class="post-title-link" itemprop="url">Java的各种注解</a>
+            <a href="/2020/11/15/springboot%E5%86%99%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E6%B3%A8%E8%A7%A3/" class="post-title-link" itemprop="url">springboot写项目时遇到的各种注解</a>
         </h2>
 
         <div class="post-meta">
@@ -1159,7 +1699,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-09 06:34:13" itemprop="dateModified" datetime="2021-01-09T06:34:13+00:00">2021-01-09</time>
+                <time title="修改时间：2021-01-26 16:18:43" itemprop="dateModified" datetime="2021-01-26T16:18:43+00:00">2021-01-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1282,82 +1822,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/14/springboot+nginx+https/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/14/springboot+nginx+https/" class="post-title-link" itemprop="url">springboot项目通过nginx的https代理转发</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-11-14 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-14T00:00:00+00:00">2020-11-14</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-09 06:34:13" itemprop="dateModified" datetime="2021-01-09T06:34:13+00:00">2021-01-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java-Project/" itemprop="url" rel="index"><span itemprop="name">Java_Project</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>现在这里挖个坑，做微信小程序时必须要用https，当时折腾了好久，作一下总结</p>
-</blockquote>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1429,19 +1893,19 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
