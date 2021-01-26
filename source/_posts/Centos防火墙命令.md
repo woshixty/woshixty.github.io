@@ -10,21 +10,21 @@ categories: linux
 
 (由于自己在使用云服务器的命令的时候常常要百度，故做一点总结)
 
-#### centos7防火墙命令
+### centos7防火墙命令
 
-##### 查看开放端口
+#### 查看开放端口
 
 ```powershell
 firewall-cmd --list-ports
 ```
 
-##### 开启端口
+#### 开启端口
 
 ```powershell
 firewall-cmd --zone=public --add-port=80/tcp --permanent
 ```
 
-##### 查看某个端口占用情况，如8090
+#### 查看端口占用情况
 
 ```bash
 lsof -i tcp:8090
@@ -48,19 +48,21 @@ java    27581 root   19u  IPv6 136588143      0t0  TCP *:8090 (LISTEN)
 # NAME       打开文件的确切名称
 ```
 
-##### 开启范围端口 8080 - 9090范围的端口
+#### 开启范围端口
+
+> 开启8080 - 9090范围的端口
 
 ```powershell
 firewall-cmd  --zone=public  --add-port=8080-9090/tcp --permanent
 ```
 
-##### 命令含义
+命令含义：
 
 - –zone								#作用域
 - –add-port=80/tcp 	      #添加端口，格式为：端口/通讯协议
 - –permanent                     #永久生效，没有此参数重启后失效
 
-##### 防火墙命令
+#### 防火墙命令
 
 > 重启firewall
 
@@ -94,20 +96,16 @@ systemctl disable firewalld.service
 
 
 
-#### centos7进程管理
+### centos7进程管理
 
-```txt
 linux上进程有5种状态:
 1. 运行(正在运行或在运行队列中等待)
 2. 中断(休眠中, 受阻, 在等待某个条件的形成或接受到信号)
 3. 不可中断(收到信号不唤醒和不可运行, 进程必须等待直到有中断发生)
 4. 僵死(进程已终止, 但进程描述符存在, 直到父进程调用wait4()系统调用后释放)
 5. 停止(进程收到SIGSTOP, SIGSTP, SIGTIN, SIGTOU信号后停止运行运行)
-```
 
-
-
-##### 查看进程
+#### 查看进程
 
 - ps命令查找与进程相关的PID号
 
@@ -150,23 +148,9 @@ ps a
 ps -A
 ```
 
-
-
 > 与上一个命令类似
 
-
-
 ```bash
-#
-[root@VM_0_4_centos ~]# 
-
- 
-#
-[root@VM_0_4_centos ~]# 
-
-
-#
-[root@VM_0_4_centos ~]# 
   PID TTY          TIME CMD
     1 ?        00:12:32 systemd
     2 ?        00:00:02 kthreadd
@@ -175,22 +159,34 @@ ps -A
     7 ?        00:00:00 migration/0
     ......  
     #此处省略100行
+```
 
-#最常用的方法是ps aux,然后再通过管道使用grep命令过滤查找特定的进程,然后再对特定的进程进行操作
-[root@VM_0_4_centos ~]# ps aux | grep java
+
+
+- 查找特定的进程（如查找java进程）
+
+```bash
+ps aux | grep java
+```
+
+> 最常用的方法是ps aux,然后再通过管道使用grep命令过滤查找特定的进程,然后再对特定的进程进行操作
+
+```bash
 root      9827  0.5  8.8 2546924 166932 pts/0  Sl   14:03   0:14 java -jar competitionrow-0.0.1-SNAPSHOT.jar
 root     18130  0.0  0.0 112708   976 pts/0    R+   14:48   0:00 grep --color=auto java
 ```
 
-##### 杀死进程
 
-> 通过进程id来杀
+
+#### 杀死进程
+
+- 通过进程id来杀
 
 ```bash
 kill -9 pid
 ```
 
-> 通过进程name来杀
+- 通过进程name来杀
 
 ```bash
 killall -9 name
@@ -198,9 +194,9 @@ killall -9 name
 
 
 
-#### windows端口进程管理
+### windows端口进程管理
 
-##### 查找端口
+#### 查找端口
 
 > 查找所有端口
 
@@ -214,7 +210,7 @@ netstat -ano
 netstat -aon|findstr "4000"
 ```
 
-##### 杀死使用某个端口的进程
+#### 杀死使用某个端口的进程
 
 > 通过pid号
 
