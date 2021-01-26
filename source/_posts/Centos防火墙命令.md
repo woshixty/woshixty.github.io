@@ -92,7 +92,9 @@ systemctl stop firewalld.service
 systemctl disable firewalld.service
 ```
 
-#### centos进程管理
+
+
+#### centos7进程管理
 
 ```txt
 linux上进程有5种状态:
@@ -103,25 +105,68 @@ linux上进程有5种状态:
 5. 停止(进程收到SIGSTOP, SIGSTP, SIGTIN, SIGTOU信号后停止运行运行)
 ```
 
+
+
 ##### 查看进程
 
+- ps命令查找与进程相关的PID号
+
 ```bash
-#ps命令查找与进程相关的PID号
-[root@VM_0_4_centos ~]# ps 9827
+ps 9827
+```
+
+> 显示如下信息
+
+```bash
   PID TTY      STAT   TIME COMMAND
  9827 pts/0    Sl     0:14 java -jar competitionrow-0.0.1-SNAPSHOT.jar
- 
-#显示现行终端机下的所有程序，包括其他用户的程序
-[root@VM_0_4_centos ~]# ps a
+```
+
+
+
+- 显示现行终端机下的所有程序，包括其他用户的程序
+
+```bash
+ps a
+```
+
+> 显示所有进程
+
+```bash
   PID TTY      STAT   TIME COMMAND
  1321 tty1     Ss+    0:00 /sbin/agetty --noclear tty1 linux
  1322 ttyS0    Ss+    0:00 /sbin/agetty --keep-baud 115200 38400 9600 ttyS0 vt220
  9827 pts/0    Sl     0:14 java -jar competitionrow-0.0.1-SNAPSHOT.jar
 17061 pts/0    R+     0:00 ps a
 22278 pts/0    Ss     0:00 -bash
+......
+```
 
-#显示所有程序
-[root@VM_0_4_centos ~]# ps -A
+
+
+- 显示所有程序
+
+```bash
+ps -A
+```
+
+
+
+> 与上一个命令类似
+
+
+
+```bash
+#
+[root@VM_0_4_centos ~]# 
+
+ 
+#
+[root@VM_0_4_centos ~]# 
+
+
+#
+[root@VM_0_4_centos ~]# 
   PID TTY          TIME CMD
     1 ?        00:12:32 systemd
     2 ?        00:00:02 kthreadd
@@ -150,6 +195,8 @@ kill -9 pid
 ```bash
 killall -9 name
 ```
+
+
 
 #### windows端口进程管理
 

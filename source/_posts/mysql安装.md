@@ -5,195 +5,220 @@ tags: [centos, mysql]
 categories: tools
 ---
 
-(之前安装的MySQL又出问题了，干脆直接重装，解决一切问题)
+(我有个朋友，他服务器上的MySQL出问题了，直接重装，解决一切问题)
 
-### MySQL卸载
+### 一、MySQL卸载
 
-#### yum
+#### 1. yum康康安装的MySQL
 
 > 使用 yum list installed | grep mysql 全都yum remove掉就可以了
 
 ```bash
-[root@VM_0_4_centos ~]# yum list installed | grep mysql
-
-mysql-community-client.x86_64        5.7.32-1.el7                    @mysql57-community
-mysql-community-common.x86_64        5.7.32-1.el7                    @mysql57-community
-mysql-community-libs.x86_64          5.7.32-1.el7                    @mysql57-community
-mysql-community-server.x86_64        5.7.32-1.el7                    @mysql57-community
-mysql57-community-release.noarch     el7-11                          installed  
-
-[root@VM_0_4_centos ~]# yum remove mysql-community-client.x86_64
-
-Loaded plugins: fastestmirror, langpacks
-Resolving Dependencies
---> Running transaction check
----> Package mysql-community-client.x86_64 0:5.7.32-1.el7 will be erased
---> Processing Dependency: mysql-community-client(x86-64) >= 5.7.9 for package: mysql-community-server-5.7.32-1.el7.x86_64
---> Running transaction check
----> Package mysql-community-server.x86_64 0:5.7.32-1.el7 will be erased
---> Finished Dependency Resolution
-epel/7/x86_64                                                                                              | 4.7 kB  00:00:00     
-epel/7/x86_64/updateinfo                                                                                   | 1.0 MB  00:00:00     
-......
-Removed:
-  mysql-community-client.x86_64 0:5.7.32-1.el7                                                                                    
-
-Dependency Removed:
-  mysql-community-server.x86_64 0:5.7.32-1.el7                                                                                    
-
-Complete!
+yum list installed | grep mysql
 ```
 
+最后显示`Complete!`就算成功了
 
 
-#### 赶尽杀绝
+
+#### 2. 赶尽杀绝
 
 > 然后使用 find / -name mysql 依次将文件删除即可
 
 ```bash
-[root@VM_0_4_centos ~]# find / -name mysql
-
-/var/lib/mysql
-/var/lib/mysql/mysql
-/usr/share/mysql
+find / -name mysql
 ```
 
+将显示的文件统统删掉即可
 
+- /var/lib/mysql
 
-### 安装MySql
+- /var/lib/mysql/mysql
 
-#### 下载安装包
-
-> 先去官网下载安装包，这里我下载的是mysql-5.7.29-1.el7.x86_64.rpm-bundle.tar 然后上传到服务器上
+- /usr/share/mysql
 
 ```bash
-[root@VM_0_4_centos ~]# ls
-
-log  mysql-5.7.29-1.el7.x86_64.rpm-bundle.tar
+rm -rf /var/lib/mysql /var/lib/mysql/mysql /usr/share/mysql
 ```
 
 
 
-#### 删除系统自带的东西
+### 二、rpm安装MySql
+
+#### 1. 下载安装包
+
+> 先去[官网](https://downloads.mysql.com/archives/community/)下载安装包，我这边是centos操作系统，所以选择Red Hat那个，我下载的是mysql-5.7.29-1.el7.x86_64.rpm-bundle.tar 然后上传到服务器上
+
+```bash
+ls
+```
+
+康康安装包在不在：`mysql-5.7.29-1.el7.x86_64.rpm-bundle.tar`
+
+
+
+#### 2. 删除系统自带的东西
 
 > 如果是第一次安装，检查一下系统自带的mariadb-lib以及MySQL 我这边干干净净呢
 
 ```bash
-[root@VM_0_4_centos ~]# rpm -qa|grep mariadb
-
-[root@VM_0_4_centos ~]# rpm -qa|grep mysql
+rpm -qa|grep mariadb
 ```
-
-
-
-#### 解压缩
-
-> 先创建一个目录，然后在目录里 tar -xvf mysql-5.7.29-1.el7.x86_64.rpm-bundle.tar，并赋予目录最大权限
 
 ```bash
-[root@VM_0_4_centos ~]# mkdir mysql
+rpm -qa|grep mysql
+```
 
-[root@VM_0_4_centos ~]# cd mysql/
+如果显示有东西的话就用下面的命令弄掉它
 
-[root@VM_0_4_centos mysql]# tar -xvf mysql-5.7.29-1.el7.x86_64.rpm-bundle.tar
-mysql-community-embedded-devel-5.7.29-1.el7.x86_64.rpm
-mysql-community-test-5.7.29-1.el7.x86_64.rpm
-mysql-community-embedded-5.7.29-1.el7.x86_64.rpm
-mysql-community-embedded-compat-5.7.29-1.el7.x86_64.rpm
-mysql-community-libs-5.7.29-1.el7.x86_64.rpm
-mysql-community-client-5.7.29-1.el7.x86_64.rpm
-mysql-community-server-5.7.29-1.el7.x86_64.rpm
-mysql-community-devel-5.7.29-1.el7.x86_64.rpm
-mysql-community-libs-compat-5.7.29-1.el7.x86_64.rpm
-mysql-community-common-5.7.29-1.el7.x86_64.rpm
-
-[root@VM_0_4_centos mysql]# cd ..
-
-[root@VM_0_4_centos ~]# chmod -R 777 mysql
+```shell
+rpm -e --nodeps + 搜索出来的文件名
 ```
 
 
 
-#### 进行安装
+#### 3. 安装依赖
 
-> 严格按照下面四个步骤安装
+> 依次安装下面三个依赖
 
 ```bash
-[root@VM_0_4_centos mysql]# rpm -ivh mysql-community-common-5.7.29-1.el7.x86_64.rpm 
+yum install libaio
+```
 
-[root@VM_0_4_centos mysql]# rpm -ivh mysql-community-libs-5.7.29-1.el7.x86_64.rpm 
+```bash
+yum install perl
+```
 
-[root@VM_0_4_centos mysql]# rpm -ivh mysql-community-client-5.7.29-1.el7.x86_64.rpm 
-
-[root@VM_0_4_centos mysql]# rpm -ivh mysql-community-server-5.7.29-1.el7.x86_64.rpm 
+```bash
+ yum install net-tools
 ```
 
 
 
-#### 配置数据库
+#### 4.解压缩
+
+> 先创建一个目录，然后在目录里 进行解压tar -xvf mysql-5.7.29-1.el7.x86_64.rpm-bundle.tar，并赋予目录最大权限
+
+创建目录
+
+```bash
+mkdir mysql
+```
+
+进入目录
+
+```bash
+cd mysql/
+```
+
+解压
+
+```bash
+tar -xvf mysql-5.7.29-1.el7.x86_64.rpm-bundle.tar
+```
+
+出去给目录赋予权限
+
+```bash
+cd ..
+```
+
+```bash
+chmod -R 777 mysql
+```
+
+
+
+#### 5. 安装MySQL
+
+> 严格按照下面四个步骤安装软件包 
+
+```bash
+rpm -ivh mysql-community-common-5.7.29-1.el7.x86_64.rpm
+```
+
+```bash
+rpm -ivh mysql-community-libs-5.7.29-1.el7.x86_64.rpm 
+```
+
+```bash
+rpm -ivh mysql-community-client-5.7.29-1.el7.x86_64.rpm 
+```
+
+```bash
+rpm -ivh mysql-community-server-5.7.29-1.el7.x86_64.rpm 
+```
+
+
+
+#### 6. 配置数据库
 
 > 修改配置文件
 
 ```bash
-[root@VM_0_4_centos mysql]# vim /etc/my.cnf
+vim /etc/my.cnf
+```
 
+```sh
 #在[mysqld]下面添加这三行
-#skip-grant-tables  跳过登录验证
-#character_set_server=utf8  设置默认字符集UTF-8
-#init_connect='SET NAMES utf8'  设置默认字符集UTF-8
+skip-grant-tables  #跳过登录验证
+character_set_server=utf8  #设置默认字符集UTF-8
+init_connect='SET NAMES utf8'  #设置默认字符集UTF-8
 ```
 
 
 
-#### 启动MySQL服务
+#### 7. 启动MySQL服务
 
-> 执行下面两个命令
+> 执行下面两个命令，不要输入命令直接回车就好啦
 
 ```bash
-[root@VM_0_4_centos mysql]# systemctl start mysqld.service
-[root@VM_0_4_centos mysql]# mysql
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 2
-Server version: 5.7.29 MySQL Community Server (GPL)
-
-Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
-
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-mysql> 
+systemctl start mysqld.service
 ```
-
-
-
-#### 设置密码
-
-> 设置密码并且让他生效
 
 ```bash
-mysql> update mysql.user set authentication_string=password('passwd') where user='root';
-Query OK, 1 row affected, 1 warning (0.00 sec)
-Rows matched: 1  Changed: 1  Warnings: 1
-
-mysql> flush privileges;
-Query OK, 0 rows affected (0.00 sec)
+mysql -uroot -p
 ```
 
-> 退出mysql并重启mysql服务
+这样就直接进入MySQL啦！
+
+
+
+#### 8. 设置密码
+
+> 在MySQL中执行下面的命令，设置密码并且让他生效
+
+进入MySQL
 
 ```bash
-mysql> exit
-Bye
-
-[root@VM_0_4_centos mysql]# systemctl stop  mysqld.service
-
-[root@VM_0_4_centos mysql]# systemctl start mysqld.service
+mysql -uroot -p
 ```
 
-> 编辑my.cnf配置文件将：skip-grant-tables这一行注释掉
+更新密码，这只是暂时的密码，下次进入得修改
+
+```bash
+update mysql.user set authentication_string=password('passwd') where user='root';
+```
+
+让密码生效
+
+```bash
+flush privileges;
+```
+
+
+
+#### 9. 再次修改配置文件
+
+> 注释掉直接进入MySQL这一段
+
+退出mysql
+
+```bash
+exit
+```
+
+编辑my.cnf配置文件将：skip-grant-tables这一行注释掉
 
 ```bash
 [mysqld]
@@ -202,60 +227,72 @@ character_set_server=utf8
 init_connect='SET NAMES utf8'
 ```
 
-> 此时你进入需要重新设置一个密码，先设置一个复杂的密码，然后设置密码策略，改成自己的密码
+重启mysql服务
 
 ```bash
-mysql> SHOW VARIABLES LIKE 'validate_password%';
-+--------------------------------------+--------+
-| Variable_name                        | Value  |
-+--------------------------------------+--------+
-| validate_password_check_user_name    | OFF    |
-| validate_password_dictionary_file    |        |
-| validate_password_length             | 8      |
-| validate_password_mixed_case_count   | 1      |
-| validate_password_number_count       | 1      |
-| validate_password_policy             | MEDIUM |
-| validate_password_special_char_count | 1      |
-+--------------------------------------+--------+
-7 rows in set (0.00 sec)
+systemctl stop  mysqld.service
+```
 
-mysql> set global validate_password_policy=LOW;
-Query OK, 0 rows affected (0.00 sec)
+```bash
+systemctl start mysqld.service
 ```
 
 
 
-#### 开启远程登录
+#### 10. 重新更新密码
 
-> 开放3306端口
+> `mysql -uroot -p`，密码是之前设置的暂时密码，此时进入你需要更新密码，通常来说你自己的密码系统会认为安全性太低不通过，我们先把安全策略降到最低，之后再修改密码
+
+修改validate_password_policy参数的值
 
 ```bash
-[root@VM_0_4_centos mysql]# firewall-cmd --zone=public --add-port=3306/tcp --permanent
-success
-[root@VM_0_4_centos mysql]# firewall-cmd --reload
-success
+set global validate_password_policy=0;
 ```
 
-> 开启远程登录
+修改validate_password_length参数的值(密码长度)
 
 ```bash
-mysql> grant all privileges on *.* to 'root'@'%' identified by 'passwd' with grant option;
-Query OK, 0 rows affected, 1 warning (0.00 sec)
+set global validate_password_length=1;
+```
+
+修改MySQL为自己的密码
+
+```bash
+alter user 'root'@'localhost' identified by 'password';
+```
+
+查看并设置密码策略
+
+```bash
+SHOW VARIABLES LIKE 'validate_password%';
+```
+
+```bash
+set global validate_password_policy=LOW;
+```
+
+
+
+#### 11. 开启远程登录
+
+> 先开放服务器的3306端口，再进入MySQL开启远程登录
+
+如果防火墙开了的话就开放服务器端口
+
+```bash
+firewall-cmd --zone=public --add-port=3306/tcp --permanent
+```
+
+```bash
+firewall-cmd --reload
+```
+
+进入MySQL，开启远程登录
+
+```bash
+grant all privileges on *.* to 'root'@'%' identified by 'passwd' with grant option;
 ```
 
 
 
 > 至此，安装就结束啦！！！
-
-
-
-
-
-
-
-
-
-
-
-
-
