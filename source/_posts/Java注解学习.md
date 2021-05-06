@@ -1,7 +1,7 @@
 ---
 title: Java注解学习
 date: 2021-01-26
-tags: [Java]
+tags: [java]
 categories: Java
 ---
 

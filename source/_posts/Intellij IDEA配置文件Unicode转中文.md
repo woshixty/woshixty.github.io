@@ -5,6 +5,8 @@ tags: [IDEA]
 categories: IDEA
 ---
 
+
+
 > 今天遇到一个问题，当我使用IDEA打开一个properties文件文件时，里面的中文字符全部都变成了`\u6210\u5668\uFF0C\u914D\u7F6E\u4FE1\u606F`介种奇怪的东西，如下所示
 
 <img src="./pics/idea1.png" align='left' />

@@ -2,7 +2,7 @@
 title: nginx安装以及入门
 date: 2020-11-09 17:22:59
 tags: [nginx, centos]
-categories: tools
+categories: Tools
 ---
 
 参考笔记:
@@ -20,18 +20,28 @@ categories: tools
 1.**首先查看 Linux distribution 的版本号**
 
 ```shell
-[root@VM_0_4_centos ~]# cat /etc/redhat-release
-
-CentOS Linux release 7.5.1804 (Core) 
+cat /etc/redhat-release 
 ```
+
+我的系统发版本是：
+
+```txt
+CentOS Linux release 7.5.1804 (Core)
+```
+
+
 
 
 
 2.**Nginx 不在默认的 yum 源中，首先将Nginx加入到 yum 源里**
 
 ```powershell
-[root@VM_0_4_centos ~]# rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
+rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
+```
 
+显示如下字样代表没有问题：
+
+```shell
 获取http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
 警告：/var/tmp/rpm-tmp.a7nthc: 头V4 RSA/SHA1 Signature, 密钥 ID 7bd9bf62: NOKEY
 准备中...                          ################################# [100%]
@@ -41,28 +51,12 @@ CentOS Linux release 7.5.1804 (Core)
 
 
 
+
+
 3.**然后执行 yum repolist 查看一下，发现 Nginx 已经安装到本机了**
 
 ```powershell
-[root@VM_0_4_centos ~]# yum repolist
-
-已加载插件：fastestmirror, langpacks
-Determining fastest mirrors
-epel                                                     | 4.7 kB     00:00     
-extras                                                   | 2.9 kB     00:00     
-nginx                                                    | 2.9 kB     00:00     
-os                                                       | 3.6 kB     00:00     
-updates                                                  | 2.9 kB     00:00     
-(1/3): epel/7/x86_64/updateinfo                            | 1.0 MB   00:00     
-(2/3): epel/7/x86_64/primary_db                            | 6.9 MB   00:01     
-(3/3): nginx/x86_64/primary_db                             |  56 kB   00:03     
-源标识                      源名称                                        状态
-epel/7/x86_64               EPEL for redhat/centos 7 - x86_64             13,455
-extras/7/x86_64             Qcloud centos extras - x86_64                    413
-nginx/x86_64                nginx repo                                       194
-os/7/x86_64                 Qcloud centos os - x86_64                     10,070
-updates/7/x86_64            Qcloud centos updates - x86_64                 1,134
-repolist: 25,266
+yum repolist
 ```
 
 
@@ -70,9 +64,12 @@ repolist: 25,266
 4.**安装nginx**(慢慢等待,需要一段时间)
 
 ```powershell
-[root@VM_0_4_centos ~]# yum install nginx
+yum install nginx
+```
 
+安装成功以后：
 
+```shell
 #安装成功以后
 已安装:
   nginx.x86_64 1:1.18.0-1.el7.ngx                                               
@@ -82,14 +79,14 @@ repolist: 25,266
 
 
 
+
+
 > nginx简单配置
 
 1.**查看 Nginx 版本**
 
 ```powershell
-[root@VM_0_4_centos ~]# nginx -v
-
-nginx version: nginx/1.18.0
+nginx -v
 ```
 
 
@@ -97,7 +94,7 @@ nginx version: nginx/1.18.0
 2.**启动 Nginx 服务**
 
 ```powershell
-[root@VM_0_4_centos ~]# systemctl start nginx
+systemctl start nginx
 ```
 
 
@@ -105,43 +102,7 @@ nginx version: nginx/1.18.0
 3.**访问 Nginx 服务**(本地访问一下，可以看到 Welcome to nginx)
 
 ```powershell
-[root@VM_0_4_centos ~]# curl -i localhost
-
-HTTP/1.1 200 OK
-Server: nginx/1.18.0
-Date: Tue, 27 Oct 2020 02:51:03 GMT
-Content-Type: text/html
-Content-Length: 612
-Last-Modified: Tue, 21 Apr 2020 15:07:31 GMT
-Connection: keep-alive
-ETag: "5e9f0c33-264"
-Accept-Ranges: bytes
-
-<!DOCTYPE html>
-<html>
-<head>
-<title>Welcome to nginx!</title>
-<style>
-    body {
-        width: 35em;
-        margin: 0 auto;
-        font-family: Tahoma, Verdana, Arial, sans-serif;
-    }
-</style>
-</head>
-<body>
-<h1>Welcome to nginx!</h1>
-<p>If you see this page, the nginx web server is successfully installed and
-working. Further configuration is required.</p>
-
-<p>For online documentation and support please refer to
-<a href="http://nginx.org/">nginx.org</a>.<br/>
-Commercial support is available at
-<a href="http://nginx.com/">nginx.com</a>.</p>
-
-<p><em>Thank you for using nginx.</em></p>
-</body>
-</html>
+curl -i localhost
 ```
 
 
@@ -160,63 +121,76 @@ Commercial support is available at
 
 - 依赖库安装
 
-```powershell
-# 1.安装 gcc 环境
-# nginx 编译时依赖 gcc 环境
-[root@VM_0_4_centos nginx-1.18.0]# yum -y install gcc gcc-c++
+  - 1.安装 gcc 环境---nginx 编译时依赖 gcc 环境
 
-# 2.安装 pcre
-# 让 nginx 支持重写功能
-[root@VM_0_4_centos nginx-1.18.0]# yum -y install pcre pcre-devel
+  ```shell
+  yum -y install gcc gcc-c++
+  ```
 
-# 3.安装 zlib
-# zlib 库提供了很多压缩和解压缩的方式，nginx 使用 zlib 对 http 包内容进行 gzip 压缩
-[root@VM_0_4_centos nginx-1.18.0]# yum -y install zlib zlib-devel
+  - 2.安装 pcre---让 nginx 支持重写功能
 
-# 4.安装 openssl
-# 安全套接字层密码库，用于通信加密
-[root@VM_0_4_centos nginx-1.18.0]# yum -y install openssl openssl-devel
+  ```shell
+  yum -y install pcre pcre-devel
+  ```
 
-```
+  - 3.安装 zlib---zlib 库提供了很多压缩和解压缩的方式，nginx 使用 zlib 对 http 包内容进行 gzip 压缩
+
+  ```shell
+  yum -y install zlib zlib-devel
+  ```
+
+  - 4.安装 openssl---安全套接字层密码库，用于通信加密
+
+  ```shell
+  yum -y install openssl openssl-devel
+  ```
 
 - 解压缩
 
 ```powershell
-[root@VM_0_4_centos nginx]# tar -zxvf  nginx-1.18.0.tar.gz 
+tar -zxvf  nginx-1.18.0.tar.gz 
 ```
 
 - 进入nginx-1.18.0目录下面进行源码编译安装
 
+  检查平台安装环境：`  --prefix=/usr/local/nginx`  是 nginx 编译安装的目录（推荐），安装完后会在此目录下生成相关文件
+  如果前面的依赖库都安装成功后，执行`  ./configure --prefix=/usr/local/nginx`命令会显示一些环境信息。如果出现错误，一般是依赖库没有安装完成，可按照错误提示信息进行所缺的依赖库安装。
+
 ```powershell
-[root@VM_0_4_centos nginx-1.18.0]# ./configure --prefix=/usr/local/nginx
-# 检查平台安装环境
-# --prefix=/usr/local/nginx  是 nginx 编译安装的目录（推荐），安装完后会在此目录下生成相关文件
-# 如果前面的依赖库都安装成功后，执行 ./configure --prefix=/usr/local/nginx 命令会显示一些环境信息。如果出现错误，一般是依赖库没有安装完成，可按照错误提示信息进行所缺的依赖库安装。
+./configure --prefix=/usr/local/nginx
 ```
 
-- 进行源码编译并安装 nginx
+- 进行源码编译并安装 nginx（执行make如果没有发生错误就执行make install）
 
-```powershell
-[root@VM_0_4_centos sbin]# make
-
-[root@VM_0_4_centos sbin]# make install
+```shell
+make && make install
 ```
 
 - nginx服务操作命令
 
-```powershell
-#启动服务
-[root@VM_0_4_centos sbin]# /usr/local/nginx/sbin/nginx
+  - 启动服务
 
-#重新加载服务
-[root@VM_0_4_centos sbin]# /usr/local/nginx/sbin/nginx -s reload
+  ```shell
+  /usr/local/nginx/sbin/nginx
+  ```
 
-#停止服务
-[root@VM_0_4_centos sbin]# /usr/local/nginx/sbin/nginx -s stop
+  - 重新加载服务
 
-#查看nginx 服务进程
-[root@VM_0_4_centos sbin]# ps -ef | grep nginx 
-```
+  ```shell
+  /usr/local/nginx/sbin/nginx -s reload
+  ```
+
+  - 停止服务
+
+  ```shell
+  /usr/local/nginx/sbin/nginx -s stop
+  ```
+
+  - 查看nginx 服务进程
+
+  ```shell
+  ps -ef | grep nginx
+  ```
 
 ### nginx简单入门
 

@@ -1,7 +1,7 @@
 ---
 title: Java后端生成二维码
 date: 2020-11-20
-tags: [Java]
+tags: [java]
 categories: Java
 ---
 

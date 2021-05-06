@@ -1,8 +1,8 @@
 ---
 title: RabbitMQ的安装与基本使用
 date: 2020-11-25
-tags: [centos, RabbitMQ]
-categories: tools
+tags: [centos, rabbitMQ]
+categories: Tools
 ---
 
 > 这几天和几个小伙伴写活动平台的项目 有消息通知的功能需求 故学习一下RabbitMQ
