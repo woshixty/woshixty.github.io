@@ -21,16 +21,16 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="参考笔记: CentOS 7 下 yum 安装和配置 Nginx Nginx 入门指南  nginx如何安装  yum安装nginx1.首先查看 Linux distribution 的版本号 123[root@VM_0_4_centos ~]# cat &#x2F;etc&#x2F;redhat-releaseCentOS Linux release 7.5.1804 (Core)     2.Nginx 不在默认">
+  <meta name="description" content="参考笔记: CentOS 7 下 yum 安装和配置 Nginx Nginx 入门指南  nginx如何安装  yum安装nginx1.首先查看 Linux distribution 的版本号 1cat &#x2F;etc&#x2F;redhat-release   我的系统发版本是： 1CentOS Linux release 7.5.1804 (Core)      2.Nginx 不在默认的 yum 源中，首先">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nginx安装以及入门">
 <meta property="og:url" content="http://example.com/2020/11/09/nginx%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E5%85%A5%E9%97%A8/index.html">
 <meta property="og:site_name" content="Hello Programmer">
-<meta property="og:description" content="参考笔记: CentOS 7 下 yum 安装和配置 Nginx Nginx 入门指南  nginx如何安装  yum安装nginx1.首先查看 Linux distribution 的版本号 123[root@VM_0_4_centos ~]# cat &#x2F;etc&#x2F;redhat-releaseCentOS Linux release 7.5.1804 (Core)     2.Nginx 不在默认">
+<meta property="og:description" content="参考笔记: CentOS 7 下 yum 安装和配置 Nginx Nginx 入门指南  nginx如何安装  yum安装nginx1.首先查看 Linux distribution 的版本号 1cat &#x2F;etc&#x2F;redhat-release   我的系统发版本是： 1CentOS Linux release 7.5.1804 (Core)      2.Nginx 不在默认的 yum 源中，首先">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/nginx.png">
 <meta property="article:published_time" content="2020-11-09T17:22:59.000Z">
-<meta property="article:modified_time" content="2021-01-26T16:18:43.299Z">
+<meta property="article:modified_time" content="2021-05-06T03:08:10.082Z">
 <meta property="article:author" content="xty">
 <meta property="article:tag" content="centos">
 <meta property="article:tag" content="nginx">
@@ -191,7 +191,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-01-26 16:18:43" itemprop="dateModified" datetime="2021-01-26T16:18:43+00:00">2021-01-26</time>
+                <time title="修改时间：2021-05-06 03:08:10" itemprop="dateModified" datetime="2021-05-06T03:08:10+00:00">2021-05-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -199,7 +199,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tools/" itemprop="url" rel="index"><span itemprop="name">tools</span></a>
+                  <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
                 </span>
             </span>
 
@@ -228,22 +228,37 @@
 <p>nginx如何安装</p>
 </blockquote>
 <h3 id="yum安装nginx"><a href="#yum安装nginx" class="headerlink" title="yum安装nginx"></a>yum安装nginx</h3><p>1.<strong>首先查看 Linux distribution 的版本号</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_4_centos ~]# cat /etc/redhat-release</span><br><span class="line"></span><br><span class="line">CentOS Linux release 7.5.1804 (Core) </span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/redhat-release </span><br></pre></td></tr></table></figure>
+
+<p>我的系统发版本是：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CentOS Linux release 7.5.1804 (Core)</span><br></pre></td></tr></table></figure>
+
+
 
 
 
 <p>2.<strong>Nginx 不在默认的 yum 源中，首先将Nginx加入到 yum 源里</strong></p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">VM_0_4_centos</span> ~]<span class="comment"># rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm</span></span><br><span class="line"></span><br><span class="line">获取http://nginx.org/packages/centos/<span class="number">7</span>/noarch/RPMS/nginx<span class="literal">-release</span><span class="literal">-centos</span><span class="literal">-7</span><span class="literal">-0</span>.el7.ngx.noarch.rpm</span><br><span class="line">警告：/var/tmp/rpm<span class="literal">-tmp</span>.a7nthc: 头V4 RSA/SHA1 Signature, 密钥 ID <span class="number">7</span>bd9bf62: NOKEY</span><br><span class="line">准备中...                          <span class="comment">################################# [100%]</span></span><br><span class="line">正在升级/安装...</span><br><span class="line">   <span class="number">1</span>:nginx<span class="literal">-release</span><span class="literal">-centos</span><span class="literal">-7</span><span class="literal">-0</span>.el7.ngx <span class="comment">################################# [100%]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm <span class="literal">-ivh</span> http://nginx.org/packages/centos/<span class="number">7</span>/noarch/RPMS/nginx<span class="literal">-release</span><span class="literal">-centos</span><span class="literal">-7</span><span class="literal">-0</span>.el7.ngx.noarch.rpm</span><br></pre></td></tr></table></figure>
+
+<p>显示如下字样代表没有问题：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">获取http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm</span><br><span class="line">警告：/var/tmp/rpm-tmp.a7nthc: 头V4 RSA/SHA1 Signature, 密钥 ID 7bd9bf62: NOKEY</span><br><span class="line">准备中...                          ################################# [100%]</span><br><span class="line">正在升级/安装...</span><br><span class="line">   1:nginx-release-centos-7-0.el7.ngx ################################# [100%]</span><br></pre></td></tr></table></figure>
+
+
 
 
 
 <p>3.<strong>然后执行 yum repolist 查看一下，发现 Nginx 已经安装到本机了</strong></p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">VM_0_4_centos</span> ~]<span class="comment"># yum repolist</span></span><br><span class="line"></span><br><span class="line">已加载插件：fastestmirror, langpacks</span><br><span class="line">Determining fastest mirrors</span><br><span class="line">epel                                                     | <span class="number">4.7</span> kB     <span class="number">00</span>:<span class="number">00</span>     </span><br><span class="line">extras                                                   | <span class="number">2.9</span> kB     <span class="number">00</span>:<span class="number">00</span>     </span><br><span class="line">nginx                                                    | <span class="number">2.9</span> kB     <span class="number">00</span>:<span class="number">00</span>     </span><br><span class="line">os                                                       | <span class="number">3.6</span> kB     <span class="number">00</span>:<span class="number">00</span>     </span><br><span class="line">updates                                                  | <span class="number">2.9</span> kB     <span class="number">00</span>:<span class="number">00</span>     </span><br><span class="line">(<span class="number">1</span>/<span class="number">3</span>): epel/<span class="number">7</span>/x86_64/updateinfo                            | <span class="number">1.0</span> MB   <span class="number">00</span>:<span class="number">00</span>     </span><br><span class="line">(<span class="number">2</span>/<span class="number">3</span>): epel/<span class="number">7</span>/x86_64/primary_db                            | <span class="number">6.9</span> MB   <span class="number">00</span>:<span class="number">01</span>     </span><br><span class="line">(<span class="number">3</span>/<span class="number">3</span>): nginx/x86_64/primary_db                             |  <span class="number">56</span> kB   <span class="number">00</span>:<span class="number">03</span>     </span><br><span class="line">源标识                      源名称                                        状态</span><br><span class="line">epel/<span class="number">7</span>/x86_64               EPEL <span class="keyword">for</span> redhat/centos <span class="number">7</span> - x86_64             <span class="number">13</span>,<span class="number">455</span></span><br><span class="line">extras/<span class="number">7</span>/x86_64             Qcloud centos extras - x86_64                    <span class="number">413</span></span><br><span class="line">nginx/x86_64                nginx repo                                       <span class="number">194</span></span><br><span class="line">os/<span class="number">7</span>/x86_64                 Qcloud centos os - x86_64                     <span class="number">10</span>,<span class="number">070</span></span><br><span class="line">updates/<span class="number">7</span>/x86_64            Qcloud centos updates - x86_64                 <span class="number">1</span>,<span class="number">134</span></span><br><span class="line">repolist: <span class="number">25</span>,<span class="number">266</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum repolist</span><br></pre></td></tr></table></figure>
 
 
 
 <p>4.<strong>安装nginx</strong>(慢慢等待,需要一段时间)</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">VM_0_4_centos</span> ~]<span class="comment"># yum install nginx</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#安装成功以后</span></span><br><span class="line">已安装:</span><br><span class="line">  nginx.x86_64 <span class="number">1</span>:<span class="number">1.18</span>.<span class="number">0</span><span class="literal">-1</span>.el7.ngx                                               </span><br><span class="line"></span><br><span class="line">完毕！</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install nginx</span><br></pre></td></tr></table></figure>
+
+<p>安装成功以后：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">安装成功以后</span></span><br><span class="line">已安装:</span><br><span class="line">  nginx.x86_64 1:1.18.0-1.el7.ngx                                               </span><br><span class="line"></span><br><span class="line">完毕！</span><br></pre></td></tr></table></figure>
+
+
 
 
 
@@ -251,17 +266,17 @@
 <p>nginx简单配置</p>
 </blockquote>
 <p>1.<strong>查看 Nginx 版本</strong></p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">VM_0_4_centos</span> ~]<span class="comment"># nginx -v</span></span><br><span class="line"></span><br><span class="line">nginx version: nginx/<span class="number">1.18</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx <span class="literal">-v</span></span><br></pre></td></tr></table></figure>
 
 
 
 <p>2.<strong>启动 Nginx 服务</strong></p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">VM_0_4_centos</span> ~]<span class="comment"># systemctl start nginx</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">start</span> nginx</span><br></pre></td></tr></table></figure>
 
 
 
 <p>3.<strong>访问 Nginx 服务</strong>(本地访问一下，可以看到 Welcome to nginx)</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">VM_0_4_centos</span> ~]<span class="comment"># curl -i localhost</span></span><br><span class="line"></span><br><span class="line">HTTP/<span class="number">1.1</span> <span class="number">200</span> OK</span><br><span class="line">Server: nginx/<span class="number">1.18</span>.<span class="number">0</span></span><br><span class="line">Date: Tue, <span class="number">27</span> Oct <span class="number">2020</span> <span class="number">02</span>:<span class="number">51</span>:<span class="number">03</span> GMT</span><br><span class="line">Content<span class="literal">-Type</span>: text/html</span><br><span class="line">Content<span class="literal">-Length</span>: <span class="number">612</span></span><br><span class="line">Last<span class="literal">-Modified</span>: Tue, <span class="number">21</span> Apr <span class="number">2020</span> <span class="number">15</span>:<span class="number">07</span>:<span class="number">31</span> GMT</span><br><span class="line">Connection: keep<span class="literal">-alive</span></span><br><span class="line">ETag: <span class="string">&quot;5e9f0c33-264&quot;</span></span><br><span class="line">Accept<span class="literal">-Ranges</span>: bytes</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;Welcome to nginx!&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    body &#123;</span><br><span class="line">        width: <span class="number">35</span>em;</span><br><span class="line">        margin: <span class="number">0</span> auto;</span><br><span class="line">        font<span class="literal">-family</span>: Tahoma, Verdana, Arial, sans<span class="literal">-serif</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;</span><br><span class="line">&lt;p&gt;<span class="keyword">If</span> you see this page, the nginx web server is successfully installed and</span><br><span class="line">working. Further configuration is required.&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;<span class="keyword">For</span> online documentation and support please refer to</span><br><span class="line">&lt;a href=<span class="string">&quot;http://nginx.org/&quot;</span>&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;</span><br><span class="line">Commercial support is available at</span><br><span class="line">&lt;a href=<span class="string">&quot;http://nginx.com/&quot;</span>&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;&lt;em&gt;Thank you <span class="keyword">for</span> <span class="keyword">using</span> nginx.&lt;/em&gt;&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">curl</span> <span class="literal">-i</span> localhost</span><br></pre></td></tr></table></figure>
 
 
 
@@ -270,30 +285,68 @@
 <h3 id="nginx源码包安装"><a href="#nginx源码包安装" class="headerlink" title="nginx源码包安装"></a>nginx源码包安装</h3><p><a target="_blank" rel="noopener" href="https://nginx.org/en/download.html">下载地址</a></p>
 <p>下载好之后，拷贝到/usr/local/nginx下</p>
 <ul>
-<li>依赖库安装</li>
+<li><p>依赖库安装</p>
+<ul>
+<li>1.安装 gcc 环境—nginx 编译时依赖 gcc 环境</li>
 </ul>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.安装 gcc 环境</span></span><br><span class="line"><span class="comment"># nginx 编译时依赖 gcc 环境</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">VM_0_4_centos</span> <span class="type">nginx</span>-<span class="number">1.18</span><span class="type">.0</span>]<span class="comment"># yum -y install gcc gcc-c++</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.安装 pcre</span></span><br><span class="line"><span class="comment"># 让 nginx 支持重写功能</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">VM_0_4_centos</span> <span class="type">nginx</span>-<span class="number">1.18</span><span class="type">.0</span>]<span class="comment"># yum -y install pcre pcre-devel</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.安装 zlib</span></span><br><span class="line"><span class="comment"># zlib 库提供了很多压缩和解压缩的方式，nginx 使用 zlib 对 http 包内容进行 gzip 压缩</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">VM_0_4_centos</span> <span class="type">nginx</span>-<span class="number">1.18</span><span class="type">.0</span>]<span class="comment"># yum -y install zlib zlib-devel</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.安装 openssl</span></span><br><span class="line"><span class="comment"># 安全套接字层密码库，用于通信加密</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">VM_0_4_centos</span> <span class="type">nginx</span>-<span class="number">1.18</span><span class="type">.0</span>]<span class="comment"># yum -y install openssl openssl-devel</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc gcc-c++</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>解压缩</li>
+<li>2.安装 pcre—让 nginx 支持重写功能</li>
 </ul>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">VM_0_4_centos</span> <span class="type">nginx</span>]<span class="comment"># tar -zxvf  nginx-1.18.0.tar.gz </span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install pcre pcre-devel</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>进入nginx-1.18.0目录下面进行源码编译安装</li>
+<li>3.安装 zlib—zlib 库提供了很多压缩和解压缩的方式，nginx 使用 zlib 对 http 包内容进行 gzip 压缩</li>
 </ul>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">VM_0_4_centos</span> <span class="type">nginx</span>-<span class="number">1.18</span><span class="type">.0</span>]<span class="comment"># ./configure --prefix=/usr/local/nginx</span></span><br><span class="line"><span class="comment"># 检查平台安装环境</span></span><br><span class="line"><span class="comment"># --prefix=/usr/local/nginx  是 nginx 编译安装的目录（推荐），安装完后会在此目录下生成相关文件</span></span><br><span class="line"><span class="comment"># 如果前面的依赖库都安装成功后，执行 ./configure --prefix=/usr/local/nginx 命令会显示一些环境信息。如果出现错误，一般是依赖库没有安装完成，可按照错误提示信息进行所缺的依赖库安装。</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install zlib zlib-devel</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>进行源码编译并安装 nginx</li>
+<li>4.安装 openssl—安全套接字层密码库，用于通信加密</li>
 </ul>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">VM_0_4_centos</span> <span class="type">sbin</span>]<span class="comment"># make</span></span><br><span class="line"></span><br><span class="line">[<span class="type">root</span>@<span class="type">VM_0_4_centos</span> <span class="type">sbin</span>]<span class="comment"># make install</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install openssl openssl-devel</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解压缩</p>
+</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar <span class="literal">-zxvf</span>  nginx<span class="literal">-1</span>.<span class="number">18.0</span>.tar.gz </span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>nginx服务操作命令</li>
+<li><p>进入nginx-1.18.0目录下面进行源码编译安装</p>
+<p>检查平台安装环境：<code>  --prefix=/usr/local/nginx</code>  是 nginx 编译安装的目录（推荐），安装完后会在此目录下生成相关文件<br>如果前面的依赖库都安装成功后，执行<code>  ./configure --prefix=/usr/local/nginx</code>命令会显示一些环境信息。如果出现错误，一般是依赖库没有安装完成，可按照错误提示信息进行所缺的依赖库安装。</p>
+</li>
 </ul>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#启动服务</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">VM_0_4_centos</span> <span class="type">sbin</span>]<span class="comment"># /usr/local/nginx/sbin/nginx</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#重新加载服务</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">VM_0_4_centos</span> <span class="type">sbin</span>]<span class="comment"># /usr/local/nginx/sbin/nginx -s reload</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#停止服务</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">VM_0_4_centos</span> <span class="type">sbin</span>]<span class="comment"># /usr/local/nginx/sbin/nginx -s stop</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#查看nginx 服务进程</span></span><br><span class="line">[<span class="type">root</span>@<span class="type">VM_0_4_centos</span> <span class="type">sbin</span>]<span class="comment"># ps -ef | grep nginx </span></span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure -<span class="literal">-prefix</span>=/usr/local/nginx</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li>进行源码编译并安装 nginx（执行make如果没有发生错误就执行make install）</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>nginx服务操作命令</p>
+<ul>
+<li>启动服务</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/nginx/sbin/nginx</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>重新加载服务</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/nginx/sbin/nginx -s reload</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>停止服务</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/nginx/sbin/nginx -s stop</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查看nginx 服务进程</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep nginx</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
 <h3 id="nginx简单入门"><a href="#nginx简单入门" class="headerlink" title="nginx简单入门"></a>nginx简单入门</h3><blockquote>
 <p> 什么是nginx?</p>
 </blockquote>
@@ -449,14 +502,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
