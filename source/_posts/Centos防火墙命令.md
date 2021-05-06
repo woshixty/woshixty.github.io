@@ -2,7 +2,7 @@
 title: Centos的一些命令和windows的一些命令
 date: 2020-11-10 15:22:59
 tags: [centos, windows]
-categories: linux
+categories: Linux
 ---
 
 参考博客

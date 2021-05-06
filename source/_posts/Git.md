@@ -2,7 +2,7 @@
 title: 使用 git 时的一些笔记
 date: 2020-11-08
 tags: [git]
-categories: git
+categories: Git
 ---
 
 ### Git笔记

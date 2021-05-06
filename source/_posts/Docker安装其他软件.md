@@ -2,8 +2,10 @@
 title: Docker安装Nginx、Tomcat、Redis
 date: 2020-12-05
 tags: [centos, redis, nginx, tomcat, redis]
-categories: tools
+categories: Tools
 ---
+
+
 
 ### Nginx的安装与部署
 

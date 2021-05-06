@@ -2,7 +2,7 @@
 title: springboot写项目时遇到的各种注解
 date: 2020-11-15
 tags: [java, springboot]
-categories: Springboot
+categories: SpringBoot
 ---
 
 > 平常经常使用springboot注解·，但是并不理解
