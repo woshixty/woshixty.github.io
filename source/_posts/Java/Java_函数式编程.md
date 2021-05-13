@@ -5,8 +5,6 @@ tags: [java]
 categories: Java
 ---
 
-
-
 笔记来源：
 
 [Java疯狂讲义](https://item.jd.com/12518025.html)、[廖雪峰老师的博客](https://www.liaoxuefeng.com/wiki/1252599548343744)
