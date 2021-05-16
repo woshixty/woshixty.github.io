@@ -317,31 +317,298 @@ public class PrintStreamTest {
 
 通常来说，字节流的功能比字符流更加强大，因为计算机里的数据都是二进制存放，字节流可以处理所有的二进制文件---如果用字节流来处理文本文件，将字节转化为字符增加了编程难度。故：文本内容-->字符流；二进制内容-->字节流。
 
+#### 4、转换流
+
+输入/输出体系中还提供了两个转换流，这两个转换流用于将字节流转换成字符流：
+
+- InputStreamReader
+
+  将字节输入流转化成字符输入流
+
+- PutputStreamWriter
+
+  将字节输出流转化为字符输出流
+
+> Java不提供将字符流转化为字节流的转换流，因为如果一个流是字符流，它用起来会更方便，没必要转换成为字节流。
+
+下面以获取键盘输入为例：Java使用` System.in `代表标准输入（键盘输入），这个标准类是`InputStream`的实例，用起来不方便，于是使用`InputStreamReader`将其包装为字符输入流。普通的`Reader`读取输入内容时依然不太方便，将`InputStreamReader`包装为`BufferedReader`，可以使用它的` readline() `一次读取一行内容。
+
+```java
+public class KeyinTest {
+  public static void main(String[] args) {
+    try (
+      //将System.in对象转换成Reader对象
+      InputStreamReader reader = new InputStreamReader(System.in);
+      //将普通的Reader包装成BufferedReader
+      BufferedReader br = new BufferedReader(reader)
+      //BufferedReader具有缓冲功能，一次读取一行内容（以换行符为标志），如果没有读到换行符，程序阻塞。
+    ) {
+      String line;
+      //采用循环方式逐行读取
+      while ( (line = br.readLine()) != null ) {
+        //如果读取到的字符是"exit"
+        if (line.equals("exit")) {
+          System.exit(1);
+        }
+        //打印读取内容
+        System.out.println(line);
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+#### 4、推回输入流
+
+在输入/输出体系中，有两个特殊的流与众不同，就是` PushbackInputStream `和` PushbackReader `，提供了如下三个方法：
+
+- void unread(byte[]/char[] buf)
+
+  将一个字节/字符数组内容推到缓冲区里，从而允许重复读取刚刚读取的内容。
+
+- void unread(byte[]/char[] buf, int off, int len)
+
+  将一个字节/字符数组内容（从off开始，长度为len）推到缓冲区里，从而允许重复读取刚刚读取的内容。
+
+- void unread(int b)
+
+  将一个字节/字符推到缓冲区里，从而允许重复读取刚刚读取的内容。
+
+这俩推回输入流都带有一个推回缓冲区，当调用` unread() `方法时，系统会将指定的数组内容推回到该缓冲区，当调用` read() `方法时，总是会先从该推回缓冲区读取，只有完全读取了推回缓冲区的内容但还没有装满` read() `所需的数组大小时才会从原输入流中读取：
+
+![截屏2021-05-15 下午4.32.22](Java_IO学习.assets/截屏2021-05-15 下午4.32.22.png)
+
+如下示例代码（将指定内容推回缓冲区，再调用`read()`方法读取缓冲区的部分内容）：
+
+```java
+public class PushbackTest {
+    public static void main(String[] args) {
+        try(//创建一个PushbackReader对象，指定推回缓冲区的长度为64
+            PushbackReader pr = new PushbackReader(
+                        new FileReader("/Users/mr.stark/Desktop/test.java"), 64) ) {
+            char[] buf = new char[32];
+            //用以保存上次读取的字符串内容
+            String lastContent = "";
+            int hasRead = 0;
+            while ( (hasRead = pr.read(buf)) > 0 ) {
+                //将读取的内容转换成字符串
+                String content = new String(buf, 0, hasRead);
+                int targetIndex = 0;
+                //将上次读取的字符串和本次读取的字符串拼起来
+                //看看是否包含目标字符串
+                if ((targetIndex = (lastContent + content)
+                        .indexOf("new PushbackReader")) > 0) {
+                    //将本次内容和上次内容一起推回到缓冲区
+                    pr.unread((lastContent + content).toCharArray());
+                    //重新定义一个长度为targetIndex的char数组
+                    if (targetIndex > 32) {
+                        buf = new char[targetIndex];
+                    }
+                    //再次读取指定的内容
+                    pr.read(buf, 0, targetIndex);
+                    //打印读取的内容
+                    System.out.print(new String(buf, 0, targetIndex));
+                    System.exit(0);
+                } else {
+                    //打印上次读到的内容
+                    System.out.print(lastContent);
+                    //将字符串内容设为上次读取的内容
+                    lastContent = content;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
 
 
 
+### 五、重定向标准输入输出
+
+Java的标准输入、输出分别通过` System.in `和` System.out `来代表，默认情况下分别代表键盘和显示器。
+
+在System类里提供了如下三个重定向标准标准输入/输出的方法，如下：
+
+- ```java
+  //重定向“标准”错误输入流
+  static void setErr(PrintStream err)
+  ```
+
+- ```java
+  //重定向“标准”输入流
+  static void setIn(InputStream in)
+  ```
+
+- ```java
+  //重定向“标准”输出流
+  static void setOut(PrintStream out)
+  ```
+
+  下面通过程序通过重定向标准输出流将` System.out `重定向到文件输出：
+
+  ```java
+  public class RedirectOut {
+      public static void main(String[] args) {
+          try {
+              //一次性创建PrintStream输出流
+              PrintStream ps = new PrintStream(new FileOutputStream("out.txt"));
+              //将标准输出重定向到ps输出流
+              System.setOut(ps);
+              //向标准输出输出一个字符串
+              System.out.println("疯狂Java讲义");
+              //向标准输出输出一个对象
+              System.out.println(new RedirectOut());
+          } catch (FileNotFoundException e) {
+              e.printStackTrace();
+          }
+      }
+  }
+  ```
+
+  上述代码将系统的标准输出重定向到该PrintStream输出流，咱们再来看一个将` System.in `重定向栗子：
+
+  ```java
+  public class RedirectIn {
+      public static void main(String[] args) {
+          try {
+              FileInputStream fis = new FileInputStream("/Users/mr.stark/Desktop/test.java");
+              //将标准输入重定向到fis输入流
+              System.setIn(fis);
+              //使用System.in创建Scanner对象，用于获取标准输入
+              Scanner sc = new Scanner(System.in);
+              //增加下面一行将回车作为分隔符
+              sc.useDelimiter("\n");
+              //判断是否有下一个输入项
+              while (sc.hasNext()) {
+                  //输出输入项
+                  System.out.println(sc.next());
+              }
+          } catch (FileNotFoundException e) {
+              e.printStackTrace();
+          }
+      }
+  }
+  ```
+
+### 六、Java虚拟机读写其他进程的数据
+
+Runtime对象的` exec()`可以运行平台上的其他程序，该方法产生一个Process对象，代表该Java程序启动的子进程。该类提供了以下三个方法用于让程序与其他子进程通信：
+
+- ```java
+  //获取子进程的输入流
+  public abstract InputStream getInputStream();
+  ```
+
+- ```java
+  //获取子进程的错误流
+  public abstract InputStream getErrorStream();
+  ```
+
+- ```java
+  //获取子进程的输出流
+  public abstract OutputStream getOutputStream();
+  ```
+
+> 此处输入流、输出流很容易让人混淆，如果试图让子进程读取程序中的数据，应该用输入流还是输出流？不是输入流，而输出流。要站在Java程序员的角度考虑问题，要让Java程序把数据输出到子进程中，所以是输出流。
+
+下面的这个程序演示了读取其他进程的输出信息：
+
+```java
+public class ReadFromProcess {
+    public static void main(String[] args) throws IOException {
+        //运行javac命令，返回运行该命令的子进程
+        Process p = Runtime.getRuntime().exec("javac");
+        //以p进程的错误流创建BufferedReader对象，这个错误流对本程序是输入流，对启动的进程是输出流
+        BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+        //循环读取p进程的错误输出
+        String buff;
+        while ( (buff = br.readLine()) != null ) {
+            System.out.println(buff);
+        }
+    }
+}
+```
+
+上面程序中的` Process p = Runtime.getRuntime().exec("javac");`启动了javac程序。
+
+### 七、RandomAccessFile
 
 
 
+### 八、Java9改进的对象序列化
 
+> 对象序列化的目标是将对象保存在磁盘中或者在网络中传输。对象序列化机制允许把内存中的Java对象转换成与平台无关的二进制流，从而允许把这种二进制流持久的保存在磁盘上或者通过网络传输。其他程序获得了这种二进制流之后可以将其恢复为Java对象。
 
+#### 1、序列化的含义与意义
 
+序列化机制允许将实现序列化的Java对象转化为字节序列（从而方便存储在磁盘上或者在网络节点间传输），以备以后恢复成Java对象。序列化机制就使得对象可以脱离程序运行而独立存在。
 
+对象序列化（Serialize）只将一个Java对象写入IO流中，与之对应，反序列化（Deserialize）则指从IO流中恢复对象。
 
+Java9增强了对象序列化机制，允许对读入的序列化数据进行过滤，这种过滤可在反序列化之前对数据进行校验，从而提高程序健壮性和安全性。要让某个类是可序列化的，需实现下面两个接口之间的一个：
 
+- Serializable
+- Externalizable
 
+Java很多类已经实现了Serializable，这是一个标记接口，实现该接口无需实现任何方法，他只是表明该类的实例是可以序列化的。
 
+所有可能在网络上传输的对象的类都应该是可序列化的，否则程序将出现异常，如RMI（Remote Method Invoke，即远程方法调用）过程中的参数与返回值；所有需要保存到磁盘里的对象的类都必须可以序列化。例如Web应用中需要保存到HttpSession或ServletContext属性的Java对象。
 
+#### 2、使用对象流实现序列化
 
+一旦某个类实现了Serializable接口，他就是可序列化的，下面通过程序来看看：
 
+```java
+//---------------------------------------Person对象---------------------------------------
+@Data
+public class Person implements Serializable {
+    private String name;
+    private int age;
+    //这里没有提供无参构造器
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
 
+//---------------------------------------TestSerializable---------------------------------------
+public class TestSerializable {
+    public static void main(String[] args) throws IOException {
+        //创建一个ObjectOutputStream输出流
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("object.txt"));
+        //将一个Person对象输出到输出流中
+        Person per = new Person("xty", 18);
+        oos.writeObject(per);
+    }
+}
+```
 
+如果Person没有实现Serializable接口，则会报错：` java.io.NotSerializableException`异常。
 
+接下来我们尝试将` object.txt`恢复为一个Java对象：
 
+```java
+public class ReadObject {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        //创建一个ObjectInputStream输入流
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("object.txt"));
+        //读取Java对象并强转为Person对象
+        Person p = (Person) ois.readObject();
+        //输出该对象
+        System.out.println(p);
+    }
+}
+```
 
+上述代码使用` Person p = (Person) ois.readObject();`读取了Java对象。须注意的是：反序列读的仅仅是Java对象的数据，而非Java类，因此采用反序列化恢复数据时必须提供Java对象所属的Class文件，否则会引发` ClassNotFoundException `异常。
 
+当一个可序列化对象有多个父类时（包括直接父类和间接父类），这些父类要么有无参构造器，要么也是可序列化的-否则会抛出` InvalidClassException `异常。如果父类只是带有无参数的构造器，则父类中的成员变量是不会序列化到二进制流中去的。
 
-
-
-
+#### 3、对象引用的序列化
 
