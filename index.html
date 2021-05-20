@@ -154,6 +154,347 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/28/Java/Java_%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%BA%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/28/Java/Java_%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%BA%93/" class="post-title-link" itemprop="url">Java基础类库</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-28 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-28T00:00:00+00:00">2021-05-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-20 13:02:32" itemprop="dateModified" datetime="2021-05-20T13:02:32+00:00">2021-05-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="一、与用户互动"><a href="#一、与用户互动" class="headerlink" title="一、与用户互动"></a>一、与用户互动</h3><h4 id="1、运行Java程序的参数"><a href="#1、运行Java程序的参数" class="headerlink" title="1、运行Java程序的参数"></a>1、运行Java程序的参数</h4><h4 id="2、使用Scanner获取键盘输入"><a href="#2、使用Scanner获取键盘输入" class="headerlink" title="2、使用Scanner获取键盘输入"></a>2、使用Scanner获取键盘输入</h4><h3 id="二、系统相关"><a href="#二、系统相关" class="headerlink" title="二、系统相关"></a>二、系统相关</h3><h4 id="1、System类"><a href="#1、System类" class="headerlink" title="1、System类"></a>1、System类</h4><h4 id="2、Runtime类与Java9的ProcessHandle"><a href="#2、Runtime类与Java9的ProcessHandle" class="headerlink" title="2、Runtime类与Java9的ProcessHandle"></a>2、Runtime类与Java9的ProcessHandle</h4><h3 id="三、常用类"><a href="#三、常用类" class="headerlink" title="三、常用类"></a>三、常用类</h3><h4 id="1、Object类"><a href="#1、Object类" class="headerlink" title="1、Object类"></a>1、Object类</h4><h4 id="2、操作对象的Objects工具类"><a href="#2、操作对象的Objects工具类" class="headerlink" title="2、操作对象的Objects工具类"></a>2、操作对象的Objects工具类</h4><h4 id="3、Java9改进的String、StringBuilder和StringBuffer类"><a href="#3、Java9改进的String、StringBuilder和StringBuffer类" class="headerlink" title="3、Java9改进的String、StringBuilder和StringBuffer类"></a>3、Java9改进的String、StringBuilder和StringBuffer类</h4><h4 id="4、Math类"><a href="#4、Math类" class="headerlink" title="4、Math类"></a>4、Math类</h4><h4 id="5、ThreadLocalRandom与Random"><a href="#5、ThreadLocalRandom与Random" class="headerlink" title="5、ThreadLocalRandom与Random"></a>5、ThreadLocalRandom与Random</h4><h4 id="6、BigDecimal类"><a href="#6、BigDecimal类" class="headerlink" title="6、BigDecimal类"></a>6、BigDecimal类</h4><h3 id="四、Java8的日期、时间类"><a href="#四、Java8的日期、时间类" class="headerlink" title="四、Java8的日期、时间类"></a>四、Java8的日期、时间类</h3><h4 id="1、Date类"><a href="#1、Date类" class="headerlink" title="1、Date类"></a>1、Date类</h4><h4 id="2、Calendar类"><a href="#2、Calendar类" class="headerlink" title="2、Calendar类"></a>2、Calendar类</h4><h4 id="3、新的日期、时间包"><a href="#3、新的日期、时间包" class="headerlink" title="3、新的日期、时间包"></a>3、新的日期、时间包</h4><h3 id="五、正则表达式"><a href="#五、正则表达式" class="headerlink" title="五、正则表达式"></a>五、正则表达式</h3><h4 id="1、创建正则表达式"><a href="#1、创建正则表达式" class="headerlink" title="1、创建正则表达式"></a>1、创建正则表达式</h4><h4 id="2、使用正则表达式"><a href="#2、使用正则表达式" class="headerlink" title="2、使用正则表达式"></a>2、使用正则表达式</h4><h3 id="六、变量处理和方法处理"><a href="#六、变量处理和方法处理" class="headerlink" title="六、变量处理和方法处理"></a>六、变量处理和方法处理</h3><h4 id="1、Java9增强的MethodHandle"><a href="#1、Java9增强的MethodHandle" class="headerlink" title="1、Java9增强的MethodHandle"></a>1、Java9增强的MethodHandle</h4><h4 id="2、Java9增强的VarHandle"><a href="#2、Java9增强的VarHandle" class="headerlink" title="2、Java9增强的VarHandle"></a>2、Java9增强的VarHandle</h4><h3 id="七、Java11改进的国际化与格式化"><a href="#七、Java11改进的国际化与格式化" class="headerlink" title="七、Java11改进的国际化与格式化"></a>七、Java11改进的国际化与格式化</h3><h4 id="1、Java国际化思路"><a href="#1、Java国际化思路" class="headerlink" title="1、Java国际化思路"></a>1、Java国际化思路</h4><h4 id="2、Java支持的国家和语言"><a href="#2、Java支持的国家和语言" class="headerlink" title="2、Java支持的国家和语言"></a>2、Java支持的国家和语言</h4><h4 id="3、完成程序国际化"><a href="#3、完成程序国际化" class="headerlink" title="3、完成程序国际化"></a>3、完成程序国际化</h4><h4 id="4、使用MessageFormat处理器包含占位符的字符串"><a href="#4、使用MessageFormat处理器包含占位符的字符串" class="headerlink" title="4、使用MessageFormat处理器包含占位符的字符串"></a>4、使用MessageFormat处理器包含占位符的字符串</h4><h4 id="5、使用类文件代替资源文件"><a href="#5、使用类文件代替资源文件" class="headerlink" title="5、使用类文件代替资源文件"></a>5、使用类文件代替资源文件</h4><h4 id="6、Java9新增的日志API"><a href="#6、Java9新增的日志API" class="headerlink" title="6、Java9新增的日志API"></a>6、Java9新增的日志API</h4><h4 id="7、使用NumberFormat格式化数字"><a href="#7、使用NumberFormat格式化数字" class="headerlink" title="7、使用NumberFormat格式化数字"></a>7、使用NumberFormat格式化数字</h4><h4 id="8、使用DateFormat格式化日期、时间"><a href="#8、使用DateFormat格式化日期、时间" class="headerlink" title="8、使用DateFormat格式化日期、时间"></a>8、使用DateFormat格式化日期、时间</h4><h4 id="9、使用SimpleFormat格式化日期"><a href="#9、使用SimpleFormat格式化日期" class="headerlink" title="9、使用SimpleFormat格式化日期"></a>9、使用SimpleFormat格式化日期</h4><h3 id="八、Java8新增的日期、时间格式器"><a href="#八、Java8新增的日期、时间格式器" class="headerlink" title="八、Java8新增的日期、时间格式器"></a>八、Java8新增的日期、时间格式器</h3><h4 id="1、使用DateTimeFormatter完成格式化"><a href="#1、使用DateTimeFormatter完成格式化" class="headerlink" title="1、使用DateTimeFormatter完成格式化"></a>1、使用DateTimeFormatter完成格式化</h4><h4 id="2、使用DateTimeFormatter解析字符串"><a href="#2、使用DateTimeFormatter解析字符串" class="headerlink" title="2、使用DateTimeFormatter解析字符串"></a>2、使用DateTimeFormatter解析字符串</h4><h3 id="九、本章小结"><a href="#九、本章小结" class="headerlink" title="九、本章小结"></a>九、本章小结</h3>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/20/Java/Java_%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/20/Java/Java_%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-20 13:02:32" itemprop="dateCreated datePublished" datetime="2021-05-20T13:02:32+00:00">2021-05-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<hr>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/20/Java/Java_%E9%9B%86%E5%90%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/20/Java/Java_%E9%9B%86%E5%90%88/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-20 13:02:32" itemprop="dateCreated datePublished" datetime="2021-05-20T13:02:32+00:00">2021-05-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <hr>
+<hr>
+<h3 id="一、Java集合概述"><a href="#一、Java集合概述" class="headerlink" title="一、Java集合概述"></a>一、Java集合概述</h3><h3 id="二、Java11增强的-Collection和-Iterator接口"><a href="#二、Java11增强的-Collection和-Iterator接口" class="headerlink" title="二、Java11增强的 Collection和 Iterator接口"></a>二、Java11增强的<code> Collection</code>和<code> Iterator</code>接口</h3><h4 id="1、使用Lambda表达式遍历集合"><a href="#1、使用Lambda表达式遍历集合" class="headerlink" title="1、使用Lambda表达式遍历集合"></a>1、使用Lambda表达式遍历集合</h4><h4 id="2、使用Iterator遍历集合元素"><a href="#2、使用Iterator遍历集合元素" class="headerlink" title="2、使用Iterator遍历集合元素"></a>2、使用Iterator遍历集合元素</h4><h4 id="3、使用Lambda表达式遍历Iterator"><a href="#3、使用Lambda表达式遍历Iterator" class="headerlink" title="3、使用Lambda表达式遍历Iterator"></a>3、使用Lambda表达式遍历Iterator</h4><h4 id="4、使用foreach循环遍集合元素"><a href="#4、使用foreach循环遍集合元素" class="headerlink" title="4、使用foreach循环遍集合元素"></a>4、使用foreach循环遍集合元素</h4><h4 id="5、使用Predicate操作集合"><a href="#5、使用Predicate操作集合" class="headerlink" title="5、使用Predicate操作集合"></a>5、使用Predicate操作集合</h4><h4 id="6、使用Stream操作集合"><a href="#6、使用Stream操作集合" class="headerlink" title="6、使用Stream操作集合"></a>6、使用Stream操作集合</h4><h3 id="三、Set集合"><a href="#三、Set集合" class="headerlink" title="三、Set集合"></a>三、Set集合</h3><h4 id="1、HashSet类"><a href="#1、HashSet类" class="headerlink" title="1、HashSet类"></a>1、HashSet类</h4><h4 id="2、LinkedHashSet类"><a href="#2、LinkedHashSet类" class="headerlink" title="2、LinkedHashSet类"></a>2、LinkedHashSet类</h4><h4 id="3、TreeSet类"><a href="#3、TreeSet类" class="headerlink" title="3、TreeSet类"></a>3、TreeSet类</h4><h4 id="4、EnumSet类"><a href="#4、EnumSet类" class="headerlink" title="4、EnumSet类"></a>4、EnumSet类</h4><h4 id="5、各Set实现类的性能分析"><a href="#5、各Set实现类的性能分析" class="headerlink" title="5、各Set实现类的性能分析"></a>5、各Set实现类的性能分析</h4><h3 id="四、List集合"><a href="#四、List集合" class="headerlink" title="四、List集合"></a>四、List集合</h3><h4 id="1、改进的List接口和ListIterator"><a href="#1、改进的List接口和ListIterator" class="headerlink" title="1、改进的List接口和ListIterator"></a>1、改进的List接口和ListIterator</h4><h4 id="2、ArrayList和Vector实现类"><a href="#2、ArrayList和Vector实现类" class="headerlink" title="2、ArrayList和Vector实现类"></a>2、ArrayList和Vector实现类</h4><h4 id="3、固定长度的List"><a href="#3、固定长度的List" class="headerlink" title="3、固定长度的List"></a>3、固定长度的List</h4><h3 id="五、Queue集合"><a href="#五、Queue集合" class="headerlink" title="五、Queue集合"></a>五、Queue集合</h3><h4 id="1、PriorityQueue实现类"><a href="#1、PriorityQueue实现类" class="headerlink" title="1、PriorityQueue实现类"></a>1、PriorityQueue实现类</h4><h4 id="2、Deque接口与ArrayDeque实现类"><a href="#2、Deque接口与ArrayDeque实现类" class="headerlink" title="2、Deque接口与ArrayDeque实现类"></a>2、Deque接口与ArrayDeque实现类</h4><h4 id="3、LinkedList实现类"><a href="#3、LinkedList实现类" class="headerlink" title="3、LinkedList实现类"></a>3、LinkedList实现类</h4><h4 id="4、各种线性表的性能分析"><a href="#4、各种线性表的性能分析" class="headerlink" title="4、各种线性表的性能分析"></a>4、各种线性表的性能分析</h4><h3 id="六、增强的Map集合"><a href="#六、增强的Map集合" class="headerlink" title="六、增强的Map集合"></a>六、增强的Map集合</h3><h4 id="1、Java8为Map新增的方法"><a href="#1、Java8为Map新增的方法" class="headerlink" title="1、Java8为Map新增的方法"></a>1、Java8为Map新增的方法</h4><h4 id="2、改进的HashMap和Hashtable实现类"><a href="#2、改进的HashMap和Hashtable实现类" class="headerlink" title="2、改进的HashMap和Hashtable实现类"></a>2、改进的HashMap和Hashtable实现类</h4><h4 id="3、LinkedHashMap实现类"><a href="#3、LinkedHashMap实现类" class="headerlink" title="3、LinkedHashMap实现类"></a>3、LinkedHashMap实现类</h4><h4 id="4、使用Properties读写属性文件"><a href="#4、使用Properties读写属性文件" class="headerlink" title="4、使用Properties读写属性文件"></a>4、使用Properties读写属性文件</h4><h4 id="5、SortedMap接口和TreeMap实现类"><a href="#5、SortedMap接口和TreeMap实现类" class="headerlink" title="5、SortedMap接口和TreeMap实现类"></a>5、SortedMap接口和TreeMap实现类</h4><h4 id="6、WeakHashMap实现类"><a href="#6、WeakHashMap实现类" class="headerlink" title="6、WeakHashMap实现类"></a>6、WeakHashMap实现类</h4><h3 id="七、HashSet和HashMap的性能选择"><a href="#七、HashSet和HashMap的性能选择" class="headerlink" title="七、HashSet和HashMap的性能选择"></a>七、HashSet和HashMap的性能选择</h3><h3 id="八、操作集合的工具类：Collections"><a href="#八、操作集合的工具类：Collections" class="headerlink" title="八、操作集合的工具类：Collections"></a>八、操作集合的工具类：Collections</h3><h4 id="1、排序操作"><a href="#1、排序操作" class="headerlink" title="1、排序操作"></a>1、排序操作</h4><h4 id="2、查找、替换操作"><a href="#2、查找、替换操作" class="headerlink" title="2、查找、替换操作"></a>2、查找、替换操作</h4><h4 id="3、同步控制"><a href="#3、同步控制" class="headerlink" title="3、同步控制"></a>3、同步控制</h4><h4 id="4、设置不可变集合"><a href="#4、设置不可变集合" class="headerlink" title="4、设置不可变集合"></a>4、设置不可变集合</h4><h4 id="5、Java9新增的不可变集合"><a href="#5、Java9新增的不可变集合" class="headerlink" title="5、Java9新增的不可变集合"></a>5、Java9新增的不可变集合</h4><h3 id="九、繁琐的接口：Enumeration"><a href="#九、繁琐的接口：Enumeration" class="headerlink" title="九、繁琐的接口：Enumeration"></a>九、繁琐的接口：Enumeration</h3><h3 id="十、本章小结"><a href="#十、本章小结" class="headerlink" title="十、本章小结"></a>十、本章小结</h3>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/20/Java/Java_%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/20/Java/Java_%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">Java多线程编程</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-20 00:00:00 / 修改时间：13:02:32" itemprop="dateCreated datePublished" datetime="2021-05-20T00:00:00+00:00">2021-05-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="一、线程概述"><a href="#一、线程概述" class="headerlink" title="一、线程概述"></a>一、线程概述</h3><h4 id="1、线程和进程"><a href="#1、线程和进程" class="headerlink" title="1、线程和进程"></a>1、线程和进程</h4><h4 id="2、多线程的优势"><a href="#2、多线程的优势" class="headerlink" title="2、多线程的优势"></a>2、多线程的优势</h4><h3 id="二、线程的创建和启动"><a href="#二、线程的创建和启动" class="headerlink" title="二、线程的创建和启动"></a>二、线程的创建和启动</h3><h4 id="1、继承Thread类创建线程类"><a href="#1、继承Thread类创建线程类" class="headerlink" title="1、继承Thread类创建线程类"></a>1、继承Thread类创建线程类</h4><h4 id="2、实现Runnable接口创建线程类"><a href="#2、实现Runnable接口创建线程类" class="headerlink" title="2、实现Runnable接口创建线程类"></a>2、实现Runnable接口创建线程类</h4><h4 id="3、使用Callable和Future创建线程"><a href="#3、使用Callable和Future创建线程" class="headerlink" title="3、使用Callable和Future创建线程"></a>3、使用Callable和Future创建线程</h4><h4 id="4、创建线程的三种方式对比"><a href="#4、创建线程的三种方式对比" class="headerlink" title="4、创建线程的三种方式对比"></a>4、创建线程的三种方式对比</h4><h3 id="三、线程的生命周期"><a href="#三、线程的生命周期" class="headerlink" title="三、线程的生命周期"></a>三、线程的生命周期</h3><h4 id="1、新建和就绪状态"><a href="#1、新建和就绪状态" class="headerlink" title="1、新建和就绪状态"></a>1、新建和就绪状态</h4><h4 id="2、运行和阻塞状态"><a href="#2、运行和阻塞状态" class="headerlink" title="2、运行和阻塞状态"></a>2、运行和阻塞状态</h4><h4 id="3、线程死亡"><a href="#3、线程死亡" class="headerlink" title="3、线程死亡"></a>3、线程死亡</h4><h3 id="四、控制线程"><a href="#四、控制线程" class="headerlink" title="四、控制线程"></a>四、控制线程</h3><h4 id="1、join线程"><a href="#1、join线程" class="headerlink" title="1、join线程"></a>1、join线程</h4><h4 id="2、后台线程"><a href="#2、后台线程" class="headerlink" title="2、后台线程"></a>2、后台线程</h4><h4 id="3、线程睡眠：sleep"><a href="#3、线程睡眠：sleep" class="headerlink" title="3、线程睡眠：sleep"></a>3、线程睡眠：sleep</h4><h4 id="4、改变线程优先级"><a href="#4、改变线程优先级" class="headerlink" title="4、改变线程优先级"></a>4、改变线程优先级</h4><h3 id="五、线程同步"><a href="#五、线程同步" class="headerlink" title="五、线程同步"></a>五、线程同步</h3><h4 id="1、线程安全问题"><a href="#1、线程安全问题" class="headerlink" title="1、线程安全问题"></a>1、线程安全问题</h4><h4 id="2、同步代码块"><a href="#2、同步代码块" class="headerlink" title="2、同步代码块"></a>2、同步代码块</h4><h4 id="3、同步方法"><a href="#3、同步方法" class="headerlink" title="3、同步方法"></a>3、同步方法</h4><h4 id="4、释放同步监视器的锁定"><a href="#4、释放同步监视器的锁定" class="headerlink" title="4、释放同步监视器的锁定"></a>4、释放同步监视器的锁定</h4><h4 id="5、同步锁（lock）"><a href="#5、同步锁（lock）" class="headerlink" title="5、同步锁（lock）"></a>5、同步锁（lock）</h4><h4 id="6、死锁及常用处理策略"><a href="#6、死锁及常用处理策略" class="headerlink" title="6、死锁及常用处理策略"></a>6、死锁及常用处理策略</h4><h3 id="六、线程通信"><a href="#六、线程通信" class="headerlink" title="六、线程通信"></a>六、线程通信</h3><h4 id="1、传统的线程通信"><a href="#1、传统的线程通信" class="headerlink" title="1、传统的线程通信"></a>1、传统的线程通信</h4><h4 id="2、使用Condition控制线程通信"><a href="#2、使用Condition控制线程通信" class="headerlink" title="2、使用Condition控制线程通信"></a>2、使用Condition控制线程通信</h4><h4 id="3、使用阻塞队列（Blocking-Queue）控制线程通信"><a href="#3、使用阻塞队列（Blocking-Queue）控制线程通信" class="headerlink" title="3、使用阻塞队列（Blocking Queue）控制线程通信"></a>3、使用阻塞队列（Blocking Queue）控制线程通信</h4><h3 id="七、线程组和未处理的异常"><a href="#七、线程组和未处理的异常" class="headerlink" title="七、线程组和未处理的异常"></a>七、线程组和未处理的异常</h3><h3 id="八、线程池"><a href="#八、线程池" class="headerlink" title="八、线程池"></a>八、线程池</h3><h4 id="1、使用线程池管理线程"><a href="#1、使用线程池管理线程" class="headerlink" title="1、使用线程池管理线程"></a>1、使用线程池管理线程</h4><h4 id="2、使用ForkJoinPool利用多CPU"><a href="#2、使用ForkJoinPool利用多CPU" class="headerlink" title="2、使用ForkJoinPool利用多CPU"></a>2、使用ForkJoinPool利用多CPU</h4><h3 id="九、线程相关类"><a href="#九、线程相关类" class="headerlink" title="九、线程相关类"></a>九、线程相关类</h3><h4 id="1、ThreadLocal类"><a href="#1、ThreadLocal类" class="headerlink" title="1、ThreadLocal类"></a>1、ThreadLocal类</h4><h4 id="2、包装线程不安全的集合"><a href="#2、包装线程不安全的集合" class="headerlink" title="2、包装线程不安全的集合"></a>2、包装线程不安全的集合</h4><h4 id="3、线程安全的集合类"><a href="#3、线程安全的集合类" class="headerlink" title="3、线程安全的集合类"></a>3、线程安全的集合类</h4><h4 id="4、Java9新增的发布-订阅框架"><a href="#4、Java9新增的发布-订阅框架" class="headerlink" title="4、Java9新增的发布-订阅框架"></a>4、Java9新增的发布-订阅框架</h4><h3 id="十、本章小结"><a href="#十、本章小结" class="headerlink" title="十、本章小结"></a>十、本章小结</h3>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/15/create-vue-pro/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/15/create-vue-pro/" class="post-title-link" itemprop="url">创建vue项目</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-15 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-15T00:00:00+00:00">2021-05-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-20 13:02:32" itemprop="dateModified" datetime="2021-05-20T13:02:32+00:00">2021-05-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="创建名为web的vue项目"><a href="#创建名为web的vue项目" class="headerlink" title="创建名为web的vue项目"></a>创建名为web的vue项目</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue create web</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建项目的选择如下："><a href="#创建项目的选择如下：" class="headerlink" title="创建项目的选择如下："></a>创建项目的选择如下：</h3><p>![截屏2021-05-15 下午8.00.41](create-vue-pro.assets/截屏2021-05-15 下午8.00.41.png)</p>
+<h3 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a>启动项目</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd web</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run serve</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用窗口按钮来启动项目"><a href="#使用窗口按钮来启动项目" class="headerlink" title="使用窗口按钮来启动项目"></a>使用窗口按钮来启动项目</h3><p>![截屏2021-05-15 下午8.05.27](create-vue-pro.assets/截屏2021-05-15 下午8.05.27.png)</p>
+<h3 id="安装ant-design-vue"><a href="#安装ant-design-vue" class="headerlink" title="安装ant-design-vue"></a>安装ant-design-vue</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install ant-design-vue@2.0.0-rc.3 --save</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/12/English/2021-05-12/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -185,7 +526,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-13 10:21:14" itemprop="dateModified" datetime="2021-05-13T10:21:14+00:00">2021-05-13</time>
+                <time title="修改时间：2021-05-20 13:02:32" itemprop="dateModified" datetime="2021-05-20T13:02:32+00:00">2021-05-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -273,7 +614,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-13 10:21:14" itemprop="dateModified" datetime="2021-05-13T10:21:14+00:00">2021-05-13</time>
+                <time title="修改时间：2021-05-20 13:02:32" itemprop="dateModified" datetime="2021-05-20T13:02:32+00:00">2021-05-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -424,7 +765,171 @@
 <h4 id="2、输入输出体系"><a href="#2、输入输出体系" class="headerlink" title="2、输入输出体系"></a>2、输入输出体系</h4><p>下面将其按功能分类：</p>
 <p>![截屏2021-05-13 下午5.36.57](Java_IO学习.assets/截屏2021-05-13 下午5.36.57.png)</p>
 <p>通常来说，字节流的功能比字符流更加强大，因为计算机里的数据都是二进制存放，字节流可以处理所有的二进制文件—如果用字节流来处理文本文件，将字节转化为字符增加了编程难度。故：文本内容–&gt;字符流；二进制内容–&gt;字节流。</p>
+<h4 id="4、转换流"><a href="#4、转换流" class="headerlink" title="4、转换流"></a>4、转换流</h4><p>输入/输出体系中还提供了两个转换流，这两个转换流用于将字节流转换成字符流：</p>
+<ul>
+<li><p>InputStreamReader</p>
+<p>将字节输入流转化成字符输入流</p>
+</li>
+<li><p>PutputStreamWriter</p>
+<p>将字节输出流转化为字符输出流</p>
+</li>
+</ul>
+<blockquote>
+<p>Java不提供将字符流转化为字节流的转换流，因为如果一个流是字符流，它用起来会更方便，没必要转换成为字节流。</p>
+</blockquote>
+<p>下面以获取键盘输入为例：Java使用<code>System.in</code>代表标准输入（键盘输入），这个标准类是<code>InputStream</code>的实例，用起来不方便，于是使用<code>InputStreamReader</code>将其包装为字符输入流。普通的<code>Reader</code>读取输入内容时依然不太方便，将<code>InputStreamReader</code>包装为<code>BufferedReader</code>，可以使用它的<code>readline()</code>一次读取一行内容。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">KeyinTest</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> (</span><br><span class="line">      <span class="comment">//将System.in对象转换成Reader对象</span></span><br><span class="line">      InputStreamReader reader = <span class="keyword">new</span> InputStreamReader(System.in);</span><br><span class="line">      <span class="comment">//将普通的Reader包装成BufferedReader</span></span><br><span class="line">      BufferedReader br = <span class="keyword">new</span> BufferedReader(reader)</span><br><span class="line">      <span class="comment">//BufferedReader具有缓冲功能，一次读取一行内容（以换行符为标志），如果没有读到换行符，程序阻塞。</span></span><br><span class="line">    ) &#123;</span><br><span class="line">      String line;</span><br><span class="line">      <span class="comment">//采用循环方式逐行读取</span></span><br><span class="line">      <span class="keyword">while</span> ( (line = br.readLine()) != <span class="keyword">null</span> ) &#123;</span><br><span class="line">        <span class="comment">//如果读取到的字符是&quot;exit&quot;</span></span><br><span class="line">        <span class="keyword">if</span> (line.equals(<span class="string">&quot;exit&quot;</span>)) &#123;</span><br><span class="line">          System.exit(<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//打印读取内容</span></span><br><span class="line">        System.out.println(line);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">      e.printStackTrace();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h4 id="4、推回输入流"><a href="#4、推回输入流" class="headerlink" title="4、推回输入流"></a>4、推回输入流</h4><p>在输入/输出体系中，有两个特殊的流与众不同，就是<code>PushbackInputStream</code>和<code>PushbackReader</code>，提供了如下三个方法：</p>
+<ul>
+<li><p>void unread(byte[]/char[] buf)</p>
+<p>将一个字节/字符数组内容推到缓冲区里，从而允许重复读取刚刚读取的内容。</p>
+</li>
+<li><p>void unread(byte[]/char[] buf, int off, int len)</p>
+<p>将一个字节/字符数组内容（从off开始，长度为len）推到缓冲区里，从而允许重复读取刚刚读取的内容。</p>
+</li>
+<li><p>void unread(int b)</p>
+<p>将一个字节/字符推到缓冲区里，从而允许重复读取刚刚读取的内容。</p>
+</li>
+</ul>
+<p>这俩推回输入流都带有一个推回缓冲区，当调用<code>unread()</code>方法时，系统会将指定的数组内容推回到该缓冲区，当调用<code>read()</code>方法时，总是会先从该推回缓冲区读取，只有完全读取了推回缓冲区的内容但还没有装满<code>read()</code>所需的数组大小时才会从原输入流中读取：</p>
+<p>![截屏2021-05-15 下午4.32.22](Java_IO学习.assets/截屏2021-05-15 下午4.32.22.png)</p>
+<p>如下示例代码（将指定内容推回缓冲区，再调用<code>read()</code>方法读取缓冲区的部分内容）：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PushbackTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span>(<span class="comment">//创建一个PushbackReader对象，指定推回缓冲区的长度为64</span></span><br><span class="line">            PushbackReader pr = <span class="keyword">new</span> PushbackReader(</span><br><span class="line">                        <span class="keyword">new</span> FileReader(<span class="string">&quot;/Users/mr.stark/Desktop/test.java&quot;</span>), <span class="number">64</span>) ) &#123;</span><br><span class="line">            <span class="keyword">char</span>[] buf = <span class="keyword">new</span> <span class="keyword">char</span>[<span class="number">32</span>];</span><br><span class="line">            <span class="comment">//用以保存上次读取的字符串内容</span></span><br><span class="line">            String lastContent = <span class="string">&quot;&quot;</span>;</span><br><span class="line">            <span class="keyword">int</span> hasRead = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> ( (hasRead = pr.read(buf)) &gt; <span class="number">0</span> ) &#123;</span><br><span class="line">                <span class="comment">//将读取的内容转换成字符串</span></span><br><span class="line">                String content = <span class="keyword">new</span> String(buf, <span class="number">0</span>, hasRead);</span><br><span class="line">                <span class="keyword">int</span> targetIndex = <span class="number">0</span>;</span><br><span class="line">                <span class="comment">//将上次读取的字符串和本次读取的字符串拼起来</span></span><br><span class="line">                <span class="comment">//看看是否包含目标字符串</span></span><br><span class="line">                <span class="keyword">if</span> ((targetIndex = (lastContent + content)</span><br><span class="line">                        .indexOf(<span class="string">&quot;new PushbackReader&quot;</span>)) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="comment">//将本次内容和上次内容一起推回到缓冲区</span></span><br><span class="line">                    pr.unread((lastContent + content).toCharArray());</span><br><span class="line">                    <span class="comment">//重新定义一个长度为targetIndex的char数组</span></span><br><span class="line">                    <span class="keyword">if</span> (targetIndex &gt; <span class="number">32</span>) &#123;</span><br><span class="line">                        buf = <span class="keyword">new</span> <span class="keyword">char</span>[targetIndex];</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="comment">//再次读取指定的内容</span></span><br><span class="line">                    pr.read(buf, <span class="number">0</span>, targetIndex);</span><br><span class="line">                    <span class="comment">//打印读取的内容</span></span><br><span class="line">                    System.out.print(<span class="keyword">new</span> String(buf, <span class="number">0</span>, targetIndex));</span><br><span class="line">                    System.exit(<span class="number">0</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="comment">//打印上次读到的内容</span></span><br><span class="line">                    System.out.print(lastContent);</span><br><span class="line">                    <span class="comment">//将字符串内容设为上次读取的内容</span></span><br><span class="line">                    lastContent = content;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="五、重定向标准输入输出"><a href="#五、重定向标准输入输出" class="headerlink" title="五、重定向标准输入输出"></a>五、重定向标准输入输出</h3><p>Java的标准输入、输出分别通过<code>System.in</code>和<code>System.out</code>来代表，默认情况下分别代表键盘和显示器。</p>
+<p>在System类里提供了如下三个重定向标准标准输入/输出的方法，如下：</p>
+<ul>
+<li><pre><code class="java">//重定向“标准”错误输入流
+static void setErr(PrintStream err)
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- &#96;&#96;&#96;java</span><br><span class="line">  &#x2F;&#x2F;重定向“标准”输入流</span><br><span class="line">  static void setIn(InputStream in)</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+<li><pre><code class="java">//重定向“标准”输出流
+static void setOut(PrintStream out)
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">下面通过程序通过重定向标准输出流将&#96; System.out &#96;重定向到文件输出：</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;java</span><br><span class="line">public class RedirectOut &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            &#x2F;&#x2F;一次性创建PrintStream输出流</span><br><span class="line">            PrintStream ps &#x3D; new PrintStream(new FileOutputStream(&quot;out.txt&quot;));</span><br><span class="line">            &#x2F;&#x2F;将标准输出重定向到ps输出流</span><br><span class="line">            System.setOut(ps);</span><br><span class="line">            &#x2F;&#x2F;向标准输出输出一个字符串</span><br><span class="line">            System.out.println(&quot;疯狂Java讲义&quot;);</span><br><span class="line">            &#x2F;&#x2F;向标准输出输出一个对象</span><br><span class="line">            System.out.println(new RedirectOut());</span><br><span class="line">        &#125; catch (FileNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+上述代码将系统的标准输出重定向到该PrintStream输出流，咱们再来看一个将` System.in `重定向栗子：
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedirectIn</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            FileInputStream fis = <span class="keyword">new</span> FileInputStream(<span class="string">&quot;/Users/mr.stark/Desktop/test.java&quot;</span>);</span><br><span class="line">            <span class="comment">//将标准输入重定向到fis输入流</span></span><br><span class="line">            System.setIn(fis);</span><br><span class="line">            <span class="comment">//使用System.in创建Scanner对象，用于获取标准输入</span></span><br><span class="line">            Scanner sc = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">            <span class="comment">//增加下面一行将回车作为分隔符</span></span><br><span class="line">            sc.useDelimiter(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">            <span class="comment">//判断是否有下一个输入项</span></span><br><span class="line">            <span class="keyword">while</span> (sc.hasNext()) &#123;</span><br><span class="line">                <span class="comment">//输出输入项</span></span><br><span class="line">                System.out.println(sc.next());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+<h3 id="六、Java虚拟机读写其他进程的数据"><a href="#六、Java虚拟机读写其他进程的数据" class="headerlink" title="六、Java虚拟机读写其他进程的数据"></a>六、Java虚拟机读写其他进程的数据</h3><p>Runtime对象的<code> exec()</code>可以运行平台上的其他程序，该方法产生一个Process对象，代表该Java程序启动的子进程。该类提供了以下三个方法用于让程序与其他子进程通信：</p>
+<ul>
+<li><pre><code class="java">//获取子进程的输入流
+public abstract InputStream getInputStream();
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- &#96;&#96;&#96;java</span><br><span class="line">  &#x2F;&#x2F;获取子进程的错误流</span><br><span class="line">  public abstract InputStream getErrorStream();</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+<li><pre><code class="java">//获取子进程的输出流
+public abstract OutputStream getOutputStream();
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&gt; 此处输入流、输出流很容易让人混淆，如果试图让子进程读取程序中的数据，应该用输入流还是输出流？不是输入流，而输出流。要站在Java程序员的角度考虑问题，要让Java程序把数据输出到子进程中，所以是输出流。</span><br><span class="line"></span><br><span class="line">下面的这个程序演示了读取其他进程的输出信息：</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;java</span><br><span class="line">public class ReadFromProcess &#123;</span><br><span class="line">    public static void main(String[] args) throws IOException &#123;</span><br><span class="line">        &#x2F;&#x2F;运行javac命令，返回运行该命令的子进程</span><br><span class="line">        Process p &#x3D; Runtime.getRuntime().exec(&quot;javac&quot;);</span><br><span class="line">        &#x2F;&#x2F;以p进程的错误流创建BufferedReader对象，这个错误流对本程序是输入流，对启动的进程是输出流</span><br><span class="line">        BufferedReader br &#x3D; new BufferedReader(new InputStreamReader(p.getInputStream()));</span><br><span class="line">        &#x2F;&#x2F;循环读取p进程的错误输出</span><br><span class="line">        String buff;</span><br><span class="line">        while ( (buff &#x3D; br.readLine()) !&#x3D; null ) &#123;</span><br><span class="line">            System.out.println(buff);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+<p>上面程序中的<code> Process p = Runtime.getRuntime().exec(&quot;javac&quot;);</code>启动了javac程序。</p>
+<h3 id="七、RandomAccessFile"><a href="#七、RandomAccessFile" class="headerlink" title="七、RandomAccessFile"></a>七、RandomAccessFile</h3><h3 id="八、Java9改进的对象序列化"><a href="#八、Java9改进的对象序列化" class="headerlink" title="八、Java9改进的对象序列化"></a>八、Java9改进的对象序列化</h3><blockquote>
+<p>对象序列化的目标是将对象保存在磁盘中或者在网络中传输。对象序列化机制允许把内存中的Java对象转换成与平台无关的二进制流，从而允许把这种二进制流持久的保存在磁盘上或者通过网络传输。其他程序获得了这种二进制流之后可以将其恢复为Java对象。</p>
+</blockquote>
+<h4 id="1、序列化的含义与意义"><a href="#1、序列化的含义与意义" class="headerlink" title="1、序列化的含义与意义"></a>1、序列化的含义与意义</h4><p>序列化机制允许将实现序列化的Java对象转化为字节序列（从而方便存储在磁盘上或者在网络节点间传输），以备以后恢复成Java对象。序列化机制就使得对象可以脱离程序运行而独立存在。</p>
+<p>对象序列化（Serialize）只将一个Java对象写入IO流中，与之对应，反序列化（Deserialize）则指从IO流中恢复对象。</p>
+<p>Java9增强了对象序列化机制，允许对读入的序列化数据进行过滤，这种过滤可在反序列化之前对数据进行校验，从而提高程序健壮性和安全性。要让某个类是可序列化的，需实现下面两个接口之间的一个：</p>
+<ul>
+<li>Serializable</li>
+<li>Externalizable</li>
+</ul>
+<p>Java很多类已经实现了Serializable，这是一个标记接口，实现该接口无需实现任何方法，他只是表明该类的实例是可以序列化的。</p>
+<p>所有可能在网络上传输的对象的类都应该是可序列化的，否则程序将出现异常，如RMI（Remote Method Invoke，即远程方法调用）过程中的参数与返回值；所有需要保存到磁盘里的对象的类都必须可以序列化。例如Web应用中需要保存到HttpSession或ServletContext属性的Java对象。</p>
+<h4 id="2、使用对象流实现序列化"><a href="#2、使用对象流实现序列化" class="headerlink" title="2、使用对象流实现序列化"></a>2、使用对象流实现序列化</h4><p>一旦某个类实现了Serializable接口，他就是可序列化的，下面通过程序来看看：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//---------------------------------------Person对象---------------------------------------</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">    <span class="comment">//这里没有提供无参构造器</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(String name, <span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//---------------------------------------TestSerializable---------------------------------------</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestSerializable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="comment">//创建一个ObjectOutputStream输出流</span></span><br><span class="line">        ObjectOutputStream oos = <span class="keyword">new</span> ObjectOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">&quot;object.txt&quot;</span>));</span><br><span class="line">        <span class="comment">//将一个Person对象输出到输出流中</span></span><br><span class="line">        Person per = <span class="keyword">new</span> Person(<span class="string">&quot;xty&quot;</span>, <span class="number">18</span>);</span><br><span class="line">        oos.writeObject(per);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果Person没有实现Serializable接口，则会报错：<code> java.io.NotSerializableException</code>异常。</p>
+<p>接下来我们尝试将<code> object.txt</code>恢复为一个Java对象：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ReadObject</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException </span>&#123;</span><br><span class="line">        <span class="comment">//创建一个ObjectInputStream输入流</span></span><br><span class="line">        ObjectInputStream ois = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">&quot;object.txt&quot;</span>));</span><br><span class="line">        <span class="comment">//读取Java对象并强转为Person对象</span></span><br><span class="line">        Person p = (Person) ois.readObject();</span><br><span class="line">        <span class="comment">//输出该对象</span></span><br><span class="line">        System.out.println(p);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上述代码使用<code> Person p = (Person) ois.readObject();</code>读取了Java对象。须注意的是：反序列读的仅仅是Java对象的数据，而非Java类，因此采用反序列化恢复数据时必须提供Java对象所属的Class文件，否则会引发<code>ClassNotFoundException</code>异常。</p>
+<p>当一个可序列化对象有多个父类时（包括直接父类和间接父类），这些父类要么有无参构造器，要么也是可序列化的-否则会抛出<code>InvalidClassException</code>异常。如果父类只是带有无参数的构造器，则父类中的成员变量是不会序列化到二进制流中去的。</p>
+<h4 id="3、对象引用的序列化"><a href="#3、对象引用的序列化" class="headerlink" title="3、对象引用的序列化"></a>3、对象引用的序列化</h4><p>前面介绍的<code> Person</code>类的两个成员分别是String和int类型，如果一个类的成员变量类型不是基本类型或者String类型，而是另一个引用类型，那么这个引用类必须是可序列化的，否则拥有该类型成员变量的类也是不可序列化的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Teacher</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> String name;</span><br><span class="line">  <span class="keyword">private</span> Person person;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Teacher</span><span class="params">(String name, Person person)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.person = person;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>当程序序列化一个Teacher对象时，如果Teacher对象持有一个Person对象的引用，为了在反序列化时可以正常恢复Teacher对象，程序会将该Person对象也进行序列化。</p>
+</blockquote>
+<p>现在假设有下面的一种特殊情况：程序中有两个Teacher对象，他们的student实例变量引用到同一个Person对象，该Person对象还有一个引用变量引用它，代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Person per = <span class="keyword">new</span> Person(<span class="string">&quot;孙悟空&quot;</span>, <span class="number">500</span>);</span><br><span class="line">Teacher t1 = <span class="keyword">new</span> Teacher(<span class="string">&quot;唐僧&quot;</span>, per);</span><br><span class="line">Teacher t2 = <span class="keyword">new</span> Teacher(<span class="string">&quot;菩提祖师&quot;</span>, per);</span><br></pre></td></tr></table></figure>
+
+<p>上面三个对象在内存的情况如下：</p>
+<p><img src="java-io-15.13.png" alt="java-io-15-13"></p>
+<p>这里产生了一个问题：</p>
+<blockquote>
+<p>如果先序列化t1对象，则系统将该t1对象所引用的Person对象一起序列化；如果系统再序列化t2对象，系统将一样会再序列化该t2对象，并且将再次序列化该t2对象所引用的Person对象；如果程序再显式序列化per对象，系统会再次序列化Person对象。这个过程似乎会向输出流输出三个Person对象。</p>
+</blockquote>
+<p>如果系统向输出流输出了三个Person对象，那么后果就是当程序从输出流中反序列化这些对象时，将会得到三个Person对象，从而引起t1和t2引用的Person对象不是同一个—这也就违背了Java序列化机制的初衷。</p>
+<p>所以，Java序列化机制采用了一种特殊的序列化算法：</p>
+<ul>
+<li>所有保存到磁盘的对象都有一个序列化编号</li>
+<li>当程序试图序列化一个对象时，先检查其是否已被序列化过，只有未被序列化才会被序列化</li>
+<li>如果程序已被序列化过，程序会直接输出一个序列化编号</li>
+</ul>
+<p>因此根据上面的算法：当第二次第三次序列化Persin对象时，程序不会再将对象转化成为字节数组，而是仅仅输出一个序列化编号，假设有如下序列化代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建一个ObjectOutputStream输出流</span></span><br><span class="line">ObjectOutputStream oos = <span class="keyword">new</span> ObjectOutputStream(<span class="keyword">new</span> FileOutputStream(<span class="string">&quot;object.txt&quot;</span>));</span><br><span class="line"><span class="comment">//将一个Person对象输出到输出流中</span></span><br><span class="line">Person per = <span class="keyword">new</span> Person(<span class="string">&quot;xty&quot;</span>, <span class="number">18</span>);</span><br><span class="line"><span class="comment">//转化成字节数组</span></span><br><span class="line">oos.writeObject(t1);</span><br><span class="line">oos.writeObject(t2);</span><br><span class="line">oos.writeObject(per);</span><br></pre></td></tr></table></figure>
+
+<p>序列化后的磁盘存储文件如下图所示：</p>
+<p><img src="java-io-15.14.png" alt="javaio-15-14"></p>
+<p>由于程序序列化机制使然：如果程序多次序列化同一个对象，只有第一次序列化会将对象转化为字节数组输出，后面再进行序列化，只是输出前面序列化的编号。</p>
+<blockquote>
+<p>使用Java序列化机制序列化可变对象需要注意，只有第一次调用<code> writeObject()</code>方法来输出对象才会将对象转换为字节序列，并写入到ObjectOutPutStream；在后面程序即使发生了改变，再次调用<code> writeObject()</code>方法输出该对象时，该对象依然不会改变。</p>
+</blockquote>
+<h4 id="4、Java9增加的过滤功能"><a href="#4、Java9增加的过滤功能" class="headerlink" title="4、Java9增加的过滤功能"></a>4、Java9增加的过滤功能</h4><p>Java9为<code> ObjectInputStream</code>增加了<code> setObjectInputFilter(ObjectInputFilter filter)</code>和<code> getObjectInputFilter()</code>两个方法，第一个方法为对象输入流设置过滤器，。当程序通过<code> ObjectInputStream</code>反序列化对象时，会自动触发用于检查序列化数据是否有效。</p>
+<p>使用<code> checkInfo()</code>方法检查序列化数据会有三种情况：</p>
+<ul>
+<li><code> Status.REJECTED</code>：拒绝恢复</li>
+<li><code> Status.ALLOWED</code>：允许恢复</li>
+<li><code> Status.UNDECIDED</code>：未决定状态，程序继续执行</li>
+</ul>
+<p><code> ObjectInputStream</code>根据<code> ObjectInputFilter</code>的状态来决定是否执行反序列化，下面上代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FilterTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException, ClassNotFoundException </span>&#123;</span><br><span class="line">        <span class="comment">//创建一个ObjectInputStream输入流</span></span><br><span class="line">        ObjectInputStream ois = <span class="keyword">new</span> ObjectInputStream(<span class="keyword">new</span> FileInputStream(<span class="string">&quot;object.txt&quot;</span>));</span><br><span class="line">        ois.setObjectInputFilter( (info) -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;===执行数据过滤===&quot;</span>);</span><br><span class="line">            ObjectInputFilter serialFilter = ObjectInputFilter.Config.getSerialFilter();</span><br><span class="line">            <span class="keyword">if</span> (serialFilter != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="comment">//首先使用ObjectInputFilter执行默认的检查</span></span><br><span class="line">                ObjectInputFilter.Status status = serialFilter.checkInput(info);</span><br><span class="line">                <span class="comment">//如果默认检查的结果不是UNDECIDED</span></span><br><span class="line">                <span class="keyword">if</span> (status != ObjectInputFilter.Status.UNDECIDED) &#123;</span><br><span class="line">                    <span class="comment">//返回检查的结果</span></span><br><span class="line">                    <span class="keyword">return</span> status;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//要恢复的对象不是1个</span></span><br><span class="line">            <span class="keyword">if</span> (info.references() != <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="comment">//不允许恢复对象</span></span><br><span class="line">                <span class="keyword">return</span> ObjectInputFilter.Status.REJECTED;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (info.serialClass() != <span class="keyword">null</span> &amp;&amp; info.serialClass() != Person.class) &#123;</span><br><span class="line">                <span class="comment">//如果恢复的对象不是Person类则拒绝恢复</span></span><br><span class="line">                <span class="keyword">return</span> ObjectInputFilter.Status.REJECTED;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> ObjectInputFilter.Status.UNDECIDED;</span><br><span class="line">        &#125; );</span><br><span class="line">        <span class="comment">//从输入流中读取一个Java对象，并将其强制转换为Person</span></span><br><span class="line">        Person p = (Person) ois.readObject();</span><br><span class="line">        System.out.println(p.getName()+ <span class="string">&quot; &quot;</span> +p.getAge());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上述程序设置了<code> ObjectINputFilter</code>过滤器（程序使用Lambda表达式创建过滤器），重写了<code> checkInfo()</code>方法。通过过滤器可以使程序更加安全、健壮。</p>
+<h4 id="5、自定义序列化"><a href="#5、自定义序列化" class="headerlink" title="5、自定义序列化"></a>5、自定义序列化</h4><h5 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h5><p>在一些场景下，我们不希望序列化实例变量的某些数据，或者某个实例变量的类型是不可序列化的，因此不希望进行递归序列化，以免引发<code> NotSerializableException</code>异常</p>
+<blockquote>
+<p>递归序列化：系统会把该对象的所有实例变量依次进行序列化，如果某个实例变量引用了另一个对象，则被引用的对象也会进行序列化；如果被引用的对象的实例变量又引用了其他对象，则此被引用的对象也会进行序列化（无限套娃）。</p>
+</blockquote>
+<p>在实例变量前面用<code> transient</code>修饰，就可以指定Java序列化时无需理会该变量。注意：<code> transient</code>只能修饰实例变量，不可修饰Java程序中其他成分！</p>
+<h5 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h5><p>使用<code> transient</code>虽然简单，但是他会将实例变量完全隔离在序列化机制之外，导致在反序列化恢复Java对象时无法取得该实例变量的值。于是咱们再来看看另外一种序列化机制，通过这种方式，我们程序员可以完全掌控序列化过程。在序列化和反序列化中需要特殊处理的类应当提供如下特殊签名的方法以实现自定义序列化：</p>
+<ul>
+<li><pre><code class="java">//写入特定类的实例状态
+private void writeObject(java.io.ObjectOutputStream out)
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- &#96;&#96;&#96;java</span><br><span class="line">  &#x2F;&#x2F;从流中读取并恢复对象的实例变量</span><br><span class="line">  private void readObject(java.io.ObjectInputStream in)</span><br></pre></td></tr></table></figure></code></pre>
+</li>
+<li><pre><code class="java">//当序列流不完整的时候，可以调用该方法来正确的初始化反序列的对象
+private void readObjectNoData()
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">下面的Person类提供了&#96; writeObject &#96;和&#96;  readObject&#96;方法，将name的字符序列反转后写入字节数组，恢复时再进行一次反转。看下面的代码（在Person类中加入以下代码）：</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;java</span><br><span class="line">private void writeObject(java.io.ObjectOutputStream out) throws IOException &#123;</span><br><span class="line">  &#x2F;&#x2F;将name实例变量值反转后写入二进制流</span><br><span class="line">  out.writeObject(new StringBuffer(name).reverse());</span><br><span class="line">  out.writeInt(age);</span><br><span class="line">&#125;</span><br><span class="line">private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException &#123;</span><br><span class="line">  &#x2F;&#x2F;将读取的字符串反转后赋给name实例变量</span><br><span class="line">  this.name &#x3D; ((StringBuffer) in.readObject()).reverse().toString();</span><br><span class="line">  this.age &#x3D; in.readInt();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+<blockquote>
+<p>注意：<code> writeObject()</code>存储实例变脸的顺序应当与<code> readObject()</code>顺序一致，否则将不能正确恢复该实例变量。</p>
+</blockquote>
+<h5 id="方法三"><a href="#方法三" class="headerlink" title="方法三"></a>方法三</h5><p>这种序列化方法更彻底，这种方法甚至可以替换掉序列化的对象。如需使用这种方法，则需提供和如下特殊方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> Object <span class="title">writeReplace</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+
+<p>依然以上面的Person为例，在类中加入以下方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> Object <span class="title">writeReplace</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  ArrayList&lt;Object&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">  list.add(name);</span><br><span class="line">  list.add(age);</span><br><span class="line">  <span class="keyword">return</span> list;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当反序列化该对象时，应当强转为<code> ArrayList</code>，实际上程序在序列化的并非<code> Person</code>对象，而是<code>ArrayList</code>对象。</p>
+<p>与<code> writeReplace()</code>方法相对的还有一个叫做<code> readResolve()</code>的方法，有兴趣的可以去了解。</p>
+<h4 id="6、另一种自定义序列化机制"><a href="#6、另一种自定义序列化机制" class="headerlink" title="6、另一种自定义序列化机制"></a>6、另一种自定义序列化机制</h4><p>即实现<code> Externalizable</code>接口。这里不行写了，孩子太累了。。。</p>
+<h4 id="7、版本"><a href="#7、版本" class="headerlink" title="7、版本"></a>7、版本</h4><p>根据前面的介绍可知，反序列化的Java对象时必须提供该对象的class文件，现在的问题是，随着项目的升级，class文件会随之升级，Java如何保证两个class文件的兼容性？</p>
+<p>Java的序列化机制允许为序列化类提供一个<code> private static final</code>的<code> serialVersionUID</code>值，该变量用于标识Java类的序列化版本，也就是说，当类升级以后，这个值不变，序列化机制会把他们当成同一个序列化版本。</p>
+<p>如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">512L</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样的话，即使在某个对象被序列化之后，他所对应的类被修改了，该对象也依然可以被正确的反序列化。</p>
+<h3 id="九、NIO"><a href="#九、NIO" class="headerlink" title="九、NIO"></a>九、NIO</h3><p>前面介绍的<code>BufferedReader</code>有一个特征：在读取输入流的数据时，如果没有读取到有效的数据，程序就会在此阻塞该线程的执行（使用<code> InputStream</code>的<code>read()</code>方法从流中读取数据，如果没有数据的话，也会造成阻塞）。说人话就是前面介绍的输入输出流都是阻塞式的输入输出。除此之外，传统的输入输出都是以字节为单位来处理的，效率不高。</p>
+<p>从JDK1.4开始，Java提供了一系列改进输入输出处理的新功能，这些功能统称为新IO（New IO，简称NIO）。</p>
+<h4 id="1、Java新IO概述"><a href="#1、Java新IO概述" class="headerlink" title="1、Java新IO概述"></a>1、Java新IO概述</h4><h4 id="2、使用Buffer"><a href="#2、使用Buffer" class="headerlink" title="2、使用Buffer"></a>2、使用Buffer</h4><h4 id="3、使用Channel"><a href="#3、使用Channel" class="headerlink" title="3、使用Channel"></a>3、使用Channel</h4><h4 id="4、字符集合Charset"><a href="#4、字符集合Charset" class="headerlink" title="4、字符集合Charset"></a>4、字符集合Charset</h4><h4 id="5、文件锁"><a href="#5、文件锁" class="headerlink" title="5、文件锁"></a>5、文件锁</h4><h3 id="十、NIO-2的功能和用法"><a href="#十、NIO-2的功能和用法" class="headerlink" title="十、NIO.2的功能和用法"></a>十、NIO.2的功能和用法</h3><h4 id="1、Path、Paths和Files核心API"><a href="#1、Path、Paths和Files核心API" class="headerlink" title="1、Path、Paths和Files核心API"></a>1、Path、Paths和Files核心API</h4><h4 id="2、使用FileVisitor遍历文件和目录"><a href="#2、使用FileVisitor遍历文件和目录" class="headerlink" title="2、使用FileVisitor遍历文件和目录"></a>2、使用FileVisitor遍历文件和目录</h4><h4 id="3、使用WatchService监控文件变化"><a href="#3、使用WatchService监控文件变化" class="headerlink" title="3、使用WatchService监控文件变化"></a>3、使用WatchService监控文件变化</h4><h4 id="4、访问文件属性"><a href="#4、访问文件属性" class="headerlink" title="4、访问文件属性"></a>4、访问文件属性</h4><h3 id="十一、本章小结"><a href="#十一、本章小结" class="headerlink" title="十一、本章小结"></a>十一、本章小结</h3>
       
     </div>
 
@@ -474,7 +979,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-13 10:21:14" itemprop="dateModified" datetime="2021-05-13T10:21:14+00:00">2021-05-13</time>
+                <time title="修改时间：2021-05-20 13:02:32" itemprop="dateModified" datetime="2021-05-20T13:02:32+00:00">2021-05-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -561,7 +1066,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-13 10:21:14" itemprop="dateModified" datetime="2021-05-13T10:21:14+00:00">2021-05-13</time>
+                <time title="修改时间：2021-05-20 13:02:32" itemprop="dateModified" datetime="2021-05-20T13:02:32+00:00">2021-05-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -666,7 +1171,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-13 10:21:14" itemprop="dateModified" datetime="2021-05-13T10:21:14+00:00">2021-05-13</time>
+                <time title="修改时间：2021-05-20 13:02:32" itemprop="dateModified" datetime="2021-05-20T13:02:32+00:00">2021-05-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -716,504 +1221,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/02/English/2021-05-02/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/02/English/2021-05-02/" class="post-title-link" itemprop="url">阅读笔记2021-05-02</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-05-02 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-02T00:00:00+00:00">2021-05-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-13 10:21:14" itemprop="dateModified" datetime="2021-05-13T10:21:14+00:00">2021-05-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/English/" itemprop="url" rel="index"><span itemprop="name">English</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="一、Vocabulary"><a href="#一、Vocabulary" class="headerlink" title="一、Vocabulary"></a>一、Vocabulary</h2><h3 id="1-teatotaler"><a href="#1-teatotaler" class="headerlink" title="1.teatotaler"></a>1.teatotaler</h3><p>n.绝对禁酒者</p>
-<h3 id="2-vegan"><a href="#2-vegan" class="headerlink" title="2.vegan"></a>2.vegan</h3><p>n.严格素食主义者</p>
-<h3 id="3-stigma"><a href="#3-stigma" class="headerlink" title="3.stigma"></a>3.stigma</h3><p>n.耻辱; (花的)柱头</p>
-<h3 id="4-commentator"><a href="#4-commentator" class="headerlink" title="4.commentator"></a>4.commentator</h3><p>n.(电视台、电台)评论员</p>
-<h3 id="5-sprite"><a href="#5-sprite" class="headerlink" title="5.sprite"></a>5.sprite</h3><p>n.(传说中的)小仙子; 雪碧</p>
-<h3 id="6-keyboard"><a href="#6-keyboard" class="headerlink" title="6.keyboard"></a>6.keyboard</h3><p>n.键盘</p>
-<h3 id="7-basement"><a href="#7-basement" class="headerlink" title="7.basement"></a>7.basement</h3><p>n.地下室</p>
-<h3 id="8-terrific"><a href="#8-terrific" class="headerlink" title="8.terrific"></a>8.terrific</h3><p>adj.了不起的</p>
-<h3 id="9-helicopter"><a href="#9-helicopter" class="headerlink" title="9.helicopter"></a>9.helicopter</h3><p>n.直升机</p>
-<h3 id="10-Texas"><a href="#10-Texas" class="headerlink" title="10.Texas"></a>10.Texas</h3><p>n.得克萨斯州</p>
-<h2 id="二、Phrase"><a href="#二、Phrase" class="headerlink" title="二、Phrase"></a>二、Phrase</h2><h3 id="1-out-of"><a href="#1-out-of" class="headerlink" title="1.out of"></a>1.out of</h3><p>从……里面; 离开</p>
-<h3 id="2-cast-aspersions-on"><a href="#2-cast-aspersions-on" class="headerlink" title="2.cast aspersions on"></a>2.cast aspersions on</h3><p>中伤; 诽谤</p>
-<h2 id="三、SpecificNoun"><a href="#三、SpecificNoun" class="headerlink" title="三、SpecificNoun"></a>三、SpecificNoun</h2><h3 id="1-pick-up"><a href="#1-pick-up" class="headerlink" title="1.pick up"></a>1.pick up</h3><p>捡起；收集；继续；得到</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/27/English/2021-04-27/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/27/English/2021-04-27/" class="post-title-link" itemprop="url">阅读笔记2021-04-27</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-04-27 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-27T00:00:00+00:00">2021-04-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-13 10:21:14" itemprop="dateModified" datetime="2021-05-13T10:21:14+00:00">2021-05-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/English/" itemprop="url" rel="index"><span itemprop="name">English</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="一、Vocabulary"><a href="#一、Vocabulary" class="headerlink" title="一、Vocabulary"></a>一、Vocabulary</h2><h3 id="1-infringement"><a href="#1-infringement" class="headerlink" title="1.infringement"></a>1.infringement</h3><p>n.侵权,侵犯,违反</p>
-<h3 id="2-gorgeous"><a href="#2-gorgeous" class="headerlink" title="2.gorgeous"></a>2.gorgeous</h3><p>adj.华丽的,灿烂的</p>
-<h3 id="3-hashtag"><a href="#3-hashtag" class="headerlink" title="3.hashtag"></a>3.hashtag</h3><p>n.话题标签</p>
-<h3 id="4-costume"><a href="#4-costume" class="headerlink" title="4.costume"></a>4.costume</h3><p>n.服装;  v.给…提供服装</p>
-<h3 id="5-anonymity"><a href="#5-anonymity" class="headerlink" title="5.anonymity"></a>5.anonymity</h3><p>n.匿名,不知姓名</p>
-<h3 id="6-exquisite-someone-or-something-that-is-beautiful-delicate-or-of-the-highest-quality"><a href="#6-exquisite-someone-or-something-that-is-beautiful-delicate-or-of-the-highest-quality" class="headerlink" title="6.exquisite ( someone or something that is beautiful,delicate or of the highest quality)"></a>6.exquisite (<code> someone or something that is beautiful,delicate or of the highest quality</code>)</h3><p>adj.优美的,精致的,赏心悦目的;  n.过分讲究穿戴的人</p>
-<h2 id="二、Phrase"><a href="#二、Phrase" class="headerlink" title="二、Phrase"></a>二、Phrase</h2><h3 id="1-take-over"><a href="#1-take-over" class="headerlink" title="1.take over"></a>1.take over</h3><p>接收,接管; 把…从某地带到另一地; 采用,承袭</p>
-<h3 id="2-make-waves"><a href="#2-make-waves" class="headerlink" title="2.make waves"></a>2.make waves</h3><p>兴风作浪,引起混乱</p>
-<h2 id="三、SpecificNoun"><a href="#三、SpecificNoun" class="headerlink" title="三、SpecificNoun"></a>三、SpecificNoun</h2><h3 id="1-hip-hop-outfit"><a href="#1-hip-hop-outfit" class="headerlink" title="1.hip-hop outfit"></a>1.hip-hop outfit</h3><p>嘻哈套装</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/23/IDEA/IDEA%E5%BF%AB%E6%8D%B7%E9%94%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/23/IDEA/IDEA%E5%BF%AB%E6%8D%B7%E9%94%AE/" class="post-title-link" itemprop="url">Intellij IDEA 快捷键</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-04-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-23T00:00:00+00:00">2021-04-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-13 10:21:14" itemprop="dateModified" datetime="2021-05-13T10:21:14+00:00">2021-05-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IDEA/" itemprop="url" rel="index"><span itemprop="name">IDEA</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>IDEA一些简单的快捷键与简写，mac与Windows不一样</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>Ctrl + F</th>
-<th>在当前文件进行文本查找</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>按住 Ctrl 键</td>
-<td>在打开的文件标题上，弹出该文件路径</td>
-</tr>
-<tr>
-<td>Ctrl + P</td>
-<td>方法参数提示显示</td>
-</tr>
-<tr>
-<td>ALT + 左右</td>
-<td>换小窗口</td>
-</tr>
-<tr>
-<td>Alt + Enter</td>
-<td>修复错误</td>
-</tr>
-<tr>
-<td>Shift + F10</td>
-<td>快速运行项目</td>
-</tr>
-<tr>
-<td>Ctrl + Alt + V</td>
-<td>快速引进变量</td>
-</tr>
-<tr>
-<td>Ctrl + /</td>
-<td>注释光标所在行代码</td>
-</tr>
-<tr>
-<td>/**</td>
-<td>注释</td>
-</tr>
-<tr>
-<td>sout</td>
-<td></td>
-</tr>
-<tr>
-<td>psvm</td>
-<td></td>
-</tr>
-</tbody></table>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/23/deep-learning/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/23/deep-learning/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" class="post-title-link" itemprop="url">线性代数</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-04-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-23T00:00:00+00:00">2021-04-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-13 10:21:14" itemprop="dateModified" datetime="2021-05-13T10:21:14+00:00">2021-05-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>机器学习、深度学习的基础除了编程语言之外, 还有一个就是应用数学。一般包括<code>线性代数</code>、<code>概率论与信息论</code>、<code>概率图</code>、<code>数值计算与最优化</code>等。</p>
-<h2 id="一、标量、向量、矩阵和张量"><a href="#一、标量、向量、矩阵和张量" class="headerlink" title="一、标量、向量、矩阵和张量"></a>一、标量、向量、矩阵和张量</h2><h3 id="1、标量-scalar"><a href="#1、标量-scalar" class="headerlink" title="1、标量(scalar)"></a>1、标量(scalar)</h3><p>一个标量是一个单独的数, 一般用小写的变量名称表示, 如a、z等</p>
-<h3 id="2、向量-vector"><a href="#2、向量-vector" class="headerlink" title="2、向量(vector)"></a>2、向量(vector)</h3><p>向量就是一列数或者一个一维数组, 我们可以把向量看作空间里的点, 如下: a可以看作一个一维数组</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">a = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">8</span>])</span><br><span class="line">print(a.size)</span><br><span class="line">print(a[<span class="number">0</span>], a[<span class="number">-1</span>])</span><br></pre></td></tr></table></figure>
-
-<h3 id="3、矩阵-matrix"><a href="#3、矩阵-matrix" class="headerlink" title="3、矩阵(matrix)"></a>3、矩阵(matrix)</h3><p>就是一个二维数组, 具体操作见上一篇笔记</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">A = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</span><br><span class="line">print(A)</span><br><span class="line">print(A.size)       <span class="comment"># 显示矩阵元素总个数</span></span><br><span class="line">print(A.shape)      <span class="comment"># 显示矩阵的行数和列数</span></span><br><span class="line">print(A[<span class="number">0</span>, <span class="number">0</span>], A[<span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line">print(A[<span class="number">1</span>, :])      <span class="comment"># 打印矩阵第二行</span></span><br></pre></td></tr></table></figure>
-
-<p>矩阵还可以用嵌套向量生成, 和向量一样。</p>
-<h3 id="4、张量-tensor"><a href="#4、张量-tensor" class="headerlink" title="4、张量(tensor)"></a>4、张量(tensor)</h3><p>张量是向量和矩阵的推广, 标量–&gt;零阶张量, 矩阵–&gt;二阶张量, 以此类推。如一张图片就是一个三阶张量, 三个维度分别代表图片的高度、宽度和色彩数据。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># np.arange(num)---生成一个从0到num-1步数为1的一维数组</span></span><br><span class="line"><span class="comment"># ndarray.reshape((N,M,...))---将ndarray转化为N*M*...的多维数组</span></span><br><span class="line">B = np.arange(<span class="number">16</span>).reshape((<span class="number">2</span>, <span class="number">2</span>, <span class="number">4</span>))    <span class="comment"># 生成一个2*2*4的三阶矩阵</span></span><br><span class="line">print(B)</span><br><span class="line">print(B.size)       <span class="comment"># 显示B的元素总数</span></span><br><span class="line">print(B.shape)      <span class="comment"># 显示B的维度</span></span><br><span class="line">print(B[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>])</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-转置-transpose"><a href="#5-转置-transpose" class="headerlink" title="5.转置(transpose)"></a>5.转置(transpose)</h3><p>转置就是以主对角线(左上到右下)为轴进行镜像操作, 通俗来说就是行列互换, 如下所示:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">C = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</span><br><span class="line">CT = C.T</span><br><span class="line">print(C)</span><br><span class="line">print(CT)</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="二、矩阵和向量运算"><a href="#二、矩阵和向量运算" class="headerlink" title="二、矩阵和向量运算"></a>二、矩阵和向量运算</h2><h2 id="三、特殊矩阵与向量"><a href="#三、特殊矩阵与向量" class="headerlink" title="三、特殊矩阵与向量"></a>三、特殊矩阵与向量</h2><h3 id="1、可逆矩阵"><a href="#1、可逆矩阵" class="headerlink" title="1、可逆矩阵"></a>1、可逆矩阵</h3><p>𝐴⁻¹𝐴=𝐼𝘯 (其中𝐼𝘯为单位矩阵)</p>
-<h3 id="2、对角矩阵"><a href="#2、对角矩阵" class="headerlink" title="2、对角矩阵"></a>2、对角矩阵</h3><p>只有对角线上的元素为非零元素, 其余全为零</p>
-<h3 id="3、对称矩阵"><a href="#3、对称矩阵" class="headerlink" title="3、对称矩阵"></a>3、对称矩阵</h3><p>𝐴=𝐴ᵀ</p>
-<h3 id="4、单位向量"><a href="#4、单位向量" class="headerlink" title="4、单位向量"></a>4、单位向量</h3><p>任意给定的向量𝘷, 若其𝙇²范数为, 即<code>||𝘷||₂=1</code>, 则𝘷为单位向量</p>
-<h3 id="5、正交向量"><a href="#5、正交向量" class="headerlink" title="5、正交向量"></a>5、正交向量</h3><p>𝐴𝐴ᵀ=𝐴ᵀ𝐴=𝐼 (单位向量)</p>
-<h2 id="四、线性相关性及向量空间"><a href="#四、线性相关性及向量空间" class="headerlink" title="四、线性相关性及向量空间"></a>四、线性相关性及向量空间</h2><p>由多个同维度的的列向量构成的集合称为向量组</p>
-<h3 id="1、线性组合"><a href="#1、线性组合" class="headerlink" title="1、线性组合"></a>1、线性组合</h3><h3 id="2、线性相关"><a href="#2、线性相关" class="headerlink" title="2、线性相关"></a>2、线性相关</h3><h3 id="3、向量组的秩"><a href="#3、向量组的秩" class="headerlink" title="3、向量组的秩"></a>3、向量组的秩</h3><h2 id="五、范数"><a href="#五、范数" class="headerlink" title="五、范数"></a>五、范数</h2><p>我们通过范数(Norm)来衡量向量的大小, 定义如下:</p>
-<p>![截屏2021-05-03 上午12.00.50](Untitled.assets/截屏2021-05-03 上午12.01.34.png)</p>
-<p>如何使用上代码:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> numpy.linalg <span class="keyword">as</span> LA   <span class="comment"># 导入Numpy的线性代数库</span></span><br><span class="line"></span><br><span class="line">x = np.arange(<span class="number">0</span>, <span class="number">1</span>, <span class="number">0.1</span>)    <span class="comment"># 生成步长为0.1的十个数</span></span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line">x1 = LA.norm(x, <span class="number">1</span>)          <span class="comment"># 计算1的范式</span></span><br><span class="line">x2 = LA.norm(x, <span class="number">2</span>)          <span class="comment"># 计算2的范式</span></span><br><span class="line">xa = LA.norm(x, np.inf)     <span class="comment"># 计算无穷范式</span></span><br><span class="line"></span><br><span class="line">print(x1)</span><br><span class="line">print(x2)</span><br><span class="line">print(xa)</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="六、特征值分解"><a href="#六、特征值分解" class="headerlink" title="六、特征值分解"></a>六、特征值分解</h2><p>特征分解是使用最广的矩阵分解之一，将矩阵分解为一组特征向量和特征值。下面来看看他们的概念，设A是一个n阶方阵，如果存在实数$\lambda$和n维的非零向量x，满足：</p>
-<p>$Ax=\lambda x$</p>
-<p>那么$\lambda$称为方阵A的特征值，向量x为矩阵A对应特征值$\lambda$的特征向量</p>
-<p>假设矩阵A有n个线性无关的特征向量{v¹, v², v³, ···, vⁿ}，他们对应的特征值为{$\lambda$₁, $\lambda$₂, $\lambda$₃, ···, $\lambda$𝓃}，把这n个线性无关的特征向量构成一个新方阵，每一列就是一个特征向量</p>
-<p>$V=[v¹, v², v³, ···, vⁿ]$</p>
-<p>用特征值构成一个n阶对角矩阵，对角线的元素都是特征值</p>
-<p>$diag(\lambda)=[v¹, v², v³, ···, vⁿ]ᵀ$</p>
-<p>那么，A的特征分解可表示为：</p>
-<p>$A=Vdiag(\lambda)V⁻¹$</p>
-<p>注意：并非所有的方阵都能进行特征值分解，一个方阵能进行特征值分解的充要条件是它含有n个线性无关的特征向量</p>
-<p>下面我们来展示下求方阵的特征向量与特征值：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># np.linalg.eigvals(a)---计算矩阵的特征值</span></span><br><span class="line"><span class="comment"># np.linalg.eig(a)---返回包含特征值和对应特征向量的元组</span></span><br><span class="line">a = np.array([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]])  <span class="comment"># 示例矩阵</span></span><br><span class="line">A1 = np.linalg.eigvals(a)       <span class="comment"># 得到特征值</span></span><br><span class="line">A2, V1 = np.linalg.eig(a)       <span class="comment"># 其中A2也是特征值，B为特征向量</span></span><br><span class="line">print(A1)</span><br><span class="line">print(A2)</span><br><span class="line">print(V1)</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="七、奇异值分解"><a href="#七、奇异值分解" class="headerlink" title="七、奇异值分解"></a>七、奇异值分解</h2><h2 id="八、迹运算"><a href="#八、迹运算" class="headerlink" title="八、迹运算"></a>八、迹运算</h2><p>迹运算返回的是矩阵对角元素的的和：</p>
-<p>$Tr(A)=\sum_{i}A_{i,i}$</p>
-<p>迹运算在某些场合非常有用，若不使用求和符号，某些矩阵运算很难描述。例如，迹运算提供了一种描述矩阵Frobenius范数的方式：</p>
-<p>$||A||_{F}=\sqrt{Tr(AAᵀ)}$</p>
-<p>利用NumPy对矩阵求迹同样方便，上代码</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">C = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]])</span><br><span class="line">TrC = np.trace(C)</span><br><span class="line"></span><br><span class="line">D = C - <span class="number">2</span></span><br><span class="line">TrCT = np.trace(C.T)</span><br><span class="line">TrCD = np.trace(np.dot(C, D))</span><br><span class="line">TrDC = np.trace(np.dot(D, C))</span><br><span class="line"></span><br><span class="line">print(TrC)</span><br><span class="line">print(TrCT)</span><br><span class="line">print(TrCD)</span><br><span class="line">print(TrDC)</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="九、用Python实现主成分分析"><a href="#九、用Python实现主成分分析" class="headerlink" title="九、用Python实现主成分分析"></a>九、用Python实现主成分分析</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/19/English/2021-04-19/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/19/English/2021-04-19/" class="post-title-link" itemprop="url">阅读笔记2021-04-19</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-04-19 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-19T00:00:00+00:00">2021-04-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-13 10:21:14" itemprop="dateModified" datetime="2021-05-13T10:21:14+00:00">2021-05-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/English/" itemprop="url" rel="index"><span itemprop="name">English</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="一、Vocabulary"><a href="#一、Vocabulary" class="headerlink" title="一、Vocabulary"></a>一、Vocabulary</h2><h3 id="1-sedentary"><a href="#1-sedentary" class="headerlink" title="1. sedentary"></a>1. sedentary</h3><p>adj.需要久坐的;长期伏案的</p>
-<h3 id="2-majority"><a href="#2-majority" class="headerlink" title="2.majority"></a>2.majority</h3><p>n.大多数;   adj.多数人支持的</p>
-<h2 id="二、Phrase"><a href="#二、Phrase" class="headerlink" title="二、Phrase"></a>二、Phrase</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1281,19 +1292,19 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

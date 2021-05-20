@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/3.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/3.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="一、线程概述1、线程和进程2、多线程的优势二、线程的创建和启动1、继承Thread类创建线程类2、实现Runnable接口创建线程类3、使用Callable和Future创建线程4、创建线程的三种方式对比三、线程的生命周期1、新建和就绪状态2、运行和阻塞状态3、线程死亡四、控制线程1、join线程2、后台线程3、线程睡眠：sleep4、改变线程优先级五、线程同步1、线程安全问题2、同步代码块3、同">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java多线程编程">
+<meta property="og:url" content="http://example.com/2021/05/20/Java/Java_%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Hello Programmer">
+<meta property="og:description" content="一、线程概述1、线程和进程2、多线程的优势二、线程的创建和启动1、继承Thread类创建线程类2、实现Runnable接口创建线程类3、使用Callable和Future创建线程4、创建线程的三种方式对比三、线程的生命周期1、新建和就绪状态2、运行和阻塞状态3、线程死亡四、控制线程1、join线程2、后台线程3、线程睡眠：sleep4、改变线程优先级五、线程同步1、线程安全问题2、同步代码块3、同">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-20T00:00:00.000Z">
+<meta property="article:modified_time" content="2021-05-20T13:02:32.010Z">
+<meta property="article:author" content="xty">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2021/05/20/Java/Java_%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Java多线程编程 | Hello Programmer</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hello Programmer</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/20/Java/Java_%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java多线程编程
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-05-20 00:00:00 / 修改时间：13:02:32" itemprop="dateCreated datePublished" datetime="2021-05-20T00:00:00+00:00">2021-05-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="一、线程概述"><a href="#一、线程概述" class="headerlink" title="一、线程概述"></a>一、线程概述</h3><h4 id="1、线程和进程"><a href="#1、线程和进程" class="headerlink" title="1、线程和进程"></a>1、线程和进程</h4><h4 id="2、多线程的优势"><a href="#2、多线程的优势" class="headerlink" title="2、多线程的优势"></a>2、多线程的优势</h4><h3 id="二、线程的创建和启动"><a href="#二、线程的创建和启动" class="headerlink" title="二、线程的创建和启动"></a>二、线程的创建和启动</h3><h4 id="1、继承Thread类创建线程类"><a href="#1、继承Thread类创建线程类" class="headerlink" title="1、继承Thread类创建线程类"></a>1、继承Thread类创建线程类</h4><h4 id="2、实现Runnable接口创建线程类"><a href="#2、实现Runnable接口创建线程类" class="headerlink" title="2、实现Runnable接口创建线程类"></a>2、实现Runnable接口创建线程类</h4><h4 id="3、使用Callable和Future创建线程"><a href="#3、使用Callable和Future创建线程" class="headerlink" title="3、使用Callable和Future创建线程"></a>3、使用Callable和Future创建线程</h4><h4 id="4、创建线程的三种方式对比"><a href="#4、创建线程的三种方式对比" class="headerlink" title="4、创建线程的三种方式对比"></a>4、创建线程的三种方式对比</h4><h3 id="三、线程的生命周期"><a href="#三、线程的生命周期" class="headerlink" title="三、线程的生命周期"></a>三、线程的生命周期</h3><h4 id="1、新建和就绪状态"><a href="#1、新建和就绪状态" class="headerlink" title="1、新建和就绪状态"></a>1、新建和就绪状态</h4><h4 id="2、运行和阻塞状态"><a href="#2、运行和阻塞状态" class="headerlink" title="2、运行和阻塞状态"></a>2、运行和阻塞状态</h4><h4 id="3、线程死亡"><a href="#3、线程死亡" class="headerlink" title="3、线程死亡"></a>3、线程死亡</h4><h3 id="四、控制线程"><a href="#四、控制线程" class="headerlink" title="四、控制线程"></a>四、控制线程</h3><h4 id="1、join线程"><a href="#1、join线程" class="headerlink" title="1、join线程"></a>1、join线程</h4><h4 id="2、后台线程"><a href="#2、后台线程" class="headerlink" title="2、后台线程"></a>2、后台线程</h4><h4 id="3、线程睡眠：sleep"><a href="#3、线程睡眠：sleep" class="headerlink" title="3、线程睡眠：sleep"></a>3、线程睡眠：sleep</h4><h4 id="4、改变线程优先级"><a href="#4、改变线程优先级" class="headerlink" title="4、改变线程优先级"></a>4、改变线程优先级</h4><h3 id="五、线程同步"><a href="#五、线程同步" class="headerlink" title="五、线程同步"></a>五、线程同步</h3><h4 id="1、线程安全问题"><a href="#1、线程安全问题" class="headerlink" title="1、线程安全问题"></a>1、线程安全问题</h4><h4 id="2、同步代码块"><a href="#2、同步代码块" class="headerlink" title="2、同步代码块"></a>2、同步代码块</h4><h4 id="3、同步方法"><a href="#3、同步方法" class="headerlink" title="3、同步方法"></a>3、同步方法</h4><h4 id="4、释放同步监视器的锁定"><a href="#4、释放同步监视器的锁定" class="headerlink" title="4、释放同步监视器的锁定"></a>4、释放同步监视器的锁定</h4><h4 id="5、同步锁（lock）"><a href="#5、同步锁（lock）" class="headerlink" title="5、同步锁（lock）"></a>5、同步锁（lock）</h4><h4 id="6、死锁及常用处理策略"><a href="#6、死锁及常用处理策略" class="headerlink" title="6、死锁及常用处理策略"></a>6、死锁及常用处理策略</h4><h3 id="六、线程通信"><a href="#六、线程通信" class="headerlink" title="六、线程通信"></a>六、线程通信</h3><h4 id="1、传统的线程通信"><a href="#1、传统的线程通信" class="headerlink" title="1、传统的线程通信"></a>1、传统的线程通信</h4><h4 id="2、使用Condition控制线程通信"><a href="#2、使用Condition控制线程通信" class="headerlink" title="2、使用Condition控制线程通信"></a>2、使用Condition控制线程通信</h4><h4 id="3、使用阻塞队列（Blocking-Queue）控制线程通信"><a href="#3、使用阻塞队列（Blocking-Queue）控制线程通信" class="headerlink" title="3、使用阻塞队列（Blocking Queue）控制线程通信"></a>3、使用阻塞队列（Blocking Queue）控制线程通信</h4><h3 id="七、线程组和未处理的异常"><a href="#七、线程组和未处理的异常" class="headerlink" title="七、线程组和未处理的异常"></a>七、线程组和未处理的异常</h3><h3 id="八、线程池"><a href="#八、线程池" class="headerlink" title="八、线程池"></a>八、线程池</h3><h4 id="1、使用线程池管理线程"><a href="#1、使用线程池管理线程" class="headerlink" title="1、使用线程池管理线程"></a>1、使用线程池管理线程</h4><h4 id="2、使用ForkJoinPool利用多CPU"><a href="#2、使用ForkJoinPool利用多CPU" class="headerlink" title="2、使用ForkJoinPool利用多CPU"></a>2、使用ForkJoinPool利用多CPU</h4><h3 id="九、线程相关类"><a href="#九、线程相关类" class="headerlink" title="九、线程相关类"></a>九、线程相关类</h3><h4 id="1、ThreadLocal类"><a href="#1、ThreadLocal类" class="headerlink" title="1、ThreadLocal类"></a>1、ThreadLocal类</h4><h4 id="2、包装线程不安全的集合"><a href="#2、包装线程不安全的集合" class="headerlink" title="2、包装线程不安全的集合"></a>2、包装线程不安全的集合</h4><h4 id="3、线程安全的集合类"><a href="#3、线程安全的集合类" class="headerlink" title="3、线程安全的集合类"></a>3、线程安全的集合类</h4><h4 id="4、Java9新增的发布-订阅框架"><a href="#4、Java9新增的发布-订阅框架" class="headerlink" title="4、Java9新增的发布-订阅框架"></a>4、Java9新增的发布-订阅框架</h4><h3 id="十、本章小结"><a href="#十、本章小结" class="headerlink" title="十、本章小结"></a>十、本章小结</h3>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/05/15/create-vue-pro/" rel="prev" title="创建vue项目">
+      <i class="fa fa-chevron-left"></i> 创建vue项目
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/05/20/Java/Java_%E9%9B%86%E5%90%88/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%BA%BF%E7%A8%8B%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">一、线程概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E7%BA%BF%E7%A8%8B%E5%92%8C%E8%BF%9B%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">1、线程和进程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="nav-number">1.2.</span> <span class="nav-text">2、多线程的优势</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E5%90%AF%E5%8A%A8"><span class="nav-number">2.</span> <span class="nav-text">二、线程的创建和启动</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E7%BB%A7%E6%89%BFThread%E7%B1%BB%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%B1%BB"><span class="nav-number">2.1.</span> <span class="nav-text">1、继承Thread类创建线程类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E5%AE%9E%E7%8E%B0Runnable%E6%8E%A5%E5%8F%A3%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%B1%BB"><span class="nav-number">2.2.</span> <span class="nav-text">2、实现Runnable接口创建线程类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E4%BD%BF%E7%94%A8Callable%E5%92%8CFuture%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B"><span class="nav-number">2.3.</span> <span class="nav-text">3、使用Callable和Future创建线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%E3%80%81%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%AF%B9%E6%AF%94"><span class="nav-number">2.4.</span> <span class="nav-text">4、创建线程的三种方式对比</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="nav-number">3.</span> <span class="nav-text">三、线程的生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E6%96%B0%E5%BB%BA%E5%92%8C%E5%B0%B1%E7%BB%AA%E7%8A%B6%E6%80%81"><span class="nav-number">3.1.</span> <span class="nav-text">1、新建和就绪状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E8%BF%90%E8%A1%8C%E5%92%8C%E9%98%BB%E5%A1%9E%E7%8A%B6%E6%80%81"><span class="nav-number">3.2.</span> <span class="nav-text">2、运行和阻塞状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E7%BA%BF%E7%A8%8B%E6%AD%BB%E4%BA%A1"><span class="nav-number">3.3.</span> <span class="nav-text">3、线程死亡</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%8E%A7%E5%88%B6%E7%BA%BF%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">四、控制线程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81join%E7%BA%BF%E7%A8%8B"><span class="nav-number">4.1.</span> <span class="nav-text">1、join线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E5%90%8E%E5%8F%B0%E7%BA%BF%E7%A8%8B"><span class="nav-number">4.2.</span> <span class="nav-text">2、后台线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E7%BA%BF%E7%A8%8B%E7%9D%A1%E7%9C%A0%EF%BC%9Asleep"><span class="nav-number">4.3.</span> <span class="nav-text">3、线程睡眠：sleep</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%E3%80%81%E6%94%B9%E5%8F%98%E7%BA%BF%E7%A8%8B%E4%BC%98%E5%85%88%E7%BA%A7"><span class="nav-number">4.4.</span> <span class="nav-text">4、改变线程优先级</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="nav-number">5.</span> <span class="nav-text">五、线程同步</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98"><span class="nav-number">5.1.</span> <span class="nav-text">1、线程安全问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E5%90%8C%E6%AD%A5%E4%BB%A3%E7%A0%81%E5%9D%97"><span class="nav-number">5.2.</span> <span class="nav-text">2、同步代码块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E5%90%8C%E6%AD%A5%E6%96%B9%E6%B3%95"><span class="nav-number">5.3.</span> <span class="nav-text">3、同步方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%E3%80%81%E9%87%8A%E6%94%BE%E5%90%8C%E6%AD%A5%E7%9B%91%E8%A7%86%E5%99%A8%E7%9A%84%E9%94%81%E5%AE%9A"><span class="nav-number">5.4.</span> <span class="nav-text">4、释放同步监视器的锁定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5%E3%80%81%E5%90%8C%E6%AD%A5%E9%94%81%EF%BC%88lock%EF%BC%89"><span class="nav-number">5.5.</span> <span class="nav-text">5、同步锁（lock）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6%E3%80%81%E6%AD%BB%E9%94%81%E5%8F%8A%E5%B8%B8%E7%94%A8%E5%A4%84%E7%90%86%E7%AD%96%E7%95%A5"><span class="nav-number">5.6.</span> <span class="nav-text">6、死锁及常用处理策略</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1"><span class="nav-number">6.</span> <span class="nav-text">六、线程通信</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E4%BC%A0%E7%BB%9F%E7%9A%84%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1"><span class="nav-number">6.1.</span> <span class="nav-text">1、传统的线程通信</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E4%BD%BF%E7%94%A8Condition%E6%8E%A7%E5%88%B6%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1"><span class="nav-number">6.2.</span> <span class="nav-text">2、使用Condition控制线程通信</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E4%BD%BF%E7%94%A8%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97%EF%BC%88Blocking-Queue%EF%BC%89%E6%8E%A7%E5%88%B6%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1"><span class="nav-number">6.3.</span> <span class="nav-text">3、使用阻塞队列（Blocking Queue）控制线程通信</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E7%BA%BF%E7%A8%8B%E7%BB%84%E5%92%8C%E6%9C%AA%E5%A4%84%E7%90%86%E7%9A%84%E5%BC%82%E5%B8%B8"><span class="nav-number">7.</span> <span class="nav-text">七、线程组和未处理的异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="nav-number">8.</span> <span class="nav-text">八、线程池</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E4%BD%BF%E7%94%A8%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%AE%A1%E7%90%86%E7%BA%BF%E7%A8%8B"><span class="nav-number">8.1.</span> <span class="nav-text">1、使用线程池管理线程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E4%BD%BF%E7%94%A8ForkJoinPool%E5%88%A9%E7%94%A8%E5%A4%9ACPU"><span class="nav-number">8.2.</span> <span class="nav-text">2、使用ForkJoinPool利用多CPU</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E7%BA%BF%E7%A8%8B%E7%9B%B8%E5%85%B3%E7%B1%BB"><span class="nav-number">9.</span> <span class="nav-text">九、线程相关类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81ThreadLocal%E7%B1%BB"><span class="nav-number">9.1.</span> <span class="nav-text">1、ThreadLocal类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E5%8C%85%E8%A3%85%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8%E7%9A%84%E9%9B%86%E5%90%88"><span class="nav-number">9.2.</span> <span class="nav-text">2、包装线程不安全的集合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E9%9B%86%E5%90%88%E7%B1%BB"><span class="nav-number">9.3.</span> <span class="nav-text">3、线程安全的集合类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%E3%80%81Java9%E6%96%B0%E5%A2%9E%E7%9A%84%E5%8F%91%E5%B8%83-%E8%AE%A2%E9%98%85%E6%A1%86%E6%9E%B6"><span class="nav-number">9.4.</span> <span class="nav-text">4、Java9新增的发布-订阅框架</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E6%9C%AC%E7%AB%A0%E5%B0%8F%E7%BB%93"><span class="nav-number">10.</span> <span class="nav-text">十、本章小结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="xty"
+      src="/images/4.png">
+  <p class="site-author-name" itemprop="name">xty</p>
+  <div class="site-description" itemprop="description">This is xty Blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/woshixty" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;woshixty" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xty</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script data-pjax>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+    </div>
+</body>
+</html>
