@@ -1,5 +1,8 @@
 ---
-
+title: Java集合
+date: 2021-05-25
+tags: [java]
+categories: Java
 ---
 
 ### 一、Java集合概述
