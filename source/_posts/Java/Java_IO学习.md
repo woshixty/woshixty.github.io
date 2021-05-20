@@ -612,3 +612,281 @@ public class ReadObject {
 
 #### 3、对象引用的序列化
 
+前面介绍的` Person`类的两个成员分别是String和int类型，如果一个类的成员变量类型不是基本类型或者String类型，而是另一个引用类型，那么这个引用类必须是可序列化的，否则拥有该类型成员变量的类也是不可序列化的。
+
+```java
+@Data
+public class Teacher implements Serializable {
+  private String name;
+  private Person person;
+  public Teacher(String name, Person person) {
+    this.name = name;
+    this.person = person;
+  }
+}
+```
+
+> 当程序序列化一个Teacher对象时，如果Teacher对象持有一个Person对象的引用，为了在反序列化时可以正常恢复Teacher对象，程序会将该Person对象也进行序列化。
+
+现在假设有下面的一种特殊情况：程序中有两个Teacher对象，他们的student实例变量引用到同一个Person对象，该Person对象还有一个引用变量引用它，代码如下：
+
+```java
+Person per = new Person("孙悟空", 500);
+Teacher t1 = new Teacher("唐僧", per);
+Teacher t2 = new Teacher("菩提祖师", per);
+```
+
+上面三个对象在内存的情况如下：
+
+![java-io-15-13](java-io-15.13.png)
+
+这里产生了一个问题：
+
+> 如果先序列化t1对象，则系统将该t1对象所引用的Person对象一起序列化；如果系统再序列化t2对象，系统将一样会再序列化该t2对象，并且将再次序列化该t2对象所引用的Person对象；如果程序再显式序列化per对象，系统会再次序列化Person对象。这个过程似乎会向输出流输出三个Person对象。
+
+如果系统向输出流输出了三个Person对象，那么后果就是当程序从输出流中反序列化这些对象时，将会得到三个Person对象，从而引起t1和t2引用的Person对象不是同一个---这也就违背了Java序列化机制的初衷。
+
+所以，Java序列化机制采用了一种特殊的序列化算法：
+
+- 所有保存到磁盘的对象都有一个序列化编号
+- 当程序试图序列化一个对象时，先检查其是否已被序列化过，只有未被序列化才会被序列化
+- 如果程序已被序列化过，程序会直接输出一个序列化编号
+
+因此根据上面的算法：当第二次第三次序列化Persin对象时，程序不会再将对象转化成为字节数组，而是仅仅输出一个序列化编号，假设有如下序列化代码：
+
+```java
+//创建一个ObjectOutputStream输出流
+ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("object.txt"));
+//将一个Person对象输出到输出流中
+Person per = new Person("xty", 18);
+//转化成字节数组
+oos.writeObject(t1);
+oos.writeObject(t2);
+oos.writeObject(per);
+```
+
+序列化后的磁盘存储文件如下图所示：
+
+![javaio-15-14](java-io-15.14.png)
+
+由于程序序列化机制使然：如果程序多次序列化同一个对象，只有第一次序列化会将对象转化为字节数组输出，后面再进行序列化，只是输出前面序列化的编号。
+
+> 使用Java序列化机制序列化可变对象需要注意，只有第一次调用` writeObject()`方法来输出对象才会将对象转换为字节序列，并写入到ObjectOutPutStream；在后面程序即使发生了改变，再次调用` writeObject()`方法输出该对象时，该对象依然不会改变。
+
+#### 4、Java9增加的过滤功能
+
+Java9为` ObjectInputStream`增加了` setObjectInputFilter(ObjectInputFilter filter)`和` getObjectInputFilter()`两个方法，第一个方法为对象输入流设置过滤器，。当程序通过` ObjectInputStream`反序列化对象时，会自动触发用于检查序列化数据是否有效。
+
+使用` checkInfo()`方法检查序列化数据会有三种情况：
+
+- ` Status.REJECTED`：拒绝恢复
+- ` Status.ALLOWED`：允许恢复
+- ` Status.UNDECIDED`：未决定状态，程序继续执行
+
+` ObjectInputStream`根据` ObjectInputFilter`的状态来决定是否执行反序列化，下面上代码：
+
+```java
+public class FilterTest {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        //创建一个ObjectInputStream输入流
+        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("object.txt"));
+        ois.setObjectInputFilter( (info) -> {
+            System.out.println("===执行数据过滤===");
+            ObjectInputFilter serialFilter = ObjectInputFilter.Config.getSerialFilter();
+            if (serialFilter != null) {
+                //首先使用ObjectInputFilter执行默认的检查
+                ObjectInputFilter.Status status = serialFilter.checkInput(info);
+                //如果默认检查的结果不是UNDECIDED
+                if (status != ObjectInputFilter.Status.UNDECIDED) {
+                    //返回检查的结果
+                    return status;
+                }
+            }
+            //要恢复的对象不是1个
+            if (info.references() != 1) {
+                //不允许恢复对象
+                return ObjectInputFilter.Status.REJECTED;
+            }
+            if (info.serialClass() != null && info.serialClass() != Person.class) {
+                //如果恢复的对象不是Person类则拒绝恢复
+                return ObjectInputFilter.Status.REJECTED;
+            }
+            return ObjectInputFilter.Status.UNDECIDED;
+        } );
+        //从输入流中读取一个Java对象，并将其强制转换为Person
+        Person p = (Person) ois.readObject();
+        System.out.println(p.getName()+ " " +p.getAge());
+    }
+}
+```
+
+上述程序设置了` ObjectINputFilter`过滤器（程序使用Lambda表达式创建过滤器），重写了` checkInfo()`方法。通过过滤器可以使程序更加安全、健壮。
+
+
+
+#### 5、自定义序列化
+
+##### 方法一
+
+在一些场景下，我们不希望序列化实例变量的某些数据，或者某个实例变量的类型是不可序列化的，因此不希望进行递归序列化，以免引发` NotSerializableException`异常
+
+> 递归序列化：系统会把该对象的所有实例变量依次进行序列化，如果某个实例变量引用了另一个对象，则被引用的对象也会进行序列化；如果被引用的对象的实例变量又引用了其他对象，则此被引用的对象也会进行序列化（无限套娃）。
+
+在实例变量前面用` transient`修饰，就可以指定Java序列化时无需理会该变量。注意：` transient`只能修饰实例变量，不可修饰Java程序中其他成分！
+
+##### 方法二
+
+使用` transient`虽然简单，但是他会将实例变量完全隔离在序列化机制之外，导致在反序列化恢复Java对象时无法取得该实例变量的值。于是咱们再来看看另外一种序列化机制，通过这种方式，我们程序员可以完全掌控序列化过程。在序列化和反序列化中需要特殊处理的类应当提供如下特殊签名的方法以实现自定义序列化：
+
+- ```java
+  //写入特定类的实例状态
+  private void writeObject(java.io.ObjectOutputStream out)
+  ```
+
+- ```java
+  //从流中读取并恢复对象的实例变量
+  private void readObject(java.io.ObjectInputStream in)
+  ```
+
+- ```java
+  //当序列流不完整的时候，可以调用该方法来正确的初始化反序列的对象
+  private void readObjectNoData()
+  ```
+
+下面的Person类提供了` writeObject `和`  readObject`方法，将name的字符序列反转后写入字节数组，恢复时再进行一次反转。看下面的代码（在Person类中加入以下代码）：
+
+```java
+private void writeObject(java.io.ObjectOutputStream out) throws IOException {
+  //将name实例变量值反转后写入二进制流
+  out.writeObject(new StringBuffer(name).reverse());
+  out.writeInt(age);
+}
+private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException {
+  //将读取的字符串反转后赋给name实例变量
+  this.name = ((StringBuffer) in.readObject()).reverse().toString();
+  this.age = in.readInt();
+}
+```
+
+> 注意：` writeObject()`存储实例变脸的顺序应当与` readObject()`顺序一致，否则将不能正确恢复该实例变量。
+
+##### 方法三
+
+这种序列化方法更彻底，这种方法甚至可以替换掉序列化的对象。如需使用这种方法，则需提供和如下特殊方法：
+
+```java
+private Object writeReplace()
+```
+
+依然以上面的Person为例，在类中加入以下方法：
+
+```java
+private Object writeReplace() {
+  ArrayList<Object> list = new ArrayList<>();
+  list.add(name);
+  list.add(age);
+  return list;
+}
+```
+
+当反序列化该对象时，应当强转为` ArrayList`，实际上程序在序列化的并非` Person`对象，而是` ArrayList `对象。
+
+与` writeReplace()`方法相对的还有一个叫做` readResolve()`的方法，有兴趣的可以去了解。
+
+
+
+#### 6、另一种自定义序列化机制
+
+即实现` Externalizable`接口。这里不行写了，孩子太累了。。。
+
+
+
+#### 7、版本
+
+根据前面的介绍可知，反序列化的Java对象时必须提供该对象的class文件，现在的问题是，随着项目的升级，class文件会随之升级，Java如何保证两个class文件的兼容性？
+
+Java的序列化机制允许为序列化类提供一个` private static final`的` serialVersionUID`值，该变量用于标识Java类的序列化版本，也就是说，当类升级以后，这个值不变，序列化机制会把他们当成同一个序列化版本。
+
+如下：
+
+```java
+@Data
+public class Person implements Serializable {
+    private static final long serialVersionUID = 512L;
+}
+```
+
+这样的话，即使在某个对象被序列化之后，他所对应的类被修改了，该对象也依然可以被正确的反序列化。
+
+
+
+### 九、NIO
+
+前面介绍的` BufferedReader `有一个特征：在读取输入流的数据时，如果没有读取到有效的数据，程序就会在此阻塞该线程的执行（使用`  InputStream `的` read() `方法从流中读取数据，如果没有数据的话，也会造成阻塞）。说人话就是前面介绍的输入输出流都是阻塞式的输入输出。除此之外，传统的输入输出都是以字节为单位来处理的，效率不高。
+
+从JDK1.4开始，Java提供了一系列改进输入输出处理的新功能，这些功能统称为新IO（New IO，简称NIO）。
+
+#### 1、Java新IO概述
+
+
+
+
+
+#### 2、使用Buffer
+
+
+
+#### 3、使用Channel
+
+
+
+#### 4、字符集合Charset
+
+
+
+#### 5、文件锁
+
+
+
+### 十、NIO.2的功能和用法
+
+
+
+#### 1、Path、Paths和Files核心API
+
+
+
+#### 2、使用FileVisitor遍历文件和目录
+
+
+
+#### 3、使用WatchService监控文件变化
+
+
+
+#### 4、访问文件属性
+
+
+
+### 十一、本章小结
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

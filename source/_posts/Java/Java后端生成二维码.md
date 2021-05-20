@@ -9,9 +9,8 @@ categories: Java
 
 [生成二维码(java后端)](https://blog.csdn.net/zhang_z_ming/article/details/84027480)
 
-> 有一个需求
+> 有一个需求：就是实现 放票 抢票 检票 的功能
 >
-> 就是实现 放票 抢票 检票 的功能
 
 ### 生成二维码
 
