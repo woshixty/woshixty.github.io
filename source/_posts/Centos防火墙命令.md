@@ -122,6 +122,32 @@ ps 9827
 
 
 
+### centos7查看历史命令
+
+- 查看历史命令
+
+```shell
+history
+```
+
+- 搜索历史命令
+
+```shell
+history | grep 'tmux'
+# 模糊搜索tmux
+```
+
+出现以下结果：
+
+```shell
+  171  tmux new -s volunteer
+  186  tmux ls
+```
+
+
+
+
+
 - 显示现行终端机下的所有程序，包括其他用户的程序
 
 ```bash

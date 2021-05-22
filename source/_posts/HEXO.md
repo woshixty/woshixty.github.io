@@ -1,6 +1,6 @@
 ---
 title: Hello Hexo
-date: 2020-11-09 15:22:59
+date: 2020-11-01 15:22:59
 tags: [hexo]
 categories: Index_Blog
 ---
