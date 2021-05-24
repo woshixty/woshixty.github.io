@@ -5,11 +5,26 @@ tags: [java]
 categories: Java
 ---
 
+Java语言提供了非常优秀的多线程支持，程序可以通过非常简单的方式来启动多线程，接下来就让我们一起来学习Java多线程编程的相关知识吧，包括：创建、启动、控制线程，以及多线程的同步操作，还有通过Java内建支持的线程池来提高多线程的性能。
+
 ### 一、线程概述
+
+每个运行的程序就是一个进程，而当一个程序运行时，内部可能有多个顺序执行流，每个顺序执行流就是一个线程。
 
 #### 1、线程和进程
 
+##### a、进程
 
+程序进入内存运行时，就变成了一个进程（process），进程是处于运行过程中的程序，并且具有一定的独立性，进程是系统进行资源调度和分配的一个独立单位。一般而言，进程具有如下三个特征：
+
+- 独立性：
+- 动态性：
+- 并发性：
+
+> 并发行和并行性是两个不同的概念：
+>
+> - 并行：同一时刻，多个指令在多个处理器上同时处理
+> - 并发：同一时刻只能有一条指令执行，但是多个进程指令被快速轮换执行，适得其在宏观上具有多个进程同时执行的效果
 
 #### 2、多线程的优势
 
@@ -19,13 +34,102 @@ categories: Java
 
 #### 1、继承Thread类创建线程类
 
+```java
+public class FirstThread extends Thread {
+    private int i;
+
+    //重写run方法
+    @Override
+    public void run() {
+        super.run();
+        for (i = 0; i < 100; i++) {
+            //当线程类启动Thread时，直接使用this即可获取当前的线程
+            //Thread的getName()方法返回当前线程的名字
+            System.out.println(getName() + " " + i);
+        }
+    }
+
+    public static void main(String[] args) {
+        for (int i = 0; i < 100; i++) {
+            System.out.println(Thread.currentThread().getName() + " " + i);
+            if (i == 20) {
+                //创建并启动第一个线程
+                new FirstThread().start();
+                //创建并启动第二个线程
+                new FirstThread().start();
+            }
+        }
+    }
+}
+```
+
 
 
 #### 2、实现Runnable接口创建线程类
 
+```java
+public class SecondThread implements Runnable {
+    private int i;
+
+    @Override
+    public void run() {
+        for (; i < 100; i++) {
+            //当线程类实现Runnable接口时
+            //如果想获取当前线程，只能用Thread.currentThread()方法得到当前进程
+            System.out.println(Thread.currentThread().getName() + " " + i);
+        }
+    }
+
+    public static void main(String[] args) {
+        for (int i = 0; i < 100; i++) {
+            System.out.println(Thread.currentThread().getName() + " " + i);
+            if (i == 20) {
+                SecondThread st = new SecondThread();
+                //通过new方法创建进程
+                new Thread(st, "进程1").start();
+                new Thread(st, "进程2").start();
+            }
+        }
+    }
+}
+```
+
 
 
 #### 3、使用Callable和Future创建线程
+
+```java
+public class ThirdThread {
+    public static void main(String[] args) {
+        //先使用Lambda表达式创建Callable<Integer>对象
+        //使用FutureTask来包装Callable对象
+        FutureTask<Integer> task = new FutureTask<>( (Callable<Integer>)() -> {
+                    int i = 0;
+                    for (; i < 100; i++) {
+                        System.out.println(Thread.currentThread().getName() + " " + i);
+                    }
+                    //call()可以有返回值
+                    return i;
+                });
+        for (int i = 0; i <100; i++) {
+            System.out.println(Thread.currentThread().getName() + " " + i);
+            if (i == 20) {
+                //实质还是以Callable对象来创建并启动线程的
+                new Thread(task, "有返回值的线程").start();
+            }
+        }
+        //需等线程结束后才能获得值
+        try {
+            //获取线程的返回值
+            System.out.println("子线程的返回值" + task.get());
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
 
 
 
@@ -51,17 +155,123 @@ categories: Java
 
 #### 1、join线程
 
+```java
+public class JoinThread extends Thread {
+    //提供一个带参数的构造器，用于设置该线程的名称
+    public JoinThread(String name) {
+        super(name);
+    }
+    //重写run()方法，定义线程执行体
+    @SneakyThrows
+    @Override
+    public void run() {
+        super.run();
+        for (int i = 0; i < 100; i++) {
+            System.out.println(getName() + " " + i);
+            if (i == 30)
+                Thread.sleep((long) 0.1);
+        }
+    }
+    public static void main(String[] args) throws InterruptedException {
+        //启动子线程
+        new JoinThread("新线程").start();
+        for (int i = 0; i < 100; i++) {
+            if (i == 20) {
+                Thread jt = new JoinThread("被join的线程");
+                jt.start();
+                //main()调用了jt线程的join方法，main(线程)，必须等到jt执行结束才会向下执行
+                jt.join();
+            }
+            System.out.println(Thread.currentThread().getName() + " " + i);
+        }
+    }
+}
+```
+
 
 
 #### 2、后台线程
+
+```java
+public class DaemonThread extends Thread {
+    //定义后台线程的线程执行体与普通线程没有多大区别
+    @Override
+    public void run() {
+        for (int i = 0; i < 1000; i++) {
+            System.out.println(getName() + " " + i);
+        }
+    }
+    public static void main(String[] args) {
+        //启动子线程
+        DaemonThread t = new DaemonThread();
+        //将此线程设置成后台线程
+        t.setDaemon(true);
+        //启动线程
+        t.start();
+        for (int i = 0; i < 10; i++) {
+            System.out.println(Thread.currentThread().getName() + " " + i);
+        }
+        //线程执行到此处，前台线程（main）结束，后台线程随之结束
+        System.out.println("结束了");
+    }
+}
+```
 
 
 
 #### 3、线程睡眠：sleep
 
+```java
+public class SleepTest {
+    public static void main(String[] args) throws InterruptedException {
+        for (int i = 0; i < 10; i++) {
+            Thread.sleep(1000);
+            System.out.println(Thread.currentThread().getName() + " " + i);
+        }
+    }
+}
+```
+
 
 
 #### 4、改变线程优先级
+
+```java
+public class PriorityTest extends Thread {
+    //定义一个有参构造器，用于创建线程时指定名称
+    public PriorityTest(String name) {
+        super(name);
+    }
+    //线程执行体
+    @Override
+    public void run() {
+        super.run();
+        for (int i = 0; i< 500; i++) {
+            System.out.println(getName() + "的优先级为：" + getPriority() + "，循环变量值为" + i);
+        }
+    }
+    public static void main(String[] args) {
+        //设置主线程的优先级
+        Thread.currentThread().setPriority(6);
+        for (int i = 0; i < 30; i++) {
+            if (i == 10) {
+                PriorityTest low = new PriorityTest("低级");
+                low.start();
+                System.out.println("创建之初的线程优先级：" + low.getPriority());
+                //设置该线程为最低优先级
+                low.setPriority(Thread.MIN_PRIORITY);
+            }
+            if (i == 20) {
+                PriorityTest high = new PriorityTest("高级");
+                high.start();
+                System.out.println("创建之初的线程优先级：" + high.getPriority());
+                //设置该线程为最高优先级
+                high.setPriority(Thread.MAX_PRIORITY);
+            }
+        }
+    }
+}
+```
 
 
 
@@ -69,9 +279,145 @@ categories: Java
 
 #### 1、线程安全问题
 
+##### a、定义账户类：
+
+```java
+public class Account {
+    //封装账户编号、账户余额的两个成员变量
+    private String accountNo;
+    private Double balance;
+    //构造器
+    public Account(String accountNo, Double balance) {
+        this.accountNo = accountNo;
+        this.balance = balance;
+    }
+    //setter and getter
+    public String getAccountNo() {
+        return accountNo;
+    }
+    public void setAccountNo(String accountNo) {
+        this.accountNo = accountNo;
+    }
+    public Double getBalance() {
+        return balance;
+    }
+    public void setBalance(Double balance) {
+        this.balance = balance;
+    }
+    //根据accountNo重写 equals() 和 hashCode() 方法
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (obj != null && obj.getClass() == Account.class) {
+            Account target = (Account) obj;
+            return target.getAccountNo().equals(accountNo);
+        } else {
+            return false;
+        }
+    }
+    //hashCode()方法用于返回字符串的哈希码
+    @Override
+    public int hashCode() {
+        return accountNo.hashCode();
+    }
+}
+```
+
+##### b、定义取钱线程类：
+
+```java
+public class DrawThread extends Thread {
+    //模拟用户账户
+    private Account account;
+    //当前取钱线程所希望取得钱数
+    private double drawAmount;
+    public DrawThread(String name, Account account, double drawAmount) {
+        super(name);
+        this.account = account;
+        this.drawAmount = drawAmount;
+    }
+    //当多个线程修改同一共享数据时，将涉及到数据安全问题
+    @Override
+    public void run() {
+        super.run();
+        //账户余额大于取钱数目
+        if (account.getBalance() >= drawAmount) {
+            //吐出钞票
+            System.out.println(getName() + " " + drawAmount);
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            //修改余额
+            account.setBalance(account.getBalance() - drawAmount);
+            System.out.println("余额为：" + account.getBalance());
+        } else {
+            System.out.println("取钱失败！余额不足！");
+        }
+    }
+}
+```
+
+##### c、取钱逻辑：
+
+```java
+public class DrawTest {
+    public static void main(String[] args) {
+        //创建一个账户
+        Account acct = new Account("123", 1000.0);
+        //模拟两个线程向同一账户取钱
+        new DrawThread("甲", acct, 800).start();
+        new DrawThread("乙", acct, 800).start();
+    }
+}
+```
+
 
 
 #### 2、同步代码块
+
+将上面的` DrawThread`修改成如下形式：
+
+```java
+public class DrawThread extends Thread {
+    //模拟用户账户
+    private Account account;
+    //当前取钱线程所希望取得钱数
+    private double drawAmount;
+    public DrawThread(String name, Account account, double drawAmount) {
+        super(name);
+        this.account = account;
+        this.drawAmount = drawAmount;
+    }
+    //当多个线程修改同一共享数据时，将涉及到数据安全问题
+    @Override
+    public void run() {
+        super.run();
+        //使用account作为同步监视器，任何线程在进入下面的代码块之前，必须先获得对account对象的锁定，其他对象无法获得锁，也就无法修改它
+        //"加锁-修改-释放锁"的步骤
+        synchronized (account) {
+            //账户余额大于取钱数目
+            if (account.getBalance() >= drawAmount) {
+                //吐出钞票
+                System.out.println(getName() + " " + drawAmount);
+                try {
+                    Thread.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                //修改余额
+                account.setBalance(account.getBalance() - drawAmount);
+                System.out.println("余额为：" + account.getBalance());
+            } else {
+                System.out.println("取钱失败！余额不足！");
+            }
+        }
+      	//同步代码块结束，该线程释放同步锁
+    }
+}
+```
 
 
 
@@ -88,6 +434,65 @@ categories: Java
 
 
 #### 6、死锁及常用处理策略
+
+```java
+class A {
+    public synchronized void foo(B b) {
+        System.out.println("当前线程名称：" + Thread.currentThread().getName() + " 进入了A实例的foo()方法");
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("当前线程名称：" + Thread.currentThread().getName() + " 企图调用B的last()方法");
+        b.last();
+    }
+    public synchronized void last() {
+        System.out.println("进入了A类l的ast()方法内部");
+    }
+}
+
+class B {
+    public synchronized void bar(A a) {
+        System.out.println("当前线程名称：" + Thread.currentThread().getName() + " 进入了B实例的bar()方法");
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("当前线程名称：" + Thread.currentThread().getName() + " 企图调用A的last()方法");
+        a.last();
+    }
+    public synchronized void last() {
+        System.out.println("进入了B类的last()方法内部");
+    }
+}
+
+public class DeadLock implements Runnable {
+    A a = new A();
+    B b = new B();
+    public void init() {
+        Thread.currentThread().setName("主线程");
+        //调用A的foo()方法
+        a.foo(b);
+        System.out.println("进入了主线程之后");
+    }
+    @Override
+    public void run() {
+        Thread.currentThread().setName("副线程");
+        //调用b对象的bar()方法
+        b.bar(a);
+        System.out.println("进入了副线程之后");
+    }
+    public static void main(String[] args) {
+        DeadLock d1 = new DeadLock();
+        //以d1为target启动新线程
+        new Thread(d1).start();
+        //调用init()方法
+        d1.init();
+    }
+}
+```
 
 
 
