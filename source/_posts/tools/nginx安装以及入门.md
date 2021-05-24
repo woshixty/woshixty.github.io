@@ -148,7 +148,7 @@ curl -i localhost
 - 解压缩
 
 ```powershell
-tar -zxvf  nginx-1.18.0.tar.gz 
+tar -zxvf  nginx-1.18.0.tar.gz
 ```
 
 - 进入nginx-1.18.0目录下面进行源码编译安装
