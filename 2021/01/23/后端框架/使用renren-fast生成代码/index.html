@@ -21,20 +21,27 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="创建名为web的vue项目1vue create web  创建项目的选择如下：![截屏2021-05-15 下午8.00.41](create-vue-pro.assets&#x2F;截屏2021-05-15 下午8.00.41.png) 启动项目1cd web  1npm run serve  使用窗口按钮来启动项目![截屏2021-05-15 下午8.05.27](create-vue-pro.ass">
+  <meta name="description" content="renren-fast是一个轻量级的Spring Boot2.1快速开发平台，它能快速帮我们搭建好一个项目以及生成一些基本的增删改查代码，介样的话我们就能更好地专注于我们自己的一些业务，真香！！！  那么下面我们就开始吧！ 一、创建springboot项目我们要先自己创建好数据库，由于自己刚好要写项目，于是我自己就创建的下面这一个springboot项目：   二、克隆renren-fast代码">
 <meta property="og:type" content="article">
-<meta property="og:title" content="创建vue项目">
-<meta property="og:url" content="http://example.com/2021/05/15/create-vue-pro/index.html">
+<meta property="og:title" content="使用renren-fast快速生成代码">
+<meta property="og:url" content="http://example.com/2021/01/23/%E5%90%8E%E7%AB%AF%E6%A1%86%E6%9E%B6/%E4%BD%BF%E7%94%A8renren-fast%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81/index.html">
 <meta property="og:site_name" content="Hello Programmer">
-<meta property="og:description" content="创建名为web的vue项目1vue create web  创建项目的选择如下：![截屏2021-05-15 下午8.00.41](create-vue-pro.assets&#x2F;截屏2021-05-15 下午8.00.41.png) 启动项目1cd web  1npm run serve  使用窗口按钮来启动项目![截屏2021-05-15 下午8.05.27](create-vue-pro.ass">
+<meta property="og:description" content="renren-fast是一个轻量级的Spring Boot2.1快速开发平台，它能快速帮我们搭建好一个项目以及生成一些基本的增删改查代码，介样的话我们就能更好地专注于我们自己的一些业务，真香！！！  那么下面我们就开始吧！ 一、创建springboot项目我们要先自己创建好数据库，由于自己刚好要写项目，于是我自己就创建的下面这一个springboot项目：   二、克隆renren-fast代码">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-05-15T00:00:00.000Z">
-<meta property="article:modified_time" content="2021-05-24T14:06:36.929Z">
+<meta property="og:image" content="http://example.com/2021/01/23/%E5%90%8E%E7%AB%AF%E6%A1%86%E6%9E%B6/%E4%BD%BF%E7%94%A8renren-fast%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81/pics/renren-fast1.png">
+<meta property="og:image" content="http://example.com/2021/01/23/%E5%90%8E%E7%AB%AF%E6%A1%86%E6%9E%B6/%E4%BD%BF%E7%94%A8renren-fast%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81/pics/renren-fast2.png">
+<meta property="og:image" content="http://example.com/2021/01/23/%E5%90%8E%E7%AB%AF%E6%A1%86%E6%9E%B6/%E4%BD%BF%E7%94%A8renren-fast%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81/pics/renren-fast3.png">
+<meta property="og:image" content="http://example.com/2021/01/23/%E5%90%8E%E7%AB%AF%E6%A1%86%E6%9E%B6/%E4%BD%BF%E7%94%A8renren-fast%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81/pics/renren-fast5.png">
+<meta property="og:image" content="http://example.com/2021/01/23/%E5%90%8E%E7%AB%AF%E6%A1%86%E6%9E%B6/%E4%BD%BF%E7%94%A8renren-fast%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81/pics/renren-fast6.png">
+<meta property="og:image" content="http://example.com/2021/01/23/%E5%90%8E%E7%AB%AF%E6%A1%86%E6%9E%B6/%E4%BD%BF%E7%94%A8renren-fast%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81/pics/renren-fast7.png">
+<meta property="article:published_time" content="2021-01-23T00:00:00.000Z">
+<meta property="article:modified_time" content="2021-05-25T08:41:00.747Z">
 <meta property="article:author" content="xty">
-<meta property="article:tag" content="vue">
+<meta property="article:tag" content="springboot">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/01/23/%E5%90%8E%E7%AB%AF%E6%A1%86%E6%9E%B6/%E4%BD%BF%E7%94%A8renren-fast%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81/pics/renren-fast1.png">
 
-<link rel="canonical" href="http://example.com/2021/05/15/create-vue-pro/">
+<link rel="canonical" href="http://example.com/2021/01/23/%E5%90%8E%E7%AB%AF%E6%A1%86%E6%9E%B6/%E4%BD%BF%E7%94%A8renren-fast%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81/">
 
 
 <script id="page-configurations">
@@ -47,7 +54,7 @@
   };
 </script>
 
-  <title>创建vue项目 | Hello Programmer</title>
+  <title>使用renren-fast快速生成代码 | Hello Programmer</title>
   
 
 
@@ -158,7 +165,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/15/create-vue-pro/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/23/%E5%90%8E%E7%AB%AF%E6%A1%86%E6%9E%B6/%E4%BD%BF%E7%94%A8renren-fast%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -171,7 +178,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          创建vue项目
+          使用renren-fast快速生成代码
         </h1>
 
         <div class="post-meta">
@@ -181,14 +188,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-05-15 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-15T00:00:00+00:00">2021-05-15</time>
+              <time title="创建时间：2021-01-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-23T00:00:00+00:00">2021-01-23</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-24 14:06:36" itemprop="dateModified" datetime="2021-05-24T14:06:36+00:00">2021-05-24</time>
+                <time title="修改时间：2021-05-25 08:41:00" itemprop="dateModified" datetime="2021-05-25T08:41:00+00:00">2021-05-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -196,7 +203,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Vue/" itemprop="url" rel="index"><span itemprop="name">Vue</span></a>
+                  <a href="/categories/CrookedWays/" itemprop="url" rel="index"><span itemprop="name">CrookedWays</span></a>
                 </span>
             </span>
 
@@ -218,15 +225,43 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="创建名为web的vue项目"><a href="#创建名为web的vue项目" class="headerlink" title="创建名为web的vue项目"></a>创建名为web的vue项目</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue create web</span><br></pre></td></tr></table></figure>
+        <blockquote>
+<p>renren-fast是一个轻量级的Spring Boot2.1快速开发平台，它能快速帮我们搭建好一个项目以及生成一些基本的增删改查代码，介样的话我们就能更好地专注于我们自己的一些业务，真香！！！</p>
+</blockquote>
+<p>那么下面我们就开始吧！</p>
+<h3 id="一、创建springboot项目"><a href="#一、创建springboot项目" class="headerlink" title="一、创建springboot项目"></a>一、创建springboot项目</h3><p>我们要先自己创建好数据库，由于自己刚好要写项目，于是我自己就创建的下面这一个springboot项目：</p>
+<img src="./pics/renren-fast1.png" align='left' />
 
-<h3 id="创建项目的选择如下："><a href="#创建项目的选择如下：" class="headerlink" title="创建项目的选择如下："></a>创建项目的选择如下：</h3><p>![截屏2021-05-15 下午8.00.41](create-vue-pro.assets/截屏2021-05-15 下午8.00.41.png)</p>
-<h3 id="启动项目"><a href="#启动项目" class="headerlink" title="启动项目"></a>启动项目</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd web</span><br></pre></td></tr></table></figure>
+<h3 id="二、克隆renren-fast代码"><a href="#二、克隆renren-fast代码" class="headerlink" title="二、克隆renren-fast代码"></a>二、克隆renren-fast代码</h3><p>人人开源官方gitee地址：<a target="_blank" rel="noopener" href="https://gitee.com/renrenio">人人开源</a></p>
+<p>来到官方网址以后，咱找到仓库里的<code>renren-generator</code>（如下），将他的项目整个clone到我们自己的电脑上。可以看到他有好几个开源项目，之后我们都可以去试试他们</p>
+<p><img src="./pics/renren-fast2.png"></p>
+<h3 id="三、修改配置文件"><a href="#三、修改配置文件" class="headerlink" title="三、修改配置文件"></a>三、修改配置文件</h3><ul>
+<li>数据库</li>
+</ul>
+<p>我们先用IDEA打开我们刚刚下载好的项目，打开我们的<code>application.yml</code>配置文件，修改url、username、password</p>
+<img src="./pics/renren-fast3.png" align='left' />
 
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run serve</span><br></pre></td></tr></table></figure>
+<ul>
+<li>代码生成配置</li>
+</ul>
+<p>我们再来到<code>generator.properties</code>中，跟据自己的项目来修改即可</p>
+<img src="./pics/renren-fast5.png" align='left' />
 
-<h3 id="使用窗口按钮来启动项目"><a href="#使用窗口按钮来启动项目" class="headerlink" title="使用窗口按钮来启动项目"></a>使用窗口按钮来启动项目</h3><p>![截屏2021-05-15 下午8.05.27](create-vue-pro.assets/截屏2021-05-15 下午8.05.27.png)</p>
-<h3 id="安装ant-design-vue"><a href="#安装ant-design-vue" class="headerlink" title="安装ant-design-vue"></a>安装ant-design-vue</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install ant-design-vue@2.0.0-rc.3 --save</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改模板</li>
+</ul>
+<p>来到<code>/resource/template</code>下（如下图），其实模板里面就是对应着代码的生成规则（controller、dao、entity等），我们将<code>Controller.java.vm</code>里的这段代码<code>@RequiresPermissions(&quot;$&#123;moduleName&#125;:$&#123;pathName&#125;:list&quot;)</code>注释掉，记得有5个！然后删除<code>import org.apache.shiro.authz.annotation.RequiresPermissions;</code>就可以啦！</p>
+<img src="./pics/renren-fast6.png" align='left' />
+
+<h3 id="四、生成代码"><a href="#四、生成代码" class="headerlink" title="四、生成代码"></a>四、生成代码</h3><p>激动的心，颤抖的手终于可以生成代码了嘿嘿嘿，我们先来启动我们的项目，并在浏览器中访问<a target="_blank" rel="noopener" href="http://localhost/">localhost</a></p>
+<img src="./pics/renren-fast7.png" align='left' />
+
+<p>生成的压缩包，直接把main文件夹复制粘贴到自己的项目就好啦！</p>
+<h3 id="五、修改代码"><a href="#五、修改代码" class="headerlink" title="五、修改代码"></a>五、修改代码</h3><p>自动生成的代码我们还要进行亿点点修改</p>
+<ul>
+<li>导入依赖</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- spring-web框架 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>5.3.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- mybatis-plus持久层框架 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.baomidou<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-plus<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- lombok --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.projectlombok<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>lombok<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.18.16<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 
     </div>
@@ -238,7 +273,7 @@
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/vue/" rel="tag"><i class="fa fa-tag"></i> vue</a>
+              <a href="/tags/springboot/" rel="tag"><i class="fa fa-tag"></i> springboot</a>
           </div>
 
         
@@ -247,12 +282,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/05/12/English/2021-05-12/" rel="prev" title="阅读笔记2021-05-12">
-      <i class="fa fa-chevron-left"></i> 阅读笔记2021-05-12
+    <a href="/2020/12/13/Java/Java_%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/" rel="prev" title="Java函数式编程">
+      <i class="fa fa-chevron-left"></i> Java函数式编程
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/05/19/spring/%E5%8F%91%E9%80%81%E5%BC%82%E6%AD%A5%E6%B6%88%E6%81%AF/" rel="next" title="spring发送异步消息">
-      spring发送异步消息 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/01/23/IDEA/IDEA%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6Unicode%E8%BD%AC%E4%B8%AD%E6%96%87/" rel="next" title="Intellij IDEA properties文件Unicode转中文">
+      Intellij IDEA properties文件Unicode转中文 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -312,7 +347,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%90%8D%E4%B8%BAweb%E7%9A%84vue%E9%A1%B9%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text">创建名为web的vue项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE%E7%9A%84%E9%80%89%E6%8B%A9%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">创建项目的选择如下：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE"><span class="nav-number">3.</span> <span class="nav-text">启动项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%AA%97%E5%8F%A3%E6%8C%89%E9%92%AE%E6%9D%A5%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE"><span class="nav-number">4.</span> <span class="nav-text">使用窗口按钮来启动项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85ant-design-vue"><span class="nav-number">5.</span> <span class="nav-text">安装ant-design-vue</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%88%9B%E5%BB%BAspringboot%E9%A1%B9%E7%9B%AE"><span class="nav-number">1.</span> <span class="nav-text">一、创建springboot项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%85%8B%E9%9A%86renren-fast%E4%BB%A3%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">二、克隆renren-fast代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">3.</span> <span class="nav-text">三、修改配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E7%94%9F%E6%88%90%E4%BB%A3%E7%A0%81"><span class="nav-number">4.</span> <span class="nav-text">四、生成代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E4%BF%AE%E6%94%B9%E4%BB%A3%E7%A0%81"><span class="nav-number">5.</span> <span class="nav-text">五、修改代码</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -328,7 +363,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
