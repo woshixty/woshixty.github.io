@@ -154,6 +154,133 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/23/deep-learning/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/23/deep-learning/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" class="post-title-link" itemprop="url">线性代数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-23T00:00:00+00:00">2021-04-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-29 03:11:19" itemprop="dateModified" datetime="2021-05-29T03:11:19+00:00">2021-05-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>机器学习、深度学习的基础除了编程语言之外, 还有一个就是应用数学。一般包括<code>线性代数</code>、<code>概率论与信息论</code>、<code>概率图</code>、<code>数值计算与最优化</code>等。</p>
+<h2 id="一、标量、向量、矩阵和张量"><a href="#一、标量、向量、矩阵和张量" class="headerlink" title="一、标量、向量、矩阵和张量"></a>一、标量、向量、矩阵和张量</h2><h3 id="1、标量-scalar"><a href="#1、标量-scalar" class="headerlink" title="1、标量(scalar)"></a>1、标量(scalar)</h3><p>一个标量是一个单独的数, 一般用小写的变量名称表示, 如a、z等</p>
+<h3 id="2、向量-vector"><a href="#2、向量-vector" class="headerlink" title="2、向量(vector)"></a>2、向量(vector)</h3><p>向量就是一列数或者一个一维数组, 我们可以把向量看作空间里的点, 如下: a可以看作一个一维数组</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">a = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">8</span>])</span><br><span class="line">print(a.size)</span><br><span class="line">print(a[<span class="number">0</span>], a[<span class="number">-1</span>])</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、矩阵-matrix"><a href="#3、矩阵-matrix" class="headerlink" title="3、矩阵(matrix)"></a>3、矩阵(matrix)</h3><p>就是一个二维数组, 具体操作见上一篇笔记</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">A = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</span><br><span class="line">print(A)</span><br><span class="line">print(A.size)       <span class="comment"># 显示矩阵元素总个数</span></span><br><span class="line">print(A.shape)      <span class="comment"># 显示矩阵的行数和列数</span></span><br><span class="line">print(A[<span class="number">0</span>, <span class="number">0</span>], A[<span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line">print(A[<span class="number">1</span>, :])      <span class="comment"># 打印矩阵第二行</span></span><br></pre></td></tr></table></figure>
+
+<p>矩阵还可以用嵌套向量生成, 和向量一样。</p>
+<h3 id="4、张量-tensor"><a href="#4、张量-tensor" class="headerlink" title="4、张量(tensor)"></a>4、张量(tensor)</h3><p>张量是向量和矩阵的推广, 标量–&gt;零阶张量, 矩阵–&gt;二阶张量, 以此类推。如一张图片就是一个三阶张量, 三个维度分别代表图片的高度、宽度和色彩数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># np.arange(num)---生成一个从0到num-1步数为1的一维数组</span></span><br><span class="line"><span class="comment"># ndarray.reshape((N,M,...))---将ndarray转化为N*M*...的多维数组</span></span><br><span class="line">B = np.arange(<span class="number">16</span>).reshape((<span class="number">2</span>, <span class="number">2</span>, <span class="number">4</span>))    <span class="comment"># 生成一个2*2*4的三阶矩阵</span></span><br><span class="line">print(B)</span><br><span class="line">print(B.size)       <span class="comment"># 显示B的元素总数</span></span><br><span class="line">print(B.shape)      <span class="comment"># 显示B的维度</span></span><br><span class="line">print(B[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-转置-transpose"><a href="#5-转置-transpose" class="headerlink" title="5.转置(transpose)"></a>5.转置(transpose)</h3><p>转置就是以主对角线(左上到右下)为轴进行镜像操作, 通俗来说就是行列互换, 如下所示:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">C = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</span><br><span class="line">CT = C.T</span><br><span class="line">print(C)</span><br><span class="line">print(CT)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="二、矩阵和向量运算"><a href="#二、矩阵和向量运算" class="headerlink" title="二、矩阵和向量运算"></a>二、矩阵和向量运算</h2><h2 id="三、特殊矩阵与向量"><a href="#三、特殊矩阵与向量" class="headerlink" title="三、特殊矩阵与向量"></a>三、特殊矩阵与向量</h2><h3 id="1、可逆矩阵"><a href="#1、可逆矩阵" class="headerlink" title="1、可逆矩阵"></a>1、可逆矩阵</h3><p>𝐴⁻¹𝐴=𝐼𝘯 (其中𝐼𝘯为单位矩阵)</p>
+<h3 id="2、对角矩阵"><a href="#2、对角矩阵" class="headerlink" title="2、对角矩阵"></a>2、对角矩阵</h3><p>只有对角线上的元素为非零元素, 其余全为零</p>
+<h3 id="3、对称矩阵"><a href="#3、对称矩阵" class="headerlink" title="3、对称矩阵"></a>3、对称矩阵</h3><p>𝐴=𝐴ᵀ</p>
+<h3 id="4、单位向量"><a href="#4、单位向量" class="headerlink" title="4、单位向量"></a>4、单位向量</h3><p>任意给定的向量𝘷, 若其𝙇²范数为, 即<code>||𝘷||₂=1</code>, 则𝘷为单位向量</p>
+<h3 id="5、正交向量"><a href="#5、正交向量" class="headerlink" title="5、正交向量"></a>5、正交向量</h3><p>𝐴𝐴ᵀ=𝐴ᵀ𝐴=𝐼 (单位向量)</p>
+<h2 id="四、线性相关性及向量空间"><a href="#四、线性相关性及向量空间" class="headerlink" title="四、线性相关性及向量空间"></a>四、线性相关性及向量空间</h2><p>由多个同维度的的列向量构成的集合称为向量组</p>
+<h3 id="1、线性组合"><a href="#1、线性组合" class="headerlink" title="1、线性组合"></a>1、线性组合</h3><h3 id="2、线性相关"><a href="#2、线性相关" class="headerlink" title="2、线性相关"></a>2、线性相关</h3><h3 id="3、向量组的秩"><a href="#3、向量组的秩" class="headerlink" title="3、向量组的秩"></a>3、向量组的秩</h3><h2 id="五、范数"><a href="#五、范数" class="headerlink" title="五、范数"></a>五、范数</h2><p>我们通过范数(Norm)来衡量向量的大小, 定义如下:</p>
+<p>![截屏2021-05-03 上午12.00.50](Untitled.assets/截屏2021-05-03 上午12.01.34.png)</p>
+<p>如何使用上代码:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> numpy.linalg <span class="keyword">as</span> LA   <span class="comment"># 导入Numpy的线性代数库</span></span><br><span class="line"></span><br><span class="line">x = np.arange(<span class="number">0</span>, <span class="number">1</span>, <span class="number">0.1</span>)    <span class="comment"># 生成步长为0.1的十个数</span></span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line">x1 = LA.norm(x, <span class="number">1</span>)          <span class="comment"># 计算1的范式</span></span><br><span class="line">x2 = LA.norm(x, <span class="number">2</span>)          <span class="comment"># 计算2的范式</span></span><br><span class="line">xa = LA.norm(x, np.inf)     <span class="comment"># 计算无穷范式</span></span><br><span class="line"></span><br><span class="line">print(x1)</span><br><span class="line">print(x2)</span><br><span class="line">print(xa)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="六、特征值分解"><a href="#六、特征值分解" class="headerlink" title="六、特征值分解"></a>六、特征值分解</h2><p>特征分解是使用最广的矩阵分解之一，将矩阵分解为一组特征向量和特征值。下面来看看他们的概念，设A是一个n阶方阵，如果存在实数$\lambda$和n维的非零向量x，满足：</p>
+<p>$Ax=\lambda x$</p>
+<p>那么$\lambda$称为方阵A的特征值，向量x为矩阵A对应特征值$\lambda$的特征向量</p>
+<p>假设矩阵A有n个线性无关的特征向量{v¹, v², v³, ···, vⁿ}，他们对应的特征值为{$\lambda$₁, $\lambda$₂, $\lambda$₃, ···, $\lambda$𝓃}，把这n个线性无关的特征向量构成一个新方阵，每一列就是一个特征向量</p>
+<p>$V=[v¹, v², v³, ···, vⁿ]$</p>
+<p>用特征值构成一个n阶对角矩阵，对角线的元素都是特征值</p>
+<p>$diag(\lambda)=[v¹, v², v³, ···, vⁿ]ᵀ$</p>
+<p>那么，A的特征分解可表示为：</p>
+<p>$A=Vdiag(\lambda)V⁻¹$</p>
+<p>注意：并非所有的方阵都能进行特征值分解，一个方阵能进行特征值分解的充要条件是它含有n个线性无关的特征向量</p>
+<p>下面我们来展示下求方阵的特征向量与特征值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># np.linalg.eigvals(a)---计算矩阵的特征值</span></span><br><span class="line"><span class="comment"># np.linalg.eig(a)---返回包含特征值和对应特征向量的元组</span></span><br><span class="line">a = np.array([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]])  <span class="comment"># 示例矩阵</span></span><br><span class="line">A1 = np.linalg.eigvals(a)       <span class="comment"># 得到特征值</span></span><br><span class="line">A2, V1 = np.linalg.eig(a)       <span class="comment"># 其中A2也是特征值，B为特征向量</span></span><br><span class="line">print(A1)</span><br><span class="line">print(A2)</span><br><span class="line">print(V1)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="七、奇异值分解"><a href="#七、奇异值分解" class="headerlink" title="七、奇异值分解"></a>七、奇异值分解</h2><h2 id="八、迹运算"><a href="#八、迹运算" class="headerlink" title="八、迹运算"></a>八、迹运算</h2><p>迹运算返回的是矩阵对角元素的的和：</p>
+<p>$Tr(A)=\sum_{i}A_{i,i}$</p>
+<p>迹运算在某些场合非常有用，若不使用求和符号，某些矩阵运算很难描述。例如，迹运算提供了一种描述矩阵Frobenius范数的方式：</p>
+<p>$||A||_{F}=\sqrt{Tr(AAᵀ)}$</p>
+<p>利用NumPy对矩阵求迹同样方便，上代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">C = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]])</span><br><span class="line">TrC = np.trace(C)</span><br><span class="line"></span><br><span class="line">D = C - <span class="number">2</span></span><br><span class="line">TrCT = np.trace(C.T)</span><br><span class="line">TrCD = np.trace(np.dot(C, D))</span><br><span class="line">TrDC = np.trace(np.dot(D, C))</span><br><span class="line"></span><br><span class="line">print(TrC)</span><br><span class="line">print(TrCT)</span><br><span class="line">print(TrCD)</span><br><span class="line">print(TrDC)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="九、用Python实现主成分分析"><a href="#九、用Python实现主成分分析" class="headerlink" title="九、用Python实现主成分分析"></a>九、用Python实现主成分分析</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/19/English/2021-04-19/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -185,7 +312,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-25 08:41:00" itemprop="dateModified" datetime="2021-05-25T08:41:00+00:00">2021-05-25</time>
+                <time title="修改时间：2021-05-29 03:11:19" itemprop="dateModified" datetime="2021-05-29T03:11:19+00:00">2021-05-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -260,7 +387,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-25 08:41:00" itemprop="dateModified" datetime="2021-05-25T08:41:00+00:00">2021-05-25</time>
+                <time title="修改时间：2021-05-29 03:11:19" itemprop="dateModified" datetime="2021-05-29T03:11:19+00:00">2021-05-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -427,7 +554,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-25 08:41:00" itemprop="dateModified" datetime="2021-05-25T08:41:00+00:00">2021-05-25</time>
+                <time title="修改时间：2021-05-29 03:11:19" itemprop="dateModified" datetime="2021-05-29T03:11:19+00:00">2021-05-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -618,7 +745,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-25 08:41:00" itemprop="dateModified" datetime="2021-05-25T08:41:00+00:00">2021-05-25</time>
+                <time title="修改时间：2021-05-29 03:11:19" itemprop="dateModified" datetime="2021-05-29T03:11:19+00:00">2021-05-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -700,7 +827,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-25 08:41:00" itemprop="dateModified" datetime="2021-05-25T08:41:00+00:00">2021-05-25</time>
+                <time title="修改时间：2021-05-29 03:11:19" itemprop="dateModified" datetime="2021-05-29T03:11:19+00:00">2021-05-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -811,7 +938,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-25 08:41:00" itemprop="dateModified" datetime="2021-05-25T08:41:00+00:00">2021-05-25</time>
+                <time title="修改时间：2021-05-29 03:11:19" itemprop="dateModified" datetime="2021-05-29T03:11:19+00:00">2021-05-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1141,7 +1268,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-25 08:41:00" itemprop="dateModified" datetime="2021-05-25T08:41:00+00:00">2021-05-25</time>
+                <time title="修改时间：2021-05-29 03:11:19" itemprop="dateModified" datetime="2021-05-29T03:11:19+00:00">2021-05-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1253,7 +1380,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-25 08:41:00" itemprop="dateModified" datetime="2021-05-25T08:41:00+00:00">2021-05-25</time>
+                <time title="修改时间：2021-05-29 03:11:19" itemprop="dateModified" datetime="2021-05-29T03:11:19+00:00">2021-05-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1573,7 +1700,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-25 08:41:00" itemprop="dateModified" datetime="2021-05-25T08:41:00+00:00">2021-05-25</time>
+                <time title="修改时间：2021-05-29 03:11:19" itemprop="dateModified" datetime="2021-05-29T03:11:19+00:00">2021-05-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1782,94 +1909,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/20/Java/Java%E5%90%8E%E7%AB%AF%E7%94%9F%E6%88%90%E4%BA%8C%E7%BB%B4%E7%A0%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/20/Java/Java%E5%90%8E%E7%AB%AF%E7%94%9F%E6%88%90%E4%BA%8C%E7%BB%B4%E7%A0%81/" class="post-title-link" itemprop="url">Java后端生成二维码</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-11-20 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-20T00:00:00+00:00">2020-11-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-25 08:41:00" itemprop="dateModified" datetime="2021-05-25T08:41:00+00:00">2021-05-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>搬运博客:</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhang_z_ming/article/details/84027480">生成二维码(java后端)</a></p>
-<blockquote>
-<p>有一个需求：就是实现 放票 抢票 检票 的功能</p>
-</blockquote>
-<h3 id="生成二维码"><a href="#生成二维码" class="headerlink" title="生成二维码"></a>生成二维码</h3><blockquote>
-<p>先引入两个jar包</p>
-</blockquote>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.google.zxing&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;javase&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;3.3.1&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;!-- https:<span class="comment">//mvnrepository.com/artifact/com.google.zxing/core --&gt;</span></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.google.zxing&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;core&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;3.3.1&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>生成方法如下</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.payplatform.util;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.awt.image.BufferedImage;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> javax.imageio.ImageIO;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.BarcodeFormat;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.Binarizer;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.BinaryBitmap;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.EncodeHintType;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.LuminanceSource;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.MultiFormatReader;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.MultiFormatWriter;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.NotFoundException;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.Result;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.WriterException;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.client.j2se.BufferedImageLuminanceSource;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.common.BitMatrix;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.common.HybridBinarizer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QRCodeUtil</span> </span>&#123;</span><br><span class="line">	<span class="comment">//二维码颜色  </span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> BLACK = <span class="number">0xFF000000</span>;  </span><br><span class="line">    <span class="comment">//二维码颜色  </span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> WHITE = <span class="number">0xFFFFFFFF</span>;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		zxingCodeCreate(<span class="string">&quot;http://www.baidu.com&quot;</span>, <span class="number">300</span>, <span class="number">300</span>, <span class="string">&quot;D:/qrcode.jpg&quot;</span>, <span class="string">&quot;jpg&quot;</span>);</span><br><span class="line"><span class="comment">//    	zxingCodeAnalyze(&quot;D:/qrcode.jpg&quot;);</span></span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">/** </span></span><br><span class="line"><span class="comment">     * 生成二维码</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> text    二维码内容</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> width    二维码宽 </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> height    二维码高 </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> outPutPath    二维码生成保存路径 </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> imageType     二维码生成格式 </span></span><br><span class="line"><span class="comment">     */</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">zxingCodeCreate</span><span class="params">(String text, <span class="keyword">int</span> width, <span class="keyword">int</span> height, String outPutPath, String imageType)</span></span>&#123;  </span><br><span class="line">        Map&lt;EncodeHintType, String&gt; his = <span class="keyword">new</span> HashMap&lt;EncodeHintType, String&gt;();  </span><br><span class="line">        <span class="comment">//设置编码字符集  </span></span><br><span class="line">        his.put(EncodeHintType.CHARACTER_SET, <span class="string">&quot;utf-8&quot;</span>);  </span><br><span class="line">        <span class="keyword">try</span> &#123;  </span><br><span class="line">            <span class="comment">//1、生成二维码  </span></span><br><span class="line">            BitMatrix encode = <span class="keyword">new</span> MultiFormatWriter().encode(text, BarcodeFormat.QR_CODE, width, height, his);  </span><br><span class="line">              </span><br><span class="line">            <span class="comment">//2、获取二维码宽高  </span></span><br><span class="line">            <span class="keyword">int</span> codeWidth = encode.getWidth();  </span><br><span class="line">            <span class="keyword">int</span> codeHeight = encode.getHeight();  </span><br><span class="line">              </span><br><span class="line">            <span class="comment">//3、将二维码放入缓冲流  </span></span><br><span class="line">            BufferedImage image = <span class="keyword">new</span> BufferedImage(codeWidth, codeHeight, BufferedImage.TYPE_INT_RGB);  </span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; codeWidth; i++) &#123;  </span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; codeHeight; j++) &#123;  </span><br><span class="line">                    <span class="comment">//4、循环将二维码内容定入图片  </span></span><br><span class="line">                    image.setRGB(i, j, encode.get(i, j) ? BLACK : WHITE);  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125;  </span><br><span class="line">            File outPutImage = <span class="keyword">new</span> File(outPutPath);  </span><br><span class="line">            <span class="comment">//如果图片不存在创建图片  </span></span><br><span class="line">            <span class="keyword">if</span>(!outPutImage.exists())  </span><br><span class="line">                outPutImage.createNewFile();  </span><br><span class="line">            <span class="comment">//5、将二维码写入图片  </span></span><br><span class="line">            ImageIO.write(image, imageType, outPutImage);  </span><br><span class="line">        &#125; <span class="keyword">catch</span> (WriterException e) &#123;  </span><br><span class="line">            e.printStackTrace();  </span><br><span class="line">            System.out.println(<span class="string">&quot;二维码生成失败&quot;</span>);  </span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;  </span><br><span class="line">            e.printStackTrace();  </span><br><span class="line">            System.out.println(<span class="string">&quot;生成二维码图片失败&quot;</span>);  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">      </span><br><span class="line">    <span class="comment">/** </span></span><br><span class="line"><span class="comment">     * 二维码解析 </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> analyzePath    二维码路径 </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> IOException </span></span><br><span class="line"><span class="comment">     */</span>  </span><br><span class="line">    <span class="meta">@SuppressWarnings(&#123; &quot;rawtypes&quot;, &quot;unchecked&quot; &#125;)</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">zxingCodeAnalyze</span><span class="params">(String analyzePath)</span> <span class="keyword">throws</span> Exception</span>&#123;  </span><br><span class="line">        MultiFormatReader formatReader = <span class="keyword">new</span> MultiFormatReader();  </span><br><span class="line">        String resultStr = <span class="keyword">null</span>;  </span><br><span class="line">        <span class="keyword">try</span> &#123;  </span><br><span class="line">            File file = <span class="keyword">new</span> File(analyzePath);  </span><br><span class="line">            <span class="keyword">if</span> (!file.exists())  </span><br><span class="line">            &#123;  </span><br><span class="line">                <span class="keyword">return</span> <span class="string">&quot;二维码不存在&quot;</span>;  </span><br><span class="line">            &#125;  </span><br><span class="line">            BufferedImage image = ImageIO.read(file);  </span><br><span class="line">            LuminanceSource source = <span class="keyword">new</span> BufferedImageLuminanceSource(image);  </span><br><span class="line">            Binarizer binarizer = <span class="keyword">new</span> HybridBinarizer(source);    </span><br><span class="line">            BinaryBitmap binaryBitmap = <span class="keyword">new</span> BinaryBitmap(binarizer);  </span><br><span class="line">            Map hints = <span class="keyword">new</span> HashMap();  </span><br><span class="line">            hints.put(EncodeHintType.CHARACTER_SET, <span class="string">&quot;UTF-8&quot;</span>);  </span><br><span class="line">            Result result = formatReader.decode(binaryBitmap, hints); </span><br><span class="line">            resultStr = result.getText();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NotFoundException e) &#123;  </span><br><span class="line">            e.printStackTrace();  </span><br><span class="line">        &#125;    </span><br><span class="line">        System.out.println(resultStr);</span><br><span class="line">        <span class="keyword">return</span> resultStr;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1941,7 +1980,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">38</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

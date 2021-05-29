@@ -154,6 +154,88 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/19/spring/%E5%8F%91%E9%80%81%E5%BC%82%E6%AD%A5%E6%B6%88%E6%81%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/19/spring/%E5%8F%91%E9%80%81%E5%BC%82%E6%AD%A5%E6%B6%88%E6%81%AF/" class="post-title-link" itemprop="url">spring发送异步消息</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-19 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-19T00:00:00+00:00">2021-05-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-29 03:11:19" itemprop="dateModified" datetime="2021-05-29T03:11:19+00:00">2021-05-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="一、使用JMS发送消息"><a href="#一、使用JMS发送消息" class="headerlink" title="一、使用JMS发送消息"></a>一、使用JMS发送消息</h2><p>JMS是一个Java标准，定义了使用消息代理（message broker）的通用API。Spring通过基于模板的抽象为JMS的功能提供了支持，这个模板就是JmsTemplate。借助JmsTemplate，我们可以非常容易地在消息生产方发送队列和主题消息，在消费者那一方，也能够非常容易的接收消息。Spring还提供了消息驱动POJO的理念：这是一个简单的Java对象，能够以异步的方式响应队列或主题上到达的消息。</p>
+<h3 id="1、搭建JMS环境"><a href="#1、搭建JMS环境" class="headerlink" title="1、搭建JMS环境"></a>1、搭建JMS环境</h3><p>首先在项目中添加依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-artemis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>接下来在yml配置文件里添加：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">artemis:</span></span><br><span class="line">    <span class="comment">#代理的主机</span></span><br><span class="line">    <span class="attr">host:</span> <span class="number">47.107</span><span class="number">.73</span><span class="number">.216</span></span><br><span class="line">    <span class="comment">#代理的端口</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">61617</span></span><br><span class="line">    <span class="comment">#用来访问代理的用户（可选）</span></span><br><span class="line">    <span class="attr">user:</span> <span class="string">tacoweb</span></span><br><span class="line">    <span class="comment">#用来访问代理的密码（可选）</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br></pre></td></tr></table></figure>
+
+<p>这会让Spring创建到<code> Artemis</code>的代理连接，让<code> Attemis</code>代理监听<code> 47.107.73.216</code>的端口61617，他还为应用代理设置了代理交互的凭证（可选）。</p>
+<h3 id="2、使用JmsTemplate发送消息"><a href="#2、使用JmsTemplate发送消息" class="headerlink" title="2、使用JmsTemplate发送消息"></a>2、使用JmsTemplate发送消息</h3><p>将<code> JMS start</code>依赖添加到构建文件之后，Spring Boot会自动配置一个JmsTemplate，我们可以将它注入到其他bean中，使用它来发送和接收消息。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/15/wiki/create-vue-pro/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -185,7 +267,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-25 08:41:00" itemprop="dateModified" datetime="2021-05-25T08:41:00+00:00">2021-05-25</time>
+                <time title="修改时间：2021-05-29 03:11:19" itemprop="dateModified" datetime="2021-05-29T03:11:19+00:00">2021-05-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -268,7 +350,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-25 08:41:00" itemprop="dateModified" datetime="2021-05-25T08:41:00+00:00">2021-05-25</time>
+                <time title="修改时间：2021-05-29 03:11:19" itemprop="dateModified" datetime="2021-05-29T03:11:19+00:00">2021-05-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -356,7 +438,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-25 08:41:00" itemprop="dateModified" datetime="2021-05-25T08:41:00+00:00">2021-05-25</time>
+                <time title="修改时间：2021-05-29 03:11:19" itemprop="dateModified" datetime="2021-05-29T03:11:19+00:00">2021-05-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -721,7 +803,7 @@ private void readObjectNoData()
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-25 08:41:00" itemprop="dateModified" datetime="2021-05-25T08:41:00+00:00">2021-05-25</time>
+                <time title="修改时间：2021-05-29 03:11:19" itemprop="dateModified" datetime="2021-05-29T03:11:19+00:00">2021-05-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -808,7 +890,7 @@ private void readObjectNoData()
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-25 08:41:00" itemprop="dateModified" datetime="2021-05-25T08:41:00+00:00">2021-05-25</time>
+                <time title="修改时间：2021-05-29 03:11:19" itemprop="dateModified" datetime="2021-05-29T03:11:19+00:00">2021-05-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -913,7 +995,7 @@ private void readObjectNoData()
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-25 08:41:00" itemprop="dateModified" datetime="2021-05-25T08:41:00+00:00">2021-05-25</time>
+                <time title="修改时间：2021-05-29 03:11:19" itemprop="dateModified" datetime="2021-05-29T03:11:19+00:00">2021-05-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -998,7 +1080,7 @@ private void readObjectNoData()
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-25 08:41:00" itemprop="dateModified" datetime="2021-05-25T08:41:00+00:00">2021-05-25</time>
+                <time title="修改时间：2021-05-29 03:11:19" itemprop="dateModified" datetime="2021-05-29T03:11:19+00:00">2021-05-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1084,7 +1166,7 @@ private void readObjectNoData()
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-25 08:41:00" itemprop="dateModified" datetime="2021-05-25T08:41:00+00:00">2021-05-25</time>
+                <time title="修改时间：2021-05-29 03:11:19" itemprop="dateModified" datetime="2021-05-29T03:11:19+00:00">2021-05-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1166,7 +1248,7 @@ private void readObjectNoData()
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-25 08:41:00" itemprop="dateModified" datetime="2021-05-25T08:41:00+00:00">2021-05-25</time>
+                <time title="修改时间：2021-05-29 03:11:19" itemprop="dateModified" datetime="2021-05-29T03:11:19+00:00">2021-05-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1255,133 +1337,6 @@ private void readObjectNoData()
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/23/deep-learning/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/23/deep-learning/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/" class="post-title-link" itemprop="url">线性代数</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-04-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-23T00:00:00+00:00">2021-04-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-25 08:41:00" itemprop="dateModified" datetime="2021-05-25T08:41:00+00:00">2021-05-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>机器学习、深度学习的基础除了编程语言之外, 还有一个就是应用数学。一般包括<code>线性代数</code>、<code>概率论与信息论</code>、<code>概率图</code>、<code>数值计算与最优化</code>等。</p>
-<h2 id="一、标量、向量、矩阵和张量"><a href="#一、标量、向量、矩阵和张量" class="headerlink" title="一、标量、向量、矩阵和张量"></a>一、标量、向量、矩阵和张量</h2><h3 id="1、标量-scalar"><a href="#1、标量-scalar" class="headerlink" title="1、标量(scalar)"></a>1、标量(scalar)</h3><p>一个标量是一个单独的数, 一般用小写的变量名称表示, 如a、z等</p>
-<h3 id="2、向量-vector"><a href="#2、向量-vector" class="headerlink" title="2、向量(vector)"></a>2、向量(vector)</h3><p>向量就是一列数或者一个一维数组, 我们可以把向量看作空间里的点, 如下: a可以看作一个一维数组</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">a = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">8</span>])</span><br><span class="line">print(a.size)</span><br><span class="line">print(a[<span class="number">0</span>], a[<span class="number">-1</span>])</span><br></pre></td></tr></table></figure>
-
-<h3 id="3、矩阵-matrix"><a href="#3、矩阵-matrix" class="headerlink" title="3、矩阵(matrix)"></a>3、矩阵(matrix)</h3><p>就是一个二维数组, 具体操作见上一篇笔记</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">A = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</span><br><span class="line">print(A)</span><br><span class="line">print(A.size)       <span class="comment"># 显示矩阵元素总个数</span></span><br><span class="line">print(A.shape)      <span class="comment"># 显示矩阵的行数和列数</span></span><br><span class="line">print(A[<span class="number">0</span>, <span class="number">0</span>], A[<span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line">print(A[<span class="number">1</span>, :])      <span class="comment"># 打印矩阵第二行</span></span><br></pre></td></tr></table></figure>
-
-<p>矩阵还可以用嵌套向量生成, 和向量一样。</p>
-<h3 id="4、张量-tensor"><a href="#4、张量-tensor" class="headerlink" title="4、张量(tensor)"></a>4、张量(tensor)</h3><p>张量是向量和矩阵的推广, 标量–&gt;零阶张量, 矩阵–&gt;二阶张量, 以此类推。如一张图片就是一个三阶张量, 三个维度分别代表图片的高度、宽度和色彩数据。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># np.arange(num)---生成一个从0到num-1步数为1的一维数组</span></span><br><span class="line"><span class="comment"># ndarray.reshape((N,M,...))---将ndarray转化为N*M*...的多维数组</span></span><br><span class="line">B = np.arange(<span class="number">16</span>).reshape((<span class="number">2</span>, <span class="number">2</span>, <span class="number">4</span>))    <span class="comment"># 生成一个2*2*4的三阶矩阵</span></span><br><span class="line">print(B)</span><br><span class="line">print(B.size)       <span class="comment"># 显示B的元素总数</span></span><br><span class="line">print(B.shape)      <span class="comment"># 显示B的维度</span></span><br><span class="line">print(B[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>])</span><br></pre></td></tr></table></figure>
-
-<h3 id="5-转置-transpose"><a href="#5-转置-transpose" class="headerlink" title="5.转置(transpose)"></a>5.转置(transpose)</h3><p>转置就是以主对角线(左上到右下)为轴进行镜像操作, 通俗来说就是行列互换, 如下所示:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">C = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</span><br><span class="line">CT = C.T</span><br><span class="line">print(C)</span><br><span class="line">print(CT)</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="二、矩阵和向量运算"><a href="#二、矩阵和向量运算" class="headerlink" title="二、矩阵和向量运算"></a>二、矩阵和向量运算</h2><h2 id="三、特殊矩阵与向量"><a href="#三、特殊矩阵与向量" class="headerlink" title="三、特殊矩阵与向量"></a>三、特殊矩阵与向量</h2><h3 id="1、可逆矩阵"><a href="#1、可逆矩阵" class="headerlink" title="1、可逆矩阵"></a>1、可逆矩阵</h3><p>𝐴⁻¹𝐴=𝐼𝘯 (其中𝐼𝘯为单位矩阵)</p>
-<h3 id="2、对角矩阵"><a href="#2、对角矩阵" class="headerlink" title="2、对角矩阵"></a>2、对角矩阵</h3><p>只有对角线上的元素为非零元素, 其余全为零</p>
-<h3 id="3、对称矩阵"><a href="#3、对称矩阵" class="headerlink" title="3、对称矩阵"></a>3、对称矩阵</h3><p>𝐴=𝐴ᵀ</p>
-<h3 id="4、单位向量"><a href="#4、单位向量" class="headerlink" title="4、单位向量"></a>4、单位向量</h3><p>任意给定的向量𝘷, 若其𝙇²范数为, 即<code>||𝘷||₂=1</code>, 则𝘷为单位向量</p>
-<h3 id="5、正交向量"><a href="#5、正交向量" class="headerlink" title="5、正交向量"></a>5、正交向量</h3><p>𝐴𝐴ᵀ=𝐴ᵀ𝐴=𝐼 (单位向量)</p>
-<h2 id="四、线性相关性及向量空间"><a href="#四、线性相关性及向量空间" class="headerlink" title="四、线性相关性及向量空间"></a>四、线性相关性及向量空间</h2><p>由多个同维度的的列向量构成的集合称为向量组</p>
-<h3 id="1、线性组合"><a href="#1、线性组合" class="headerlink" title="1、线性组合"></a>1、线性组合</h3><h3 id="2、线性相关"><a href="#2、线性相关" class="headerlink" title="2、线性相关"></a>2、线性相关</h3><h3 id="3、向量组的秩"><a href="#3、向量组的秩" class="headerlink" title="3、向量组的秩"></a>3、向量组的秩</h3><h2 id="五、范数"><a href="#五、范数" class="headerlink" title="五、范数"></a>五、范数</h2><p>我们通过范数(Norm)来衡量向量的大小, 定义如下:</p>
-<p>![截屏2021-05-03 上午12.00.50](Untitled.assets/截屏2021-05-03 上午12.01.34.png)</p>
-<p>如何使用上代码:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> numpy.linalg <span class="keyword">as</span> LA   <span class="comment"># 导入Numpy的线性代数库</span></span><br><span class="line"></span><br><span class="line">x = np.arange(<span class="number">0</span>, <span class="number">1</span>, <span class="number">0.1</span>)    <span class="comment"># 生成步长为0.1的十个数</span></span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line">x1 = LA.norm(x, <span class="number">1</span>)          <span class="comment"># 计算1的范式</span></span><br><span class="line">x2 = LA.norm(x, <span class="number">2</span>)          <span class="comment"># 计算2的范式</span></span><br><span class="line">xa = LA.norm(x, np.inf)     <span class="comment"># 计算无穷范式</span></span><br><span class="line"></span><br><span class="line">print(x1)</span><br><span class="line">print(x2)</span><br><span class="line">print(xa)</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="六、特征值分解"><a href="#六、特征值分解" class="headerlink" title="六、特征值分解"></a>六、特征值分解</h2><p>特征分解是使用最广的矩阵分解之一，将矩阵分解为一组特征向量和特征值。下面来看看他们的概念，设A是一个n阶方阵，如果存在实数$\lambda$和n维的非零向量x，满足：</p>
-<p>$Ax=\lambda x$</p>
-<p>那么$\lambda$称为方阵A的特征值，向量x为矩阵A对应特征值$\lambda$的特征向量</p>
-<p>假设矩阵A有n个线性无关的特征向量{v¹, v², v³, ···, vⁿ}，他们对应的特征值为{$\lambda$₁, $\lambda$₂, $\lambda$₃, ···, $\lambda$𝓃}，把这n个线性无关的特征向量构成一个新方阵，每一列就是一个特征向量</p>
-<p>$V=[v¹, v², v³, ···, vⁿ]$</p>
-<p>用特征值构成一个n阶对角矩阵，对角线的元素都是特征值</p>
-<p>$diag(\lambda)=[v¹, v², v³, ···, vⁿ]ᵀ$</p>
-<p>那么，A的特征分解可表示为：</p>
-<p>$A=Vdiag(\lambda)V⁻¹$</p>
-<p>注意：并非所有的方阵都能进行特征值分解，一个方阵能进行特征值分解的充要条件是它含有n个线性无关的特征向量</p>
-<p>下面我们来展示下求方阵的特征向量与特征值：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="comment"># np.linalg.eigvals(a)---计算矩阵的特征值</span></span><br><span class="line"><span class="comment"># np.linalg.eig(a)---返回包含特征值和对应特征向量的元组</span></span><br><span class="line">a = np.array([[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]])  <span class="comment"># 示例矩阵</span></span><br><span class="line">A1 = np.linalg.eigvals(a)       <span class="comment"># 得到特征值</span></span><br><span class="line">A2, V1 = np.linalg.eig(a)       <span class="comment"># 其中A2也是特征值，B为特征向量</span></span><br><span class="line">print(A1)</span><br><span class="line">print(A2)</span><br><span class="line">print(V1)</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="七、奇异值分解"><a href="#七、奇异值分解" class="headerlink" title="七、奇异值分解"></a>七、奇异值分解</h2><h2 id="八、迹运算"><a href="#八、迹运算" class="headerlink" title="八、迹运算"></a>八、迹运算</h2><p>迹运算返回的是矩阵对角元素的的和：</p>
-<p>$Tr(A)=\sum_{i}A_{i,i}$</p>
-<p>迹运算在某些场合非常有用，若不使用求和符号，某些矩阵运算很难描述。例如，迹运算提供了一种描述矩阵Frobenius范数的方式：</p>
-<p>$||A||_{F}=\sqrt{Tr(AAᵀ)}$</p>
-<p>利用NumPy对矩阵求迹同样方便，上代码</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">C = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>]])</span><br><span class="line">TrC = np.trace(C)</span><br><span class="line"></span><br><span class="line">D = C - <span class="number">2</span></span><br><span class="line">TrCT = np.trace(C.T)</span><br><span class="line">TrCD = np.trace(np.dot(C, D))</span><br><span class="line">TrDC = np.trace(np.dot(D, C))</span><br><span class="line"></span><br><span class="line">print(TrC)</span><br><span class="line">print(TrCT)</span><br><span class="line">print(TrCD)</span><br><span class="line">print(TrDC)</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="九、用Python实现主成分分析"><a href="#九、用Python实现主成分分析" class="headerlink" title="九、用Python实现主成分分析"></a>九、用Python实现主成分分析</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1453,7 +1408,7 @@ private void readObjectNoData()
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">38</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
