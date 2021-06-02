@@ -185,7 +185,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-31 12:05:17" itemprop="dateModified" datetime="2021-05-31T12:05:17+00:00">2021-05-31</time>
+                <time title="修改时间：2021-06-02 09:26:56" itemprop="dateModified" datetime="2021-06-02T09:26:56+00:00">2021-06-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -258,7 +258,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-31 12:05:17" itemprop="dateModified" datetime="2021-05-31T12:05:17+00:00">2021-05-31</time>
+                <time title="修改时间：2021-06-02 09:26:56" itemprop="dateModified" datetime="2021-06-02T09:26:56+00:00">2021-06-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -323,10 +323,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-05-31 00:00:00 / 修改时间：12:05:17" itemprop="dateCreated datePublished" datetime="2021-05-31T00:00:00+00:00">2021-05-31</time>
+              <time title="创建时间：2021-05-31 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-31T00:00:00+00:00">2021-05-31</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-06-02 09:26:56" itemprop="dateModified" datetime="2021-06-02T09:26:56+00:00">2021-06-02</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -399,7 +405,16 @@
 
 <p>图像如下（我们发现两边缺了一点）：</p>
 <p><img src="logistic2-20210531175443248.png"></p>
-<h4 id="4、补数据"><a href="#4、补数据" class="headerlink" title="4、补数据"></a>4、补数据</h4><h3 id="三、描绘出完整的决策边界曲线"><a href="#三、描绘出完整的决策边界曲线" class="headerlink" title="三、描绘出完整的决策边界曲线"></a>三、描绘出完整的决策边界曲线</h3>
+<h4 id="4、补数据"><a href="#4、补数据" class="headerlink" title="4、补数据"></a>4、补数据</h4><p>将<code> x轴</code>数据补多一点</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">X1_range = [<span class="number">-0.9</span> + x/<span class="number">10000</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">19000</span>)]</span><br><span class="line">X1_range = np.array(X1_range)</span><br><span class="line">X2_new_boundary1 = []</span><br><span class="line">X2_new_boundary2 = []</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> X1_range:</span><br><span class="line">    X2_new_boundary1.append(f(x)[<span class="number">0</span>])</span><br><span class="line">    X2_new_boundary2.append(f(x)[<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5、描绘出完整的决策边界曲线"><a href="#5、描绘出完整的决策边界曲线" class="headerlink" title="5、描绘出完整的决策边界曲线"></a>5、描绘出完整的决策边界曲线</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fig6 = plt.figure()</span><br><span class="line">passed = plt.scatter(data.loc[:, <span class="string">&quot;test1&quot;</span>][~mask], data.loc[:, <span class="string">&quot;test2&quot;</span>][~mask])  </span><br><span class="line">failed = plt.scatter(data.loc[:, <span class="string">&quot;test1&quot;</span>][mask], data.loc[:, <span class="string">&quot;test2&quot;</span>][mask])</span><br><span class="line">plt.plot(X1_range, X2_new_boundary1)</span><br><span class="line">plt.plot(X1_range, X2_new_boundary2)</span><br><span class="line">plt.title(<span class="string">&quot;test1-test2&quot;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&quot;test1&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;test2&quot;</span>)</span><br><span class="line">plt.legend((passed, failed), (<span class="string">&#x27;passed&#x27;</span>, <span class="string">&#x27;failed&#x27;</span>))</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>图如下：</p>
+<p><img src="logistic4.png"></p>
+
       
     </div>
 
@@ -449,7 +464,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-31 12:05:17" itemprop="dateModified" datetime="2021-05-31T12:05:17+00:00">2021-05-31</time>
+                <time title="修改时间：2021-06-02 09:26:56" itemprop="dateModified" datetime="2021-06-02T09:26:56+00:00">2021-06-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -522,7 +537,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-31 12:05:17" itemprop="dateModified" datetime="2021-05-31T12:05:17+00:00">2021-05-31</time>
+                <time title="修改时间：2021-06-02 09:26:56" itemprop="dateModified" datetime="2021-06-02T09:26:56+00:00">2021-06-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -595,7 +610,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-31 12:05:17" itemprop="dateModified" datetime="2021-05-31T12:05:17+00:00">2021-05-31</time>
+                <time title="修改时间：2021-06-02 09:26:56" itemprop="dateModified" datetime="2021-06-02T09:26:56+00:00">2021-06-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -680,7 +695,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-31 12:05:17" itemprop="dateModified" datetime="2021-05-31T12:05:17+00:00">2021-05-31</time>
+                <time title="修改时间：2021-06-02 09:26:56" itemprop="dateModified" datetime="2021-06-02T09:26:56+00:00">2021-06-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -753,7 +768,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-31 12:05:17" itemprop="dateModified" datetime="2021-05-31T12:05:17+00:00">2021-05-31</time>
+                <time title="修改时间：2021-06-02 09:26:56" itemprop="dateModified" datetime="2021-06-02T09:26:56+00:00">2021-06-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -827,7 +842,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-31 12:05:17" itemprop="dateModified" datetime="2021-05-31T12:05:17+00:00">2021-05-31</time>
+                <time title="修改时间：2021-06-02 09:26:56" itemprop="dateModified" datetime="2021-06-02T09:26:56+00:00">2021-06-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -946,7 +961,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-05-31 12:05:17" itemprop="dateModified" datetime="2021-05-31T12:05:17+00:00">2021-05-31</time>
+                <time title="修改时间：2021-06-02 09:26:56" itemprop="dateModified" datetime="2021-06-02T09:26:56+00:00">2021-06-02</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
