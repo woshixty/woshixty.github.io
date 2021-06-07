@@ -610,13 +610,245 @@ public class DepositThread extends Thread {
 
 #### 2、使用Condition控制线程通信
 
+```java
+public class Account {
+  //显示定义Lock对象
+  private final Lock lock = new ReentrantLock();
+  //获得指定Lock对象对应的Condition
+  private final Condition cond = lock.newCondition();
+  //封装账户编号、账户余额两个成员变量
+  private String accountNo;
+  private double balance;
+  //标识账户中是否已有存款的旗标
+  private boolean flag = false;
+  //构造器
+  public Account() {
+  }
+  public Account(String accountNo, double balance) {
+    this.accountNo = accountNo;
+    this.balance = balance;
+  }
+  //getter 和 setter方法
+  public String getAccountNo() {
+    return accountNo;
+  }
+  public void setAccountNo(String accountNo) {
+    this.accountNo = accountNo;
+  }
+  public double getBalance() {
+    return balance;
+  }
+  //取钱操作
+  public void draw(double drawAmount) {
+    //加锁
+    lock.lock();
+    try {
+      //如果flag为假，表明账户中还没有人存钱进去，取钱方法阻塞
+      if(!flag) {
+        cond.await();
+      } else {
+        //执行取钱操作
+        System.out.println(Thread.currentThread().getName() + "取钱：" + drawAmount);
+        balance -= drawAmount;
+        System.out.println("账户余额为：" + balance);
+        //将标识账户是否有存款的标志设为false
+        flag = false;
+        //唤醒其他线程
+        cond.signalAll();
+      }
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    } finally {
+      lock.unlock();
+    }
+  }
+  //存钱操作
+  public void deposit(double depositAmount) {
+    //加锁
+    lock.lock();
+    try {
+      //如果flag为真，表明账户中已经有人存钱进去，存钱方法阻塞
+      if(flag) {
+        cond.await();
+      } else {
+        //执行存钱操作
+        System.out.println(Thread.currentThread().getName() + "存钱：" + depositAmount);
+        balance += depositAmount;
+        System.out.println("账户余额为：" + balance);
+        //将标识账户是否有存款的标志设为true
+        flag = true;
+        //唤醒其他线程
+        cond.signalAll();
+      }
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    } finally {
+      lock.unlock();
+    }
+  }
+  //hashCode()和equals()方法
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Account account = (Account) o;
+    return Double.compare(account.balance, balance) == 0 && flag == account.flag && Objects.equals(lock, account.lock) && Objects.equals(cond, account.cond) && Objects.equals(accountNo, account.accountNo);
+  }
+  @Override
+  public int hashCode() {
+    return Objects.hash(lock, cond, accountNo, balance, flag);
+  }
+}
+```
+
 
 
 #### 3、使用阻塞队列（Blocking Queue）控制线程通信
 
+阻塞队列简单使用：
+
+```java
+public class BlockingQueueTest {
+    public static void main(String[] args) throws InterruptedException {
+        //定义一个长度为2的阻塞队列
+        BlockingQueue<String> bq = new ArrayBlockingQueue<>(2);
+        //也可以用bq.add("Java");和bq.offer("Java");
+        bq.put("Java");
+        bq.put("Java");
+        //此时会形成阻塞
+        bq.put("Java");
+    }
+}
+```
+
+使用` BlockingQueue（阻塞队列）`实现线程通信
+
+```java
+//生产者，往队列里放元素
+class Producer extends Thread {
+    private BlockingQueue<String> bq;
+    public Producer(BlockingQueue<String> bq) {
+        this.bq = bq;
+    }
+    @Override
+    public void run() {
+        var strArr = new String[] {"Java","Structs","Spring"};
+        for (var i = 0; i < 9999999999L; i++) {
+            System.out.println(getName() + "生产者准备生产集合元素");
+            try {
+                Thread.sleep(200);
+                //尝试放入元素，如果队列已满，则线程被阻塞
+                bq.put(strArr[i % 3]);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println(getName() + "生产完成：" + bq);
+        }
+    }
+}
+
+//消费者，往队列里取元素
+class Consumer extends Thread {
+    private BlockingQueue<String> bq;
+    public Consumer(BlockingQueue<String> bq) {
+        this.bq = bq;
+    }
+    @Override
+    public void run() {
+        while (true) {
+            System.out.println(getName() + "消费者准备消费集合元素！");
+            try {
+                Thread.sleep(200);
+                //尝试取出元素，如果队列已空，则线程被阻塞
+                bq.take();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println(getName() + "消费完成：" + bq);
+        }
+    }
+}
+
+//主类
+public class BlockingQueueTest2 {
+    public static void main(String[] args) {
+        //创建一个容量为1的BlockingQueue
+        BlockingQueue<String> bq = new ArrayBlockingQueue<>(1);
+        //启动三个生产者线程
+        new Producer(bq).start();
+        new Producer(bq).start();
+        new Producer(bq).start();
+        //启动一个消费者线程
+        new Consumer(bq).start();
+    }
+}
+```
+
 
 
 ### 七、线程组和未处理的异常
+
+```java
+//线程类
+class MyThread extends Thread {
+    //提供指定线程名的构造器
+    public MyThread(String name) {
+        super(name);
+    }
+    //提供指定线程名、线程组的构造器
+    public MyThread(ThreadGroup threadGroup, String name) {
+        super(threadGroup, name);
+    }
+    @Override
+    public void run() {
+        for (int i = 0; i < 20; i++) {
+            System.out.println(getName() + " 线程i的变量" + i);
+        }
+    }
+}
+//线程测试主类
+public class ThreadGroupTest {
+    public static void main(String[] args) {
+        //获取主线程所在的线程组，这是所有线程默认的线程组
+        ThreadGroup mainGroup = Thread.currentThread().getThreadGroup();
+        System.out.println("主线程组的名称：" + mainGroup.getName());
+        System.out.println("主线程组是否是后台线程组：" + mainGroup.isDaemon());
+        new MyThread("主线程组的线程").start();
+      	//创建了一个新的线程组，并将该线程组设置为后台线程组
+        var tg = new ThreadGroup("新线程组");
+        tg.setDaemon(true);
+        System.out.println("tg线程组是否是后台线程组：" + tg.isDaemon());
+        var tt = new MyThread(tg, "tg组的线程甲");
+        tt.start();
+        new MyThread(tg, "tg组的线程乙").start();
+    }
+}
+```
+
+
+
+下面程序为主线程设置了异常处理器，当主线程运行抛出未处理异常时，该异常处理器将会起作用：
+
+```java
+//定义自己的异常处理器
+class MyExHandler implements Thread.UncaughtExceptionHandler {
+    //实现uncaughtException()方法，该方法将处理线程的未处理异常
+    @Override
+    public void uncaughtException(Thread t, Throwable e) {
+        System.out.println(t + "线程出现了异常：" + e);
+    }
+}
+public class ExHandler {
+    public static void main(String[] args) {
+        //设置主线程的异常处理器
+        Thread.currentThread().setUncaughtExceptionHandler(new MyExHandler());
+        var a = 5 / 0;
+        System.out.println("程序正常结束！");
+    }
+}
+```
+
+
 
 
 
