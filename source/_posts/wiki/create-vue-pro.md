@@ -13,7 +13,7 @@ vue create web
 
 ### 创建项目的选择如下：
 
-![截屏2021-05-15 下午8.00.41](create-vue-pro.assets/截屏2021-05-15 下午8.00.41.png)
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/create-vue1.png"/>
 
 ### 启动项目
 
@@ -27,7 +27,7 @@ npm run serve
 
 ### 使用窗口按钮来启动项目
 
-![截屏2021-05-15 下午8.05.27](create-vue-pro.assets/截屏2021-05-15 下午8.05.27.png)
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/create-vue2.png"/>
 
 
 

@@ -131,11 +131,11 @@ Java的输入流主要由` InputStream `和` Reader `作为基类，而输出流
 
 - 节点流：向一个特定的IO设备（如磁盘、网络）读写数据的流，也称谓低级流（Low Level Stream）
 
-![截屏2021-05-12 下午4.15.38](Java_IO学习.assets/截屏2021-05-12 下午4.15.38.png)
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/java-io1.png">
 
 - 处理流：对一个已存在的流进行连接或封装，通过封装后的流来实现数据读写功能，也称为高级流
 
-![截屏2021-05-12 下午4.16.27](Java_IO学习.assets/截屏2021-05-12 下午4.16.27.png)
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/java-io2.png">
 
 > 实际上，Java使用处理流来包装节点流是一种典型的装饰器设计模式
 
@@ -150,15 +150,15 @@ Java的IO流共涉及到40多个类，彼此之间有着非常紧密的联系。
 
 对于InputStream和Reader而言，可以将输入设备看成一个“水管”，水管里的“水滴”依次排列，如下图：
 
-![截屏2021-05-12 下午4.24.32](Java_IO学习.assets/截屏2021-05-12 下午4.24.32.png)
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/java-io3.png">
 
 输出流与输入流类似，它们将输出设备抽象成一个“水管”，只是这个水管里没有任何“水滴”，如下图：
 
-![截屏2021-05-12 下午4.41.58](Java_IO学习.assets/截屏2021-05-12 下午4.41.58.png)
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/java-io4.png">
 
 还有一个就是` 处理流`，能够嫁接在任何已存在的流的基础之上，这就允许使用相同的Java代码来访问不同的输入输出设备的数据流，如下所示：
 
-![截屏2021-05-12 下午4.45.14](Java_IO学习.assets/截屏2021-05-12 下午4.45.14.png)
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/java-io5.png">
 
 
 
@@ -198,7 +198,7 @@ InputStream和Reader是所有输入流的抽象基类，是所有其他输入流
 
 这两个基类的基本功能是一样的，从输入流中取数据：
 
-![截屏2021-05-13 下午4.17.35](Java_IO学习.assets/截屏2021-05-13 下午4.17.35.png)
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/java-io6.png">
 
 InputStream和Reader都是抽象类，本身不能创建实例，但它们有一种用于读取文件的输入流：FIleInputStream和FileReader，它们都是节点流，下面代码展示了使用FileInputStream读取自身的效果：
 
@@ -313,7 +313,7 @@ public class PrintStreamTest {
 
 下面将其按功能分类：
 
-![截屏2021-05-13 下午5.36.57](Java_IO学习.assets/截屏2021-05-13 下午5.36.57.png)
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/java-io7.png">
 
 通常来说，字节流的功能比字符流更加强大，因为计算机里的数据都是二进制存放，字节流可以处理所有的二进制文件---如果用字节流来处理文本文件，将字节转化为字符增加了编程难度。故：文本内容-->字符流；二进制内容-->字节流。
 
@@ -378,7 +378,7 @@ public class KeyinTest {
 
 这俩推回输入流都带有一个推回缓冲区，当调用` unread() `方法时，系统会将指定的数组内容推回到该缓冲区，当调用` read() `方法时，总是会先从该推回缓冲区读取，只有完全读取了推回缓冲区的内容但还没有装满` read() `所需的数组大小时才会从原输入流中读取：
 
-![截屏2021-05-15 下午4.32.22](Java_IO学习.assets/截屏2021-05-15 下午4.32.22.png)
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/java-io8.png">
 
 如下示例代码（将指定内容推回缓冲区，再调用`read()`方法读取缓冲区的部分内容）：
 
@@ -638,7 +638,7 @@ Teacher t2 = new Teacher("菩提祖师", per);
 
 上面三个对象在内存的情况如下：
 
-![java-io-15-13](java-io-15.13.png)
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/java-io9.png">
 
 这里产生了一个问题：
 
@@ -667,7 +667,7 @@ oos.writeObject(per);
 
 序列化后的磁盘存储文件如下图所示：
 
-![javaio-15-14](java-io-15.14.png)
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/java-io10.png">
 
 由于程序序列化机制使然：如果程序多次序列化同一个对象，只有第一次序列化会将对象转化为字节数组输出，后面再进行序列化，只是输出前面序列化的编号。
 
