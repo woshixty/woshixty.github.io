@@ -154,6 +154,234 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/10/Linux/Centos%E9%98%B2%E7%81%AB%E5%A2%99%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/10/Linux/Centos%E9%98%B2%E7%81%AB%E5%A2%99%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">Centos的一些命令和windows的一些命令</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-10 15:22:59" itemprop="dateCreated datePublished" datetime="2020-11-10T15:22:59+00:00">2020-11-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-06-08 11:36:18" itemprop="dateModified" datetime="2021-06-08T11:36:18+00:00">2021-06-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>参考博客<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32923745/article/details/78048822">Centos 防火墙命令</a></p>
+<p>(由于自己在使用云服务器的命令的时候常常要百度，故做一点总结)</p>
+<h3 id="centos7防火墙命令"><a href="#centos7防火墙命令" class="headerlink" title="centos7防火墙命令"></a>centos7防火墙命令</h3><h4 id="查看开放端口"><a href="#查看开放端口" class="headerlink" title="查看开放端口"></a>查看开放端口</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall<span class="literal">-cmd</span> -<span class="literal">-list</span><span class="literal">-ports</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="开启端口"><a href="#开启端口" class="headerlink" title="开启端口"></a>开启端口</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall<span class="literal">-cmd</span> -<span class="literal">-zone</span>=public -<span class="literal">-add</span><span class="literal">-port</span>=<span class="number">80</span>/tcp -<span class="literal">-permanent</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="查看端口占用情况"><a href="#查看端口占用情况" class="headerlink" title="查看端口占用情况"></a>查看端口占用情况</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsof -i tcp:8090</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>会显示以下信息</p>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">COMMAND   PID USER   FD   <span class="built_in">TYPE</span>    DEVICE SIZE/OFF NODE NAME</span><br><span class="line">java    <span class="number">27581</span> root   <span class="number">19</span>u  IPv6 <span class="number">136588143</span>      <span class="number">0</span>t0  TCP *:<span class="number">8090</span> (LISTEN)</span><br><span class="line"></span><br><span class="line"><span class="comment"># lsof输出各列信息的意义如下：</span></span><br><span class="line"><span class="comment"># COMMAND    进程的名称</span></span><br><span class="line"><span class="comment"># PID        进程的标识符</span></span><br><span class="line"><span class="comment"># USER       进程的所有者</span></span><br><span class="line"><span class="comment"># FD         文件描述符，应用程序通过文件描述符识别该文件，如cwd，txt</span></span><br><span class="line"><span class="comment"># TYPE       文件类型</span></span><br><span class="line"><span class="comment"># DEVICE     指定磁盘的名称</span></span><br><span class="line"><span class="comment"># SIZE/OFF   文件大小</span></span><br><span class="line"><span class="comment"># NODE       文件在磁盘上的标识</span></span><br><span class="line"><span class="comment"># NAME       打开文件的确切名称</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="开启范围端口"><a href="#开启范围端口" class="headerlink" title="开启范围端口"></a>开启范围端口</h4><blockquote>
+<p>开启8080 - 9090范围的端口</p>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall<span class="literal">-cmd</span>  -<span class="literal">-zone</span>=public  -<span class="literal">-add</span><span class="literal">-port</span>=<span class="number">8080</span><span class="literal">-9090</span>/tcp -<span class="literal">-permanent</span></span><br></pre></td></tr></table></figure>
+
+<p>命令含义：</p>
+<ul>
+<li>–zone                                #作用域</li>
+<li>–add-port=80/tcp           #添加端口，格式为：端口/通讯协议</li>
+<li>–permanent                     #永久生效，没有此参数重启后失效</li>
+</ul>
+<h4 id="防火墙命令"><a href="#防火墙命令" class="headerlink" title="防火墙命令"></a>防火墙命令</h4><blockquote>
+<p>重启firewall</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>查看防火墙状态</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd  --state</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>开启firewall</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start firewalld.service</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>停止firewall</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld.service</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>禁止firewall开机启动</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">disable</span> firewalld.service</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="centos7进程管理"><a href="#centos7进程管理" class="headerlink" title="centos7进程管理"></a>centos7进程管理</h3><p>linux上进程有5种状态:</p>
+<ol>
+<li>运行(正在运行或在运行队列中等待)</li>
+<li>中断(休眠中, 受阻, 在等待某个条件的形成或接受到信号)</li>
+<li>不可中断(收到信号不唤醒和不可运行, 进程必须等待直到有中断发生)</li>
+<li>僵死(进程已终止, 但进程描述符存在, 直到父进程调用wait4()系统调用后释放)</li>
+<li>停止(进程收到SIGSTOP, SIGSTP, SIGTIN, SIGTOU信号后停止运行运行)</li>
+</ol>
+<h4 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h4><ul>
+<li>ps命令查找与进程相关的PID号</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps 9827</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>显示如下信息</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> PID TTY      STAT   TIME COMMAND</span><br><span class="line">9827 pts/0    Sl     0:14 java -jar competitionrow-0.0.1-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="centos7查看历史命令"><a href="#centos7查看历史命令" class="headerlink" title="centos7查看历史命令"></a>centos7查看历史命令</h3><ul>
+<li>查看历史命令</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">history</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>搜索历史命令</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">history | grep &#x27;tmux&#x27;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 模糊搜索tmux</span></span><br></pre></td></tr></table></figure>
+
+<p>出现以下结果：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">171  tmux new -s volunteer</span><br><span class="line">186  tmux ls</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<ul>
+<li>显示现行终端机下的所有程序，包括其他用户的程序</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps a</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>显示所有进程</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  PID TTY      STAT   TIME COMMAND</span><br><span class="line"> 1321 tty1     Ss+    0:00 /sbin/agetty --noclear tty1 linux</span><br><span class="line"> 1322 ttyS0    Ss+    0:00 /sbin/agetty --keep-baud 115200 38400 9600 ttyS0 vt220</span><br><span class="line"> 9827 pts/0    Sl     0:14 java -jar competitionrow-0.0.1-SNAPSHOT.jar</span><br><span class="line">17061 pts/0    R+     0:00 ps a</span><br><span class="line">22278 pts/0    Ss     0:00 -bash</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>显示所有程序</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -A</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>与上一个命令类似</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PID TTY          TIME CMD</span><br><span class="line">  1 ?        00:12:32 systemd</span><br><span class="line">  2 ?        00:00:02 kthreadd</span><br><span class="line">  3 ?        00:01:53 ksoftirqd/0</span><br><span class="line">  5 ?        00:00:00 kworker/0:0H</span><br><span class="line">  7 ?        00:00:00 migration/0</span><br><span class="line">  ......  </span><br><span class="line">  <span class="comment">#此处省略100行</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>查找特定的进程（如查找java进程）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep java</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>最常用的方法是ps aux,然后再通过管道使用grep命令过滤查找特定的进程,然后再对特定的进程进行操作</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root      9827  0.5  8.8 2546924 166932 pts/0  Sl   14:03   0:14 java -jar competitionrow-0.0.1-SNAPSHOT.jar</span><br><span class="line">root     18130  0.0  0.0 112708   976 pts/0    R+   14:48   0:00 grep --color=auto java</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="杀死进程"><a href="#杀死进程" class="headerlink" title="杀死进程"></a>杀死进程</h4><ul>
+<li>通过进程id来杀</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> -9 pid</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>通过进程name来杀</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">killall -9 name</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="windows端口进程管理"><a href="#windows端口进程管理" class="headerlink" title="windows端口进程管理"></a>windows端口进程管理</h3><h4 id="查找端口"><a href="#查找端口" class="headerlink" title="查找端口"></a>查找端口</h4><blockquote>
+<p>查找所有端口</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>查找某个端口</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -aon|findstr <span class="string">&quot;4000&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="杀死使用某个端口的进程"><a href="#杀死使用某个端口的进程" class="headerlink" title="杀死使用某个端口的进程"></a>杀死使用某个端口的进程</h4><blockquote>
+<p>通过pid号</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">taskkill /f /pid  21972</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>成功杀死会有以下提示</p>
+</blockquote>
+<p>成功: 已终止 PID 为 21972 的进程</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/09/tools/nginx%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E5%85%A5%E9%97%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -185,7 +413,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-07 02:27:46" itemprop="dateModified" datetime="2021-06-07T02:27:46+00:00">2021-06-07</time>
+                <time title="修改时间：2021-06-08 11:36:18" itemprop="dateModified" datetime="2021-06-08T11:36:18+00:00">2021-06-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -438,7 +666,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-07 02:27:46" itemprop="dateModified" datetime="2021-06-07T02:27:46+00:00">2021-06-07</time>
+                <time title="修改时间：2021-06-08 11:36:18" itemprop="dateModified" datetime="2021-06-08T11:36:18+00:00">2021-06-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -485,7 +713,7 @@
 
 
 <h4 id="src-refspec-master-does-not-match-any解决办法"><a href="#src-refspec-master-does-not-match-any解决办法" class="headerlink" title="src refspec master does not match any解决办法"></a>src refspec master does not match any解决办法</h4><blockquote>
-<p>情况概述：我在GitHub新建一个仓库之后，在本地新建了一个文件夹，git init 并且git remote add origin <a href="mailto:&#x67;&#x69;&#x74;&#x40;&#x67;&#x69;&#x74;&#x68;&#x75;&#98;&#x2e;&#x63;&#111;&#x6d;">&#x67;&#x69;&#x74;&#x40;&#x67;&#x69;&#x74;&#x68;&#x75;&#98;&#x2e;&#x63;&#111;&#x6d;</a>:woshixty/xty.github.io.git 之后，执行 git push -u origin main，发现不能提交</p>
+<p>情况概述：我在GitHub新建一个仓库之后，在本地新建了一个文件夹，git init 并且git remote add origin <a href="mailto:&#103;&#105;&#x74;&#x40;&#x67;&#105;&#116;&#104;&#x75;&#98;&#x2e;&#99;&#x6f;&#x6d;">&#103;&#105;&#x74;&#x40;&#x67;&#105;&#116;&#104;&#x75;&#98;&#x2e;&#99;&#x6f;&#x6d;</a>:woshixty/xty.github.io.git 之后，执行 git push -u origin main，发现不能提交</p>
 </blockquote>
 <p>错误原因：目录中没有文件，空目录是不能提交上去的，新建一个README文件，再上传</p>
 <p>执行以下命令，远程分支与本地分支建立联系，并提交到远程分支</p>
@@ -541,7 +769,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-06-07 02:27:46" itemprop="dateModified" datetime="2021-06-07T02:27:46+00:00">2021-06-07</time>
+                <time title="修改时间：2021-06-08 11:36:18" itemprop="dateModified" datetime="2021-06-08T11:36:18+00:00">2021-06-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -663,7 +891,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">44</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
