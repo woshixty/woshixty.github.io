@@ -122,6 +122,24 @@ ps 9827
 
 
 
+#### 杀死进程
+
+- 通过进程id来杀
+
+```bash
+kill -9 pid
+```
+
+- 通过进程name来杀
+
+```bash
+killall -9 name
+```
+
+
+
+
+
 ### centos7查看历史命令
 
 - 查看历史命令
@@ -203,20 +221,6 @@ root     18130  0.0  0.0 112708   976 pts/0    R+   14:48   0:00 grep --color=au
 ```
 
 
-
-#### 杀死进程
-
-- 通过进程id来杀
-
-```bash
-kill -9 pid
-```
-
-- 通过进程name来杀
-
-```bash
-killall -9 name
-```
 
 
 

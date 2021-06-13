@@ -291,22 +291,22 @@ public class UserProxy {
     public void before() {
         System.out.println("before()......");
     }
-
+		//后置通知
     @After(value = "execution(* com.atguigu.spring5.aopanno.User.add())")
     public void after() {
         System.out.println("after()......");
     }
-
+		//最终通知
     @AfterReturning(value = "execution(* com.atguigu.spring5.aopanno.User.add())")
     public void afterReturning() {
         System.out.println("afterReturning()......");
     }
-
+		//异常通知
     @AfterThrowing(value = "execution(* com.atguigu.spring5.aopanno.User.add())")
     public void afterThrowing() {
         System.out.println("afterThrowing()......");
     }
-
+		//环绕通知
     @Around(value = "execution(* com.atguigu.spring5.aopanno.User.add())")
     public void around(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         System.out.println("环绕之前......");
@@ -325,9 +325,57 @@ public class UserProxy {
 
 - ` @AfterThrowing`是异常通知，只有在发生异常之后才会执行
 
+#### 5、相同切入点的抽取
+
+如上述代码的` "execution(* com.atguigu.spring5.aopanno.User.add())"`部分，具体如何做请看代码：
+
+```java
+    //相同切入点抽取
+    @Pointcut(value = "execution(* com.atguigu.spring5.aopanno.User.add())")
+    public void pointdemo() { }
+
+    //前置通知
+    //@Before表示作为前置通知（切入点表达式指明哪个类中的哪个方法）
+    @Before(value = "pointdemo()")
+    public void before() {
+        System.out.println("before()......");
+    }
+```
+
+#### 6、增强类的优先级
+
+当有多个增强类对同一个方法进行增强时，我们可以设置增强类的优先级。在增强类上面添加注解` @Order(数字类型值)`，数字类型值越小代表优先级越高，如下` PersonProxy`的优先级为1：
+
+```java
+@Component
+@Aspect
+@Order(1)
+public class PersonProxy {
+  ······
+}
+```
+
+#### 7、完全注解开发
+
+创建配置类，不再需要配置文件，只需创建如下配置类：
+
+```java
+@Configuration
+@ComponentScan(basePackages = {"com.atguigu"})
+@EnableAspectJAutoProxy(proxyTargetClass = true)
+public class ConfigAop {
+}
+```
+
+
+
 
 
 ### 六、AOP操作（AspectJ配置文件）
 
 未完待续......
+
+
+
+
 
