@@ -17,7 +17,7 @@ RabbitMQ是流行的开源消息队列系统，是AMQP（Advanced Message Queuin
 
 > 由于RabbitMQ是基于Erlang（面向高并发的语言）语言开发，所以在安装RabbitMQ之前，需要先安装Erlang
 
-#### 安装Erlang和socat(失败安装)
+#### 1、安装Erlang和socat(失败安装)
 
 > 我们安装最新版本的Erlang到服务器中。 Erlang在默认的YUM存储库中不可用，因此需要安装EPEL存储库。 
 
@@ -48,7 +48,7 @@ Complete!
 Erlang (SMP,ASYNC_THREADS,HIPE) (BEAM) emulator version 5.10.4
 ```
 
-#### 安装RabbitMQ
+#### 2、安装RabbitMQ
 
 > 可以去官网下载rpm包 [点此前往下载](https://www.rabbitmq.com/download.html) 3.8版安装之后没有config文件 [点此下载旧版本](https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.7.28/rabbitmq-server-3.7.28-1.el7.noarch.rpm)
 
@@ -75,7 +75,7 @@ Error: Package: rabbitmq-server-3.8.9-1.el7.noarch (/rabbitmq-server-3.8.9-1.el7
 Erlang (SMP,ASYNC_THREADS,HIPE) (BEAM) emulator version 5.10.4
 ```
 
-#### 重新安装Erlang和socat(又一次失败了)
+#### 3、重新安装Erlang和socat(又一次失败了)
 
 > 接下来我们使用脚本更新yum存储库，以下命令均不会有提示消息
 
@@ -183,7 +183,7 @@ make && make install
 Erlang (SMP,ASYNC_THREADS,HIPE) (BEAM) emulator version 5.10.4
 ```
 
-#### 彻底卸载erlang
+#### 4、彻底卸载erlang
 
 > 首先直接删除安装文件
 
@@ -199,7 +199,7 @@ rm -rf /opt/erlang_23.1
 [root@iZ8vbguck7zxavr5aco6knZ RabbitMQ]# yum remove erlang.x86_64
 ```
 
-#### 最后试试官方的方法(成功安装最新erlang)
+#### 5、最后试试官方的方法(成功安装最新erlang)
 
 > [官方](https://github.com/rabbitmq/erlang-rpm)的方法，先创建一个文件
 
@@ -238,15 +238,16 @@ sslcacert=/etc/pki/tls/certs/ca-bundle.crt
 metadata_expire=300
 ```
 
-> 执行安装命令
+> 执行安装命令，安装之前先update一下yum
 
 ```bash
-yum install erlang
+yum update -y
+yum install -y erlang
 ```
 
 
 
-### 安装RabbitMQ
+### 6、安装RabbitMQ
 
 > rpm安装即可
 
@@ -312,17 +313,11 @@ rabbitmq-plugins enable|list|disable
 
 > 在浏览器访问 http://ip:15672/ ，会出现以下界面，记得要开放15672端口，或者关闭防火墙
 
-
-
-![avatar](./pics/RabbitMQ1.png)
-
-
-
-> 通过此用户进入系统  username:  guest    password:  guest，显示如下界面
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/rabbitMQ.png">
 
 
 
-![avatar](./pics/RabbitMQ2.png)
+> 通过此用户进入系统  username:  guest    password:  guest
 
 
 
