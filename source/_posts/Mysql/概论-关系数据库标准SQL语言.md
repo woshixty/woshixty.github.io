@@ -80,3 +80,72 @@ SQL的数据定义包括` 模式定义`、` 表定义`、` 视图定义`、` 索
 
 <img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E8%AE%BA%E5%A4%8D%E4%B9%A0/table-3-3.png">
 
+SQL不提供修改模式定义和修改视图定义的操作，修改的话只能删除重建。
+
+**一个关系数据库管理系统的实例（instance）中可以建立多个数据库，一个数据库可以建立多个模式，一个模式通常可以包括多个表、视图、索引等数据库对象。**
+
+
+
+#### 1、模式的定义与删除
+
+##### （1）定义模式
+
+在SQL中，创建模式的定义语句如下：
+
+> CREATE SCHEMA <模式名> AUTHORIZATION <用户名>;
+>
+> 如果没有指定<模式名>，则<模式名>隐含为<用户名>
+
+要创建模式，调用该命令的用户必须具有数据库管理员的权限，或者获得了数据库管理员授予的` CREATE SCHEMA`的权限
+
+**例题**
+
+- 为用户WANG定义一个学生-课程模式S-T
+
+  ```mysql
+  CREATE SCHEMA "S-T" AUTHORIZATION WANG;
+  ```
+
+- 为用户WANG创建一个模式TEST，并在其中定义一个表TAB1
+
+  ```mysql
+  CREATE SCHEMA TEST AUTHORIZATION ZHANG
+  CREATE TABLE TAB1(
+  	COL1 SMALLINT,
+    COL2 INT,
+    COL3 CHAR(20),
+    COL4 NUMBERIC(10, 3),
+    COL5 DECIMAL(5, 2)
+  );
+  ```
+
+
+
+##### （2）删除模式
+
+删除模式的语句定义如下：
+
+> DROP TABLE <模式名> <CASCADE | RESTRICT>
+>
+> 其中` CASCADE`和` RESTRICT`两者必选其一，选择了` CASCADE（级联）`就表示在删除模式时会级联删除该模式下的所有数据库对象；选择了` RESTRICT（限制）`就表示如果模式中已经定义了下属的数据库对象（表、视图等），则拒绝该语句的执行
+
+**例题**
+
+- 删除ZHANG并级联删除该模式中的所有数据库对象
+
+  ```mysql
+  DROP SCHEMA ZHANG CASCADE;
+  ```
+
+
+
+#### 2、基本表的定义、删除与修改
+
+##### （1）定义基本表
+
+
+
+
+
+
+

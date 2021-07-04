@@ -856,9 +856,142 @@ public class ExHandler {
 
 #### 1、使用线程池管理线程
 
+```java
+public class ThreadPoolTest {
+    public static void main(String[] args) {
+        //创建一个具有固定线程数（6）的线程池
+        ExecutorService pool = Executors.newFixedThreadPool(6);
+        //使用Lambda表达式创建Runnable对象
+        Runnable target = () -> {
+            for (int i = 0; i < 100; i++) {
+                System.out.println(Thread.currentThread().getName() + "值为" + i);
+            }
+        };
+        //向线程池中提交两个线程
+        pool.submit(target);
+        pool.submit(target);
+        pool.submit(target);
+        //关闭线程池
+        pool.shutdown();
+    }
+}
+```
+
 
 
 #### 2、使用ForkJoinPool利用多CPU
+
+```java
+//继承RecursiveAction来实现"可分解"的任务
+class PrintTask extends RecursiveAction {
+    //每个小任务最多只打印50个数
+    private static final int THRESHOLD = 50;
+    //开始和结束
+    private int start,end;
+    //打印从start到end的任务
+    public PrintTask(int start, int end) {
+        this.end = end;
+        this.start = start;
+    }
+    //总的大任务
+    @Override
+    protected void compute() {
+        //当end和start之间的差距小于THRESHOLD时开始打印
+        if (end - start < THRESHOLD) {
+            for (int i = start; i < end; i++) {
+                System.out.println(Thread.currentThread().getName() + "值为" + i);
+            }
+        } else {
+            //当end和start之间的差距大于THRESHOLD时，将大任务分解成小任务
+            int middle = (start + end) / 2;
+            PrintTask left = new PrintTask(start, middle);
+            PrintTask right = new PrintTask(middle, end);
+            //执行两个小任务
+            left.fork();
+            right.fork();
+        }
+    }
+}
+
+public class ForkJoinPoolTest {
+    public static void main(String[] args) throws InterruptedException {
+        ForkJoinPool pool = new ForkJoinPool();
+        //提交可分解的PrintTask任务
+        pool.submit(new PrintTask(0, 300));
+        pool.awaitTermination(2, TimeUnit.SECONDS);
+      	//关闭线程池
+        pool.shutdown();
+    }
+}
+```
+
+
+
+下面程序示范使用了` RecursiveTask`对一个长度为100的数组元素值进行累加
+
+```java
+//继承RecursiveTask来实现"可分解"的任务
+class CalTask extends RecursiveTask<Integer> {
+    //每个小任务最多只打印20个数
+    private static final int THRESHOLD = 20;
+    //开始和结束
+    private int start,end;
+    //数组
+    int arr[];
+    //打印从start到end的任务
+    public CalTask(int[] arr, int start, int end) {
+        this.arr = arr;
+        this.end = end;
+        this.start = start;
+    }
+    //总的大任务
+    @Override
+    protected Integer compute() {
+        int sum = 0;
+        //当end和start之间的差距小于THRESHOLD时开始累加
+        if (end - start < THRESHOLD) {
+            for (int i = start; i < end; i++) {
+                sum += arr[i];
+            }
+            return sum;
+        } else {
+            //当end和start之间的差距大于THRESHOLD时，将大任务分解成小任务
+            int middle = (start + end) / 2;
+            CalTask left = new CalTask(arr, start, middle);
+            CalTask right = new CalTask(arr, middle, end);
+            //执行两个小任务
+            left.fork();
+            right.fork();
+            //把两个小任务的累加结果合并起来
+            return left.join() + right.join();
+        }
+    }
+}
+
+public class Sum {
+    public static void main(String[] args) throws InterruptedException, ExecutionException {
+        int[] arr = new int[100];
+        Random rand = new Random();
+        int total = 0;
+        //初始化100个数字元素
+        for (int i = 0, len = arr.length; i < len; i++) {
+            int tmp = rand.nextInt(20);
+            //对数组元素赋值
+            total += (arr[i] = tmp);
+        }
+        System.out.println(total);
+        //创建一个通用池
+        ForkJoinPool pool = ForkJoinPool.commonPool();
+        //提交可分解的CalTask任务
+        Future<Integer> future = pool.submit(new CalTask(arr, 0, arr.length));
+        System.out.println(future.get());
+        //关闭线程池
+        pool.shutdown();
+    }
+}
+```
+
+
 
 
 
