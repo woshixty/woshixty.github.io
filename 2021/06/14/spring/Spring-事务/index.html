@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/3.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/3.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="一、什么事务 事务是数据库操作的基本单元，也就说逻辑上的一组操作，要么都成功，如果有一个失败操作则全都失败。 二、事务的四个特性（ACID） 原子性 要么都成功，要么都失败  一致性 操作之前和操作之后总量不变  隔离性 多事务操作时不过会相互产生影响  持久性 提交之后数据库中会发生改变   三、准备环节1、创建数据库123456789101112131415161718192021SET NA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring-事务">
+<meta property="og:url" content="http://example.com/2021/06/14/spring/Spring-%E4%BA%8B%E5%8A%A1/index.html">
+<meta property="og:site_name" content="Hello Programmer">
+<meta property="og:description" content="一、什么事务 事务是数据库操作的基本单元，也就说逻辑上的一组操作，要么都成功，如果有一个失败操作则全都失败。 二、事务的四个特性（ACID） 原子性 要么都成功，要么都失败  一致性 操作之前和操作之后总量不变  隔离性 多事务操作时不过会相互产生影响  持久性 提交之后数据库中会发生改变   三、准备环节1、创建数据库123456789101112131415161718192021SET NA">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-06-14T00:00:00.000Z">
+<meta property="article:modified_time" content="2021-08-13T06:06:22.622Z">
+<meta property="article:author" content="xty">
+<meta property="article:tag" content="spring">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2021/06/14/spring/Spring-%E4%BA%8B%E5%8A%A1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>spring-事务 | Hello Programmer</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hello Programmer</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/14/spring/Spring-%E4%BA%8B%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          spring-事务
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-14 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-14T00:00:00+00:00">2021-06-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-13 06:06:22" itemprop="dateModified" datetime="2021-08-13T06:06:22+00:00">2021-08-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="一、什么事务"><a href="#一、什么事务" class="headerlink" title="一、什么事务"></a>一、什么事务</h3><p><code> 事务</code>是数据库操作的基本单元，也就说逻辑上的一组操作，要么都成功，如果有一个失败操作则全都失败。</p>
+<h3 id="二、事务的四个特性（ACID）"><a href="#二、事务的四个特性（ACID）" class="headerlink" title="二、事务的四个特性（ACID）"></a>二、事务的四个特性（ACID）</h3><ul>
+<li><p>原子性</p>
+<p>要么都成功，要么都失败</p>
+</li>
+<li><p>一致性</p>
+<p>操作之前和操作之后总量不变</p>
+</li>
+<li><p>隔离性</p>
+<p>多事务操作时不过会相互产生影响</p>
+</li>
+<li><p>持久性</p>
+<p>提交之后数据库中会发生改变</p>
+</li>
+</ul>
+<h3 id="三、准备环节"><a href="#三、准备环节" class="headerlink" title="三、准备环节"></a>三、准备环节</h3><h4 id="1、创建数据库"><a href="#1、创建数据库" class="headerlink" title="1、创建数据库"></a>1、创建数据库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">SET NAMES utf8mb4;</span><br><span class="line">SET FOREIGN_KEY_CHECKS &#x3D; 0;</span><br><span class="line"></span><br><span class="line">-- ----------------------------</span><br><span class="line">-- Table structure for t_account</span><br><span class="line">-- ----------------------------</span><br><span class="line">DROP TABLE IF EXISTS &#96;t_account&#96;;</span><br><span class="line">CREATE TABLE &#96;t_account&#96;  (</span><br><span class="line">    &#96;id&#96; varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,</span><br><span class="line">    &#96;username&#96; varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,</span><br><span class="line">    &#96;money&#96; int(10) NULL DEFAULT NULL,</span><br><span class="line">    PRIMARY KEY (&#96;id&#96;) USING BTREE</span><br><span class="line">) ENGINE &#x3D; InnoDB CHARACTER SET &#x3D; utf8mb4 COLLATE &#x3D; utf8mb4_general_ci ROW_FORMAT &#x3D; Dynamic;</span><br><span class="line"></span><br><span class="line">-- ----------------------------</span><br><span class="line">-- Records of t_account</span><br><span class="line">-- ----------------------------</span><br><span class="line">INSERT INTO &#96;t_account&#96; VALUES (&#39;1&#39;, &#39;lusy&#39;, 1000);</span><br><span class="line">INSERT INTO &#96;t_account&#96; VALUES (&#39;2&#39;, &#39;mary&#39;, 1000);</span><br><span class="line"></span><br><span class="line">SET FOREIGN_KEY_CHECKS &#x3D; 1;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2、Service-And-Dao"><a href="#2、Service-And-Dao" class="headerlink" title="2、Service And Dao"></a>2、Service And Dao</h4><blockquote>
+<p>创建Service，搭建Dao，完成对象创建和注入关系</p>
+</blockquote>
+<p>service注入dao，在dao注入JdbcTemplate，在JdbcTemplate注入DataSource</p>
+<ul>
+<li><p>service</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line">    <span class="comment">//注入Dao</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserDao userDao;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>dao</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDaoImpl</span> <span class="keyword">implements</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> JdbcTemplate jdbcTemplate;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>bean.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 组件扫描 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;com.atguigu&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 数据库连接池配置 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;dataSource&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.alibaba.druid.pool.DruidDataSource&quot;</span> <span class="attr">destroy-method</span>=<span class="string">&quot;close&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;jdbc:mysql://ip:3306/user_db?useUnicode=true<span class="symbol">&amp;amp;</span>characterEncoding=UTF-8<span class="symbol">&amp;amp;</span>useSSL=false<span class="symbol">&amp;amp;</span>serverTimezone=Asia/Shanghai&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;root&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driverClassName&quot;</span> <span class="attr">value</span>=<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- JdbcTemplate对象 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;jdbcTemplate&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.jdbc.core.JdbcTemplate&quot;</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 注入dataSource --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;dataSource&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;dataSource&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="3、创建方法"><a href="#3、创建方法" class="headerlink" title="3、创建方法"></a>3、创建方法</h4><ul>
+<li><p>在dao中创建两个方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//多钱</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    String sql = <span class="string">&quot;update t_account set money = money + ? where username = ?&quot;</span>;</span><br><span class="line">    jdbcTemplate.update(sql, <span class="number">100</span>, <span class="string">&quot;mary&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//少钱</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reduce</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    String sql = <span class="string">&quot;update t_account set money = money - ? where username = ?&quot;</span>;</span><br><span class="line">    jdbcTemplate.update(sql, <span class="number">100</span>, <span class="string">&quot;lucy&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在service添加如下方法模拟转账</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//模拟转账的方法</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accountMoney</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//lucy少100</span></span><br><span class="line">    userDao.reduce();</span><br><span class="line">    <span class="comment">//mary多100</span></span><br><span class="line">    userDao.add();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加测试方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAccount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">&quot;bean1.xml&quot;</span>);</span><br><span class="line">    UserService userService = context.getBean(<span class="string">&quot;userService&quot;</span>, UserService.class);</span><br><span class="line">    userService.accountMoney();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="四、事务操作过程"><a href="#四、事务操作过程" class="headerlink" title="四、事务操作过程"></a>四、事务操作过程</h3><h4 id="1、开启事务"><a href="#1、开启事务" class="headerlink" title="1、开启事务"></a>1、开启事务</h4><h4 id="2、进行业务操作"><a href="#2、进行业务操作" class="headerlink" title="2、进行业务操作"></a>2、进行业务操作</h4><h4 id="3、没有异常发生就提交事务"><a href="#3、没有异常发生就提交事务" class="headerlink" title="3、没有异常发生就提交事务"></a>3、没有异常发生就提交事务</h4><h4 id="4、出现异常就回退"><a href="#4、出现异常就回退" class="headerlink" title="4、出现异常就回退"></a>4、出现异常就回退</h4>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/spring/" rel="tag"><i class="fa fa-tag"></i> spring</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/06/11/Mysql/%E6%A6%82%E8%AE%BA-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="prev" title="数据库概论复习-关系数据库">
+      <i class="fa fa-chevron-left"></i> 数据库概论复习-关系数据库
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/06/14/Mysql/%E6%A6%82%E8%AE%BA-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7/" rel="next" title="数据库概论复习-数据库安全性">
+      数据库概论复习-数据库安全性 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E4%BA%8B%E5%8A%A1"><span class="nav-number">1.</span> <span class="nav-text">一、什么事务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%9B%9B%E4%B8%AA%E7%89%B9%E6%80%A7%EF%BC%88ACID%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">二、事务的四个特性（ACID）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%87%86%E5%A4%87%E7%8E%AF%E8%8A%82"><span class="nav-number">3.</span> <span class="nav-text">三、准备环节</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">3.1.</span> <span class="nav-text">1、创建数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81Service-And-Dao"><span class="nav-number">3.2.</span> <span class="nav-text">2、Service And Dao</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E5%88%9B%E5%BB%BA%E6%96%B9%E6%B3%95"><span class="nav-number">3.3.</span> <span class="nav-text">3、创建方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E4%BA%8B%E5%8A%A1%E6%93%8D%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">四、事务操作过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E5%BC%80%E5%90%AF%E4%BA%8B%E5%8A%A1"><span class="nav-number">4.1.</span> <span class="nav-text">1、开启事务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E8%BF%9B%E8%A1%8C%E4%B8%9A%E5%8A%A1%E6%93%8D%E4%BD%9C"><span class="nav-number">4.2.</span> <span class="nav-text">2、进行业务操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E6%B2%A1%E6%9C%89%E5%BC%82%E5%B8%B8%E5%8F%91%E7%94%9F%E5%B0%B1%E6%8F%90%E4%BA%A4%E4%BA%8B%E5%8A%A1"><span class="nav-number">4.3.</span> <span class="nav-text">3、没有异常发生就提交事务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%E3%80%81%E5%87%BA%E7%8E%B0%E5%BC%82%E5%B8%B8%E5%B0%B1%E5%9B%9E%E9%80%80"><span class="nav-number">4.4.</span> <span class="nav-text">4、出现异常就回退</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="xty"
+      src="/images/4.png">
+  <p class="site-author-name" itemprop="name">xty</p>
+  <div class="site-description" itemprop="description">This is xty Blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">63</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/woshixty" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;woshixty" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xty</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script data-pjax>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+    </div>
+</body>
+</html>
