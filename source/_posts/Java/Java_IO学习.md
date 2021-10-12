@@ -828,15 +828,72 @@ public class Person implements Serializable {
 
 #### 1、Java新IO概述
 
+新IO将文件或文件的一段区域映射到内存中，这样就可以像访问内存一样来访问文件了（模拟了操作系统上虚拟内存的概念）
 
+Java中与新IO相关的包：
+
+- ` java.nio `包：主要包含与各种Buffer相关的类
+- ` java.nio.channels `包：主要包含与Channel和Selector相关的类
+- ` java.nio.charset `包：主要包含与字符集相关的类
+- ` java.channels.spi `包：主要包含与Channel相关的服务编程者接口
+- ` java.nio.charset.spi `包：包含与字符集相关的服务提供者编程接口
+
+**Channel（通道）**和**Buffer（缓冲）**是新IO中两个核心对象：
+
+- Channel（通道）是对传统的输入输出系统的模拟，在新IO中所有的数据都要通过通道传输；Channel与传统的InputStream、OutputStream最大的区别在于它提供了一个` map()`方法，通过该方法可以将“一块数据”映射到内存中；如果说传统的IO是面向流的处理，那么新IO就是面向块的处理
+- Buffer可以理解为一个容器，本质是一个数组，发送到Channel的所有对象首先必须先放到Buffer中去，而从Channel中读取的数据也必须放到Buffer中去。此处的Buffer类似于前面说的“竹筒”，既可以一次次去Channel中取水，也允许Channel直接将文件中某块数据映射成Buffer
+
+除了**Channel**和**Buffer**，新IO也提供了用于将Unicode字符串映射成字节序列以及映射操作的**Charset类**，也提供了用于支持非阻塞输入输出的**Selector类**
 
 
 
 #### 2、使用Buffer
 
+```java
+public class BufferTest {
+    private static void printInfo(CharBuffer buffer) {
+        System.out.println("capacity：" + buffer.capacity());
+        System.out.println("limit：" + buffer.limit());
+        System.out.println("position：" + buffer.position());
+        System.out.println("---------------------------------");
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        //创建Buffer
+        CharBuffer buffer = CharBuffer.allocate(8);
+        //打印Buffer当前信息
+        printInfo(buffer);
+        //放入元素
+        buffer.put("a");
+        buffer.put("b");
+        buffer.put("c");
+        System.out.println("放入三个元素之后Buffer信息：");
+        printInfo(buffer);
+        //调用flip()方法
+        buffer.flip();
+        System.out.println("执行flip()方法以后Buffer信息：");
+        //取出第一个元素
+        System.out.println("第一个元素：" + buffer.get());
+        System.out.println("取出第一个元素以后Buffer信息：");
+        printInfo(buffer);
+        //调用clear()方法
+        buffer.clear();
+        System.out.println("调用clear()方法Buffer信息：");
+        printInfo(buffer);
+        //取出第二个元素
+        System.out.println("第二个元素：" + buffer.get(2));
+        System.out.println("取出第二个元素以后Buffer信息：");
+        printInfo(buffer);
+    }
+}
+```
+
 
 
 #### 3、使用Channel
+
+
 
 
 
