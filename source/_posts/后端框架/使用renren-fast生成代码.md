@@ -13,7 +13,9 @@ categories: CrookedWays
 
 我们要先自己创建好数据库，由于自己刚好要写项目，于是我自己就创建的下面这一个springboot项目：
 
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/renren/renren-fast1.png" align='left' />
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/renren/renren-fast1.png" align='left'/>
+
+
 
 ### 二、克隆renren-fast代码
 
