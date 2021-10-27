@@ -154,6 +154,94 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/15/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/%E6%95%B0%E5%88%97%E6%9E%81%E5%B7%AE%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/15/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/%E6%95%B0%E5%88%97%E6%9E%81%E5%B7%AE%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">数列极差问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-15 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-15T00:00:00+00:00">2021-06-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-10-27 13:23:25" itemprop="dateModified" datetime="2021-10-27T13:23:25+00:00">2021-10-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%88%B7%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>n个整数排成的数列，进行如下操作：每次擦去其中两个数a和b，然后在数列中加入一个数<code> a x b + 1</code>，如此下去直到黑板只剩一个数，在所有按这种操作方式最后得到的数中，最大的记作<code> max</code> ，最小的为<code> min</code>，则数列的极差定义为:<code> m = max - min</code> </p>
+<p>分析：</p>
+<blockquote>
+<p>以三个数为例：a&gt;b&gt;c，这三个数计算有以下几种结果：</p>
+<ul>
+<li>( a x b + 1 ) x c + 1 = a x b x c + c +1</li>
+<li>( a x c + 1 ) x b + 1 = a x b x c + b +1</li>
+<li>( c x b + 1 ) x a + 1 = a x b x c + a +1</li>
+</ul>
+<p>由此可知：先运算小数据得到是大数据，先运算大数据得到的是小数据</p>
+</blockquote>
+<p>我们如是设计代码：用vector存储数据，计算最大数的时候，我们每次娶两个最小的数字计算再将结果<code> (min1*min2 + 1)</code>放入vector容器中，计算最小数字的时候与之相反即可。</p>
+<p>接下来上代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取数字集中最小的数字并删除</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getTheMin</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;numbers)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//遍历</span></span><br><span class="line">    <span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt;::const_iterator i, j = numbers.begin();</span><br><span class="line">    <span class="keyword">int</span> min = *j;</span><br><span class="line">    <span class="keyword">for</span> (i = numbers.begin(); i != numbers.end(); ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span>(*i &lt; *j) &#123;</span><br><span class="line">            j = i;</span><br><span class="line">            min = *i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    numbers.erase(j);</span><br><span class="line">    <span class="keyword">return</span> min;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取数字集中最大的数字并删除</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getTheMax</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;numbers)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//遍历</span></span><br><span class="line">    <span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt;::const_iterator i, j = numbers.begin();</span><br><span class="line">    <span class="keyword">int</span> max = *j;</span><br><span class="line">    <span class="keyword">for</span> (i = numbers.begin(); i != numbers.end(); ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span>(*i &gt; *j) &#123;</span><br><span class="line">            j = i;</span><br><span class="line">            max = *i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    numbers.erase(j);</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//存储数据</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; numbers_max;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; numbers_min;</span><br><span class="line">    <span class="comment">//元素个数</span></span><br><span class="line">    <span class="keyword">int</span> n, m;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="comment">//输入</span></span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++ ) &#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;m;</span><br><span class="line">        numbers_max.push_back(m);</span><br><span class="line">    &#125;</span><br><span class="line">    numbers_min = numbers_max;</span><br><span class="line">    <span class="comment">//获取最大值</span></span><br><span class="line">    <span class="keyword">while</span>(numbers_max.size() != <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> min1 = getTheMin(numbers_max);</span><br><span class="line">        <span class="keyword">int</span> min2 = getTheMin(numbers_max);</span><br><span class="line">        numbers_max.push_back(min1*min2 + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//获取最小值</span></span><br><span class="line">    <span class="keyword">while</span>(numbers_min.size() != <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> max1 = getTheMax(numbers_min);</span><br><span class="line">        <span class="keyword">int</span> max2 = getTheMax(numbers_min);</span><br><span class="line">        numbers_min.push_back(max1*max2 + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;最大值为：&quot;</span>&lt;&lt;numbers_max.back()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;最小值为：&quot;</span>&lt;&lt;numbers_min.back()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/14/Mysql/%E6%A6%82%E8%AE%BA-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -185,7 +273,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-24 11:47:03" itemprop="dateModified" datetime="2021-10-24T11:47:03+00:00">2021-10-24</time>
+                <time title="修改时间：2021-10-27 13:23:25" itemprop="dateModified" datetime="2021-10-27T13:23:25+00:00">2021-10-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -441,7 +529,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-24 11:47:03" itemprop="dateModified" datetime="2021-10-24T11:47:03+00:00">2021-10-24</time>
+                <time title="修改时间：2021-10-27 13:23:25" itemprop="dateModified" datetime="2021-10-27T13:23:25+00:00">2021-10-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -561,7 +649,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-24 11:47:03" itemprop="dateModified" datetime="2021-10-24T11:47:03+00:00">2021-10-24</time>
+                <time title="修改时间：2021-10-27 13:23:25" itemprop="dateModified" datetime="2021-10-27T13:23:25+00:00">2021-10-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -698,7 +786,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-24 11:47:03" itemprop="dateModified" datetime="2021-10-24T11:47:03+00:00">2021-10-24</time>
+                <time title="修改时间：2021-10-27 13:23:25" itemprop="dateModified" datetime="2021-10-27T13:23:25+00:00">2021-10-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -809,7 +897,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-24 11:47:03" itemprop="dateModified" datetime="2021-10-24T11:47:03+00:00">2021-10-24</time>
+                <time title="修改时间：2021-10-27 13:23:25" itemprop="dateModified" datetime="2021-10-27T13:23:25+00:00">2021-10-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -910,7 +998,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-24 11:47:03" itemprop="dateModified" datetime="2021-10-24T11:47:03+00:00">2021-10-24</time>
+                <time title="修改时间：2021-10-27 13:23:25" itemprop="dateModified" datetime="2021-10-27T13:23:25+00:00">2021-10-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -983,7 +1071,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-24 11:47:03" itemprop="dateModified" datetime="2021-10-24T11:47:03+00:00">2021-10-24</time>
+                <time title="修改时间：2021-10-27 13:23:25" itemprop="dateModified" datetime="2021-10-27T13:23:25+00:00">2021-10-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1061,7 +1149,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-24 11:47:03" itemprop="dateModified" datetime="2021-10-24T11:47:03+00:00">2021-10-24</time>
+                <time title="修改时间：2021-10-27 13:23:25" itemprop="dateModified" datetime="2021-10-27T13:23:25+00:00">2021-10-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1134,7 +1222,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-24 11:47:03" itemprop="dateModified" datetime="2021-10-24T11:47:03+00:00">2021-10-24</time>
+                <time title="修改时间：2021-10-27 13:23:25" itemprop="dateModified" datetime="2021-10-27T13:23:25+00:00">2021-10-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1283,145 +1371,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/31/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/%E8%8A%AF%E7%89%87%E6%A3%80%E6%B5%8B%E5%AE%9E%E6%88%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/31/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/%E8%8A%AF%E7%89%87%E6%A3%80%E6%B5%8B%E5%AE%9E%E6%88%98/" class="post-title-link" itemprop="url">逻辑回归-芯片检测实战</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-05-31 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-31T00:00:00+00:00">2021-05-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-24 11:47:03" itemprop="dateModified" datetime="2021-10-24T11:47:03+00:00">2021-10-24</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="一、基于-chip-test-csv数据集，建立逻辑回归模型（二阶边界），评估模型表现"><a href="#一、基于-chip-test-csv数据集，建立逻辑回归模型（二阶边界），评估模型表现" class="headerlink" title="一、基于 chip_test.csv数据集，建立逻辑回归模型（二阶边界），评估模型表现"></a>一、基于<code> chip_test.csv</code>数据集，建立逻辑回归模型（二阶边界），评估模型表现</h3><h4 id="1、加载数据"><a href="#1、加载数据" class="headerlink" title="1、加载数据"></a>1、加载数据</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># load the data</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">data = pd.read_csv(<span class="string">&#x27;chip_test.csv&#x27;</span>)</span><br><span class="line">data.head()</span><br></pre></td></tr></table></figure>
-
-<h4 id="2、为数据添加标签"><a href="#2、为数据添加标签" class="headerlink" title="2、为数据添加标签"></a>2、为数据添加标签</h4><p>合格即为<code> true</code>，否则为<code> false</code></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># add label mask</span></span><br><span class="line">mask = data.loc[:, <span class="string">&#x27;pass&#x27;</span>] == <span class="number">1</span></span><br><span class="line">print(~mask)</span><br></pre></td></tr></table></figure>
-
-<h4 id="3、数据的可视化"><a href="#3、数据的可视化" class="headerlink" title="3、数据的可视化"></a>3、数据的可视化</h4><p><code> plt.scatter()</code>原型如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">matplotlib.pyplot.scatter(x, y, s=<span class="literal">None</span>, c=<span class="literal">None</span>, marker=<span class="literal">None</span>, cmap=<span class="literal">None</span>, norm=<span class="literal">None</span>, vmin=<span class="literal">None</span>, vmax=<span class="literal">None</span>, alpha=<span class="literal">None</span>, linewidths=<span class="literal">None</span>, verts=<span class="literal">None</span>, edgecolors=<span class="literal">None</span>, *, data=<span class="literal">None</span>, **kwargs)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>x、y：表示的是大小为<code>(n, )</code>的数组，也就是我们即将绘制散点图的数据点</li>
-<li>s：一个实数或者是一个数组大小为<code>(n, )</code>，点的所占的面积大小</li>
-<li>c：颜色</li>
-<li>marker：表示的是标记的样式，默认的是<code> &#39;o&#39;</code></li>
-<li>cmap：Colormap实体或者是一个colormap的名字，cmap仅仅当c是一个浮点数数组的时候才使用（默认image.cmap）</li>
-<li>norm：Normalize实体来将数据亮度转化到0-1之间，也是只有c是一个浮点数的数组的时候才使用（默认colors.Normalize）</li>
-<li>vmin、vmax：实数，当norm存在的时候忽略（用来进行亮度数据的归一化）</li>
-<li>alpha：实数，调整线不透明度（0-1）</li>
-<li>linewidths：也就是标记点的长度</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># visualize the data</span></span><br><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line">fig1 = plt.figure()</span><br><span class="line">passed = plt.scatter(data.loc[:, <span class="string">&#x27;test1&#x27;</span>][mask], data.loc[:, <span class="string">&#x27;test2&#x27;</span>][mask])</span><br><span class="line">failed = plt.scatter(data.loc[:, <span class="string">&#x27;test1&#x27;</span>][~mask], data.loc[:, <span class="string">&#x27;test2&#x27;</span>][~mask])</span><br><span class="line">plt.title(<span class="string">&#x27;test1-test2&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;test1&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;test2&#x27;</span>)</span><br><span class="line">plt.legend((passed, failed), (<span class="string">&#x27;passed&#x27;</span>, <span class="string">&#x27;failed&#x27;</span>))</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-<h4 id="4、定义X、y变量"><a href="#4、定义X、y变量" class="headerlink" title="4、定义X、y变量"></a>4、定义X、y变量</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># define X y</span></span><br><span class="line"><span class="comment"># axis=1代表删掉‘pass’这一列</span></span><br><span class="line">X = data.drop([<span class="string">&#x27;pass&#x27;</span>], axis=<span class="number">1</span>)</span><br><span class="line">y = data.loc[:, <span class="string">&#x27;pass&#x27;</span>]</span><br><span class="line">X1 = data.loc[:, <span class="string">&#x27;test1&#x27;</span>]</span><br><span class="line">X2 = data.loc[:, <span class="string">&#x27;test2&#x27;</span>]</span><br></pre></td></tr></table></figure>
-
-<h4 id="5、定义X1方、X2方等变量"><a href="#5、定义X1方、X2方等变量" class="headerlink" title="5、定义X1方、X2方等变量"></a>5、定义X1方、X2方等变量</h4><p>DataFrame是Python中Pandas库中的一种数据结构，它类似excel，是一种二维表。DataFrame的单元格可以存放数值、字符串等，这和excel表很像，同时DataFrame可以设置列名columns与行名index，如下通过<code> X_new</code>设置了五列：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># create new data</span></span><br><span class="line">X1_2 = X1*X1</span><br><span class="line">X2_2 = X2*X2</span><br><span class="line">X1_X2 = X1*X2</span><br><span class="line">X_new = &#123;<span class="string">&#x27;X1&#x27;</span>:X1, <span class="string">&#x27;X2&#x27;</span>:X2, <span class="string">&#x27;X1_2&#x27;</span>:X1_2, <span class="string">&#x27;X2_2&#x27;</span>:X2_2, <span class="string">&#x27;X1_X2&#x27;</span>:X1_X2&#125;</span><br><span class="line">X_new = pd.DataFrame(X_new)</span><br><span class="line">print(X_new)</span><br></pre></td></tr></table></figure>
-
-<h4 id="6、建立实例并训练模型"><a href="#6、建立实例并训练模型" class="headerlink" title="6、建立实例并训练模型"></a>6、建立实例并训练模型</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># establish new model and train</span></span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span><br><span class="line">LR2 = LogisticRegression()</span><br><span class="line">LR2.fit(X_new, y)</span><br></pre></td></tr></table></figure>
-
-<h4 id="7、预测数据"><a href="#7、预测数据" class="headerlink" title="7、预测数据"></a>7、预测数据</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># predict</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score</span><br><span class="line">y2_predict = LR2.predict(X_new)</span><br><span class="line">accuracy2 = accuracy_score(y, y2_predict)</span><br><span class="line">print(accuracy2)</span><br></pre></td></tr></table></figure>
-
-<h4 id="8、获取曲线参数"><a href="#8、获取曲线参数" class="headerlink" title="8、获取曲线参数"></a>8、获取曲线参数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># get the params</span></span><br><span class="line">X1_new = X1.sort_values()</span><br><span class="line">theta0 = LR2.intercept_</span><br><span class="line">theta1, theta2, theta3, theta4, theta5 = LR2.coef_[<span class="number">0</span>][<span class="number">0</span>], LR2.coef_[<span class="number">0</span>][<span class="number">1</span>], LR2.coef_[<span class="number">0</span>][<span class="number">2</span>], LR2.coef_[<span class="number">0</span>][<span class="number">3</span>], LR2.coef_[<span class="number">0</span>][<span class="number">4</span>]</span><br><span class="line">print(theta0, theta1, theta2, theta3, theta4, theta5)</span><br></pre></td></tr></table></figure>
-
-<h4 id="9、构建边界曲线"><a href="#9、构建边界曲线" class="headerlink" title="9、构建边界曲线"></a>9、构建边界曲线</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Constructing boundary curve</span></span><br><span class="line">a =theta4</span><br><span class="line">b = theta5*x1_new + theta2</span><br><span class="line">c = theta0 + theta1*x1_new + theta3*x1_new*x1_new</span><br><span class="line">X_new_boundary = (-b + np.sqrt(b*b - <span class="number">4</span>*a*c))/(<span class="number">2</span>*a)</span><br></pre></td></tr></table></figure>
-
-<h4 id="10、画曲线"><a href="#10、画曲线" class="headerlink" title="10、画曲线"></a>10、画曲线</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># draw the pic</span></span><br><span class="line">fig4 = plt.figure()</span><br><span class="line">plt.plot(X1_new, X_new_boundary)</span><br><span class="line">passed = plt.scatter(data.loc[:, <span class="string">&quot;test1&quot;</span>][~mask], data.loc[:, <span class="string">&quot;test2&quot;</span>][~mask])  </span><br><span class="line">failed = plt.scatter(data.loc[:, <span class="string">&quot;test1&quot;</span>][mask], data.loc[:, <span class="string">&quot;test2&quot;</span>][mask])</span><br><span class="line">plt.title(<span class="string">&quot;test1-test2&quot;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&quot;test1&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;test2&quot;</span>) </span><br><span class="line">plt.legend((passed, failed), (<span class="string">&#x27;passed&#x27;</span>, <span class="string">&#x27;failed&#x27;</span>))</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-<p>画出来的图像如下（图像并不完整）：</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/logistic.png">
-
-<p>我们只需加上如下代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">X_new_boundary_2 = (-b - np.sqrt(b*b - <span class="number">4</span>*a*c))/(<span class="number">2</span>*a)</span><br><span class="line">plt.plot(X1_new, X_new_boundary_2)</span><br></pre></td></tr></table></figure>
-
-<p>于是画出来的图像便变成如下所示：</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/logistic2.png">
-
-
-
-<h3 id="二、以函数的方式求解边界曲线"><a href="#二、以函数的方式求解边界曲线" class="headerlink" title="二、以函数的方式求解边界曲线"></a>二、以函数的方式求解边界曲线</h3><h4 id="1、定义函数f-x"><a href="#1、定义函数f-x" class="headerlink" title="1、定义函数f(x)"></a>1、定义函数f(x)</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># define f(x)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span>(<span class="params">X1_new</span>):</span></span><br><span class="line">    a =theta4</span><br><span class="line">    b = theta5*X1_new + theta2</span><br><span class="line">    c = theta0 + theta1*X1_new + theta3*X1_new*X1_new</span><br><span class="line">    X_new_boundary1 = (-b + np.sqrt(b*b - <span class="number">4</span>*a*c))/(<span class="number">2</span>*a)</span><br><span class="line">    X_new_boundary2 = (-b - np.sqrt(b*b - <span class="number">4</span>*a*c))/(<span class="number">2</span>*a)</span><br><span class="line">    <span class="keyword">return</span> X_new_boundary1, X_new_boundary2</span><br></pre></td></tr></table></figure>
-
-<h4 id="2、获取新边界"><a href="#2、获取新边界" class="headerlink" title="2、获取新边界"></a>2、获取新边界</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># get X_new_boundary</span></span><br><span class="line">X2_new_boundary1 = []</span><br><span class="line">X2_new_boundary2 = []</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> X1_new:</span><br><span class="line">    X2_new_boundary1.append(f(x)[<span class="number">0</span>])</span><br><span class="line">    X2_new_boundary2.append(f(x)[<span class="number">1</span>])</span><br><span class="line">print(X2_new_boundary1, X2_new_boundary2)</span><br></pre></td></tr></table></figure>
-
-<h4 id="3、画图"><a href="#3、画图" class="headerlink" title="3、画图"></a>3、画图</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fig5 = plt.figure()</span><br><span class="line">plt.plot(X1_new, X2_new_boundary1)</span><br><span class="line">plt.plot(X1_new, X2_new_boundary2)</span><br><span class="line">passed = plt.scatter(data.loc[:, <span class="string">&quot;test1&quot;</span>][~mask], data.loc[:, <span class="string">&quot;test2&quot;</span>][~mask])  </span><br><span class="line">failed = plt.scatter(data.loc[:, <span class="string">&quot;test1&quot;</span>][mask], data.loc[:, <span class="string">&quot;test2&quot;</span>][mask])</span><br><span class="line">plt.title(<span class="string">&quot;test1-test2&quot;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&quot;test1&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;test2&quot;</span>) </span><br><span class="line">plt.legend((passed, failed), (<span class="string">&#x27;passed&#x27;</span>, <span class="string">&#x27;failed&#x27;</span>))</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-<p>图像如下（我们发现两边缺了一点）：</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/logistic2.png">
-
-<h4 id="4、补数据"><a href="#4、补数据" class="headerlink" title="4、补数据"></a>4、补数据</h4><p>将<code> x轴</code>数据补多一点</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">X1_range = [<span class="number">-0.9</span> + x/<span class="number">10000</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">19000</span>)]</span><br><span class="line">X1_range = np.array(X1_range)</span><br><span class="line">X2_new_boundary1 = []</span><br><span class="line">X2_new_boundary2 = []</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> X1_range:</span><br><span class="line">    X2_new_boundary1.append(f(x)[<span class="number">0</span>])</span><br><span class="line">    X2_new_boundary2.append(f(x)[<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="5、描绘出完整的决策边界曲线"><a href="#5、描绘出完整的决策边界曲线" class="headerlink" title="5、描绘出完整的决策边界曲线"></a>5、描绘出完整的决策边界曲线</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fig6 = plt.figure()</span><br><span class="line">passed = plt.scatter(data.loc[:, <span class="string">&quot;test1&quot;</span>][~mask], data.loc[:, <span class="string">&quot;test2&quot;</span>][~mask])  </span><br><span class="line">failed = plt.scatter(data.loc[:, <span class="string">&quot;test1&quot;</span>][mask], data.loc[:, <span class="string">&quot;test2&quot;</span>][mask])</span><br><span class="line">plt.plot(X1_range, X2_new_boundary1)</span><br><span class="line">plt.plot(X1_range, X2_new_boundary2)</span><br><span class="line">plt.title(<span class="string">&quot;test1-test2&quot;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&quot;test1&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;test2&quot;</span>)</span><br><span class="line">plt.legend((passed, failed), (<span class="string">&#x27;passed&#x27;</span>, <span class="string">&#x27;failed&#x27;</span>))</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-<p>图如下：</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/logistic4.png">
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1493,7 +1442,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">66</span>
+          <span class="site-state-item-count">67</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
