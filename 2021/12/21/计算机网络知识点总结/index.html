@@ -21,19 +21,23 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="一、类和对象二、方法详解三、成员变量和局部变量四、隐藏和封装五、深入构造器六、类的继承七、多态八、继承与组合九、初始化块十、本章小结">
+  <meta name="description" content="知识点：  影响信道最大传输数率的因素主要有： 信道带宽和信噪比  串行传输被用于计算机内部的数据传输   一、OSI七层模型第一种模型是OSI七层模型，OSI为（Open System interconnect）的缩写，自上而下分别是应用层、表示层、会话层、传输层、网络层、数据链路层、物理层 物理层：网卡，网线，集线器，中继器，调制解调器 数据链路层：网桥，交换机 网络层：路由器 1、物理层 物">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hello Programmer">
-<meta property="og:url" content="http://example.com/2021/11/10/Java/Java_%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E4%B8%8A%EF%BC%89/index.html">
+<meta property="og:url" content="http://example.com/2021/12/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="Hello Programmer">
-<meta property="og:description" content="一、类和对象二、方法详解三、成员变量和局部变量四、隐藏和封装五、深入构造器六、类的继承七、多态八、继承与组合九、初始化块十、本章小结">
+<meta property="og:description" content="知识点：  影响信道最大传输数率的因素主要有： 信道带宽和信噪比  串行传输被用于计算机内部的数据传输   一、OSI七层模型第一种模型是OSI七层模型，OSI为（Open System interconnect）的缩写，自上而下分别是应用层、表示层、会话层、传输层、网络层、数据链路层、物理层 物理层：网卡，网线，集线器，中继器，调制解调器 数据链路层：网桥，交换机 网络层：路由器 1、物理层 物">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-11-10T02:28:43.761Z">
-<meta property="article:modified_time" content="2021-11-10T02:28:43.761Z">
+<meta property="og:image" content="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E9%80%8F%E6%98%8E%E4%BC%A0%E8%BE%93.png">
+<meta property="og:image" content="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.gif">
+<meta property="og:image" content="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.gif">
+<meta property="article:published_time" content="2021-12-21T14:43:23.036Z">
+<meta property="article:modified_time" content="2021-12-21T14:43:23.036Z">
 <meta property="article:author" content="xty">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E9%80%8F%E6%98%8E%E4%BC%A0%E8%BE%93.png">
 
-<link rel="canonical" href="http://example.com/2021/11/10/Java/Java_%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E4%B8%8A%EF%BC%89/">
+<link rel="canonical" href="http://example.com/2021/12/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">
 
 
 <script id="page-configurations">
@@ -157,7 +161,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/10/Java/Java_%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E4%B8%8A%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -180,7 +184,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-11-10 02:28:43" itemprop="dateCreated datePublished" datetime="2021-11-10T02:28:43+00:00">2021-11-10</time>
+              <time title="创建时间：2021-12-21 14:43:23" itemprop="dateCreated datePublished" datetime="2021-12-21T14:43:23+00:00">2021-12-21</time>
             </span>
 
           
@@ -201,9 +205,68 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <hr>
-<hr>
-<h3 id="一、类和对象"><a href="#一、类和对象" class="headerlink" title="一、类和对象"></a>一、类和对象</h3><h3 id="二、方法详解"><a href="#二、方法详解" class="headerlink" title="二、方法详解"></a>二、方法详解</h3><h3 id="三、成员变量和局部变量"><a href="#三、成员变量和局部变量" class="headerlink" title="三、成员变量和局部变量"></a>三、成员变量和局部变量</h3><h3 id="四、隐藏和封装"><a href="#四、隐藏和封装" class="headerlink" title="四、隐藏和封装"></a>四、隐藏和封装</h3><h3 id="五、深入构造器"><a href="#五、深入构造器" class="headerlink" title="五、深入构造器"></a>五、深入构造器</h3><h3 id="六、类的继承"><a href="#六、类的继承" class="headerlink" title="六、类的继承"></a>六、类的继承</h3><h3 id="七、多态"><a href="#七、多态" class="headerlink" title="七、多态"></a>七、多态</h3><h3 id="八、继承与组合"><a href="#八、继承与组合" class="headerlink" title="八、继承与组合"></a>八、继承与组合</h3><h3 id="九、初始化块"><a href="#九、初始化块" class="headerlink" title="九、初始化块"></a>九、初始化块</h3><h3 id="十、本章小结"><a href="#十、本章小结" class="headerlink" title="十、本章小结"></a>十、本章小结</h3>
+        <p>知识点：</p>
+<ul>
+<li>影响信道最大传输数率的因素主要有：<code> 信道带宽和信噪比</code></li>
+<li><code> 串行传输</code>被用于计算机内部的数据传输</li>
+<li></li>
+</ul>
+<h3 id="一、OSI七层模型"><a href="#一、OSI七层模型" class="headerlink" title="一、OSI七层模型"></a>一、OSI七层模型</h3><p>第一种模型是OSI七层模型，OSI为（Open System interconnect）的缩写，自上而下分别是应用层、表示层、会话层、传输层、网络层、数据链路层、物理层</p>
+<p>物理层：网卡，网线，集线器，中继器，调制解调器</p>
+<p>数据链路层：网桥，交换机</p>
+<p>网络层：路由器</p>
+<h4 id="1、物理层"><a href="#1、物理层" class="headerlink" title="1、物理层"></a>1、物理层</h4><ul>
+<li><p>物理层的媒体包括电缆、光纤等</p>
+</li>
+<li><p>正因为物理媒体会有很多差异，所以物理层的作用正是尽可能地屏蔽这些差异，使上面的数据链路曾感觉不到这些差异</p>
+</li>
+<li><p>在这一层，数据的单位为比特（bit）</p>
+</li>
+</ul>
+<h4 id="2、数据链路层"><a href="#2、数据链路层" class="headerlink" title="2、数据链路层"></a>2、数据链路层</h4><p>本章重点：</p>
+<p>（1）数据链路层的使用的信道主要有以下两种类型：<code> 点对点信道</code>、<code> 广播信道</code></p>
+<p>（2）数据链路层的协议有很多种，但有三个基本问题则是共同的：封装成帧、透明传输、差错检测</p>
+<ul>
+<li><p>封装成帧</p>
+<p>就是在数据前后分别添加首部和尾部，这样就构成了帧</p>
+</li>
+<li><p>透明传输</p>
+<p>用字节填充法（在非帧边界的控制字符插入转义字符）解决透明传输的问题</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E9%80%8F%E6%98%8E%E4%BC%A0%E8%BE%93.png" align=left>
+</li>
+<li><p>差错检测</p>
+<p>在数据链路层广泛使用了循环冗余检验CRC的检错技术</p>
+</li>
+</ul>
+<p>（3）以太网MAC层硬件地址</p>
+<p>（4）适配器、转发器、集线器、网桥、以太网交换机的作用和使用场景</p>
+<h4 id="3、网络层"><a href="#3、网络层" class="headerlink" title="3、网络层"></a>3、网络层</h4><p>主要的协议有ip，主要是将报文封装成ip数据报</p>
+<p>网络层向上层只提供简单灵活的、无连接的、尽最大努力交付的数据报服务</p>
+<h6 id="A、网际协议IP"><a href="#A、网际协议IP" class="headerlink" title="A、网际协议IP"></a>A、网际协议IP</h6><p>与IP协议配套使用的还有三个协议：</p>
+<ul>
+<li>地址解析协议ARP</li>
+<li>网际控制报文协议ICMP</li>
+<li>网际组管理协议IGMP</li>
+</ul>
+<p>IP数据报格式</p>
+<h4 id="4、传输层"><a href="#4、传输层" class="headerlink" title="4、传输层"></a>4、传输层</h4><p>IP数据报中的首部明确标记了两个主机的IP地址，但是真正进行通信的是进程。根据应用程序的不用需求，运输层需要两种不同的运输协议，即<code> 面向连接的TCP</code>和<code> 无连接的UDP</code>。TCP数据单元为段而UDP中数据单元为数据报。</p>
+<p>TCP面向连接、全双工面向字节流，每一条TCP连接有两个端点，这两个端点是什么呢？不是主机，也不是主机IP，不是应用进程，也不是运输层的协议端口。TCP链接的端点叫做<code> 套接字（socket）= IP地址：端口号</code></p>
+<p>TCP的三次握手</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.gif" width=700 align=left>
+
+<p>TCP的四次挥手</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.gif" width=700 align=left>
+
+
+
+<p>TCP的可靠传输的实现：1.滑动窗口 2.超时重传 3.选择确认 SACK</p>
+<p>TCP的流量控制：滑动窗口</p>
+<p>TCP的拥塞控制：慢开始与拥塞避免</p>
+<p>UDP是无连接 尽最大努力交付 面向报文 首部开销小 8字节 比TCP的20个字节小</p>
+<h4 id="5、会话层"><a href="#5、会话层" class="headerlink" title="5、会话层"></a>5、会话层</h4><p>会话单位的控制层，其主要功能是按照在应用进程之间约定的原则，按照正确的顺序收、发数据，进行各种形态的对话。</p>
+<h4 id="6、表示层"><a href="#6、表示层" class="headerlink" title="6、表示层"></a>6、表示层</h4><p>数据表示形式的控制层，其主要功能是把应用层提供的信息变换为能够共同理解的形式，提供字符代码、数据格式、控制信息格式、加密等的统一表示。</p>
+<h4 id="7、应用层"><a href="#7、应用层" class="headerlink" title="7、应用层"></a>7、应用层</h4><p>OSI参考模型的最高层。其功能是实现应用进程（如用户程序、终端操作员等）之间的信息交换。同时，还具有一系列业务处理所需要的服务功能。应用层许多协议都是基于客户服务器方式。</p>
+
     </div>
 
     
@@ -218,13 +281,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/11/10/Java/Java_%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E4%B8%8B%EF%BC%89/" rel="prev" title="">
+    <a href="/2021/12/21/%E3%80%8A%E7%AE%97%E6%B3%95%E7%AC%AC%E5%9B%9B%E7%89%88%E3%80%8B/%E7%AC%AC%E4%B8%89%E7%AB%A0%E3%80%81%E6%9F%A5%E6%89%BE/" rel="prev" title="">
       <i class="fa fa-chevron-left"></i> 
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/11/10/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%86%B3%E7%AD%96%E6%A0%91/%E5%86%B3%E7%AD%96%E6%A0%91/" rel="next" title="">
-       <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -283,7 +343,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1"><span class="nav-number">1.</span> <span class="nav-text">一、类和对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%96%B9%E6%B3%95%E8%AF%A6%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">二、方法详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F"><span class="nav-number">3.</span> <span class="nav-text">三、成员变量和局部变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E9%9A%90%E8%97%8F%E5%92%8C%E5%B0%81%E8%A3%85"><span class="nav-number">4.</span> <span class="nav-text">四、隐藏和封装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%B7%B1%E5%85%A5%E6%9E%84%E9%80%A0%E5%99%A8"><span class="nav-number">5.</span> <span class="nav-text">五、深入构造器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E7%B1%BB%E7%9A%84%E7%BB%A7%E6%89%BF"><span class="nav-number">6.</span> <span class="nav-text">六、类的继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%A4%9A%E6%80%81"><span class="nav-number">7.</span> <span class="nav-text">七、多态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E7%BB%A7%E6%89%BF%E4%B8%8E%E7%BB%84%E5%90%88"><span class="nav-number">8.</span> <span class="nav-text">八、继承与组合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E5%88%9D%E5%A7%8B%E5%8C%96%E5%9D%97"><span class="nav-number">9.</span> <span class="nav-text">九、初始化块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E3%80%81%E6%9C%AC%E7%AB%A0%E5%B0%8F%E7%BB%93"><span class="nav-number">10.</span> <span class="nav-text">十、本章小结</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81OSI%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">一、OSI七层模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1%E3%80%81%E7%89%A9%E7%90%86%E5%B1%82"><span class="nav-number">1.1.</span> <span class="nav-text">1、物理层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2%E3%80%81%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="nav-number">1.2.</span> <span class="nav-text">2、数据链路层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3%E3%80%81%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="nav-number">1.3.</span> <span class="nav-text">3、网络层</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#A%E3%80%81%E7%BD%91%E9%99%85%E5%8D%8F%E8%AE%AEIP"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">A、网际协议IP</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4%E3%80%81%E4%BC%A0%E8%BE%93%E5%B1%82"><span class="nav-number">1.4.</span> <span class="nav-text">4、传输层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5%E3%80%81%E4%BC%9A%E8%AF%9D%E5%B1%82"><span class="nav-number">1.5.</span> <span class="nav-text">5、会话层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6%E3%80%81%E8%A1%A8%E7%A4%BA%E5%B1%82"><span class="nav-number">1.6.</span> <span class="nav-text">6、表示层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7%E3%80%81%E5%BA%94%E7%94%A8%E5%B1%82"><span class="nav-number">1.7.</span> <span class="nav-text">7、应用层</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -299,7 +359,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">68</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

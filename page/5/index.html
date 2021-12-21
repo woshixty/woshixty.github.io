@@ -154,6 +154,88 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/19/spring/%E5%8F%91%E9%80%81%E5%BC%82%E6%AD%A5%E6%B6%88%E6%81%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/19/spring/%E5%8F%91%E9%80%81%E5%BC%82%E6%AD%A5%E6%B6%88%E6%81%AF/" class="post-title-link" itemprop="url">spring发送异步消息</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-19 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-19T00:00:00+00:00">2021-05-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-12-21 14:43:23" itemprop="dateModified" datetime="2021-12-21T14:43:23+00:00">2021-12-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="一、使用JMS发送消息"><a href="#一、使用JMS发送消息" class="headerlink" title="一、使用JMS发送消息"></a>一、使用JMS发送消息</h2><p>JMS是一个Java标准，定义了使用消息代理（message broker）的通用API。Spring通过基于模板的抽象为JMS的功能提供了支持，这个模板就是JmsTemplate。借助JmsTemplate，我们可以非常容易地在消息生产方发送队列和主题消息，在消费者那一方，也能够非常容易的接收消息。Spring还提供了消息驱动POJO的理念：这是一个简单的Java对象，能够以异步的方式响应队列或主题上到达的消息。</p>
+<h3 id="1、搭建JMS环境"><a href="#1、搭建JMS环境" class="headerlink" title="1、搭建JMS环境"></a>1、搭建JMS环境</h3><p>首先在项目中添加依赖：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-artemis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>接下来在yml配置文件里添加：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">artemis:</span></span><br><span class="line">    <span class="comment">#代理的主机</span></span><br><span class="line">    <span class="attr">host:</span> <span class="number">47.107</span><span class="number">.73</span><span class="number">.216</span></span><br><span class="line">    <span class="comment">#代理的端口</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">61617</span></span><br><span class="line">    <span class="comment">#用来访问代理的用户（可选）</span></span><br><span class="line">    <span class="attr">user:</span> <span class="string">tacoweb</span></span><br><span class="line">    <span class="comment">#用来访问代理的密码（可选）</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br></pre></td></tr></table></figure>
+
+<p>这会让Spring创建到<code> Artemis</code>的代理连接，让<code> Attemis</code>代理监听<code> 47.107.73.216</code>的端口61617，他还为应用代理设置了代理交互的凭证（可选）。</p>
+<h3 id="2、使用JmsTemplate发送消息"><a href="#2、使用JmsTemplate发送消息" class="headerlink" title="2、使用JmsTemplate发送消息"></a>2、使用JmsTemplate发送消息</h3><p>将<code> JMS start</code>依赖添加到构建文件之后，Spring Boot会自动配置一个JmsTemplate，我们可以将它注入到其他bean中，使用它来发送和接收消息。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/15/Wiki%E7%9F%A5%E8%AF%86%E5%BA%93%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/create-vue-pro/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -185,7 +267,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-10 02:28:43" itemprop="dateModified" datetime="2021-11-10T02:28:43+00:00">2021-11-10</time>
+                <time title="修改时间：2021-12-21 14:43:23" itemprop="dateModified" datetime="2021-12-21T14:43:23+00:00">2021-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -272,7 +354,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-10 02:28:43" itemprop="dateModified" datetime="2021-11-10T02:28:43+00:00">2021-11-10</time>
+                <time title="修改时间：2021-12-21 14:43:23" itemprop="dateModified" datetime="2021-12-21T14:43:23+00:00">2021-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -360,7 +442,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-10 02:28:43" itemprop="dateModified" datetime="2021-11-10T02:28:43+00:00">2021-11-10</time>
+                <time title="修改时间：2021-12-21 14:43:23" itemprop="dateModified" datetime="2021-12-21T14:43:23+00:00">2021-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -756,7 +838,7 @@ private void readObjectNoData()
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-10 02:28:43" itemprop="dateModified" datetime="2021-11-10T02:28:43+00:00">2021-11-10</time>
+                <time title="修改时间：2021-12-21 14:43:23" itemprop="dateModified" datetime="2021-12-21T14:43:23+00:00">2021-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -843,7 +925,7 @@ private void readObjectNoData()
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-10 02:28:43" itemprop="dateModified" datetime="2021-11-10T02:28:43+00:00">2021-11-10</time>
+                <time title="修改时间：2021-12-21 14:43:23" itemprop="dateModified" datetime="2021-12-21T14:43:23+00:00">2021-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -949,7 +1031,7 @@ private void readObjectNoData()
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-10 02:28:43" itemprop="dateModified" datetime="2021-11-10T02:28:43+00:00">2021-11-10</time>
+                <time title="修改时间：2021-12-21 14:43:23" itemprop="dateModified" datetime="2021-12-21T14:43:23+00:00">2021-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1034,7 +1116,7 @@ private void readObjectNoData()
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-10 02:28:43" itemprop="dateModified" datetime="2021-11-10T02:28:43+00:00">2021-11-10</time>
+                <time title="修改时间：2021-12-21 14:43:23" itemprop="dateModified" datetime="2021-12-21T14:43:23+00:00">2021-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1120,7 +1202,7 @@ private void readObjectNoData()
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-10 02:28:43" itemprop="dateModified" datetime="2021-11-10T02:28:43+00:00">2021-11-10</time>
+                <time title="修改时间：2021-12-21 14:43:23" itemprop="dateModified" datetime="2021-12-21T14:43:23+00:00">2021-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1202,7 +1284,7 @@ private void readObjectNoData()
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-10 02:28:43" itemprop="dateModified" datetime="2021-11-10T02:28:43+00:00">2021-11-10</time>
+                <time title="修改时间：2021-12-21 14:43:23" itemprop="dateModified" datetime="2021-12-21T14:43:23+00:00">2021-12-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1295,130 +1377,6 @@ private void readObjectNoData()
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/23/IDEA/IDEA%E5%BF%AB%E6%8D%B7%E9%94%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/04/23/IDEA/IDEA%E5%BF%AB%E6%8D%B7%E9%94%AE/" class="post-title-link" itemprop="url">Intellij IDEA 快捷键</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-04-23 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-23T00:00:00+00:00">2021-04-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-10 02:28:43" itemprop="dateModified" datetime="2021-11-10T02:28:43+00:00">2021-11-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/IDEA/" itemprop="url" rel="index"><span itemprop="name">IDEA</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>IDEA一些简单的快捷键与简写，mac与Windows不一样</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>Ctrl + F</th>
-<th>在当前文件进行文本查找</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>按住 Ctrl 键</td>
-<td>在打开的文件标题上，弹出该文件路径</td>
-</tr>
-<tr>
-<td>Ctrl + P</td>
-<td>方法参数提示显示</td>
-</tr>
-<tr>
-<td>ALT + 左右</td>
-<td>换小窗口</td>
-</tr>
-<tr>
-<td>Alt + Enter</td>
-<td>修复错误</td>
-</tr>
-<tr>
-<td>Shift + F10</td>
-<td>快速运行项目</td>
-</tr>
-<tr>
-<td>Ctrl + Alt + V</td>
-<td>快速引进变量</td>
-</tr>
-<tr>
-<td>Ctrl + /</td>
-<td>注释光标所在行代码</td>
-</tr>
-<tr>
-<td>/**</td>
-<td>注释</td>
-</tr>
-<tr>
-<td>sout</td>
-<td></td>
-</tr>
-<tr>
-<td>psvm</td>
-<td></td>
-</tr>
-</tbody></table>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1490,7 +1448,7 @@ private void readObjectNoData()
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">68</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
