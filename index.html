@@ -154,7 +154,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%AC%AC%E4%B8%89%E7%AB%A0%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -168,7 +168,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/12/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/02/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%AC%AC%E4%B8%89%E7%AB%A0%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -178,223 +178,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-12-25 08:52:32" itemprop="dateCreated datePublished" datetime="2021-12-25T08:52:32+00:00">2021-12-25</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>知识点：</p>
-<ul>
-<li>影响信道最大传输数率的因素主要有：<code> 信道带宽和信噪比</code></li>
-<li><code> 串行传输</code>被用于计算机内部的数据传输</li>
-<li></li>
-</ul>
-<h3 id="一、OSI七层模型"><a href="#一、OSI七层模型" class="headerlink" title="一、OSI七层模型"></a>一、OSI七层模型</h3><p>第一种模型是OSI七层模型，OSI为（Open System interconnect）的缩写，自上而下分别是应用层、表示层、会话层、传输层、网络层、数据链路层、物理层</p>
-<p>物理层：网卡，网线，集线器，中继器，调制解调器</p>
-<p>数据链路层：网桥，交换机</p>
-<p>网络层：路由器</p>
-<h4 id="1、物理层"><a href="#1、物理层" class="headerlink" title="1、物理层"></a>1、物理层</h4><ul>
-<li><p>物理层的媒体包括电缆、光纤等</p>
-</li>
-<li><p>正因为物理媒体会有很多差异，所以物理层的作用正是尽可能地屏蔽这些差异，使上面的数据链路曾感觉不到这些差异</p>
-</li>
-<li><p>在这一层，数据的单位为比特（bit）</p>
-</li>
-</ul>
-<h4 id="2、数据链路层"><a href="#2、数据链路层" class="headerlink" title="2、数据链路层"></a>2、数据链路层</h4><p>本章重点：</p>
-<p>（1）数据链路层的使用的信道主要有以下两种类型：<code> 点对点信道</code>、<code> 广播信道</code></p>
-<p>（2）数据链路层的协议有很多种，但有三个基本问题则是共同的：封装成帧、透明传输、差错检测</p>
-<ul>
-<li><p>封装成帧</p>
-<p>就是在数据前后分别添加首部和尾部，这样就构成了帧</p>
-</li>
-<li><p>透明传输</p>
-<p>用字节填充法（在非帧边界的控制字符插入转义字符）解决透明传输的问题</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E9%80%8F%E6%98%8E%E4%BC%A0%E8%BE%93.png" align=left>
-</li>
-<li><p>差错检测</p>
-<p>在数据链路层广泛使用了循环冗余检验CRC的检错技术</p>
-</li>
-</ul>
-<p>（3）以太网MAC层硬件地址</p>
-<p>（4）适配器、转发器、集线器、网桥、以太网交换机的作用和使用场景</p>
-<h4 id="3、网络层"><a href="#3、网络层" class="headerlink" title="3、网络层"></a>3、网络层</h4><p>主要的协议有ip，主要是将报文封装成ip数据报</p>
-<p>网络层向上层只提供简单灵活的、无连接的、尽最大努力交付的数据报服务</p>
-<h6 id="A、网际协议IP"><a href="#A、网际协议IP" class="headerlink" title="A、网际协议IP"></a>A、网际协议IP</h6><p>与IP协议配套使用的还有三个协议：</p>
-<ul>
-<li>地址解析协议ARP</li>
-<li>网际控制报文协议ICMP</li>
-<li>网际组管理协议IGMP</li>
-</ul>
-<p>IP数据报格式</p>
-<h4 id="4、传输层"><a href="#4、传输层" class="headerlink" title="4、传输层"></a>4、传输层</h4><p>IP数据报中的首部明确标记了两个主机的IP地址，但是真正进行通信的是进程。根据应用程序的不用需求，运输层需要两种不同的运输协议，即<code> 面向连接的TCP</code>和<code> 无连接的UDP</code>。TCP数据单元为段而UDP中数据单元为数据报。</p>
-<p>TCP面向连接、全双工面向字节流，每一条TCP连接有两个端点，这两个端点是什么呢？不是主机，也不是主机IP，不是应用进程，也不是运输层的协议端口。TCP链接的端点叫做<code> 套接字（socket）= IP地址：端口号</code></p>
-<p>TCP的三次握手</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.gif" width=700 align=left>
-
-<p>TCP的四次挥手</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.gif" width=700 align=left>
-
-
-
-<p>TCP的可靠传输的实现：1.滑动窗口 2.超时重传 3.选择确认 SACK</p>
-<p>TCP的流量控制：滑动窗口</p>
-<p>TCP的拥塞控制：慢开始与拥塞避免</p>
-<p>UDP是无连接 尽最大努力交付 面向报文 首部开销小 8字节 比TCP的20个字节小</p>
-<h4 id="5、会话层"><a href="#5、会话层" class="headerlink" title="5、会话层"></a>5、会话层</h4><p>会话单位的控制层，其主要功能是按照在应用进程之间约定的原则，按照正确的顺序收、发数据，进行各种形态的对话。</p>
-<h4 id="6、表示层"><a href="#6、表示层" class="headerlink" title="6、表示层"></a>6、表示层</h4><p>数据表示形式的控制层，其主要功能是把应用层提供的信息变换为能够共同理解的形式，提供字符代码、数据格式、控制信息格式、加密等的统一表示。</p>
-<h4 id="7、应用层"><a href="#7、应用层" class="headerlink" title="7、应用层"></a>7、应用层</h4><p>OSI参考模型的最高层。其功能是实现应用进程（如用户程序、终端操作员等）之间的信息交换。同时，还具有一系列业务处理所需要的服务功能。应用层许多协议都是基于客户服务器方式。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/25/%E3%80%8A%E7%AE%97%E6%B3%95%E7%AC%AC%E5%9B%9B%E7%89%88%E3%80%8B/%E7%AC%AC%E4%B8%89%E7%AB%A0%E6%9F%A5%E6%89%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/25/%E3%80%8A%E7%AE%97%E6%B3%95%E7%AC%AC%E5%9B%9B%E7%89%88%E3%80%8B/%E7%AC%AC%E4%B8%89%E7%AB%A0%E6%9F%A5%E6%89%BE/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-25 08:52:32" itemprop="dateCreated datePublished" datetime="2021-12-25T08:52:32+00:00">2021-12-25</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="一、符号表"><a href="#一、符号表" class="headerlink" title="一、符号表"></a>一、符号表</h3><h4 id="1、API"><a href="#1、API" class="headerlink" title="1、API"></a>1、API</h4><h4 id="2、有序符号表"><a href="#2、有序符号表" class="headerlink" title="2、有序符号表"></a>2、有序符号表</h4><h4 id="3、用例举例"><a href="#3、用例举例" class="headerlink" title="3、用例举例"></a>3、用例举例</h4><h4 id="4、无序链表中的顺序查找"><a href="#4、无序链表中的顺序查找" class="headerlink" title="4、无序链表中的顺序查找"></a>4、无序链表中的顺序查找</h4><h4 id="5、有序数组中的二分查找"><a href="#5、有序数组中的二分查找" class="headerlink" title="5、有序数组中的二分查找"></a>5、有序数组中的二分查找</h4><h4 id="6、对二分查找的分析"><a href="#6、对二分查找的分析" class="headerlink" title="6、对二分查找的分析"></a>6、对二分查找的分析</h4><h4 id="7、预览"><a href="#7、预览" class="headerlink" title="7、预览"></a>7、预览</h4><p>本章我们学习了6种符号表的实现下面是其简单预览：</p>
-<table>
-<thead>
-<tr>
-<th>使用的数据结构</th>
-<th>实现</th>
-<th>优点</th>
-<th>缺点</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>链表（顺序查找）</td>
-<td>SequentialSearchST</td>
-<td>适用于小型问题</td>
-<td>对于大型符号表很慢</td>
-</tr>
-<tr>
-<td>有序数组（二分查找）</td>
-<td>BinarySearchST</td>
-<td>最优的查找效率和空间需求，能够进行有序性的相关操作</td>
-<td>插入操作很慢</td>
-</tr>
-<tr>
-<td>二分查找树</td>
-<td>BST</td>
-<td>实现简单，能够进行有序性的相关操作</td>
-<td>没有性能上界的保证<br/>链接需要额外的空间</td>
-</tr>
-<tr>
-<td>平衡二叉查找树</td>
-<td>RedBlackBST</td>
-<td>最优的查找和插入效率，能够进行有序性的相关操作</td>
-<td>链接需要额外的空间</td>
-</tr>
-<tr>
-<td>散列表</td>
-<td>SeparateChainHashST<br/>LinearProbingHashST</td>
-<td>能够快速的查找和插入常见类型的数据</td>
-<td>需要计算每种类型的数据散列<br>无法进行有序性的相关操作<br>链接和空结点需要额外的空间</td>
-</tr>
-</tbody></table>
-<h3 id="二、二叉查找数"><a href="#二、二叉查找数" class="headerlink" title="二、二叉查找数"></a>二、二叉查找数</h3><h3 id="三、平衡查找树"><a href="#三、平衡查找树" class="headerlink" title="三、平衡查找树"></a>三、平衡查找树</h3><h3 id="四、散列表"><a href="#四、散列表" class="headerlink" title="四、散列表"></a>四、散列表</h3><h3 id="五、应用"><a href="#五、应用" class="headerlink" title="五、应用"></a>五、应用</h3>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/25/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%AC%AC%E4%B8%89%E7%AB%A0%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/25/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E7%AC%AC%E4%B8%89%E7%AB%A0%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-25 08:52:32" itemprop="dateCreated datePublished" datetime="2021-12-25T08:52:32+00:00">2021-12-25</time>
+              <time title="创建时间：2022-02-10 15:17:56" itemprop="dateCreated datePublished" datetime="2022-02-10T15:17:56+00:00">2022-02-10</time>
             </span>
 
           
@@ -473,7 +257,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/25/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E5%AF%84%E5%AD%98%E5%99%A8/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/10/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E5%AF%84%E5%AD%98%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -487,7 +271,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/12/25/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E5%AF%84%E5%AD%98%E5%99%A8/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/02/10/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E5%AF%84%E5%AD%98%E5%99%A8/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -497,7 +281,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-12-25 08:52:32" itemprop="dateCreated datePublished" datetime="2021-12-25T08:52:32+00:00">2021-12-25</time>
+              <time title="创建时间：2022-02-10 15:17:56" itemprop="dateCreated datePublished" datetime="2022-02-10T15:17:56+00:00">2022-02-10</time>
             </span>
 
           
@@ -530,7 +314,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/25/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%AF%84%E5%AD%98%E5%99%A8/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/10/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%AF%84%E5%AD%98%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -544,7 +328,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/12/25/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%AF%84%E5%AD%98%E5%99%A8/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/02/10/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%AF%84%E5%AD%98%E5%99%A8/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -554,7 +338,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-12-25 08:52:32" itemprop="dateCreated datePublished" datetime="2021-12-25T08:52:32+00:00">2021-12-25</time>
+              <time title="创建时间：2022-02-10 15:17:56" itemprop="dateCreated datePublished" datetime="2022-02-10T15:17:56+00:00">2022-02-10</time>
             </span>
 
           
@@ -627,7 +411,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/25/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E7%AC%AC%E5%85%AB%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E7%9A%84%E4%B8%A4%E4%B8%AA%E9%97%AE%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/10/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E7%AC%AC%E5%85%AB%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E7%9A%84%E4%B8%A4%E4%B8%AA%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -641,7 +425,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/12/25/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E7%AC%AC%E5%85%AB%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E7%9A%84%E4%B8%A4%E4%B8%AA%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/02/10/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E7%AC%AC%E5%85%AB%E7%AB%A0-%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E7%9A%84%E4%B8%A4%E4%B8%AA%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -651,7 +435,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-12-25 08:52:32" itemprop="dateCreated datePublished" datetime="2021-12-25T08:52:32+00:00">2021-12-25</time>
+              <time title="创建时间：2022-02-10 15:17:56" itemprop="dateCreated datePublished" datetime="2022-02-10T15:17:56+00:00">2022-02-10</time>
             </span>
 
           
@@ -689,7 +473,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E5%B1%82/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E5%B1%82/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -703,7 +487,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/12/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E5%B1%82/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/02/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E5%B1%82/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -713,7 +497,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-12-25 08:52:32" itemprop="dateCreated datePublished" datetime="2021-12-25T08:52:32+00:00">2021-12-25</time>
+              <time title="创建时间：2022-02-10 15:17:56" itemprop="dateCreated datePublished" datetime="2022-02-10T15:17:56+00:00">2022-02-10</time>
             </span>
 
           
@@ -746,7 +530,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%86%B3%E7%AD%96%E6%A0%91/%E5%86%B3%E7%AD%96%E6%A0%91/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -760,7 +544,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/12/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%86%B3%E7%AD%96%E6%A0%91/%E5%86%B3%E7%AD%96%E6%A0%91/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/02/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -770,7 +554,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-12-25 08:52:32" itemprop="dateCreated datePublished" datetime="2021-12-25T08:52:32+00:00">2021-12-25</time>
+              <time title="创建时间：2022-02-10 15:17:56" itemprop="dateCreated datePublished" datetime="2022-02-10T15:17:56+00:00">2022-02-10</time>
             </span>
 
           
@@ -784,159 +568,361 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/25/Java/Java_%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E4%B8%8A%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/25/Java/Java_%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E4%B8%8A%EF%BC%89/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-25 08:52:32" itemprop="dateCreated datePublished" datetime="2021-12-25T08:52:32+00:00">2021-12-25</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <hr>
-<hr>
-<h3 id="一、类和对象"><a href="#一、类和对象" class="headerlink" title="一、类和对象"></a>一、类和对象</h3><h3 id="二、方法详解"><a href="#二、方法详解" class="headerlink" title="二、方法详解"></a>二、方法详解</h3><h3 id="三、成员变量和局部变量"><a href="#三、成员变量和局部变量" class="headerlink" title="三、成员变量和局部变量"></a>三、成员变量和局部变量</h3><h3 id="四、隐藏和封装"><a href="#四、隐藏和封装" class="headerlink" title="四、隐藏和封装"></a>四、隐藏和封装</h3><h3 id="五、深入构造器"><a href="#五、深入构造器" class="headerlink" title="五、深入构造器"></a>五、深入构造器</h3><h3 id="六、类的继承"><a href="#六、类的继承" class="headerlink" title="六、类的继承"></a>六、类的继承</h3><h3 id="七、多态"><a href="#七、多态" class="headerlink" title="七、多态"></a>七、多态</h3><h3 id="八、继承与组合"><a href="#八、继承与组合" class="headerlink" title="八、继承与组合"></a>八、继承与组合</h3><h3 id="九、初始化块"><a href="#九、初始化块" class="headerlink" title="九、初始化块"></a>九、初始化块</h3><h3 id="十、本章小结"><a href="#十、本章小结" class="headerlink" title="十、本章小结"></a>十、本章小结</h3>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/25/Java/Java_%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E4%B8%8B%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/25/Java/Java_%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E4%B8%8B%EF%BC%89/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-25 08:52:32" itemprop="dateCreated datePublished" datetime="2021-12-25T08:52:32+00:00">2021-12-25</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <hr>
-<hr>
-<h3 id="一、包装类"><a href="#一、包装类" class="headerlink" title="一、包装类"></a>一、包装类</h3><h3 id="二、处理对象"><a href="#二、处理对象" class="headerlink" title="二、处理对象"></a>二、处理对象</h3><h4 id="1、打印对象和-toString-方法"><a href="#1、打印对象和-toString-方法" class="headerlink" title="1、打印对象和 toString()方法"></a>1、打印对象和<code> toString()</code>方法</h4><h4 id="2、-和-equals方法"><a href="#2、-和-equals方法" class="headerlink" title="2、 ==和 equals方法"></a>2、<code> ==</code>和<code> equals</code>方法</h4><h3 id="三、类成员"><a href="#三、类成员" class="headerlink" title="三、类成员"></a>三、类成员</h3><h4 id="1、理解类成员"><a href="#1、理解类成员" class="headerlink" title="1、理解类成员"></a>1、理解类成员</h4><h4 id="2、单例（Singleton）类"><a href="#2、单例（Singleton）类" class="headerlink" title="2、单例（Singleton）类"></a>2、单例（Singleton）类</h4><h3 id="四、final修饰符"><a href="#四、final修饰符" class="headerlink" title="四、final修饰符"></a>四、final修饰符</h3><h4 id="1、final成员变量"><a href="#1、final成员变量" class="headerlink" title="1、final成员变量"></a>1、final成员变量</h4><h4 id="2、final局部变量"><a href="#2、final局部变量" class="headerlink" title="2、final局部变量"></a>2、final局部变量</h4><h4 id="3、final修饰基本类型变量和引用类型变量的区别"><a href="#3、final修饰基本类型变量和引用类型变量的区别" class="headerlink" title="3、final修饰基本类型变量和引用类型变量的区别"></a>3、final修饰基本类型变量和引用类型变量的区别</h4><h4 id="4、可执行“宏替换”的final变量"><a href="#4、可执行“宏替换”的final变量" class="headerlink" title="4、可执行“宏替换”的final变量"></a>4、可执行“宏替换”的final变量</h4><h4 id="5、final方法"><a href="#5、final方法" class="headerlink" title="5、final方法"></a>5、final方法</h4><h4 id="6、final类"><a href="#6、final类" class="headerlink" title="6、final类"></a>6、final类</h4><h4 id="7、不可变类"><a href="#7、不可变类" class="headerlink" title="7、不可变类"></a>7、不可变类</h4><h4 id="8、缓存实例的不可变类"><a href="#8、缓存实例的不可变类" class="headerlink" title="8、缓存实例的不可变类"></a>8、缓存实例的不可变类</h4><h3 id="五、抽象类"><a href="#五、抽象类" class="headerlink" title="五、抽象类"></a>五、抽象类</h3><h4 id="1、抽象方法和抽象类"><a href="#1、抽象方法和抽象类" class="headerlink" title="1、抽象方法和抽象类"></a>1、抽象方法和抽象类</h4><h4 id="2、抽象类的作用"><a href="#2、抽象类的作用" class="headerlink" title="2、抽象类的作用"></a>2、抽象类的作用</h4><h3 id="六、Java9改进的接口"><a href="#六、Java9改进的接口" class="headerlink" title="六、Java9改进的接口"></a>六、Java9改进的接口</h3><h4 id="1、接口的概念"><a href="#1、接口的概念" class="headerlink" title="1、接口的概念"></a>1、接口的概念</h4><h4 id="2、Java9中接口的定义"><a href="#2、Java9中接口的定义" class="headerlink" title="2、Java9中接口的定义"></a>2、Java9中接口的定义</h4><h4 id="3、接口的继承"><a href="#3、接口的继承" class="headerlink" title="3、接口的继承"></a>3、接口的继承</h4><h4 id="4、使用接口"><a href="#4、使用接口" class="headerlink" title="4、使用接口"></a>4、使用接口</h4><h4 id="5、接口和抽象类"><a href="#5、接口和抽象类" class="headerlink" title="5、接口和抽象类"></a>5、接口和抽象类</h4><h4 id="6、面向接口编程"><a href="#6、面向接口编程" class="headerlink" title="6、面向接口编程"></a>6、面向接口编程</h4><h3 id="七、内部类"><a href="#七、内部类" class="headerlink" title="七、内部类"></a>七、内部类</h3><p>所谓内部类，就是将一个类放在另一个类内部定义，这个定义在其他类内部的类就叫做内部类（嵌套类），包含内部类的类也称为外部类（宿主类）。Java从JDK1.1开始引入内部类，主要有如下作用：</p>
-<ul>
-<li><p>内部类提供了更好的封装，可以将内部类隐藏到外部类之内，不允许同包下的其他类访问该类。</p>
-<p>例如：Cow类里面创建一个CowLeg类</p>
+          <p>知识点：</p>
+<h3 id="一、OSI七层模型"><a href="#一、OSI七层模型" class="headerlink" title="一、OSI七层模型"></a>一、OSI七层模型</h3><p>第一种模型是OSI七层模型，OSI为（Open System interconnect）的缩写，自上而下分别是应用层、表示层、会话层、传输层、网络层、数据链路层、物理层</p>
+<p>物理层：网卡，网线，集线器，中继器，调制解调器</p>
+<p>数据链路层：网桥，交换机</p>
+<p>网络层：路由器</p>
+<h4 id="1、物理层"><a href="#1、物理层" class="headerlink" title="1、物理层"></a>1、物理层</h4><ul>
+<li><p>物理层的媒体包括电缆、光纤等</p>
 </li>
-<li><p>内部类成员可以直接访问外部类的私有数据</p>
+<li><p>正因为物理媒体会有很多差异，所以物理层的作用正是尽可能地屏蔽这些差异，使上面的数据链路曾感觉不到这些差异</p>
 </li>
-<li><p>匿名内部类适合于创建那些仅需要一次使用的类</p>
+<li><p>在这一层，数据的单位为比特（bit）</p>
 </li>
 </ul>
-<p>此外，使用内部类时还需注意以下两点：</p>
+<h4 id="2、数据链路层"><a href="#2、数据链路层" class="headerlink" title="2、数据链路层"></a>2、数据链路层</h4><p>本章重点：</p>
+<p>（1）数据链路层的使用的信道主要有以下两种类型：<code> 点对点信道</code>、<code> 广播信道</code></p>
+<p>（2）数据链路层的协议有很多种，但有三个基本问题则是共同的：封装成帧、透明传输、差错检测</p>
 <ul>
-<li>内部类比外部类可以多使用三个修饰符：<code>private</code>、<code>protected</code>、<code>static</code>（外部类不可使用）</li>
-<li>非静态内部类不可拥有静态成员</li>
+<li><p>封装成帧</p>
+<p>就是在数据前后分别添加首部和尾部，这样就构成了帧</p>
+</li>
+<li><p>透明传输</p>
+<p>用字节填充法（在非帧边界的控制字符插入转义字符）解决透明传输的问题</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E9%80%8F%E6%98%8E%E4%BC%A0%E8%BE%93.png" align=left>
+</li>
+<li><p>差错检测</p>
+<p>在数据链路层广泛使用了循环冗余检验CRC的检错技术</p>
+</li>
 </ul>
-<h4 id="1、非静态内部类"><a href="#1、非静态内部类" class="headerlink" title="1、非静态内部类"></a>1、非静态内部类</h4><p>大多数时候，内部类都被作为成员内部类定义，而不是作为局部内部类。成员内部类是一种与成员变量、方法、构造器和初始化块相似的类成员，局部内部类和匿名内部类不是类成员。</p>
-<p>成员内部类分为两种：<code> 静态内部类</code>和<code> 非静态内部类</code>，使用static修饰的为静态内部类。</p>
-<p>经常看到同一个Java源文件里定义了多个类，那不是内部类，他们依然是两个相互独立的类，如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//下面两个类相互独立，没有谁是谁的内部类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">B</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>（3）以太网MAC层硬件地址</p>
+<p>（4）适配器、转发器、集线器、网桥、以太网交换机的作用和使用场景</p>
+<h4 id="3、网络层"><a href="#3、网络层" class="headerlink" title="3、网络层"></a>3、网络层</h4><p>主要的协议有ip，主要是将报文封装成ip数据报</p>
+<p>网络层向上层只提供简单灵活的、无连接的、尽最大努力交付的数据报服务</p>
+<h6 id="A、网际协议IP"><a href="#A、网际协议IP" class="headerlink" title="A、网际协议IP"></a>A、网际协议IP</h6><p>与IP协议配套使用的还有三个协议：</p>
+<ul>
+<li>地址解析协议ARP</li>
+<li>网际控制报文协议ICMP</li>
+<li>网际组管理协议IGMP</li>
+</ul>
+<p>IP数据报格式</p>
+<h4 id="4、传输层"><a href="#4、传输层" class="headerlink" title="4、传输层"></a>4、传输层</h4><p>IP数据报中的首部明确标记了两个主机的IP地址，但是真正进行通信的是进程。根据应用程序的不用需求，运输层需要两种不同的运输协议，即<code> 面向连接的TCP</code>和<code> 无连接的UDP</code>。TCP数据单元为段而UDP中数据单元为数据报。</p>
+<p>TCP面向连接、全双工面向字节流，每一条TCP连接有两个端点，这两个端点是什么呢？不是主机，也不是主机IP，不是应用进程，也不是运输层的协议端口。TCP链接的端点叫做<code> 套接字（socket）= IP地址：端口号</code></p>
+<p>TCP的三次握手</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.gif" width=700 align=left>
 
-<blockquote>
-<p>外部类的上一级程序单元是包，所以只有两个作用域：<code> 同一个包内</code>和<code> 任何位置</code>，因此只需要两种访问权限：<code> 包访问权限</code>和<code> 公开访问权限</code>，正好对应于<code> 省略访问控制符</code>和<code> public访问控制符</code></p>
-<p>内部类的上一级程序单元是外部类，具有四个作用域：<code> 同一个类</code>、<code> 同一个包</code>、<code> 父子类</code>、<code> 任何位置</code>，因此可以使用4种访问控制权限</p>
+<p>TCP的四次挥手</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.gif" width=700 align=left>
+
+
+
+<p>TCP的可靠传输的实现：1.滑动窗口 2.超时重传 3.选择确认 SACK</p>
+<p>TCP的流量控制：滑动窗口</p>
+<p>TCP的拥塞控制：慢开始与拥塞避免</p>
+<p>UDP是无连接 尽最大努力交付 面向报文 首部开销小 8字节 比TCP的20个字节小</p>
+<h4 id="5、会话层"><a href="#5、会话层" class="headerlink" title="5、会话层"></a>5、会话层</h4><p>会话单位的控制层，其主要功能是按照在应用进程之间约定的原则，按照正确的顺序收、发数据，进行各种形态的对话。</p>
+<h4 id="6、表示层"><a href="#6、表示层" class="headerlink" title="6、表示层"></a>6、表示层</h4><p>数据表示形式的控制层，其主要功能是把应用层提供的信息变换为能够共同理解的形式，提供字符代码、数据格式、控制信息格式、加密等的统一表示。</p>
+<h4 id="7、应用层"><a href="#7、应用层" class="headerlink" title="7、应用层"></a>7、应用层</h4><p>OSI参考模型的最高层。其功能是实现应用进程（如用户程序、终端操作员等）之间的信息交换。同时，还具有一系列业务处理所需要的服务功能。应用层许多协议都是基于客户服务器方式。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%BF%90%E8%BE%93%E5%B1%82/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%BF%90%E8%BE%93%E5%B1%82/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-02-10 15:17:56" itemprop="dateCreated datePublished" datetime="2022-02-10T15:17:56+00:00">2022-02-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>运输层位于应用层与网络层中间，为不同主机上的应用进程之间的通信起着至关重要的作用。还有两个非常重要的协议：TCP和UDP运输层协议。</p>
+<p>总结一下UDP和TCP最基本的责任：将两个端系统间IP的交付服务拓展为运行在端系统上的两个进程之间的交付服务。</p>
+<p>将主机间交付拓展到进程间交付被称为<code>运输层的多路复用（transport-layer multiplexing）</code>与<code>多路分解（demultiplexing）</code>。</p>
+<p>进程到进程之间的数据交付和差错检测是两种最低限度的运输层服务</p>
+<h4 id="多路复用与多路分解"><a href="#多路复用与多路分解" class="headerlink" title="多路复用与多路分解"></a>多路复用与多路分解</h4><p>网络层提供的主机到主机之间的服务 - 变成 - 运行在主机上的应用程序进程到进程之间的服务</p>
+<ul>
+<li>多路分解</li>
+</ul>
+<p>将运输层报文段中的数据交付到正确的套接字（socket）</p>
+<ul>
+<li>多路复用</li>
+</ul>
+<p>在源主机从不同套接字中收集数据块，并为每个数据块封装上首部信息（用于以后的多路分解）</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/10/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%86%B3%E7%AD%96%E6%A0%91/%E5%86%B3%E7%AD%96%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/10/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%86%B3%E7%AD%96%E6%A0%91/%E5%86%B3%E7%AD%96%E6%A0%91/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-02-10 15:17:56" itemprop="dateCreated datePublished" datetime="2022-02-10T15:17:56+00:00">2022-02-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/10/Untitled/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/10/Untitled/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-02-10 15:17:56" itemprop="dateCreated datePublished" datetime="2022-02-10T15:17:56+00:00">2022-02-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><a target="_blank" rel="noopener" href="https://www.nowcoder.com/discuss/740920?source_id=discuss_experience_nctrack&amp;channel=-1">https://www.nowcoder.com/discuss/740920?source_id=discuss_experience_nctrack&amp;channel=-1</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/10/Netty%E5%AD%A6%E4%B9%A0/Untitled/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/10/Netty%E5%AD%A6%E4%B9%A0/Untitled/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-02-10 15:17:56" itemprop="dateCreated datePublished" datetime="2022-02-10T15:17:56+00:00">2022-02-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="NIO基础"><a href="#NIO基础" class="headerlink" title="NIO基础"></a>NIO基础</h2><p>non-blocking IO（非阻塞IO）</p>
+<h3 id="1、三大组件"><a href="#1、三大组件" class="headerlink" title="1、三大组件"></a>1、三大组件</h3><h4 id="1-1、Channel-amp-Buffer"><a href="#1-1、Channel-amp-Buffer" class="headerlink" title="1.1、Channel &amp; Buffer"></a>1.1、Channel &amp; Buffer</h4><ul>
+<li>Channel：</li>
+</ul>
+<p>基本概念：</p>
+<p>常见的Channel：</p>
+<ul>
+<li>Buffer：</li>
+</ul>
+<p>基本概念：</p>
+<p>常见的Buffer：</p>
+<h4 id="1-2、Selector"><a href="#1-2、Selector" class="headerlink" title="1.2、Selector"></a>1.2、Selector</h4><p>基本概念：多线程版本的缺点、线程池版本的缺点、Selector版本的服务器设计</p>
+<h3 id="2、ByteBuffer"><a href="#2、ByteBuffer" class="headerlink" title="2、ByteBuffer"></a>2、ByteBuffer</h3><h4 id="2-1、ByteBuffer正确使用姿势"><a href="#2-1、ByteBuffer正确使用姿势" class="headerlink" title="2.1、ByteBuffer正确使用姿势"></a>2.1、ByteBuffer正确使用姿势</h4><ul>
+<li>向buffer中写入数据，例如调用channel.read(buffer)</li>
+<li>调用buffer.flip()切换至<strong>读模式</strong></li>
+<li>从buffer读取数据，例如调用buffer.get()</li>
+<li>调用clear()或compact()切换至<strong>写模式</strong></li>
+<li>重复以上步骤</li>
+</ul>
+<h4 id="2-2、ByteBuffer结构"><a href="#2-2、ByteBuffer结构" class="headerlink" title="2.2、ByteBuffer结构"></a>2.2、ByteBuffer结构</h4><h4 id="2-3、ByteBuffer常见方法"><a href="#2-3、ByteBuffer常见方法" class="headerlink" title="2.3、ByteBuffer常见方法"></a>2.3、ByteBuffer常见方法</h4><h4 id="2-4、Scattering-Reads"><a href="#2-4、Scattering-Reads" class="headerlink" title="2.4、Scattering Reads"></a>2.4、Scattering Reads</h4><p>分散读取</p>
+<h3 id="3、文件编程"><a href="#3、文件编程" class="headerlink" title="3、文件编程"></a>3、文件编程</h3><h4 id="3-1、FileChannel"><a href="#3-1、FileChannel" class="headerlink" title="3.1、FileChannel"></a>3.1、FileChannel</h4><blockquote>
+<p>FileChannel只能工作在阻塞模式下</p>
 </blockquote>
-<p>下面的程序在Cow类里面定义了一个CowLeg非静态内部类，并在方法中直接访问Cow的private的实例变量：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cow</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span> weight;</span><br><span class="line">    <span class="comment">//外部类的构造器</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Cow</span><span class="params">(<span class="keyword">double</span> weight)</span> </span>&#123; <span class="keyword">this</span>.weight = weight; &#125;</span><br><span class="line">    <span class="comment">//定义一个非静态内部类</span></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">CowLeg</span> </span>&#123;</span><br><span class="line">        <span class="comment">//非静态内部类的两个实例变量</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">double</span> length;</span><br><span class="line">        <span class="keyword">private</span> String color;</span><br><span class="line">        <span class="comment">//内部类的构造器</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">CowLeg</span><span class="params">(<span class="keyword">double</span> length, String color)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.length = length;</span><br><span class="line">            <span class="keyword">this</span>.color = color;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//非静态内部类的实例方法</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">info</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;牛腿颜色为：&quot;</span> + color);</span><br><span class="line">            System.out.println(<span class="string">&quot;牛高：&quot;</span> + length);</span><br><span class="line">            <span class="comment">//直接访问外部类private修饰的成员变量</span></span><br><span class="line">            System.out.println(<span class="string">&quot;奶牛重：&quot;</span> + weight);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> cl = <span class="keyword">new</span> CowLeg(<span class="number">1.12</span>, <span class="string">&quot;黑白相间&quot;</span>);</span><br><span class="line">        cl.info();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> cow = <span class="keyword">new</span> Cow(<span class="number">378.9</span>);</span><br><span class="line">        cow.test();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>获取</p>
+</li>
+<li><p>读取</p>
+</li>
+<li><p>写入</p>
+</li>
+<li><p>关闭</p>
+</li>
+<li><p>位置</p>
+</li>
+<li><p>大小</p>
+</li>
+<li><p>强制写入</p>
+</li>
+</ul>
+<h4 id="3-2、两个Channel传输数据"><a href="#3-2、两个Channel传输数据" class="headerlink" title="3.2、两个Channel传输数据"></a>3.2、两个Channel传输数据</h4><h4 id="3-3、Path"><a href="#3-3、Path" class="headerlink" title="3.3、Path"></a>3.3、Path</h4><p>JDK7加入了<code>Path</code>和<code>Paths</code>类</p>
+<ul>
+<li><code>Path</code>用来表示文件路径</li>
+<li><code>Paths</code>是工具类，用来获取<code>Path</code>实例</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Path source = Paths.get(<span class="string">&quot;Netty学习/netty-demo/data.txt&quot;</span>);</span><br></pre></td></tr></table></figure>
 
-<p>编译上面程序，发现文件所在路径下生成了两个class文件，如下图：</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/java-object1.png">
 
-<p>成员内部类（包括静态内部类、非静态内部类）的class文件总是以这种形式：<code>OuterClass$InnerClass.class</code></p>
-<p>内部类之所以可以访问外部类的private成员，是因为在非静态内部类对象中，保存了一个它所寄生的外部类对象的引用（当调用非静态内部类实例方法时，必须有一个非静态内部类实例，非静态内部类必须寄生在外部类实例里面），如下图所示：</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/java-object2.png">
 
-<h4 id="2、静态内部类"><a href="#2、静态内部类" class="headerlink" title="2、静态内部类"></a>2、静态内部类</h4><h4 id="3、使用内部类"><a href="#3、使用内部类" class="headerlink" title="3、使用内部类"></a>3、使用内部类</h4><h4 id="4、局部内部类"><a href="#4、局部内部类" class="headerlink" title="4、局部内部类"></a>4、局部内部类</h4><h4 id="5、匿名内部类"><a href="#5、匿名内部类" class="headerlink" title="5、匿名内部类"></a>5、匿名内部类</h4><h4 id="八、Java11增强的Lambda表达式"><a href="#八、Java11增强的Lambda表达式" class="headerlink" title="八、Java11增强的Lambda表达式"></a>八、Java11增强的Lambda表达式</h4><h4 id="1、Lambda表达式入门"><a href="#1、Lambda表达式入门" class="headerlink" title="1、Lambda表达式入门"></a>1、Lambda表达式入门</h4><h4 id="2、Lambda表达式与函数式接口"><a href="#2、Lambda表达式与函数式接口" class="headerlink" title="2、Lambda表达式与函数式接口"></a>2、Lambda表达式与函数式接口</h4><h4 id="3、在Lambda表达式中使用var"><a href="#3、在Lambda表达式中使用var" class="headerlink" title="3、在Lambda表达式中使用var"></a>3、在Lambda表达式中使用var</h4><h4 id="4、方法引用与构造器引用"><a href="#4、方法引用与构造器引用" class="headerlink" title="4、方法引用与构造器引用"></a>4、方法引用与构造器引用</h4><h4 id="5、Lambda表达式与匿名内部类的联系和区别"><a href="#5、Lambda表达式与匿名内部类的联系和区别" class="headerlink" title="5、Lambda表达式与匿名内部类的联系和区别"></a>5、Lambda表达式与匿名内部类的联系和区别</h4><h4 id="6、使用Lambda表达式调用Arrays的类方法"><a href="#6、使用Lambda表达式调用Arrays的类方法" class="headerlink" title="6、使用Lambda表达式调用Arrays的类方法"></a>6、使用Lambda表达式调用Arrays的类方法</h4><h3 id="九、枚举类"><a href="#九、枚举类" class="headerlink" title="九、枚举类"></a>九、枚举类</h3><h4 id="1、手动实现枚举类"><a href="#1、手动实现枚举类" class="headerlink" title="1、手动实现枚举类"></a>1、手动实现枚举类</h4><h4 id="2、枚举类入门"><a href="#2、枚举类入门" class="headerlink" title="2、枚举类入门"></a>2、枚举类入门</h4><h4 id="3、枚举类成员变量、方法与构造器"><a href="#3、枚举类成员变量、方法与构造器" class="headerlink" title="3、枚举类成员变量、方法与构造器"></a>3、枚举类成员变量、方法与构造器</h4><h4 id="4、实现接口的枚举类"><a href="#4、实现接口的枚举类" class="headerlink" title="4、实现接口的枚举类"></a>4、实现接口的枚举类</h4><h4 id="5、包含抽象方法的枚举类"><a href="#5、包含抽象方法的枚举类" class="headerlink" title="5、包含抽象方法的枚举类"></a>5、包含抽象方法的枚举类</h4><h3 id="十、对象与垃圾回收"><a href="#十、对象与垃圾回收" class="headerlink" title="十、对象与垃圾回收"></a>十、对象与垃圾回收</h3><h4 id="1、对象在内存中的状态"><a href="#1、对象在内存中的状态" class="headerlink" title="1、对象在内存中的状态"></a>1、对象在内存中的状态</h4><h4 id="2、强制垃圾回收"><a href="#2、强制垃圾回收" class="headerlink" title="2、强制垃圾回收"></a>2、强制垃圾回收</h4><h4 id="3、finalize方法"><a href="#3、finalize方法" class="headerlink" title="3、finalize方法"></a>3、finalize方法</h4><h4 id="4、对象的软、弱和虚引用"><a href="#4、对象的软、弱和虚引用" class="headerlink" title="4、对象的软、弱和虚引用"></a>4、对象的软、弱和虚引用</h4><h3 id="十一、修饰符的适用范围"><a href="#十一、修饰符的适用范围" class="headerlink" title="十一、修饰符的适用范围"></a>十一、修饰符的适用范围</h3><h3 id="十二、多版本JAR包"><a href="#十二、多版本JAR包" class="headerlink" title="十二、多版本JAR包"></a>十二、多版本JAR包</h3><h4 id="1、jar命令详解"><a href="#1、jar命令详解" class="headerlink" title="1、jar命令详解"></a>1、jar命令详解</h4><h4 id="2、创建可执行的JAR包"><a href="#2、创建可执行的JAR包" class="headerlink" title="2、创建可执行的JAR包"></a>2、创建可执行的JAR包</h4><h4 id="3、关于JAR包的技巧"><a href="#3、关于JAR包的技巧" class="headerlink" title="3、关于JAR包的技巧"></a>3、关于JAR包的技巧</h4><h3 id="十三、本章小结"><a href="#十三、本章小结" class="headerlink" title="十三、本章小结"></a>十三、本章小结</h3>
+<h4 id="3-4、Files（工具类）"><a href="#3-4、Files（工具类）" class="headerlink" title="3.4、Files（工具类）"></a>3.4、Files（工具类）</h4><p>检查文件是否存在</p>
+<p>创建一级目录</p>
+<p>创建多级目录</p>
+<p>拷贝文件</p>
+<p>移动文件</p>
+<p>删除文件</p>
+<p>删除目录</p>
+<p>遍历目录文件</p>
+
       
     </div>
 
@@ -954,7 +940,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1022,7 +1008,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">74</span>
+          <span class="site-state-item-count">85</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1070,7 +1056,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
