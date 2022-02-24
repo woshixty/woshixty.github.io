@@ -154,6 +154,806 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/27/Java/Java_%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/27/Java/Java_%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" class="post-title-link" itemprop="url">Java异常处理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-27 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-27T00:00:00+00:00">2021-06-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-24 06:17:33" itemprop="dateModified" datetime="2022-02-24T06:17:33+00:00">2022-02-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="一、异常概述"><a href="#一、异常概述" class="headerlink" title="一、异常概述"></a>一、异常概述</h3><h3 id="二、异常处理机制"><a href="#二、异常处理机制" class="headerlink" title="二、异常处理机制"></a>二、异常处理机制</h3><h4 id="1、使用-try-catch捕获异常"><a href="#1、使用-try-catch捕获异常" class="headerlink" title="1、使用 try...catch捕获异常"></a>1、使用<code> try...catch</code>捕获异常</h4><h4 id="2、异常类的继承体系"><a href="#2、异常类的继承体系" class="headerlink" title="2、异常类的继承体系"></a>2、异常类的继承体系</h4><h4 id="3、多异常捕获"><a href="#3、多异常捕获" class="headerlink" title="3、多异常捕获"></a>3、多异常捕获</h4><h4 id="4、访问异常信息"><a href="#4、访问异常信息" class="headerlink" title="4、访问异常信息"></a>4、访问异常信息</h4><h4 id="5、使用finally回收资源"><a href="#5、使用finally回收资源" class="headerlink" title="5、使用finally回收资源"></a>5、使用finally回收资源</h4><h4 id="6、异常处理的嵌套"><a href="#6、异常处理的嵌套" class="headerlink" title="6、异常处理的嵌套"></a>6、异常处理的嵌套</h4><h4 id="7、Java9增强的自动关闭资源的try语句"><a href="#7、Java9增强的自动关闭资源的try语句" class="headerlink" title="7、Java9增强的自动关闭资源的try语句"></a>7、Java9增强的自动关闭资源的try语句</h4><h3 id="三、Checked异常与Runtime异常体系"><a href="#三、Checked异常与Runtime异常体系" class="headerlink" title="三、Checked异常与Runtime异常体系"></a>三、Checked异常与Runtime异常体系</h3><h4 id="1、使用throws声明抛出异常"><a href="#1、使用throws声明抛出异常" class="headerlink" title="1、使用throws声明抛出异常"></a>1、使用throws声明抛出异常</h4><h4 id="2、方法重写时声明抛出异常的限制"><a href="#2、方法重写时声明抛出异常的限制" class="headerlink" title="2、方法重写时声明抛出异常的限制"></a>2、方法重写时声明抛出异常的限制</h4><h3 id="四、使用throw抛出异常"><a href="#四、使用throw抛出异常" class="headerlink" title="四、使用throw抛出异常"></a>四、使用throw抛出异常</h3><h4 id="1、抛出异常"><a href="#1、抛出异常" class="headerlink" title="1、抛出异常"></a>1、抛出异常</h4><h4 id="2、自定义异常类"><a href="#2、自定义异常类" class="headerlink" title="2、自定义异常类"></a>2、自定义异常类</h4><h4 id="3、catch和throw同时使用"><a href="#3、catch和throw同时使用" class="headerlink" title="3、catch和throw同时使用"></a>3、catch和throw同时使用</h4><h4 id="4、使用throw语句抛出异常"><a href="#4、使用throw语句抛出异常" class="headerlink" title="4、使用throw语句抛出异常"></a>4、使用throw语句抛出异常</h4><h4 id="5、异常链"><a href="#5、异常链" class="headerlink" title="5、异常链"></a>5、异常链</h4><h3 id="五、Java的异常跟踪栈"><a href="#五、Java的异常跟踪栈" class="headerlink" title="五、Java的异常跟踪栈"></a>五、Java的异常跟踪栈</h3><h3 id="六、异常处理规则"><a href="#六、异常处理规则" class="headerlink" title="六、异常处理规则"></a>六、异常处理规则</h3><h4 id="1、不要过度使用异常"><a href="#1、不要过度使用异常" class="headerlink" title="1、不要过度使用异常"></a>1、不要过度使用异常</h4><h4 id="2、不要使用过于庞大的try块"><a href="#2、不要使用过于庞大的try块" class="headerlink" title="2、不要使用过于庞大的try块"></a>2、不要使用过于庞大的try块</h4><h4 id="3、避免使用-Catch-All语句"><a href="#3、避免使用-Catch-All语句" class="headerlink" title="3、避免使用 Catch All语句"></a>3、避免使用<code> Catch All</code>语句</h4><h4 id="4、不要忽略捕获到的异常"><a href="#4、不要忽略捕获到的异常" class="headerlink" title="4、不要忽略捕获到的异常"></a>4、不要忽略捕获到的异常</h4><h3 id="七、本章小结"><a href="#七、本章小结" class="headerlink" title="七、本章小结"></a>七、本章小结</h3>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%BC%82%E5%B8%B8%E6%95%B0%E6%8D%AE%E6%A3%80%E6%B5%8B/%E5%BC%82%E5%B8%B8%E6%95%B0%E6%8D%AE%E6%A3%80%E6%B5%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%BC%82%E5%B8%B8%E6%95%B0%E6%8D%AE%E6%A3%80%E6%B5%8B/%E5%BC%82%E5%B8%B8%E6%95%B0%E6%8D%AE%E6%A3%80%E6%B5%8B/" class="post-title-link" itemprop="url">异常检测检测实战</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-25 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-25T00:00:00+00:00">2021-06-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-24 06:17:33" itemprop="dateModified" datetime="2022-02-24T06:17:33+00:00">2022-02-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>异常检测实战过程：<br>1、基于anomaly_data.csv，可视化数据分布情况，及其对应高斯分布的概率密度函数<br>2、建立模型，实现异常点数据的预测<br>3、可视化异常检测处理结果<br>4、修改概率分布阈值EllipticEnvelope（contamination）中的contamination，查看阈值改变对结果的影响</p>
+</blockquote>
+<h3 id="1、加载数据集"><a href="#1、加载数据集" class="headerlink" title="1、加载数据集"></a>1、加载数据集</h3><p>本次实战所用数据集：链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/18IRYPuk6NSU6xW4NyRokpA">https://pan.baidu.com/s/18IRYPuk6NSU6xW4NyRokpA</a>  密码: stug</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># load the data</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">data = pd.read_csv(<span class="string">&#x27;anomaly_data.csv&#x27;</span>)</span><br><span class="line">data.head()</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2、将数据可视化"><a href="#2、将数据可视化" class="headerlink" title="2、将数据可视化"></a>2、将数据可视化</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># visualize the data</span></span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line">fig1 = plt.figure(figsize=(<span class="number">10</span>, <span class="number">5</span>))</span><br><span class="line">plt.scatter(data.loc[:, <span class="string">&#x27;x1&#x27;</span>], data.loc[:, <span class="string">&#x27;x2&#x27;</span>])</span><br><span class="line">plt.title(<span class="string">&#x27;data&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;x1&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;x1&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>图像显示如下：</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/deep-learning/yichangjiance1.png">
+
+
+
+<h3 id="3、定义x1与x2并展示图像"><a href="#3、定义x1与x2并展示图像" class="headerlink" title="3、定义x1与x2并展示图像"></a>3、定义x1与x2并展示图像</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># define x1 and x2</span></span><br><span class="line">x1 = data.loc[:, <span class="string">&#x27;x1&#x27;</span>]</span><br><span class="line">x2 = data.loc[:, <span class="string">&#x27;x2&#x27;</span>]</span><br><span class="line"></span><br><span class="line">fig2 = plt.figure(figsize=(<span class="number">20</span>, <span class="number">5</span>))</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">121</span>)</span><br><span class="line">plt.hist(x1, bins=<span class="number">100</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;x1 distribut&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;x1&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;counts&#x27;</span>)</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">122</span>)</span><br><span class="line">plt.hist(x2, bins=<span class="number">100</span>)</span><br><span class="line">plt.title(<span class="string">&#x27;x2 distribut&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;x2&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;counts&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>可视化数据如下所示：</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/deep-learning/yichangjiance2.png">
+
+
+
+<h3 id="4、计算x1与x2均值和标准差"><a href="#4、计算x1与x2均值和标准差" class="headerlink" title="4、计算x1与x2均值和标准差"></a>4、计算x1与x2均值和标准差</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># calculate the mean and sigma of x1 and x2</span></span><br><span class="line">x1_mean = x1.mean()</span><br><span class="line">x1_sigma = x1.std()</span><br><span class="line">x2_mean = x2.mean()</span><br><span class="line">x2_sigma = x2.std()</span><br><span class="line">print(x1_mean, x1_sigma, x2_mean, x2_sigma)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5、计算高斯分布的概率密度"><a href="#5、计算高斯分布的概率密度" class="headerlink" title="5、计算高斯分布的概率密度"></a>5、计算高斯分布的概率密度</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># calculate the gaussion distribution p(x)</span></span><br><span class="line"><span class="keyword">from</span> scipy.stats <span class="keyword">import</span> norm</span><br><span class="line">x1_range = np.linspace(<span class="number">0</span>, <span class="number">20</span>, <span class="number">300</span>)</span><br><span class="line">x1_normal = norm.pdf(x1_range, x1_mean, x1_sigma)</span><br><span class="line"></span><br><span class="line">x2_range = np.linspace(<span class="number">0</span>, <span class="number">20</span>, <span class="number">300</span>)</span><br><span class="line">x2_normal = norm.pdf(x2_range, x2_mean, x2_sigma)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6、可视化高斯密度曲线"><a href="#6、可视化高斯密度曲线" class="headerlink" title="6、可视化高斯密度曲线"></a>6、可视化高斯密度曲线</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># visualize the p(x)</span></span><br><span class="line">fig2 = plt.figure(figsize=(<span class="number">20</span>, <span class="number">5</span>))</span><br><span class="line">plt.subplot(<span class="number">121</span>)</span><br><span class="line">plt.plot(x1_range, x1_normal)</span><br><span class="line">plt.title(<span class="string">&#x27;normal p(x1)&#x27;</span>)</span><br><span class="line"></span><br><span class="line">plt.subplot(<span class="number">122</span>)</span><br><span class="line">plt.plot(x2_range, x2_normal)</span><br><span class="line">plt.title(<span class="string">&#x27;normal p(x2)&#x27;</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>高斯密度曲线可视化如下所示：</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/deep-learning/yichangjiance3.png">
+
+
+
+<h3 id="7、建立模型并进行预测"><a href="#7、建立模型并进行预测" class="headerlink" title="7、建立模型并进行预测"></a>7、建立模型并进行预测</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># establish the model and predict</span></span><br><span class="line"><span class="keyword">from</span> sklearn.covariance <span class="keyword">import</span> EllipticEnvelope</span><br><span class="line">ad_model = EllipticEnvelope()</span><br><span class="line">ad_model.fit(data)</span><br><span class="line"></span><br><span class="line"><span class="comment"># make prediction</span></span><br><span class="line">y_predict = ad_model.predict(data)</span><br><span class="line">print(pd.value_counts(y_predict))</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="8、将预测结果可视化"><a href="#8、将预测结果可视化" class="headerlink" title="8、将预测结果可视化"></a>8、将预测结果可视化</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># visualize the result</span></span><br><span class="line">fig4 = plt.figure(figsize=(<span class="number">10</span>, <span class="number">5</span>))</span><br><span class="line">original_data = plt.scatter(data.loc[:, <span class="string">&#x27;x1&#x27;</span>], data.loc[:, <span class="string">&#x27;x2&#x27;</span>], marker=<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line">anomaly_data = plt.scatter(data.loc[:, <span class="string">&#x27;x1&#x27;</span>][y_predict==<span class="number">-1</span>], data.loc[:, <span class="string">&#x27;x2&#x27;</span>][y_predict==<span class="number">-1</span>], marker=<span class="string">&#x27;o&#x27;</span>, facecolor=<span class="string">&#x27;none&#x27;</span>, edgecolor=<span class="string">&#x27;red&#x27;</span>, s=<span class="number">150</span>)</span><br><span class="line"></span><br><span class="line">plt.title(<span class="string">&#x27;anomaly detection result&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;x1&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;x2&#x27;</span>)</span><br><span class="line">plt.legend((original_data, anomaly_data), (<span class="string">&#x27;original_data&#x27;</span>, <span class="string">&#x27;anomaly_data&#x27;</span>))</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p>异常结果如下所示：</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/deep-learning/yichangjiance5.png">
+
+
+
+
+
+<h3 id="9、修改概率分布阈值，看看影响"><a href="#9、修改概率分布阈值，看看影响" class="headerlink" title="9、修改概率分布阈值，看看影响"></a>9、修改概率分布阈值，看看影响</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ad_model = EllipticEnvelope(contamination=<span class="number">0.02</span>)</span><br><span class="line">ad_model.fit(data)</span><br><span class="line">y_predict = ad_model.predict(data)</span><br></pre></td></tr></table></figure>
+
+<p>将新数据进行可视化：</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/deep-learning/yichangjiance4.png">
+
+
+
+<h3 id="10、小结"><a href="#10、小结" class="headerlink" title="10、小结"></a>10、小结</h3><p>1、通过计算数据各维度对应的高斯分布概率密度函数，可用于寻找数据中的异常点</p>
+<p>2、通过修改概率密度阈值contamination，可调整异常点检测的灵敏度</p>
+<p> 3、核心算法上官网查看<a target="_blank" rel="noopener" href="https://scikit-learn.org.cn/">https://scikit-learn.org.cn/</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/20/Mysql/%E6%A6%82%E8%AE%BA-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A0%87%E5%87%86SQL%E8%AF%AD%E8%A8%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/20/Mysql/%E6%A6%82%E8%AE%BA-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A0%87%E5%87%86SQL%E8%AF%AD%E8%A8%80/" class="post-title-link" itemprop="url">数据库概论复习-关系数据库标准语言SQL</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-20 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-20T00:00:00+00:00">2021-06-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-24 06:17:33" itemprop="dateModified" datetime="2022-02-24T06:17:33+00:00">2022-02-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><code>结构化查询语言（Structure QUery Language，SQL）</code>是关系数据库的标准语言</p>
+<h3 id="一、SQL概述"><a href="#一、SQL概述" class="headerlink" title="一、SQL概述"></a>一、SQL概述</h3><p>大多数数据库均采用SQL作为共同的数据存取语言和标准接口</p>
+<h4 id="1、SQL的产生与发展"><a href="#1、SQL的产生与发展" class="headerlink" title="1、SQL的产生与发展"></a>1、SQL的产生与发展</h4><p>目前没有任何一个数据库能支持SQL标准的所有概念特性，SQL标准的发展如下所示：</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E8%AE%BA%E5%A4%8D%E4%B9%A0/table-3-1.png">
+
+<h4 id="2、SQL的特点"><a href="#2、SQL的特点" class="headerlink" title="2、SQL的特点"></a>2、SQL的特点</h4><p>它功能极强而又简单易学，集<code>数据查询（data query）</code>、<code> 数据操纵（data manipulation）</code>、<code> 数据定义（data definition）</code>、<code> 数据控制（data control）</code>，其特点主要有以下几点：</p>
+<ul>
+<li><p>综合统一</p>
+<p>集很多功能于一体，可以独立完成数据库生命周期中的全部活动</p>
+</li>
+<li><p>高度非过程化</p>
+<p>只需提出做什么，无需了解存取路径，存取过程以及SQL的操作有系统完成</p>
+</li>
+<li><p>面向集合的操作方式</p>
+<p>操作对象、查询结果、一次操作（插入、删除、更新）的对象也可以是集合</p>
+</li>
+<li><p>以同一种语法结构提供多种使用方式</p>
+<p>SQL既是<code> 独立的语言（直接在键盘输入SQL命令进行操作）</code>，有时<code> 嵌入式的语言（嵌入到诸如Java、Python的高级语言中）</code></p>
+</li>
+<li><p>语法简洁，易学易用</p>
+<p>完成核心动作仅需九个动词，接近英语口语</p>
+</li>
+</ul>
+<p>SQL的动词如下所示：</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E8%AE%BA%E5%A4%8D%E4%B9%A0/table-3-2.png">
+
+<h4 id="3、SQL的基本概念"><a href="#3、SQL的基本概念" class="headerlink" title="3、SQL的基本概念"></a>3、SQL的基本概念</h4><p>支持数据库的三级模式结构：<code>外模式</code>、<code>模式</code>、<code>内模式</code>，其中外模式包括：<code> 视图（view）</code>、<code> 部分基本表（base table）</code>，模式包括<code> 若干基本表</code>，内模式包括<code> 若干存储文件（stored file）</code>。如下图所示：</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E8%AE%BA%E5%A4%8D%E4%B9%A0/pic-3-1.png">
+
+<p><code>基本表</code>和<code> 视图</code>一样，都是<code> 关系</code>，用户可以用SQL对<code> 基本表</code>和<code>视图</code>进行操作。</p>
+<p><code>基本表</code>是本身独立存在表，一个<code> 关系</code>就对应一个<code> 基本表</code>，一个或多个<code> 基本表</code>对应一个存储文件，一个表可以带若干索引，索引也存放在存储文件中。</p>
+<p><code>存储文件</code>的逻辑结构组成了关系数据库的<code> 内模式</code>。存储文件的物理结构对最终用户是隐蔽的</p>
+<p><code>视图</code>是从一个或几个基本表导出的表</p>
+<h3 id="二、学生课程数据库的定义"><a href="#二、学生课程数据库的定义" class="headerlink" title="二、学生课程数据库的定义"></a>二、学生课程数据库的定义</h3><ul>
+<li>Student表</li>
+</ul>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E8%AE%BA%E5%A4%8D%E4%B9%A0/sudent.png">
+
+<ul>
+<li>Course表</li>
+</ul>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E8%AE%BA%E5%A4%8D%E4%B9%A0/course.png">
+
+<ul>
+<li>SC表</li>
+</ul>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E8%AE%BA%E5%A4%8D%E4%B9%A0/sc.png">
+
+<h3 id="三、数据定义"><a href="#三、数据定义" class="headerlink" title="三、数据定义"></a>三、数据定义</h3><p>SQL的数据定义包括<code> 模式定义</code>、<code> 表定义</code>、<code> 视图定义</code>、<code> 索引定义</code>，如下图：</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%A6%82%E8%AE%BA%E5%A4%8D%E4%B9%A0/table-3-3.png">
+
+<p>SQL不提供修改模式定义和修改视图定义的操作，修改的话只能删除重建。</p>
+<p><strong>一个关系数据库管理系统的实例（instance）中可以建立多个数据库，一个数据库可以建立多个模式，一个模式通常可以包括多个表、视图、索引等数据库对象。</strong></p>
+<h4 id="1、模式的定义与删除"><a href="#1、模式的定义与删除" class="headerlink" title="1、模式的定义与删除"></a>1、模式的定义与删除</h4><h5 id="（1）定义模式"><a href="#（1）定义模式" class="headerlink" title="（1）定义模式"></a>（1）定义模式</h5><p>在SQL中，创建模式的定义语句如下：</p>
+<blockquote>
+<p>CREATE SCHEMA &lt;模式名&gt; AUTHORIZATION &lt;用户名&gt;;</p>
+<p>如果没有指定&lt;模式名&gt;，则&lt;模式名&gt;隐含为&lt;用户名&gt;</p>
+</blockquote>
+<p>要创建模式，调用该命令的用户必须具有数据库管理员的权限，或者获得了数据库管理员授予的<code> CREATE SCHEMA</code>的权限</p>
+<p><strong>例题</strong></p>
+<ul>
+<li><p>为用户WANG定义一个学生-课程模式S-T</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE SCHEMA &quot;S-T&quot; AUTHORIZATION WANG;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>为用户WANG创建一个模式TEST，并在其中定义一个表TAB1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE SCHEMA TEST AUTHORIZATION ZHANG</span><br><span class="line">CREATE TABLE TAB1(</span><br><span class="line">	COL1 SMALLINT,</span><br><span class="line">  COL2 INT,</span><br><span class="line">  COL3 CHAR(20),</span><br><span class="line">  COL4 NUMBERIC(10, 3),</span><br><span class="line">  COL5 DECIMAL(5, 2)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h5 id="（2）删除模式"><a href="#（2）删除模式" class="headerlink" title="（2）删除模式"></a>（2）删除模式</h5><p>删除模式的语句定义如下：</p>
+<blockquote>
+<p>DROP TABLE &lt;模式名&gt; &lt;CASCADE | RESTRICT&gt;</p>
+<p>其中<code> CASCADE</code>和<code> RESTRICT</code>两者必选其一，选择了<code> CASCADE（级联）</code>就表示在删除模式时会级联删除该模式下的所有数据库对象；选择了<code> RESTRICT（限制）</code>就表示如果模式中已经定义了下属的数据库对象（表、视图等），则拒绝该语句的执行</p>
+</blockquote>
+<p><strong>例题</strong></p>
+<ul>
+<li><p>删除ZHANG并级联删除该模式中的所有数据库对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP SCHEMA ZHANG CASCADE;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h4 id="2、基本表的定义、删除与修改"><a href="#2、基本表的定义、删除与修改" class="headerlink" title="2、基本表的定义、删除与修改"></a>2、基本表的定义、删除与修改</h4><h5 id="（1）定义基本表"><a href="#（1）定义基本表" class="headerlink" title="（1）定义基本表"></a>（1）定义基本表</h5>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/18/Wiki%E7%9F%A5%E8%AF%86%E5%BA%93%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/npm%E5%AE%89%E8%A3%85%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/18/Wiki%E7%9F%A5%E8%AF%86%E5%BA%93%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/npm%E5%AE%89%E8%A3%85%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">npm安装其他包报错</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-18 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-18T00:00:00+00:00">2021-06-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-24 06:17:33" itemprop="dateModified" datetime="2022-02-24T06:17:33+00:00">2022-02-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/npm/" itemprop="url" rel="index"><span itemprop="name">npm</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>错误描述：当我使用<code> npm install wangeditor@4.6.3</code>安装这个包是报如下错误，网上的各种诸如重新设置代理都不见效</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">npm ERR! code ECONNRESET</span><br><span class="line">npm ERR! errno ECONNRESET</span><br><span class="line">npm ERR! network request to http://registry.npmjs.org/wangeditor failed, reason: socket hang up</span><br><span class="line">npm ERR! network This is a problem related to network connectivity.</span><br><span class="line">npm ERR! network In most cases you are behind a proxy or have bad network settings.</span><br><span class="line">npm ERR! network </span><br><span class="line">npm ERR! network If you are behind a proxy, please make sure that the</span><br><span class="line">npm ERR! network &#x27;proxy&#x27; config is set properly.  See: &#x27;npm help config&#x27;</span><br><span class="line">npm ERR! A complete log of this run can be found in:</span><br><span class="line">npm ERR!     /Users/mr.stark/.npm/_logs/2021-06-18T08_44_30_596Z-debug.log</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>解决办法</p>
+<p>正当我被折磨的死去活来想要放弃时，突然想到我之前用<code> brew</code>安装软件时遇到过类似的问题，原因是我用了<code> ClashX</code>这个软件，它启动时会生成一些环境变量，我们复制一下终端代理命令看看</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/npm-error.png">
+
+<p>粘贴一下如下所示：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7891</span><br></pre></td></tr></table></figure>
+
+<p>接下来我们依次删除这三个环境变量即可</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">unset https_proxy</span><br><span class="line">unset http_proxy</span><br><span class="line">unset all_proxy</span><br></pre></td></tr></table></figure>
+
+<p>接下来我们就可以开心的使用npm安装其他的包来使用啦！</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">+ wangeditor@4.6.3</span><br><span class="line">added 3 packages from 1 contributor, removed 16 packages, updated 1 package and audited 1327 packages in 21.52s</span><br><span class="line"></span><br><span class="line">89 packages are looking for funding</span><br><span class="line">  run `npm fund` for details</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/15/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/%E6%95%B0%E5%88%97%E6%9E%81%E5%B7%AE%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/15/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/%E6%95%B0%E5%88%97%E6%9E%81%E5%B7%AE%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">力扣-数列极差问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-15 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-15T00:00:00+00:00">2021-06-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-24 06:17:33" itemprop="dateModified" datetime="2022-02-24T06:17:33+00:00">2022-02-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%88%B7%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>n个整数排成的数列，进行如下操作：每次擦去其中两个数a和b，然后在数列中加入一个数<code> a x b + 1</code>，如此下去直到黑板只剩一个数，在所有按这种操作方式最后得到的数中，最大的记作<code> max</code> ，最小的为<code> min</code>，则数列的极差定义为:<code> m = max - min</code> </p>
+<p>分析：</p>
+<blockquote>
+<p>以三个数为例：a&gt;b&gt;c，这三个数计算有以下几种结果：</p>
+<ul>
+<li>( a x b + 1 ) x c + 1 = a x b x c + c +1</li>
+<li>( a x c + 1 ) x b + 1 = a x b x c + b +1</li>
+<li>( c x b + 1 ) x a + 1 = a x b x c + a +1</li>
+</ul>
+<p>由此可知：先运算小数据得到是大数据，先运算大数据得到的是小数据</p>
+</blockquote>
+<p>我们如是设计代码：用vector存储数据，计算最大数的时候，我们每次娶两个最小的数字计算再将结果<code> (min1*min2 + 1)</code>放入vector容器中，计算最小数字的时候与之相反即可。</p>
+<p>接下来上代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取数字集中最小的数字并删除</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getTheMin</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;numbers)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//遍历</span></span><br><span class="line">    <span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt;::const_iterator i, j = numbers.begin();</span><br><span class="line">    <span class="keyword">int</span> min = *j;</span><br><span class="line">    <span class="keyword">for</span> (i = numbers.begin(); i != numbers.end(); ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span>(*i &lt; *j) &#123;</span><br><span class="line">            j = i;</span><br><span class="line">            min = *i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    numbers.erase(j);</span><br><span class="line">    <span class="keyword">return</span> min;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取数字集中最大的数字并删除</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getTheMax</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;numbers)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//遍历</span></span><br><span class="line">    <span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt;::const_iterator i, j = numbers.begin();</span><br><span class="line">    <span class="keyword">int</span> max = *j;</span><br><span class="line">    <span class="keyword">for</span> (i = numbers.begin(); i != numbers.end(); ++i) &#123;</span><br><span class="line">        <span class="keyword">if</span>(*i &gt; *j) &#123;</span><br><span class="line">            j = i;</span><br><span class="line">            max = *i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    numbers.erase(j);</span><br><span class="line">    <span class="keyword">return</span> max;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//存储数据</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; numbers_max;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; numbers_min;</span><br><span class="line">    <span class="comment">//元素个数</span></span><br><span class="line">    <span class="keyword">int</span> n, m;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="comment">//输入</span></span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++ ) &#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;m;</span><br><span class="line">        numbers_max.push_back(m);</span><br><span class="line">    &#125;</span><br><span class="line">    numbers_min = numbers_max;</span><br><span class="line">    <span class="comment">//获取最大值</span></span><br><span class="line">    <span class="keyword">while</span>(numbers_max.size() != <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> min1 = getTheMin(numbers_max);</span><br><span class="line">        <span class="keyword">int</span> min2 = getTheMin(numbers_max);</span><br><span class="line">        numbers_max.push_back(min1*min2 + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//获取最小值</span></span><br><span class="line">    <span class="keyword">while</span>(numbers_min.size() != <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> max1 = getTheMax(numbers_min);</span><br><span class="line">        <span class="keyword">int</span> max2 = getTheMax(numbers_min);</span><br><span class="line">        numbers_min.push_back(max1*max2 + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;最大值为：&quot;</span>&lt;&lt;numbers_max.back()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;最小值为：&quot;</span>&lt;&lt;numbers_min.back()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/14/Mysql/%E6%A6%82%E8%AE%BA-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/14/Mysql/%E6%A6%82%E8%AE%BA-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E5%85%A8%E6%80%A7/" class="post-title-link" itemprop="url">数据库概论复习-数据库安全性</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-14 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-14T00:00:00+00:00">2021-06-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-02-24 06:17:33" itemprop="dateModified" datetime="2022-02-24T06:17:33+00:00">2022-02-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>数据库的数据保护主要包括数据的<code>安全性</code>和 <code> 完整性</code>，本篇博客只介绍数据库的完整性。</p>
+<h3 id="一、数据库安全性概述"><a href="#一、数据库安全性概述" class="headerlink" title="一、数据库安全性概述"></a>一、数据库安全性概述</h3><p><strong>数据库的安全性是指保护数据库以防止不合法使用所造成的数据泄露、更改或破坏。</strong></p>
+<h4 id="1、数据库的不安全因素"><a href="#1、数据库的不安全因素" class="headerlink" title="1、数据库的不安全因素"></a>1、数据库的不安全因素</h4><ul>
+<li>a、非授权用户对数据库的恶意存取或破坏</li>
+<li>b、数据库中重要或敏感数据被泄露</li>
+<li>c、安全环境的脆弱性</li>
+</ul>
+<h4 id="2、安全标准简介"><a href="#2、安全标准简介" class="headerlink" title="2、安全标准简介"></a>2、安全标准简介</h4><p><code> TCSEC/TDI（即紫皮书）</code>从四个方面描述了安全性级别的划分指标，即<code> 安全策略</code>、<code>责任</code>、<code> 保证</code>以及<code> 文档</code>。每个方面的细节又分为若干项。</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/review-database-safe1.png">
+
+<p>根据计算机系统对各项指标的支持情况，<code> TCSEC/TDI</code>将系统划分为4组（division）7个等级，依次为：<code> D、C1、C2、···、A(A1)</code>，按照系统的可靠或可信程度逐渐增高，如下表所示：</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/review-database-safe2.png">
+
+<ul>
+<li><p>D级</p>
+<p>最低级别，保留该级的目的是为了将一切不符合更高标准的操作系统统归于D组</p>
+</li>
+<li><p>C1级</p>
+<p>能够实现对用户和数据的分离，进行自主存取控制（DAC），保护或限制用户权限的传播</p>
+</li>
+<li><p>C2级</p>
+<p>安全产品的最低档，提供受控的存取保护</p>
+</li>
+<li><p>B1级</p>
+<p>标记安全保护，对系统数据加以标记，并对标记的主体与客体实施强制存取控制（MAC）以及审计等安全机制</p>
+</li>
+<li><p>B2级</p>
+<p>结构化保护，建立形式化的安全策略模型</p>
+</li>
+<li><p>B3级</p>
+<p>安全域，该级的TCB（Trust Computing Base）必须满足访问监控器的要求，审计能力更强，并提供系统恢复过程</p>
+</li>
+<li><p>A1级</p>
+<p>验证设计</p>
+</li>
+</ul>
+<h3 id="二、数据库安全性控制"><a href="#二、数据库安全性控制" class="headerlink" title="二、数据库安全性控制"></a>二、数据库安全性控制</h3><h4 id="1、用户身份鉴别"><a href="#1、用户身份鉴别" class="headerlink" title="1、用户身份鉴别"></a>1、用户身份鉴别</h4><ul>
+<li>静态口令鉴别</li>
+<li>动态口令鉴别</li>
+<li>生物特征鉴别</li>
+<li>智能卡鉴别</li>
+</ul>
+<h4 id="2、存取控制"><a href="#2、存取控制" class="headerlink" title="2、存取控制"></a>2、存取控制</h4><p><strong>存取控制主要包括<code> 定义用户权限</code>和<code> 合法权限检查</code>两部分</strong></p>
+<h5 id="（1）定义用户权限"><a href="#（1）定义用户权限" class="headerlink" title="（1）定义用户权限"></a>（1）定义用户权限</h5><p>用户对某一数据对象操作的权利称为权限</p>
+<h5 id="（2）合法权限检查"><a href="#（2）合法权限检查" class="headerlink" title="（2）合法权限检查"></a>（2）合法权限检查</h5><p><strong><code> 定义用户权限</code>和<code>合法权限检查机制 </code>一起组成了数据库管理系统的存取控制子系统</strong></p>
+<ul>
+<li>C2级数据库管理系统支持<code> 自主存取控制（Discretionary Access Control，DAC）</code></li>
+<li>B1级数据库管理系统支持<code> 强制存取控制（Mandatory Access Control，MAC）</code></li>
+</ul>
+<p>这两类方法的简单定义为：</p>
+<p>（1）在<code> 自主存取控制方法</code>中，用户对于不同数据库对象有不同的存取权限，不同的用户对同一个对象也有不同的存储权限，而且用户还能将其拥有的权限转授给其他用户</p>
+<p>（2）在<code>强制存取控制方法</code>中，每一个数据库对象被标以一定的密级，每一个用户授予某一个级别的许可证，对于任意对象，只有具有合法许可证的用户才能进行强制存取</p>
+<h4 id="3、自助存取控制方法"><a href="#3、自助存取控制方法" class="headerlink" title="3、自助存取控制方法"></a>3、自助存取控制方法</h4><p>用户权限有两要素组成：<code> 数据库对象</code>和<code> 操作类型</code>，定义一个用户的存储权限就是定义该用户可以再那些数据库对象上进行哪些操作。数据自系统中，定义存取权限就称为<code> 授权（authorization）</code>。</p>
+<p>在关系数据库系统中，存取控制的对象不仅有<code> 数据本身（基本表的数据、属性列上的数据）</code>，还有<code> 数据库模式（数据库、基本表、视图、索引的创建）</code>，如下图所示：</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/review-database-safe3.png">
+
+
+
+<h4 id="4、授权：授予与收回"><a href="#4、授权：授予与收回" class="headerlink" title="4、授权：授予与收回"></a>4、授权：授予与收回</h4><h5 id="a、GRANT"><a href="#a、GRANT" class="headerlink" title="a、GRANT"></a>a、GRANT</h5><p>GRANT用于向用户授予权限，一般格式如下：</p>
+<blockquote>
+<p>GRANT &lt;权限&gt; [, &lt;权限&gt;]······</p>
+<p>ON &lt;对象类型&gt; &lt;对象名&gt; [, &lt;对象类型&gt; &lt;对象名&gt;]······</p>
+<p>TO &lt;用户&gt; [, &lt;用户&gt;]······</p>
+<p>[ WITH GRANT OPTION ];</p>
+</blockquote>
+<p>其语义为：<code>将指定操作对象的指定操作权限授予指定的用户</code>，发出该语句的可以是：<code> 数据库管理员</code>、<code> 数据库创建者</code>、<code> 已经拥有该权限的用户</code>。接受该权限的可以是一个或者对个用户，也可以是PUBLIC（全体用户）。</p>
+<p>若使用了<code> WITH GRANT OPTION子句，则获得这种权限的用户还可以把这种权限再授予给其他人，若没有使用</code> WITH GRANT OPTION子句，获得某种权限的用户只能使用该权限而不能传播。</p>
+<p>SQL标准不允许循环授权，即被授权者不能将权限再授回给授权者或者其祖先：</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/review-database-safe4.png">
+
+<p><strong>例题</strong></p>
+<ul>
+<li><p>把查询Student表的权限授予给用户UI</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">SELECT</span></span><br><span class="line"><span class="keyword">ON</span> <span class="keyword">TABLE</span> Student</span><br><span class="line"><span class="keyword">TO</span> UI;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>把对Student表和Course表的全部操作权限赋予给用户U2和U3</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">ALL</span> <span class="keyword">PRIVILEGES</span></span><br><span class="line"><span class="keyword">ON</span> <span class="keyword">TABLE</span> Student, Course</span><br><span class="line"><span class="keyword">TO</span> U2, U3;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>把对SC表的查询权限授予给所有用户</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">SELECT</span></span><br><span class="line"><span class="keyword">ON</span> <span class="keyword">TABLE</span> SC</span><br><span class="line"><span class="keyword">TO</span> <span class="keyword">PUBLIC</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>把查询Student表和修改学生学号的权限授给用户U4（对属性列授权时要明确指明属性列）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">UPDATE</span>(Sno), <span class="keyword">SELECT</span></span><br><span class="line"><span class="keyword">ON</span> <span class="keyword">TABLE</span> Student</span><br><span class="line"><span class="keyword">TO</span> U4</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将对表SC的插入（INSERT）权限授予给U5，并允许该用户传播该权限</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">INSERT</span></span><br><span class="line"><span class="keyword">ON</span> <span class="keyword">TABLE</span> SC</span><br><span class="line"><span class="keyword">TO</span> U5</span><br><span class="line"><span class="keyword">WITH</span> <span class="keyword">GRANT</span> <span class="keyword">OPTION</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="b、REVOKE"><a href="#b、REVOKE" class="headerlink" title="b、REVOKE"></a>b、REVOKE</h5><p>授予用户的权限可以由数据库管理员或者其他授权者用REVOKE语句收回，该语句一般格式为：</p>
+<blockquote>
+<p>REVOKE &lt;权限&gt; [, &lt;权限&gt;]······</p>
+<p>ON &lt;对象类型&gt; &lt;对象名&gt; [, &lt;对象类型&gt; &lt;对象名&gt;]······</p>
+<p>FROM &lt;用户&gt; [, &lt;用户&gt;]······[ CASCADE | RESTRICT ];</p>
+</blockquote>
+<p>废话少说，直接上例题！</p>
+<p><strong>例题</strong></p>
+<ul>
+<li><p>将用户U4修改学生学号的权限收回</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">REVOKE</span> <span class="keyword">UPDATE</span>(Sno)</span><br><span class="line"><span class="keyword">ON</span> <span class="keyword">TABLE</span> Student</span><br><span class="line"><span class="keyword">FROM</span> U4;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>收回所有用户对SC表的查询权限</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">REVOKE</span> <span class="keyword">SELECT</span></span><br><span class="line"><span class="keyword">ON</span> <span class="keyword">TABLE</span> SC</span><br><span class="line"><span class="keyword">FROM</span> <span class="keyword">PUBLIC</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>把用户U5对SC表的INSERT权限收回（将U5权限收回时，会级联收回U5赋予给其他用户的权限，如果其他用户从其他地方获得有对SC表的INSERT的权限则不影响，系统只回收直接或间接从U5获得的权限）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">REVOKE</span> <span class="keyword">INSERT</span></span><br><span class="line"><span class="keyword">ON</span> <span class="keyword">TABLE</span> SC</span><br><span class="line"><span class="keyword">FROM</span> U5 <span class="keyword">CASCADE</span>;</span><br></pre></td></tr></table></figure>
+
+<p>可见，用户可以“自主”地决定将数据的存储权限授予给何人，决定是否也将“授权”的权限授予别人，因此称之为<code> 自主存取控制</code></p>
+</li>
+</ul>
+<h5 id="c、创建数据库模式的权限"><a href="#c、创建数据库模式的权限" class="headerlink" title="c、创建数据库模式的权限"></a>c、创建数据库模式的权限</h5><p><code> GRANT</code>和<code> REVOKE</code>语句用于向用户授予或回收对数据的操作权限，对创建数据库模式一类的数据库对象的授权则由数据库管理员在创建用户时实现</p>
+<p><code> CREATE USER</code>语句格式一般如下：</p>
+<blockquote>
+<p>CREATE USER <username> [ WITH ] [ DBA | RESOURCE | CONNECT ];</p>
+<ul>
+<li>只有系统的超级用户才有权限创建一个新的数据库用户</li>
+<li>新创建的数据库用户有三种权限：<code> CONNECT</code>、<code> RESOURCE</code>、<code> DBA</code> </li>
+<li><code> GREATE USER</code>如果没有为新建的用户指定权限，则该用户默认拥有<code> CONNECT</code> 权限</li>
+<li>拥有<code> RESOURCE</code>权限的用户能创建基本表和视图</li>
+<li>拥有<code> DBA</code>权限的用户是系统中心的超级用户，可以创建新的用户、创建模式、创建基本表和视图等；DBA拥有所有对数据库对象的存储权限，还可以将这些权限授予给一般用户</li>
+</ul>
+</blockquote>
+<p>使用下表进行总结：</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/review-database-safe5.png">
+
+
+
+<h4 id="5、数据库角色"><a href="#5、数据库角色" class="headerlink" title="5、数据库角色"></a>5、数据库角色</h4><p>数据库角色是被命名的一组与数据库操作相关的权限，角色是权限的集合</p>
+<h5 id="（1）角色的创建"><a href="#（1）角色的创建" class="headerlink" title="（1）角色的创建"></a>（1）角色的创建</h5><blockquote>
+<p>CREATE ROLE &lt;角色名&gt;</p>
+</blockquote>
+<p>刚刚创建的角色是空的，可以使用GRANT为角色授权</p>
+<h5 id="（2）给角色授权"><a href="#（2）给角色授权" class="headerlink" title="（2）给角色授权"></a>（2）给角色授权</h5><blockquote>
+<p>GRANT &lt;权限&gt; [, &lt;权限&gt;]······</p>
+<p>ON &lt;对象类型&gt; 对象名······</p>
+<p>TO  &lt;角色&gt; [, &lt;角色&gt;]······</p>
+</blockquote>
+<p>数据库管理员和用户可以利用GRANT语句将权限授予给一个或几个角色</p>
+<h5 id="（3）将一个角色授予其他角色或用户"><a href="#（3）将一个角色授予其他角色或用户" class="headerlink" title="（3）将一个角色授予其他角色或用户"></a>（3）将一个角色授予其他角色或用户</h5><blockquote>
+<p>GRANT &lt;角色1&gt; [, &lt;角色2&gt;]······</p>
+<p>TO &lt;角色3&gt; [, &lt;用户1&gt;]······</p>
+<p>[ WITH ADMIN OPTION ]</p>
+</blockquote>
+<p>将角色授予给某用户或者其他角色，如果指定了<code> WITH ADMIN OPTION</code>子句，则获得某权限的角色或用户还可以将这种权限授予给其他的角色，一个角色的权限包括：<code> 直接授予给该角色权限 + 其他角色授予给该角色的权限</code>。</p>
+<h5 id="（4）角色权限的收回"><a href="#（4）角色权限的收回" class="headerlink" title="（4）角色权限的收回"></a>（4）角色权限的收回</h5><blockquote>
+<p>REVOKE &lt;权限&gt; [, &lt;权限&gt;]······</p>
+<p>ON &lt;对象类型&gt; &lt;对象名&gt;</p>
+<p>FROM &lt;角色&gt; [, &lt;角色&gt;]······</p>
+</blockquote>
+<p><strong>例题</strong></p>
+<p>通过角色来将一组权限授予给用户</p>
+<ul>
+<li><p>1、创建一个角色R1</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">ROLE</span> R1;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2、使用GRANT语句，使角色R1拥有Student表的SELECT、UPDATE、INSERT权限</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">SELECT</span>, <span class="keyword">UPDATE</span>, <span class="keyword">INSERT</span></span><br><span class="line"><span class="keyword">ON</span> <span class="keyword">TABLE</span> Student</span><br><span class="line"><span class="keyword">TO</span> R1;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>3、将这个角色授予给王平、张明、赵玲，使他们具有该角色的权限</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> R1</span><br><span class="line"><span class="keyword">TO</span> 王平, 张明, 赵玲;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>4、可以一次性的通过R1来收回王平的三个权限</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">REVOKE</span> R1</span><br><span class="line"><span class="keyword">FROM</span> 王平;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>5、角色权限的修改（去掉在Student表删除权限）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GRANT</span> <span class="keyword">DELETE</span></span><br><span class="line"><span class="keyword">ON</span> <span class="keyword">TABLE</span> Student</span><br><span class="line"><span class="keyword">TO</span> R1;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>由此可以看出，数据库角色是一组权限的集合，可以简化授权的过程</p>
+<h4 id="6、强制存取控制方法"><a href="#6、强制存取控制方法" class="headerlink" title="6、强制存取控制方法"></a>6、强制存取控制方法</h4><p>如果使用自主存取控制方法，甲将某些数据的存储权限授予给乙，乙就可备份这些数据，并传播这些副本。为了解决此类问题，我们就有了强制存取控制策略：对数据进行敏感性标记。</p>
+<p>在这个系统中，数据库管理系统所管理的全部实体被分为主体和客体两大类：</p>
+<ul>
+<li>主体：系统中的活动实体，数据库管理系统所管理的实际用户，也包括代表用户的各进程</li>
+<li>客体：系统中的被动实体，受主体操控，包括文件、基本表、索引、视图等</li>
+</ul>
+<p>对于主体和客体，数据库管理系统为他们每一个实例（值）指派了一个<code> 敏感度标记（label）</code></p>
+<p>敏感度标记被分成若干级别，例如：<code> 绝密（Top Secret， TS）</code>、<code> 机密（Secret，S）</code>、<code> 可信（Confidential，C）</code>、<code> 公开（Public，P）</code>等，密级次序为<code> TS &gt;= S &gt;= C &gt;= P。</code>主体的敏感度称为<code> 许可证级别（clearance level）</code>，客体的敏感度等级称为` 密级（classification level）。</p>
+<p><strong>强制存取方法就是通过对比主体和客体的敏感度标记来判断主体是否可以进行存取客体</strong></p>
+<blockquote>
+<p>（1）仅当主体的许可证级别大于或等于客体的密级时，该主体才能读取相应的客体</p>
+<p>（2）仅当主体的许可证级别小于或等于客体的密级时，该主体才能写相应的客体强制存取控制是对数据本身进行密级标记</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/14/spring/Spring-%E4%BA%8B%E5%8A%A1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -185,7 +985,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-10 15:17:56" itemprop="dateModified" datetime="2022-02-10T15:17:56+00:00">2022-02-10</time>
+                <time title="修改时间：2022-02-24 06:17:33" itemprop="dateModified" datetime="2022-02-24T06:17:33+00:00">2022-02-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -305,7 +1105,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-10 15:17:56" itemprop="dateModified" datetime="2022-02-10T15:17:56+00:00">2022-02-10</time>
+                <time title="修改时间：2022-02-24 06:17:33" itemprop="dateModified" datetime="2022-02-24T06:17:33+00:00">2022-02-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -442,7 +1242,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-10 15:17:56" itemprop="dateModified" datetime="2022-02-10T15:17:56+00:00">2022-02-10</time>
+                <time title="修改时间：2022-02-24 06:17:33" itemprop="dateModified" datetime="2022-02-24T06:17:33+00:00">2022-02-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -553,7 +1353,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-10 15:17:56" itemprop="dateModified" datetime="2022-02-10T15:17:56+00:00">2022-02-10</time>
+                <time title="修改时间：2022-02-24 06:17:33" itemprop="dateModified" datetime="2022-02-24T06:17:33+00:00">2022-02-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -619,630 +1419,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/08/Java/Java_%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/08/Java/Java_%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">Java网络编程</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-08 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-08T00:00:00+00:00">2021-06-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-10 15:17:56" itemprop="dateModified" datetime="2022-02-10T15:17:56+00:00">2022-02-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="一、网络编程基础知识"><a href="#一、网络编程基础知识" class="headerlink" title="一、网络编程基础知识"></a>一、网络编程基础知识</h3><h4 id="1、网络基础知识"><a href="#1、网络基础知识" class="headerlink" title="1、网络基础知识"></a>1、网络基础知识</h4><h4 id="2、IP地址和端口号"><a href="#2、IP地址和端口号" class="headerlink" title="2、IP地址和端口号"></a>2、IP地址和端口号</h4><h3 id="二、Java的基本网络支持"><a href="#二、Java的基本网络支持" class="headerlink" title="二、Java的基本网络支持"></a>二、Java的基本网络支持</h3><h4 id="1、使用InternetAddress"><a href="#1、使用InternetAddress" class="headerlink" title="1、使用InternetAddress"></a>1、使用InternetAddress</h4><h4 id="2、使用URLDecoder和URLEncoder"><a href="#2、使用URLDecoder和URLEncoder" class="headerlink" title="2、使用URLDecoder和URLEncoder"></a>2、使用URLDecoder和URLEncoder</h4><h4 id="3、URL、URLConnection和URLPermission"><a href="#3、URL、URLConnection和URLPermission" class="headerlink" title="3、URL、URLConnection和URLPermission"></a>3、URL、URLConnection和URLPermission</h4><h3 id="三、基于TCP协议的网络编程"><a href="#三、基于TCP协议的网络编程" class="headerlink" title="三、基于TCP协议的网络编程"></a>三、基于TCP协议的网络编程</h3><h4 id="1、TCP协议基础"><a href="#1、TCP协议基础" class="headerlink" title="1、TCP协议基础"></a>1、TCP协议基础</h4><h4 id="2、使用ServerSocket创建TCP服务器端"><a href="#2、使用ServerSocket创建TCP服务器端" class="headerlink" title="2、使用ServerSocket创建TCP服务器端"></a>2、使用ServerSocket创建TCP服务器端</h4><h4 id="3、使用Socket进行通信"><a href="#3、使用Socket进行通信" class="headerlink" title="3、使用Socket进行通信"></a>3、使用Socket进行通信</h4><h4 id="4、加入多线程"><a href="#4、加入多线程" class="headerlink" title="4、加入多线程"></a>4、加入多线程</h4><h4 id="5、记录用户信息"><a href="#5、记录用户信息" class="headerlink" title="5、记录用户信息"></a>5、记录用户信息</h4><h4 id="6、半关闭的Socket"><a href="#6、半关闭的Socket" class="headerlink" title="6、半关闭的Socket"></a>6、半关闭的Socket</h4><h4 id="7、使用NIO实现非阻塞的Socket通信"><a href="#7、使用NIO实现非阻塞的Socket通信" class="headerlink" title="7、使用NIO实现非阻塞的Socket通信"></a>7、使用NIO实现非阻塞的Socket通信</h4><h4 id="8、使用AIO实现非阻塞通信"><a href="#8、使用AIO实现非阻塞通信" class="headerlink" title="8、使用AIO实现非阻塞通信"></a>8、使用AIO实现非阻塞通信</h4><h3 id="四、基于UDP协议的网络编程"><a href="#四、基于UDP协议的网络编程" class="headerlink" title="四、基于UDP协议的网络编程"></a>四、基于UDP协议的网络编程</h3><h4 id="1、UDP协议基础"><a href="#1、UDP协议基础" class="headerlink" title="1、UDP协议基础"></a>1、UDP协议基础</h4><h4 id="2、使用DatagramSocket实现发送、接收数据"><a href="#2、使用DatagramSocket实现发送、接收数据" class="headerlink" title="2、使用DatagramSocket实现发送、接收数据"></a>2、使用DatagramSocket实现发送、接收数据</h4><h4 id="3、使用MulticastSocket实现多点广播"><a href="#3、使用MulticastSocket实现多点广播" class="headerlink" title="3、使用MulticastSocket实现多点广播"></a>3、使用MulticastSocket实现多点广播</h4><h3 id="五、使用代理服务器"><a href="#五、使用代理服务器" class="headerlink" title="五、使用代理服务器"></a>五、使用代理服务器</h3><h4 id="1、直接使用Proxy创建连接"><a href="#1、直接使用Proxy创建连接" class="headerlink" title="1、直接使用Proxy创建连接"></a>1、直接使用Proxy创建连接</h4><h4 id="2、使用ProxySelector自动选择代理服务器"><a href="#2、使用ProxySelector自动选择代理服务器" class="headerlink" title="2、使用ProxySelector自动选择代理服务器"></a>2、使用ProxySelector自动选择代理服务器</h4><h3 id="六、Java11标准化的Http-Client"><a href="#六、Java11标准化的Http-Client" class="headerlink" title="六、Java11标准化的Http Client"></a>六、Java11标准化的Http Client</h3><h4 id="1、发送同步的Get请求"><a href="#1、发送同步的Get请求" class="headerlink" title="1、发送同步的Get请求"></a>1、发送同步的Get请求</h4><h4 id="2、发送带请求体的请求"><a href="#2、发送带请求体的请求" class="headerlink" title="2、发送带请求体的请求"></a>2、发送带请求体的请求</h4><h4 id="3、发送异步请求"><a href="#3、发送异步请求" class="headerlink" title="3、发送异步请求"></a>3、发送异步请求</h4><h4 id="4、WebSocket客户端支持"><a href="#4、WebSocket客户端支持" class="headerlink" title="4、WebSocket客户端支持"></a>4、WebSocket客户端支持</h4><h4 id="5、基于WebSocket的多人实时聊天"><a href="#5、基于WebSocket的多人实时聊天" class="headerlink" title="5、基于WebSocket的多人实时聊天"></a>5、基于WebSocket的多人实时聊天</h4><h3 id="七、本章小结"><a href="#七、本章小结" class="headerlink" title="七、本章小结"></a>七、本章小结</h3>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/06/English/2021-06-06/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/06/English/2021-06-06/" class="post-title-link" itemprop="url">阅读笔记2021-06-06</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-06 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-06T00:00:00+00:00">2021-06-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-10 15:17:56" itemprop="dateModified" datetime="2022-02-10T15:17:56+00:00">2022-02-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/English/" itemprop="url" rel="index"><span itemprop="name">English</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="一、Vocabulary"><a href="#一、Vocabulary" class="headerlink" title="一、Vocabulary"></a>一、Vocabulary</h2><h3 id="1、shamrock"><a href="#1、shamrock" class="headerlink" title="1、shamrock"></a>1、shamrock</h3><p>n.三叶草</p>
-<h3 id="2、tattoo"><a href="#2、tattoo" class="headerlink" title="2、tattoo"></a>2、tattoo</h3><p>n.纹身</p>
-<h3 id="3、babysit"><a href="#3、babysit" class="headerlink" title="3、babysit"></a>3、babysit</h3><p>n.保姆</p>
-<h3 id="4、escort"><a href="#4、escort" class="headerlink" title="4、escort"></a>4、escort</h3><p>n.护卫，护航舰；v.护送</p>
-<h2 id="二、Phrase"><a href="#二、Phrase" class="headerlink" title="二、Phrase"></a>二、Phrase</h2><h3 id="1、mow-lawn"><a href="#1、mow-lawn" class="headerlink" title="1、mow lawn"></a>1、mow lawn</h3><p>修剪草坪</p>
-<h2 id="三、SpecificNoun"><a href="#三、SpecificNoun" class="headerlink" title="三、SpecificNoun"></a>三、SpecificNoun</h2><h3 id="1、"><a href="#1、" class="headerlink" title="1、"></a>1、</h3>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/05/Mysql/mysql-%E6%B8%B8%E6%A0%87/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/05/Mysql/mysql-%E6%B8%B8%E6%A0%87/" class="post-title-link" itemprop="url">MySQL游标学习</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-05 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-05T00:00:00+00:00">2021-06-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-10 15:17:56" itemprop="dateModified" datetime="2022-02-10T15:17:56+00:00">2022-02-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/02/spring/AOP%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/06/02/spring/AOP%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">spring-aop底层原理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-06-02 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-02T00:00:00+00:00">2021-06-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-10 15:17:56" itemprop="dateModified" datetime="2022-02-10T15:17:56+00:00">2022-02-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/aop4.png">https://cos-1301609895.cos.ap-nanjing.myqcloud.com/aop4.png</a></p>
-<h3 id="一、AOP底层使用动态代理"><a href="#一、AOP底层使用动态代理" class="headerlink" title="一、AOP底层使用动态代理"></a>一、AOP底层使用动态代理</h3><h4 id="1、两种动态代理"><a href="#1、两种动态代理" class="headerlink" title="1、两种动态代理"></a>1、两种动态代理</h4><h5 id="a、有接口"><a href="#a、有接口" class="headerlink" title="a、有接口"></a>a、有接口</h5><p>需使用JDK的动态代理，创建接口实现类的代理对象，增强类的方法，如下图：</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/aop1.png">
-
-<h5 id="b、没有接口"><a href="#b、没有接口" class="headerlink" title="b、没有接口"></a>b、没有接口</h5><p>使用CGLIB动态代理，继承父类重写父类方法，实现代理，如下图：</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/aop2.png">
-
-
-
-<h3 id="二、AOP（JDK动态代理）"><a href="#二、AOP（JDK动态代理）" class="headerlink" title="二、AOP（JDK动态代理）"></a>二、AOP（JDK动态代理）</h3><h4 id="1、使用JDK动态代理，使用Proxy类里的方法创建代理对象"><a href="#1、使用JDK动态代理，使用Proxy类里的方法创建代理对象" class="headerlink" title="1、使用JDK动态代理，使用Proxy类里的方法创建代理对象"></a>1、使用JDK动态代理，使用Proxy类里的方法创建代理对象</h4><blockquote>
-<p>Class Proxy</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/lang/Object.html">java.lang.Object</a><ul>
-<li>java.lang.reflect.Proxy</li>
-</ul>
-</li>
-</ul>
-</blockquote>
-<p>使用下面这个方法创建代理类的实例：</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/aop4.png">
-
-<p><code> newProxyInstance</code>方法三个参数的含义：</p>
-<ul>
-<li><code> ClassLoader loader</code>：类加载器</li>
-<li><code> 类&lt;?&gt;[] interfaces</code>：增强方法所在的类，这个类所实现的接口</li>
-<li><code> InvocationHandler h</code>：实现这个接口InvocationHandler，创建代理对象，写增强的方法</li>
-</ul>
-<h4 id="2、使用JDK动态代理来写代码"><a href="#2、使用JDK动态代理来写代码" class="headerlink" title="2、使用JDK动态代理来写代码"></a>2、使用JDK动态代理来写代码</h4><h5 id="a、创建接口，定义方法"><a href="#a、创建接口，定义方法" class="headerlink" title="a、创建接口，定义方法"></a>a、创建接口，定义方法</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">update</span><span class="params">(String id)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="b、创建接口实现类，实现方法"><a href="#b、创建接口实现类，实现方法" class="headerlink" title="b、创建接口实现类，实现方法"></a>b、创建接口实现类，实现方法</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserDaoImpl</span> <span class="keyword">implements</span> <span class="title">UserDao</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a + b;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">update</span><span class="params">(String id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="c、使用Proxy类创建接口代理对象"><a href="#c、使用Proxy类创建接口代理对象" class="headerlink" title="c、使用Proxy类创建接口代理对象"></a>c、使用Proxy类创建接口代理对象</h5><p>匿名内部类方式：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JDKProxy</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建接口实现类代理对象</span></span><br><span class="line">        Class[] interfaces = &#123;UserDao.class&#125;;</span><br><span class="line">        Proxy.newProxyInstance(JDKProxy.class.getClassLoader(), interfaces, <span class="keyword">new</span> InvocationHandler() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>实现接口的方式：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JDKProxy</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建接口实现类代理对象</span></span><br><span class="line">        Class[] interfaces = &#123;UserDao.class&#125;;</span><br><span class="line">        UserDao userDao = <span class="keyword">new</span> UserDaoImpl();</span><br><span class="line">        UserDao dao = (UserDao) Proxy.newProxyInstance(JDKProxy.class.getClassLoader(), interfaces, <span class="keyword">new</span> UserDaoProxy(userDao));</span><br><span class="line">        <span class="keyword">int</span> result = dao.add(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">        System.out.println(result);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建代理对象代码</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">UserDaoProxy</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Object object;</span><br><span class="line">    <span class="comment">//创建的是谁的代理对象，就将谁传进来</span></span><br><span class="line">    <span class="comment">//有参构造传递参数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">UserDaoProxy</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.object = obj;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//写我们要增强的操作逻辑</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        <span class="comment">//方法之前</span></span><br><span class="line">        System.out.println(<span class="string">&quot;方法之前执行......&quot;</span> + method.getName() + <span class="string">&quot;：传递的参数是&quot;</span> + Arrays.toString(args));</span><br><span class="line">        <span class="comment">//被增强的方法</span></span><br><span class="line">        Object res = method.invoke(object, args);</span><br><span class="line">        <span class="comment">//方法之后</span></span><br><span class="line">        System.out.println(<span class="string">&quot;方法之前执行......&quot;</span> + object);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="三、AOP（术语）"><a href="#三、AOP（术语）" class="headerlink" title="三、AOP（术语）"></a>三、AOP（术语）</h3><h4 id="1、连接点"><a href="#1、连接点" class="headerlink" title="1、连接点"></a>1、连接点</h4><p>类里面哪些方法可以被增强，这些方法称为连接点</p>
-<h4 id="2、切入点"><a href="#2、切入点" class="headerlink" title="2、切入点"></a>2、切入点</h4><p>实际真正被增强的方法，这些方法称为切入点</p>
-<h4 id="3、通知（增强）"><a href="#3、通知（增强）" class="headerlink" title="3、通知（增强）"></a>3、通知（增强）</h4><p>实际增强的逻辑部分，即增加的代码逻辑部分，通知有以下几种：</p>
-<ul>
-<li>前置通知</li>
-<li>后置通知</li>
-<li>环绕通知</li>
-<li>异常通知</li>
-<li>最终通知</li>
-</ul>
-<h4 id="4、切面"><a href="#4、切面" class="headerlink" title="4、切面"></a>4、切面</h4><p>指的是一个动作，指把通知应用到切入点的过程</p>
-<h3 id="四、AOP操作（准备）"><a href="#四、AOP操作（准备）" class="headerlink" title="四、AOP操作（准备）"></a>四、AOP操作（准备）</h3><p>Spring框架一般都是基于AspectJ实现AOP操作的</p>
-<h4 id="1、什么是AspectJ"><a href="#1、什么是AspectJ" class="headerlink" title="1、什么是AspectJ"></a>1、什么是AspectJ</h4><p>AspectJ不是Spring的组成部分，它是一个独立的AOP框架，一般将Spring和AspectJ一起使用，从而进行AOP操作</p>
-<h4 id="2、基于AspectJ实现AOP操作"><a href="#2、基于AspectJ实现AOP操作" class="headerlink" title="2、基于AspectJ实现AOP操作"></a>2、基于AspectJ实现AOP操作</h4><h5 id="a、基于xml配置文件方式实现"><a href="#a、基于xml配置文件方式实现" class="headerlink" title="a、基于xml配置文件方式实现"></a>a、基于xml配置文件方式实现</h5><h5 id="b、基于注解方式实现（使用）"><a href="#b、基于注解方式实现（使用）" class="headerlink" title="b、基于注解方式实现（使用）"></a>b、基于注解方式实现（使用）</h5><h4 id="3、在项目工程中引入相关AOP依赖"><a href="#3、在项目工程中引入相关AOP依赖" class="headerlink" title="3、在项目工程中引入相关AOP依赖"></a>3、在项目工程中引入相关AOP依赖</h4><p>需要引入以下相关依赖：</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/aop5.png">
-
-
-
-<h4 id="4、切入点表达式"><a href="#4、切入点表达式" class="headerlink" title="4、切入点表达式"></a>4、切入点表达式</h4><h5 id="a、切入点表达式的作用"><a href="#a、切入点表达式的作用" class="headerlink" title="a、切入点表达式的作用"></a>a、切入点表达式的作用</h5><p>知道对哪个类里面的那个方法进行增强</p>
-<h5 id="b、语法结构"><a href="#b、语法结构" class="headerlink" title="b、语法结构"></a>b、语法结构</h5><p>execution( [权限修饰符] [返回类型] [类全路径]  [方法名称]  ( [参数列表] ) )</p>
-<ul>
-<li><p>对一个类里的某一个方法进行增强</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">  </span><br></pre></td></tr></table></figure>
-</li>
-<li><p>对一个类里的所有的方法进行增强</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">  </span><br></pre></td></tr></table></figure>
-</li>
-<li><p>对包里的所有类，类里面的所有方法进行增强</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">  ```</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 五、AOP操作（AspectJ注解）</span><br><span class="line"></span><br><span class="line">#### 1、创建类，在类中定义方法</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;add()......&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4 id="2、创建增强类（编写增强逻辑）"><a href="#2、创建增强类（编写增强逻辑）" class="headerlink" title="2、创建增强类（编写增强逻辑）"></a>2、创建增强类（编写增强逻辑）</h4><p>在增强类里面创建方法，让不同的方法代表不同的通知</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//增强的类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserProxy</span> </span>&#123;</span><br><span class="line">    <span class="comment">//前置通知</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;before()......&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="3、进行通知的配置"><a href="#3、进行通知的配置" class="headerlink" title="3、进行通知的配置"></a>3、进行通知的配置</h4><h5 id="a、在Spring配置文件中，开启注解扫描"><a href="#a、在Spring配置文件中，开启注解扫描" class="headerlink" title="a、在Spring配置文件中，开启注解扫描"></a>a、在Spring配置文件中，开启注解扫描</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.springframework.org/schema/beans&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">&quot;http://www.springframework.org/schema/context&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:aop</span>=<span class="string">&quot;http://www.springframework.org/schema/aop&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 开启注解扫描 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">&quot;com.atguigu.spring5.aopanno&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="b、使用注解创建User和UserProxy对象"><a href="#b、使用注解创建User和UserProxy对象" class="headerlink" title="b、使用注解创建User和UserProxy对象"></a>b、使用注解创建User和UserProxy对象</h5><p>给<code> User</code>和<code> UserProxy</code>加上<code> @Component</code></p>
-<h5 id="c、在增强的类上面添加注解-Aspect"><a href="#c、在增强的类上面添加注解-Aspect" class="headerlink" title="c、在增强的类上面添加注解@Aspect"></a>c、在增强的类上面添加注解@Aspect</h5><p><code> @Aspect</code>代表生成的对象</p>
-<h5 id="d、在Spring配置文件中开启生成代理对象"><a href="#d、在Spring配置文件中开启生成代理对象" class="headerlink" title="d、在Spring配置文件中开启生成代理对象"></a>d、在Spring配置文件中开启生成代理对象</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 开启Aspect生成代理对象 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">aop:aspectj-autoproxy</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:aspectj-autoproxy</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="4、配置不同类型的通知"><a href="#4、配置不同类型的通知" class="headerlink" title="4、配置不同类型的通知"></a>4、配置不同类型的通知</h4><p>在增强类里面，在作为通知方法最上面添加通知类型注解，使用切入点表达式配置</p>
-<p>如下在<code> UserProxy</code>类中加上<code> @Before</code>注解：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//@Before表示作为前置通知（切入点表达式指明哪个类中的哪个方法）</span></span><br><span class="line"><span class="meta">@Before(value = &quot;execution(* com.atguigu.spring5.aopanno.User.add())&quot;)</span></span><br></pre></td></tr></table></figure>
-
-<p>接下来我们看看所有的通知类型：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//增强的类</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserProxy</span> </span>&#123;</span><br><span class="line">    <span class="comment">//前置通知</span></span><br><span class="line">    <span class="comment">//@Before表示作为前置通知（切入点表达式指明哪个类中的哪个方法）</span></span><br><span class="line">    <span class="meta">@Before(value = &quot;execution(* com.atguigu.spring5.aopanno.User.add())&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;before()......&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">		<span class="comment">//后置通知</span></span><br><span class="line">    <span class="meta">@After(value = &quot;execution(* com.atguigu.spring5.aopanno.User.add())&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">after</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;after()......&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">		<span class="comment">//最终通知</span></span><br><span class="line">    <span class="meta">@AfterReturning(value = &quot;execution(* com.atguigu.spring5.aopanno.User.add())&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterReturning</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;afterReturning()......&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">		<span class="comment">//异常通知</span></span><br><span class="line">    <span class="meta">@AfterThrowing(value = &quot;execution(* com.atguigu.spring5.aopanno.User.add())&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterThrowing</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;afterThrowing()......&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">		<span class="comment">//环绕通知</span></span><br><span class="line">    <span class="meta">@Around(value = &quot;execution(* com.atguigu.spring5.aopanno.User.add())&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">around</span><span class="params">(ProceedingJoinPoint proceedingJoinPoint)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;环绕之前......&quot;</span>);</span><br><span class="line">        <span class="comment">//被增强的方法</span></span><br><span class="line">        proceedingJoinPoint.proceed();</span><br><span class="line">        System.out.println(<span class="string">&quot;环绕之后......&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>注意点：</p>
-<ul>
-<li><p><code> @After</code>和<code> @AfterReturning</code>的区别</p>
-<p>前者在方法之后执行，后者在方法返回结果之后执行</p>
-</li>
-<li><p><code> @AfterThrowing</code>是异常通知，只有在发生异常之后才会执行</p>
-</li>
-</ul>
-<h4 id="5、相同切入点的抽取"><a href="#5、相同切入点的抽取" class="headerlink" title="5、相同切入点的抽取"></a>5、相同切入点的抽取</h4><p>如上述代码的<code> &quot;execution(* com.atguigu.spring5.aopanno.User.add())&quot;</code>部分，具体如何做请看代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//相同切入点抽取</span></span><br><span class="line"><span class="meta">@Pointcut(value = &quot;execution(* com.atguigu.spring5.aopanno.User.add())&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pointdemo</span><span class="params">()</span> </span>&#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//前置通知</span></span><br><span class="line"><span class="comment">//@Before表示作为前置通知（切入点表达式指明哪个类中的哪个方法）</span></span><br><span class="line"><span class="meta">@Before(value = &quot;pointdemo()&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;before()......&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="6、增强类的优先级"><a href="#6、增强类的优先级" class="headerlink" title="6、增强类的优先级"></a>6、增强类的优先级</h4><p>当有多个增强类对同一个方法进行增强时，我们可以设置增强类的优先级。在增强类上面添加注解<code> @Order(数字类型值)</code>，数字类型值越小代表优先级越高，如下<code> PersonProxy</code>的优先级为1：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="meta">@Order(1)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PersonProxy</span> </span>&#123;</span><br><span class="line">  ······</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="7、完全注解开发"><a href="#7、完全注解开发" class="headerlink" title="7、完全注解开发"></a>7、完全注解开发</h4><p>创建配置类，不再需要配置文件，只需创建如下配置类：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ComponentScan(basePackages = &#123;&quot;com.atguigu&quot;&#125;)</span></span><br><span class="line"><span class="meta">@EnableAspectJAutoProxy(proxyTargetClass = true)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConfigAop</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h3 id="六、AOP操作（AspectJ配置文件）"><a href="#六、AOP操作（AspectJ配置文件）" class="headerlink" title="六、AOP操作（AspectJ配置文件）"></a>六、AOP操作（AspectJ配置文件）</h3><p>未完待续……</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/31/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/%E8%8A%AF%E7%89%87%E6%A3%80%E6%B5%8B%E5%AE%9E%E6%88%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/31/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/%E8%8A%AF%E7%89%87%E6%A3%80%E6%B5%8B%E5%AE%9E%E6%88%98/" class="post-title-link" itemprop="url">逻辑回归-芯片检测实战</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-05-31 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-31T00:00:00+00:00">2021-05-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-10 15:17:56" itemprop="dateModified" datetime="2022-02-10T15:17:56+00:00">2022-02-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="一、基于-chip-test-csv数据集，建立逻辑回归模型（二阶边界），评估模型表现"><a href="#一、基于-chip-test-csv数据集，建立逻辑回归模型（二阶边界），评估模型表现" class="headerlink" title="一、基于 chip_test.csv数据集，建立逻辑回归模型（二阶边界），评估模型表现"></a>一、基于<code> chip_test.csv</code>数据集，建立逻辑回归模型（二阶边界），评估模型表现</h3><h4 id="1、加载数据"><a href="#1、加载数据" class="headerlink" title="1、加载数据"></a>1、加载数据</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># load the data</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">data = pd.read_csv(<span class="string">&#x27;chip_test.csv&#x27;</span>)</span><br><span class="line">data.head()</span><br></pre></td></tr></table></figure>
-
-<h4 id="2、为数据添加标签"><a href="#2、为数据添加标签" class="headerlink" title="2、为数据添加标签"></a>2、为数据添加标签</h4><p>合格即为<code> true</code>，否则为<code> false</code></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># add label mask</span></span><br><span class="line">mask = data.loc[:, <span class="string">&#x27;pass&#x27;</span>] == <span class="number">1</span></span><br><span class="line">print(~mask)</span><br></pre></td></tr></table></figure>
-
-<h4 id="3、数据的可视化"><a href="#3、数据的可视化" class="headerlink" title="3、数据的可视化"></a>3、数据的可视化</h4><p><code> plt.scatter()</code>原型如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">matplotlib.pyplot.scatter(x, y, s=<span class="literal">None</span>, c=<span class="literal">None</span>, marker=<span class="literal">None</span>, cmap=<span class="literal">None</span>, norm=<span class="literal">None</span>, vmin=<span class="literal">None</span>, vmax=<span class="literal">None</span>, alpha=<span class="literal">None</span>, linewidths=<span class="literal">None</span>, verts=<span class="literal">None</span>, edgecolors=<span class="literal">None</span>, *, data=<span class="literal">None</span>, **kwargs)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>x、y：表示的是大小为<code>(n, )</code>的数组，也就是我们即将绘制散点图的数据点</li>
-<li>s：一个实数或者是一个数组大小为<code>(n, )</code>，点的所占的面积大小</li>
-<li>c：颜色</li>
-<li>marker：表示的是标记的样式，默认的是<code> &#39;o&#39;</code></li>
-<li>cmap：Colormap实体或者是一个colormap的名字，cmap仅仅当c是一个浮点数数组的时候才使用（默认image.cmap）</li>
-<li>norm：Normalize实体来将数据亮度转化到0-1之间，也是只有c是一个浮点数的数组的时候才使用（默认colors.Normalize）</li>
-<li>vmin、vmax：实数，当norm存在的时候忽略（用来进行亮度数据的归一化）</li>
-<li>alpha：实数，调整线不透明度（0-1）</li>
-<li>linewidths：也就是标记点的长度</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># visualize the data</span></span><br><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line">fig1 = plt.figure()</span><br><span class="line">passed = plt.scatter(data.loc[:, <span class="string">&#x27;test1&#x27;</span>][mask], data.loc[:, <span class="string">&#x27;test2&#x27;</span>][mask])</span><br><span class="line">failed = plt.scatter(data.loc[:, <span class="string">&#x27;test1&#x27;</span>][~mask], data.loc[:, <span class="string">&#x27;test2&#x27;</span>][~mask])</span><br><span class="line">plt.title(<span class="string">&#x27;test1-test2&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;test1&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;test2&#x27;</span>)</span><br><span class="line">plt.legend((passed, failed), (<span class="string">&#x27;passed&#x27;</span>, <span class="string">&#x27;failed&#x27;</span>))</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-<h4 id="4、定义X、y变量"><a href="#4、定义X、y变量" class="headerlink" title="4、定义X、y变量"></a>4、定义X、y变量</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># define X y</span></span><br><span class="line"><span class="comment"># axis=1代表删掉‘pass’这一列</span></span><br><span class="line">X = data.drop([<span class="string">&#x27;pass&#x27;</span>], axis=<span class="number">1</span>)</span><br><span class="line">y = data.loc[:, <span class="string">&#x27;pass&#x27;</span>]</span><br><span class="line">X1 = data.loc[:, <span class="string">&#x27;test1&#x27;</span>]</span><br><span class="line">X2 = data.loc[:, <span class="string">&#x27;test2&#x27;</span>]</span><br></pre></td></tr></table></figure>
-
-<h4 id="5、定义X1方、X2方等变量"><a href="#5、定义X1方、X2方等变量" class="headerlink" title="5、定义X1方、X2方等变量"></a>5、定义X1方、X2方等变量</h4><p>DataFrame是Python中Pandas库中的一种数据结构，它类似excel，是一种二维表。DataFrame的单元格可以存放数值、字符串等，这和excel表很像，同时DataFrame可以设置列名columns与行名index，如下通过<code> X_new</code>设置了五列：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># create new data</span></span><br><span class="line">X1_2 = X1*X1</span><br><span class="line">X2_2 = X2*X2</span><br><span class="line">X1_X2 = X1*X2</span><br><span class="line">X_new = &#123;<span class="string">&#x27;X1&#x27;</span>:X1, <span class="string">&#x27;X2&#x27;</span>:X2, <span class="string">&#x27;X1_2&#x27;</span>:X1_2, <span class="string">&#x27;X2_2&#x27;</span>:X2_2, <span class="string">&#x27;X1_X2&#x27;</span>:X1_X2&#125;</span><br><span class="line">X_new = pd.DataFrame(X_new)</span><br><span class="line">print(X_new)</span><br></pre></td></tr></table></figure>
-
-<h4 id="6、建立实例并训练模型"><a href="#6、建立实例并训练模型" class="headerlink" title="6、建立实例并训练模型"></a>6、建立实例并训练模型</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># establish new model and train</span></span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span><br><span class="line">LR2 = LogisticRegression()</span><br><span class="line">LR2.fit(X_new, y)</span><br></pre></td></tr></table></figure>
-
-<h4 id="7、预测数据"><a href="#7、预测数据" class="headerlink" title="7、预测数据"></a>7、预测数据</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># predict</span></span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score</span><br><span class="line">y2_predict = LR2.predict(X_new)</span><br><span class="line">accuracy2 = accuracy_score(y, y2_predict)</span><br><span class="line">print(accuracy2)</span><br></pre></td></tr></table></figure>
-
-<h4 id="8、获取曲线参数"><a href="#8、获取曲线参数" class="headerlink" title="8、获取曲线参数"></a>8、获取曲线参数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># get the params</span></span><br><span class="line">X1_new = X1.sort_values()</span><br><span class="line">theta0 = LR2.intercept_</span><br><span class="line">theta1, theta2, theta3, theta4, theta5 = LR2.coef_[<span class="number">0</span>][<span class="number">0</span>], LR2.coef_[<span class="number">0</span>][<span class="number">1</span>], LR2.coef_[<span class="number">0</span>][<span class="number">2</span>], LR2.coef_[<span class="number">0</span>][<span class="number">3</span>], LR2.coef_[<span class="number">0</span>][<span class="number">4</span>]</span><br><span class="line">print(theta0, theta1, theta2, theta3, theta4, theta5)</span><br></pre></td></tr></table></figure>
-
-<h4 id="9、构建边界曲线"><a href="#9、构建边界曲线" class="headerlink" title="9、构建边界曲线"></a>9、构建边界曲线</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Constructing boundary curve</span></span><br><span class="line">a =theta4</span><br><span class="line">b = theta5*x1_new + theta2</span><br><span class="line">c = theta0 + theta1*x1_new + theta3*x1_new*x1_new</span><br><span class="line">X_new_boundary = (-b + np.sqrt(b*b - <span class="number">4</span>*a*c))/(<span class="number">2</span>*a)</span><br></pre></td></tr></table></figure>
-
-<h4 id="10、画曲线"><a href="#10、画曲线" class="headerlink" title="10、画曲线"></a>10、画曲线</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># draw the pic</span></span><br><span class="line">fig4 = plt.figure()</span><br><span class="line">plt.plot(X1_new, X_new_boundary)</span><br><span class="line">passed = plt.scatter(data.loc[:, <span class="string">&quot;test1&quot;</span>][~mask], data.loc[:, <span class="string">&quot;test2&quot;</span>][~mask])  </span><br><span class="line">failed = plt.scatter(data.loc[:, <span class="string">&quot;test1&quot;</span>][mask], data.loc[:, <span class="string">&quot;test2&quot;</span>][mask])</span><br><span class="line">plt.title(<span class="string">&quot;test1-test2&quot;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&quot;test1&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;test2&quot;</span>) </span><br><span class="line">plt.legend((passed, failed), (<span class="string">&#x27;passed&#x27;</span>, <span class="string">&#x27;failed&#x27;</span>))</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-<p>画出来的图像如下（图像并不完整）：</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/logistic.png">
-
-<p>我们只需加上如下代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">X_new_boundary_2 = (-b - np.sqrt(b*b - <span class="number">4</span>*a*c))/(<span class="number">2</span>*a)</span><br><span class="line">plt.plot(X1_new, X_new_boundary_2)</span><br></pre></td></tr></table></figure>
-
-<p>于是画出来的图像便变成如下所示：</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/logistic2.png">
-
-
-
-<h3 id="二、以函数的方式求解边界曲线"><a href="#二、以函数的方式求解边界曲线" class="headerlink" title="二、以函数的方式求解边界曲线"></a>二、以函数的方式求解边界曲线</h3><h4 id="1、定义函数f-x"><a href="#1、定义函数f-x" class="headerlink" title="1、定义函数f(x)"></a>1、定义函数f(x)</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># define f(x)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span>(<span class="params">X1_new</span>):</span></span><br><span class="line">    a =theta4</span><br><span class="line">    b = theta5*X1_new + theta2</span><br><span class="line">    c = theta0 + theta1*X1_new + theta3*X1_new*X1_new</span><br><span class="line">    X_new_boundary1 = (-b + np.sqrt(b*b - <span class="number">4</span>*a*c))/(<span class="number">2</span>*a)</span><br><span class="line">    X_new_boundary2 = (-b - np.sqrt(b*b - <span class="number">4</span>*a*c))/(<span class="number">2</span>*a)</span><br><span class="line">    <span class="keyword">return</span> X_new_boundary1, X_new_boundary2</span><br></pre></td></tr></table></figure>
-
-<h4 id="2、获取新边界"><a href="#2、获取新边界" class="headerlink" title="2、获取新边界"></a>2、获取新边界</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># get X_new_boundary</span></span><br><span class="line">X2_new_boundary1 = []</span><br><span class="line">X2_new_boundary2 = []</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> X1_new:</span><br><span class="line">    X2_new_boundary1.append(f(x)[<span class="number">0</span>])</span><br><span class="line">    X2_new_boundary2.append(f(x)[<span class="number">1</span>])</span><br><span class="line">print(X2_new_boundary1, X2_new_boundary2)</span><br></pre></td></tr></table></figure>
-
-<h4 id="3、画图"><a href="#3、画图" class="headerlink" title="3、画图"></a>3、画图</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fig5 = plt.figure()</span><br><span class="line">plt.plot(X1_new, X2_new_boundary1)</span><br><span class="line">plt.plot(X1_new, X2_new_boundary2)</span><br><span class="line">passed = plt.scatter(data.loc[:, <span class="string">&quot;test1&quot;</span>][~mask], data.loc[:, <span class="string">&quot;test2&quot;</span>][~mask])  </span><br><span class="line">failed = plt.scatter(data.loc[:, <span class="string">&quot;test1&quot;</span>][mask], data.loc[:, <span class="string">&quot;test2&quot;</span>][mask])</span><br><span class="line">plt.title(<span class="string">&quot;test1-test2&quot;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&quot;test1&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;test2&quot;</span>) </span><br><span class="line">plt.legend((passed, failed), (<span class="string">&#x27;passed&#x27;</span>, <span class="string">&#x27;failed&#x27;</span>))</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-<p>图像如下（我们发现两边缺了一点）：</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/logistic2.png">
-
-<h4 id="4、补数据"><a href="#4、补数据" class="headerlink" title="4、补数据"></a>4、补数据</h4><p>将<code> x轴</code>数据补多一点</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">X1_range = [<span class="number">-0.9</span> + x/<span class="number">10000</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">19000</span>)]</span><br><span class="line">X1_range = np.array(X1_range)</span><br><span class="line">X2_new_boundary1 = []</span><br><span class="line">X2_new_boundary2 = []</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> X1_range:</span><br><span class="line">    X2_new_boundary1.append(f(x)[<span class="number">0</span>])</span><br><span class="line">    X2_new_boundary2.append(f(x)[<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="5、描绘出完整的决策边界曲线"><a href="#5、描绘出完整的决策边界曲线" class="headerlink" title="5、描绘出完整的决策边界曲线"></a>5、描绘出完整的决策边界曲线</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fig6 = plt.figure()</span><br><span class="line">passed = plt.scatter(data.loc[:, <span class="string">&quot;test1&quot;</span>][~mask], data.loc[:, <span class="string">&quot;test2&quot;</span>][~mask])  </span><br><span class="line">failed = plt.scatter(data.loc[:, <span class="string">&quot;test1&quot;</span>][mask], data.loc[:, <span class="string">&quot;test2&quot;</span>][mask])</span><br><span class="line">plt.plot(X1_range, X2_new_boundary1)</span><br><span class="line">plt.plot(X1_range, X2_new_boundary2)</span><br><span class="line">plt.title(<span class="string">&quot;test1-test2&quot;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&quot;test1&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;test2&quot;</span>)</span><br><span class="line">plt.legend((passed, failed), (<span class="string">&#x27;passed&#x27;</span>, <span class="string">&#x27;failed&#x27;</span>))</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-<p>图如下：</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/logistic4.png">
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/30/Mysql/mysql-%E8%A7%A6%E5%8F%91%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/05/30/Mysql/mysql-%E8%A7%A6%E5%8F%91%E5%99%A8/" class="post-title-link" itemprop="url">MySQL触发器学习</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-05-30 00:00:00" itemprop="dateCreated datePublished" datetime="2021-05-30T00:00:00+00:00">2021-05-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-10 15:17:56" itemprop="dateModified" datetime="2022-02-10T15:17:56+00:00">2022-02-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1310,7 +1490,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-count">91</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
