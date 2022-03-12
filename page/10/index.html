@@ -154,6 +154,911 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/14/springboot/springboot+nginx+https/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/14/springboot/springboot+nginx+https/" class="post-title-link" itemprop="url">springboot项目通过nginx的https代理转发</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-14 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-14T00:00:00+00:00">2020-11-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-12 00:54:16" itemprop="dateModified" datetime="2022-03-12T00:54:16+00:00">2022-03-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-Project/" itemprop="url" rel="index"><span itemprop="name">Java_Project</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>现在这里挖个坑，做微信小程序时必须要用https，当时折腾了好久，作一下总结</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/11/tools/mysql%E5%AE%89%E8%A3%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/11/tools/mysql%E5%AE%89%E8%A3%85/" class="post-title-link" itemprop="url">mysql的安装</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-11 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-11T00:00:00+00:00">2020-11-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-12 00:54:16" itemprop="dateModified" datetime="2022-03-12T00:54:16+00:00">2022-03-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>(我有个朋友，他服务器上的MySQL出问题了，直接重装，解决一切问题)</p>
+<h3 id="一、MySQL卸载"><a href="#一、MySQL卸载" class="headerlink" title="一、MySQL卸载"></a>一、MySQL卸载</h3><h4 id="1-yum康康安装的MySQL"><a href="#1-yum康康安装的MySQL" class="headerlink" title="1. yum康康安装的MySQL"></a>1. yum康康安装的MySQL</h4><blockquote>
+<p>使用 yum list installed | grep mysql 全都yum remove掉就可以了</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum list installed | grep mysql</span><br></pre></td></tr></table></figure>
+
+<p>最后显示<code>Complete!</code>就算成功了</p>
+<h4 id="2-赶尽杀绝"><a href="#2-赶尽杀绝" class="headerlink" title="2. 赶尽杀绝"></a>2. 赶尽杀绝</h4><blockquote>
+<p>然后使用 find / -name mysql 依次将文件删除即可</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -name mysql</span><br></pre></td></tr></table></figure>
+
+<p>将显示的文件统统删掉即可</p>
+<ul>
+<li><p>/var/lib/mysql</p>
+</li>
+<li><p>/var/lib/mysql/mysql</p>
+</li>
+<li><p>/usr/share/mysql</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /var/lib/mysql /var/lib/mysql/mysql /usr/share/mysql</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="二、rpm安装MySql"><a href="#二、rpm安装MySql" class="headerlink" title="二、rpm安装MySql"></a>二、rpm安装MySql</h3><h4 id="1-下载安装包"><a href="#1-下载安装包" class="headerlink" title="1. 下载安装包"></a>1. 下载安装包</h4><blockquote>
+<p>先去<a target="_blank" rel="noopener" href="https://downloads.mysql.com/archives/community/">官网</a>下载安装包，我这边是centos操作系统，所以选择Red Hat那个，我下载的是mysql-5.7.29-1.el7.x86_64.rpm-bundle.tar 然后上传到服务器上</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br></pre></td></tr></table></figure>
+
+<p>康康安装包在不在：<code>mysql-5.7.29-1.el7.x86_64.rpm-bundle.tar</code></p>
+<h4 id="2-删除系统自带的东西"><a href="#2-删除系统自带的东西" class="headerlink" title="2. 删除系统自带的东西"></a>2. 删除系统自带的东西</h4><blockquote>
+<p>如果是第一次安装，检查一下系统自带的mariadb-lib以及MySQL 我这边干干净净呢</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa|grep mariadb</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa|grep mysql</span><br></pre></td></tr></table></figure>
+
+<p>如果显示有东西的话就用下面的命令弄掉它</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -e --nodeps + 搜索出来的文件名</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-安装依赖"><a href="#3-安装依赖" class="headerlink" title="3. 安装依赖"></a>3. 安装依赖</h4><blockquote>
+<p>依次安装下面三个依赖</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install libaio</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install perl</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install net-tools</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-解压缩"><a href="#4-解压缩" class="headerlink" title="4.解压缩"></a>4.解压缩</h4><blockquote>
+<p>先创建一个目录，然后在目录里 进行解压tar -xvf mysql-5.7.29-1.el7.x86_64.rpm-bundle.tar，并赋予目录最大权限</p>
+</blockquote>
+<p>创建目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir mysql</span><br></pre></td></tr></table></figure>
+
+<p>进入目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> mysql/</span><br></pre></td></tr></table></figure>
+
+<p>解压</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf mysql-5.7.29-1.el7.x86_64.rpm-bundle.tar</span><br></pre></td></tr></table></figure>
+
+<p>出去给目录赋予权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ..</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod -R 777 mysql</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-安装MySQL"><a href="#5-安装MySQL" class="headerlink" title="5. 安装MySQL"></a>5. 安装MySQL</h4><blockquote>
+<p>严格按照下面四个步骤安装软件包 </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh mysql-community-common-5.7.29-1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh mysql-community-libs-5.7.29-1.el7.x86_64.rpm </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh mysql-community-client-5.7.29-1.el7.x86_64.rpm </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh mysql-community-server-5.7.29-1.el7.x86_64.rpm </span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="6-配置数据库"><a href="#6-配置数据库" class="headerlink" title="6. 配置数据库"></a>6. 配置数据库</h4><blockquote>
+<p>修改配置文件</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/my.cnf</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在[mysqld]下面添加这三行</span></span><br><span class="line">skip-grant-tables  <span class="comment">#跳过登录验证</span></span><br><span class="line">character_set_server=utf8  <span class="comment">#设置默认字符集UTF-8</span></span><br><span class="line">init_connect=<span class="string">&#x27;SET NAMES utf8&#x27;</span>  <span class="comment">#设置默认字符集UTF-8</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="7-启动MySQL服务"><a href="#7-启动MySQL服务" class="headerlink" title="7. 启动MySQL服务"></a>7. 启动MySQL服务</h4><blockquote>
+<p>执行下面两个命令，不要输入命令直接回车就好啦</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start mysqld.service</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p</span><br></pre></td></tr></table></figure>
+
+<p>这样就直接进入MySQL啦！</p>
+<h4 id="8-设置密码"><a href="#8-设置密码" class="headerlink" title="8. 设置密码"></a>8. 设置密码</h4><blockquote>
+<p>在MySQL中执行下面的命令，设置密码并且让他生效</p>
+</blockquote>
+<p>进入MySQL</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p</span><br></pre></td></tr></table></figure>
+
+<p>更新密码，这只是暂时的密码，下次进入得修改</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update mysql.user <span class="built_in">set</span> authentication_string=password(<span class="string">&#x27;passwd&#x27;</span>) <span class="built_in">where</span> user=<span class="string">&#x27;root&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>让密码生效</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="9-再次修改配置文件"><a href="#9-再次修改配置文件" class="headerlink" title="9. 再次修改配置文件"></a>9. 再次修改配置文件</h4><blockquote>
+<p>注释掉直接进入MySQL这一段</p>
+</blockquote>
+<p>退出mysql</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+
+<p>编辑my.cnf配置文件将：skip-grant-tables这一行注释掉</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line"><span class="comment">#skip-grant-tables</span></span><br><span class="line">character_set_server=utf8</span><br><span class="line">init_connect=<span class="string">&#x27;SET NAMES utf8&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>重启mysql服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop  mysqld.service</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start mysqld.service</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="10-重新更新密码"><a href="#10-重新更新密码" class="headerlink" title="10. 重新更新密码"></a>10. 重新更新密码</h4><blockquote>
+<p><code>mysql -uroot -p</code>，密码是之前设置的暂时密码，此时进入你需要更新密码，通常来说你自己的密码系统会认为安全性太低不通过，我们先把安全策略降到最低，之后再修改密码</p>
+</blockquote>
+<p>修改validate_password_policy参数的值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> global validate_password_policy=0;</span><br></pre></td></tr></table></figure>
+
+<p>修改validate_password_length参数的值(密码长度)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> global validate_password_length=1;</span><br></pre></td></tr></table></figure>
+
+<p>修改MySQL为自己的密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter user <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> identified by <span class="string">&#x27;password&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>查看并设置密码策略</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW VARIABLES LIKE <span class="string">&#x27;validate_password%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> global validate_password_policy=LOW;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="11-开启远程登录"><a href="#11-开启远程登录" class="headerlink" title="11. 开启远程登录"></a>11. 开启远程登录</h4><blockquote>
+<p>先开放服务器的3306端口，再进入MySQL开启远程登录</p>
+</blockquote>
+<p>如果防火墙开了的话就开放服务器端口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=3306/tcp --permanent</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+
+<p>进入MySQL，开启远程登录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant all privileges on *.* to <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> identified by <span class="string">&#x27;passwd&#x27;</span> with grant option;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>至此，安装就结束啦！！！</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/10/Linux/Centos%E9%98%B2%E7%81%AB%E5%A2%99%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/10/Linux/Centos%E9%98%B2%E7%81%AB%E5%A2%99%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">Centos的一些命令和windows的一些命令</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-10 15:22:59" itemprop="dateCreated datePublished" datetime="2020-11-10T15:22:59+00:00">2020-11-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-12 00:54:16" itemprop="dateModified" datetime="2022-03-12T00:54:16+00:00">2022-03-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>参考博客<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32923745/article/details/78048822">Centos 防火墙命令</a></p>
+<p>(由于自己在使用云服务器的命令的时候常常要百度，故做一点总结)</p>
+<h3 id="centos7防火墙命令"><a href="#centos7防火墙命令" class="headerlink" title="centos7防火墙命令"></a>centos7防火墙命令</h3><h4 id="查看开放端口"><a href="#查看开放端口" class="headerlink" title="查看开放端口"></a>查看开放端口</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall<span class="literal">-cmd</span> -<span class="literal">-list</span><span class="literal">-ports</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="开启端口"><a href="#开启端口" class="headerlink" title="开启端口"></a>开启端口</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall<span class="literal">-cmd</span> -<span class="literal">-zone</span>=public -<span class="literal">-add</span><span class="literal">-port</span>=<span class="number">80</span>/tcp -<span class="literal">-permanent</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="查看端口占用情况"><a href="#查看端口占用情况" class="headerlink" title="查看端口占用情况"></a>查看端口占用情况</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsof -i tcp:8090</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>会显示以下信息</p>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">COMMAND   PID USER   FD   <span class="built_in">TYPE</span>    DEVICE SIZE/OFF NODE NAME</span><br><span class="line">java    <span class="number">27581</span> root   <span class="number">19</span>u  IPv6 <span class="number">136588143</span>      <span class="number">0</span>t0  TCP *:<span class="number">8090</span> (LISTEN)</span><br><span class="line"></span><br><span class="line"><span class="comment"># lsof输出各列信息的意义如下：</span></span><br><span class="line"><span class="comment"># COMMAND    进程的名称</span></span><br><span class="line"><span class="comment"># PID        进程的标识符</span></span><br><span class="line"><span class="comment"># USER       进程的所有者</span></span><br><span class="line"><span class="comment"># FD         文件描述符，应用程序通过文件描述符识别该文件，如cwd，txt</span></span><br><span class="line"><span class="comment"># TYPE       文件类型</span></span><br><span class="line"><span class="comment"># DEVICE     指定磁盘的名称</span></span><br><span class="line"><span class="comment"># SIZE/OFF   文件大小</span></span><br><span class="line"><span class="comment"># NODE       文件在磁盘上的标识</span></span><br><span class="line"><span class="comment"># NAME       打开文件的确切名称</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="开启范围端口"><a href="#开启范围端口" class="headerlink" title="开启范围端口"></a>开启范围端口</h4><blockquote>
+<p>开启8080 - 9090范围的端口</p>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall<span class="literal">-cmd</span>  -<span class="literal">-zone</span>=public  -<span class="literal">-add</span><span class="literal">-port</span>=<span class="number">8080</span><span class="literal">-9090</span>/tcp -<span class="literal">-permanent</span></span><br></pre></td></tr></table></figure>
+
+<p>命令含义：</p>
+<ul>
+<li>–zone                                #作用域</li>
+<li>–add-port=80/tcp           #添加端口，格式为：端口/通讯协议</li>
+<li>–permanent                     #永久生效，没有此参数重启后失效</li>
+</ul>
+<h4 id="防火墙命令"><a href="#防火墙命令" class="headerlink" title="防火墙命令"></a>防火墙命令</h4><blockquote>
+<p>重启firewall</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>查看防火墙状态</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd  --state</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>开启firewall</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start firewalld.service</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>停止firewall</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld.service</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>禁止firewall开机启动</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">disable</span> firewalld.service</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="centos7进程管理"><a href="#centos7进程管理" class="headerlink" title="centos7进程管理"></a>centos7进程管理</h3><p>linux上进程有5种状态:</p>
+<ol>
+<li>运行(正在运行或在运行队列中等待)</li>
+<li>中断(休眠中, 受阻, 在等待某个条件的形成或接受到信号)</li>
+<li>不可中断(收到信号不唤醒和不可运行, 进程必须等待直到有中断发生)</li>
+<li>僵死(进程已终止, 但进程描述符存在, 直到父进程调用wait4()系统调用后释放)</li>
+<li>停止(进程收到SIGSTOP, SIGSTP, SIGTIN, SIGTOU信号后停止运行运行)</li>
+</ol>
+<h4 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h4><ul>
+<li>ps命令查找与进程相关的PID号</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps 9827</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>显示如下信息</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> PID TTY      STAT   TIME COMMAND</span><br><span class="line">9827 pts/0    Sl     0:14 java -jar competitionrow-0.0.1-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="杀死进程"><a href="#杀死进程" class="headerlink" title="杀死进程"></a>杀死进程</h4><ul>
+<li>通过进程id来杀</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> -9 pid</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>通过进程name来杀</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">killall -9 name</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="centos7查看历史命令"><a href="#centos7查看历史命令" class="headerlink" title="centos7查看历史命令"></a>centos7查看历史命令</h3><ul>
+<li>查看历史命令</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">history</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>搜索历史命令</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">history | grep &#x27;tmux&#x27;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 模糊搜索tmux</span></span><br></pre></td></tr></table></figure>
+
+<p>出现以下结果：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">171  tmux new -s volunteer</span><br><span class="line">186  tmux ls</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<ul>
+<li>显示现行终端机下的所有程序，包括其他用户的程序</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps a</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>显示所有进程</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  PID TTY      STAT   TIME COMMAND</span><br><span class="line"> 1321 tty1     Ss+    0:00 /sbin/agetty --noclear tty1 linux</span><br><span class="line"> 1322 ttyS0    Ss+    0:00 /sbin/agetty --keep-baud 115200 38400 9600 ttyS0 vt220</span><br><span class="line"> 9827 pts/0    Sl     0:14 java -jar competitionrow-0.0.1-SNAPSHOT.jar</span><br><span class="line">17061 pts/0    R+     0:00 ps a</span><br><span class="line">22278 pts/0    Ss     0:00 -bash</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>显示所有程序</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -A</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>与上一个命令类似</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PID TTY          TIME CMD</span><br><span class="line">  1 ?        00:12:32 systemd</span><br><span class="line">  2 ?        00:00:02 kthreadd</span><br><span class="line">  3 ?        00:01:53 ksoftirqd/0</span><br><span class="line">  5 ?        00:00:00 kworker/0:0H</span><br><span class="line">  7 ?        00:00:00 migration/0</span><br><span class="line">  ......  </span><br><span class="line">  <span class="comment">#此处省略100行</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>查找特定的进程（如查找java进程）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep java</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>最常用的方法是ps aux,然后再通过管道使用grep命令过滤查找特定的进程,然后再对特定的进程进行操作</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root      9827  0.5  8.8 2546924 166932 pts/0  Sl   14:03   0:14 java -jar competitionrow-0.0.1-SNAPSHOT.jar</span><br><span class="line">root     18130  0.0  0.0 112708   976 pts/0    R+   14:48   0:00 grep --color=auto java</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="windows端口进程管理"><a href="#windows端口进程管理" class="headerlink" title="windows端口进程管理"></a>windows端口进程管理</h3><h4 id="查找端口"><a href="#查找端口" class="headerlink" title="查找端口"></a>查找端口</h4><blockquote>
+<p>查找所有端口</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>查找某个端口</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -aon|findstr <span class="string">&quot;4000&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="杀死使用某个端口的进程"><a href="#杀死使用某个端口的进程" class="headerlink" title="杀死使用某个端口的进程"></a>杀死使用某个端口的进程</h4><blockquote>
+<p>通过pid号</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">taskkill /f /pid  21972</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>成功杀死会有以下提示</p>
+</blockquote>
+<p>成功: 已终止 PID 为 21972 的进程</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/09/tools/nginx%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/09/tools/nginx%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">nginx安装以及入门</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-09 17:22:59" itemprop="dateCreated datePublished" datetime="2020-11-09T17:22:59+00:00">2020-11-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-12 00:54:16" itemprop="dateModified" datetime="2022-03-12T00:54:16+00:00">2022-03-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>参考笔记:</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_38118016/article/details/89949131">CentOS 7 下 yum 安装和配置 Nginx</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.im/post/6844904129987526663">Nginx 入门指南</a></p>
+<blockquote>
+<p>nginx如何安装</p>
+</blockquote>
+<h3 id="yum安装nginx"><a href="#yum安装nginx" class="headerlink" title="yum安装nginx"></a>yum安装nginx</h3><p>1.<strong>首先查看 Linux distribution 的版本号</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /etc/redhat-release </span><br></pre></td></tr></table></figure>
+
+<p>我的系统发版本是：</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CentOS Linux release 7.5.1804 (Core)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>2.<strong>Nginx 不在默认的 yum 源中，首先将Nginx加入到 yum 源里</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm <span class="literal">-ivh</span> http://nginx.org/packages/centos/<span class="number">7</span>/noarch/RPMS/nginx<span class="literal">-release</span><span class="literal">-centos</span><span class="literal">-7</span><span class="literal">-0</span>.el7.ngx.noarch.rpm</span><br></pre></td></tr></table></figure>
+
+<p>显示如下字样代表没有问题：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">获取http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm</span><br><span class="line">警告：/var/tmp/rpm-tmp.a7nthc: 头V4 RSA/SHA1 Signature, 密钥 ID 7bd9bf62: NOKEY</span><br><span class="line">准备中...                          ################################# [100%]</span><br><span class="line">正在升级/安装...</span><br><span class="line">   1:nginx-release-centos-7-0.el7.ngx ################################# [100%]</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>3.<strong>然后执行 yum repolist 查看一下，发现 Nginx 已经安装到本机了</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum repolist</span><br></pre></td></tr></table></figure>
+
+
+
+<p>4.<strong>安装nginx</strong>(慢慢等待,需要一段时间)</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install nginx</span><br></pre></td></tr></table></figure>
+
+<p>安装成功以后：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">安装成功以后</span></span><br><span class="line">已安装:</span><br><span class="line">  nginx.x86_64 1:1.18.0-1.el7.ngx                                               </span><br><span class="line"></span><br><span class="line">完毕！</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<blockquote>
+<p>nginx简单配置</p>
+</blockquote>
+<p>1.<strong>查看 Nginx 版本</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx <span class="literal">-v</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>2.<strong>启动 Nginx 服务</strong></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">start</span> nginx</span><br></pre></td></tr></table></figure>
+
+
+
+<p>3.<strong>访问 Nginx 服务</strong>(本地访问一下，可以看到 Welcome to nginx)</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">curl</span> <span class="literal">-i</span> localhost</span><br></pre></td></tr></table></figure>
+
+
+
+<p>4.远程通过公网IP访问( ip:80 )</p>
+<p><img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/nginx.png" alt="nginx"></p>
+<h3 id="nginx源码包安装"><a href="#nginx源码包安装" class="headerlink" title="nginx源码包安装"></a>nginx源码包安装</h3><p><a target="_blank" rel="noopener" href="https://nginx.org/en/download.html">下载地址</a></p>
+<p>下载好之后，拷贝到/usr/local/nginx下</p>
+<ul>
+<li><p>依赖库安装</p>
+<ul>
+<li>1.安装 gcc 环境—nginx 编译时依赖 gcc 环境</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc gcc-c++</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>2.安装 pcre—让 nginx 支持重写功能</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install pcre pcre-devel</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>3.安装 zlib—zlib 库提供了很多压缩和解压缩的方式，nginx 使用 zlib 对 http 包内容进行 gzip 压缩</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install zlib zlib-devel</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>4.安装 openssl—安全套接字层密码库，用于通信加密</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install openssl openssl-devel</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解压缩</p>
+</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar <span class="literal">-zxvf</span>  nginx<span class="literal">-1</span>.<span class="number">18.0</span>.tar.gz</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>进入nginx-1.18.0目录下面进行源码编译安装</p>
+<p>检查平台安装环境：<code>  --prefix=/usr/local/nginx</code>  是 nginx 编译安装的目录（推荐），安装完后会在此目录下生成相关文件<br>如果前面的依赖库都安装成功后，执行<code>  ./configure --prefix=/usr/local/nginx</code>命令会显示一些环境信息。如果出现错误，一般是依赖库没有安装完成，可按照错误提示信息进行所缺的依赖库安装。</p>
+</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure -<span class="literal">-prefix</span>=/usr/local/nginx</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>进行源码编译并安装 nginx（执行make如果没有发生错误就执行make install）</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>nginx服务操作命令</p>
+<ul>
+<li>启动服务</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/nginx/sbin/nginx</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>重新加载服务</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/nginx/sbin/nginx -s reload</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>停止服务</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/nginx/sbin/nginx -s stop</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查看nginx 服务进程</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef | grep nginx</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="nginx简单入门"><a href="#nginx简单入门" class="headerlink" title="nginx简单入门"></a>nginx简单入门</h3><blockquote>
+<p> 什么是nginx?</p>
+</blockquote>
+<p>Nginx是一款轻量级的Web服务器、反向代理服务器，由于它的内存占用少，启动极快，高并发能力强，在互联网项目中广泛应用。</p>
+<blockquote>
+<p>niginx有什么用?  (四大作用)</p>
+</blockquote>
+<ul>
+<li>动静分离</li>
+</ul>
+<p>动静分离其实就是 Nginx 服务器将接收到的请求分为动态请求和静态请求</p>
+<p>静态请求直接从 nginx 服务器所设定的根目录路径去取对应的资源，动态请求转发给真实的后台去处理</p>
+<p>这样做不仅能给应用服务器减轻压力，将后台api接口服务化，还能将前后端代码分开并行开发和部署</p>
+<p>例如:</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">server &#123;  </span><br><span class="line">        listen       <span class="number">8080</span>;        </span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            root   html; <span class="comment"># Nginx默认值</span></span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 静态化配置，所有静态请求都转发给 nginx 处理，存放目录为 my-project</span></span><br><span class="line">        location ~ .*\.(html|htm|gif|jpg|jpeg|bmp|png|ico|js|css)<span class="variable">$</span> &#123;</span><br><span class="line">            root /usr/local/var/www/my<span class="literal">-project</span>; <span class="comment"># 静态请求所代理到的根目录</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 动态请求匹配到path为&#x27;node&#x27;的就转发到8002端口处理</span></span><br><span class="line">        location /node/ &#123;  </span><br><span class="line">            proxy_pass http://localhost:<span class="number">8002</span>; <span class="comment"># 充当服务代理</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>反向代理</li>
+</ul>
+<p>反向代理其实就类似你去找代购帮你买东西(浏览器或其他终端向nginx请求)，你不用管他去哪里买，只要他帮你买到你想要的东西就</p>
+<p>行(浏览器或其他终端最终拿到了他想要的内容，但是具体从哪儿拿到的这个过程它并不知道)</p>
+<p>配置反向代理:</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">server &#123;  </span><br><span class="line">        listen       <span class="number">8080</span>;        </span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            root   html; <span class="comment"># Nginx默认值</span></span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        proxy_pass http://localhost:<span class="number">8000</span>; <span class="comment"># 反向代理配置，请求会被转发到8000端口</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>负载均衡</li>
+</ul>
+<p>随着业务的不断增长和用户的不断增多，一台服务已经满足不了系统要求了。这个时候就出现了服务器 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/bhlsheji/p/4026296.html">集群</a>。</p>
+<p>在服务器集群中，Nginx 可以将接收到的客户端请求“均匀地”（严格讲并不一定均匀，可以通过设置权重）分配到这个集群中所有的服务</p>
+<p>器上。这个就叫做<strong>负载均衡</strong>。</p>
+<p>配置负载均衡</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 负载均衡：设置domain</span></span><br><span class="line">upstream domain &#123;</span><br><span class="line">    server localhost:<span class="number">8000</span>;</span><br><span class="line">    server localhost:<span class="number">8001</span>;</span><br><span class="line">&#125;</span><br><span class="line">server &#123;  </span><br><span class="line">        listen       <span class="number">8080</span>;        </span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            <span class="comment"># root   html; # Nginx默认值</span></span><br><span class="line">            <span class="comment"># index  index.html index.htm;</span></span><br><span class="line">            </span><br><span class="line">            proxy_pass http://domain; <span class="comment"># 负载均衡配置，请求会被平均分配到8000和8001端口</span></span><br><span class="line">            proxy_set_header Host <span class="variable">$host:</span><span class="variable">$server_port</span>;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>正向代理</li>
+</ul>
+<p>正向代理跟反向道理正好相反。拿上文中的那个代购例子来讲，多个人找代购购买同一个商品，代购找到买这个的店后一次性给买了。这</p>
+<p>个过程中，该店主是不知道代购是帮别代买买东西的。那么代购对于多个想买商品的顾客来讲，他就充当了正向代理。</p>
+<h3 id="nginx删除"><a href="#nginx删除" class="headerlink" title="nginx删除"></a>nginx删除</h3><p>当有一天，你不再爱nginx时，你将如何删除它呢</p>
+<ul>
+<li>yum卸载nginx</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[<span class="type">root</span>@<span class="type">VM_0_4_centos</span> <span class="type">local</span>]<span class="comment"># yum remove nginx</span></span><br><span class="line"></span><br><span class="line">Loaded plugins: fastestmirror, langpacks</span><br><span class="line">Resolving Dependencies</span><br><span class="line"></span><br><span class="line">......</span><br><span class="line"></span><br><span class="line">Removed:</span><br><span class="line">  nginx.x86_64 <span class="number">1</span>:<span class="number">1.18</span>.<span class="number">0</span><span class="literal">-1</span>.el7.ngx                                                          </span><br><span class="line">Complete!</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查看nginx是否还存在</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_4_centos ~]<span class="comment"># find / -name nginx</span></span><br><span class="line">[root@VM_0_4_centos ~]<span class="comment"># </span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/08/Git/Git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/08/Git/Git/" class="post-title-link" itemprop="url">使用 git 时的一些笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-08 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-08T00:00:00+00:00">2020-11-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-12 00:54:16" itemprop="dateModified" datetime="2022-03-12T00:54:16+00:00">2022-03-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="Git笔记"><a href="#Git笔记" class="headerlink" title="Git笔记"></a>Git笔记</h3><h4 id="Index"><a href="#Index" class="headerlink" title="Index"></a>Index</h4><p>Get started by <a target="_blank" rel="noopener" href="https://github.com/woshixty/xty.github.io/new/main">creating a new file</a> or <a target="_blank" rel="noopener" href="https://github.com/woshixty/xty.github.io/upload">uploading an existing file</a>. We recommend every repository include a <a target="_blank" rel="noopener" href="https://github.com/woshixty/xty.github.io/new/main?readme=1">README</a>, <a target="_blank" rel="noopener" href="https://github.com/woshixty/xty.github.io/new/main?filename=LICENSE.md">LICENSE</a>, and <a target="_blank" rel="noopener" href="https://github.com/woshixty/xty.github.io/new/main?filename=.gitignore">.gitignore</a>.</p>
+<h4 id="create-a-new-repository-on-the-command-line"><a href="#create-a-new-repository-on-the-command-line" class="headerlink" title="create a new repository on the command line"></a>create a new repository on the command line</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;# xty.github.io&quot; &gt;&gt; README.md</span><br><span class="line">git init</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m &quot;first commit&quot;</span><br><span class="line">git branch -M main</span><br><span class="line">git remote add origin git@github.com:woshixty&#x2F;xty.github.io.git</span><br><span class="line">git push -u origin main     </span><br></pre></td></tr></table></figure>
+
+<h4 id="push-an-existing-repository-from-the-command-line"><a href="#push-an-existing-repository-from-the-command-line" class="headerlink" title="push an existing repository from the command line"></a>push an existing repository from the command line</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin git@github.com:woshixty&#x2F;xty.github.io.git</span><br><span class="line">git branch -M main</span><br><span class="line">git push -u origin main</span><br></pre></td></tr></table></figure>
+
+<h4 id="import-code-from-another-repository"><a href="#import-code-from-another-repository" class="headerlink" title="import code from another repository"></a>import code from another repository</h4><p>You can initialize this repository with code from a Subversion, Mercurial, or TFS project.</p>
+<h6 id="记录使用Git时遇到的一些问题"><a href="#记录使用Git时遇到的一些问题" class="headerlink" title="(记录使用Git时遇到的一些问题)"></a>(记录使用Git时遇到的一些问题)</h6><h4 id="The-current-branch-xty-has-no-upstream-branch"><a href="#The-current-branch-xty-has-no-upstream-branch" class="headerlink" title="The current branch xty has no upstream branch."></a>The current branch xty has no upstream branch.</h4><blockquote>
+<p>情况概述：新建本地分支后将本地分支推送到远程库, 使用git pull 或者 git push 的时候报错</p>
+</blockquote>
+<p>错误原因：本地分支和远程分支没有建立联系</p>
+<p>git pull命令的作用是：取回远程主机某个分支的更新，再与本地的指定分支合并，它的完整格式稍稍有点复杂。</p>
+<blockquote>
+<p>查看本地分支和远程分支的关联关系</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -vv</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>本地分支和远程分支建立联系,执行以下命令即可</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch --set-upstream-to=origin/远程分支的名字 本地分支的名字</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="src-refspec-master-does-not-match-any解决办法"><a href="#src-refspec-master-does-not-match-any解决办法" class="headerlink" title="src refspec master does not match any解决办法"></a>src refspec master does not match any解决办法</h4><blockquote>
+<p>情况概述：我在GitHub新建一个仓库之后，在本地新建了一个文件夹，git init 并且git remote add origin <a href="mailto:&#x67;&#x69;&#x74;&#x40;&#103;&#105;&#x74;&#104;&#117;&#98;&#46;&#x63;&#x6f;&#x6d;">&#x67;&#x69;&#x74;&#x40;&#103;&#105;&#x74;&#104;&#117;&#98;&#46;&#x63;&#x6f;&#x6d;</a>:woshixty/xty.github.io.git 之后，执行 git push -u origin main，发现不能提交</p>
+</blockquote>
+<p>错误原因：目录中没有文件，空目录是不能提交上去的，新建一个README文件，再上传</p>
+<p>执行以下命令，远程分支与本地分支建立联系，并提交到远程分支</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push --set-upstream origin master</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/01/HEXO/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -185,7 +1090,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-24 06:17:33" itemprop="dateModified" datetime="2022-02-24T06:17:33+00:00">2022-02-24</time>
+                <time title="修改时间：2022-03-12 00:54:16" itemprop="dateModified" datetime="2022-03-12T00:54:16+00:00">2022-03-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -308,7 +1213,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">91</span>
+          <span class="site-state-item-count">96</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
