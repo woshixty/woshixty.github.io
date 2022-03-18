@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/3.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/3.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="一、并发编程的艺术挑战1、上下文切换2、死锁3、资源限制的挑战二、Java并发机制的底层实现原理Java所实现的并发机制依赖于JVM的实现与CPU指令 1、volatile的应用volatile是轻量级的sychornized，它在多处理器的开发中保证了共享变量的“可见性” 2、sychornized的实现原理与应用重量级锁 为了减少获取锁和释放锁而造成的性能损失，引入了偏向锁和轻量级锁，以及锁的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java并发编程艺术">
+<meta property="og:url" content="http://example.com/2022/03/10/Java/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E8%89%BA%E6%9C%AF/index.html">
+<meta property="og:site_name" content="Hello Programmer">
+<meta property="og:description" content="一、并发编程的艺术挑战1、上下文切换2、死锁3、资源限制的挑战二、Java并发机制的底层实现原理Java所实现的并发机制依赖于JVM的实现与CPU指令 1、volatile的应用volatile是轻量级的sychornized，它在多处理器的开发中保证了共享变量的“可见性” 2、sychornized的实现原理与应用重量级锁 为了减少获取锁和释放锁而造成的性能损失，引入了偏向锁和轻量级锁，以及锁的">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-10T00:00:00.000Z">
+<meta property="article:modified_time" content="2022-03-18T09:07:29.105Z">
+<meta property="article:author" content="xty">
+<meta property="article:tag" content="多线程">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/03/10/Java/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E8%89%BA%E6%9C%AF/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Java并发编程艺术 | Hello Programmer</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hello Programmer</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/10/Java/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E8%89%BA%E6%9C%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Java并发编程艺术
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-10 00:00:00" itemprop="dateCreated datePublished" datetime="2022-03-10T00:00:00+00:00">2022-03-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-18 09:07:29" itemprop="dateModified" datetime="2022-03-18T09:07:29+00:00">2022-03-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="一、并发编程的艺术挑战"><a href="#一、并发编程的艺术挑战" class="headerlink" title="一、并发编程的艺术挑战"></a>一、并发编程的艺术挑战</h1><h2 id="1、上下文切换"><a href="#1、上下文切换" class="headerlink" title="1、上下文切换"></a>1、上下文切换</h2><h2 id="2、死锁"><a href="#2、死锁" class="headerlink" title="2、死锁"></a>2、死锁</h2><h2 id="3、资源限制的挑战"><a href="#3、资源限制的挑战" class="headerlink" title="3、资源限制的挑战"></a>3、资源限制的挑战</h2><h1 id="二、Java并发机制的底层实现原理"><a href="#二、Java并发机制的底层实现原理" class="headerlink" title="二、Java并发机制的底层实现原理"></a>二、Java并发机制的底层实现原理</h1><p>Java所实现的并发机制依赖于JVM的实现与CPU指令</p>
+<h2 id="1、volatile的应用"><a href="#1、volatile的应用" class="headerlink" title="1、volatile的应用"></a>1、volatile的应用</h2><p>volatile是轻量级的sychornized，它在多处理器的开发中保证了共享变量的“可见性”</p>
+<h2 id="2、sychornized的实现原理与应用"><a href="#2、sychornized的实现原理与应用" class="headerlink" title="2、sychornized的实现原理与应用"></a>2、sychornized的实现原理与应用</h2><p>重量级锁</p>
+<p>为了减少获取锁和释放锁而造成的性能损失，引入了偏向锁和轻量级锁，以及锁的存储结构和升级过程</p>
+<h3 id="（1）Java对象头"><a href="#（1）Java对象头" class="headerlink" title="（1）Java对象头"></a>（1）Java对象头</h3><h3 id="（2）锁的升级与对比"><a href="#（2）锁的升级与对比" class="headerlink" title="（2）锁的升级与对比"></a>（2）锁的升级与对比</h3><h2 id="3、原子操作的实现原理"><a href="#3、原子操作的实现原理" class="headerlink" title="3、原子操作的实现原理"></a>3、原子操作的实现原理</h2><p>原子操作（atomic operation）意为“不可被中断的一个或者一组操作系统”</p>
+<h2 id="4、本章小结"><a href="#4、本章小结" class="headerlink" title="4、本章小结"></a>4、本章小结</h2><h1 id="四、Java并发编程基础"><a href="#四、Java并发编程基础" class="headerlink" title="四、Java并发编程基础"></a>四、Java并发编程基础</h1><p>线程作为操作系统调度的最小单位，多个线程能够同时执行，这将显著提升程序性能，多核环境下尤为明显</p>
+<h2 id="1、线程简介"><a href="#1、线程简介" class="headerlink" title="1、线程简介"></a>1、线程简介</h2><h3 id="（1）什么是线程"><a href="#（1）什么是线程" class="headerlink" title="（1）什么是线程"></a>（1）什么是线程</h3><p>现代操作系统在运行一个程序时会为其创建一个进程，现代操作系统调度的最小单位是线程，也叫轻量级进程，在一个进程里可以创建多个线程，每个线程拥有自己的计数器、堆栈、局部变量等属性，并且能够访问共享的内存变量。</p>
+<h3 id="（2）为什么使用多线程"><a href="#（2）为什么使用多线程" class="headerlink" title="（2）为什么使用多线程"></a>（2）为什么使用多线程</h3><ul>
+<li>更多的处理器核心</li>
+<li>更快的响应时间</li>
+<li>更好的线程模型</li>
+</ul>
+<h3 id="（3）线程的优先级"><a href="#（3）线程的优先级" class="headerlink" title="（3）线程的优先级"></a>（3）线程的优先级</h3><p>通过下面的代码来设置线程的优先级</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> priority = i &lt; <span class="number">5</span> ? Thread.MIN_PRIORITY : Thread.MAX_PRIORITY;</span><br><span class="line">thread.setPriority(priority);</span><br></pre></td></tr></table></figure>
+
+<p>线程的优先级不能作为程序正确性的依赖</p>
+<h3 id="（4）线程的状态"><a href="#（4）线程的状态" class="headerlink" title="（4）线程的状态"></a>（4）线程的状态</h3><ul>
+<li>NEW</li>
+<li>RUNNABLE</li>
+<li>BLOCKED</li>
+<li>WAITING</li>
+<li>TIME_WAITING</li>
+<li>TERMINATED</li>
+</ul>
+<p>线程在自身的生命周期中，并不是固定的处在某个状态而是随着代码的执行在不同的状态中切换</p>
+<h3 id="（5）Daemon线程"><a href="#（5）Daemon线程" class="headerlink" title="（5）Daemon线程"></a>（5）Daemon线程</h3><p>Daemon线程是一种支持类型的线程，因为它主要被用作程序中后台调度以及支持性工作，这意味着，当一个java虚拟机中不存在非Daemon线程的时候，JAVA虚拟机将会退出，可以通过调用Thread.setDaemon(true)将线程设置为Daemon线程</p>
+<p>如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Daemon</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> DaemonRunner());</span><br><span class="line">        thread.setDaemon(<span class="keyword">true</span>);</span><br><span class="line">        thread.start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">DaemonRunner</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                SleepUtils.second(<span class="number">100</span>);</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;DaemonThread finally run.&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、启动和终止线程"><a href="#2、启动和终止线程" class="headerlink" title="2、启动和终止线程"></a>2、启动和终止线程</h2><h3 id="（1）构造线程"><a href="#（1）构造线程" class="headerlink" title="（1）构造线程"></a>（1）构造线程</h3><p>构造线程时要考虑线程所属的线程组、线程优先级、是否为Daemon线程等等</p>
+<h3 id="（2）启动线程"><a href="#（2）启动线程" class="headerlink" title="（2）启动线程"></a>（2）启动线程</h3><p>通过<code>start()</code>方法启动线程</p>
+<h3 id="（3）理解中断"><a href="#（3）理解中断" class="headerlink" title="（3）理解中断"></a>（3）理解中断</h3><p>终端可以理解为线程的一个标志位属性，他用来表示一个运行中的线程是否被其他线程进行了中断操作</p>
+<h2 id="3、线程间通信"><a href="#3、线程间通信" class="headerlink" title="3、线程间通信"></a>3、线程间通信</h2><h2 id="4、线程应用实例"><a href="#4、线程应用实例" class="headerlink" title="4、线程应用实例"></a>4、线程应用实例</h2><h2 id="5、本章小结"><a href="#5、本章小结" class="headerlink" title="5、本章小结"></a>5、本章小结</h2><h1 id="五、Java中的锁"><a href="#五、Java中的锁" class="headerlink" title="五、Java中的锁"></a>五、Java中的锁</h1><p>Java并发包中的与锁相关的API和组件</p>
+<h2 id="1、Lock接口"><a href="#1、Lock接口" class="headerlink" title="1、Lock接口"></a>1、Lock接口</h2><p>锁是用来控制多个线程访问共享资源的方式，Lock接口出现之前，Java是靠<code>synchronized</code>关键字来实现锁功能的</p>
+<p>与<code>synchrnized</code>相比：</p>
+<ul>
+<li>需要自己显式的获取与释放锁，缺少了隐式获取释放锁的便捷性</li>
+<li>拥有了锁获取与释放的可操作性、可中断的获取锁以及超时获取锁等同步特性</li>
+</ul>
+<p>Lock是一个接口，它定义了锁获取和释放的基本操作</p>
+<table>
+<thead>
+<tr>
+<th><code>void</code></th>
+<th><code>lock()</code>获得锁。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>void</code></td>
+<td><code>lockInterruptibly()</code>获取锁定，除非当前线程是 <a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/lang/Thread.html#interrupt--">interrupted</a> 。</td>
+</tr>
+<tr>
+<td><code>Condition</code></td>
+<td><code>newCondition()</code>返回一个新<a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/util/concurrent/locks/Condition.html"><code>Condition</code></a>绑定到该实例<code>Lock</code>实例。</td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td><code>tryLock()</code>只有在调用时才可以获得锁。</td>
+</tr>
+<tr>
+<td><code>boolean</code></td>
+<td><code>tryLock(long time, TimeUnit unit)</code>如果在给定的等待时间内是空闲的，并且当前的线程尚未得到 <a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/lang/Thread.html#interrupt--">interrupted，</a>则获取该锁。</td>
+</tr>
+<tr>
+<td><code>void</code></td>
+<td><code>unlock()</code>释放锁。</td>
+</tr>
+</tbody></table>
+<h2 id="2、队列同步器"><a href="#2、队列同步器" class="headerlink" title="2、队列同步器"></a>2、队列同步器</h2><p>队列同步器（AbstractQueuedSynchornizer），是用来构建锁或者其他同步组件的基础框架</p>
+<p>锁和同步器之间的关系：</p>
+<ul>
+<li>锁是面向使用者的，它定义了使用者与锁交互的接口，隐藏了实现细节</li>
+<li>同步器是面向锁的开发者的，简化了锁的实现方式，屏蔽了同步状态管理、线程排队、等待与唤醒灯底层操作</li>
+</ul>
+<p>锁和同步器很好的隔离了使用者和实现者所需要关注的领域</p>
+<p>同步器提供的模板方法基本分为以下三类：</p>
+<ul>
+<li>独占式获取与释放同步状态</li>
+<li>共享式获取与释放同步状态</li>
+<li>查询同步队列中的等待线程情况</li>
+</ul>
+<p>队列同步器的实现分析</p>
+<h2 id="3、重入锁"><a href="#3、重入锁" class="headerlink" title="3、重入锁"></a>3、重入锁</h2><p>重入锁（ReentrantLock），顾名思义，就是支持重进入的锁，表示该锁支持一个线程对资源的重复加锁</p>
+<h3 id="（1）实现重进入"><a href="#（1）实现重进入" class="headerlink" title="（1）实现重进入"></a>（1）实现重进入</h3><ul>
+<li>线程再次获得锁</li>
+<li>锁的最终释放</li>
+</ul>
+<h3 id="（2）公平与非公平获取锁的区别"><a href="#（2）公平与非公平获取锁的区别" class="headerlink" title="（2）公平与非公平获取锁的区别"></a>（2）公平与非公平获取锁的区别</h3><p>如果一个锁是公平的，那么获取锁的顺序就应该符合请求的绝对时间排序，也就是<code>FIFO</code></p>
+<p>非公平性锁虽然可能造成线程“饥饿”，但是极少的线程切换，保证了更大的吞吐量</p>
+<h2 id="4、读写锁"><a href="#4、读写锁" class="headerlink" title="4、读写锁"></a>4、读写锁</h2><p>之前提到的锁基本都是“排他锁”，这些锁同一时刻只能允许一个线程进行访问，而读写锁在同一时刻可以允许多个线程同时访问，但是在写线程访问的时候，其他的读线程和写线程均被阻塞</p>
+<h3 id="（1）读写锁的接口与示例"><a href="#（1）读写锁的接口与示例" class="headerlink" title="（1）读写锁的接口与示例"></a>（1）读写锁的接口与示例</h3><p><code>ReadWriteLock</code>仅定义了获取读锁和写锁的两个方法：<code>readLock()</code>和<code>writeLock()</code></p>
+<p>下面通过代码来说明读写锁的使用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cache</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Map&lt;String, Object&gt;    map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> ReentrantReadWriteLock rwl = <span class="keyword">new</span> ReentrantReadWriteLock();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Lock                   r   = rwl.readLock();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Lock                   w   = rwl.writeLock();</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 获取key对应的value</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Object <span class="title">get</span><span class="params">(String key)</span> </span>&#123;</span><br><span class="line">        r.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> map.get(key);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            r.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 设置key对应的value，并返回旧的value</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Object <span class="title">put</span><span class="params">(String key, Object value)</span> </span>&#123;</span><br><span class="line">        w.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> map.put(key, value);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            w.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 清空所有内容</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        w.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            map.clear();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            w.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="（2）读写锁的实现分析"><a href="#（2）读写锁的实现分析" class="headerlink" title="（2）读写锁的实现分析"></a>（2）读写锁的实现分析</h3><p>接下来分析<code>ReentrantReadWriteLock</code>的实现，包括：</p>
+<ul>
+<li>读写状态的设计</li>
+<li>写锁的获取与释放</li>
+<li>读锁的获取与释放</li>
+<li>锁降级</li>
+</ul>
+<h2 id="5、LockSupport工具"><a href="#5、LockSupport工具" class="headerlink" title="5、LockSupport工具"></a>5、LockSupport工具</h2><p>当需要阻塞或唤醒一个线程的时候，都会使用<code>LockSupport</code>工具类来完成相应工作</p>
+<h2 id="6、Condition接口"><a href="#6、Condition接口" class="headerlink" title="6、Condition接口"></a>6、Condition接口</h2><p>任意一个Java对象，都有一组监视器方法（定义在java.lang.Object上），主要包括：</p>
+<ul>
+<li><code>wait()</code></li>
+<li><code>wait(long timeout)</code></li>
+<li><code>notify()</code></li>
+<li><code>notifyAll()</code></li>
+</ul>
+<p>这些方法与<code>synchornized</code>同步关键字配合，实现了等待/通知模式，Condition接口也提供了类似于Object的监视器方法</p>
+<h3 id="（1）代码示例"><a href="#（1）代码示例" class="headerlink" title="（1）代码示例"></a>（1）代码示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConditionUseCase</span> </span>&#123;</span><br><span class="line">    Lock      lock      = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line">    Condition condition = lock.newCondition();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">conditionWait</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        lock.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          	<span class="comment">// 释放锁并在此等待</span></span><br><span class="line">            condition.await();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">conditionSignal</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        lock.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            condition.signal();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>获取一个<code>Condition</code>必须通过<code>Lock</code>的<code>newCondition()</code>方法</p>
+<h3 id="（2）Condition的实现分析"><a href="#（2）Condition的实现分析" class="headerlink" title="（2）Condition的实现分析"></a>（2）Condition的实现分析</h3><p><code>ConditionObject</code>是<code>AbstractQueuedSynchronizer</code>的内部类，下面将分析<code>Condition</code>的实现，主要包括：等待队列、等待和通知</p>
+<ul>
+<li>等待队列</li>
+<li>等待</li>
+<li>通知</li>
+</ul>
+<h2 id="7、本章小结"><a href="#7、本章小结" class="headerlink" title="7、本章小结"></a>7、本章小结</h2><p>本章介绍了Java并发包中与锁相关的API和组件，并剖析了队列同步器、重入锁、读写锁以及Condition等API的实现细节</p>
+<h1 id="六、Java并发容器和框架"><a href="#六、Java并发容器和框架" class="headerlink" title="六、Java并发容器和框架"></a>六、Java并发容器和框架</h1><h1 id="一些小概念"><a href="#一些小概念" class="headerlink" title="一些小概念"></a>一些小概念</h1><h2 id="1、什么是线程的中断"><a href="#1、什么是线程的中断" class="headerlink" title="1、什么是线程的中断"></a>1、什么是线程的中断</h2>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" rel="tag"><i class="fa fa-tag"></i> 多线程</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/02/28/Netty%E5%AD%A6%E4%B9%A0/Untitled/" rel="prev" title="NIO学习">
+      <i class="fa fa-chevron-left"></i> NIO学习
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/03/18/Mysql/MySQL%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%90%E8%A1%8C%E7%9A%84/" rel="next" title="MySQL是怎样运行的">
+      MySQL是怎样运行的 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E8%89%BA%E6%9C%AF%E6%8C%91%E6%88%98"><span class="nav-number">1.</span> <span class="nav-text">一、并发编程的艺术挑战</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2"><span class="nav-number">1.1.</span> <span class="nav-text">1、上下文切换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E6%AD%BB%E9%94%81"><span class="nav-number">1.2.</span> <span class="nav-text">2、死锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E8%B5%84%E6%BA%90%E9%99%90%E5%88%B6%E7%9A%84%E6%8C%91%E6%88%98"><span class="nav-number">1.3.</span> <span class="nav-text">3、资源限制的挑战</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81Java%E5%B9%B6%E5%8F%91%E6%9C%BA%E5%88%B6%E7%9A%84%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">二、Java并发机制的底层实现原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81volatile%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">2.1.</span> <span class="nav-text">1、volatile的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81sychornized%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E4%B8%8E%E5%BA%94%E7%94%A8"><span class="nav-number">2.2.</span> <span class="nav-text">2、sychornized的实现原理与应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%881%EF%BC%89Java%E5%AF%B9%E8%B1%A1%E5%A4%B4"><span class="nav-number">2.2.1.</span> <span class="nav-text">（1）Java对象头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E9%94%81%E7%9A%84%E5%8D%87%E7%BA%A7%E4%B8%8E%E5%AF%B9%E6%AF%94"><span class="nav-number">2.2.2.</span> <span class="nav-text">（2）锁的升级与对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E5%8E%9F%E5%AD%90%E6%93%8D%E4%BD%9C%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-number">2.3.</span> <span class="nav-text">3、原子操作的实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81%E6%9C%AC%E7%AB%A0%E5%B0%8F%E7%BB%93"><span class="nav-number">2.4.</span> <span class="nav-text">4、本章小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%9B%E3%80%81Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80"><span class="nav-number">3.</span> <span class="nav-text">四、Java并发编程基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E7%BA%BF%E7%A8%8B%E7%AE%80%E4%BB%8B"><span class="nav-number">3.1.</span> <span class="nav-text">1、线程简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E4%BB%80%E4%B9%88%E6%98%AF%E7%BA%BF%E7%A8%8B"><span class="nav-number">3.1.1.</span> <span class="nav-text">（1）什么是线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="nav-number">3.1.2.</span> <span class="nav-text">（2）为什么使用多线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%883%EF%BC%89%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7"><span class="nav-number">3.1.3.</span> <span class="nav-text">（3）线程的优先级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%884%EF%BC%89%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81"><span class="nav-number">3.1.4.</span> <span class="nav-text">（4）线程的状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%885%EF%BC%89Daemon%E7%BA%BF%E7%A8%8B"><span class="nav-number">3.1.5.</span> <span class="nav-text">（5）Daemon线程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E5%90%AF%E5%8A%A8%E5%92%8C%E7%BB%88%E6%AD%A2%E7%BA%BF%E7%A8%8B"><span class="nav-number">3.2.</span> <span class="nav-text">2、启动和终止线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E6%9E%84%E9%80%A0%E7%BA%BF%E7%A8%8B"><span class="nav-number">3.2.1.</span> <span class="nav-text">（1）构造线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E5%90%AF%E5%8A%A8%E7%BA%BF%E7%A8%8B"><span class="nav-number">3.2.2.</span> <span class="nav-text">（2）启动线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%883%EF%BC%89%E7%90%86%E8%A7%A3%E4%B8%AD%E6%96%AD"><span class="nav-number">3.2.3.</span> <span class="nav-text">（3）理解中断</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E7%BA%BF%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1"><span class="nav-number">3.3.</span> <span class="nav-text">3、线程间通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81%E7%BA%BF%E7%A8%8B%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B"><span class="nav-number">3.4.</span> <span class="nav-text">4、线程应用实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E3%80%81%E6%9C%AC%E7%AB%A0%E5%B0%8F%E7%BB%93"><span class="nav-number">3.5.</span> <span class="nav-text">5、本章小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%94%E3%80%81Java%E4%B8%AD%E7%9A%84%E9%94%81"><span class="nav-number">4.</span> <span class="nav-text">五、Java中的锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81Lock%E6%8E%A5%E5%8F%A3"><span class="nav-number">4.1.</span> <span class="nav-text">1、Lock接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E9%98%9F%E5%88%97%E5%90%8C%E6%AD%A5%E5%99%A8"><span class="nav-number">4.2.</span> <span class="nav-text">2、队列同步器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E9%87%8D%E5%85%A5%E9%94%81"><span class="nav-number">4.3.</span> <span class="nav-text">3、重入锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E5%AE%9E%E7%8E%B0%E9%87%8D%E8%BF%9B%E5%85%A5"><span class="nav-number">4.3.1.</span> <span class="nav-text">（1）实现重进入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E5%85%AC%E5%B9%B3%E4%B8%8E%E9%9D%9E%E5%85%AC%E5%B9%B3%E8%8E%B7%E5%8F%96%E9%94%81%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">4.3.2.</span> <span class="nav-text">（2）公平与非公平获取锁的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81%E8%AF%BB%E5%86%99%E9%94%81"><span class="nav-number">4.4.</span> <span class="nav-text">4、读写锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E8%AF%BB%E5%86%99%E9%94%81%E7%9A%84%E6%8E%A5%E5%8F%A3%E4%B8%8E%E7%A4%BA%E4%BE%8B"><span class="nav-number">4.4.1.</span> <span class="nav-text">（1）读写锁的接口与示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E8%AF%BB%E5%86%99%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%88%86%E6%9E%90"><span class="nav-number">4.4.2.</span> <span class="nav-text">（2）读写锁的实现分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5%E3%80%81LockSupport%E5%B7%A5%E5%85%B7"><span class="nav-number">4.5.</span> <span class="nav-text">5、LockSupport工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6%E3%80%81Condition%E6%8E%A5%E5%8F%A3"><span class="nav-number">4.6.</span> <span class="nav-text">6、Condition接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B"><span class="nav-number">4.6.1.</span> <span class="nav-text">（1）代码示例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%882%EF%BC%89Condition%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%88%86%E6%9E%90"><span class="nav-number">4.6.2.</span> <span class="nav-text">（2）Condition的实现分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7%E3%80%81%E6%9C%AC%E7%AB%A0%E5%B0%8F%E7%BB%93"><span class="nav-number">4.7.</span> <span class="nav-text">7、本章小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%AD%E3%80%81Java%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8%E5%92%8C%E6%A1%86%E6%9E%B6"><span class="nav-number">5.</span> <span class="nav-text">六、Java并发容器和框架</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E5%B0%8F%E6%A6%82%E5%BF%B5"><span class="nav-number">6.</span> <span class="nav-text">一些小概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E7%BA%BF%E7%A8%8B%E7%9A%84%E4%B8%AD%E6%96%AD"><span class="nav-number">6.1.</span> <span class="nav-text">1、什么是线程的中断</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="xty"
+      src="/images/4.png">
+  <p class="site-author-name" itemprop="name">xty</p>
+  <div class="site-description" itemprop="description">This is xty Blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">97</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">48</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/woshixty" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;woshixty" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xty</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script data-pjax>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+    </div>
+</body>
+</html>

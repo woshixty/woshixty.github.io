@@ -154,7 +154,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/12/EffectiveJava/%E7%AC%AC%E4%BA%8C%E7%AB%A0%E5%88%9B%E5%BB%BA%E5%92%8C%E9%94%80%E6%AF%81%E5%AF%B9%E8%B1%A1/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9%E7%AE%97%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -168,7 +168,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/03/12/EffectiveJava/%E7%AC%AC%E4%BA%8C%E7%AB%A0%E5%88%9B%E5%BB%BA%E5%92%8C%E9%94%80%E6%AF%81%E5%AF%B9%E8%B1%A1/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2021/10/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">计算机网络-路由选择算法</a>
         </h2>
 
         <div class="post-meta">
@@ -178,7 +178,23 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-03-12 01:15:41" itemprop="dateCreated datePublished" datetime="2022-03-12T01:15:41+00:00">2022-03-12</time>
+              <time title="创建时间：2021-10-16 00:00:00" itemprop="dateCreated datePublished" datetime="2021-10-16T00:00:00+00:00">2021-10-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-18 09:07:29" itemprop="dateModified" datetime="2022-03-18T09:07:29+00:00">2022-03-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                </span>
             </span>
 
           
@@ -192,91 +208,24 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="第一条：用静态工厂的方法代替构造器"><a href="#第一条：用静态工厂的方法代替构造器" class="headerlink" title="第一条：用静态工厂的方法代替构造器"></a>第一条：用静态工厂的方法代替构造器</h3><h3 id="第二条：遇到多个构造器参数时要考虑使用构造器"><a href="#第二条：遇到多个构造器参数时要考虑使用构造器" class="headerlink" title="第二条：遇到多个构造器参数时要考虑使用构造器"></a>第二条：遇到多个构造器参数时要考虑使用构造器</h3><h3 id="第三条：用私有构造器或者枚举类型强化Singleton"><a href="#第三条：用私有构造器或者枚举类型强化Singleton" class="headerlink" title="第三条：用私有构造器或者枚举类型强化Singleton"></a>第三条：用私有构造器或者枚举类型强化Singleton</h3><h3 id="第四条：通过私有构造器强化不可实例化的对象"><a href="#第四条：通过私有构造器强化不可实例化的对象" class="headerlink" title="第四条：通过私有构造器强化不可实例化的对象"></a>第四条：通过私有构造器强化不可实例化的对象</h3><h3 id="第五条：优先考虑依赖注入来使用资源"><a href="#第五条：优先考虑依赖注入来使用资源" class="headerlink" title="第五条：优先考虑依赖注入来使用资源"></a>第五条：优先考虑依赖注入来使用资源</h3><h3 id="第六条：避免创建不必要的对象"><a href="#第六条：避免创建不必要的对象" class="headerlink" title="第六条：避免创建不必要的对象"></a>第六条：避免创建不必要的对象</h3><h3 id="第七条：消除过期对象的引用"><a href="#第七条：消除过期对象的引用" class="headerlink" title="第七条：消除过期对象的引用"></a>第七条：消除过期对象的引用</h3><h3 id="第八条：避免使用终结方法和清除方法"><a href="#第八条：避免使用终结方法和清除方法" class="headerlink" title="第八条：避免使用终结方法和清除方法"></a>第八条：避免使用终结方法和清除方法</h3><h3 id="第九条：try-with-resources优先try-finally"><a href="#第九条：try-with-resources优先try-finally" class="headerlink" title="第九条：try-with- resources优先try-finally"></a>第九条：try-with- resources优先try-finally</h3>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/12/Java/JVM-%E6%93%8D%E4%BD%9C%E6%95%B0%E6%A0%88%E7%9A%84%E5%AD%97%E8%8A%82%E7%A0%81%E6%8C%87%E4%BB%A4%E6%89%A7%E8%A1%8C%E5%88%86%E6%9E%90/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/12/Java/JVM-%E6%93%8D%E4%BD%9C%E6%95%B0%E6%A0%88%E7%9A%84%E5%AD%97%E8%8A%82%E7%A0%81%E6%8C%87%E4%BB%A4%E6%89%A7%E8%A1%8C%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-12 01:15:41" itemprop="dateCreated datePublished" datetime="2022-03-12T01:15:41+00:00">2022-03-12</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>追踪的代码如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OperandStackTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAddOperation</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      	<span class="comment">//byte short char boolean : 都以int型来保存</span></span><br><span class="line">        <span class="keyword">byte</span> i = <span class="number">15</span>;</span><br><span class="line">        <span class="keyword">int</span> j = <span class="number">8</span>;</span><br><span class="line">        <span class="keyword">int</span> k = i + j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>之后进行编译，得到字节码文件：</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Java/JVM/classFile.png" align=left width=400>
-
-<p>然后对得到的字节码文件进行反解析：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javap -verbose OperandStackTest.class</span><br></pre></td></tr></table></figure>
-
-<p>也可以直接使用jclasslib插件直接解析：</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Java/JVM/jclasslib.png" align=left width=400>
-
-<p>该方法对应的字节码指令为：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> 0 bipush 15</span><br><span class="line"> 2 istore_1</span><br><span class="line"> 3 bipush 8</span><br><span class="line"> 5 istore_2</span><br><span class="line"> 6 iload_1</span><br><span class="line"> 7 iload_2</span><br><span class="line"> 8 iadd</span><br><span class="line"> 9 istore_3</span><br><span class="line">10 return</span><br></pre></td></tr></table></figure>
-
-<p>执行引擎将字节码指令翻译成机器指令</p>
-<p>我们再添加一些代码，重新编译：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSum</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> m = <span class="number">10</span>;</span><br><span class="line">  <span class="keyword">int</span> n = <span class="number">20</span>;</span><br><span class="line">  <span class="keyword">return</span> m + n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testGetSum</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">//获取上一个栈帧返回的结果，并保存在操作数栈中</span></span><br><span class="line">  <span class="keyword">int</span> i = getSum();</span><br><span class="line">  <span class="keyword">int</span> j = <span class="number">10</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>看看<code>testGetSum()</code>方法反编译结果：</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">0 aload_0</span><br><span class="line">1 invokevirtual #2 &lt;OperandStackTest.getSum : ()I&gt;</span><br><span class="line">4 istore_1</span><br><span class="line">5 bipush 10</span><br><span class="line">7 istore_2</span><br><span class="line">8 return</span><br></pre></td></tr></table></figure>
-
-<p><em>aload_0</em>中的0正是局部变量表里的Slot 0的含义，从局部变量表0的位置加载，也就是<code>    this</code>的位置</p>
-<p>i++和++i的区别：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="comment">//第一类问题</span></span><br><span class="line">  <span class="keyword">int</span> i1 = <span class="number">10</span>;</span><br><span class="line">  i1++;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> i2 = <span class="number">10</span>;</span><br><span class="line">  ++i2;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//第二类问题</span></span><br><span class="line">  <span class="keyword">int</span> i3 = <span class="number">10</span>;</span><br><span class="line">  <span class="keyword">int</span> i4 = i3++;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> i5 = <span class="number">10</span>;</span><br><span class="line">  <span class="keyword">int</span> i6 = ++i5;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//第三类问题</span></span><br><span class="line">  <span class="keyword">int</span> i7 = <span class="number">10</span>;</span><br><span class="line">  i7 = i7++;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> i8 = <span class="number">10</span>;</span><br><span class="line">  i8 = ++i8;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//第四类问题</span></span><br><span class="line">  <span class="keyword">int</span> i9 = <span class="number">10</span>;</span><br><span class="line">  <span class="keyword">int</span> i10 = i9++ + ++i9;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+          <p><strong>路由选择算法</strong>：目的是从发送方到接收方的过程中确定一条通过路由器网络的好的路径</p>
+<p>根据算法集中还是分散划分：</p>
+<ul>
+<li>集中式路由选择算法</li>
+<li>分散式路由选择算法</li>
+</ul>
+<p>根据动态静态划分：</p>
+<ul>
+<li>动态路由选择算法</li>
+<li>静态路由选择算法</li>
+</ul>
+<p>根据负载敏感和迟钝划分：</p>
+<ul>
+<li>负载敏感</li>
+<li>负载迟钝</li>
+</ul>
+<h3 id="1、链路状态路由选择算法"><a href="#1、链路状态路由选择算法" class="headerlink" title="1、链路状态路由选择算法"></a>1、链路状态路由选择算法</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lbperfect123/article/details/84281300">Dijkstra算法 </a></p>
+<h3 id="2、距离向量路由选择算法"><a href="#2、距离向量路由选择算法" class="headerlink" title="2、距离向量路由选择算法"></a>2、距离向量路由选择算法</h3><p>距离向量算法是一种迭代的、异步的和分布式的算法</p>
 
       
     </div>
@@ -296,7 +245,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/12/Java/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%BF%90%E8%BE%93%E5%B1%82/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -310,7 +259,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/03/12/Java/JVM%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2021/10/12/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%BF%90%E8%BE%93%E5%B1%82/" class="post-title-link" itemprop="url">计算机网络-运输层</a>
         </h2>
 
         <div class="post-meta">
@@ -320,7 +269,23 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-03-12 01:15:41" itemprop="dateCreated datePublished" datetime="2022-03-12T01:15:41+00:00">2022-03-12</time>
+              <time title="创建时间：2021-10-12 00:00:00" itemprop="dateCreated datePublished" datetime="2021-10-12T00:00:00+00:00">2021-10-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-18 09:07:29" itemprop="dateModified" datetime="2022-03-18T09:07:29+00:00">2022-03-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                </span>
             </span>
 
           
@@ -334,781 +299,889 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><a target="_blank" rel="noopener" href="https://www.yuque.com/u21195183/jvm/ar6bqp#60990303">https://www.yuque.com/u21195183/jvm/ar6bqp#60990303</a></p>
-<h2 id="Java虚拟机"><a href="#Java虚拟机" class="headerlink" title="Java虚拟机"></a>Java虚拟机</h2><h3 id="1、Java虚拟机栈帧"><a href="#1、Java虚拟机栈帧" class="headerlink" title="1、Java虚拟机栈帧"></a>1、Java虚拟机栈帧</h3><p>Java虚拟机栈（Java Virtual Machine Stack），早期也叫Java栈，其内部保存着一个一个栈帧（Stack Frame），对应着一次一次的Java方法调用，为线程私有</p>
+          <p>运输层位于应用层与网络层中间，为不同主机上的应用进程之间的通信起着至关重要的作用。还有两个非常重要的协议：TCP和UDP运输层协议。</p>
+<p>总结一下UDP和TCP最基本的责任：将两个端系统间IP的交付服务拓展为运行在端系统上的两个进程之间的交付服务。</p>
+<p>将主机间交付拓展到进程间交付被称为<code>运输层的多路复用（transport-layer multiplexing）</code>与<code>多路分解（demultiplexing）</code>。</p>
+<p>进程到进程之间的数据交付和差错检测是两种最低限度的运输层服务</p>
+<h4 id="多路复用与多路分解"><a href="#多路复用与多路分解" class="headerlink" title="多路复用与多路分解"></a>多路复用与多路分解</h4><p>网络层提供的主机到主机之间的服务 - 变成 - 运行在主机上的应用程序进程到进程之间的服务</p>
 <ul>
-<li>栈帧的内部结构：<ul>
-<li>局部变量表</li>
-<li>操作数栈（表达式栈）</li>
-<li>动态链接（指向运行时常量池的方法引用）</li>
-<li>方法返回地址（方法正常退出或者异常退出的定义）</li>
-<li>一些附加信息</li>
+<li>多路分解</li>
 </ul>
-</li>
-</ul>
-<h4 id="a、局部变量表"><a href="#a、局部变量表" class="headerlink" title="a、局部变量表"></a>a、局部变量表</h4><p>也称之为局部变量数组或本地变量表</p>
-<p>定义为一个数字数组，主要用于存储方法参数和定义在方法体内部的局部变量，这些数据类型包括基本数据类型、对象引用、returnAdress类型</p>
-<p>局部变量表建立在线程的栈上，线程的私有数据</p>
-<p>所需要的容量大小在编译期间就确定了</p>
+<p>将运输层报文段中的数据交付到正确的套接字（socket）</p>
 <ul>
-<li><p>关于Slot的理解</p>
-<p>局部变量表中最基本的存储单元就是Slot</p>
-</li>
+<li>多路复用</li>
 </ul>
-<p>变量的分类：</p>
-<p>按照数据类型分类：</p>
-<p>1、基本数据类型</p>
-<p>2、引用数据类型</p>
-<p>按照在类中声明的位置分类：</p>
-<p>1、成员变量（在使用前都经历过默认初始化赋值）：类变量、实例变量</p>
-<p>类变量：<code>linking</code>的<code>prepare</code>阶段给类变量默认赋值—&gt;<code>initial</code>阶段给类变量显式赋值即静态代码块赋值</p>
-<p>实例变量：随着对象的创建会在堆空间中分配实例变量空间，并进行默认赋值</p>
-<p>2、局部变量</p>
-<p>在使用前必须要进行显式赋值</p>
-<p>补充说明：</p>
+<p>在源主机从不同套接字中收集数据块，并为每个数据块封装上首部信息（用于以后的多路分解）</p>
+<h4 id="无连接运输UDP"><a href="#无连接运输UDP" class="headerlink" title="无连接运输UDP"></a>无连接运输UDP</h4><p>无连接的，运输层之间没有握手</p>
+<p>选择UDP的原因：</p>
 <ul>
-<li><p>在栈帧中，与性能调优关系最为密切的部分就是局部变量表，方法执行时虚拟机使用局部变量表完成方法的传递</p>
+<li><p>关于发送什么数据以及何时发送的应用层控制更为精细</p>
 </li>
-<li><p>局部变量表中的变量也是重要的垃圾回收根节点</p>
+<li><p>无需连接建立</p>
 </li>
-</ul>
-<h4 id="b、操作数栈"><a href="#b、操作数栈" class="headerlink" title="b、操作数栈"></a>b、操作数栈</h4><p>主要用于保存计算过程的中间结果，同时作为计算过程中变量临时的存储空间</p>
-<p>当一个方法执行的时候，一个新的栈帧也会随之创建出来，这个方法的操作数栈是空的</p>
-<p>操作数栈虽然是数组，但是不能通过访问索引的方式来进行数据访问</p>
-<p>如果被调用方法带有返回值的话，返回值也会压入当前栈帧的操作数栈中 </p>
-<h4 id="c、动态链接"><a href="#c、动态链接" class="headerlink" title="c、动态链接"></a>c、动态链接</h4><p>常量池：Constant Pool</p>
-<p>在Java源文件被编译到字节码文件中时，所有的变量和方法引用都作为符号引用（Symbolic Reference）保存在文件的常量池里</p>
-<p>例如：描述一个方法引用另一个方法时就是通过常量池中指向的方法的符号引用来表示的</p>
-<p>那么动态链接的作用就是为了将这些符号引用转换为调用方法的直接引用</p>
-<ul>
-<li>静态链接</li>
-<li>动态链接</li>
-</ul>
-<p>方法的绑定机制：</p>
-<ul>
-<li>早期绑定（编译期间可以确定）</li>
-<li>晚期绑定</li>
-</ul>
-<p>虚方法和非虚方法</p>
-<p>子类对的多态性的使用前提：类的继承关系、方法的重写</p>
-<p>虚拟机提供了几条方法调用指令：</p>
-<ul>
-<li>invokestatic</li>
-<li>invokespecial</li>
-<li>invokevirtual</li>
-<li>invokeinterface</li>
-</ul>
-<h3 id="2、Java虚拟机生命周期"><a href="#2、Java虚拟机生命周期" class="headerlink" title="2、Java虚拟机生命周期"></a>2、Java虚拟机生命周期</h3><p>生命周期与线程一致</p>
-<h3 id="3、Java虚拟机的作用"><a href="#3、Java虚拟机的作用" class="headerlink" title="3、Java虚拟机的作用"></a>3、Java虚拟机的作用</h3><p>保存局部变量、部分结果，并参与方法的调用与返回</p>
-<blockquote>
-<p>局部变量 VS 成员变量</p>
-<p>基本数据变量 VS 引用类型变量（类、数组、接口）</p>
-</blockquote>
-<h3 id="4、Java虚拟机的特点"><a href="#4、Java虚拟机的特点" class="headerlink" title="4、Java虚拟机的特点"></a>4、Java虚拟机的特点</h3><p>（1）快速有效的分配存储方式</p>
-<p>（2）JVM对Java栈的操作只有两个</p>
-<blockquote>
-<p>每个方法执行，伴随着进栈（入栈、压栈）</p>
-<p>执行结束后的出栈工作</p>
-</blockquote>
-<p>（3）对于栈来说不存在垃圾回收的问题</p>
-<blockquote>
-<p> GC、OOM</p>
-</blockquote>
-<h3 id="5、栈中可能出现的问题"><a href="#5、栈中可能出现的问题" class="headerlink" title="5、栈中可能出现的问题"></a>5、栈中可能出现的问题</h3><p>StackOverflowError、OutOfMemoryError</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/12/Java/Java_%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E4%B8%8A%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/12/Java/Java_%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E4%B8%8A%EF%BC%89/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-12 01:15:41" itemprop="dateCreated datePublished" datetime="2022-03-12T01:15:41+00:00">2022-03-12</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <hr>
-<hr>
-<h3 id="一、类和对象"><a href="#一、类和对象" class="headerlink" title="一、类和对象"></a>一、类和对象</h3><h3 id="二、方法详解"><a href="#二、方法详解" class="headerlink" title="二、方法详解"></a>二、方法详解</h3><h3 id="三、成员变量和局部变量"><a href="#三、成员变量和局部变量" class="headerlink" title="三、成员变量和局部变量"></a>三、成员变量和局部变量</h3><h3 id="四、隐藏和封装"><a href="#四、隐藏和封装" class="headerlink" title="四、隐藏和封装"></a>四、隐藏和封装</h3><h3 id="五、深入构造器"><a href="#五、深入构造器" class="headerlink" title="五、深入构造器"></a>五、深入构造器</h3><h3 id="六、类的继承"><a href="#六、类的继承" class="headerlink" title="六、类的继承"></a>六、类的继承</h3><h3 id="七、多态"><a href="#七、多态" class="headerlink" title="七、多态"></a>七、多态</h3><h3 id="八、继承与组合"><a href="#八、继承与组合" class="headerlink" title="八、继承与组合"></a>八、继承与组合</h3><h3 id="九、初始化块"><a href="#九、初始化块" class="headerlink" title="九、初始化块"></a>九、初始化块</h3><h3 id="十、本章小结"><a href="#十、本章小结" class="headerlink" title="十、本章小结"></a>十、本章小结</h3>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/12/Java/Java_%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E4%B8%8B%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/12/Java/Java_%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E4%B8%8B%EF%BC%89/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-12 01:15:41" itemprop="dateCreated datePublished" datetime="2022-03-12T01:15:41+00:00">2022-03-12</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <hr>
-<hr>
-<h3 id="一、包装类"><a href="#一、包装类" class="headerlink" title="一、包装类"></a>一、包装类</h3><h3 id="二、处理对象"><a href="#二、处理对象" class="headerlink" title="二、处理对象"></a>二、处理对象</h3><h4 id="1、打印对象和-toString-方法"><a href="#1、打印对象和-toString-方法" class="headerlink" title="1、打印对象和 toString()方法"></a>1、打印对象和<code> toString()</code>方法</h4><h4 id="2、-和-equals方法"><a href="#2、-和-equals方法" class="headerlink" title="2、 ==和 equals方法"></a>2、<code> ==</code>和<code> equals</code>方法</h4><h3 id="三、类成员"><a href="#三、类成员" class="headerlink" title="三、类成员"></a>三、类成员</h3><h4 id="1、理解类成员"><a href="#1、理解类成员" class="headerlink" title="1、理解类成员"></a>1、理解类成员</h4><h4 id="2、单例（Singleton）类"><a href="#2、单例（Singleton）类" class="headerlink" title="2、单例（Singleton）类"></a>2、单例（Singleton）类</h4><h3 id="四、final修饰符"><a href="#四、final修饰符" class="headerlink" title="四、final修饰符"></a>四、final修饰符</h3><h4 id="1、final成员变量"><a href="#1、final成员变量" class="headerlink" title="1、final成员变量"></a>1、final成员变量</h4><h4 id="2、final局部变量"><a href="#2、final局部变量" class="headerlink" title="2、final局部变量"></a>2、final局部变量</h4><h4 id="3、final修饰基本类型变量和引用类型变量的区别"><a href="#3、final修饰基本类型变量和引用类型变量的区别" class="headerlink" title="3、final修饰基本类型变量和引用类型变量的区别"></a>3、final修饰基本类型变量和引用类型变量的区别</h4><h4 id="4、可执行“宏替换”的final变量"><a href="#4、可执行“宏替换”的final变量" class="headerlink" title="4、可执行“宏替换”的final变量"></a>4、可执行“宏替换”的final变量</h4><h4 id="5、final方法"><a href="#5、final方法" class="headerlink" title="5、final方法"></a>5、final方法</h4><h4 id="6、final类"><a href="#6、final类" class="headerlink" title="6、final类"></a>6、final类</h4><h4 id="7、不可变类"><a href="#7、不可变类" class="headerlink" title="7、不可变类"></a>7、不可变类</h4><h4 id="8、缓存实例的不可变类"><a href="#8、缓存实例的不可变类" class="headerlink" title="8、缓存实例的不可变类"></a>8、缓存实例的不可变类</h4><h3 id="五、抽象类"><a href="#五、抽象类" class="headerlink" title="五、抽象类"></a>五、抽象类</h3><h4 id="1、抽象方法和抽象类"><a href="#1、抽象方法和抽象类" class="headerlink" title="1、抽象方法和抽象类"></a>1、抽象方法和抽象类</h4><h4 id="2、抽象类的作用"><a href="#2、抽象类的作用" class="headerlink" title="2、抽象类的作用"></a>2、抽象类的作用</h4><h3 id="六、Java9改进的接口"><a href="#六、Java9改进的接口" class="headerlink" title="六、Java9改进的接口"></a>六、Java9改进的接口</h3><h4 id="1、接口的概念"><a href="#1、接口的概念" class="headerlink" title="1、接口的概念"></a>1、接口的概念</h4><h4 id="2、Java9中接口的定义"><a href="#2、Java9中接口的定义" class="headerlink" title="2、Java9中接口的定义"></a>2、Java9中接口的定义</h4><h4 id="3、接口的继承"><a href="#3、接口的继承" class="headerlink" title="3、接口的继承"></a>3、接口的继承</h4><h4 id="4、使用接口"><a href="#4、使用接口" class="headerlink" title="4、使用接口"></a>4、使用接口</h4><h4 id="5、接口和抽象类"><a href="#5、接口和抽象类" class="headerlink" title="5、接口和抽象类"></a>5、接口和抽象类</h4><h4 id="6、面向接口编程"><a href="#6、面向接口编程" class="headerlink" title="6、面向接口编程"></a>6、面向接口编程</h4><h3 id="七、内部类"><a href="#七、内部类" class="headerlink" title="七、内部类"></a>七、内部类</h3><p>所谓内部类，就是将一个类放在另一个类内部定义，这个定义在其他类内部的类就叫做内部类（嵌套类），包含内部类的类也称为外部类（宿主类）。Java从JDK1.1开始引入内部类，主要有如下作用：</p>
-<ul>
-<li><p>内部类提供了更好的封装，可以将内部类隐藏到外部类之内，不允许同包下的其他类访问该类。</p>
-<p>例如：Cow类里面创建一个CowLeg类</p>
+<li><p>无连接状态</p>
 </li>
-<li><p>内部类成员可以直接访问外部类的私有数据</p>
-</li>
-<li><p>匿名内部类适合于创建那些仅需要一次使用的类</p>
+<li><p>分组首部开销小</p>
+<p>TCP报文段有20字节的首部开销，UDP仅有8字节的开销</p>
 </li>
 </ul>
-<p>此外，使用内部类时还需注意以下两点：</p>
-<ul>
-<li>内部类比外部类可以多使用三个修饰符：<code>private</code>、<code>protected</code>、<code>static</code>（外部类不可使用）</li>
-<li>非静态内部类不可拥有静态成员</li>
-</ul>
-<h4 id="1、非静态内部类"><a href="#1、非静态内部类" class="headerlink" title="1、非静态内部类"></a>1、非静态内部类</h4><p>大多数时候，内部类都被作为成员内部类定义，而不是作为局部内部类。成员内部类是一种与成员变量、方法、构造器和初始化块相似的类成员，局部内部类和匿名内部类不是类成员。</p>
-<p>成员内部类分为两种：<code> 静态内部类</code>和<code> 非静态内部类</code>，使用static修饰的为静态内部类。</p>
-<p>经常看到同一个Java源文件里定义了多个类，那不是内部类，他们依然是两个相互独立的类，如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//下面两个类相互独立，没有谁是谁的内部类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> </span>&#123;&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">B</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>外部类的上一级程序单元是包，所以只有两个作用域：<code> 同一个包内</code>和<code> 任何位置</code>，因此只需要两种访问权限：<code> 包访问权限</code>和<code> 公开访问权限</code>，正好对应于<code> 省略访问控制符</code>和<code> public访问控制符</code></p>
-<p>内部类的上一级程序单元是外部类，具有四个作用域：<code> 同一个类</code>、<code> 同一个包</code>、<code> 父子类</code>、<code> 任何位置</code>，因此可以使用4种访问控制权限</p>
-</blockquote>
-<p>下面的程序在Cow类里面定义了一个CowLeg非静态内部类，并在方法中直接访问Cow的private的实例变量：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cow</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span> weight;</span><br><span class="line">    <span class="comment">//外部类的构造器</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Cow</span><span class="params">(<span class="keyword">double</span> weight)</span> </span>&#123; <span class="keyword">this</span>.weight = weight; &#125;</span><br><span class="line">    <span class="comment">//定义一个非静态内部类</span></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">CowLeg</span> </span>&#123;</span><br><span class="line">        <span class="comment">//非静态内部类的两个实例变量</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">double</span> length;</span><br><span class="line">        <span class="keyword">private</span> String color;</span><br><span class="line">        <span class="comment">//内部类的构造器</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">CowLeg</span><span class="params">(<span class="keyword">double</span> length, String color)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.length = length;</span><br><span class="line">            <span class="keyword">this</span>.color = color;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//非静态内部类的实例方法</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">info</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;牛腿颜色为：&quot;</span> + color);</span><br><span class="line">            System.out.println(<span class="string">&quot;牛高：&quot;</span> + length);</span><br><span class="line">            <span class="comment">//直接访问外部类private修饰的成员变量</span></span><br><span class="line">            System.out.println(<span class="string">&quot;奶牛重：&quot;</span> + weight);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> cl = <span class="keyword">new</span> CowLeg(<span class="number">1.12</span>, <span class="string">&quot;黑白相间&quot;</span>);</span><br><span class="line">        cl.info();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> cow = <span class="keyword">new</span> Cow(<span class="number">378.9</span>);</span><br><span class="line">        cow.test();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>编译上面程序，发现文件所在路径下生成了两个class文件，如下图：</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/java-object1.png">
-
-<p>成员内部类（包括静态内部类、非静态内部类）的class文件总是以这种形式：<code>OuterClass$InnerClass.class</code></p>
-<p>内部类之所以可以访问外部类的private成员，是因为在非静态内部类对象中，保存了一个它所寄生的外部类对象的引用（当调用非静态内部类实例方法时，必须有一个非静态内部类实例，非静态内部类必须寄生在外部类实例里面），如下图所示：</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/java-object2.png">
-
-<h4 id="2、静态内部类"><a href="#2、静态内部类" class="headerlink" title="2、静态内部类"></a>2、静态内部类</h4><h4 id="3、使用内部类"><a href="#3、使用内部类" class="headerlink" title="3、使用内部类"></a>3、使用内部类</h4><h4 id="4、局部内部类"><a href="#4、局部内部类" class="headerlink" title="4、局部内部类"></a>4、局部内部类</h4><h4 id="5、匿名内部类"><a href="#5、匿名内部类" class="headerlink" title="5、匿名内部类"></a>5、匿名内部类</h4><h4 id="八、Java11增强的Lambda表达式"><a href="#八、Java11增强的Lambda表达式" class="headerlink" title="八、Java11增强的Lambda表达式"></a>八、Java11增强的Lambda表达式</h4><h4 id="1、Lambda表达式入门"><a href="#1、Lambda表达式入门" class="headerlink" title="1、Lambda表达式入门"></a>1、Lambda表达式入门</h4><h4 id="2、Lambda表达式与函数式接口"><a href="#2、Lambda表达式与函数式接口" class="headerlink" title="2、Lambda表达式与函数式接口"></a>2、Lambda表达式与函数式接口</h4><h4 id="3、在Lambda表达式中使用var"><a href="#3、在Lambda表达式中使用var" class="headerlink" title="3、在Lambda表达式中使用var"></a>3、在Lambda表达式中使用var</h4><h4 id="4、方法引用与构造器引用"><a href="#4、方法引用与构造器引用" class="headerlink" title="4、方法引用与构造器引用"></a>4、方法引用与构造器引用</h4><h4 id="5、Lambda表达式与匿名内部类的联系和区别"><a href="#5、Lambda表达式与匿名内部类的联系和区别" class="headerlink" title="5、Lambda表达式与匿名内部类的联系和区别"></a>5、Lambda表达式与匿名内部类的联系和区别</h4><h4 id="6、使用Lambda表达式调用Arrays的类方法"><a href="#6、使用Lambda表达式调用Arrays的类方法" class="headerlink" title="6、使用Lambda表达式调用Arrays的类方法"></a>6、使用Lambda表达式调用Arrays的类方法</h4><h3 id="九、枚举类"><a href="#九、枚举类" class="headerlink" title="九、枚举类"></a>九、枚举类</h3><h4 id="1、手动实现枚举类"><a href="#1、手动实现枚举类" class="headerlink" title="1、手动实现枚举类"></a>1、手动实现枚举类</h4><h4 id="2、枚举类入门"><a href="#2、枚举类入门" class="headerlink" title="2、枚举类入门"></a>2、枚举类入门</h4><h4 id="3、枚举类成员变量、方法与构造器"><a href="#3、枚举类成员变量、方法与构造器" class="headerlink" title="3、枚举类成员变量、方法与构造器"></a>3、枚举类成员变量、方法与构造器</h4><h4 id="4、实现接口的枚举类"><a href="#4、实现接口的枚举类" class="headerlink" title="4、实现接口的枚举类"></a>4、实现接口的枚举类</h4><h4 id="5、包含抽象方法的枚举类"><a href="#5、包含抽象方法的枚举类" class="headerlink" title="5、包含抽象方法的枚举类"></a>5、包含抽象方法的枚举类</h4><h3 id="十、对象与垃圾回收"><a href="#十、对象与垃圾回收" class="headerlink" title="十、对象与垃圾回收"></a>十、对象与垃圾回收</h3><h4 id="1、对象在内存中的状态"><a href="#1、对象在内存中的状态" class="headerlink" title="1、对象在内存中的状态"></a>1、对象在内存中的状态</h4><h4 id="2、强制垃圾回收"><a href="#2、强制垃圾回收" class="headerlink" title="2、强制垃圾回收"></a>2、强制垃圾回收</h4><h4 id="3、finalize方法"><a href="#3、finalize方法" class="headerlink" title="3、finalize方法"></a>3、finalize方法</h4><h4 id="4、对象的软、弱和虚引用"><a href="#4、对象的软、弱和虚引用" class="headerlink" title="4、对象的软、弱和虚引用"></a>4、对象的软、弱和虚引用</h4><h3 id="十一、修饰符的适用范围"><a href="#十一、修饰符的适用范围" class="headerlink" title="十一、修饰符的适用范围"></a>十一、修饰符的适用范围</h3><h3 id="十二、多版本JAR包"><a href="#十二、多版本JAR包" class="headerlink" title="十二、多版本JAR包"></a>十二、多版本JAR包</h3><h4 id="1、jar命令详解"><a href="#1、jar命令详解" class="headerlink" title="1、jar命令详解"></a>1、jar命令详解</h4><h4 id="2、创建可执行的JAR包"><a href="#2、创建可执行的JAR包" class="headerlink" title="2、创建可执行的JAR包"></a>2、创建可执行的JAR包</h4><h4 id="3、关于JAR包的技巧"><a href="#3、关于JAR包的技巧" class="headerlink" title="3、关于JAR包的技巧"></a>3、关于JAR包的技巧</h4><h3 id="十三、本章小结"><a href="#十三、本章小结" class="headerlink" title="十三、本章小结"></a>十三、本章小结</h3>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/12/Java/Java%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/12/Java/Java%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-12 01:15:41" itemprop="dateCreated datePublished" datetime="2022-03-12T01:15:41+00:00">2022-03-12</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>优先队列的作用是每次取出的元素都是队列中最大或最小的</p>
-<p>通过完全二叉树实现的小顶堆</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/12/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%BC%96%E7%A8%8B%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/12/Java/Java%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%BC%96%E7%A8%8B%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-12 01:15:41" itemprop="dateCreated datePublished" datetime="2022-03-12T01:15:41+00:00">2022-03-12</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="一、Java多线程技能"><a href="#一、Java多线程技能" class="headerlink" title="一、Java多线程技能"></a>一、Java多线程技能</h2><h2 id="二、对象及变量的并发访问"><a href="#二、对象及变量的并发访问" class="headerlink" title="二、对象及变量的并发访问"></a>二、对象及变量的并发访问</h2><h2 id="三、线程间通信"><a href="#三、线程间通信" class="headerlink" title="三、线程间通信"></a>三、线程间通信</h2><h3 id="1、wait-notify机制"><a href="#1、wait-notify机制" class="headerlink" title="1、wait / notify机制"></a>1、wait / notify机制</h3><h3 id="2、join-方法的使用"><a href="#2、join-方法的使用" class="headerlink" title="2、join()方法的使用"></a>2、join()方法的使用</h3><h3 id="3、类ThreadLocal的使用"><a href="#3、类ThreadLocal的使用" class="headerlink" title="3、类ThreadLocal的使用"></a>3、类ThreadLocal的使用</h3><h3 id="4、类InheritableThreadLocal的使用"><a href="#4、类InheritableThreadLocal的使用" class="headerlink" title="4、类InheritableThreadLocal的使用"></a>4、类InheritableThreadLocal的使用</h3><h3 id="5、本章小结"><a href="#5、本章小结" class="headerlink" title="5、本章小结"></a>5、本章小结</h3><p>经过本章的学习，完全可以使以前分散的线程对象进行通信与协作</p>
-<h2 id="四、Lock对象的使用"><a href="#四、Lock对象的使用" class="headerlink" title="四、Lock对象的使用"></a>四、Lock对象的使用</h2><p>Lock对象在功能上比<code>synchronized</code>更加丰富，着重掌握下面两个点：</p>
-<ul>
-<li>ReentrantLock类的使用</li>
-<li>ReentrantReadWriteLock类的使用</li>
-</ul>
-<h2 id="五、定时器Timer"><a href="#五、定时器Timer" class="headerlink" title="五、定时器Timer"></a>五、定时器Timer</h2><h2 id="六、单例模式与多线程"><a href="#六、单例模式与多线程" class="headerlink" title="六、单例模式与多线程"></a>六、单例模式与多线程</h2><h2 id="七、拾遗增补"><a href="#七、拾遗增补" class="headerlink" title="七、拾遗增补"></a>七、拾遗增补</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/12/Java/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/12/Java/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-12 01:15:41" itemprop="dateCreated datePublished" datetime="2022-03-12T01:15:41+00:00">2022-03-12</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h2><h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3><ul>
-<li>程序由指令和数据组成，这些指令要执行的话，就要加载到内存，指令运行过程中还需要用到磁盘、网络等设备。进程就是用来加载指令、管理内存、管理IO的</li>
-<li>当一个程序被运行，从磁盘加载这个程序的代码到内存，这就开启了一个进程</li>
-<li>进程可以认为是程序的一个实例</li>
-</ul>
-<h3 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h3><ul>
-<li>一个进程内可以分为一到多个线程</li>
-<li>一个线程就是一到指令流</li>
-<li>Java中，线程作为最小的调度单位，进程作为资源分配的最小单位</li>
-</ul>
-<h3 id="二者对比"><a href="#二者对比" class="headerlink" title="二者对比"></a>二者对比</h3><ul>
-<li>进程基本上相互独立，而线程存在于进程内，是进程的一个子集</li>
-<li>进程拥有共享的资源：例如内存空间</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="http://www.ccav18.com/">www.ccav18.com</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/12/Java/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E8%89%BA%E6%9C%AF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/12/Java/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E8%89%BA%E6%9C%AF/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-12 01:15:41" itemprop="dateCreated datePublished" datetime="2022-03-12T01:15:41+00:00">2022-03-12</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="一、并发编程的艺术挑战"><a href="#一、并发编程的艺术挑战" class="headerlink" title="一、并发编程的艺术挑战"></a>一、并发编程的艺术挑战</h1><h2 id="1、上下文切换"><a href="#1、上下文切换" class="headerlink" title="1、上下文切换"></a>1、上下文切换</h2><h2 id="2、死锁"><a href="#2、死锁" class="headerlink" title="2、死锁"></a>2、死锁</h2><h2 id="3、资源限制的挑战"><a href="#3、资源限制的挑战" class="headerlink" title="3、资源限制的挑战"></a>3、资源限制的挑战</h2><h1 id="二、Java并发机制的底层实现原理"><a href="#二、Java并发机制的底层实现原理" class="headerlink" title="二、Java并发机制的底层实现原理"></a>二、Java并发机制的底层实现原理</h1><p>Java所实现的并发机制依赖于JVM的实现与CPU指令</p>
-<h2 id="1、volatile的应用"><a href="#1、volatile的应用" class="headerlink" title="1、volatile的应用"></a>1、volatile的应用</h2><p>volatile是轻量级的sychornized，它在多处理器的开发中保证了共享变量的“可见性”</p>
-<h2 id="2、sychornized的实现原理与应用"><a href="#2、sychornized的实现原理与应用" class="headerlink" title="2、sychornized的实现原理与应用"></a>2、sychornized的实现原理与应用</h2><p>重量级锁</p>
-<p>为了减少获取锁和释放锁而造成的性能损失，引入了偏向锁和轻量级锁，以及锁的存储结构和升级过程</p>
-<h3 id="（1）Java对象头"><a href="#（1）Java对象头" class="headerlink" title="（1）Java对象头"></a>（1）Java对象头</h3><h3 id="（2）锁的升级与对比"><a href="#（2）锁的升级与对比" class="headerlink" title="（2）锁的升级与对比"></a>（2）锁的升级与对比</h3><h2 id="3、原子操作的实现原理"><a href="#3、原子操作的实现原理" class="headerlink" title="3、原子操作的实现原理"></a>3、原子操作的实现原理</h2><p>原子操作（atomic operation）意为“不可被中断的一个或者一组操作系统”</p>
-<h2 id="4、本章小结"><a href="#4、本章小结" class="headerlink" title="4、本章小结"></a>4、本章小结</h2><h1 id="四、Java并发编程基础"><a href="#四、Java并发编程基础" class="headerlink" title="四、Java并发编程基础"></a>四、Java并发编程基础</h1><p>线程作为操作系统调度的最小单位，多个线程能够同时执行，这将显著提升程序性能，多核环境下尤为明显</p>
-<h2 id="1、线程简介"><a href="#1、线程简介" class="headerlink" title="1、线程简介"></a>1、线程简介</h2><h3 id="（1）什么是线程"><a href="#（1）什么是线程" class="headerlink" title="（1）什么是线程"></a>（1）什么是线程</h3><p>现代操作系统在运行一个程序时会为其创建一个进程，现代操作系统调度的最小单位是线程，也叫轻量级进程，在一个进程里可以创建多个线程，每个线程拥有自己的计数器、堆栈、局部变量等属性，并且能够访问共享的内存变量。</p>
-<h3 id="（2）为什么使用多线程"><a href="#（2）为什么使用多线程" class="headerlink" title="（2）为什么使用多线程"></a>（2）为什么使用多线程</h3><ul>
-<li>更多的处理器核心</li>
-<li>更快的响应时间</li>
-<li>更好的线程模型</li>
-</ul>
-<h3 id="（3）线程的优先级"><a href="#（3）线程的优先级" class="headerlink" title="（3）线程的优先级"></a>（3）线程的优先级</h3><p>通过下面的代码来设置线程的优先级</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> priority = i &lt; <span class="number">5</span> ? Thread.MIN_PRIORITY : Thread.MAX_PRIORITY;</span><br><span class="line">thread.setPriority(priority);</span><br></pre></td></tr></table></figure>
-
-<p>线程的优先级不能作为程序正确性的依赖</p>
-<h3 id="（4）线程的状态"><a href="#（4）线程的状态" class="headerlink" title="（4）线程的状态"></a>（4）线程的状态</h3><ul>
-<li>NEW</li>
-<li>RUNNABLE</li>
-<li>BLOCKED</li>
-<li>WAITING</li>
-<li>TIME_WAITING</li>
-<li>TERMINATED</li>
-</ul>
-<p>线程在自身的生命周期中，并不是固定的处在某个状态而是随着代码的执行在不同的状态中切换</p>
-<h3 id="（5）Daemon线程"><a href="#（5）Daemon线程" class="headerlink" title="（5）Daemon线程"></a>（5）Daemon线程</h3><p>Daemon线程是一种支持类型的线程，因为它主要被用作程序中后台调度以及支持性工作，这意味着，当一个java虚拟机中不存在非Daemon线程的时候，JAVA虚拟机将会退出，可以通过调用Thread.setDaemon(true)将线程设置为Daemon线程</p>
-<p>如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Daemon</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> DaemonRunner());</span><br><span class="line">        thread.setDaemon(<span class="keyword">true</span>);</span><br><span class="line">        thread.start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">DaemonRunner</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                SleepUtils.second(<span class="number">100</span>);</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;DaemonThread finally run.&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2、启动和终止线程"><a href="#2、启动和终止线程" class="headerlink" title="2、启动和终止线程"></a>2、启动和终止线程</h2><h3 id="（1）构造线程"><a href="#（1）构造线程" class="headerlink" title="（1）构造线程"></a>（1）构造线程</h3><p>构造线程时要考虑线程所属的线程组、线程优先级、是否为Daemon线程等等</p>
-<h3 id="（2）启动线程"><a href="#（2）启动线程" class="headerlink" title="（2）启动线程"></a>（2）启动线程</h3><p>通过<code>start()</code>方法启动线程</p>
-<h3 id="（3）理解中断"><a href="#（3）理解中断" class="headerlink" title="（3）理解中断"></a>（3）理解中断</h3><p>终端可以理解为线程的一个标志位属性，他用来表示一个运行中的线程是否被其他线程进行了中断操作</p>
-<h2 id="3、线程间通信"><a href="#3、线程间通信" class="headerlink" title="3、线程间通信"></a>3、线程间通信</h2><h2 id="4、线程应用实例"><a href="#4、线程应用实例" class="headerlink" title="4、线程应用实例"></a>4、线程应用实例</h2><h2 id="5、本章小结"><a href="#5、本章小结" class="headerlink" title="5、本章小结"></a>5、本章小结</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/12/Java/Java%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/12/Java/Java%E9%9D%A2%E8%AF%95%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-12 01:15:41" itemprop="dateCreated datePublished" datetime="2022-03-12T01:15:41+00:00">2022-03-12</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="1、高并发中的集合有哪些问题"><a href="#1、高并发中的集合有哪些问题" class="headerlink" title="1、高并发中的集合有哪些问题"></a>1、高并发中的集合有哪些问题</h3><ul>
-<li>第一代线程安全集合类</li>
-</ul>
-<p>Vector、Hashtable</p>
-<p>使用synchronized修饰方法，效率低下</p>
-<ul>
-<li>第二代线程非安全集合类</li>
-</ul>
-<p>ArrayList、HashMap</p>
-<p>线程不安全但是性能好</p>
-<ul>
-<li>第三代线程安全集合类</li>
-</ul>
-<p>在大量并发情况下如何提高集合的效率和安全呢</p>
-<p>Java容器、Java的发展历史</p>
-<h3 id="2、JDK1-8的新特性有哪些"><a href="#2、JDK1-8的新特性有哪些" class="headerlink" title="2、JDK1.8的新特性有哪些"></a>2、JDK1.8的新特性有哪些</h3><h4 id="一、接口的默认方法"><a href="#一、接口的默认方法" class="headerlink" title="一、接口的默认方法"></a>一、接口的默认方法</h4><h4 id="二、Lambda表达式"><a href="#二、Lambda表达式" class="headerlink" title="二、Lambda表达式"></a>二、Lambda表达式</h4><h4 id="三、函数式接口"><a href="#三、函数式接口" class="headerlink" title="三、函数式接口"></a>三、函数式接口</h4><h4 id="四、方法与构造函数引用"><a href="#四、方法与构造函数引用" class="headerlink" title="四、方法与构造函数引用"></a>四、方法与构造函数引用</h4><h4 id="五、Lambda作用域"><a href="#五、Lambda作用域" class="headerlink" title="五、Lambda作用域"></a>五、Lambda作用域</h4><h4 id="六、访问局部变量"><a href="#六、访问局部变量" class="headerlink" title="六、访问局部变量"></a>六、访问局部变量</h4><h4 id="七、访问对象字段于静态变量"><a href="#七、访问对象字段于静态变量" class="headerlink" title="七、访问对象字段于静态变量"></a>七、访问对象字段于静态变量</h4><h4 id="八、访问接口的默认方法"><a href="#八、访问接口的默认方法" class="headerlink" title="八、访问接口的默认方法"></a>八、访问接口的默认方法</h4><h3 id="3、Java抽象类和接口有什么区别"><a href="#3、Java抽象类和接口有什么区别" class="headerlink" title="3、Java抽象类和接口有什么区别"></a>3、Java抽象类和接口有什么区别</h3><p>语法与语意的区别</p>
-<p>什么时候用抽象类，什么时候用接口</p>
-<p>抽象类 -&gt; 有一种既有抽象概念（植物、动物）</p>
-<p>接口 -&gt; 共同特征（例如具有某种会飞的功能）</p>
-<h4 id="相同点："><a href="#相同点：" class="headerlink" title="相同点："></a>相同点：</h4><ul>
-<li>都不能被实例化</li>
-<li>接口的实现类和抽象类的子类都只有在实现了接口或抽象类中的方法以后才能被实例化</li>
-</ul>
-<h4 id="不同点："><a href="#不同点：" class="headerlink" title="不同点："></a>不同点：</h4><ul>
-<li><p>接口中的方法只有定义（JDK1.8中可以有default方法），抽象类的方法可以定义与实现</p>
-</li>
-<li><p>关键字不同：<code>implement</code>和<code>extends</code>，类可以实现多个接口，但只能继承一个类</p>
-</li>
-<li><p>接口强调功能的实现，抽象类强调所属关系</p>
-</li>
-<li><p>接口中的成员变量默认都是<code> public static final</code>，必须初始化，不可被修改</p>
-<p>抽象类的成员变量默认是default，可以被重新定义，也可以被修改</p>
-</li>
-<li><p>接口中的成员方法都是<code> public、abstract</code>的</p>
-<p>抽象方法都是要被<code> abstract</code>修饰的不能被<code> private、synchronized、native</code>等修饰，不带花括号</p>
-</li>
-</ul>
-<h3 id="4、ACID是靠什么来保证的"><a href="#4、ACID是靠什么来保证的" class="headerlink" title="4、ACID是靠什么来保证的"></a>4、ACID是靠什么来保证的</h3><p>ACID（数据库事务正确执行的四个基本要素的缩写）</p>
-<blockquote>
-<p>原子性、一致性、隔离性、持久性</p>
-</blockquote>
-<h4 id="原子性"><a href="#原子性" class="headerlink" title="原子性"></a>原子性</h4><p>undolog</p>
-<h4 id="一致性"><a href="#一致性" class="headerlink" title="一致性"></a>一致性</h4><p>由其他三个特性来保证的</p>
-<h4 id="隔离性"><a href="#隔离性" class="headerlink" title="隔离性"></a>隔离性</h4><p>MVVC</p>
-<h4 id="持久性"><a href="#持久性" class="headerlink" title="持久性"></a>持久性</h4><p>redolog</p>
-<h3 id="5、HashMap底层原理"><a href="#5、HashMap底层原理" class="headerlink" title="5、HashMap底层原理"></a>5、HashMap底层原理</h3><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/79507868">https://zhuanlan.zhihu.com/p/79507868</a></p>
-<h3 id="6、BeanFactory和ApplicationContext的区别"><a href="#6、BeanFactory和ApplicationContext的区别" class="headerlink" title="6、BeanFactory和ApplicationContext的区别"></a>6、BeanFactory和ApplicationContext的区别</h3><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903877574131726">https://juejin.cn/post/6844903877574131726</a></p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Java/BeanFactory%E5%92%8CApplicationContext%E7%9A%84%E5%8C%BA%E5%88%AB1.jpg" align=left width=800>
-
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Java/BeanFactory%E5%92%8CApplicationContext%E7%9A%84%E5%8C%BA%E5%88%AB2.jpg" align=left  width=800>
-
-
-
-<h3 id="7、HashMap和HashTable的区别"><a href="#7、HashMap和HashTable的区别" class="headerlink" title="7、HashMap和HashTable的区别"></a>7、HashMap和HashTable的区别</h3><ul>
-<li><p>HashTable线程同步但效率低，HashMap相反但效率高</p>
-<p>线程同步：指的是多线程的时候数据的安全性，synchronized关键字</p>
-</li>
-<li><p>HashTable不允许&lt;key, value&gt;空值，HashMap允许</p>
-</li>
-<li><p>HashTable使用Enumeration，HashMap使用Iterator</p>
-</li>
-<li><p>HashTable（默认为11）扩容方式：2*old+1，HashMap（默认为16）扩容方式为：2的指数倍</p>
-</li>
-<li><p>HashTable继承自Dictionary类，HashMap继承自AbstractMap类</p>
-</li>
-</ul>
-<h3 id="8、HashMap有哪些线程安全的方式"><a href="#8、HashMap有哪些线程安全的方式" class="headerlink" title="8、HashMap有哪些线程安全的方式"></a>8、HashMap有哪些线程安全的方式</h3><p>方法一：</p>
-<p>通过<code>Collections.synchronizedMap()</code>返回一个新的Map，这个新的Map就是线程安全的。这个要求大家习惯基于接口编程，因为返回的并不是HashMap，而是一个Map实现。</p>
-<p>方法二：</p>
-<p>重新改写了HashMap，具体可以查看<code>java.util.concurrentHashMap</code>，是一个支持并发的HashMap。这个方法比方法一有了很大的改进。</p>
-<h3 id="9、HashMap在扩容上做了哪些处理"><a href="#9、HashMap在扩容上做了哪些处理" class="headerlink" title="9、HashMap在扩容上做了哪些处理"></a>9、HashMap在扩容上做了哪些处理</h3><p>JDK1.8不需要再像JDK1.7一样重新计算hash，只需要看原来的hash值新增的那一位bit是1还是0就好</p>
-<h3 id="10、MVCC解决的问题到底是啥"><a href="#10、MVCC解决的问题到底是啥" class="headerlink" title="10、MVCC解决的问题到底是啥"></a>10、MVCC解决的问题到底是啥</h3><p>MVCC：多版本并发控制（常常用在数据库里的技术）</p>
-<p>数据库并发场景有三种：</p>
-<ul>
-<li><p>读读</p>
-<p>不存在任何问题，无需并发控制</p>
-</li>
-<li><p>读写</p>
-<p>有线程安全，可能会造成事务的隔离性问题，可能遇到脏读、幻读、不可重复读</p>
-</li>
-<li><p>写写</p>
-<p>有线程安全问题，可能存在更新丢失问题</p>
-</li>
-</ul>
-<p><strong>脏读（读取未提交数据）</strong>：脏读又称无效数据的读出，是指在数据库访问中，事务T1将某一值修改，然后事务T2读取该值，此后T1因为某种原因撤销对该值的修改，这就导致了T2所读取到的数据是无效的，值得注意的是，脏读一般是针对于update操作的。</p>
-<p><strong>幻读（前后多次读取，数据总量不一致）</strong>：事务A在执行读取操作，需要两次统计数据的总量，前一次查询数据总量后，此时事务B执行了新增数据的操作并提交后，这个时候事务A读取的数据总量和之前统计的不一样，就像产生了幻觉一样，平白无故的多了几条数据，成为幻读。</p>
-<p><strong>不可重复读（前后多次读取，数据内容不一致）</strong>：事务A在执行读取操作，由整个事务A比较大，前后读取同一条数据需要经历很长的时间 。而在事务A第一次读取数据，比如此时读取了小明的年龄为20岁，事务B执行更改操作，将小明的年龄更改为30岁，此时事务A第二次读取到小明的年龄时，发现其年龄是30岁，和之前的数据不一样了，也就是数据不重复了，系统不可以读取到重复的数据，成为不可重复读。</p>
-<p><strong>不可重复读和幻读到底有什么区别呢？</strong></p>
-<p>(1) 不可重复读是读取了其他事务更改的数据，<strong>针对update操作</strong></p>
-<p>解决：使用行级锁，锁定该行，事务A多次读取操作完成后才释放该锁，这个时候才允许其他事务更改刚才的数据。</p>
-<p>(2) 幻读是读取了其他事务新增的数据，<strong>针对insert和delete操作</strong></p>
-<p>解决：使用表级锁，锁定整张表，事务A多次读取数据总量之后才释放该锁，这个时候才允许其他事务新增数据。</p>
-<p>MVCC为事务分配单项增长的时间戳，为每个修改保存一个版本，版本与事务时间戳关联，读操作只读事务开始前的数据库快照，所以MVCC可以为数据解决以下问题：</p>
-<p>​    1、在并发读写数据库时，可以在读操作时不阻塞写操作，写操作也不阻塞读操作，提高了数据库并发读写的能力</p>
-<p>​    2、解决脏读、幻读、不可重复读等事务隔离问题，但是不能解决更新丢失问题</p>
-<h3 id="10、MVCC实现原理"><a href="#10、MVCC实现原理" class="headerlink" title="10、MVCC实现原理"></a>10、MVCC实现原理</h3><h3 id="11、Mybatis插件运行原理和开发流程"><a href="#11、Mybatis插件运行原理和开发流程" class="headerlink" title="11、Mybatis插件运行原理和开发流程"></a>11、Mybatis插件运行原理和开发流程</h3><h3 id="12、Mybatis的优缺点"><a href="#12、Mybatis的优缺点" class="headerlink" title="12、Mybatis的优缺点"></a>12、Mybatis的优缺点</h3><h4 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h4><ul>
-<li>1、简单易学，容易上手，基于SQL编程</li>
-<li>2、与JDBC相比，减少了代码量，消除了大量冗余代码，不需要手动开关闭</li>
-<li>3、与各种的数据库兼容（使用JDBC来连接数据库）</li>
-<li>4、提供了很多第三方插件（分页插件/逆向工程：反向生成实体类）</li>
-<li>5、与Spring很好的集成</li>
-<li>6、相当灵活SQL写在XML文件里，与代码相分离解耦，便于管理与优化，还可以重用</li>
-<li>7、提供XML标签，支持编写动态SQL语句</li>
-<li>8、提供映射标签，支持对象与数据库的ORM字段关系映射</li>
-<li>9、提供对象映射标签，支持对象关系组建维护</li>
-</ul>
-<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
-<li>1、SQL语句的编写量巨大</li>
-<li>2、SQL语句依赖数据库，导致数据库移植性差，不能随意更换数据库</li>
-</ul>
-<h3 id="13、Mybatis中-和-区别"><a href="#13、Mybatis中-和-区别" class="headerlink" title="13、Mybatis中#{}和${}区别"></a>13、Mybatis中<code>#&#123;&#125;</code>和<code>$&#123;&#125;</code>区别</h3><ul>
-<li><code>#&#123;&#125;</code>是预编译处理，<code>$&#123;&#125;</code>是字符串替换</li>
-<li>Mybatis在处理<code>#&#123;&#125;</code>时，会将<code>#&#123;&#125;</code>替换为?，调用<code>PreparedStatement</code>的<code>set</code>方法来赋值</li>
-<li>Mybatis在处理<code>¥&#123;&#125;</code>时，直接将<code>¥&#123;&#125;</code>替换成变量的值</li>
-<li>前者可以有效防止SQL注入</li>
-</ul>
-<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><h3 id="1、MySQL的隔离级别有哪些？"><a href="#1、MySQL的隔离级别有哪些？" class="headerlink" title="1、MySQL的隔离级别有哪些？"></a>1、MySQL的隔离级别有哪些？</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/fengzheng/p/12557762.html">https://www.cnblogs.com/fengzheng/p/12557762.html</a></p>
-<p>首先我们来看看隔离级别是个玩意</p>
-<p>有四种隔离级别</p>
-<ol>
-<li><p>读未提交（READ UNCOMMITTED）</p>
-<p>所有事务都可以看到未提交事务的执行结果</p>
-</li>
-<li><p>读提交 （READ COMMITTED）</p>
-<p>一个事务开始时，只能看到已经提交事务所做的改变</p>
-</li>
-<li><p>可重复读 （REPEATABLE READ）</p>
-<p>？？？</p>
-</li>
-<li><p>串行化 （SERIALIZABLE）</p>
-<p>通过强制事务排序</p>
-</li>
-</ol>
+<h4 id="UDP报文段结构"><a href="#UDP报文段结构" class="headerlink" title="UDP报文段结构"></a>UDP报文段结构</h4><p>只有四个字段：源端口号、目的端口号、长度、检验和</p>
+<p>每个字段两个字节（16bit）</p>
+<p>长度字段指示了UDP报文段中的字节数（首部+运送的数据）</p>
+<p>检验和用来检查报文段中是否出现了错误，实际上，计算校验和时，还包括了IP首部的一些字段</p>
+<h4 id="UDP检验和"><a href="#UDP检验和" class="headerlink" title="UDP检验和"></a>UDP检验和</h4><p>为什么UDP也要提供校验和？</p>
+<p>因为不能保证源和目的之间所有的链路都提供差错检测</p>
+<h3 id="可靠数据传输机制"><a href="#可靠数据传输机制" class="headerlink" title="可靠数据传输机制"></a>可靠数据传输机制</h3><p>停止等待协议==》滑动窗口协议==》选择重传协议</p>
 <table>
 <thead>
 <tr>
-<th>隔离级别</th>
-<th>脏读</th>
-<th>不可重复读</th>
-<th>幻读</th>
+<th><strong>机制</strong></th>
+<th><strong>用途和说明</strong></th>
 </tr>
 </thead>
 <tbody><tr>
-<td>读未提交</td>
-<td>可能</td>
-<td>可能</td>
-<td>可能</td>
+<td>检验和</td>
+<td></td>
 </tr>
 <tr>
-<td>读提交</td>
-<td>不可能</td>
-<td>可能</td>
-<td>可能</td>
+<td>定时器</td>
+<td></td>
 </tr>
 <tr>
-<td>可重复读</td>
-<td>不可能</td>
-<td>不可能</td>
-<td>可能</td>
+<td>序号</td>
+<td></td>
 </tr>
 <tr>
-<td>串行化</td>
-<td>不可能</td>
-<td>不可能</td>
-<td>不可能</td>
+<td>确认</td>
+<td></td>
+</tr>
+<tr>
+<td>否定确认</td>
+<td></td>
+</tr>
+<tr>
+<td>窗口、流水线</td>
+<td></td>
 </tr>
 </tbody></table>
-<h3 id="2、MySQL的复制原理"><a href="#2、MySQL的复制原理" class="headerlink" title="2、MySQL的复制原理"></a>2、MySQL的复制原理</h3><p>现在主流的项目中，需要多个MySQL数据库，所以需要保持所有数据库的一致性</p>
-<h3 id="3、MySQL索引"><a href="#3、MySQL索引" class="headerlink" title="3、MySQL索引"></a>3、MySQL索引</h3><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zsql/p/13808417.html">https://www.cnblogs.com/zsql/p/13808417.html</a></p>
-<ul>
-<li>聚簇和非聚簇索引的区别</li>
+<h3 id="面向连接的运输：TCP"><a href="#面向连接的运输：TCP" class="headerlink" title="面向连接的运输：TCP"></a>面向连接的运输：TCP</h3><p>TCP连接提供的是双全工服务</p>
+<h3 id="TCP报文段结构"><a href="#TCP报文段结构" class="headerlink" title="TCP报文段结构"></a>TCP报文段结构</h3><h4 id="1、序号和确认号"><a href="#1、序号和确认号" class="headerlink" title="1、序号和确认号"></a>1、序号和确认号</h4><ul>
+<li>序号</li>
 </ul>
-<p>索引存在于磁盘，MySQL的索引类型与存储引擎是相关的，innobd存储引擎数据文件和索引文件全都放在ibd文件中，而myisam的数据文件全都放在myd文件中，索引放在myi文件中，判断条件：数据和索引是否是分开的</p>
+<p>TCP将数据看成一个无结构的、有序的字节流，所以序号是建立在传送的字节流之上的</p>
+<p><strong>一个报文段的序号（sequence number for a segment）</strong>应该是该报文段首字节的字节流编号</p>
 <ul>
-<li>索引的基本原理</li>
+<li>确认号</li>
 </ul>
-<p>1、为什么要有索引？</p>
-<p>一般的应用系统中，读写比例为10:1，而且插入和一般的更新操作很少出现性能问题</p>
-<p>生产环境中，我们遇到最多的也是最容易出问题的，是一些复杂的查询操作</p>
-<p>索引就是为了进行高速查询</p>
-<p>2、什么是索引？</p>
-<p>索引在MySQL中也叫一种“键”，是存储引擎用于快速找到记录的一种数据结构</p>
-<p>索引对于良好的性能非常关键，尤其是当表的数据量愈发巨大时，索引对于性能的影响愈发巨大</p>
-<p>索引就相当于字典的音序表、</p>
-<p>3、索引的原理</p>
-<p>4、索引的数据结构</p>
-<p>MySQL主要用到两种结构：B+Tree索引和Hash索引</p>
-<p>Inodb存储引擎默认是B+Tree索引</p>
-<p>Memory存储引擎默认是Hash索引</p>
-<h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><h2 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h2><h3 id="1、页面置换算法"><a href="#1、页面置换算法" class="headerlink" title="1、页面置换算法"></a>1、页面置换算法</h3><p>进程运行时，若其访问的页面不在内存而需将其调入，但内存已无空闲空间时，就需要从内存中调出一页程序或数据，送入磁盘的对换区</p>
-<h4 id="A、四种页面置换算法"><a href="#A、四种页面置换算法" class="headerlink" title="A、四种页面置换算法"></a>A、四种页面置换算法</h4><h5 id="最佳置换算法（OPT）"><a href="#最佳置换算法（OPT）" class="headerlink" title="最佳置换算法（OPT）"></a>最佳置换算法（OPT）</h5><p>该算法选择淘汰的页面是以后不会使用的，或者是最长时间内不再被访问的页面，以此来保证最低的缺页率</p>
-<p>由于无法预知，所以该算法无法实现</p>
-<h5 id="先进先出（FIFO）"><a href="#先进先出（FIFO）" class="headerlink" title="先进先出（FIFO）"></a>先进先出（FIFO）</h5><p>优先淘汰最早进入内存的页面</p>
-<p>将掉入内存的页面按照先后次序排成一个队列，设置一个指针指向总指向最早的界面</p>
-<p>有些页面会经常被访问，所以不适用</p>
-<h5 id="最近最久未使用（LRU）"><a href="#最近最久未使用（LRU）" class="headerlink" title="最近最久未使用（LRU）"></a>最近最久未使用（LRU）</h5><p>选择最近最长时间未访问过的页面予以淘汰，它认为过去一段时间内未访问过的页面，在最近的将来可能也不会被访问</p>
-<p>为每个页面设置一个访问字段记录自从上次访问以来所经历的时间，淘汰页面时选择访问字段值最大的一个淘汰</p>
-<p>性能比较好，但是需要寄存器和栈的支持，实现起来开销比较大</p>
-<h5 id="时钟（CLOCK）"><a href="#时钟（CLOCK）" class="headerlink" title="时钟（CLOCK）"></a>时钟（CLOCK）</h5><p>简单的CLOCK算法是给每一帧关联一个附加位，称为使用位</p>
-<p>当某一页首次装入主存时，该帧的使用位设置为1；当该页随后再被访问到时，它的使用位也被置为1</p>
-<p>每当需要淘汰页面时就寻找使用位为0的页面，并将经过的页面置为0</p>
+<p>主机A填充进报文段的确认号是希望从主机B收到的下一个字节的序号</p>
+<p>TCP只确认该流中至第一个丢失字节为止的字节，所以TCP被称为<strong>累计确认（cumulative acknowledge）</strong></p>
+<h3 id="可靠的数据传输"><a href="#可靠的数据传输" class="headerlink" title="可靠的数据传输"></a>可靠的数据传输</h3><h3 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h3><h3 id="TCP连接管理"><a href="#TCP连接管理" class="headerlink" title="TCP连接管理"></a>TCP连接管理</h3><p>三次握手的详细过程</p>
+<p>为什么需要初始序号？为什么需要三次握手而不是两次握手？</p>
+<p>四次挥手的详细过程</p>
 
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/31/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%AF%84%E5%AD%98%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/08/31/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%AF%84%E5%AD%98%E5%99%A8/" class="post-title-link" itemprop="url">寄存器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-08-31 00:00:00" itemprop="dateCreated datePublished" datetime="2021-08-31T00:00:00+00:00">2021-08-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-18 09:07:29" itemprop="dateModified" datetime="2022-03-18T09:07:29+00:00">2022-03-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/" itemprop="url" rel="index"><span itemprop="name">汇编语言</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在CPU中：</p>
+<ul>
+<li>运算器进行信息的处理</li>
+<li>寄存器进行信息的存储</li>
+<li>控制器控制各种器件进行工作</li>
+<li>内部总线连接各种器件，在他们中进行数据的传送</li>
+<li>……</li>
+</ul>
+<p>不同的CPU有不同的寄存器，如8086CPU中就有：<code> AX、BX、CX、DX、SI、DI、SP、BP、IP、CS、SS、DS、ES、PSW</code></p>
+<p>接下来我们先来认识一部分寄存器</p>
+<h3 id="一、通用寄存器"><a href="#一、通用寄存器" class="headerlink" title="一、通用寄存器"></a>一、通用寄存器</h3><p>8086CPU的所有寄存器都是16位的，可以存放两个字节。AX、BX、CX、DX这个四个寄存器通常用来存放一般性的数据，被称为通用寄存器。</p>
+<p>如AX的逻辑结构图如下所示：</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/16%E5%AF%84%E5%AD%98%E5%99%A8%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84.png">
+
+<p>8086CPU上一代是8位的，为了保证兼容性，可以将AX、BX、CX、DX分为8个独立的寄存器来使用：</p>
+<ul>
+<li>AX分为AH和AL</li>
+<li>BX分为BH和BL</li>
+<li>……</li>
+</ul>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/16%E4%BD%8D%E6%95%B0%E6%8D%AE%E5%9C%A8%E5%AF%84%E5%AD%98%E5%99%A8%E7%9A%84%E5%AD%98%E6%94%BE%E6%83%85%E5%86%B5.png">
+
+<p>8086CPU的16位寄存器分为两个8位寄存器的情况如下所示：</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/16%E4%BD%8D%E5%AF%84%E5%AD%98%E5%99%A8%E5%88%86%E4%B8%BA%E4%B8%A4%E4%B8%AA8%E4%BD%8D%E5%AF%84%E5%AD%98%E5%99%A8.png">
+
+<p>AX的低8位(o位<del>7位)构成了AL寄存器，高8位(8位</del>15位)构成了AH寄存器。AH和AL寄存器是可以独立使用的8位寄存器。图2.4展示了l6位寄存器及它所分成的两个8位寄存器的数据存储的情况。</p>
+<h3 id="二、字在寄存器中的存储"><a href="#二、字在寄存器中的存储" class="headerlink" title="二、字在寄存器中的存储"></a>二、字在寄存器中的存储</h3><p>出于兼容性的考虑，8086CPU可以一次性处理以下两种尺寸的数据：</p>
+<ul>
+<li>字节：记为byte，一个字节由8个bit组成，可以存放在8位寄存器中</li>
+<li>字：记为word，一个字由两个字节组成，分为2高位字节和低位字节，如下所示：</li>
+</ul>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E4%B8%80%E4%B8%AA%E5%AD%97%E6%9C%89%E4%B8%A4%E4%B8%AA%E5%AD%97%E8%8A%82%E7%BB%84%E6%88%90.png">
+
+
+
+<h3 id="三、几条汇编指令"><a href="#三、几条汇编指令" class="headerlink" title="三、几条汇编指令"></a>三、几条汇编指令</h3><p>通过汇编指令控制CPU工作：</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4%E4%B8%BE%E4%BE%8B.png">
+
+
+
+<h3 id="四、物理地址"><a href="#四、物理地址" class="headerlink" title="四、物理地址"></a>四、物理地址</h3><h3 id="五、16位结构的CPU"><a href="#五、16位结构的CPU" class="headerlink" title="五、16位结构的CPU"></a>五、16位结构的CPU</h3><h3 id="六、8086CPU给出物理地址的方法"><a href="#六、8086CPU给出物理地址的方法" class="headerlink" title="六、8086CPU给出物理地址的方法"></a>六、8086CPU给出物理地址的方法</h3><h3 id="七、“段地址-16-偏移地址-物理地址”的本质含义"><a href="#七、“段地址-16-偏移地址-物理地址”的本质含义" class="headerlink" title="七、“段地址*16 + 偏移地址 = 物理地址”的本质含义"></a>七、“段地址*16 + 偏移地址 = 物理地址”的本质含义</h3><h3 id="八、段的概念"><a href="#八、段的概念" class="headerlink" title="八、段的概念"></a>八、段的概念</h3><h3 id="九、段寄存器"><a href="#九、段寄存器" class="headerlink" title="九、段寄存器"></a>九、段寄存器</h3><h3 id="十、CS和IP"><a href="#十、CS和IP" class="headerlink" title="十、CS和IP"></a>十、CS和IP</h3><h3 id="十一、修改CS、IP的指令"><a href="#十一、修改CS、IP的指令" class="headerlink" title="十一、修改CS、IP的指令"></a>十一、修改CS、IP的指令</h3><h3 id="十二、代码段"><a href="#十二、代码段" class="headerlink" title="十二、代码段"></a>十二、代码段</h3>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/09/maven/maven%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E3%80%81%E6%8F%92%E4%BB%B6%E3%80%81%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/09/maven/maven%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E3%80%81%E6%8F%92%E4%BB%B6%E3%80%81%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">maven生命周期、插件、命令</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-09 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-09T00:00:00+00:00">2021-07-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-18 09:07:29" itemprop="dateModified" datetime="2022-03-18T09:07:29+00:00">2022-03-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Maven/" itemprop="url" rel="index"><span itemprop="name">Maven</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>maven的生命周期：项目构建的各个阶段，包括<code> 清理、编译、测试、报告、打包、安装、部署</code></p>
+<p>插件：要完成项目的各个阶段，要使用maven命令，执行命令的功能是通过插件完成的。插件就是<code> jar</code>，代表一些类。</p>
+<p>命令：执行maven功能是由命令发出的，比如<code> mvn compile</code></p>
+<p>单元测试（Junit）：</p>
+<p>Junit是一个单元测试的工具在Java中经常使用</p>
+<p>单元：在Java中指方法，一个方法就是一个单元</p>
+<p>作用：使用Junit来测试方法是否达标了</p>
+<p>maven相关命令：</p>
+<p>（1）mvn clean</p>
+<p>（2）mvn compile：编译代码与拷贝文件</p>
+<p>（3）</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/07/English/2021-07-07/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/07/English/2021-07-07/" class="post-title-link" itemprop="url">阅读笔记2021-07-07</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-07 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-07T00:00:00+00:00">2021-07-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-18 09:07:29" itemprop="dateModified" datetime="2022-03-18T09:07:29+00:00">2022-03-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/English/" itemprop="url" rel="index"><span itemprop="name">English</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="一、Vocabulary"><a href="#一、Vocabulary" class="headerlink" title="一、Vocabulary"></a>一、Vocabulary</h2><h3 id="1、edge"><a href="#1、edge" class="headerlink" title="1、edge"></a>1、edge</h3><p>v.（使）徐徐移动，渐渐移动</p>
+<h3 id="2、vaccine"><a href="#2、vaccine" class="headerlink" title="2、vaccine"></a>2、vaccine</h3><p>n.疫苗</p>
+<h3 id="3、transmission"><a href="#3、transmission" class="headerlink" title="3、transmission"></a>3、transmission</h3><p>n.传播，传染；（电视节目的）播送</p>
+<h3 id="4、campaign"><a href="#4、campaign" class="headerlink" title="4、campaign"></a>4、campaign</h3><p>n.（尤指政治、商业或军事的）专项活动，运动；战役，作战</p>
+<h3 id="5、immunisation"><a href="#5、immunisation" class="headerlink" title="5、immunisation"></a>5、immunisation</h3><p>免疫接种</p>
+<h2 id="二、Phrase"><a href="#二、Phrase" class="headerlink" title="二、Phrase"></a>二、Phrase</h2><h3 id="1、ramp-up"><a href="#1、ramp-up" class="headerlink" title="1、ramp up"></a>1、ramp up</h3><p>提高，使增加</p>
+<h2 id="三、SpecificNoun"><a href="#三、SpecificNoun" class="headerlink" title="三、SpecificNoun"></a>三、SpecificNoun</h2><h3 id="1、Delta-Covid-variant"><a href="#1、Delta-Covid-variant" class="headerlink" title="1、Delta Covid variant"></a>1、Delta Covid variant</h3><p>Delta新冠肺炎变异毒株（Covid：冠状病毒，是Corona Virus Disease的缩写）</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/06/spring/WebFlux%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/06/spring/WebFlux%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">spring-WebFlux</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-06 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-06T00:00:00+00:00">2021-07-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-18 09:07:29" itemprop="dateModified" datetime="2022-03-18T09:07:29+00:00">2022-03-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="一、SpringWebFlux介绍"><a href="#一、SpringWebFlux介绍" class="headerlink" title="一、SpringWebFlux介绍"></a>一、SpringWebFlux介绍</h3><p>可以直接去官网看看：<a target="_blank" rel="noopener" href="https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html">https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html</a></p>
+<p>（1）是Spring5添加的新的模块，用于web开发的，功能与SpringMVC类似的，WebFlux使用的当前一种比较流行的响应式编程框架</p>
+<p>（2）使用传统的web框架，比如SpringMVC，这些基于Servlet容器，WebFlux是一种异步非阻塞的框架，异步非阻塞框架在Servlet3.1以后才支持，核心是基于Reactor相关API实现的</p>
+<p>（3）异步非阻塞：</p>
+<ul>
+<li><p>异步与同步</p>
+<blockquote>
+<p>针对调用者来说，调用者发送请求，如果等着对方回应之后才去做其他事情就是<code> 同步</code>；如果发送请求之后，不等对方回应就去做其他事情就是<code> 异步</code></p>
+</blockquote>
+</li>
+<li><p>非阻塞与阻塞</p>
+<blockquote>
+<p>针对被调用者而言，被调用者在收到请求之后，做完任务之后才给出反馈就是<code> 阻塞</code>；收到请求之后马上给出反馈然后再去做事情就是就是<code> 非阻塞</code></p>
+</blockquote>
+</li>
+</ul>
+<p>（4）WebFlux的特点：</p>
+<ul>
+<li>1、非阻塞式：可以在有限的资源下，提高系统的吞吐量和伸缩性，以Reactor为基础实现函数式编程</li>
+<li>2、Spring5基于Java8，WebFlux使用Java8函数式编程的方式实现路由请求</li>
+</ul>
+<p>（5）与SpringMVC比较</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/WebFlux/spring-mvc-and-webflux-venn.png">
+
+<ul>
+<li>1、上述两个框架都可以使用注解方式，都运行在Tomcat等容器中</li>
+<li>2、SpringMVC采用命令式编程，WebFlux采用异步式响应编程</li>
+</ul>
+<p>网关使用<code>异步式响应编程</code>更好，因为网关需要处理更多的请求</p>
+<h3 id="二、响应式编程（Java实现）"><a href="#二、响应式编程（Java实现）" class="headerlink" title="二、响应式编程（Java实现）"></a>二、响应式编程（Java实现）</h3><h4 id="（1）什么是响应式编程"><a href="#（1）什么是响应式编程" class="headerlink" title="（1）什么是响应式编程"></a>（1）什么是响应式编程</h4><blockquote>
+<p><strong>简称RP（Reactive Programming）</strong></p>
+<p>响应式编程是一种<code> 面向数据流</code>和<code> 变化传播</code>的编程范式。这意味着可以在编程语言中很方便地表达静态或动态的数据流，而相关的计算模型会自动将变化的值通过数据流进行传播。</p>
+</blockquote>
+<p>根据数据或者数据流发生变化，相应的计算模型就会根据值的变化而变化，例如：电子表格程序就是响应式编程的一个例子。单元格可以包含字面值或类似”=B1+C1”的公式，而包含公式的单元格的值会依据其他单元格的值的变化而变化。</p>
+<h4 id="（2）Java8及其之前的版本"><a href="#（2）Java8及其之前的版本" class="headerlink" title="（2）Java8及其之前的版本"></a>（2）Java8及其之前的版本</h4><p>提供了<code> 观察者模式</code>的两个类：<code> Observer</code>和<code> Observable</code>。即观察你关心的数据的变化，一旦出现变化，就发出通知。</p>
+<p>直接上代码，代码中我们设置了改变并进行了通知：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ObserverDemo</span> <span class="keyword">extends</span> <span class="title">Observable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ObserverDemo observer = <span class="keyword">new</span> ObserverDemo();</span><br><span class="line">        <span class="comment">//添加观察者</span></span><br><span class="line">        observer.addObserver((o, arg) -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;发生变化&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">        observer.addObserver((o, arg) -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;手动改变观察者通知，准备改变&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//数据变化</span></span><br><span class="line">        observer.setChanged();</span><br><span class="line">        <span class="comment">//通知</span></span><br><span class="line">        observer.notifyObservers();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="（3）Java9及其之后的版本"><a href="#（3）Java9及其之后的版本" class="headerlink" title="（3）Java9及其之后的版本"></a>（3）Java9及其之后的版本</h4><p>使用<code> Flow</code>实现，这里直接看下面代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建我自己的订阅者</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MySubscriber</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">Flow</span>.<span class="title">Subscriber</span> </span>&#123;</span><br><span class="line">    <span class="comment">//发布者与订阅者之间的纽带</span></span><br><span class="line">    <span class="keyword">private</span> Flow.Subscription subscription;</span><br><span class="line">    <span class="comment">//订阅时会触发该问题</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Flow.Subscription subscription)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.subscription = subscription;</span><br><span class="line">        <span class="comment">//开始请求数据</span></span><br><span class="line">        subscription.request(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//接收到数据是会触发该方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(Object item)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;获取到数据&quot;</span> + item);</span><br><span class="line">        <span class="comment">//请求下一条数据</span></span><br><span class="line">        subscription.request(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//订阅出错时</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable throwable)</span> </span>&#123;</span><br><span class="line">        throwable.printStackTrace();</span><br><span class="line">        <span class="keyword">synchronized</span> (<span class="string">&quot;java&quot;</span>) &#123;</span><br><span class="line">            <span class="string">&quot;java&quot;</span>.notifyAll();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//订阅结束时触发该方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;订阅结束时&quot;</span>);</span><br><span class="line">        <span class="keyword">synchronized</span> (<span class="string">&quot;java&quot;</span>) &#123;</span><br><span class="line">            <span class="string">&quot;java&quot;</span>.notifyAll();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PubSubTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建一个SubmissionPublisher作为发布者</span></span><br><span class="line">        SubmissionPublisher&lt;String&gt; publisher = <span class="keyword">new</span> SubmissionPublisher&lt;&gt;();</span><br><span class="line">        <span class="comment">//创建订阅者</span></span><br><span class="line">        MySubscriber&lt;String&gt; subscriber = <span class="keyword">new</span> MySubscriber&lt;&gt;();</span><br><span class="line">        <span class="comment">//注册订阅者</span></span><br><span class="line">        publisher.subscribe(subscriber);</span><br><span class="line">        <span class="comment">//发布几个数据项</span></span><br><span class="line">        System.out.println(<span class="string">&quot;开发发布数据...&quot;</span>);</span><br><span class="line">        List.of(<span class="string">&quot;Java&quot;</span>, <span class="string">&quot;Go&quot;</span>, <span class="string">&quot;Erlang&quot;</span>, <span class="string">&quot;Swift&quot;</span>, <span class="string">&quot;Lua&quot;</span>)</span><br><span class="line">                .forEach(im -&gt; &#123;</span><br><span class="line">                    <span class="comment">//提交数据</span></span><br><span class="line">                    publisher.submit(im);</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        Thread.sleep(<span class="number">500</span>);</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">        <span class="comment">//发布结束</span></span><br><span class="line">        publisher.close();</span><br><span class="line">        <span class="comment">//发布结束之后，为了让线程不会死亡，暂停线程</span></span><br><span class="line">        <span class="keyword">synchronized</span> (<span class="string">&quot;java&quot;</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="string">&quot;java&quot;</span>.wait();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="三、响应式编程（Reactor实现）"><a href="#三、响应式编程（Reactor实现）" class="headerlink" title="三、响应式编程（Reactor实现）"></a>三、响应式编程（Reactor实现）</h3><h4 id="（1）规范框架"><a href="#（1）规范框架" class="headerlink" title="（1）规范框架"></a>（1）规范框架</h4><p>响应式编程操作中，<code> Reactor</code>是满足<code> Reactive</code>规范框架</p>
+<h4 id="（2）核心类"><a href="#（2）核心类" class="headerlink" title="（2）核心类"></a>（2）核心类</h4><p><code> Reactor</code>有两个核心类，<code>Mono</code>和<code> Flux</code>，这两个类实现接口<code> Publisher</code>，提供丰富操作符。<code> Flux</code>对象实现发布者，返回N个元素；<code> Mono</code>实现发布者，返回0或者一个元素</p>
+<h4 id="（3）三种信号"><a href="#（3）三种信号" class="headerlink" title="（3）三种信号"></a>（3）三种信号</h4><p><code> Flux</code>和<code> Mono</code>都是数据流的发布者，使用<code> Flux</code>和<code> Mono</code>都可以发出三中信号：<code>元素值</code>、<code> 错误信号</code>、<code> 完成信号</code>（错误信号与完成信号用于告诉订阅者数据流结束了，他俩都是终止信号，错误信号在终止数据流时会同时将错误信息传递给订阅者）</p>
+<p>以下图片说明了两者的区别（Flux返回0个或者多个元素，Mono返回一个元素）：</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/WebFlux/FluxAndMono.jpeg">
+
+<h4 id="（4）代码演示"><a href="#（4）代码演示" class="headerlink" title="（4）代码演示"></a>（4）代码演示</h4><p>接下来咱们直接在代码上来实现：</p>
+<ul>
+<li>引入依赖</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.projectreactor<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>reactor-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>代码编写</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestReactor</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//just方法直接声明</span></span><br><span class="line">        Flux.just(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>);</span><br><span class="line">        Mono.just(<span class="number">1</span>);</span><br><span class="line">        <span class="comment">//其他方法进行声明</span></span><br><span class="line">        Integer[] array = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;;</span><br><span class="line">        Flux.fromArray(array);</span><br><span class="line"></span><br><span class="line">        List&lt;Integer&gt; list = Arrays.asList(array);</span><br><span class="line">        Flux.fromIterable(list);</span><br><span class="line"></span><br><span class="line">        Stream&lt;Integer&gt; stream = list.stream();</span><br><span class="line">        Flux.fromStream(stream);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="（5）三种信号的特点"><a href="#（5）三种信号的特点" class="headerlink" title="（5）三种信号的特点"></a>（5）三种信号的特点</h4><ul>
+<li>错误信号和完成信号都是终止信号，是不能共存的</li>
+<li>如果没有发送任何元素值，而是直接发送错误信号或者完成信号，表示的是空数据流</li>
+<li>如果没有错误信号，没有完成信号，表示的是无线信号流</li>
+</ul>
+<h4 id="（6）订阅"><a href="#（6）订阅" class="headerlink" title="（6）订阅"></a>（6）订阅</h4><p>调用<code> just</code>或者其他方法只是声明数据流，数据流并没有发出，只有进行订阅之后才会触发数据流，不订阅啥都不会发生</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Flux.just(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>).subscribe(System.out::println);</span><br><span class="line">Mono.just(<span class="number">1</span>).subscribe(System.out::println);</span><br></pre></td></tr></table></figure>
+
+<h4 id="（7）操作符"><a href="#（7）操作符" class="headerlink" title="（7）操作符"></a>（7）操作符</h4><p>对数据流进行一道道操作，成为操作符，比如工厂流水线</p>
+<ul>
+<li><p>map</p>
+<p>将元素映射为新元素</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/WebFlux/map.png">
+</li>
+<li><p>flatMap</p>
+<p>将元素映射为流（将多个元素转成流，然后将多个流转成一个大流）</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/WebFlux/flatMap.png">
+
+
+
+</li>
+</ul>
+<h3 id="四、WebFlux执行流程和核心API"><a href="#四、WebFlux执行流程和核心API" class="headerlink" title="四、WebFlux执行流程和核心API"></a>四、WebFlux执行流程和核心API</h3><p>SpringWebFlux基于Reactor，默认使用的容器是Netty，Netty是高性能的NIO框架，异步非阻塞的框架</p>
+<h4 id="（1）Netty"><a href="#（1）Netty" class="headerlink" title="（1）Netty"></a>（1）Netty</h4><ul>
+<li>NIO（非阻塞）</li>
+<li>BIO（阻塞）</li>
+</ul>
+<h4 id="（2）-SpringWebFlux执行过程和SpringMVC相似的"><a href="#（2）-SpringWebFlux执行过程和SpringMVC相似的" class="headerlink" title="（2） SpringWebFlux执行过程和SpringMVC相似的"></a>（2） SpringWebFlux执行过程和SpringMVC相似的</h4><ul>
+<li><p><code> SpringWebFlux</code>核心控制器<code> DispatchHandler</code>，实现接口<code> WebHandler</code></p>
+</li>
+<li><p>接口<code> WebHandler</code>有一个方法：</p>
+<blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">WebHandler</span> </span>&#123;</span><br><span class="line">    <span class="function">Mono&lt;Void&gt; <span class="title">handle</span><span class="params">(ServerWebExchange var1)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<h4 id="（3）SpringWebFlux里面的DispatcherHandler，负责请求的处理"><a href="#（3）SpringWebFlux里面的DispatcherHandler，负责请求的处理" class="headerlink" title="（3）SpringWebFlux里面的DispatcherHandler，负责请求的处理"></a>（3）SpringWebFlux里面的DispatcherHandler，负责请求的处理</h4><ul>
+<li>HandlerMapping：请求查询到处理的方法</li>
+<li>HandlerAdapter：真正负责请求处理</li>
+<li>HandlerResultHandler：响应结果处理</li>
+</ul>
+<h4 id="（4）SpringWebFlux函数式编程"><a href="#（4）SpringWebFlux函数式编程" class="headerlink" title="（4）SpringWebFlux函数式编程"></a>（4）SpringWebFlux函数式编程</h4><p><code> SpringWebFlux</code>实现函数式编程，有两个接口：<code> RouterFunction（路由处理）</code>和<code> HandlerFunction（处理函数）</code></p>
+<h3 id="五、SpringWebFLux（基于注解编程模型）"><a href="#五、SpringWebFLux（基于注解编程模型）" class="headerlink" title="五、SpringWebFLux（基于注解编程模型）"></a>五、SpringWebFLux（基于注解编程模型）</h3><p><code> SpringWebFlux</code>实现方式有两种：<code> 注解编程模型</code>和<code> 函数式编程模型</code></p>
+<p>使用注解编程模型方式，和之前的<code> SpringMVC</code>使用相似，只需要将相关依赖配置到项目中，<code> SpringBoot</code>自动配置相关运行容器，默认情况下使用Netty服务器</p>
+<h4 id="（1）创建SpringBoot工程，引入-WebFlux依赖"><a href="#（1）创建SpringBoot工程，引入-WebFlux依赖" class="headerlink" title="（1）创建SpringBoot工程，引入 WebFlux依赖"></a>（1）创建SpringBoot工程，引入<code> WebFlux</code>依赖</h4><p> 依赖如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-webflux<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="（2）配置启动端口号"><a href="#（2）配置启动端口号" class="headerlink" title="（2）配置启动端口号"></a>（2）配置启动端口号</h5><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">server.port</span>=<span class="string">8081</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="（3）创建包和相关类"><a href="#（3）创建包和相关类" class="headerlink" title="（3）创建包和相关类"></a>（3）创建包和相关类</h4><ul>
+<li><p>实体类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String gender;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接口定义操作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line">    <span class="comment">//根据ID查询用户</span></span><br><span class="line">    <span class="function">Mono&lt;User&gt; <span class="title">getUserById</span><span class="params">(<span class="keyword">int</span> id)</span></span>;</span><br><span class="line">    <span class="comment">//查询所有用户</span></span><br><span class="line">    <span class="function">Flux&lt;User&gt; <span class="title">getAllUser</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//添加用户</span></span><br><span class="line">    <span class="function">Mono&lt;Void&gt; <span class="title">saveUserInfo</span><span class="params">(Mono&lt;User&gt; user)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>接口的实现类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServiceImpl</span> <span class="keyword">implements</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line">    <span class="comment">//创建map集合存储数据</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Map&lt;Integer,User&gt; users = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//无参构造</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">UserServiceImpl</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.users.put(<span class="number">1</span>,<span class="keyword">new</span> User(<span class="string">&quot;lucy&quot;</span>,<span class="string">&quot;nan&quot;</span>,<span class="number">20</span>));</span><br><span class="line">        <span class="keyword">this</span>.users.put(<span class="number">2</span>,<span class="keyword">new</span> User(<span class="string">&quot;mary&quot;</span>,<span class="string">&quot;nv&quot;</span>,<span class="number">30</span>));</span><br><span class="line">        <span class="keyword">this</span>.users.put(<span class="number">3</span>,<span class="keyword">new</span> User(<span class="string">&quot;jack&quot;</span>,<span class="string">&quot;nv&quot;</span>,<span class="number">50</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//根据id查询</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Mono&lt;User&gt; <span class="title">getUserById</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Mono.justOrEmpty(<span class="keyword">this</span>.users.get(id));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//查询多个用户</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Flux&lt;User&gt; <span class="title">getAllUser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Flux.fromIterable(<span class="keyword">this</span>.users.values());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//添加用户</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Mono&lt;Void&gt; <span class="title">saveUserInfo</span><span class="params">(Mono&lt;User&gt; userMono)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userMono.doOnNext(person -&gt; &#123;</span><br><span class="line">            <span class="comment">//向map集合里面放值</span></span><br><span class="line">            <span class="keyword">int</span> id = users.size()+<span class="number">1</span>;</span><br><span class="line">            users.put(id,person);</span><br><span class="line">        &#125;).thenEmpty(Mono.empty());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写Controller层</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//注入service</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//id查询</span></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/user/&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Mono&lt;User&gt; <span class="title">geetUserId</span><span class="params">(<span class="meta">@PathVariable</span> <span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userService.getUserById(id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//查询所有</span></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/user&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Flux&lt;User&gt; <span class="title">getUsers</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userService.getAllUser();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//添加</span></span><br><span class="line">    <span class="meta">@PostMapping(&quot;/saveuser&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Mono&lt;Void&gt; <span class="title">saveUser</span><span class="params">(<span class="meta">@RequestBody</span> User user)</span> </span>&#123;</span><br><span class="line">        Mono&lt;User&gt; userMono = Mono.just(user);</span><br><span class="line">        <span class="keyword">return</span> userService.saveUserInfo(userMono);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>说明：</p>
+<ul>
+<li><code> SpringMVC</code>方式，同步阻塞的方式，基于<code> SpringMVC + Servlet + Tomcat</code></li>
+<li><code> SpringWebFlux</code>方式，异步非阻塞的方式，基于<code> SpringWebFlux + Reactor + Netty</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="六、SpringWebFLux（基于函数式编程模型）"><a href="#六、SpringWebFLux（基于函数式编程模型）" class="headerlink" title="六、SpringWebFLux（基于函数式编程模型）"></a>六、SpringWebFLux（基于函数式编程模型）</h3><ul>
+<li><p>在使用函数式编程模型操作的时候，需要自己初始化服务器</p>
+</li>
+<li><p>基于函数式编程模型的时候，有两个核心接口：</p>
+<p><code> RouterFunction（实现路由的功能）</code>和<code> HandlerFunction（处理请求生成响应的函数）</code></p>
+<p>核心任务：定义两个函数式接口的实现并且启动需要的服务器</p>
+</li>
+<li><p><code> SpringWebFlux</code>请求和响应不再是<code> ServletRequest</code>和<code> ServletResponse</code></p>
+</li>
+</ul>
+<h4 id="（1）创建Handler（具体实现方法）"><a href="#（1）创建Handler（具体实现方法）" class="headerlink" title="（1）创建Handler（具体实现方法）"></a>（1）创建Handler（具体实现方法）</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserHandler</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> UserService userService;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">UserHandler</span><span class="params">(UserService userService)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userService = userService;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//根据ID查询</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Mono&lt;ServerResponse&gt; <span class="title">getUserById</span><span class="params">(ServerRequest request)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//获取id值</span></span><br><span class="line">        <span class="keyword">int</span> userId = Integer.parseInt(request.pathVariable(<span class="string">&quot;id&quot;</span>));</span><br><span class="line">        <span class="comment">//空值处理</span></span><br><span class="line">        Mono&lt;ServerResponse&gt; notFound = ServerResponse.notFound().build();</span><br><span class="line">        <span class="comment">//调用Service方法得到数据</span></span><br><span class="line">        Mono&lt;User&gt; userMono = <span class="keyword">this</span>.userService.getUserById(userId);</span><br><span class="line">        <span class="comment">//将userMono进行转换返回，使用Reactor的操作符flatMap</span></span><br><span class="line">        <span class="keyword">return</span> userMono.flatMap(person -&gt; ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)</span><br><span class="line">                .body(fromObject(person))</span><br><span class="line">        ).switchIfEmpty(notFound);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//查询所有</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Mono&lt;ServerResponse&gt; <span class="title">getAllUsers</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//调用Service得到结果</span></span><br><span class="line">        Flux&lt;User&gt; users = <span class="keyword">this</span>.userService.getAllUser();</span><br><span class="line">        <span class="keyword">return</span> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(users, User.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//添加</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Mono&lt;ServerResponse&gt; <span class="title">saveUser</span><span class="params">(ServerRequest request)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//得到User对象</span></span><br><span class="line">        Mono&lt;User&gt; userMono = request.bodyToMono(User.class);</span><br><span class="line">        <span class="keyword">return</span> ServerResponse.ok().build(<span class="keyword">this</span>.userService.saveUserInfo(userMono));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="（2）初始化服务器，编写Router"><a href="#（2）初始化服务器，编写Router" class="headerlink" title="（2）初始化服务器，编写Router"></a>（2）初始化服务器，编写Router</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Server</span> </span>&#123;</span><br><span class="line">    <span class="comment">//1、创建路由</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RouterFunction&lt;ServerResponse&gt; <span class="title">routingFunction</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建Handler对象 </span></span><br><span class="line">        UserService userService = <span class="keyword">new</span> UserServiceImpl();</span><br><span class="line">        UserHandler handler = <span class="keyword">new</span> UserHandler(userService);</span><br><span class="line">        <span class="comment">//设置路由</span></span><br><span class="line">        <span class="keyword">return</span> RouterFunctions.route(</span><br><span class="line">                GET(<span class="string">&quot;/users/&#123;id&#125;&quot;</span>).and(accept(MediaType.APPLICATION_JSON)), handler::getUserById</span><br><span class="line">        ).andRoute(</span><br><span class="line">                GET(<span class="string">&quot;/users&quot;</span>).and(accept(MediaType.APPLICATION_JSON)), handler::getAllUsers</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="（3）创建服务器完成适配"><a href="#（3）创建服务器完成适配" class="headerlink" title="（3）创建服务器完成适配"></a>（3）创建服务器完成适配</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Server</span> </span>&#123;</span><br><span class="line">    <span class="comment">//1、创建路由</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RouterFunction&lt;ServerResponse&gt; <span class="title">routingFunction</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建Handler对象</span></span><br><span class="line">        UserService userService = <span class="keyword">new</span> UserServiceImpl();</span><br><span class="line">        UserHandler handler = <span class="keyword">new</span> UserHandler(userService);</span><br><span class="line">        <span class="comment">//设置路由</span></span><br><span class="line">        <span class="keyword">return</span> RouterFunctions.route(</span><br><span class="line">                GET(<span class="string">&quot;/users/&#123;id&#125;&quot;</span>).and(accept(MediaType.APPLICATION_JSON)), handler::getUserById</span><br><span class="line">        ).andRoute(</span><br><span class="line">                GET(<span class="string">&quot;/users&quot;</span>).and(accept(MediaType.APPLICATION_JSON)), handler::getAllUsers</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//2、创建服务器，完成适配</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">createReactorServer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//路由和handler适配</span></span><br><span class="line">        RouterFunction&lt;ServerResponse&gt; route = routingFunction();</span><br><span class="line">        HttpHandler httpHandler = toHttpHandler(route);</span><br><span class="line">        ReactorHttpHandlerAdapter adapter = <span class="keyword">new</span> ReactorHttpHandlerAdapter(httpHandler);</span><br><span class="line">        <span class="comment">//创建服务器</span></span><br><span class="line">        HttpServer httpServer = HttpServer.create();</span><br><span class="line">        httpServer.handle(adapter).bindNow();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="（4）最终调用"><a href="#（4）最终调用" class="headerlink" title="（4）最终调用"></a>（4）最终调用</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">  Server server = <span class="keyword">new</span> Server();</span><br><span class="line">  server.createReactorServer();</span><br><span class="line">  System.out.println(<span class="string">&quot;enter to exit&quot;</span>);</span><br><span class="line">  System.in.read();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="（5）使用WebClient调用"><a href="#（5）使用WebClient调用" class="headerlink" title="（5）使用WebClient调用"></a>（5）使用WebClient调用</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//调用服务器地址</span></span><br><span class="line">        WebClient webClient = WebClient.create(<span class="string">&quot;http://127.0.0.1:56264&quot;</span>);</span><br><span class="line">        <span class="comment">//根据id查询</span></span><br><span class="line">        String id = <span class="string">&quot;1&quot;</span>;</span><br><span class="line">        User user = webClient.get().uri(<span class="string">&quot;/users/&#123;id&#125;&quot;</span>, id).accept(MediaType.APPLICATION_JSON).</span><br><span class="line">                retrieve().bodyToMono(User.class).block();</span><br><span class="line">        System.out.println(user.getName());</span><br><span class="line">        <span class="comment">//查询所有</span></span><br><span class="line">        Flux&lt;User&gt; results = webClient.get().uri(<span class="string">&quot;/users&quot;</span>).accept(MediaType.APPLICATION_JSON).</span><br><span class="line">                retrieve().bodyToFlux(User.class);</span><br><span class="line">        results.map(stu -&gt; stu.getName()).buffer().doOnNext(System.out::println).blockFirst();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/04/English/2021-07-04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/04/English/2021-07-04/" class="post-title-link" itemprop="url">阅读笔记2021-07-04</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-04 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-04T00:00:00+00:00">2021-07-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-18 09:07:29" itemprop="dateModified" datetime="2022-03-18T09:07:29+00:00">2022-03-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/English/" itemprop="url" rel="index"><span itemprop="name">English</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="一、Vocabulary"><a href="#一、Vocabulary" class="headerlink" title="一、Vocabulary"></a>一、Vocabulary</h2><h3 id="1、cling"><a href="#1、cling" class="headerlink" title="1、cling"></a>1、cling</h3><p>v.紧紧抓住</p>
+<h3 id="2、vacuous"><a href="#2、vacuous" class="headerlink" title="2、vacuous"></a>2、vacuous</h3><h3 id="3、millennial"><a href="#3、millennial" class="headerlink" title="3、millennial"></a>3、millennial</h3><h2 id="二、Phrase"><a href="#二、Phrase" class="headerlink" title="二、Phrase"></a>二、Phrase</h2><h3 id="1、"><a href="#1、" class="headerlink" title="1、"></a>1、</h3><h3 id="2、"><a href="#2、" class="headerlink" title="2、"></a>2、</h3><h2 id="三、SpecificNoun"><a href="#三、SpecificNoun" class="headerlink" title="三、SpecificNoun"></a>三、SpecificNoun</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/03/English/2021-07-03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/03/English/2021-07-03/" class="post-title-link" itemprop="url">阅读笔记2021-07-03</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-03 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-03T00:00:00+00:00">2021-07-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-18 09:07:29" itemprop="dateModified" datetime="2022-03-18T09:07:29+00:00">2022-03-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/English/" itemprop="url" rel="index"><span itemprop="name">English</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="一、Vocabulary"><a href="#一、Vocabulary" class="headerlink" title="一、Vocabulary"></a>一、Vocabulary</h2><h3 id="1、furor"><a href="#1、furor" class="headerlink" title="1、furor"></a>1、furor</h3><p>n.轰动，群情激愤，公愤</p>
+<h3 id="2、unambiguous"><a href="#2、unambiguous" class="headerlink" title="2、unambiguous"></a>2、unambiguous</h3><p>adj.不含糊的（去掉un则表示含糊的）</p>
+<h3 id="3、ripple"><a href="#3、ripple" class="headerlink" title="3、ripple"></a>3、ripple</h3><p>n.微小的影响，微弱的反响；涟漪</p>
+<h2 id="二、Phrase"><a href="#二、Phrase" class="headerlink" title="二、Phrase"></a>二、Phrase</h2><h3 id="1、string-together"><a href="#1、string-together" class="headerlink" title="1、string together"></a>1、string together</h3><p>把···连接起来</p>
+<h3 id="2、top-it-all-off"><a href="#2、top-it-all-off" class="headerlink" title="2、top it (all) off"></a>2、top it (all) off</h3><p>（以某种方式）结束，完结</p>
+<h2 id="三、SpecificNoun"><a href="#三、SpecificNoun" class="headerlink" title="三、SpecificNoun"></a>三、SpecificNoun</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/29/Mysql/%E6%A6%82%E8%AE%BA-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E7%90%86%E8%AE%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/29/Mysql/%E6%A6%82%E8%AE%BA-%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E7%90%86%E8%AE%BA/" class="post-title-link" itemprop="url">数据库概论复习-关系数据理论</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-29 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-29T00:00:00+00:00">2021-06-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-18 09:07:29" itemprop="dateModified" datetime="2022-03-18T09:07:29+00:00">2022-03-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mysql/" itemprop="url" rel="index"><span itemprop="name">mysql</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="一、问题的提出"><a href="#一、问题的提出" class="headerlink" title="一、问题的提出"></a>一、问题的提出</h3><h3 id="二、规范化"><a href="#二、规范化" class="headerlink" title="二、规范化"></a>二、规范化</h3><h4 id="1、函数依赖"><a href="#1、函数依赖" class="headerlink" title="1、函数依赖"></a>1、函数依赖</h4><h4 id="2、码"><a href="#2、码" class="headerlink" title="2、码"></a>2、码</h4><h4 id="3、范式"><a href="#3、范式" class="headerlink" title="3、范式"></a>3、范式</h4><h4 id="4、2NF"><a href="#4、2NF" class="headerlink" title="4、2NF"></a>4、2NF</h4><h4 id="5、3NF"><a href="#5、3NF" class="headerlink" title="5、3NF"></a>5、3NF</h4><h4 id="6、BCNF"><a href="#6、BCNF" class="headerlink" title="6、BCNF"></a>6、BCNF</h4><h4 id="7、多值依赖"><a href="#7、多值依赖" class="headerlink" title="7、多值依赖"></a>7、多值依赖</h4><h4 id="8、4NF"><a href="#8、4NF" class="headerlink" title="8、4NF"></a>8、4NF</h4><h4 id="9、规范化小结"><a href="#9、规范化小结" class="headerlink" title="9、规范化小结"></a>9、规范化小结</h4><h3 id="三、数据依赖的公理系统"><a href="#三、数据依赖的公理系统" class="headerlink" title="三、数据依赖的公理系统"></a>三、数据依赖的公理系统</h3><h3 id="四、模式的分解"><a href="#四、模式的分解" class="headerlink" title="四、模式的分解"></a>四、模式的分解</h3><h4 id="1、模式分解三个定义"><a href="#1、模式分解三个定义" class="headerlink" title="1、模式分解三个定义"></a>1、模式分解三个定义</h4><h4 id="2、分解的无损性连接和保持函数依赖性"><a href="#2、分解的无损性连接和保持函数依赖性" class="headerlink" title="2、分解的无损性连接和保持函数依赖性"></a>2、分解的无损性连接和保持函数依赖性</h4><h4 id="3、模式分解的算法"><a href="#3、模式分解的算法" class="headerlink" title="3、模式分解的算法"></a>3、模式分解的算法</h4><h3 id="五、小结"><a href="#五、小结" class="headerlink" title="五、小结"></a>五、小结</h3>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/06/27/Java/Java_%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/06/27/Java/Java_%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" class="post-title-link" itemprop="url">Java异常处理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-06-27 00:00:00" itemprop="dateCreated datePublished" datetime="2021-06-27T00:00:00+00:00">2021-06-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-18 09:07:29" itemprop="dateModified" datetime="2022-03-18T09:07:29+00:00">2022-03-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="一、异常概述"><a href="#一、异常概述" class="headerlink" title="一、异常概述"></a>一、异常概述</h3><h3 id="二、异常处理机制"><a href="#二、异常处理机制" class="headerlink" title="二、异常处理机制"></a>二、异常处理机制</h3><h4 id="1、使用-try-catch捕获异常"><a href="#1、使用-try-catch捕获异常" class="headerlink" title="1、使用 try...catch捕获异常"></a>1、使用<code> try...catch</code>捕获异常</h4><h4 id="2、异常类的继承体系"><a href="#2、异常类的继承体系" class="headerlink" title="2、异常类的继承体系"></a>2、异常类的继承体系</h4><h4 id="3、多异常捕获"><a href="#3、多异常捕获" class="headerlink" title="3、多异常捕获"></a>3、多异常捕获</h4><h4 id="4、访问异常信息"><a href="#4、访问异常信息" class="headerlink" title="4、访问异常信息"></a>4、访问异常信息</h4><h4 id="5、使用finally回收资源"><a href="#5、使用finally回收资源" class="headerlink" title="5、使用finally回收资源"></a>5、使用finally回收资源</h4><h4 id="6、异常处理的嵌套"><a href="#6、异常处理的嵌套" class="headerlink" title="6、异常处理的嵌套"></a>6、异常处理的嵌套</h4><h4 id="7、Java9增强的自动关闭资源的try语句"><a href="#7、Java9增强的自动关闭资源的try语句" class="headerlink" title="7、Java9增强的自动关闭资源的try语句"></a>7、Java9增强的自动关闭资源的try语句</h4><h3 id="三、Checked异常与Runtime异常体系"><a href="#三、Checked异常与Runtime异常体系" class="headerlink" title="三、Checked异常与Runtime异常体系"></a>三、Checked异常与Runtime异常体系</h3><h4 id="1、使用throws声明抛出异常"><a href="#1、使用throws声明抛出异常" class="headerlink" title="1、使用throws声明抛出异常"></a>1、使用throws声明抛出异常</h4><h4 id="2、方法重写时声明抛出异常的限制"><a href="#2、方法重写时声明抛出异常的限制" class="headerlink" title="2、方法重写时声明抛出异常的限制"></a>2、方法重写时声明抛出异常的限制</h4><h3 id="四、使用throw抛出异常"><a href="#四、使用throw抛出异常" class="headerlink" title="四、使用throw抛出异常"></a>四、使用throw抛出异常</h3><h4 id="1、抛出异常"><a href="#1、抛出异常" class="headerlink" title="1、抛出异常"></a>1、抛出异常</h4><h4 id="2、自定义异常类"><a href="#2、自定义异常类" class="headerlink" title="2、自定义异常类"></a>2、自定义异常类</h4><h4 id="3、catch和throw同时使用"><a href="#3、catch和throw同时使用" class="headerlink" title="3、catch和throw同时使用"></a>3、catch和throw同时使用</h4><h4 id="4、使用throw语句抛出异常"><a href="#4、使用throw语句抛出异常" class="headerlink" title="4、使用throw语句抛出异常"></a>4、使用throw语句抛出异常</h4><h4 id="5、异常链"><a href="#5、异常链" class="headerlink" title="5、异常链"></a>5、异常链</h4><h3 id="五、Java的异常跟踪栈"><a href="#五、Java的异常跟踪栈" class="headerlink" title="五、Java的异常跟踪栈"></a>五、Java的异常跟踪栈</h3><h3 id="六、异常处理规则"><a href="#六、异常处理规则" class="headerlink" title="六、异常处理规则"></a>六、异常处理规则</h3><h4 id="1、不要过度使用异常"><a href="#1、不要过度使用异常" class="headerlink" title="1、不要过度使用异常"></a>1、不要过度使用异常</h4><h4 id="2、不要使用过于庞大的try块"><a href="#2、不要使用过于庞大的try块" class="headerlink" title="2、不要使用过于庞大的try块"></a>2、不要使用过于庞大的try块</h4><h4 id="3、避免使用-Catch-All语句"><a href="#3、避免使用-Catch-All语句" class="headerlink" title="3、避免使用 Catch All语句"></a>3、避免使用<code> Catch All</code>语句</h4><h4 id="4、不要忽略捕获到的异常"><a href="#4、不要忽略捕获到的异常" class="headerlink" title="4、不要忽略捕获到的异常"></a>4、不要忽略捕获到的异常</h4><h3 id="七、本章小结"><a href="#七、本章小结" class="headerlink" title="七、本章小结"></a>七、本章小结</h3>
       
     </div>
 
@@ -1126,7 +1199,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1194,19 +1267,19 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-count">97</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">48</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
