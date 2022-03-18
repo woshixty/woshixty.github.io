@@ -1,4 +1,9 @@
-
+---
+title: JVM-操作数栈的字节码指令执行分析
+date: 2021-01-01
+tags: [JVM]
+categories: Java
+---
 
 追踪的代码如下：
 

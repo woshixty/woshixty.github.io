@@ -1,7 +1,7 @@
 ---
 title: Java多线程编程
 date: 2021-05-20
-tags: [java]
+tags: [多线程]
 categories: Java
 ---
 

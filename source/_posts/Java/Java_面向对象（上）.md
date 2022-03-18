@@ -1,5 +1,8 @@
 ---
-
+title: Java面向对象
+date: 2021-05-30
+tags: [对象]
+categories: Java
 ---
 
 ### 一、类和对象

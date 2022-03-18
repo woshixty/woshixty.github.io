@@ -1,3 +1,10 @@
+---
+title: Java并发编程艺术
+date: 2022-03-10
+tags: [多线程]
+categories: Java
+---
+
 # 一、并发编程的艺术挑战
 
 ## 1、上下文切换
@@ -120,3 +127,188 @@ public class Daemon {
 ## 4、线程应用实例
 
 ## 5、本章小结
+
+
+
+# 五、Java中的锁
+
+Java并发包中的与锁相关的API和组件
+
+## 1、Lock接口
+
+锁是用来控制多个线程访问共享资源的方式，Lock接口出现之前，Java是靠`synchronized`关键字来实现锁功能的
+
+与`synchrnized`相比：
+
+- 需要自己显式的获取与释放锁，缺少了隐式获取释放锁的便捷性
+- 拥有了锁获取与释放的可操作性、可中断的获取锁以及超时获取锁等同步特性
+
+Lock是一个接口，它定义了锁获取和释放的基本操作
+
+| `void`      | `lock()`获得锁。                                             |
+| ----------- | ------------------------------------------------------------ |
+| `void`      | `lockInterruptibly()`获取锁定，除非当前线程是 [interrupted](https://www.matools.com/file/manual/jdk_api_1.8_google/java/lang/Thread.html#interrupt--) 。 |
+| `Condition` | `newCondition()`返回一个新[`Condition`](https://www.matools.com/file/manual/jdk_api_1.8_google/java/util/concurrent/locks/Condition.html)绑定到该实例`Lock`实例。 |
+| `boolean`   | `tryLock()`只有在调用时才可以获得锁。                        |
+| `boolean`   | `tryLock(long time, TimeUnit unit)`如果在给定的等待时间内是空闲的，并且当前的线程尚未得到 [interrupted，](https://www.matools.com/file/manual/jdk_api_1.8_google/java/lang/Thread.html#interrupt--)则获取该锁。 |
+| `void`      | `unlock()`释放锁。                                           |
+
+## 2、队列同步器
+
+队列同步器（AbstractQueuedSynchornizer），是用来构建锁或者其他同步组件的基础框架
+
+锁和同步器之间的关系：
+
+- 锁是面向使用者的，它定义了使用者与锁交互的接口，隐藏了实现细节
+- 同步器是面向锁的开发者的，简化了锁的实现方式，屏蔽了同步状态管理、线程排队、等待与唤醒灯底层操作
+
+锁和同步器很好的隔离了使用者和实现者所需要关注的领域
+
+同步器提供的模板方法基本分为以下三类：
+
+- 独占式获取与释放同步状态
+- 共享式获取与释放同步状态
+- 查询同步队列中的等待线程情况
+
+队列同步器的实现分析
+
+## 3、重入锁
+
+重入锁（ReentrantLock），顾名思义，就是支持重进入的锁，表示该锁支持一个线程对资源的重复加锁
+
+### （1）实现重进入
+
+- 线程再次获得锁
+- 锁的最终释放
+
+### （2）公平与非公平获取锁的区别
+
+如果一个锁是公平的，那么获取锁的顺序就应该符合请求的绝对时间排序，也就是`FIFO`
+
+非公平性锁虽然可能造成线程“饥饿”，但是极少的线程切换，保证了更大的吞吐量
+
+## 4、读写锁
+
+之前提到的锁基本都是“排他锁”，这些锁同一时刻只能允许一个线程进行访问，而读写锁在同一时刻可以允许多个线程同时访问，但是在写线程访问的时候，其他的读线程和写线程均被阻塞
+
+### （1）读写锁的接口与示例
+
+`ReadWriteLock`仅定义了获取读锁和写锁的两个方法：`readLock()`和`writeLock()`
+
+下面通过代码来说明读写锁的使用
+
+```java
+public class Cache {
+    private static final Map<String, Object>    map = new HashMap<>();
+    private static final ReentrantReadWriteLock rwl = new ReentrantReadWriteLock();
+    private static final Lock                   r   = rwl.readLock();
+    private static final Lock                   w   = rwl.writeLock();
+  
+    // 获取key对应的value
+    public static final Object get(String key) {
+        r.lock();
+        try {
+            return map.get(key);
+        } finally {
+            r.unlock();
+        }
+    }
+  
+    // 设置key对应的value，并返回旧的value
+    public static final Object put(String key, Object value) {
+        w.lock();
+        try {
+            return map.put(key, value);
+        } finally {
+            w.unlock();
+        }
+    }
+  
+    // 清空所有内容
+    public static final void clear() {
+        w.lock();
+        try {
+            map.clear();
+        } finally {
+            w.unlock();
+        }
+    }
+}
+```
+
+### （2）读写锁的实现分析
+
+接下来分析`ReentrantReadWriteLock`的实现，包括：
+
+- 读写状态的设计
+- 写锁的获取与释放
+- 读锁的获取与释放
+- 锁降级
+
+## 5、LockSupport工具
+
+当需要阻塞或唤醒一个线程的时候，都会使用`LockSupport`工具类来完成相应工作
+
+## 6、Condition接口
+
+任意一个Java对象，都有一组监视器方法（定义在java.lang.Object上），主要包括：
+
+- `wait()`
+- `wait(long timeout)`
+- `notify()`
+- `notifyAll()`
+
+这些方法与`synchornized`同步关键字配合，实现了等待/通知模式，Condition接口也提供了类似于Object的监视器方法
+
+### （1）代码示例
+
+```java
+public class ConditionUseCase {
+    Lock      lock      = new ReentrantLock();
+    Condition condition = lock.newCondition();
+
+    public void conditionWait() throws InterruptedException {
+        lock.lock();
+        try {
+          	// 释放锁并在此等待
+            condition.await();
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    public void conditionSignal() throws InterruptedException {
+        lock.lock();
+        try {
+            condition.signal();
+        } finally {
+            lock.unlock();
+        }
+    }
+}
+```
+
+获取一个`Condition`必须通过`Lock`的`newCondition()`方法
+
+### （2）Condition的实现分析
+
+`ConditionObject`是`AbstractQueuedSynchronizer`的内部类，下面将分析`Condition`的实现，主要包括：等待队列、等待和通知
+
+- 等待队列
+- 等待
+- 通知
+
+## 7、本章小结
+
+本章介绍了Java并发包中与锁相关的API和组件，并剖析了队列同步器、重入锁、读写锁以及Condition等API的实现细节
+
+
+
+# 六、Java并发容器和框架
+
+
+
+# 一些小概念
+
+## 1、什么是线程的中断
+

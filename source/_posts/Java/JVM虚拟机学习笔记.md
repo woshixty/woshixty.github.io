@@ -1,3 +1,10 @@
+---
+title: JVM虚拟机学习笔记
+date: 2021-01-07
+tags: [JVM]
+categories: Java
+---
+
 https://www.yuque.com/u21195183/jvm/ar6bqp#60990303
 
 ## Java虚拟机

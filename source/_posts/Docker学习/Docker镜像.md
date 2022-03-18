@@ -1,3 +1,10 @@
+---
+title: Docker镜像
+date: 2022-01-06
+tags: [镜像]
+categories: Docker
+---
+
 ### 镜像与容器的关系
 
 镜像可以理解为一种构建时（build-in）结构，容器可以理解为一种运行时（run-time）结构

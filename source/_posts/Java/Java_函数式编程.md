@@ -1,7 +1,7 @@
 ---
 title: Java函数式编程
 date: 2020-12-13
-tags: [java]
+tags: [函数时编程]
 categories: Java
 ---
 

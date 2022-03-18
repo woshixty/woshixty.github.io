@@ -1,7 +1,7 @@
 ---
 title: Java集合
 date: 2021-05-25
-tags: [java]
+tags: [集合]
 categories: Java
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Java基础类库
 date: 2021-05-28
-tags: [java]
+tags: [基础类库]
 categories: Java
 ---
 

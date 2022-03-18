@@ -1,5 +1,8 @@
 ---
-
+title: Java面向对象
+date: 2021-06-04
+tags: [对象]
+categories: Java
 ---
 
 ### 一、包装类

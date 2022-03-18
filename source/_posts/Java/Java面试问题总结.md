@@ -1,3 +1,10 @@
+---
+title: Java面试题总结
+date: 2021-01-19
+tags: [Java面试]
+categories: Java
+---
+
 ### 1、高并发中的集合有哪些问题
 
 - 第一代线程安全集合类
