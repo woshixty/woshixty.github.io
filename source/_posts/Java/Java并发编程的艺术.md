@@ -13,8 +13,6 @@ categories: Java
 
 ## 3、资源限制的挑战
 
-
-
 # 二、Java并发机制的底层实现原理
 
 Java所实现的并发机制依赖于JVM的实现与CPU指令
@@ -306,9 +304,242 @@ public class ConditionUseCase {
 
 # 六、Java并发容器和框架
 
+## 1、ConcurrentHashMap的实现原理与使用
+
+### （1）为什么使用ConcurrentHashMap？
+
+- 线程不安全的HashMap
+
+- 效率低下的HashTable
+
+  所有访问HashTable的线程都必须竞争同一把锁
+
+- ConcurrentHashMap的锁分段技术可以有效提升并发访问率
+
+### （2）ConcurrentHashMap的结构
+
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Java/ConcurrentHashMap.jpeg">
+
+通过上图可知，ConcurrentHashMap由Segment数组和HashEntry数组结构组成。Segment是一种可重入锁（ReentrantLock），扮演锁的角色，HashEntry用于存储键值对数据。
+
+一个ConcurrentHashMap包含一个Segment数组，Segment结构与HashMap类似，是一种链表数组结构
+
+一个Segment包含一个HashEntry数组，每个HashEntry是一个链表结构的元素，每个Segment守护着一个HashEntry数组里面的元素
+
+当对HashEntry里面的数据进行修改的时候，必须先获得与它对应的Segment锁
+
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Java/ConcurrentHashMap%E7%BB%93%E6%9E%84%E5%9B%BE.jpeg">
+
+### （3）ConcurrentHashMap的初始化
+
+通过`initialCapacity`、`loadFactory`和`concurrencyLevel`等几个参数来初始化Segment数组
+
+通过`segmentShift（段偏移量）`、`segmentMask（段掩码）`、`每个Segment里面的HashEntry数`来实现的
+
+### （4）定位Segment
+
+两次散列计算，放置Hash冲突
+
+### （5）ConcurrentHashMap的操作
+
+- get
+
+  使用volatile保证不会读到过期值
+
+- put
+
+  定位Segment，判断是否需要扩容，定位添加元素位置将其放入HashEntry中去
+
+- size
+
+## 2、ConcurrentLinkedQueue
+
+实现一个线程安全的队列有两种方式：阻塞算法和非阻塞算法
+
+ConcurrentLinkedQueue是一个基于链接节点的无界线程安全队列，采用了“wait-free”算法（CAS算法）来实现
+
+### （1）ConcurrentLinkedQueue的结构
+
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Java/ConcurrentLinkedQueue%E7%B1%BB%E5%9B%BE.jpeg">
 
 
-# 一些小概念
+
+# 七、Java中的13个原子操作类
+
+多线程同时更新一个变量的时候，可能得到意料之外的值，例如：`i++`
+
+## 1、原子更新基本类型类
+
+- AtomicBoolean
+- AtomicInteger
+- AtomicLong
+
+## 2、原子更新数组
+
+- AtomicIntegerArray
+- AtomicLongArray
+- AtomicReferenceArray
+
+## 3、原子更新引用类型类
+
+- AtomicReference
+- AtomicReferenceFieldIdUpdater
+- AtomicMarkableReference
+
+## 4、原子更新字段类
+
+- AtomicIntegerFieldIdUpdater
+- AtomicLongFieldIdUpdater
+- AtomicStampedReference
+
+## 5、本章小结
+
+在适当的场景下使用这些类
+
+# 八、Java中的并发工具类
+
+CountDownLatch、CyclicBarrier和Semaphore工具类提供了一种并发流程控制手段，Exchanger提供了一种在线程间交换数据的一种手段
+
+## 1、等待多线程完成的CountDownLatch
+
+它允许一个或多个线程等待其他线程完成操作
+
+## 2、同步屏障CyclicBarrier
+
+### （1）CyclicBarrier简介
+
+### （2）CyclicBarrier的应用场景
+
+### （3）CyclicBarrier和CountDownLatch的区别
+
+## 3、控制并发线程数的Semaphore
+
+## 4、线程间交换数据的Echanger
+
+## 5、本章小结
+
+# 九、Java中的线程池
+
+几乎所有需要异步或者并发执行任务的程序都可以使用线程池，合理地使用线程池有三个好处：
+
+- 降低资源的消耗
+- 提高响应的速度
+- 提高线程的可管理性
+
+## 1、线程池的实现原理
+
+线程池处理流程如下：
+
+a、判断核心线程池里面的线程是否都在执行任务
+
+b、判断工作队列是否已满
+
+c、判断线程池里面的线程是否都处于工作状态
+
+## 2、线程池的使用
+
+### （1）线程池的创建
+
+### （2）向线程池提交任务
+
+### （3）关闭线程池
+
+### （4）合理地配置线程池
+
+- 任务的性质
+
+  CPU密集型任务、IO密集型任务和混合型任务
+
+- 任务的优先级
+
+  高、中和低
+
+- 任务的执行时间
+
+  长、中和短
+
+- 任务的依赖性
+
+  是否依赖其他系统的资源，如数据库连接等
+
+### （5）线程池的监控
+
+## 3、本章小结
+
+本章介绍了为什么使用线程池、如何使用线程池和线程池的使用原理。
+
+# 十、Executor框架
+
+在Java中，使用线程来异步执行任务。但是线程的创建与销毁都会消耗大量的系统资源。Java的线程既是工作单元，也是执行机制，JDK5开始，将工作单元与执行机制分离开来了。工作单元包括Runnable和Callable，而执行机制由Executor框架提供。
+
+## 1、Executor框架简介
+
+### （1）Executor框架的两级调度
+
+应用程序通过Executor框架控制上层的调度，而下层的调度由系统内核控制
+
+### （2）Executor框架的结构与成员
+
+Executor的结构和Executor框架包含的成员组件
+
+## 2、ThreadPoolExecutor详解
+
+Executor框架的核心类是ThreadPoolExecutor，他是线程池的实现类
+
+### （1）FixedThreadPool详解
+
+可重用固定线程数的线程池
+
+### （2）SingleThreadExecutor详解
+
+使用单个worker线程的线程池
+
+### （3）CachedThreadPool详解
+
+根据需要创建新线程的线程池
+
+## 3、ScheduleThreadPoolExecutor详解
+
+他继承自ThreadPoolExecutor，主要用来在给定的延迟之后执行任务，或者定期执行任务。
+
+### （1）ScheduleThreadPoolExecutor的运行机制
+
+### （2）ScheduleThreadPoolExecutor的实现
+
+## 4、FutureTask详解
+
+FutureTask除了实现Future接口以外，还实现了Runnable接口。因此FutureTask可以提交给Executor执行，也可以调用线程直接执行
+
+- 未启动
+- 已启动
+- 已完成
+
+### 1、FutureTask简介
+
+### 2、FutureTask的使用
+
+### 3、FutureTask的实现
+
+## 5、本章小结
+
+# 十一、Java并发编程实践
+
+## 1、生产者和消费者模式
+
+### （1）生产者消费者模式实战
+
+### （2）多生产者多消费者场景
+
+### （3）线程池与生产消费者模式
+
+## 2、线上问题定位
+
+## 3、性能测试
+
+## 4、异步任务池
+
+## 5、本章小结
+
+# E、一些小概念
 
 ## 1、什么是线程的中断
-
