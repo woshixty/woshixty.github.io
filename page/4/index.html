@@ -154,6 +154,460 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/09/Docker%E5%AD%A6%E4%B9%A0/Docker%E5%AE%B9%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/09/Docker%E5%AD%A6%E4%B9%A0/Docker%E5%AE%B9%E5%99%A8/" class="post-title-link" itemprop="url">Docker容器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-09 00:00:00" itemprop="dateCreated datePublished" datetime="2022-01-09T00:00:00+00:00">2022-01-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-06 15:21:56" itemprop="dateModified" datetime="2022-05-06T15:21:56+00:00">2022-05-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h3><p>容器是镜像的运行时实例</p>
+<h3 id="二、详解"><a href="#二、详解" class="headerlink" title="二、详解"></a>二、详解</h3><h4 id="1、启动一个简单的容器"><a href="#1、启动一个简单的容器" class="headerlink" title="1、启动一个简单的容器"></a>1、启动一个简单的容器</h4><p>启动容器的一个简单方式是：<code>docker container run</code></p>
+<p>启动一个简单的容器化版本的<code>Ubuntu Linux</code></p>
+<blockquote>
+<p>命令的基础格式为：<code>docker container run &lt;options&gt; &lt;im- age&gt;:&lt;tag&gt; &lt;app&gt;</code></p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container run -it ubuntu:latest /bin/bash</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>-it</code>表示使容器具备交互性并于终端进行连接</li>
+<li><code>/bin/bash</code>表示了运行在容器中的程序</li>
+</ul>
+<p>有些指令无法执行，大部分容器镜像都是经过高度优化的，代表某些命令或者包没有安装</p>
+<h4 id="2、容器进程"><a href="#2、容器进程" class="headerlink" title="2、容器进程"></a>2、容器进程</h4><h4 id="3、容器生命周期"><a href="#3、容器生命周期" class="headerlink" title="3、容器生命周期"></a>3、容器生命周期</h4><h4 id="4、优雅地停止容器"><a href="#4、优雅地停止容器" class="headerlink" title="4、优雅地停止容器"></a>4、优雅地停止容器</h4><p>先<code>docker container stop</code>容器，再<code>docker container rm</code>容器</p>
+<h4 id="5、利用重启策略进行容器的自我修复"><a href="#5、利用重启策略进行容器的自我修复" class="headerlink" title="5、利用重启策略进行容器的自我修复"></a>5、利用重启策略进行容器的自我修复</h4><ul>
+<li>always</li>
+<li>unless-stopped</li>
+<li>on-failed</li>
+</ul>
+<h4 id="6、web服务器示例"><a href="#6、web服务器示例" class="headerlink" title="6、web服务器示例"></a>6、web服务器示例</h4><p>在8080端口启动一个简单的web服务</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker container run -d --name webserver -p 80:8080 \</span><br><span class="line">nigelpoulton/pluralsight-docker-ci</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>-d</code>表示后台模式启动</li>
+<li><code>-p 80:8080</code>表示将Docker主机的端口映射到容器内</li>
+</ul>
+<h4 id="7、查看容器详情"><a href="#7、查看容器详情" class="headerlink" title="7、查看容器详情"></a>7、查看容器详情</h4><p>在上个例子中，我们并没有指定容器中具体的应用，但是容器却运行了一个简单的web服务</p>
+<p>当构建镜像时，可以通过嵌入指令来列出希望容器运行时启动的默认应用</p>
+<p>如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker image inspect nigelpoulton/pluralsight-docker-ci</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/09/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/09/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97/" class="post-title-link" itemprop="url">力扣-旋转数组中的最小数字</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-09 00:00:00" itemprop="dateCreated datePublished" datetime="2022-01-09T00:00:00+00:00">2022-01-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-06 15:21:56" itemprop="dateModified" datetime="2022-05-06T15:21:56+00:00">2022-05-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%88%B7%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>题目链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/">https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/</a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。</p>
+<p>给你一个可能存在 重复 元素值的数组 numbers ，它原来是一个升序排列的数组，并按上述情形进行了一次旋转。请返回旋转数组的最小元素。例如，数组 [3,4,5,1,2] 为 [1,2,3,4,5] 的一次旋转，该数组的最小值为1。 </p>
+<h4 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h4><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：[3,4,5,1,2]</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
+
+<h4 id="示例2"><a href="#示例2" class="headerlink" title="示例2"></a>示例2</h4><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：[2,2,2,0,1]</span><br><span class="line">输出：0</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>依然是采用二分的思路，每次与两端的元素做对比，分三种结果：</p>
+<ul>
+<li>比最右边小</li>
+<li>比最左边大</li>
+<li>其他</li>
+</ul>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>我写的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minArray</span><span class="params">(<span class="keyword">int</span>[] numbers)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> high = numbers.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> pivot = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(high &gt;= low) &#123;</span><br><span class="line">            pivot = (low + high) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (numbers[pivot] &lt; numbers[high]) &#123;</span><br><span class="line">                high = pivot;</span><br><span class="line">            <span class="comment">//错误一</span></span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (numbers[pivot] &gt; numbers[low]) &#123;</span><br><span class="line">                <span class="comment">//错误二</span></span><br><span class="line">                low = pivot;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                high--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> numbers[pivot];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>只需要将<code> low = pivot;</code>改为<code> low = pivot + 1;</code>便可以完美通过！</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/06/Docker%E5%AD%A6%E4%B9%A0/Docker%E9%95%9C%E5%83%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/01/06/Docker%E5%AD%A6%E4%B9%A0/Docker%E9%95%9C%E5%83%8F/" class="post-title-link" itemprop="url">Docker镜像</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-01-06 00:00:00" itemprop="dateCreated datePublished" datetime="2022-01-06T00:00:00+00:00">2022-01-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-06 15:21:56" itemprop="dateModified" datetime="2022-05-06T15:21:56+00:00">2022-05-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="镜像与容器的关系"><a href="#镜像与容器的关系" class="headerlink" title="镜像与容器的关系"></a>镜像与容器的关系</h3><p>镜像可以理解为一种构建时（build-in）结构，容器可以理解为一种运行时（run-time）结构</p>
+<h3 id="查看镜像"><a href="#查看镜像" class="headerlink" title="查看镜像"></a>查看镜像</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker image ls</span><br></pre></td></tr></table></figure>
+
+<h3 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker image pull ubuntu:latest</span><br></pre></td></tr></table></figure>
+
+<h3 id="镜像命名"><a href="#镜像命名" class="headerlink" title="镜像命名"></a>镜像命名</h3><ul>
+<li>镜像仓库服务</li>
+</ul>
+<p>Docker镜像存储在镜像仓库服务（Image Registry）当中，Docker客户端的镜像仓库服务是可配置的，默认使用Docker Hub</p>
+<p>镜像仓库服务包含多个镜像仓库（Image Repository）</p>
+<p>一个镜像仓库包含多个镜像</p>
+<ul>
+<li>镜像命名与标签</li>
+</ul>
+<p>只需要给出镜像的名字与标签，就能够在官方的仓库中定位一个镜像，如下拉取镜像的命令：</p>
+<blockquote>
+<p>docker image pull <repository>:<tag></p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 从官方的Mongo库中拉取标签为3.3.11的镜像</span></span><br><span class="line">docker image pull mongo:3.3.11</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>为镜像打多个标签</li>
+</ul>
+<p>使用<code>-a</code>获取一个仓库中所有的镜像</p>
+<p>例如下面的命令中就是拉取标签为<code>latest</code>的镜像</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker image pull ubuntu:latest</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>过滤<code>docker image ls</code>的输出内容</li>
+</ul>
+<p>Docker提供<code>--filter</code>参数来过滤<code>docker image ls</code>命令返回的镜像列表内容</p>
+<ul>
+<li>通过CLI方式搜索Docker Hub</li>
+</ul>
+<p><code>docker search</code>命令允许通过CLI的方式搜索<code>Docker Hub</code>，读者可以通过“NAME”字段的内容进行匹配，并且基于返回内容中任意列的值进行过滤</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker search nigelpoulton</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>镜像和分层</p>
+</li>
+<li><p>共享镜像层</p>
+</li>
+<li><p>根据摘要拉取镜像</p>
+</li>
+<li></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/12/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">计算机网络知识点总结</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-12-27 00:00:00" itemprop="dateCreated datePublished" datetime="2021-12-27T00:00:00+00:00">2021-12-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-06 15:21:56" itemprop="dateModified" datetime="2022-05-06T15:21:56+00:00">2022-05-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>知识点：</p>
+<h3 id="一、OSI七层模型"><a href="#一、OSI七层模型" class="headerlink" title="一、OSI七层模型"></a>一、OSI七层模型</h3><p>第一种模型是OSI七层模型，OSI为（Open System interconnect）的缩写，自上而下分别是应用层、表示层、会话层、传输层、网络层、数据链路层、物理层</p>
+<p>物理层：网卡，网线，集线器，中继器，调制解调器</p>
+<p>数据链路层：网桥，交换机</p>
+<p>网络层：路由器</p>
+<h4 id="1、物理层"><a href="#1、物理层" class="headerlink" title="1、物理层"></a>1、物理层</h4><ul>
+<li><p>物理层的媒体包括电缆、光纤等</p>
+</li>
+<li><p>正因为物理媒体会有很多差异，所以物理层的作用正是尽可能地屏蔽这些差异，使上面的数据链路曾感觉不到这些差异</p>
+</li>
+<li><p>在这一层，数据的单位为比特（bit）</p>
+</li>
+</ul>
+<h4 id="2、数据链路层"><a href="#2、数据链路层" class="headerlink" title="2、数据链路层"></a>2、数据链路层</h4><p>本章重点：</p>
+<p>（1）数据链路层的使用的信道主要有以下两种类型：<code> 点对点信道</code>、<code> 广播信道</code></p>
+<p>（2）数据链路层的协议有很多种，但有三个基本问题则是共同的：<code> 封装成帧、透明传输、差错检测</code></p>
+<ul>
+<li><p>封装成帧</p>
+<p>就是在数据前后分别添加首部和尾部，这样就构成了帧</p>
+</li>
+<li><p>透明传输</p>
+<p>用字节填充法（在非帧边界的控制字符插入转义字符）解决透明传输的问题</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E9%80%8F%E6%98%8E%E4%BC%A0%E8%BE%93.png" align=left>
+</li>
+<li><p>差错检测</p>
+<p>在数据链路层广泛使用了循环冗余检验CRC的检错技术</p>
+</li>
+</ul>
+<p>（3）以太网MAC层硬件地址</p>
+<p>（4）适配器、转发器、集线器、网桥、以太网交换机的作用和使用场景</p>
+<h4 id="3、网络层"><a href="#3、网络层" class="headerlink" title="3、网络层"></a>3、网络层</h4><p>主要的协议有ip，主要是将报文封装成ip数据报</p>
+<p>网络层向上层只提供简单灵活的、无连接的、尽最大努力交付的数据报服务</p>
+<h6 id="A、网际协议IP"><a href="#A、网际协议IP" class="headerlink" title="A、网际协议IP"></a>A、网际协议IP</h6><p>与IP协议配套使用的还有三个协议：</p>
+<ul>
+<li>地址解析协议ARP</li>
+<li>网际控制报文协议ICMP</li>
+<li>网际组管理协议IGMP</li>
+</ul>
+<p>IP数据报格式</p>
+<h4 id="4、传输层"><a href="#4、传输层" class="headerlink" title="4、传输层"></a>4、传输层</h4><p>IP数据报中的首部明确标记了两个主机的IP地址，但是真正进行通信的是进程。根据应用程序的不用需求，运输层需要两种不同的运输协议，即<code> 面向连接的TCP</code>和<code> 无连接的UDP</code>。TCP数据单元为段而UDP中数据单元为数据报。</p>
+<p>TCP面向连接、全双工面向字节流，每一条TCP连接有两个端点，这两个端点是什么呢？不是主机，也不是主机IP，不是应用进程，也不是运输层的协议端口。TCP链接的端点叫做<code> 套接字（socket）= IP地址：端口号</code></p>
+<p>TCP的三次握手</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.gif" width=700 align=left>
+
+<p>TCP的四次挥手</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.gif" width=700 align=left>
+
+
+
+<p>TCP的可靠传输的实现：1.滑动窗口 2.超时重传 3.选择确认 SACK</p>
+<p>TCP的流量控制：滑动窗口</p>
+<p>TCP的拥塞控制：慢开始与拥塞避免</p>
+<p>UDP是无连接 尽最大努力交付 面向报文 首部开销小 8字节 比TCP的20个字节小</p>
+<h4 id="5、会话层"><a href="#5、会话层" class="headerlink" title="5、会话层"></a>5、会话层</h4><p>会话单位的控制层，其主要功能是按照在应用进程之间约定的原则，按照正确的顺序收、发数据，进行各种形态的对话。</p>
+<h4 id="6、表示层"><a href="#6、表示层" class="headerlink" title="6、表示层"></a>6、表示层</h4><p>数据表示形式的控制层，其主要功能是把应用层提供的信息变换为能够共同理解的形式，提供字符代码、数据格式、控制信息格式、加密等的统一表示。</p>
+<h4 id="7、应用层"><a href="#7、应用层" class="headerlink" title="7、应用层"></a>7、应用层</h4><p>OSI参考模型的最高层。其功能是实现应用进程（如用户程序、终端操作员等）之间的信息交换。同时，还具有一系列业务处理所需要的服务功能。应用层许多协议都是基于客户服务器方式。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/25/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -185,7 +639,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 12:23:33" itemprop="dateModified" datetime="2022-04-30T12:23:33+00:00">2022-04-30</time>
+                <time title="修改时间：2022-05-06 15:21:56" itemprop="dateModified" datetime="2022-05-06T15:21:56+00:00">2022-05-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -261,7 +715,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 12:23:33" itemprop="dateModified" datetime="2022-04-30T12:23:33+00:00">2022-04-30</time>
+                <time title="修改时间：2022-05-06 15:21:56" itemprop="dateModified" datetime="2022-05-06T15:21:56+00:00">2022-05-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -334,7 +788,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 12:23:33" itemprop="dateModified" datetime="2022-04-30T12:23:33+00:00">2022-04-30</time>
+                <time title="修改时间：2022-05-06 15:21:56" itemprop="dateModified" datetime="2022-05-06T15:21:56+00:00">2022-05-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -359,7 +813,8 @@
       
           <h3 id="一、进程的概念"><a href="#一、进程的概念" class="headerlink" title="一、进程的概念"></a>一、进程的概念</h3><p>现代操作系统的重要特点是在保证安全的前提下，程序并发执行，以及系统所拥有的资源被共享和系统用户的随机的使用</p>
 <h4 id="1、程序的并发执行"><a href="#1、程序的并发执行" class="headerlink" title="1、程序的并发执行"></a>1、程序的并发执行</h4><p>宏观上看是多个程序同时执行，微观上看是多个程序分时占用CPU，我们称这种程序执行的方式为<code> 并发执行</code></p>
-<h4 id="2、进程的定义"><a href="#2、进程的定义" class="headerlink" title="2、进程的定义"></a>2、进程的定义</h4><p>进程是并发执行的程序在执行过程中分配和管理资源的基本单位</p>
+<h4 id="2、进程的定义"><a href="#2、进程的定义" class="headerlink" title="2、进程的定义"></a>2、进程的定义</h4><p>一个进程也就是一个正在执行程序的实例</p>
+<p>进程是并发执行的程序在执行过程中分配和管理资源的基本单位</p>
 <p>进程和程序的区别与联系：</p>
 <ul>
 <li><p>进程是一个<strong>动态概念</strong>，而程序是一个<strong>静态概念</strong>。程序是指令的有序集合。而进程则强调执行过程，被动态创建被调度执行后消亡</p>
@@ -374,6 +829,10 @@
 <li><p>不同的进程可以包含同一个程序</p>
 </li>
 </ul>
+<h4 id="3、进程的创建"><a href="#3、进程的创建" class="headerlink" title="3、进程的创建"></a>3、进程的创建</h4><p>（1）系统初始化</p>
+<p>（2）正在运行的程序执行了系统调用</p>
+<p>（3）用户请求创建一个新进程</p>
+<p>（4）一个批处理作业的初始化</p>
 <h3 id="二、进程的描述"><a href="#二、进程的描述" class="headerlink" title="二、进程的描述"></a>二、进程的描述</h3><p>一个进程是一个程序对某个数据集的执行过程，是分配资源的单位。</p>
 <p>进程的静态描述由三部分组成： <strong>进程控制块（PCB）</strong>、<strong>程序段</strong>、<strong>数据</strong></p>
 <h4 id="1、进程的控制块"><a href="#1、进程的控制块" class="headerlink" title="1、进程的控制块"></a>1、进程的控制块</h4><p>进程的PCB是系统感知进程的唯一实体，它包括以下信息：</p>
@@ -453,7 +912,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 12:23:33" itemprop="dateModified" datetime="2022-04-30T12:23:33+00:00">2022-04-30</time>
+                <time title="修改时间：2022-05-06 15:21:56" itemprop="dateModified" datetime="2022-05-06T15:21:56+00:00">2022-05-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -606,7 +1065,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 12:23:33" itemprop="dateModified" datetime="2022-04-30T12:23:33+00:00">2022-04-30</time>
+                <time title="修改时间：2022-05-06 15:21:56" itemprop="dateModified" datetime="2022-05-06T15:21:56+00:00">2022-05-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -684,7 +1143,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 12:23:33" itemprop="dateModified" datetime="2022-04-30T12:23:33+00:00">2022-04-30</time>
+                <time title="修改时间：2022-05-06 15:21:56" itemprop="dateModified" datetime="2022-05-06T15:21:56+00:00">2022-05-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -796,475 +1255,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/20/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E5%B1%82%EF%BC%9A%E6%8E%A7%E5%88%B6%E5%B9%B3%E9%9D%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/10/20/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E5%B1%82%EF%BC%9A%E6%8E%A7%E5%88%B6%E5%B9%B3%E9%9D%A2/" class="post-title-link" itemprop="url">计算机网络-网络层控制平面</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-10-20 00:00:00" itemprop="dateCreated datePublished" datetime="2021-10-20T00:00:00+00:00">2021-10-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 12:23:33" itemprop="dateModified" datetime="2022-04-30T12:23:33+00:00">2022-04-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>控制平面作为一种网络范围</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/19/Shell%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/%E7%AC%AC%E4%BA%8C%E7%AB%A0%E5%8F%98%E9%87%8F%E7%9A%84%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/10/19/Shell%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/%E7%AC%AC%E4%BA%8C%E7%AB%A0%E5%8F%98%E9%87%8F%E7%9A%84%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/" class="post-title-link" itemprop="url">Shell变量的高级用法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-10-19 00:00:00" itemprop="dateCreated datePublished" datetime="2021-10-19T00:00:00+00:00">2021-10-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 12:23:33" itemprop="dateModified" datetime="2022-04-30T12:23:33+00:00">2022-04-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/shell/" itemprop="url" rel="index"><span itemprop="name">shell</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="一、变量替换"><a href="#一、变量替换" class="headerlink" title="一、变量替换"></a>一、变量替换</h3><img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Shell%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/1.png">
-
-<p>示例：</p>
-<p>1、定义变量</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">va_1=&quot;i love you, do you love me?&quot;</span><br></pre></td></tr></table></figure>
-
-<p>2、打印看看</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo $va_1</span><br></pre></td></tr></table></figure>
-
-<p>显示如下字符串：<code> i love you, do you love me?</code></p>
-<p>3、进行字符替换</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var1=$&#123;va_1#*ov&#125;</span><br></pre></td></tr></table></figure>
-
-<p>var1如下所示：<code> e you, do you love me?</code></p>
-<h3 id="二、字符串处理"><a href="#二、字符串处理" class="headerlink" title="二、字符串处理"></a>二、字符串处理</h3><h4 id="1、获取字符串长度"><a href="#1、获取字符串长度" class="headerlink" title="1、获取字符串长度"></a>1、获取字符串长度</h4><img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Shell%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/3%E8%AE%A1%E7%AE%97%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%95%BF%E5%BA%A6.png">
-
-<h4 id="2、获取子串在字符串中的索引位置"><a href="#2、获取子串在字符串中的索引位置" class="headerlink" title="2、获取子串在字符串中的索引位置"></a>2、获取子串在字符串中的索引位置</h4><p>语法：<code> expr index $string $substring</code></p>
-<h4 id="3、计算子串的长度"><a href="#3、计算子串的长度" class="headerlink" title="3、计算子串的长度"></a>3、计算子串的长度</h4><p>语法：<code> expr match $string substr</code></p>
-<h4 id="4、抽取子串"><a href="#4、抽取子串" class="headerlink" title="4、抽取子串"></a>4、抽取子串</h4><img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Shell%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/5%E6%8A%BD%E5%8F%96%E5%AD%90%E4%B8%B2.png">
-
-
-
-<h3 id="三、小练习"><a href="#三、小练习" class="headerlink" title="三、小练习"></a>三、小练习</h3><p>问题如下：</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Shell%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/6problem.png">
-
-<p>Shell脚本如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/usr/bin/env bash</span></span><br><span class="line"></span><br><span class="line">string=&quot;Bigdata process framework is Hadoop,Hadoop is an open source project&quot;</span><br><span class="line"></span><br><span class="line">function tips_info</span><br><span class="line">&#123;</span><br><span class="line">	echo &quot;******************************************&quot;</span><br><span class="line">	echo &quot;***  (1) 打印string长度&quot;</span><br><span class="line">	echo &quot;***  (2) 在整个字符串中删除Hadoop&quot;</span><br><span class="line">	echo &quot;***  (3) 替换第一个Hadoop为Mapreduce&quot;</span><br><span class="line">	echo &quot;***  (4) 替换全部Hadoop为Mapreduce&quot;</span><br><span class="line">	echo &quot;******************************************&quot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function print_len</span><br><span class="line">&#123;</span><br><span class="line">	if [ -z &quot;$string&quot; ];then</span><br><span class="line">		echo &quot;Error,string is null&quot;</span><br><span class="line">		exit 1</span><br><span class="line">	else</span><br><span class="line">		echo &quot;$&#123;#string&#125;&quot;</span><br><span class="line">	fi</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function del_hadoop</span><br><span class="line">&#123;</span><br><span class="line">	if [ -z &quot;$string&quot; ];then</span><br><span class="line">		echo &quot;Error,string is null&quot;</span><br><span class="line">		exit 1</span><br><span class="line">	else</span><br><span class="line">		echo &quot;$&#123;string//Hadoop/&#125;&quot;</span><br><span class="line">	fi</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function rep_hadoop_mapreduce_first</span><br><span class="line">&#123;</span><br><span class="line">	if [ -z &quot;$string&quot; ];then</span><br><span class="line">		echo &quot;Error,string is null&quot;</span><br><span class="line">		exit 1</span><br><span class="line">	else</span><br><span class="line">		echo &quot;$&#123;string/Hadoop/Mapreduce&#125;&quot;</span><br><span class="line">	fi</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function rep_hadoop_mapreduce_all</span><br><span class="line">&#123;</span><br><span class="line">        if [ -z &quot;$string&quot; ];then</span><br><span class="line">                echo &quot;Error,string is null&quot;</span><br><span class="line">                exit 1</span><br><span class="line">        else</span><br><span class="line">                echo &quot;$&#123;string//Hadoop/Mapreduce&#125;&quot;</span><br><span class="line">        fi</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">while true</span><br><span class="line">do</span><br><span class="line"></span><br><span class="line">echo &quot;【string=\&quot;$string\&quot;】&quot;</span><br><span class="line">tips_info</span><br><span class="line">read -p &quot;Please Switch a Choice: &quot; choice</span><br><span class="line">case &quot;$choice&quot; in</span><br><span class="line">	1)</span><br><span class="line">		echo</span><br><span class="line">		echo &quot;Length Of String is: `print_len`&quot;</span><br><span class="line">		echo</span><br><span class="line">		continue</span><br><span class="line">		;;</span><br><span class="line">	2)</span><br><span class="line">		echo</span><br><span class="line">		echo &quot;删除Hadoop后的字符串为：`del_hadoop`&quot;</span><br><span class="line">		echo</span><br><span class="line">		;;</span><br><span class="line">	3)</span><br><span class="line">		echo </span><br><span class="line">		echo &quot;替换第一个Hadoop的字符串为：`rep_hadoop_mapreduce_first`&quot;</span><br><span class="line">		echo</span><br><span class="line">		;;</span><br><span class="line">	4)</span><br><span class="line">		echo </span><br><span class="line">                echo &quot;替换第一个Hadoop的字符串为：`rep_hadoop_mapreduce_all`&quot;</span><br><span class="line">                echo</span><br><span class="line">		;;</span><br><span class="line">	q|Q)</span><br><span class="line">		exit 0</span><br><span class="line">		;;</span><br><span class="line">	*)</span><br><span class="line">		echo &quot;error,unlegal input,legal input only in &#123; 1|2|3|4|q|Q &#125;&quot;</span><br><span class="line">		continue	</span><br><span class="line">		;;</span><br><span class="line">esac</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="四、命令替换"><a href="#四、命令替换" class="headerlink" title="四、命令替换"></a>四、命令替换</h3><p>一段命令的执行结果是另一个命令的一部分，类似于函数引用</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Shell%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/7%E5%91%BD%E4%BB%A4%E6%9B%BF%E6%8D%A2.png">
-
-<ul>
-<li><p>例子1</p>
-<p>获取系统所有用户并输出</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"> #</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span></span><br><span class="line"></span><br><span class="line">index=1</span><br><span class="line">for user in `cat /etc/passwd | cut -d &quot;:&quot; -f 1`</span><br><span class="line">do</span><br><span class="line">	echo &quot;This is $index user: $user&quot;</span><br><span class="line">	index=$(($index + 1))</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
-
-
-</li>
-</ul>
-<ul>
-<li><p>例子2</p>
-<p>查看系统nginx进程是否存在，若不存在就启动它</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span></span><br><span class="line"></span><br><span class="line">nginx_process_num=$(ps -ef | grep nginx | grep -v grep | wc -l)</span><br><span class="line"></span><br><span class="line">echo &quot;nginx_process_num = $nginx_process_num&quot;</span><br><span class="line"></span><br><span class="line">if [ $nginx_process_num -eq 0 ];then</span><br><span class="line">        systemctl start nginx</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h3 id="五、有类型变量"><a href="#五、有类型变量" class="headerlink" title="五、有类型变量"></a>五、有类型变量</h3><h4 id="1、declare命令"><a href="#1、declare命令" class="headerlink" title="1、declare命令"></a>1、declare命令</h4><img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Shell%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/8declare%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0%E5%88%97%E8%A1%A8.png">
-
-
-
-<h3 id="六、数学运算"><a href="#六、数学运算" class="headerlink" title="六、数学运算"></a>六、数学运算</h3><h4 id="1、expr命令"><a href="#1、expr命令" class="headerlink" title="1、expr命令"></a>1、expr命令</h4><img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Shell%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/9expr%E8%AF%AD%E6%B3%95%E6%A0%BC%E5%BC%8F.png">
-
-
-
-<h4 id="2、expr操作符对照表（上）"><a href="#2、expr操作符对照表（上）" class="headerlink" title="2、expr操作符对照表（上）"></a>2、expr操作符对照表（上）</h4><img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Shell%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/10expr%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%AF%B9%E7%85%A7%E8%A1%A8%E4%B8%8A.png">
-
-<p>注意！当使用两变量做比较使用<code> |、&amp;、&lt;、&gt;、&lt;=、&gt;=</code>符号的时候，需要进行转义，如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expr $num1 \&gt;= $num2</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h4 id="3、expr操作符对照表（下）"><a href="#3、expr操作符对照表（下）" class="headerlink" title="3、expr操作符对照表（下）"></a>3、expr操作符对照表（下）</h4><img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Shell%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/11expr%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%AF%B9%E7%85%A7%E8%A1%A8%E4%B8%8B.png">
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">num3=`expr $num1 + $num2`</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="4、小练习"><a href="#4、小练习" class="headerlink" title="4、小练习"></a>4、小练习</h4><p>提示用户输入一个正整数num，然后计算1+2+3+4+···+num的值，必须对num是否为正整数做判断，不符合的话应当进行再输入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"><span class="meta">#</span></span><br><span class="line"></span><br><span class="line">while true</span><br><span class="line">do</span><br><span class="line">	read -p &quot;pls input a positive number: &quot; num</span><br><span class="line"></span><br><span class="line">	expr $num + 1 &amp;&gt; /dev/null</span><br><span class="line"></span><br><span class="line">	if [ $? -eq 0 ];then</span><br><span class="line">		if [ `expr $num \&gt; 0` -eq 1 ];then</span><br><span class="line">			for((i=1;i&lt;=$num;i++))</span><br><span class="line">			do</span><br><span class="line">				sum=`expr $sum + $i`</span><br><span class="line">			done	</span><br><span class="line">			echo &quot;1+2+3+....+$num = $sum&quot;</span><br><span class="line">			exit</span><br><span class="line">		fi</span><br><span class="line">	fi</span><br><span class="line">	echo &quot;error,input enlegal&quot;</span><br><span class="line">	continue</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
-
-<p>Shell脚本中<code> $0、$?、$!、$$、$*、$#、$@</code>等的意义说明：</p>
-<ul>
-<li><p><code>$$</code></p>
-<p>Shell本身的PID（ProcessID，即脚本运行的当前 <a target="_blank" rel="noopener" href="https://www.baidu.com/s?wd=%E8%BF%9B%E7%A8%8BID&tn=SE_PcZhidaonwhc_ngpagmjz&rsv_dl=gh_pc_zhidao">进程ID</a>号）</p>
-</li>
-<li><p><code>$!</code></p>
-<p>Shell最后运行的后台Process的PID(后台运行的最后一个进程的 <a target="_blank" rel="noopener" href="https://www.baidu.com/s?wd=%E8%BF%9B%E7%A8%8BID&tn=SE_PcZhidaonwhc_ngpagmjz&rsv_dl=gh_pc_zhidao">进程ID</a>号)</p>
-</li>
-<li><p><code>$?</code></p>
-<p>最后运行的命令的结束代码（返回值）即执行上一个指令的返回值 (显示最后命令的退出状态。0表示没有错误，其他任何值表明有错误)</p>
-</li>
-<li><p><code>$-</code></p>
-<p>显示shell使用的当前选项，与set命令功能相同</p>
-</li>
-<li><p><code>$*</code></p>
-<p>所有参数列表。如”$*”用「”」括起来的情况、以”$1 $2 … $n”的形式输出所有参数，此选项参数可超过9个</p>
-</li>
-<li><p><code>$@</code></p>
-<p>所有参数列表。如”$@”用「”」括起来的情况、以”$1” “$2” … “$n” 的形式输出所有参数</p>
-</li>
-<li><p><code>$@</code> </p>
-<p>跟$*类似，但是可以当作数组用</p>
-</li>
-<li><p><code>$#</code></p>
-<p>添加到Shell的参数个数</p>
-</li>
-<li><p><code>$0</code></p>
-<p>Shell本身的文件名</p>
-</li>
-<li><p><code>$1～$n</code></p>
-<p>添加到Shell的各参数值。$1是第1参数、$2是第2参数…、</p>
-</li>
-</ul>
-<h3 id="七、bc运算"><a href="#七、bc运算" class="headerlink" title="七、bc运算"></a>七、bc运算</h3><p>简单介绍：</p>
-<ul>
-<li>bc是bash内建的运算器，支持浮点数运算</li>
-<li>内建变量scale可以设置，默认为0</li>
-</ul>
-<h4 id="1、bc操作符对照表"><a href="#1、bc操作符对照表" class="headerlink" title="1、bc操作符对照表"></a>1、bc操作符对照表</h4><center>1、加减乘除</center>
-
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Shell%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/12bc%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%AF%B9%E7%85%A7%E8%A1%A8.png">
-
-<center>2、求余以及指数运算</center>
-
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Shell%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/13bc%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%AF%B9%E7%85%A7%E8%A1%A82.png">
-
-
-
-<h4 id="2、在脚本中使用bc"><a href="#2、在脚本中使用bc" class="headerlink" title="2、在脚本中使用bc"></a>2、在脚本中使用bc</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo  &quot;scale=4;23.33+24&quot; | bc</span><br></pre></td></tr></table></figure>
-
-<p><code> |</code>表示将前一条命令的输出，用作后一条命令的输入</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E5%B1%82%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%B9%B3%E9%9D%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/10/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E5%B1%82%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%B9%B3%E9%9D%A2/" class="post-title-link" itemprop="url">计算机网络-网络层数据平面</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-10-16 00:00:00" itemprop="dateCreated datePublished" datetime="2021-10-16T00:00:00+00:00">2021-10-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 12:23:33" itemprop="dateModified" datetime="2022-04-30T12:23:33+00:00">2022-04-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="路由器工作原理"><a href="#路由器工作原理" class="headerlink" title="路由器工作原理"></a>路由器工作原理</h2><h3 id="分组调度"><a href="#分组调度" class="headerlink" title="分组调度"></a>分组调度</h3><p>排队的分组如何经输出链路传输的问题</p>
-<h4 id="1、先进先出"><a href="#1、先进先出" class="headerlink" title="1、先进先出"></a>1、先进先出</h4><h4 id="2、优先权排队"><a href="#2、优先权排队" class="headerlink" title="2、优先权排队"></a>2、优先权排队</h4><ul>
-<li>高优先权类</li>
-<li>低优先权类</li>
-</ul>
-<h4 id="3、循环和加权公平排队"><a href="#3、循环和加权公平排队" class="headerlink" title="3、循环和加权公平排队"></a>3、循环和加权公平排队</h4><h2 id="网际协议：IPv4、寻址、IPv6及其他"><a href="#网际协议：IPv4、寻址、IPv6及其他" class="headerlink" title="网际协议：IPv4、寻址、IPv6及其他"></a>网际协议：IPv4、寻址、IPv6及其他</h2><p>如今有两个版本的IP正在使用：<code>IPv6</code>和<code>IPv4</code></p>
-<h3 id="IPv4数据报格式"><a href="#IPv4数据报格式" class="headerlink" title="IPv4数据报格式"></a>IPv4数据报格式</h3><ul>
-<li>版本（号）</li>
-<li>首部长度</li>
-<li>服务类型</li>
-<li>数据报长度（字节）</li>
-<li>标识、标志、片偏移</li>
-<li>寿命</li>
-<li>协议</li>
-<li>首部检验和</li>
-<li>源和目的IP地址</li>
-<li>选择</li>
-<li>数据</li>
-</ul>
-<h3 id="IPv4数据报分片"><a href="#IPv4数据报分片" class="headerlink" title="IPv4数据报分片"></a>IPv4数据报分片</h3><p>一个链路层帧能承载的最大数据量叫做<strong>最大传送单元（Maximum Transmission Unit，MTU）</strong></p>
-<p>IPv4的设计者决定将数据报的重新组装工作放到端系统中</p>
-<h3 id="IPv4编址"><a href="#IPv4编址" class="headerlink" title="IPv4编址"></a>IPv4编址</h3><p>主机与物理链路之间的边界叫做<code>接口（interface）</code>，从技术上讲，一个IP地址与一个接口相关联，而不是与包括该接口的主机或者路由器相关联。</p>
-<h4 id="1、获取一个地址"><a href="#1、获取一个地址" class="headerlink" title="1、获取一个地址"></a>1、获取一个地址</h4><h4 id="2、获取主机地址：动态主机配置协议"><a href="#2、获取主机地址：动态主机配置协议" class="headerlink" title="2、获取主机地址：动态主机配置协议"></a>2、获取主机地址：动态主机配置协议</h4><ul>
-<li>DHCP服务器发现</li>
-<li>DHCP服务器提供</li>
-<li>DHCP请求</li>
-<li>DHCP ACK</li>
-</ul>
-<h3 id="网络地址转换"><a href="#网络地址转换" class="headerlink" title="网络地址转换"></a>网络地址转换</h3><p>NAT路由器</p>
-<h3 id="IPv6"><a href="#IPv6" class="headerlink" title="IPv6"></a>IPv6</h3><p>32比特的IP地址即将分配完，所以开发了新的IP协议：IPv6</p>
-<h4 id="1、IPv6数据报格式"><a href="#1、IPv6数据报格式" class="headerlink" title="1、IPv6数据报格式"></a>1、IPv6数据报格式</h4><h3 id="通用转发和SDN"><a href="#通用转发和SDN" class="headerlink" title="通用转发和SDN"></a>通用转发和SDN</h3><h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>我们讨论了网络层的<strong>数据平面（data plane）</strong>功能，即每台路由器的如下功能：决定到达输入链路之一的分组如何转发到该路由器的输出链路之一</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9%E7%AE%97%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/10/16/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9%E7%AE%97%E6%B3%95/" class="post-title-link" itemprop="url">计算机网络-路由选择算法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-10-16 00:00:00" itemprop="dateCreated datePublished" datetime="2021-10-16T00:00:00+00:00">2021-10-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 12:23:33" itemprop="dateModified" datetime="2022-04-30T12:23:33+00:00">2022-04-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>路由选择算法</strong>：目的是从发送方到接收方的过程中确定一条通过路由器网络的好的路径</p>
-<p>根据算法集中还是分散划分：</p>
-<ul>
-<li>集中式路由选择算法</li>
-<li>分散式路由选择算法</li>
-</ul>
-<p>根据动态静态划分：</p>
-<ul>
-<li>动态路由选择算法</li>
-<li>静态路由选择算法</li>
-</ul>
-<p>根据负载敏感和迟钝划分：</p>
-<ul>
-<li>负载敏感</li>
-<li>负载迟钝</li>
-</ul>
-<h3 id="1、链路状态路由选择算法"><a href="#1、链路状态路由选择算法" class="headerlink" title="1、链路状态路由选择算法"></a>1、链路状态路由选择算法</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lbperfect123/article/details/84281300">Dijkstra算法 </a></p>
-<h3 id="2、距离向量路由选择算法"><a href="#2、距离向量路由选择算法" class="headerlink" title="2、距离向量路由选择算法"></a>2、距离向量路由选择算法</h3><p>距离向量算法是一种迭代的、异步的和分布式的算法</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1336,7 +1326,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-count">107</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

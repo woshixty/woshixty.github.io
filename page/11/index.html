@@ -154,6 +154,713 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/15/springboot/springboot%E5%86%99%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E6%B3%A8%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/15/springboot/springboot%E5%86%99%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E6%B3%A8%E8%A7%A3/" class="post-title-link" itemprop="url">springboot写项目时遇到的各种注解</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-15 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-15T00:00:00+00:00">2020-11-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-06 15:21:56" itemprop="dateModified" datetime="2022-05-06T15:21:56+00:00">2022-05-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SpringBoot/" itemprop="url" rel="index"><span itemprop="name">SpringBoot</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>平常经常使用springboot注解·，但是并不理解</p>
+<p>故做一点总结</p>
+</blockquote>
+<h3 id="Data-注解"><a href="#Data-注解" class="headerlink" title="@Data 注解"></a>@Data 注解</h3><blockquote>
+<p>@Data 注解的主要作用是提高代码的简洁，使用这个注解可以省去代码中大量的get()、 set()、 toString()等方法；</p>
+</blockquote>
+<p> @Data 注解要先引入lombok，lombok 是什么，它是一个工具类库，可以用简单的注解形式来简化代码，提高开发效率。</p>
+<p> 原理：</p>
+<ul>
+<li>Lombok本质上就是一个实现了“JSR 269 API”的程序。在使用javac的过程中，它产生作用的具体流程如下</li>
+<li>javac对源代码进行分析，生成了一棵抽象语法树（AST）</li>
+<li>运行过程中调用实现了“JSR 269 API”的Lombok程序</li>
+<li>此时Lombok就对第一步骤得到的AST进行处理，找到@Data注解所在类对应的语法树（AST），然后修改该语法树（AST），增加getter和          setter方法定义的相应树节点</li>
+<li>javac使用修改后的抽象语法树（AST）生成字节码文件，即给class增加新的节点（代码块）</li>
+</ul>
+<p>优点：<br>能通过注解的形式自动生成构造器、getter/setter、equals、hashcode、toString等方法，提高了一定的开发效率<br>让代码变得简洁，不用过多的去关注相应的方法<br>属性做修改时，也简化了维护为这些属性所生成的getter/setter方法等</p>
+<p>缺点：<br>不支持多种参数构造器的重载<br>虽然省去了手动创建getter/setter方法的麻烦，但大大降低了源代码的可读性和完整性，降低了阅读源代码的舒适度</p>
+<blockquote>
+<p> 常用的几个注解：<br>@Data ： 注在类上，提供类的get、set、equals、hashCode、canEqual、toString方法<br>@AllArgsConstructor ： 注在类上，提供类的全参构造<br>@NoArgsConstructor ： 注在类上，提供类的无参构造<br>@Setter ： 注在属性上，提供 set 方法<br>@Getter ： 注在属性上，提供 get 方法<br>@EqualsAndHashCode ： 注在类上，提供对应的 equals 和 hashCode 方法<br>@Log4j/@Slf4j ： 注在类上，提供对应的 Logger 对象，变量名为 log</p>
+</blockquote>
+<h3 id="Repository-Controller-Service-Component-四大注解"><a href="#Repository-Controller-Service-Component-四大注解" class="headerlink" title="@Repository @Controller @Service  @Component 四大注解"></a>@Repository @Controller @Service  @Component 四大注解</h3><blockquote>
+<p>依然不是很理解这四大注解的作用, 于是下面摘抄了一些笔记</p>
+</blockquote>
+<p>1、@controller 控制器（注入服务）<br>用于标注控制层，相当于struts中的action层</p>
+<p>2、@service 服务（注入dao）<br>用于标注服务层，主要用来进行业务的逻辑处理</p>
+<p>3、@repository（实现dao访问）<br>用于标注数据访问层，也可以说用于标注数据访问组件，即DAO组件.</p>
+<p>4、@component （把普通pojo实例化到spring容器中，相当于配置文件中的 <bean id="" class=""/><br>泛指各种组件，就是说当我们的类不属于各种归类的时候（不属于@Controller、@Services等的时候），我们就可以使用@Component来标注这个类。</p>
+<h3 id="Autowired-注解"><a href="#Autowired-注解" class="headerlink" title="@Autowired 注解"></a>@Autowired 注解</h3><blockquote>
+<p>@Autowired 是一个注释，它可以对类成员变量、方法及构造函数进行标注，让 spring 完成 bean 自动装配的工作。</p>
+<p>@Autowired 默认是按照类去匹配，配合 @Qualifier 指定按照名称去装配 bean。</p>
+</blockquote>
+<p>通俗理解就是 这个注解就是spring可以自动帮你把bean里面引用的对象的setter/getter方法省略，它会自动帮你set/get。</p>
+<p>常见用法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> blog.service.ArticleService;</span><br><span class="line"><span class="keyword">import</span> blog.service.TagService;</span><br><span class="line"><span class="keyword">import</span> blog.service.TypeService;</span><br><span class="line"> </span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestController</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">	<span class="comment">//成员属性字段使用 @Autowired，无需字段的 set 方法</span></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="keyword">private</span> TypeService typeService;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//set 方法使用 @Autowired</span></span><br><span class="line">	<span class="keyword">private</span> ArticleService articleService;</span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setArticleService</span><span class="params">(ArticleService articleService)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.articleService = articleService;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="comment">//构造方法使用 @Autowired</span></span><br><span class="line">	<span class="keyword">private</span> TagService tagService;</span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">TestController</span><span class="params">(TagService tagService)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.tagService = tagService; </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="RestController-Controller-ResponseBody-注解"><a href="#RestController-Controller-ResponseBody-注解" class="headerlink" title="@RestController @Controller @ResponseBody 注解"></a>@RestController @Controller @ResponseBody 注解</h3><blockquote>
+<p>在Spring中@RestController的作用等同于@Controller + @ResponseBody。</p>
+<p>所以想要理解@RestController注解就要先了解@Controller和@ResponseBody注解。</p>
+</blockquote>
+<p>在一个类上添加@Controller注解，表明了这个类是一个控制器类。但想要让这个类成为一个处理请求的处理器光有@Controller注解是不够的，他还需要进一步修炼才能成为一个处理器。</p>
+<ul>
+<li><p>第一种方式在spring容器中创建该类的实例<br><code>&lt;bean class=&quot;test.controller.MyController&quot; /&gt; </code></p>
+<p>上述这种方式是在spring容器中注入单个bean，当项目比较大，控制器类比较多时，用这种方式向Spring容器中注入bean非常的让人苦恼，索性有第二种方式。</p>
+</li>
+<li><p>第二种方式在spring容器中创建该类的实例<br><code>&lt;context:component-scan base-scan=&quot;test.controller&quot; /&gt; </code></p>
+<p>这种方式会扫描指定包中的所有类，并生成相应的bean注入到spring容器中。使用这种方式当然能够极大提高我们的开发效率，但是有时候我们不想某一类型的类注入到spring容器中，这个时候第下面种方式可以解决。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;context:component-scan base-<span class="keyword">package</span>=<span class="string">&quot;test&quot;</span> &gt;</span><br><span class="line">  　　&lt;context:include-filter type=<span class="string">&quot;annotation&quot;</span> expression=<span class="string">&quot;org.springframework.stereotype.Service&quot;</span>/&gt;</span><br><span class="line">&lt;/context:component-scan&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上述代码表示扫描test包中除有@Service注解之外的类</p>
+</li>
+</ul>
+<blockquote>
+<p>将@Controller注解的类注入Spring容器中，只是该类成为处理器的第一步，想要修炼大成，还需要在该类中添加注解@RequestMapping。</p>
+</blockquote>
+<ul>
+<li>@RequestMapping</li>
+</ul>
+<p>@RequestMapping注解是用来映射请求的，即指明处理器可以处理哪些URL请求，该注解既可以用在类上，也可以用在方法上。</p>
+<p>当使用@RequestMapping标记控制器类时，方法的请求地址是相对类的请求地址而言的；当没有使用@RequestMapping标记类时，方法的请求地址是绝对路</p>
+<p>径；@RequestMapping的地址可以是uri变量，并且通过@PathVariable注解获取作为方法的参数。也可以是通配符来筛选请求地址。</p>
+<ul>
+<li>@ResponseBody注解</li>
+</ul>
+<p>@ResponseBody表示方法的返回值直接以指定的格式写入Http response body中，而不是解析为跳转路径。</p>
+<p>格式的转换是通过HttpMessageConverter中的方法实现的，因为它是一个接口，因此由其实现类完成转换。</p>
+<p>如果要求方法返回的是json格式数据，而不是跳转页面，可以直接在类上标注@RestController，而不用在每个方法中标注</p>
+<p>@ResponseBody，简化了开发过程。</p>
+<h3 id="Component"><a href="#Component" class="headerlink" title="@Component"></a>@Component</h3><p>组件，放在类上，说明这个类呗spring管理了，即bean。他有几个衍生注解，在web开发中会按照三层架构分层，功能类似，代表被spring托管</p>
+<ul>
+<li><p>dao【@Repository】</p>
+</li>
+<li><p>service【@Service】</p>
+</li>
+<li><p>controller 【@Controller】</p>
+<p>四个注解功能一样</p>
+</li>
+</ul>
+<h3 id="Autowried"><a href="#Autowried" class="headerlink" title="@Autowried"></a>@Autowried</h3><p>@Autowried通过类型名字自动装配，如果@Autowried不能自动装配属性，就用@Qualifier(value = “xxx”)匹配</p>
+<h3 id="Resource"><a href="#Resource" class="headerlink" title="@Resource"></a>@Resource</h3><p>自动通过名字类型装配</p>
+<h3 id="Scope-“singleton”"><a href="#Scope-“singleton”" class="headerlink" title="@Scope(“singleton”)"></a>@Scope(“singleton”)</h3><p>单例、原型等等模式</p>
+<h3 id="Aspect"><a href="#Aspect" class="headerlink" title="@Aspect"></a>@Aspect</h3><p>标注这个类是一个切面类</p>
+<h3 id="Before-“execution-…-”"><a href="#Before-“execution-…-”" class="headerlink" title="@Before(“execution(* …)”)"></a>@Before(“execution(* …)”)</h3><p>before方法</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/14/springboot/springboot+nginx+https/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/14/springboot/springboot+nginx+https/" class="post-title-link" itemprop="url">springboot项目通过nginx的https代理转发</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-14 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-14T00:00:00+00:00">2020-11-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-06 15:21:56" itemprop="dateModified" datetime="2022-05-06T15:21:56+00:00">2022-05-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java-Project/" itemprop="url" rel="index"><span itemprop="name">Java_Project</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>现在这里挖个坑，做微信小程序时必须要用https，当时折腾了好久，作一下总结</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/11/tools/mysql%E5%AE%89%E8%A3%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/11/tools/mysql%E5%AE%89%E8%A3%85/" class="post-title-link" itemprop="url">mysql的安装</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-11 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-11T00:00:00+00:00">2020-11-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-06 15:21:56" itemprop="dateModified" datetime="2022-05-06T15:21:56+00:00">2022-05-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tools/" itemprop="url" rel="index"><span itemprop="name">Tools</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>(我有个朋友，他服务器上的MySQL出问题了，直接重装，解决一切问题)</p>
+<h3 id="一、MySQL卸载"><a href="#一、MySQL卸载" class="headerlink" title="一、MySQL卸载"></a>一、MySQL卸载</h3><h4 id="1-yum康康安装的MySQL"><a href="#1-yum康康安装的MySQL" class="headerlink" title="1. yum康康安装的MySQL"></a>1. yum康康安装的MySQL</h4><blockquote>
+<p>使用 yum list installed | grep mysql 全都yum remove掉就可以了</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum list installed | grep mysql</span><br></pre></td></tr></table></figure>
+
+<p>最后显示<code>Complete!</code>就算成功了</p>
+<h4 id="2-赶尽杀绝"><a href="#2-赶尽杀绝" class="headerlink" title="2. 赶尽杀绝"></a>2. 赶尽杀绝</h4><blockquote>
+<p>然后使用 find / -name mysql 依次将文件删除即可</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -name mysql</span><br></pre></td></tr></table></figure>
+
+<p>将显示的文件统统删掉即可</p>
+<ul>
+<li><p>/var/lib/mysql</p>
+</li>
+<li><p>/var/lib/mysql/mysql</p>
+</li>
+<li><p>/usr/share/mysql</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf /var/lib/mysql /var/lib/mysql/mysql /usr/share/mysql</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="二、rpm安装MySql"><a href="#二、rpm安装MySql" class="headerlink" title="二、rpm安装MySql"></a>二、rpm安装MySql</h3><h4 id="1-下载安装包"><a href="#1-下载安装包" class="headerlink" title="1. 下载安装包"></a>1. 下载安装包</h4><blockquote>
+<p>先去<a target="_blank" rel="noopener" href="https://downloads.mysql.com/archives/community/">官网</a>下载安装包，我这边是centos操作系统，所以选择Red Hat那个，我下载的是mysql-5.7.29-1.el7.x86_64.rpm-bundle.tar 然后上传到服务器上</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br></pre></td></tr></table></figure>
+
+<p>康康安装包在不在：<code>mysql-5.7.29-1.el7.x86_64.rpm-bundle.tar</code></p>
+<h4 id="2-删除系统自带的东西"><a href="#2-删除系统自带的东西" class="headerlink" title="2. 删除系统自带的东西"></a>2. 删除系统自带的东西</h4><blockquote>
+<p>如果是第一次安装，检查一下系统自带的mariadb-lib以及MySQL 我这边干干净净呢</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa|grep mariadb</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa|grep mysql</span><br></pre></td></tr></table></figure>
+
+<p>如果显示有东西的话就用下面的命令弄掉它</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -e --nodeps + 搜索出来的文件名</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-安装依赖"><a href="#3-安装依赖" class="headerlink" title="3. 安装依赖"></a>3. 安装依赖</h4><blockquote>
+<p>依次安装下面三个依赖</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install libaio</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install perl</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install net-tools</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="4-解压缩"><a href="#4-解压缩" class="headerlink" title="4.解压缩"></a>4.解压缩</h4><blockquote>
+<p>先创建一个目录，然后在目录里 进行解压tar -xvf mysql-5.7.29-1.el7.x86_64.rpm-bundle.tar，并赋予目录最大权限</p>
+</blockquote>
+<p>创建目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir mysql</span><br></pre></td></tr></table></figure>
+
+<p>进入目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> mysql/</span><br></pre></td></tr></table></figure>
+
+<p>解压</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -xvf mysql-5.7.29-1.el7.x86_64.rpm-bundle.tar</span><br></pre></td></tr></table></figure>
+
+<p>出去给目录赋予权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ..</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod -R 777 mysql</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-安装MySQL"><a href="#5-安装MySQL" class="headerlink" title="5. 安装MySQL"></a>5. 安装MySQL</h4><blockquote>
+<p>严格按照下面四个步骤安装软件包 </p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh mysql-community-common-5.7.29-1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh mysql-community-libs-5.7.29-1.el7.x86_64.rpm </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh mysql-community-client-5.7.29-1.el7.x86_64.rpm </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh mysql-community-server-5.7.29-1.el7.x86_64.rpm </span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="6-配置数据库"><a href="#6-配置数据库" class="headerlink" title="6. 配置数据库"></a>6. 配置数据库</h4><blockquote>
+<p>修改配置文件</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/my.cnf</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在[mysqld]下面添加这三行</span></span><br><span class="line">skip-grant-tables  <span class="comment">#跳过登录验证</span></span><br><span class="line">character_set_server=utf8  <span class="comment">#设置默认字符集UTF-8</span></span><br><span class="line">init_connect=<span class="string">&#x27;SET NAMES utf8&#x27;</span>  <span class="comment">#设置默认字符集UTF-8</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="7-启动MySQL服务"><a href="#7-启动MySQL服务" class="headerlink" title="7. 启动MySQL服务"></a>7. 启动MySQL服务</h4><blockquote>
+<p>执行下面两个命令，不要输入命令直接回车就好啦</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start mysqld.service</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p</span><br></pre></td></tr></table></figure>
+
+<p>这样就直接进入MySQL啦！</p>
+<h4 id="8-设置密码"><a href="#8-设置密码" class="headerlink" title="8. 设置密码"></a>8. 设置密码</h4><blockquote>
+<p>在MySQL中执行下面的命令，设置密码并且让他生效</p>
+</blockquote>
+<p>进入MySQL</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -uroot -p</span><br></pre></td></tr></table></figure>
+
+<p>更新密码，这只是暂时的密码，下次进入得修改</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update mysql.user <span class="built_in">set</span> authentication_string=password(<span class="string">&#x27;passwd&#x27;</span>) <span class="built_in">where</span> user=<span class="string">&#x27;root&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>让密码生效</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="9-再次修改配置文件"><a href="#9-再次修改配置文件" class="headerlink" title="9. 再次修改配置文件"></a>9. 再次修改配置文件</h4><blockquote>
+<p>注释掉直接进入MySQL这一段</p>
+</blockquote>
+<p>退出mysql</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+
+<p>编辑my.cnf配置文件将：skip-grant-tables这一行注释掉</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line"><span class="comment">#skip-grant-tables</span></span><br><span class="line">character_set_server=utf8</span><br><span class="line">init_connect=<span class="string">&#x27;SET NAMES utf8&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>重启mysql服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop  mysqld.service</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start mysqld.service</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="10-重新更新密码"><a href="#10-重新更新密码" class="headerlink" title="10. 重新更新密码"></a>10. 重新更新密码</h4><blockquote>
+<p><code>mysql -uroot -p</code>，密码是之前设置的暂时密码，此时进入你需要更新密码，通常来说你自己的密码系统会认为安全性太低不通过，我们先把安全策略降到最低，之后再修改密码</p>
+</blockquote>
+<p>修改validate_password_policy参数的值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> global validate_password_policy=0;</span><br></pre></td></tr></table></figure>
+
+<p>修改validate_password_length参数的值(密码长度)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> global validate_password_length=1;</span><br></pre></td></tr></table></figure>
+
+<p>修改MySQL为自己的密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alter user <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> identified by <span class="string">&#x27;password&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>查看并设置密码策略</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW VARIABLES LIKE <span class="string">&#x27;validate_password%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">set</span> global validate_password_policy=LOW;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="11-开启远程登录"><a href="#11-开启远程登录" class="headerlink" title="11. 开启远程登录"></a>11. 开启远程登录</h4><blockquote>
+<p>先开放服务器的3306端口，再进入MySQL开启远程登录</p>
+</blockquote>
+<p>如果防火墙开了的话就开放服务器端口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=3306/tcp --permanent</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+
+<p>进入MySQL，开启远程登录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grant all privileges on *.* to <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;%&#x27;</span> identified by <span class="string">&#x27;passwd&#x27;</span> with grant option;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>至此，安装就结束啦！！！</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/10/Linux/Centos%E9%98%B2%E7%81%AB%E5%A2%99%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/10/Linux/Centos%E9%98%B2%E7%81%AB%E5%A2%99%E5%91%BD%E4%BB%A4/" class="post-title-link" itemprop="url">Centos的一些命令和windows的一些命令</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-10 15:22:59" itemprop="dateCreated datePublished" datetime="2020-11-10T15:22:59+00:00">2020-11-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-06 15:21:56" itemprop="dateModified" datetime="2022-05-06T15:21:56+00:00">2022-05-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>参考博客<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32923745/article/details/78048822">Centos 防火墙命令</a></p>
+<p>(由于自己在使用云服务器的命令的时候常常要百度，故做一点总结)</p>
+<h3 id="centos7防火墙命令"><a href="#centos7防火墙命令" class="headerlink" title="centos7防火墙命令"></a>centos7防火墙命令</h3><h4 id="查看开放端口"><a href="#查看开放端口" class="headerlink" title="查看开放端口"></a>查看开放端口</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall<span class="literal">-cmd</span> -<span class="literal">-list</span><span class="literal">-ports</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="开启端口"><a href="#开启端口" class="headerlink" title="开启端口"></a>开启端口</h4><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall<span class="literal">-cmd</span> -<span class="literal">-zone</span>=public -<span class="literal">-add</span><span class="literal">-port</span>=<span class="number">80</span>/tcp -<span class="literal">-permanent</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="查看端口占用情况"><a href="#查看端口占用情况" class="headerlink" title="查看端口占用情况"></a>查看端口占用情况</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsof -i tcp:8090</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>会显示以下信息</p>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">COMMAND   PID USER   FD   <span class="built_in">TYPE</span>    DEVICE SIZE/OFF NODE NAME</span><br><span class="line">java    <span class="number">27581</span> root   <span class="number">19</span>u  IPv6 <span class="number">136588143</span>      <span class="number">0</span>t0  TCP *:<span class="number">8090</span> (LISTEN)</span><br><span class="line"></span><br><span class="line"><span class="comment"># lsof输出各列信息的意义如下：</span></span><br><span class="line"><span class="comment"># COMMAND    进程的名称</span></span><br><span class="line"><span class="comment"># PID        进程的标识符</span></span><br><span class="line"><span class="comment"># USER       进程的所有者</span></span><br><span class="line"><span class="comment"># FD         文件描述符，应用程序通过文件描述符识别该文件，如cwd，txt</span></span><br><span class="line"><span class="comment"># TYPE       文件类型</span></span><br><span class="line"><span class="comment"># DEVICE     指定磁盘的名称</span></span><br><span class="line"><span class="comment"># SIZE/OFF   文件大小</span></span><br><span class="line"><span class="comment"># NODE       文件在磁盘上的标识</span></span><br><span class="line"><span class="comment"># NAME       打开文件的确切名称</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="开启范围端口"><a href="#开启范围端口" class="headerlink" title="开启范围端口"></a>开启范围端口</h4><blockquote>
+<p>开启8080 - 9090范围的端口</p>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall<span class="literal">-cmd</span>  -<span class="literal">-zone</span>=public  -<span class="literal">-add</span><span class="literal">-port</span>=<span class="number">8080</span><span class="literal">-9090</span>/tcp -<span class="literal">-permanent</span></span><br></pre></td></tr></table></figure>
+
+<p>命令含义：</p>
+<ul>
+<li>–zone                                #作用域</li>
+<li>–add-port=80/tcp           #添加端口，格式为：端口/通讯协议</li>
+<li>–permanent                     #永久生效，没有此参数重启后失效</li>
+</ul>
+<h4 id="防火墙命令"><a href="#防火墙命令" class="headerlink" title="防火墙命令"></a>防火墙命令</h4><blockquote>
+<p>重启firewall</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>查看防火墙状态</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd  --state</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>开启firewall</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start firewalld.service</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>停止firewall</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld.service</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>禁止firewall开机启动</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">disable</span> firewalld.service</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="centos7进程管理"><a href="#centos7进程管理" class="headerlink" title="centos7进程管理"></a>centos7进程管理</h3><p>linux上进程有5种状态:</p>
+<ol>
+<li>运行(正在运行或在运行队列中等待)</li>
+<li>中断(休眠中, 受阻, 在等待某个条件的形成或接受到信号)</li>
+<li>不可中断(收到信号不唤醒和不可运行, 进程必须等待直到有中断发生)</li>
+<li>僵死(进程已终止, 但进程描述符存在, 直到父进程调用wait4()系统调用后释放)</li>
+<li>停止(进程收到SIGSTOP, SIGSTP, SIGTIN, SIGTOU信号后停止运行运行)</li>
+</ol>
+<h4 id="查看进程"><a href="#查看进程" class="headerlink" title="查看进程"></a>查看进程</h4><ul>
+<li>ps命令查找与进程相关的PID号</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps 9827</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>显示如下信息</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> PID TTY      STAT   TIME COMMAND</span><br><span class="line">9827 pts/0    Sl     0:14 java -jar competitionrow-0.0.1-SNAPSHOT.jar</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="杀死进程"><a href="#杀死进程" class="headerlink" title="杀死进程"></a>杀死进程</h4><ul>
+<li>通过进程id来杀</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> -9 pid</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>通过进程name来杀</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">killall -9 name</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="centos7查看历史命令"><a href="#centos7查看历史命令" class="headerlink" title="centos7查看历史命令"></a>centos7查看历史命令</h3><ul>
+<li>查看历史命令</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">history</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>搜索历史命令</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">history | grep &#x27;tmux&#x27;</span><br><span class="line"><span class="meta">#</span><span class="bash"> 模糊搜索tmux</span></span><br></pre></td></tr></table></figure>
+
+<p>出现以下结果：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">171  tmux new -s volunteer</span><br><span class="line">186  tmux ls</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<ul>
+<li>显示现行终端机下的所有程序，包括其他用户的程序</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps a</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>显示所有进程</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  PID TTY      STAT   TIME COMMAND</span><br><span class="line"> 1321 tty1     Ss+    0:00 /sbin/agetty --noclear tty1 linux</span><br><span class="line"> 1322 ttyS0    Ss+    0:00 /sbin/agetty --keep-baud 115200 38400 9600 ttyS0 vt220</span><br><span class="line"> 9827 pts/0    Sl     0:14 java -jar competitionrow-0.0.1-SNAPSHOT.jar</span><br><span class="line">17061 pts/0    R+     0:00 ps a</span><br><span class="line">22278 pts/0    Ss     0:00 -bash</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>显示所有程序</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -A</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>与上一个命令类似</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">PID TTY          TIME CMD</span><br><span class="line">  1 ?        00:12:32 systemd</span><br><span class="line">  2 ?        00:00:02 kthreadd</span><br><span class="line">  3 ?        00:01:53 ksoftirqd/0</span><br><span class="line">  5 ?        00:00:00 kworker/0:0H</span><br><span class="line">  7 ?        00:00:00 migration/0</span><br><span class="line">  ......  </span><br><span class="line">  <span class="comment">#此处省略100行</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>查找特定的进程（如查找java进程）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux | grep java</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>最常用的方法是ps aux,然后再通过管道使用grep命令过滤查找特定的进程,然后再对特定的进程进行操作</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root      9827  0.5  8.8 2546924 166932 pts/0  Sl   14:03   0:14 java -jar competitionrow-0.0.1-SNAPSHOT.jar</span><br><span class="line">root     18130  0.0  0.0 112708   976 pts/0    R+   14:48   0:00 grep --color=auto java</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="windows端口进程管理"><a href="#windows端口进程管理" class="headerlink" title="windows端口进程管理"></a>windows端口进程管理</h3><h4 id="查找端口"><a href="#查找端口" class="headerlink" title="查找端口"></a>查找端口</h4><blockquote>
+<p>查找所有端口</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -ano</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>查找某个端口</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -aon|findstr <span class="string">&quot;4000&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="杀死使用某个端口的进程"><a href="#杀死使用某个端口的进程" class="headerlink" title="杀死使用某个端口的进程"></a>杀死使用某个端口的进程</h4><blockquote>
+<p>通过pid号</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">taskkill /f /pid  21972</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>成功杀死会有以下提示</p>
+</blockquote>
+<p>成功: 已终止 PID 为 21972 的进程</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/09/tools/nginx%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E5%85%A5%E9%97%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -185,7 +892,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 12:23:33" itemprop="dateModified" datetime="2022-04-30T12:23:33+00:00">2022-04-30</time>
+                <time title="修改时间：2022-05-06 15:21:56" itemprop="dateModified" datetime="2022-05-06T15:21:56+00:00">2022-05-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -438,7 +1145,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 12:23:33" itemprop="dateModified" datetime="2022-04-30T12:23:33+00:00">2022-04-30</time>
+                <time title="修改时间：2022-05-06 15:21:56" itemprop="dateModified" datetime="2022-05-06T15:21:56+00:00">2022-05-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -485,7 +1192,7 @@
 
 
 <h4 id="src-refspec-master-does-not-match-any解决办法"><a href="#src-refspec-master-does-not-match-any解决办法" class="headerlink" title="src refspec master does not match any解决办法"></a>src refspec master does not match any解决办法</h4><blockquote>
-<p>情况概述：我在GitHub新建一个仓库之后，在本地新建了一个文件夹，git init 并且git remote add origin <a href="mailto:&#103;&#x69;&#116;&#64;&#x67;&#105;&#x74;&#x68;&#x75;&#98;&#x2e;&#99;&#111;&#x6d;">&#103;&#x69;&#116;&#64;&#x67;&#105;&#x74;&#x68;&#x75;&#98;&#x2e;&#99;&#111;&#x6d;</a>:woshixty/xty.github.io.git 之后，执行 git push -u origin main，发现不能提交</p>
+<p>情况概述：我在GitHub新建一个仓库之后，在本地新建了一个文件夹，git init 并且git remote add origin <a href="mailto:&#x67;&#x69;&#x74;&#x40;&#103;&#x69;&#x74;&#104;&#117;&#x62;&#46;&#99;&#111;&#109;">&#x67;&#x69;&#x74;&#x40;&#103;&#x69;&#x74;&#104;&#117;&#x62;&#46;&#99;&#111;&#109;</a>:woshixty/xty.github.io.git 之后，执行 git push -u origin main，发现不能提交</p>
 </blockquote>
 <p>错误原因：目录中没有文件，空目录是不能提交上去的，新建一个README文件，再上传</p>
 <p>执行以下命令，远程分支与本地分支建立联系，并提交到远程分支</p>
@@ -541,7 +1248,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 12:23:33" itemprop="dateModified" datetime="2022-04-30T12:23:33+00:00">2022-04-30</time>
+                <time title="修改时间：2022-05-06 15:21:56" itemprop="dateModified" datetime="2022-05-06T15:21:56+00:00">2022-05-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -664,7 +1371,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-count">107</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

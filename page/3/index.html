@@ -154,6 +154,276 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/06/Shell%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/%E7%AC%AC%E4%BA%94%E7%AB%A0%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E4%B8%89%E5%89%91%E5%AE%A2%E4%B9%8Bgrep/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/06/Shell%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/%E7%AC%AC%E4%BA%94%E7%AB%A0%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E4%B8%89%E5%89%91%E5%AE%A2%E4%B9%8Bgrep/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-06 15:21:56" itemprop="dateCreated datePublished" datetime="2022-05-06T15:21:56+00:00">2022-05-06</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/06/C++/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20%E4%BD%BF%E7%94%A8%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/06/C++/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20%E4%BD%BF%E7%94%A8%E7%B1%BB/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-06 15:21:56" itemprop="dateCreated datePublished" datetime="2022-05-06T15:21:56+00:00">2022-05-06</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="三、友元"><a href="#三、友元" class="headerlink" title="三、友元"></a>三、友元</h3><p>通常情况下，公有类方法是访问类的唯一途径，有时不方便，于是我们诞生了另外一种形式的访问权限：友元</p>
+<p>分为三类：</p>
+<ul>
+<li>友元函数</li>
+<li>友元类</li>
+<li>友元成员函数</li>
+</ul>
+<h4 id="1、创建友元函数"><a href="#1、创建友元函数" class="headerlink" title="1、创建友元函数"></a>1、创建友元函数</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">friend</span> Time <span class="keyword">operator</span>*(<span class="keyword">const</span> Time &amp; t, <span class="keyword">double</span> m);</span><br></pre></td></tr></table></figure>
+
+<p>放在类声明中，加上关键字<code>friend</code></p>
+<ul>
+<li>虽然是在类声明中声明的，但是并不是成员函数</li>
+<li>与成员函数的访问权限相同</li>
+</ul>
+<h4 id="2、常用的友元：重载-lt-lt-运算符"><a href="#2、常用的友元：重载-lt-lt-运算符" class="headerlink" title="2、常用的友元：重载&lt;&lt;运算符"></a>2、常用的友元：重载&lt;&lt;运算符</h4><h5 id="（1）第一种重载版本"><a href="#（1）第一种重载版本" class="headerlink" title="（1）第一种重载版本"></a>（1）第一种重载版本</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Time <span class="keyword">operator</span>&lt;&lt;(ostream &amp;os, <span class="keyword">const</span> Time &amp; t) &#123;</span><br><span class="line">    os &lt;&lt; t.hours &lt;&lt; t.minutes;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="（2）第二种重载版本"><a href="#（2）第二种重载版本" class="headerlink" title="（2）第二种重载版本"></a>（2）第二种重载版本</h5><p>如果使用第一种重载版本，如下语句就会发生异常</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; time &lt;&lt; <span class="string">&quot;time&quot;</span> &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<p>所以我们采用如下方式，让其返回<code>ostream</code>对象引用即可：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ostream &amp;  <span class="keyword">operator</span>&lt;&lt;(ostream &amp;os, <span class="keyword">const</span> Time &amp; t) &#123;</span><br><span class="line">    os &lt;&lt; t.hours &lt;&lt; t.minutes;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>只有在类声明的原型中才能使用friend关键字，否则函数定义也是原型，否则不能在函数定义中使用该关键字</p>
+</blockquote>
+<h3 id="六、类的自动转换和强制类型转换"><a href="#六、类的自动转换和强制类型转换" class="headerlink" title="六、类的自动转换和强制类型转换"></a>六、类的自动转换和强制类型转换</h3><p>内置类型转换：如果两种类型兼容，则会自动转换为接收类型的变量的类型</p>
+<p>不自动转化不兼容的类型，如下是非法的：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p = <span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<p>但是可以强制类型转化</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p = (<span class="keyword">int</span> *)<span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1、转换函数"><a href="#1、转换函数" class="headerlink" title="1、转换函数"></a>1、转换函数</h4>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/06/Docker%E5%AD%A6%E4%B9%A0/DockerSwarm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/06/Docker%E5%AD%A6%E4%B9%A0/DockerSwarm/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-06 15:21:56" itemprop="dateCreated datePublished" datetime="2022-05-06T15:21:56+00:00">2022-05-06</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>接下来探讨的话题将是规模方面（Scale）的，有请<code>Docker Swarm</code>登场</p>
+<p>概括来说，Swarm有两个核心组件：</p>
+<ul>
+<li>安全集群</li>
+<li>编排引擎</li>
+</ul>
+<h2 id="一、Docker-Swarm-简介"><a href="#一、Docker-Swarm-简介" class="headerlink" title="一、Docker Swarm-简介"></a>一、Docker Swarm-简介</h2><p><code>Docker Swarm</code>包含两个方面：一个企业级的Docker安全集群、一个微服务应用编排引擎</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/06/Docker%E5%AD%A6%E4%B9%A0/%E5%BA%94%E7%94%A8%E7%9A%84%E5%AE%B9%E5%99%A8%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/06/Docker%E5%AD%A6%E4%B9%A0/%E5%BA%94%E7%94%A8%E7%9A%84%E5%AE%B9%E5%99%A8%E5%8C%96/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-06 15:21:56" itemprop="dateCreated datePublished" datetime="2022-05-06T15:21:56+00:00">2022-05-06</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Docker的核心思想就是将应用整合到容器中，并且能在容器中运行</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/18/Mysql/MySQL%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%90%E8%A1%8C%E7%9A%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -185,7 +455,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 12:23:33" itemprop="dateModified" datetime="2022-04-30T12:23:33+00:00">2022-04-30</time>
+                <time title="修改时间：2022-05-06 15:21:56" itemprop="dateModified" datetime="2022-05-06T15:21:56+00:00">2022-05-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -258,7 +528,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 12:23:33" itemprop="dateModified" datetime="2022-04-30T12:23:33+00:00">2022-04-30</time>
+                <time title="修改时间：2022-05-06 15:21:56" itemprop="dateModified" datetime="2022-05-06T15:21:56+00:00">2022-05-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -550,7 +820,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 12:23:33" itemprop="dateModified" datetime="2022-04-30T12:23:33+00:00">2022-04-30</time>
+                <time title="修改时间：2022-05-06 15:21:56" itemprop="dateModified" datetime="2022-05-06T15:21:56+00:00">2022-05-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -679,7 +949,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 12:23:33" itemprop="dateModified" datetime="2022-04-30T12:23:33+00:00">2022-04-30</time>
+                <time title="修改时间：2022-05-06 15:21:56" itemprop="dateModified" datetime="2022-05-06T15:21:56+00:00">2022-05-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -766,7 +1036,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 12:23:33" itemprop="dateModified" datetime="2022-04-30T12:23:33+00:00">2022-04-30</time>
+                <time title="修改时间：2022-05-06 15:21:56" itemprop="dateModified" datetime="2022-05-06T15:21:56+00:00">2022-05-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -858,7 +1128,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 12:23:33" itemprop="dateModified" datetime="2022-04-30T12:23:33+00:00">2022-04-30</time>
+                <time title="修改时间：2022-05-06 15:21:56" itemprop="dateModified" datetime="2022-05-06T15:21:56+00:00">2022-05-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -900,460 +1170,6 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; list.size(); i++)</span><br><span class="line">  	result[i] = list.poll().val;</span><br></pre></td></tr></table></figure>
 
 <p>注意看上面这段代码，for循环里面的判断条件是<code> i &lt; list.size()</code>，而<code> list.size()</code>大小是动态的，因为<code> list.poll().val</code>！！！非常低级的一个错误</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/09/Docker%E5%AD%A6%E4%B9%A0/Docker%E5%AE%B9%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/09/Docker%E5%AD%A6%E4%B9%A0/Docker%E5%AE%B9%E5%99%A8/" class="post-title-link" itemprop="url">Docker容器</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-01-09 00:00:00" itemprop="dateCreated datePublished" datetime="2022-01-09T00:00:00+00:00">2022-01-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 12:23:33" itemprop="dateModified" datetime="2022-04-30T12:23:33+00:00">2022-04-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h3><p>容器是镜像的运行时实例</p>
-<h3 id="二、详解"><a href="#二、详解" class="headerlink" title="二、详解"></a>二、详解</h3><h4 id="1、启动一个简单的容器"><a href="#1、启动一个简单的容器" class="headerlink" title="1、启动一个简单的容器"></a>1、启动一个简单的容器</h4><p>启动容器的一个简单方式是：<code>docker container run</code></p>
-<p>启动一个简单的容器化版本的<code>Ubuntu Linux</code></p>
-<blockquote>
-<p>命令的基础格式为：<code>docker container run &lt;options&gt; &lt;im- age&gt;:&lt;tag&gt; &lt;app&gt;</code></p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container run -it ubuntu:latest /bin/bash</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>-it</code>表示使容器具备交互性并于终端进行连接</li>
-<li><code>/bin/bash</code>表示了运行在容器中的程序</li>
-</ul>
-<p>有些指令无法执行，大部分容器镜像都是经过高度优化的，代表某些命令或者包没有安装</p>
-<h4 id="2、容器进程"><a href="#2、容器进程" class="headerlink" title="2、容器进程"></a>2、容器进程</h4><h4 id="3、容器生命周期"><a href="#3、容器生命周期" class="headerlink" title="3、容器生命周期"></a>3、容器生命周期</h4><h4 id="4、优雅地停止容器"><a href="#4、优雅地停止容器" class="headerlink" title="4、优雅地停止容器"></a>4、优雅地停止容器</h4><p>先<code>docker container stop</code>容器，再<code>docker container rm</code>容器</p>
-<h4 id="5、利用重启策略进行容器的自我修复"><a href="#5、利用重启策略进行容器的自我修复" class="headerlink" title="5、利用重启策略进行容器的自我修复"></a>5、利用重启策略进行容器的自我修复</h4><ul>
-<li>always</li>
-<li>unless-stopped</li>
-<li>on-failed</li>
-</ul>
-<h4 id="6、web服务器示例"><a href="#6、web服务器示例" class="headerlink" title="6、web服务器示例"></a>6、web服务器示例</h4><p>在8080端口启动一个简单的web服务</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker container run -d --name webserver -p 80:8080 \</span><br><span class="line">nigelpoulton/pluralsight-docker-ci</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>-d</code>表示后台模式启动</li>
-<li><code>-p 80:8080</code>表示将Docker主机的端口映射到容器内</li>
-</ul>
-<h4 id="7、查看容器详情"><a href="#7、查看容器详情" class="headerlink" title="7、查看容器详情"></a>7、查看容器详情</h4><p>在上个例子中，我们并没有指定容器中具体的应用，但是容器却运行了一个简单的web服务</p>
-<p>当构建镜像时，可以通过嵌入指令来列出希望容器运行时启动的默认应用</p>
-<p>如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker image inspect nigelpoulton/pluralsight-docker-ci</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/09/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/09/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%B0%8F%E6%95%B0%E5%AD%97/" class="post-title-link" itemprop="url">力扣-旋转数组中的最小数字</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-01-09 00:00:00" itemprop="dateCreated datePublished" datetime="2022-01-09T00:00:00+00:00">2022-01-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 12:23:33" itemprop="dateModified" datetime="2022-04-30T12:23:33+00:00">2022-04-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%88%B7%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>题目链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/">https://leetcode-cn.com/problems/xuan-zhuan-shu-zu-de-zui-xiao-shu-zi-lcof/</a></p>
-<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。</p>
-<p>给你一个可能存在 重复 元素值的数组 numbers ，它原来是一个升序排列的数组，并按上述情形进行了一次旋转。请返回旋转数组的最小元素。例如，数组 [3,4,5,1,2] 为 [1,2,3,4,5] 的一次旋转，该数组的最小值为1。 </p>
-<h4 id="示例1"><a href="#示例1" class="headerlink" title="示例1"></a>示例1</h4><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：[3,4,5,1,2]</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
-
-<h4 id="示例2"><a href="#示例2" class="headerlink" title="示例2"></a>示例2</h4><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：[2,2,2,0,1]</span><br><span class="line">输出：0</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>依然是采用二分的思路，每次与两端的元素做对比，分三种结果：</p>
-<ul>
-<li>比最右边小</li>
-<li>比最左边大</li>
-<li>其他</li>
-</ul>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>我写的代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minArray</span><span class="params">(<span class="keyword">int</span>[] numbers)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> low = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> high = numbers.length - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> pivot = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(high &gt;= low) &#123;</span><br><span class="line">            pivot = (low + high) / <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span> (numbers[pivot] &lt; numbers[high]) &#123;</span><br><span class="line">                high = pivot;</span><br><span class="line">            <span class="comment">//错误一</span></span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span> (numbers[pivot] &gt; numbers[low]) &#123;</span><br><span class="line">                <span class="comment">//错误二</span></span><br><span class="line">                low = pivot;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                high--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> numbers[pivot];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>只需要将<code> low = pivot;</code>改为<code> low = pivot + 1;</code>便可以完美通过！</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/06/Docker%E5%AD%A6%E4%B9%A0/Docker%E9%95%9C%E5%83%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/06/Docker%E5%AD%A6%E4%B9%A0/Docker%E9%95%9C%E5%83%8F/" class="post-title-link" itemprop="url">Docker镜像</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-01-06 00:00:00" itemprop="dateCreated datePublished" datetime="2022-01-06T00:00:00+00:00">2022-01-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 12:23:33" itemprop="dateModified" datetime="2022-04-30T12:23:33+00:00">2022-04-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="镜像与容器的关系"><a href="#镜像与容器的关系" class="headerlink" title="镜像与容器的关系"></a>镜像与容器的关系</h3><p>镜像可以理解为一种构建时（build-in）结构，容器可以理解为一种运行时（run-time）结构</p>
-<h3 id="查看镜像"><a href="#查看镜像" class="headerlink" title="查看镜像"></a>查看镜像</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker image ls</span><br></pre></td></tr></table></figure>
-
-<h3 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker image pull ubuntu:latest</span><br></pre></td></tr></table></figure>
-
-<h3 id="镜像命名"><a href="#镜像命名" class="headerlink" title="镜像命名"></a>镜像命名</h3><ul>
-<li>镜像仓库服务</li>
-</ul>
-<p>Docker镜像存储在镜像仓库服务（Image Registry）当中，Docker客户端的镜像仓库服务是可配置的，默认使用Docker Hub</p>
-<p>镜像仓库服务包含多个镜像仓库（Image Repository）</p>
-<p>一个镜像仓库包含多个镜像</p>
-<ul>
-<li>镜像命名与标签</li>
-</ul>
-<p>只需要给出镜像的名字与标签，就能够在官方的仓库中定位一个镜像，如下拉取镜像的命令：</p>
-<blockquote>
-<p>docker image pull <repository>:<tag></p>
-</blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 从官方的Mongo库中拉取标签为3.3.11的镜像</span></span><br><span class="line">docker image pull mongo:3.3.11</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li>为镜像打多个标签</li>
-</ul>
-<p>使用<code>-a</code>获取一个仓库中所有的镜像</p>
-<p>例如下面的命令中就是拉取标签为<code>latest</code>的镜像</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker image pull ubuntu:latest</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li>过滤<code>docker image ls</code>的输出内容</li>
-</ul>
-<p>Docker提供<code>--filter</code>参数来过滤<code>docker image ls</code>命令返回的镜像列表内容</p>
-<ul>
-<li>通过CLI方式搜索Docker Hub</li>
-</ul>
-<p><code>docker search</code>命令允许通过CLI的方式搜索<code>Docker Hub</code>，读者可以通过“NAME”字段的内容进行匹配，并且基于返回内容中任意列的值进行过滤</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker search nigelpoulton</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li><p>镜像和分层</p>
-</li>
-<li><p>共享镜像层</p>
-</li>
-<li><p>根据摘要拉取镜像</p>
-</li>
-<li></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/12/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">计算机网络知识点总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-12-27 00:00:00" itemprop="dateCreated datePublished" datetime="2021-12-27T00:00:00+00:00">2021-12-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 12:23:33" itemprop="dateModified" datetime="2022-04-30T12:23:33+00:00">2022-04-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" itemprop="url" rel="index"><span itemprop="name">计算机网络</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>知识点：</p>
-<h3 id="一、OSI七层模型"><a href="#一、OSI七层模型" class="headerlink" title="一、OSI七层模型"></a>一、OSI七层模型</h3><p>第一种模型是OSI七层模型，OSI为（Open System interconnect）的缩写，自上而下分别是应用层、表示层、会话层、传输层、网络层、数据链路层、物理层</p>
-<p>物理层：网卡，网线，集线器，中继器，调制解调器</p>
-<p>数据链路层：网桥，交换机</p>
-<p>网络层：路由器</p>
-<h4 id="1、物理层"><a href="#1、物理层" class="headerlink" title="1、物理层"></a>1、物理层</h4><ul>
-<li><p>物理层的媒体包括电缆、光纤等</p>
-</li>
-<li><p>正因为物理媒体会有很多差异，所以物理层的作用正是尽可能地屏蔽这些差异，使上面的数据链路曾感觉不到这些差异</p>
-</li>
-<li><p>在这一层，数据的单位为比特（bit）</p>
-</li>
-</ul>
-<h4 id="2、数据链路层"><a href="#2、数据链路层" class="headerlink" title="2、数据链路层"></a>2、数据链路层</h4><p>本章重点：</p>
-<p>（1）数据链路层的使用的信道主要有以下两种类型：<code> 点对点信道</code>、<code> 广播信道</code></p>
-<p>（2）数据链路层的协议有很多种，但有三个基本问题则是共同的：<code> 封装成帧、透明传输、差错检测</code></p>
-<ul>
-<li><p>封装成帧</p>
-<p>就是在数据前后分别添加首部和尾部，这样就构成了帧</p>
-</li>
-<li><p>透明传输</p>
-<p>用字节填充法（在非帧边界的控制字符插入转义字符）解决透明传输的问题</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E9%80%8F%E6%98%8E%E4%BC%A0%E8%BE%93.png" align=left>
-</li>
-<li><p>差错检测</p>
-<p>在数据链路层广泛使用了循环冗余检验CRC的检错技术</p>
-</li>
-</ul>
-<p>（3）以太网MAC层硬件地址</p>
-<p>（4）适配器、转发器、集线器、网桥、以太网交换机的作用和使用场景</p>
-<h4 id="3、网络层"><a href="#3、网络层" class="headerlink" title="3、网络层"></a>3、网络层</h4><p>主要的协议有ip，主要是将报文封装成ip数据报</p>
-<p>网络层向上层只提供简单灵活的、无连接的、尽最大努力交付的数据报服务</p>
-<h6 id="A、网际协议IP"><a href="#A、网际协议IP" class="headerlink" title="A、网际协议IP"></a>A、网际协议IP</h6><p>与IP协议配套使用的还有三个协议：</p>
-<ul>
-<li>地址解析协议ARP</li>
-<li>网际控制报文协议ICMP</li>
-<li>网际组管理协议IGMP</li>
-</ul>
-<p>IP数据报格式</p>
-<h4 id="4、传输层"><a href="#4、传输层" class="headerlink" title="4、传输层"></a>4、传输层</h4><p>IP数据报中的首部明确标记了两个主机的IP地址，但是真正进行通信的是进程。根据应用程序的不用需求，运输层需要两种不同的运输协议，即<code> 面向连接的TCP</code>和<code> 无连接的UDP</code>。TCP数据单元为段而UDP中数据单元为数据报。</p>
-<p>TCP面向连接、全双工面向字节流，每一条TCP连接有两个端点，这两个端点是什么呢？不是主机，也不是主机IP，不是应用进程，也不是运输层的协议端口。TCP链接的端点叫做<code> 套接字（socket）= IP地址：端口号</code></p>
-<p>TCP的三次握手</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B.gif" width=700 align=left>
-
-<p>TCP的四次挥手</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B.gif" width=700 align=left>
-
-
-
-<p>TCP的可靠传输的实现：1.滑动窗口 2.超时重传 3.选择确认 SACK</p>
-<p>TCP的流量控制：滑动窗口</p>
-<p>TCP的拥塞控制：慢开始与拥塞避免</p>
-<p>UDP是无连接 尽最大努力交付 面向报文 首部开销小 8字节 比TCP的20个字节小</p>
-<h4 id="5、会话层"><a href="#5、会话层" class="headerlink" title="5、会话层"></a>5、会话层</h4><p>会话单位的控制层，其主要功能是按照在应用进程之间约定的原则，按照正确的顺序收、发数据，进行各种形态的对话。</p>
-<h4 id="6、表示层"><a href="#6、表示层" class="headerlink" title="6、表示层"></a>6、表示层</h4><p>数据表示形式的控制层，其主要功能是把应用层提供的信息变换为能够共同理解的形式，提供字符代码、数据格式、控制信息格式、加密等的统一表示。</p>
-<h4 id="7、应用层"><a href="#7、应用层" class="headerlink" title="7、应用层"></a>7、应用层</h4><p>OSI参考模型的最高层。其功能是实现应用进程（如用户程序、终端操作员等）之间的信息交换。同时，还具有一系列业务处理所需要的服务功能。应用层许多协议都是基于客户服务器方式。</p>
 
       
     </div>
@@ -1440,7 +1256,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">103</span>
+          <span class="site-state-item-count">107</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
