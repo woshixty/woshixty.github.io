@@ -1,24 +1,22 @@
-## 1、JDK1.8的新特性有哪些
+# 1、JDK1.8的新特性有哪些
 
-#### 一、接口的默认方法
+## 一、接口的默认方法
 
-#### 二、Lambda表达式
+## 二、Lambda表达式
 
-#### 三、函数式接口
+## 三、函数式接口
 
-#### 四、方法与构造函数引用
+## 四、方法与构造函数引用
 
-#### 五、Lambda作用域
+## 五、Lambda作用域
 
-#### 六、访问局部变量
+## 六、访问局部变量
 
-#### 七、访问对象字段于静态变量
+## 七、访问对象字段于静态变量
 
-#### 八、访问接口的默认方法
+## 八、访问接口的默认方法
 
-
-
-## 2、Java抽象类和接口有什么区别
+# 2、Java抽象类和接口有什么区别
 
 语法与语意的区别
 
@@ -49,19 +47,17 @@
 
   抽象方法都是要被` abstract`修饰的不能被` private、synchronized、native`等修饰，不带花括号
 
+# 3、HashMap
 
-
-## 3、HashMap
-
-### （1）底层原理
+## （1）底层原理
 
 https://zhuanlan.zhihu.com/p/79507868
 
-### （2）HashMap在扩容上做了哪些处理
+## （2）HashMap在扩容上做了哪些处理
 
 JDK1.8不需要再像JDK1.7一样重新计算hash，只需要看原来的hash值新增的那一位bit是1还是0就好
 
-### （3）HashMap有哪些线程安全的方式
+## （3）HashMap有哪些线程安全的方式
 
 - 方法一：
 
@@ -71,9 +67,7 @@ JDK1.8不需要再像JDK1.7一样重新计算hash，只需要看原来的hash值
 
 重新改写了HashMap，具体可以查看`java.util.concurrentHashMap`，是一个支持并发的HashMap。这个方法比方法一有了很大的改进。
 
-
-
-## 4、HashMap和HashTable的区别
+# 4、HashMap和HashTable的区别
 
 - HashTable线程同步但效率低，HashMap相反但效率高
 
@@ -87,9 +81,7 @@ JDK1.8不需要再像JDK1.7一样重新计算hash，只需要看原来的hash值
 
 - HashTable继承自Dictionary类，HashMap继承自AbstractMap类
 
-
-
-## 5、Comparetor和Comparable
+# 5、Comparetor和Comparable
 
 在Java中当自定义的类需要进行比较的时候，可以通过这两种方式
 
@@ -99,9 +91,15 @@ Comparable相当于“内部比较器”，而Comparator相当于“外部比较
 
 Comparable实现简单，只需实现接口即可进行比较，但是需要修改源码，但是Comparetor好处是不需要修改源码，只是实现一个比较器，将需要比较的两个对象传禁区就行
 
+# 6、线程池的实现原理
 
+https://juejin.cn/post/6866054685044768782
 
+线程池的核心参数：
 
-
-
-
+- `corePoolSize`：线程池核心线程数量
+- `maximumPoolSize`：线程池会创建的最大线程数量
+- `keepAliveTime`：线程池中大于核心线程数那部分线程的最大空闲存活时间
+- `workQueue`：保存等待执行任务的一个阻塞队列，当线程池所有的线程都在运行的时候，提交的任务会保存在阻塞队列中
+- `threadFactory`：创建线程的一个工厂，默认为`DefaultThreadFactory`类
+- `handler`：线程拒绝策略
