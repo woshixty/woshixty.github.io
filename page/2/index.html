@@ -154,7 +154,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/09/Untitled/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/10/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/Java%E8%AF%AD%E8%A8%80%E9%9D%A2%E8%AF%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -168,7 +168,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/09/Untitled/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/05/10/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/Java%E8%AF%AD%E8%A8%80%E9%9D%A2%E8%AF%95/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -178,7 +178,857 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-09 15:59:27" itemprop="dateCreated datePublished" datetime="2022-05-09T15:59:27+00:00">2022-05-09</time>
+              <time title="创建时间：2022-05-10 15:47:57" itemprop="dateCreated datePublished" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1、JDK1-8的新特性有哪些"><a href="#1、JDK1-8的新特性有哪些" class="headerlink" title="1、JDK1.8的新特性有哪些"></a>1、JDK1.8的新特性有哪些</h1><h2 id="一、接口的默认方法"><a href="#一、接口的默认方法" class="headerlink" title="一、接口的默认方法"></a>一、接口的默认方法</h2><h2 id="二、Lambda表达式"><a href="#二、Lambda表达式" class="headerlink" title="二、Lambda表达式"></a>二、Lambda表达式</h2><h2 id="三、函数式接口"><a href="#三、函数式接口" class="headerlink" title="三、函数式接口"></a>三、函数式接口</h2><h2 id="四、方法与构造函数引用"><a href="#四、方法与构造函数引用" class="headerlink" title="四、方法与构造函数引用"></a>四、方法与构造函数引用</h2><h2 id="五、Lambda作用域"><a href="#五、Lambda作用域" class="headerlink" title="五、Lambda作用域"></a>五、Lambda作用域</h2><h2 id="六、访问局部变量"><a href="#六、访问局部变量" class="headerlink" title="六、访问局部变量"></a>六、访问局部变量</h2><h2 id="七、访问对象字段于静态变量"><a href="#七、访问对象字段于静态变量" class="headerlink" title="七、访问对象字段于静态变量"></a>七、访问对象字段于静态变量</h2><h2 id="八、访问接口的默认方法"><a href="#八、访问接口的默认方法" class="headerlink" title="八、访问接口的默认方法"></a>八、访问接口的默认方法</h2><h1 id="2、Java抽象类和接口有什么区别"><a href="#2、Java抽象类和接口有什么区别" class="headerlink" title="2、Java抽象类和接口有什么区别"></a>2、Java抽象类和接口有什么区别</h1><p>语法与语意的区别</p>
+<p>什么时候用抽象类，什么时候用接口</p>
+<p>抽象类 -&gt; 有一种既有抽象概念（植物、动物）</p>
+<p>接口 -&gt; 共同特征（例如具有某种会飞的功能）</p>
+<h4 id="相同点："><a href="#相同点：" class="headerlink" title="相同点："></a>相同点：</h4><ul>
+<li>都不能被实例化</li>
+<li>接口的实现类和抽象类的子类都只有在实现了接口或抽象类中的方法以后才能被实例化</li>
+</ul>
+<h4 id="不同点："><a href="#不同点：" class="headerlink" title="不同点："></a>不同点：</h4><ul>
+<li><p>接口中的方法只有定义（JDK1.8中可以有default方法），抽象类的方法可以定义与实现</p>
+</li>
+<li><p>关键字不同：<code>implement</code>和<code>extends</code>，类可以实现多个接口，但只能继承一个类</p>
+</li>
+<li><p>接口强调功能的实现，抽象类强调所属关系</p>
+</li>
+<li><p>接口中的成员变量默认都是<code> public static final</code>，必须初始化，不可被修改</p>
+<p>抽象类的成员变量默认是default，可以被重新定义，也可以被修改</p>
+</li>
+<li><p>接口中的成员方法都是<code> public、abstract</code>的</p>
+<p>抽象方法都是要被<code> abstract</code>修饰的不能被<code> private、synchronized、native</code>等修饰，不带花括号</p>
+</li>
+</ul>
+<h1 id="3、HashMap"><a href="#3、HashMap" class="headerlink" title="3、HashMap"></a>3、HashMap</h1><h2 id="（1）底层原理"><a href="#（1）底层原理" class="headerlink" title="（1）底层原理"></a>（1）底层原理</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/79507868">https://zhuanlan.zhihu.com/p/79507868</a></p>
+<h2 id="（2）HashMap在扩容上做了哪些处理"><a href="#（2）HashMap在扩容上做了哪些处理" class="headerlink" title="（2）HashMap在扩容上做了哪些处理"></a>（2）HashMap在扩容上做了哪些处理</h2><p>JDK1.8不需要再像JDK1.7一样重新计算hash，只需要看原来的hash值新增的那一位bit是1还是0就好</p>
+<h2 id="（3）HashMap有哪些线程安全的方式"><a href="#（3）HashMap有哪些线程安全的方式" class="headerlink" title="（3）HashMap有哪些线程安全的方式"></a>（3）HashMap有哪些线程安全的方式</h2><ul>
+<li>方法一：</li>
+</ul>
+<p>通过<code>Collections.synchronizedMap()</code>返回一个新的Map，这个新的Map就是线程安全的。这个要求大家习惯基于接口编程，因为返回的并不是HashMap，而是一个Map实现。</p>
+<ul>
+<li>方法二：</li>
+</ul>
+<p>重新改写了HashMap，具体可以查看<code>java.util.concurrentHashMap</code>，是一个支持并发的HashMap。这个方法比方法一有了很大的改进。</p>
+<h1 id="4、HashMap和HashTable的区别"><a href="#4、HashMap和HashTable的区别" class="headerlink" title="4、HashMap和HashTable的区别"></a>4、HashMap和HashTable的区别</h1><ul>
+<li><p>HashTable线程同步但效率低，HashMap相反但效率高</p>
+<p>线程同步：指的是多线程的时候数据的安全性，synchronized关键字</p>
+</li>
+<li><p>HashTable不允许&lt;key, value&gt;空值，HashMap允许</p>
+</li>
+<li><p>HashTable使用Enumeration，HashMap使用Iterator</p>
+</li>
+<li><p>HashTable（默认为11）扩容方式：2*old+1，HashMap（默认为16）扩容方式为：2的指数倍</p>
+</li>
+<li><p>HashTable继承自Dictionary类，HashMap继承自AbstractMap类</p>
+</li>
+</ul>
+<h1 id="5、Comparetor和Comparable"><a href="#5、Comparetor和Comparable" class="headerlink" title="5、Comparetor和Comparable"></a>5、Comparetor和Comparable</h1><p>在Java中当自定义的类需要进行比较的时候，可以通过这两种方式</p>
+<p>Comparable是一个比较接口，一旦某个类实现该接口，就代表这个类“支持排序比较”，而Comparator是一个比较器，通过建立一个“该类的比较器”来实现排序</p>
+<p>Comparable相当于“内部比较器”，而Comparator相当于“外部比较器”</p>
+<p>Comparable实现简单，只需实现接口即可进行比较，但是需要修改源码，但是Comparetor好处是不需要修改源码，只是实现一个比较器，将需要比较的两个对象传禁区就行</p>
+<h1 id="6、线程池的实现原理"><a href="#6、线程池的实现原理" class="headerlink" title="6、线程池的实现原理"></a>6、线程池的实现原理</h1><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6866054685044768782">https://juejin.cn/post/6866054685044768782</a></p>
+<p>线程池的核心参数：</p>
+<ul>
+<li><code>corePoolSize</code>：线程池核心线程数量</li>
+<li><code>maximumPoolSize</code>：线程池会创建的最大线程数量</li>
+<li><code>keepAliveTime</code>：线程池中大于核心线程数那部分线程的最大空闲存活时间</li>
+<li><code>workQueue</code>：保存等待执行任务的一个阻塞队列，当线程池所有的线程都在运行的时候，提交的任务会保存在阻塞队列中</li>
+<li><code>threadFactory</code>：创建线程的一个工厂，默认为<code>DefaultThreadFactory</code>类</li>
+<li><code>handler</code>：线程拒绝策略</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/10/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/Javc%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%9D%A2%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/10/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/Javc%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%9D%A2%E8%AF%95/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-10 15:47:57" itemprop="dateCreated datePublished" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>用多线程只有一个目的，那就是更好的利用cpu的资源，因为所有的多线程代码都可以用单线程来实现。说这个话其实只有一半对，因为反应“多角色”的程序代码，最起码每个角色要给他一个线程吧，否则连实际场景都无法模拟，当然也没法说能用单线程来实现：比如最常见的“生产者，消费者模型”。</p>
+<h2 id="1、线程实现的方式"><a href="#1、线程实现的方式" class="headerlink" title="1、线程实现的方式"></a>1、线程实现的方式</h2><ul>
+<li>继承Thread类</li>
+<li>实现Runnable接口</li>
+<li>使用Callable和Future</li>
+</ul>
+<h2 id="2、Thread中的start-和run-有什么区别"><a href="#2、Thread中的start-和run-有什么区别" class="headerlink" title="2、Thread中的start()和run()有什么区别"></a>2、Thread中的<code>start()</code>和<code>run()</code>有什么区别</h2><p><code>start()</code>方法用来启动线程，真正实现了多线程，无需等待run方法执行完毕</p>
+<p><code>run()</code>当作普通方法的方式调用，程序顺序执行，要等run方法执行完毕后才能继续执行下面的方法</p>
+<h2 id="3、线程的状态"><a href="#3、线程的状态" class="headerlink" title="3、线程的状态"></a>3、线程的状态</h2><ul>
+<li><p>NEW状态</p>
+<p><code>new</code>了一个Thread对象，并没有启动该线程</p>
+</li>
+<li><p>RUNNABLE状态</p>
+<p>线程对象通过<code>start()</code>方法进入runnable状态，启动的线程不一定会立即得到执行，线程的运行与否要看cpu的调度，我们把这个中间状态叫可执行状态（RUNNABLE)</p>
+</li>
+<li><p>RUNNING状态</p>
+<p>一旦cpu通过轮询货其他方式从任务可以执行队列中选中了线程，此时它才能真正的执行自己的逻辑代码</p>
+</li>
+<li><p>BLOCKED状态</p>
+<p>线程正在等待获取锁</p>
+<p>调用了<code>wait()</code>或者<code>sleep()</code>、进行了某个阻塞IO操作、获得了某个资源的锁</p>
+</li>
+<li><p>TERMINATED状态</p>
+<p>TERMINATED是一个线程的最终状态</p>
+<p>线程运行正常结束、线程运行出错意外结束、JVM Crash 导致所有的线程都结束</p>
+</li>
+</ul>
+<p>线程状态转换</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Java/duoxiancheng.png">
+
+<h2 id="4、Java解决线程安全的四种方式"><a href="#4、Java解决线程安全的四种方式" class="headerlink" title="4、Java解决线程安全的四种方式"></a>4、Java解决线程安全的四种方式</h2><p>乐观锁与悲观锁</p>
+<p>悲观锁，顾名思义它是悲观的。讲得通俗点就是，认为自己在使用数据的时候，一定有别的线程来修改数据，因此在获取数据的时候先加锁，确保数据不会被线程修改。形象理解就是总觉得有刁民想害朕。</p>
+<p>而乐观锁就比较乐观了，认为在使用数据时，不会有别的线程来修改数据，就不会加锁，只是在更新数据的时候去判断之前有没有别的线程来更新了数据。具体用法在下面讲解。</p>
+<h4 id="方法一：使用synchronized关键字"><a href="#方法一：使用synchronized关键字" class="headerlink" title="方法一：使用synchronized关键字"></a>方法一：使用synchronized关键字</h4><p>一个表现为原生语法层面的互斥锁，它是一种悲观锁，使用它的时候我们一般需要一个监听对象 并且监听对象必须是唯一的，通常就是当前类的字节码对象。它是JVM级别的，不会造成死锁的情况。使用synchronized可以拿来修饰类，静态方法，普通方法和代码块。比如：Hashtable类就是使用synchronized来修饰方法的</p>
+<h4 id="方法二：Lock接口下的实现类"><a href="#方法二：Lock接口下的实现类" class="headerlink" title="方法二：Lock接口下的实现类"></a>方法二：Lock接口下的实现类</h4><h4 id="方法三：使用线程本地存储ThreadLocal"><a href="#方法三：使用线程本地存储ThreadLocal" class="headerlink" title="方法三：使用线程本地存储ThreadLocal"></a>方法三：使用线程本地存储ThreadLocal</h4><h4 id="方法四：使用乐观锁机制"><a href="#方法四：使用乐观锁机制" class="headerlink" title="方法四：使用乐观锁机制"></a>方法四：使用乐观锁机制</h4><h2 id="5、高并发中的集合有哪些问题"><a href="#5、高并发中的集合有哪些问题" class="headerlink" title="5、高并发中的集合有哪些问题"></a>5、高并发中的集合有哪些问题</h2><ul>
+<li>第一代线程安全集合类</li>
+</ul>
+<p>Vector、Hashtable</p>
+<p>使用synchronized修饰方法，效率低下</p>
+<ul>
+<li>第二代线程非安全集合类</li>
+</ul>
+<p>ArrayList、HashMap</p>
+<p>线程不安全但是性能好</p>
+<ul>
+<li>第三代线程安全集合类</li>
+</ul>
+<p>在大量并发情况下如何提高集合的效率和安全呢</p>
+<p>Java容器、Java的发展历史</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/10/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/Mysatis%E9%9D%A2%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/10/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/Mysatis%E9%9D%A2%E8%AF%95/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-10 15:47:57" itemprop="dateCreated datePublished" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1、Mybatis的优缺点"><a href="#1、Mybatis的优缺点" class="headerlink" title="1、Mybatis的优缺点"></a>1、Mybatis的优缺点</h2><h3 id="（1）优点："><a href="#（1）优点：" class="headerlink" title="（1）优点："></a>（1）优点：</h3><ul>
+<li>1、简单易学，容易上手，基于SQL编程</li>
+<li>2、与JDBC相比，减少了代码量，消除了大量冗余代码，不需要手动开关闭</li>
+<li>3、与各种的数据库兼容（使用JDBC来连接数据库）</li>
+<li>4、提供了很多第三方插件（分页插件/逆向工程：反向生成实体类）</li>
+<li>5、与Spring很好的集成</li>
+<li>6、相当灵活SQL写在XML文件里，与代码相分离解耦，便于管理与优化，还可以重用</li>
+<li>7、提供XML标签，支持编写动态SQL语句</li>
+<li>8、提供映射标签，支持对象与数据库的ORM字段关系映射</li>
+<li>9、提供对象映射标签，支持对象关系组建维护</li>
+</ul>
+<h3 id="（2）缺点"><a href="#（2）缺点" class="headerlink" title="（2）缺点"></a>（2）缺点</h3><ul>
+<li>1、SQL语句的编写量巨大</li>
+<li>2、SQL语句依赖数据库，导致数据库移植性差，不能随意更换数据库</li>
+</ul>
+<h2 id="2、Mybatis中-和-区别"><a href="#2、Mybatis中-和-区别" class="headerlink" title="2、Mybatis中#{}和${}区别"></a>2、Mybatis中<code>#&#123;&#125;</code>和<code>$&#123;&#125;</code>区别</h2><ul>
+<li><code>#&#123;&#125;</code>是预编译处理，<code>$&#123;&#125;</code>是字符串替换</li>
+<li>Mybatis在处理<code>#&#123;&#125;</code>时，会将<code>#&#123;&#125;</code>替换为?，调用<code>PreparedStatement</code>的<code>set</code>方法来赋值</li>
+<li>Mybatis在处理<code>¥&#123;&#125;</code>时，直接将<code>¥&#123;&#125;</code>替换成变量的值</li>
+<li>前者可以有效防止SQL注入</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/10/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/Spring%E9%9D%A2%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/10/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/Spring%E9%9D%A2%E8%AF%95/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-10 15:47:57" itemprop="dateCreated datePublished" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="1、BeanFactory和ApplicationContext的区别"><a href="#1、BeanFactory和ApplicationContext的区别" class="headerlink" title="1、BeanFactory和ApplicationContext的区别"></a>1、BeanFactory和ApplicationContext的区别</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903877574131726">https://juejin.cn/post/6844903877574131726</a></p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Java/BeanFactory%E5%92%8CApplicationContext%E7%9A%84%E5%8C%BA%E5%88%AB1.jpg" align=left width=800>
+
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Java/BeanFactory%E5%92%8CApplicationContext%E7%9A%84%E5%8C%BA%E5%88%AB2.jpg" align=left  width=800>
+
+
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/10/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%9D%A2%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/10/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%9D%A2%E8%AF%95/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-10 15:47:57" itemprop="dateCreated datePublished" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1、页面置换算法"><a href="#1、页面置换算法" class="headerlink" title="1、页面置换算法"></a>1、页面置换算法</h1><p>进程运行时，若其访问的页面不在内存而需将其调入，但内存已无空闲空间时，就需要从内存中调出一页程序或数据，送入磁盘的对换区</p>
+<h3 id="（1）最佳置换算法（OPT）"><a href="#（1）最佳置换算法（OPT）" class="headerlink" title="（1）最佳置换算法（OPT）"></a>（1）最佳置换算法（OPT）</h3><p>该算法选择淘汰的页面是以后不会使用的，或者是最长时间内不再被访问的页面，以此来保证最低的缺页率</p>
+<p>由于无法预知，所以该算法无法实现</p>
+<h3 id="（2）先进先出（FIFO）"><a href="#（2）先进先出（FIFO）" class="headerlink" title="（2）先进先出（FIFO）"></a>（2）先进先出（FIFO）</h3><p>优先淘汰最早进入内存的页面</p>
+<p>将掉入内存的页面按照先后次序排成一个队列，设置一个指针指向总指向最早的界面</p>
+<p>有些页面会经常被访问，所以不适用</p>
+<h3 id="（3）最近最久未使用（LRU）"><a href="#（3）最近最久未使用（LRU）" class="headerlink" title="（3）最近最久未使用（LRU）"></a>（3）最近最久未使用（LRU）</h3><p>选择最近最长时间未访问过的页面予以淘汰，它认为过去一段时间内未访问过的页面，在最近的将来可能也不会被访问</p>
+<p>为每个页面设置一个访问字段记录自从上次访问以来所经历的时间，淘汰页面时选择访问字段值最大的一个淘汰</p>
+<p>性能比较好，但是需要寄存器和栈的支持，实现起来开销比较大</p>
+<h3 id="（4）时钟（CLOCK）"><a href="#（4）时钟（CLOCK）" class="headerlink" title="（4）时钟（CLOCK）"></a>（4）时钟（CLOCK）</h3><p>简单的CLOCK算法是给每一帧关联一个附加位，称为使用位</p>
+<p>当某一页首次装入主存时，该帧的使用位设置为1；当该页随后再被访问到时，它的使用位也被置为1</p>
+<p>每当需要淘汰页面时就寻找使用位为0的页面，并将经过的页面置为0</p>
+<h1 id="2、进程、线程、协程"><a href="#2、进程、线程、协程" class="headerlink" title="2、进程、线程、协程"></a>2、进程、线程、协程</h1><h3 id="（1）进程"><a href="#（1）进程" class="headerlink" title="（1）进程"></a>（1）进程</h3><p>进程是一个具有一定独立功能的程序在一个数据集上的一次动态执行的过程，是操作系统进行资源分配和调度的一个独立单位，是应用程序运行的载体</p>
+<p>进程一般有三部分组成：程序、数据集合和进程控制块</p>
+<ul>
+<li>程序描述了进程所要完成的功能，是程序执行的指令集</li>
+<li>数据集合是程序在执行时候所需的数据和工作区</li>
+<li>进程控制块（PCB）描述了进程的描述信息和控制信息，是进程的唯一标识</li>
+</ul>
+<p>进程的特征</p>
+<ul>
+<li>动态性：进程是一次执行的过程，是有生命期的，动态产生和动态消亡的</li>
+<li>并发性：任何进程都可以和其他进程一起并发执行的</li>
+<li>独立性：进程是系统进行资源调度和分配的独立单位</li>
+<li>结构性：进程由程序、数据和PCB组成</li>
+</ul>
+<h3 id="（2）线程"><a href="#（2）线程" class="headerlink" title="（2）线程"></a>（2）线程</h3><p>线程是能够拥有资源和独立运行的最小单位，也是程序执行的最小单位</p>
+<p>线程是程序执行过程中一个单一的顺序控制流程，是程序执行流中的最小单元</p>
+<h3 id="（3）协程"><a href="#（3）协程" class="headerlink" title="（3）协程"></a>（3）协程</h3><p>基于线程之上，但是比线程更加轻量级的存在，这种由程序猿自己写程序来管理的轻量级线程叫做“用户空间线程”，对内核来说不可见</p>
+<p>是程序猿自己开辟的异步任务</p>
+<h1 id="3、死锁问题"><a href="#3、死锁问题" class="headerlink" title="3、死锁问题"></a>3、死锁问题</h1><h2 id="（1）什么是死锁？"><a href="#（1）什么是死锁？" class="headerlink" title="（1）什么是死锁？"></a>（1）什么是死锁？</h2><p>死锁是指两个或以上进程在执行过程中，由于资源竞争造成的一种阻塞现象，若无外力作用，将一直阻塞下去。我们称这种现象为系统产生了死锁或者系统处于死锁状态</p>
+<h2 id="（2）产生死锁的原因有哪些？"><a href="#（2）产生死锁的原因有哪些？" class="headerlink" title="（2）产生死锁的原因有哪些？"></a>（2）产生死锁的原因有哪些？</h2><ul>
+<li>系统资源不足</li>
+<li>程序执行顺序不当</li>
+<li>资源分配不当</li>
+</ul>
+<h2 id="（3）产生死锁的必要条件"><a href="#（3）产生死锁的必要条件" class="headerlink" title="（3）产生死锁的必要条件"></a>（3）产生死锁的必要条件</h2><ul>
+<li><p>互斥条件</p>
+<p>一个资源只能被一个进程使用</p>
+</li>
+<li><p>请求与保持条件</p>
+<p>请求资源阻塞时，对已获得的资源并不释放</p>
+</li>
+<li><p>不剥夺条件</p>
+<p>进程已获得的资源，除非自己释放，否则不能被剥夺</p>
+</li>
+<li><p>循环等待条件</p>
+<p>进程之间形成一种头尾相接的资源等待关系</p>
+</li>
+</ul>
+<h2 id="（4）如何解决死锁？"><a href="#（4）如何解决死锁？" class="headerlink" title="（4）如何解决死锁？"></a>（4）如何解决死锁？</h2><p>在系统设计、进程调度等方面注意不要让四个必要条件成立，确定合理的资源分配算法、防止进程处于等待状态下占用资源</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/10/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9D%A2%E8%AF%95-MySQL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/10/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9D%A2%E8%AF%95-MySQL/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-10 15:47:57" itemprop="dateCreated datePublished" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1、ACID"><a href="#1、ACID" class="headerlink" title="1、ACID"></a>1、ACID</h1><h2 id="（1）ACID是靠什么来保证的"><a href="#（1）ACID是靠什么来保证的" class="headerlink" title="（1）ACID是靠什么来保证的"></a>（1）ACID是靠什么来保证的</h2><p>ACID（数据库事务正确执行的四个基本要素的缩写）</p>
+<blockquote>
+<p>原子性、一致性、隔离性、持久性</p>
+</blockquote>
+<ul>
+<li>原子性</li>
+</ul>
+<p>undolog</p>
+<ul>
+<li>隔离性</li>
+</ul>
+<p>MVVC</p>
+<ul>
+<li>持久性</li>
+</ul>
+<p>redolog</p>
+<ul>
+<li>一致性</li>
+</ul>
+<p>由其他三个特性来保证的</p>
+<h1 id="2、MVVC"><a href="#2、MVVC" class="headerlink" title="2、MVVC"></a>2、MVVC</h1><h2 id="（1）MVCC解决的问题到底是啥"><a href="#（1）MVCC解决的问题到底是啥" class="headerlink" title="（1）MVCC解决的问题到底是啥"></a>（1）MVCC解决的问题到底是啥</h2><p>MVCC：多版本并发控制（常常用在数据库里的技术）</p>
+<p>数据库并发场景有三种：</p>
+<ul>
+<li><p>读读</p>
+<p>不存在任何问题，无需并发控制</p>
+</li>
+<li><p>读写</p>
+<p>有线程安全，可能会造成事务的隔离性问题，可能遇到脏读、幻读、不可重复读</p>
+</li>
+<li><p>写写</p>
+<p>有线程安全问题，可能存在更新丢失问题</p>
+</li>
+</ul>
+<p><strong>脏读（读取未提交数据）</strong>：脏读又称无效数据的读出，是指在数据库访问中，事务T1将某一值修改，然后事务T2读取该值，此后T1因为某种原因撤销对该值的修改，这就导致了T2所读取到的数据是无效的，值得注意的是，脏读一般是针对于update操作的。</p>
+<p><strong>幻读（前后多次读取，数据总量不一致）</strong>：事务A在执行读取操作，需要两次统计数据的总量，前一次查询数据总量后，此时事务B执行了新增数据的操作并提交后，这个时候事务A读取的数据总量和之前统计的不一样，就像产生了幻觉一样，平白无故的多了几条数据，成为幻读。</p>
+<p><strong>不可重复读（前后多次读取，数据内容不一致）</strong>：事务A在执行读取操作，由整个事务A比较大，前后读取同一条数据需要经历很长的时间 。而在事务A第一次读取数据，比如此时读取了小明的年龄为20岁，事务B执行更改操作，将小明的年龄更改为30岁，此时事务A第二次读取到小明的年龄时，发现其年龄是30岁，和之前的数据不一样了，也就是数据不重复了，系统不可以读取到重复的数据，成为不可重复读。</p>
+<p><strong>不可重复读和幻读到底有什么区别呢？</strong></p>
+<p>(1) 不可重复读是读取了其他事务更改的数据，<strong>针对update操作</strong></p>
+<p>解决：使用行级锁，锁定该行，事务A多次读取操作完成后才释放该锁，这个时候才允许其他事务更改刚才的数据。</p>
+<p>(2) 幻读是读取了其他事务新增的数据，<strong>针对insert和delete操作</strong></p>
+<p>解决：使用表级锁，锁定整张表，事务A多次读取数据总量之后才释放该锁，这个时候才允许其他事务新增数据。</p>
+<p>MVCC为事务分配单项增长的时间戳，为每个修改保存一个版本，版本与事务时间戳关联，读操作只读事务开始前的数据库快照，所以MVCC可以为数据解决以下问题：</p>
+<p>​    1、在并发读写数据库时，可以在读操作时不阻塞写操作，写操作也不阻塞读操作，提高了数据库并发读写的能力</p>
+<p>​    2、解决脏读、幻读、不可重复读等事务隔离问题，但是不能解决更新丢失问题</p>
+<h2 id="（2）MVCC实现原理"><a href="#（2）MVCC实现原理" class="headerlink" title="（2）MVCC实现原理"></a>（2）MVCC实现原理</h2><h1 id="3、MySQL的隔离级别有哪些？"><a href="#3、MySQL的隔离级别有哪些？" class="headerlink" title="3、MySQL的隔离级别有哪些？"></a>3、MySQL的隔离级别有哪些？</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/fengzheng/p/12557762.html">https://www.cnblogs.com/fengzheng/p/12557762.html</a></p>
+<p>首先我们来看看隔离级别是个玩意</p>
+<p>有四种隔离级别</p>
+<ol>
+<li><p>读未提交（READ UNCOMMITTED）</p>
+<p>所有事务都可以看到未提交事务的执行结果</p>
+</li>
+<li><p>读提交 （READ COMMITTED）</p>
+<p>一个事务开始时，只能看到已经提交事务所做的改变</p>
+</li>
+<li><p>可重复读 （REPEATABLE READ）</p>
+<p>？？？</p>
+</li>
+<li><p>串行化 （SERIALIZABLE）</p>
+<p>通过强制事务排序</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>隔离级别</th>
+<th>脏读</th>
+<th>不可重复读</th>
+<th>幻读</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>读未提交</td>
+<td>可能</td>
+<td>可能</td>
+<td>可能</td>
+</tr>
+<tr>
+<td>读提交</td>
+<td>不可能</td>
+<td>可能</td>
+<td>可能</td>
+</tr>
+<tr>
+<td>可重复读</td>
+<td>不可能</td>
+<td>不可能</td>
+<td>可能</td>
+</tr>
+<tr>
+<td>串行化</td>
+<td>不可能</td>
+<td>不可能</td>
+<td>不可能</td>
+</tr>
+</tbody></table>
+<h1 id="4、MySQL索引"><a href="#4、MySQL索引" class="headerlink" title="4、MySQL索引"></a>4、MySQL索引</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zsql/p/13808417.html">https://www.cnblogs.com/zsql/p/13808417.html</a></p>
+<h2 id="（1）为什么要有索引？"><a href="#（1）为什么要有索引？" class="headerlink" title="（1）为什么要有索引？"></a>（1）为什么要有索引？</h2><p>一般的应用系统中，读写比例为10:1，而且插入和一般的更新操作很少出现性能问题</p>
+<p>生产环境中，我们遇到最多的也是最容易出问题的，是一些复杂的查询操作</p>
+<p>索引就是为了进行高速查询</p>
+<h2 id="（2）什么是索引？"><a href="#（2）什么是索引？" class="headerlink" title="（2）什么是索引？"></a>（2）什么是索引？</h2><p>索引在MySQL中也叫一种“键”，是存储引擎用于快速找到记录的一种数据结构</p>
+<p>索引对于良好的性能非常关键，尤其是当表的数据量愈发巨大时，索引对于性能的影响愈发巨大</p>
+<p>索引就相当于字典的音序表</p>
+<h2 id="（3）索引的原理"><a href="#（3）索引的原理" class="headerlink" title="（3）索引的原理"></a>（3）索引的原理</h2><h2 id="（4）索引的数据结构"><a href="#（4）索引的数据结构" class="headerlink" title="（4）索引的数据结构"></a>（4）索引的数据结构</h2><p>MySQL主要用到两种结构：B+Tree索引和Hash索引</p>
+<p>Inodb存储引擎默认是B+Tree索引</p>
+<p>Memory存储引擎默认是Hash索引</p>
+<h2 id="（5）聚簇和非聚簇索引的区别"><a href="#（5）聚簇和非聚簇索引的区别" class="headerlink" title="（5）聚簇和非聚簇索引的区别"></a>（5）聚簇和非聚簇索引的区别</h2><p>索引存在于磁盘，MySQL的索引类型与存储引擎是相关的，innobd存储引擎数据文件和索引文件全都放在ibd文件中，而myisam的数据文件全都放在myd文件中，索引放在myi文件中，判断条件：数据和索引是否是分开的</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/10/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9D%A2%E8%AF%95-Redis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/10/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9D%A2%E8%AF%95-Redis/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-10 15:47:57" itemprop="dateCreated datePublished" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1、Redis为什么这么快？"><a href="#1、Redis为什么这么快？" class="headerlink" title="1、Redis为什么这么快？"></a>1、Redis为什么这么快？</h1><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6978280894704386079">https://juejin.cn/post/6978280894704386079</a></p>
+<ul>
+<li><p>基于内存实现省去了磁盘IO的消耗</p>
+</li>
+<li><p>底层实现了高效的数据结构</p>
+</li>
+<li><p>合理的数据编码</p>
+</li>
+<li><p>合理的线程模型</p>
+<p>单线程（避免了上下文切换和竞争锁的切换）：是指Redis网络IO和键值对读写是由一个线程来完成的，其他诸如持久化、异步删除、集群数据同步由额外的线程执行</p>
+</li>
+<li><p>I/O多路复用</p>
+<p>I/O：网络IO</p>
+<p>多路：多个网络连接</p>
+<p>复用：复用同于一个线程</p>
+<p>是一种同步的IO模型，实现一个线程可以监视多个文件句柄</p>
+</li>
+<li><p>虚拟内存机制</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/10/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E9%9D%A2%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/10/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E9%9D%A2%E8%AF%95/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-10 15:47:57" itemprop="dateCreated datePublished" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1、TCP三次握手四次挥手"><a href="#1、TCP三次握手四次挥手" class="headerlink" title="1、TCP三次握手四次挥手"></a>1、TCP三次握手四次挥手</h1><p>进行三次握手的主要作用：<code>为了确认双方的接收能力和发送能力是否正常，指定初始化序列号是为了后面的后面的可靠传输做准备</code></p>
+<h1 id="2、TCP协议如何保证可靠传输"><a href="#2、TCP协议如何保证可靠传输" class="headerlink" title="2、TCP协议如何保证可靠传输"></a>2、TCP协议如何保证可靠传输</h1><p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000022944999">https://segmentfault.com/a/1190000022944999</a></p>
+<p>通过下面几种机制共同保证可靠传输</p>
+<h2 id="（1）数据块划分"><a href="#（1）数据块划分" class="headerlink" title="（1）数据块划分"></a>（1）数据块划分</h2><p>应用数据被划分为TCP认为合适发送的数据块</p>
+<h2 id="（2）数据排序"><a href="#（2）数据排序" class="headerlink" title="（2）数据排序"></a>（2）数据排序</h2><p>TCP会对每个数据进行编号，接收端对收到的数据进行排序，将有序的数据传给应用层</p>
+<h2 id="（3）校验和"><a href="#（3）校验和" class="headerlink" title="（3）校验和"></a>（3）校验和</h2><p>发送端和接收端分别计算数据的数据的校验和，如果数据有差错就丢弃</p>
+<h2 id="（4）数据包去重"><a href="#（4）数据包去重" class="headerlink" title="（4）数据包去重"></a>（4）数据包去重</h2><p>丢弃重复接收的数据</p>
+<h2 id="（5）超时重传"><a href="#（5）超时重传" class="headerlink" title="（5）超时重传"></a>（5）超时重传</h2><p>当TCP发出一个段后，会启动一个定时器，等待接收方会送确认报文，如果不能及时收到一个确认就重传</p>
+<h2 id="（6）流量控制"><a href="#（6）流量控制" class="headerlink" title="（6）流量控制"></a>（6）流量控制</h2><p>连接双方都有固定大小的缓冲区，接收端只允许发送端发送接收段缓冲区大小的数据，当接收方来不及处理发送方发送的确认数据时候，会提示发送方降低发送速率。TCP使用滑动窗口协议实现流量控制</p>
+<h2 id="（7）拥塞避免"><a href="#（7）拥塞避免" class="headerlink" title="（7）拥塞避免"></a>（7）拥塞避免</h2><ul>
+<li>慢开始</li>
+<li>拥塞避免</li>
+<li>快重传和快恢复</li>
+</ul>
+<h2 id="（8）ARQ协议"><a href="#（8）ARQ协议" class="headerlink" title="（8）ARQ协议"></a>（8）ARQ协议</h2><p>发送完一个分组就停止等待确认报文，收到确认报文后在发送下一个分组数据</p>
+<h1 id="3、从输入URL到页面加载发生了什么？"><a href="#3、从输入URL到页面加载发生了什么？" class="headerlink" title="3、从输入URL到页面加载发生了什么？"></a>3、从输入URL到页面加载发生了什么？</h1><p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000006879700">https://segmentfault.com/a/1190000006879700</a></p>
+<h1 id="4、TCP与UDP的区别"><a href="#4、TCP与UDP的区别" class="headerlink" title="4、TCP与UDP的区别"></a>4、TCP与UDP的区别</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/24860273">https://zhuanlan.zhihu.com/p/24860273</a></p>
+<ul>
+<li>基于连接与无连接</li>
+<li>对系统资源的要求</li>
+<li>UDP程序结构相对来说简单</li>
+<li>流模式与数据报模式</li>
+<li>TCP可靠传输，UDP不可靠</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/10/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%86%B3%E7%AD%96%E6%A0%91/%E5%86%B3%E7%AD%96%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/10/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E5%86%B3%E7%AD%96%E6%A0%91/%E5%86%B3%E7%AD%96%E6%A0%91/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-10 15:47:57" itemprop="dateCreated datePublished" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/10/Untitled/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/10/Untitled/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-10 15:47:57" itemprop="dateCreated datePublished" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
             </span>
 
           
@@ -203,739 +1053,6 @@
 <p>Java Pipeline</p>
 <p>Docker 部署SpringBoot</p>
 <p>项目难点</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/09/csdn%E5%8D%9A%E5%AE%A2%E5%86%99%E4%BD%9C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/09/csdn%E5%8D%9A%E5%AE%A2%E5%86%99%E4%BD%9C/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-05-09 15:59:27" itemprop="dateCreated datePublished" datetime="2022-05-09T15:59:27+00:00">2022-05-09</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="欢迎使用Markdown编辑器"><a href="#欢迎使用Markdown编辑器" class="headerlink" title="欢迎使用Markdown编辑器"></a>欢迎使用Markdown编辑器</h1><p>你好！ 这是你第一次使用 <strong>Markdown编辑器</strong> 所展示的欢迎页。如果你想学习如何使用Markdown编辑器, 可以仔细阅读这篇文章，了解一下Markdown的基本语法知识。</p>
-<h2 id="新的改变"><a href="#新的改变" class="headerlink" title="新的改变"></a>新的改变</h2><p>我们对Markdown编辑器进行了一些功能拓展与语法支持，除了标准的Markdown编辑器功能，我们增加了如下几点新功能，帮助你用它写博客：</p>
-<ol>
-<li><strong>全新的界面设计</strong> ，将会带来全新的写作体验；</li>
-<li>在创作中心设置你喜爱的代码高亮样式，Markdown <strong>将代码片显示选择的高亮样式</strong> 进行展示；</li>
-<li>增加了 <strong>图片拖拽</strong> 功能，你可以将本地的图片直接拖拽到编辑区域直接展示；</li>
-<li>全新的 <strong>KaTeX数学公式</strong> 语法；</li>
-<li>增加了支持<strong>甘特图的mermaid语法<a href="%5Bmermaid%E8%AF%AD%E6%B3%95%E8%AF%B4%E6%98%8E%5D(https://mermaidjs.github.io/)">^1</a></strong> 功能；</li>
-<li>增加了 <strong>多屏幕编辑</strong> Markdown文章功能；</li>
-<li>增加了 <strong>焦点写作模式、预览模式、简洁写作模式、左右区域同步滚轮设置</strong> 等功能，功能按钮位于编辑区域与预览区域中间；</li>
-<li>增加了 <strong>检查列表</strong> 功能。</li>
-</ol>
-<h2 id="功能快捷键"><a href="#功能快捷键" class="headerlink" title="功能快捷键"></a>功能快捷键</h2><p>撤销：<kbd>Ctrl/Command</kbd> + <kbd>Z</kbd><br>重做：<kbd>Ctrl/Command</kbd> + <kbd>Y</kbd><br>加粗：<kbd>Ctrl/Command</kbd> + <kbd>B</kbd><br>斜体：<kbd>Ctrl/Command</kbd> + <kbd>I</kbd><br>标题：<kbd>Ctrl/Command</kbd> + <kbd>Shift</kbd> + <kbd>H</kbd><br>无序列表：<kbd>Ctrl/Command</kbd> + <kbd>Shift</kbd> + <kbd>U</kbd><br>有序列表：<kbd>Ctrl/Command</kbd> + <kbd>Shift</kbd> + <kbd>O</kbd><br>检查列表：<kbd>Ctrl/Command</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd><br>插入代码：<kbd>Ctrl/Command</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd><br>插入链接：<kbd>Ctrl/Command</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd><br>插入图片：<kbd>Ctrl/Command</kbd> + <kbd>Shift</kbd> + <kbd>G</kbd><br>查找：<kbd>Ctrl/Command</kbd> + <kbd>F</kbd><br>替换：<kbd>Ctrl/Command</kbd> + <kbd>G</kbd></p>
-<h2 id="合理的创建标题，有助于目录的生成"><a href="#合理的创建标题，有助于目录的生成" class="headerlink" title="合理的创建标题，有助于目录的生成"></a>合理的创建标题，有助于目录的生成</h2><p>直接输入1次<kbd>#</kbd>，并按下<kbd>space</kbd>后，将生成1级标题。<br>输入2次<kbd>#</kbd>，并按下<kbd>space</kbd>后，将生成2级标题。<br>以此类推，我们支持6级标题。有助于使用<code>TOC</code>语法后生成一个完美的目录。</p>
-<h2 id="如何改变文本的样式"><a href="#如何改变文本的样式" class="headerlink" title="如何改变文本的样式"></a>如何改变文本的样式</h2><p><em>强调文本</em> <em>强调文本</em></p>
-<p><strong>加粗文本</strong> <strong>加粗文本</strong></p>
-<p>==标记文本==</p>
-<p><del>删除文本</del></p>
-<blockquote>
-<p>引用文本</p>
-</blockquote>
-<p>H<del>2</del>O is是液体。</p>
-<p>2^10^ 运算结果是 1024.</p>
-<h2 id="插入链接与图片"><a href="#插入链接与图片" class="headerlink" title="插入链接与图片"></a>插入链接与图片</h2><p>链接: <a target="_blank" rel="noopener" href="https://www.csdn.net/">link</a>.</p>
-<p>图片: <img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9hdmF0YXIuY3Nkbi5uZXQvNy83L0IvMV9yYWxmX2h4MTYzY29tLmpwZw" alt="Alt"></p>
-<p>带尺寸的图片: ![Alt](<a target="_blank" rel="noopener" href="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9hdmF0YXIuY3Nkbi5uZXQvNy83L0IvMV9yYWxmX2h4MTYzY29tLmpwZw">https://imgconvert.csdnimg.cn/aHR0cHM6Ly9hdmF0YXIuY3Nkbi5uZXQvNy83L0IvMV9yYWxmX2h4MTYzY29tLmpwZw</a> =30x30)</p>
-<p>居中的图片: <img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9hdmF0YXIuY3Nkbi5uZXQvNy83L0IvMV9yYWxmX2h4MTYzY29tLmpwZw#pic_center" alt="Alt"></p>
-<p>居中并且带尺寸的图片: ![Alt](<a target="_blank" rel="noopener" href="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9hdmF0YXIuY3Nkbi5uZXQvNy83L0IvMV9yYWxmX2h4MTYzY29tLmpwZw#pic_center">https://imgconvert.csdnimg.cn/aHR0cHM6Ly9hdmF0YXIuY3Nkbi5uZXQvNy83L0IvMV9yYWxmX2h4MTYzY29tLmpwZw#pic_center</a> =30x30)</p>
-<p>当然，我们为了让用户更加便捷，我们增加了图片拖拽功能。</p>
-<h2 id="如何插入一段漂亮的代码片"><a href="#如何插入一段漂亮的代码片" class="headerlink" title="如何插入一段漂亮的代码片"></a>如何插入一段漂亮的代码片</h2><p>去<a target="_blank" rel="noopener" href="https://mp.csdn.net/console/configBlog">博客设置</a>页面，选择一款你喜欢的代码片高亮样式，下面展示同样高亮的 <code>代码片</code>.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// An highlighted block</span></span><br><span class="line"><span class="keyword">var</span> foo = <span class="string">&#x27;bar&#x27;</span>;</span><br></pre></td></tr></table></figure>
-
-<h2 id="生成一个适合你的列表"><a href="#生成一个适合你的列表" class="headerlink" title="生成一个适合你的列表"></a>生成一个适合你的列表</h2><ul>
-<li>项目<ul>
-<li>项目<ul>
-<li>项目</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ol>
-<li>项目1</li>
-<li>项目2</li>
-<li>项目3</li>
-</ol>
-<ul>
-<li><input disabled="" type="checkbox"> 计划任务</li>
-<li><input checked="" disabled="" type="checkbox"> 完成任务</li>
-</ul>
-<h2 id="创建一个表格"><a href="#创建一个表格" class="headerlink" title="创建一个表格"></a>创建一个表格</h2><p>一个简单的表格是这么创建的：<br>| 项目 | Value |<br>| —- | —– |<br>| 电脑 | $1600 |<br>| 手机 | $12   |<br>| 导管 | $1    |</p>
-<h3 id="设定内容居中、居左、居右"><a href="#设定内容居中、居左、居右" class="headerlink" title="设定内容居中、居左、居右"></a>设定内容居中、居左、居右</h3><p>使用<code>:---------:</code>居中<br>使用<code>:----------</code>居左<br>使用<code>----------:</code>居右<br>|     第一列     |         第二列 | 第三列         |<br>| :————: | ————-: | :————- |<br>| 第一列文本居中 | 第二列文本居右 | 第三列文本居左 |</p>
-<h3 id="SmartyPants"><a href="#SmartyPants" class="headerlink" title="SmartyPants"></a>SmartyPants</h3><p>SmartyPants将ASCII标点字符转换为“智能”印刷标点HTML实体。例如：<br>| TYPE             | ASCII                           | HTML                          |<br>| —————- | ——————————- | —————————– |<br>| Single backticks | <code>&#39;Isn&#39;t this fun?&#39;</code>             | ‘Isn’t this fun?’             |<br>| Quotes           | <code>&quot;Isn&#39;t this fun?&quot;</code>             | “Isn’t this fun?”             |<br>| Dashes           | <code>-- is en-dash, --- is em-dash</code> | – is en-dash, — is em-dash |</p>
-<h2 id="创建一个自定义列表"><a href="#创建一个自定义列表" class="headerlink" title="创建一个自定义列表"></a>创建一个自定义列表</h2><dl><dt>Markdown</dt><dd>Text-to-HTML conversion tool</dd></dl><dl><dt>Authors<br>:  John</dt><dd>Luke</dd></dl><h2 id="如何创建一个注脚"><a href="#如何创建一个注脚" class="headerlink" title="如何创建一个注脚"></a>如何创建一个注脚</h2><p>一个具有注脚的文本。<a href="%E6%B3%A8%E8%84%9A%E7%9A%84%E8%A7%A3%E9%87%8A">^2</a></p>
-<h2 id="注释也是必不可少的"><a href="#注释也是必不可少的" class="headerlink" title="注释也是必不可少的"></a>注释也是必不可少的</h2><p>Markdown将文本转换为 HTML。</p>
-<p>*[HTML]:   超文本标记语言</p>
-<h2 id="KaTeX数学公式"><a href="#KaTeX数学公式" class="headerlink" title="KaTeX数学公式"></a>KaTeX数学公式</h2><p>您可以使用渲染LaTeX数学表达式 <a target="_blank" rel="noopener" href="https://khan.github.io/KaTeX/">KaTeX</a>:</p>
-<p>Gamma公式展示 $\Gamma(n) = (n-1)!\quad\forall<br>n\in\mathbb N$ 是通过欧拉积分</p>
-<p>$$<br>\Gamma(z) = \int_0^\infty t^{z-1}e^{-t}dt,.<br>$$</p>
-<blockquote>
-<p>你可以找到更多关于的信息 <strong>LaTeX</strong> 数学表达式<a target="_blank" rel="noopener" href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference">here</a>.</p>
-</blockquote>
-<h2 id="新的甘特图功能，丰富你的文章"><a href="#新的甘特图功能，丰富你的文章" class="headerlink" title="新的甘特图功能，丰富你的文章"></a>新的甘特图功能，丰富你的文章</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">gantt</span><br><span class="line">        dateFormat  YYYY-MM-DD</span><br><span class="line">        title Adding GANTT diagram functionality to mermaid</span><br><span class="line">        section 现有任务</span><br><span class="line">        已完成               :done,    des1, 2014-01-06,2014-01-08</span><br><span class="line">        进行中               :active,  des2, 2014-01-09, 3d</span><br><span class="line">        计划一               :         des3, after des2, 5d</span><br><span class="line">        计划二               :         des4, after des3, 5d</span><br></pre></td></tr></table></figure>
-<ul>
-<li>关于 <strong>甘特图</strong> 语法，参考 <a target="_blank" rel="noopener" href="https://mermaidjs.github.io/">这儿</a>,</li>
-</ul>
-<h2 id="UML-图表"><a href="#UML-图表" class="headerlink" title="UML 图表"></a>UML 图表</h2><p>可以使用UML图表进行渲染。 <a target="_blank" rel="noopener" href="https://mermaidjs.github.io/">Mermaid</a>. 例如下面产生的一个序列图：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sequenceDiagram</span><br><span class="line">张三 -&gt;&gt; 李四: 你好！李四, 最近怎么样?</span><br><span class="line">李四--&gt;&gt;王五: 你最近怎么样，王五？</span><br><span class="line">李四--x 张三: 我很好，谢谢!</span><br><span class="line">李四-x 王五: 我很好，谢谢!</span><br><span class="line">Note right of 王五: 李四想了很长时间, 文字太长了&lt;br&#x2F;&gt;不适合放在一行.</span><br><span class="line"></span><br><span class="line">李四--&gt;&gt;张三: 打量着王五...</span><br><span class="line">张三-&gt;&gt;王五: 很好... 王五, 你怎么样?</span><br></pre></td></tr></table></figure>
-
-<p>这将产生一个流程图。:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">A[长方形] -- 链接 --&gt; B((圆))</span><br><span class="line">A --&gt; C(圆角长方形)</span><br><span class="line">B --&gt; D&#123;菱形&#125;</span><br><span class="line">C --&gt; D</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>关于 <strong>Mermaid</strong> 语法，参考 <a target="_blank" rel="noopener" href="https://mermaidjs.github.io/">这儿</a>,</li>
-</ul>
-<h2 id="FLowchart流程图"><a href="#FLowchart流程图" class="headerlink" title="FLowchart流程图"></a>FLowchart流程图</h2><p>我们依旧会支持flowchart的流程图：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">flowchat</span><br><span class="line">st&#x3D;&gt;start: 开始</span><br><span class="line">e&#x3D;&gt;end: 结束</span><br><span class="line">op&#x3D;&gt;operation: 我的操作</span><br><span class="line">cond&#x3D;&gt;condition: 确认？</span><br><span class="line"></span><br><span class="line">st-&gt;op-&gt;cond</span><br><span class="line">cond(yes)-&gt;e</span><br><span class="line">cond(no)-&gt;op</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>关于 <strong>Flowchart流程图</strong> 语法，参考 <a target="_blank" rel="noopener" href="http://adrai.github.io/flowchart.js/">这儿</a>.</li>
-</ul>
-<h2 id="导出与导入"><a href="#导出与导入" class="headerlink" title="导出与导入"></a>导出与导入</h2><h3 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h3><p>如果你想尝试使用此编辑器, 你可以在此篇文章任意编辑。当你完成了一篇文章的写作, 在上方工具栏找到 <strong>文章导出</strong> ，生成一个.md文件或者.html文件进行本地保存。</p>
-<h3 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h3><p>如果你想加载一篇你写过的.md文件，在上方工具栏可以选择导入功能进行对应扩展名的文件导入，<br>继续你的创作。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/09/socks%205%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/09/socks%205%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-05-09 15:59:27" itemprop="dateCreated datePublished" datetime="2022-05-09T15:59:27+00:00">2022-05-09</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="socks-5代理服务器-青训营笔记"><a href="#socks-5代理服务器-青训营笔记" class="headerlink" title="socks 5代理服务器 | 青训营笔记"></a>socks 5代理服务器 | 青训营笔记</h1><p>这是我参与「第三届青训营 -后端场」笔记创作活动的的第1篇笔记</p>
-<h2 id="socks5协议介绍"><a href="#socks5协议介绍" class="headerlink" title="socks5协议介绍"></a>socks5协议介绍</h2><p>Socks5是一个代理协议，位于传输层(TCP/UDP等)与应用层之间。SOCKS5 服务器通过将前端发来的请求转发给真正的目标服务器, 模拟了一个前端的行为。在这里,前端和SOCKS5之间也是通过TCP/IP协议进行通讯,前端将原本要发送给真正服务器的请求发送给SOCKS5服务器,然后SOCKS5服务器将请求转发给真正的服务器</p>
-<h2 id="socks5作用："><a href="#socks5作用：" class="headerlink" title="socks5作用："></a>socks5作用：</h2><p>如果某些企业内网为了保证安全性，可能配置了很严格的防火墙策略，socks 5协议相当于在防火墙内部开了一个口子，让授权的用户可以通过单个端口访问内部的所有资源。</p>
-<p>工作原理：</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2da9d74b179240d086756ae00e584386~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.awebp" alt="image.png"></p>
-<p>如果配置代理服务器的话，首先游览器要先和socks5代理服务器建立连接，代理服务器再和真正访问的服务器建立连接</p>
-<p>分为四个阶段：</p>
-<ul>
-<li>协商握手阶段</li>
-<li>认证阶段</li>
-<li>请求阶段</li>
-<li>relay阶段</li>
-</ul>
-<p>第一阶段，客户端向socks服务器发送报文请求，包括协议版本号、支持的鉴权认证方式，socks服务器会选择自己支持的认证方式， 然后返回一个报文给客户端，建议客户端使用什么认证方式，返回0X00表示不需要认证，否则进入认证流程。</p>
-<p>第二个阶段，认证阶段</p>
-<p>第三个阶段：请求阶段，游览器会向socks代理服务器发送请求，包括协议的版本号，请求的类型， 一般是connect请求，socks代理服务器会和正式访问的服务器建立tcp连接，返回响应给游览器</p>
-<p>第四个阶段：游览器正常发送请求，代理服务器转发到正式服务器，获得响应再转发给游览器</p>
-<p>以上是对于课程，自己做的一些笔记，这篇博客很详细 <a href="https://link.juejin.cn/?target=https://cloud.tencent.com/developer/article/1781560">cloud.tencent.com/developer/a…</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/09/%E4%BD%BF%E7%94%A8go%E5%AE%9E%E7%8E%B0%E7%8C%9C%E5%AD%97%E6%B8%B8%E6%88%8F%E5%92%8C%E7%BF%BB%E8%AF%91%E5%B7%A5%E5%85%B7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/09/%E4%BD%BF%E7%94%A8go%E5%AE%9E%E7%8E%B0%E7%8C%9C%E5%AD%97%E6%B8%B8%E6%88%8F%E5%92%8C%E7%BF%BB%E8%AF%91%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-05-09 15:59:27" itemprop="dateCreated datePublished" datetime="2022-05-09T15:59:27+00:00">2022-05-09</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="使用go实现猜字游戏和翻译工具-青训营笔记"><a href="#使用go实现猜字游戏和翻译工具-青训营笔记" class="headerlink" title="使用go实现猜字游戏和翻译工具 | 青训营笔记"></a>使用go实现猜字游戏和翻译工具 | 青训营笔记</h1><p>这是我参与「第三届青训营 -后端场」笔记创作活动的的第1篇笔记，青训营day1主要介绍了go的基础语法，同时提供了一些项目作为练习，猜字游戏侧重于go的基础语法以及输入输出相关package的用法，翻译工具更侧重于如何发起HTTP请求及响应。</p>
-<h2 id="猜字游戏"><a href="#猜字游戏" class="headerlink" title="猜字游戏"></a>猜字游戏</h2><p>首先描述一下功能：运行后内部产生一个random，然后提示用户输入一个随机数，如果用户输入不是数字则提示重新输入，如果是数字则对比大小后给出提示。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	maxNum := <span class="number">100</span></span><br><span class="line">	<span class="comment">//随机数种子</span></span><br><span class="line">	rand.Seed(time.Now().UnixNano())</span><br><span class="line">	secretNumber := rand.Intn(maxNum)</span><br><span class="line"></span><br><span class="line">    <span class="comment">//提示</span></span><br><span class="line">	fmt.Println(<span class="string">&quot;Please input your guess&quot;</span>)</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		<span class="keyword">var</span> guess <span class="keyword">int</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//和c的scanf一样，传入addr</span></span><br><span class="line">		_, err := fmt.Scanf(<span class="string">&quot;%d\r\n&quot;</span>, &amp;guess)</span><br><span class="line"></span><br><span class="line">        <span class="comment">//无法parseInt</span></span><br><span class="line">		<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">			fmt.Println(<span class="string">&quot;Invalid input. Please enter an integer value&quot;</span>)</span><br><span class="line">			<span class="keyword">continue</span></span><br><span class="line">		&#125;</span><br><span class="line">		fmt.Println(<span class="string">&quot;You guess is&quot;</span>, guess)</span><br><span class="line">		<span class="keyword">if</span> guess &gt; secretNumber &#123;</span><br><span class="line">			fmt.Println(<span class="string">&quot;Your guess is bigger than the secret number. Please try again&quot;</span>)</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> guess &lt; secretNumber &#123;</span><br><span class="line">			fmt.Println(<span class="string">&quot;Your guess is smaller than the secret number. Please try again&quot;</span>)</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			fmt.Println(<span class="string">&quot;Correct, you Legend!&quot;</span>)</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
-
-<p><strong>tips:fmt.Scanf对于win用户要注意换行，windows输入回车后大概率会包含\r\n，如果不处理则无法转换成int。mac OS和linux还没有测试</strong></p>
-<h2 id="翻译工具"><a href="#翻译工具" class="headerlink" title="翻译工具"></a>翻译工具</h2><p>这个工具逻辑上比较简单，大概流程是：接受输入单词 -&gt; 构建client和request -&gt; 将data作为payload以post发送 -&gt; 将response转化为struct</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> <span class="built_in">len</span>(os.Args) != <span class="number">2</span> &#123;</span><br><span class="line">		fmt.Fprintf(os.Stderr, <span class="string">`usage: simpleDict WORD</span></span><br><span class="line"><span class="string">example: simpleDict hello</span></span><br><span class="line"><span class="string">		`</span>)</span><br><span class="line">		os.Exit(<span class="number">1</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	word := os.Args[<span class="number">1</span>]</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">1</span>; i &lt; runtime.NumCPU(); i++&#123;</span><br><span class="line">		query(word)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//query 核心请求函数</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">query</span><span class="params">(word <span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">	client := &amp;http.Client&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//request data</span></span><br><span class="line">	request := DictRequest&#123;TransType: <span class="string">&quot;en2zh&quot;</span>, Source: word&#125;</span><br><span class="line">	buf, err := json.Marshal(request)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> data = bytes.NewReader(buf)</span><br><span class="line"></span><br><span class="line">    <span class="comment">//HTTP请求</span></span><br><span class="line">	req, err := http.NewRequest(<span class="string">&quot;POST&quot;</span>, <span class="string">&quot;https://api.interpreter.caiyunai.com/v1/dict&quot;</span>, data)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Set Header</span></span><br><span class="line"></span><br><span class="line">	resp, err := client.Do(req)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//defer关闭</span></span><br><span class="line">	<span class="keyword">defer</span> resp.Body.Close()</span><br><span class="line">	bodyText, err := ioutil.ReadAll(resp.Body)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//bad request</span></span><br><span class="line">	<span class="keyword">if</span> resp.StatusCode != <span class="number">200</span> &#123;</span><br><span class="line">		log.Fatal(<span class="string">&quot;bad StatusCode:&quot;</span>, resp.StatusCode, <span class="string">&quot;body&quot;</span>, <span class="keyword">string</span>(bodyText))</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> dictResponse DictResponse</span><br><span class="line">	err = json.Unmarshal(bodyText, &amp;dictResponse)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(word, <span class="string">&quot;UK:&quot;</span>, dictResponse.Dictionary.Prons.En, <span class="string">&quot;US:&quot;</span>, dictResponse.Dictionary.Prons.EnUs)</span><br><span class="line">	<span class="keyword">for</span> _, item := <span class="keyword">range</span> dictResponse.Dictionary.Explanations &#123;</span><br><span class="line">		fmt.Println(item)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
-
-<p>这里面有几个要注意的点：</p>
-<ul>
-<li>请求和响应的数据结构依赖于struct，定义好json flag后方便转换</li>
-<li>构建req是指定method url和data</li>
-<li>记得判断请求状态，是success还是error</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/09/%E5%89%91%E6%8C%87offer/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/09/%E5%89%91%E6%8C%87offer/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-05-09 15:59:27" itemprop="dateCreated datePublished" datetime="2022-05-09T15:59:27+00:00">2022-05-09</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="一、面试的流程"><a href="#一、面试的流程" class="headerlink" title="一、面试的流程"></a>一、面试的流程</h1><h2 id="1、面试的三个环节"><a href="#1、面试的三个环节" class="headerlink" title="1、面试的三个环节"></a>1、面试的三个环节</h2><ul>
-<li>行为面试</li>
-<li>技术面试</li>
-<li>应聘者提问</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/09/%E3%80%8A%E7%AE%97%E6%B3%95%E7%AC%AC%E5%9B%9B%E7%89%88%E3%80%8B/%E7%AC%AC%E4%BA%94%E7%AB%A0%E5%AD%97%E7%AC%A6%E4%B8%B2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/09/%E3%80%8A%E7%AE%97%E6%B3%95%E7%AC%AC%E5%9B%9B%E7%89%88%E3%80%8B/%E7%AC%AC%E4%BA%94%E7%AB%A0%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-05-09 15:59:27" itemprop="dateCreated datePublished" datetime="2022-05-09T15:59:27+00:00">2022-05-09</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="一、字符串排序"><a href="#一、字符串排序" class="headerlink" title="一、字符串排序"></a>一、字符串排序</h2><h3 id="1、键索引计数法"><a href="#1、键索引计数法" class="headerlink" title="1、键索引计数法"></a>1、键索引计数法</h3><h3 id="2、低位优先的字符串排序"><a href="#2、低位优先的字符串排序" class="headerlink" title="2、低位优先的字符串排序"></a>2、低位优先的字符串排序</h3><h3 id="3、高位优先的字符串排序"><a href="#3、高位优先的字符串排序" class="headerlink" title="3、高位优先的字符串排序"></a>3、高位优先的字符串排序</h3><h3 id="4、三向字符串快速排序"><a href="#4、三向字符串快速排序" class="headerlink" title="4、三向字符串快速排序"></a>4、三向字符串快速排序</h3><h3 id="5、字符串排序算法的选择"><a href="#5、字符串排序算法的选择" class="headerlink" title="5、字符串排序算法的选择"></a>5、字符串排序算法的选择</h3><h2 id="二、单词查找树"><a href="#二、单词查找树" class="headerlink" title="二、单词查找树"></a>二、单词查找树</h2><h3 id="1、单词查找树"><a href="#1、单词查找树" class="headerlink" title="1、单词查找树"></a>1、单词查找树</h3><h3 id="2、单词查找树的性质"><a href="#2、单词查找树的性质" class="headerlink" title="2、单词查找树的性质"></a>2、单词查找树的性质</h3><h3 id="3、三项单词查找树"><a href="#3、三项单词查找树" class="headerlink" title="3、三项单词查找树"></a>3、三项单词查找树</h3><h3 id="4、三向单词查找树的性质"><a href="#4、三向单词查找树的性质" class="headerlink" title="4、三向单词查找树的性质"></a>4、三向单词查找树的性质</h3><h3 id="5、应该使用字符串符号表的哪种实现"><a href="#5、应该使用字符串符号表的哪种实现" class="headerlink" title="5、应该使用字符串符号表的哪种实现"></a>5、应该使用字符串符号表的哪种实现</h3><h2 id="三、字符串查找"><a href="#三、字符串查找" class="headerlink" title="三、字符串查找"></a>三、字符串查找</h2><h3 id="1、历史简介"><a href="#1、历史简介" class="headerlink" title="1、历史简介"></a>1、历史简介</h3><h3 id="2、暴力字符串查找算法"><a href="#2、暴力字符串查找算法" class="headerlink" title="2、暴力字符串查找算法"></a>2、暴力字符串查找算法</h3><h3 id="3、Knuth-Morris-Pratt子字符串查找算法"><a href="#3、Knuth-Morris-Pratt子字符串查找算法" class="headerlink" title="3、Knuth-Morris-Pratt子字符串查找算法"></a>3、Knuth-Morris-Pratt子字符串查找算法</h3><h3 id="4、Boyer-Moore字符串查找算法"><a href="#4、Boyer-Moore字符串查找算法" class="headerlink" title="4、Boyer-Moore字符串查找算法"></a>4、Boyer-Moore字符串查找算法</h3><h3 id="5、Rabin-Krap指纹字符串查找算法"><a href="#5、Rabin-Krap指纹字符串查找算法" class="headerlink" title="5、Rabin-Krap指纹字符串查找算法"></a>5、Rabin-Krap指纹字符串查找算法</h3><h3 id="6、总结"><a href="#6、总结" class="headerlink" title="6、总结"></a>6、总结</h3><h2 id="四、正则表达式"><a href="#四、正则表达式" class="headerlink" title="四、正则表达式"></a>四、正则表达式</h2><h3 id="1、使用正则表达式描述模式"><a href="#1、使用正则表达式描述模式" class="headerlink" title="1、使用正则表达式描述模式"></a>1、使用正则表达式描述模式</h3><h3 id="2、缩略写法"><a href="#2、缩略写法" class="headerlink" title="2、缩略写法"></a>2、缩略写法</h3><h3 id="3、正则表达式的实际应用"><a href="#3、正则表达式的实际应用" class="headerlink" title="3、正则表达式的实际应用"></a>3、正则表达式的实际应用</h3><h3 id="4、非确定有限状态自动机"><a href="#4、非确定有限状态自动机" class="headerlink" title="4、非确定有限状态自动机"></a>4、非确定有限状态自动机</h3><h3 id="5、模拟NFA的运行"><a href="#5、模拟NFA的运行" class="headerlink" title="5、模拟NFA的运行"></a>5、模拟NFA的运行</h3><h3 id="6、构造与正则表达式对应的NFA"><a href="#6、构造与正则表达式对应的NFA" class="headerlink" title="6、构造与正则表达式对应的NFA"></a>6、构造与正则表达式对应的NFA</h3><h2 id="五、数据压缩"><a href="#五、数据压缩" class="headerlink" title="五、数据压缩"></a>五、数据压缩</h2><h3 id="1、游戏规则"><a href="#1、游戏规则" class="headerlink" title="1、游戏规则"></a>1、游戏规则</h3><h3 id="2、读写二进制数据"><a href="#2、读写二进制数据" class="headerlink" title="2、读写二进制数据"></a>2、读写二进制数据</h3><h3 id="3、局限"><a href="#3、局限" class="headerlink" title="3、局限"></a>3、局限</h3><h3 id="4、热身运动：基因组"><a href="#4、热身运动：基因组" class="headerlink" title="4、热身运动：基因组"></a>4、热身运动：基因组</h3><h3 id="5、游戏编码"><a href="#5、游戏编码" class="headerlink" title="5、游戏编码"></a>5、游戏编码</h3><h3 id="6、霍夫曼压缩"><a href="#6、霍夫曼压缩" class="headerlink" title="6、霍夫曼压缩"></a>6、霍夫曼压缩</h3>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/09/%E3%80%8A%E7%AE%97%E6%B3%95%E7%AC%AC%E5%9B%9B%E7%89%88%E3%80%8B/%E7%AC%AC%E5%9B%9B%E7%AB%A0%E5%9B%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/09/%E3%80%8A%E7%AE%97%E6%B3%95%E7%AC%AC%E5%9B%9B%E7%89%88%E3%80%8B/%E7%AC%AC%E5%9B%9B%E7%AB%A0%E5%9B%BE/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-05-09 15:59:27" itemprop="dateCreated datePublished" datetime="2022-05-09T15:59:27+00:00">2022-05-09</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="一、无向图"><a href="#一、无向图" class="headerlink" title="一、无向图"></a>一、无向图</h2><h3 id="1、术语表"><a href="#1、术语表" class="headerlink" title="1、术语表"></a>1、术语表</h3><h3 id="2、表示无向图的数据类型"><a href="#2、表示无向图的数据类型" class="headerlink" title="2、表示无向图的数据类型"></a>2、表示无向图的数据类型</h3><h4 id="（1）图的几种表示方式"><a href="#（1）图的几种表示方式" class="headerlink" title="（1）图的几种表示方式"></a>（1）图的几种表示方式</h4><ul>
-<li>邻接矩阵</li>
-<li>边的数组</li>
-<li>邻接表数组</li>
-</ul>
-<h3 id="3、深度优先搜索"><a href="#3、深度优先搜索" class="headerlink" title="3、深度优先搜索"></a>3、深度优先搜索</h3><h4 id="（1）走迷宫"><a href="#（1）走迷宫" class="headerlink" title="（1）走迷宫"></a>（1）走迷宫</h4><h4 id="（2）"><a href="#（2）" class="headerlink" title="（2）"></a>（2）</h4><h3 id="4、寻找路径"><a href="#4、寻找路径" class="headerlink" title="4、寻找路径"></a>4、寻找路径</h3><h3 id="5、广度优先搜索"><a href="#5、广度优先搜索" class="headerlink" title="5、广度优先搜索"></a>5、广度优先搜索</h3><h3 id="6、连通分量"><a href="#6、连通分量" class="headerlink" title="6、连通分量"></a>6、连通分量</h3><h3 id="7、符号表"><a href="#7、符号表" class="headerlink" title="7、符号表"></a>7、符号表</h3><h3 id="8、总结"><a href="#8、总结" class="headerlink" title="8、总结"></a>8、总结</h3><h2 id="二、有向图"><a href="#二、有向图" class="headerlink" title="二、有向图"></a>二、有向图</h2><h3 id="1、术语"><a href="#1、术语" class="headerlink" title="1、术语"></a>1、术语</h3><h3 id="2、有向图的数据类型"><a href="#2、有向图的数据类型" class="headerlink" title="2、有向图的数据类型"></a>2、有向图的数据类型</h3><h3 id="3、有向图中的可达性"><a href="#3、有向图中的可达性" class="headerlink" title="3、有向图中的可达性"></a>3、有向图中的可达性</h3><h3 id="4、环和有向无环图"><a href="#4、环和有向无环图" class="headerlink" title="4、环和有向无环图"></a>4、环和有向无环图</h3><h3 id="5、有向图中的强连通性"><a href="#5、有向图中的强连通性" class="headerlink" title="5、有向图中的强连通性"></a>5、有向图中的强连通性</h3><h3 id="6、总结"><a href="#6、总结" class="headerlink" title="6、总结"></a>6、总结</h3><h2 id="三、最小生成树"><a href="#三、最小生成树" class="headerlink" title="三、最小生成树"></a>三、最小生成树</h2><h3 id="1、原理"><a href="#1、原理" class="headerlink" title="1、原理"></a>1、原理</h3><h3 id="2、加权无向图的数据类型"><a href="#2、加权无向图的数据类型" class="headerlink" title="2、加权无向图的数据类型"></a>2、加权无向图的数据类型</h3><h3 id="3、最小生成树的API和测试用例"><a href="#3、最小生成树的API和测试用例" class="headerlink" title="3、最小生成树的API和测试用例"></a>3、最小生成树的API和测试用例</h3><h3 id="4、Prim算法"><a href="#4、Prim算法" class="headerlink" title="4、Prim算法"></a>4、Prim算法</h3><h3 id="5、Prim算法的即时实现"><a href="#5、Prim算法的即时实现" class="headerlink" title="5、Prim算法的即时实现"></a>5、Prim算法的即时实现</h3><h3 id="6、Kruskal算法"><a href="#6、Kruskal算法" class="headerlink" title="6、Kruskal算法"></a>6、Kruskal算法</h3><h3 id="7、展望"><a href="#7、展望" class="headerlink" title="7、展望"></a>7、展望</h3><h2 id="四、最短路径"><a href="#四、最短路径" class="headerlink" title="四、最短路径"></a>四、最短路径</h2><h3 id="1、最短路径的性质"><a href="#1、最短路径的性质" class="headerlink" title="1、最短路径的性质"></a>1、最短路径的性质</h3><h3 id="2、加权有向图的数据结构"><a href="#2、加权有向图的数据结构" class="headerlink" title="2、加权有向图的数据结构"></a>2、加权有向图的数据结构</h3><h3 id="3、最短路径算法的理论基础"><a href="#3、最短路径算法的理论基础" class="headerlink" title="3、最短路径算法的理论基础"></a>3、最短路径算法的理论基础</h3><h3 id="4、Dijkstra算法"><a href="#4、Dijkstra算法" class="headerlink" title="4、Dijkstra算法"></a>4、Dijkstra算法</h3><h3 id="5、无环加权有向图中的最短路径算法"><a href="#5、无环加权有向图中的最短路径算法" class="headerlink" title="5、无环加权有向图中的最短路径算法"></a>5、无环加权有向图中的最短路径算法</h3><h3 id="6、一般加权有向图中的最短路径问题"><a href="#6、一般加权有向图中的最短路径问题" class="headerlink" title="6、一般加权有向图中的最短路径问题"></a>6、一般加权有向图中的最短路径问题</h3><h3 id="7、展望-1"><a href="#7、展望-1" class="headerlink" title="7、展望"></a>7、展望</h3>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/09/%E6%95%B0%E6%8D%AE%E5%BA%93/%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E7%9B%9B%E6%94%BE%E8%AE%B0%E5%BD%95%E7%9A%84%E5%A4%A7%E7%9B%92%E5%AD%90---InnoDB%E6%95%B0%E6%8D%AE%E9%A1%B5%E7%BB%93%E6%9E%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/09/%E6%95%B0%E6%8D%AE%E5%BA%93/%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E7%9B%9B%E6%94%BE%E8%AE%B0%E5%BD%95%E7%9A%84%E5%A4%A7%E7%9B%92%E5%AD%90---InnoDB%E6%95%B0%E6%8D%AE%E9%A1%B5%E7%BB%93%E6%9E%84/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-05-09 15:59:27" itemprop="dateCreated datePublished" datetime="2022-05-09T15:59:27+00:00">2022-05-09</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="一、不同类型的页介绍"><a href="#一、不同类型的页介绍" class="headerlink" title="一、不同类型的页介绍"></a>一、不同类型的页介绍</h2><p>InnoDB为了不同的目的设计了多种不同类型的页，例如：存放表空间头部的页面、存放Change Buffer信息的页、存放undo日志信息的页等等索引页（Index）</p>
-<h2 id="二、数据页结构快览"><a href="#二、数据页结构快览" class="headerlink" title="二、数据页结构快览"></a>二、数据页结构快览</h2><p>数据页的16KB被划分为了7个部分：</p>
-<ul>
-<li>File Header<ul>
-<li>文件头部</li>
-</ul>
-</li>
-<li>Page Header<ul>
-<li>页面头部</li>
-</ul>
-</li>
-<li>Infimum + Supremum<ul>
-<li>页面中的最大记录和最小记录</li>
-</ul>
-</li>
-<li>User Records<ul>
-<li>用户记录</li>
-</ul>
-</li>
-<li>Free Space<ul>
-<li>空闲空间</li>
-</ul>
-</li>
-<li>Page Directory<ul>
-<li>页目录</li>
-</ul>
-</li>
-<li>File Trailer<ul>
-<li>文件尾部</li>
-</ul>
-</li>
-</ul>
-<h2 id="三、记录在页中的存储"><a href="#三、记录在页中的存储" class="headerlink" title="三、记录在页中的存储"></a>三、记录在页中的存储</h2><p>一开始并没有<code>User Records</code>，每当插入一条数据，就会在<code>Free Space</code>申请一个记录空间的大小，将其划分到<code>User Records</code>。</p>
-<h3 id="1、记录头的信息"><a href="#1、记录头的信息" class="headerlink" title="1、记录头的信息"></a>1、记录头的信息</h3><ul>
-<li><p>delete_flag</p>
-<p>标记当前记录是否已被删除</p>
-</li>
-<li><p>min_rec_flag</p>
-<p>B+书每层非叶子节点中的最小目录项都会添加该标记</p>
-</li>
-<li><p>n_owned</p>
-<p>稍后的主角</p>
-</li>
-<li><p>heap_no</p>
-<p>将一条一条亲密无间排列的结构称之为堆空间（heap），从2开始</p>
-</li>
-<li><p>record_type</p>
-<p>当前记录的类型：0-普通记录、1-B+树非叶子结点的目录项记录、2-Infimum记录、3-Supremum记录</p>
-</li>
-<li><p>next_record</p>
-<p>从当前记录的真实数据到下一条记录真实数据的距离，记录是按照主键值从小到大排列的</p>
-</li>
-</ul>
-<h2 id="四、页目录（Page-Directory）"><a href="#四、页目录（Page-Directory）" class="headerlink" title="四、页目录（Page Directory）"></a>四、页目录（Page Directory）</h2><p>记录在页中是按照主键值由小到大的顺序串联成一个单向链表的，如果数据量非常大，查找的效率会非常低，于是引入了在页面内进行分组这种方法</p>
-<p>过程如下：</p>
-<p>1、将所有的正常记录（包括Infimum和Supremum记录），不包括移除到垃圾链表的记录划分为几个组</p>
-<p>2、每个组最后一条记录中的n_owned记录属性表示该组内共有几条记录</p>
-<p>3、每个组最后一条记录在页面中的地址偏移被单独提取出来存储，页目录中这些地址的偏移量称之为槽（Slot），每个槽占用两个字节</p>
-<p>于是在一个数据页面中查找主键值对应的数据流程为：</p>
-<p>1、通过二分法确定记录所在的槽（Slot），然后找到该槽所在分组中主键值最小的那一条记录</p>
-<p>2、通过next_record属性遍历槽所在分组的各个记录</p>
-<h2 id="五、Page-Header（页面头部）"><a href="#五、Page-Header（页面头部）" class="headerlink" title="五、Page Header（页面头部）"></a>五、Page Header（页面头部）</h2><h2 id="六、File-Header（文件头部）"><a href="#六、File-Header（文件头部）" class="headerlink" title="六、File Header（文件头部）"></a>六、File Header（文件头部）</h2><h2 id="七、File-Tailer（文件尾部）"><a href="#七、File-Tailer（文件尾部）" class="headerlink" title="七、File Tailer（文件尾部）"></a>七、File Tailer（文件尾部）</h2><h2 id="八、总结"><a href="#八、总结" class="headerlink" title="八、总结"></a>八、总结</h2><p>InnoDB为了不同的目的设计了不同的页，用于存放数据的页叫做<code>数据页</code></p>
-<p>一个数据页的结构如下：</p>
-<ul>
-<li><p>File Header</p>
-<p>页的通用信息</p>
-</li>
-<li><p>Page Header</p>
-<p>数据页的专有信息</p>
-</li>
-<li><p>Infimum + Supremum</p>
-<p>两个虚拟的伪记录，分别表示最大和最小记录</p>
-</li>
-<li><p>User Records</p>
-<p>我们真正插入的数据</p>
-</li>
-<li><p>Free Space</p>
-<p>页中尚未使用的部分</p>
-</li>
-<li><p>Page Directory</p>
-<p>各个槽对应的记录在页面中地址的偏移量</p>
-</li>
-<li><p>File Trailer</p>
-<p>校验页是否完整</p>
-</li>
-</ul>
-<p>InnoDB会将页中的记录划分为若干个组，将每个组的最后一个记录的地址偏移量作为一个槽，存放在Page Directory中</p>
-<p>在一个页面中根据主键查找记录分为两步：</p>
-<p>1、二分法找到槽，并找到槽所在分组中主键值最小的那条记录</p>
-<p>2、通过记录的next_record属性遍历该槽所在的组中的各个记录</p>
-<p>所有数据页组成一个双向链表</p>
-<p>将页面从内存刷新到磁盘时，为了保证页面的完整性页首和页尾会存储页面的校验和</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/09/%E6%95%B0%E6%8D%AE%E5%BA%93/%E7%AC%AC%E5%85%AD%E7%AB%A0%20%E5%BF%AB%E9%80%9F%E6%9F%A5%E8%AF%A2%E7%9A%84%E7%A7%98%E7%B1%8D%20B+%E6%A0%91%E7%B4%A2%E5%BC%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/09/%E6%95%B0%E6%8D%AE%E5%BA%93/%E7%AC%AC%E5%85%AD%E7%AB%A0%20%E5%BF%AB%E9%80%9F%E6%9F%A5%E8%AF%A2%E7%9A%84%E7%A7%98%E7%B1%8D%20B+%E6%A0%91%E7%B4%A2%E5%BC%95/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-05-09 15:59:27" itemprop="dateCreated datePublished" datetime="2022-05-09T15:59:27+00:00">2022-05-09</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>所有数据页组成个双向链表，每个数据页中的记录会按照主键值从小到大的顺序组成一个单向链表。每个数据页会为里面的记录生成一个页目录，通过主键值查找记录的时候，先通过二分法定位所在的槽，在遍历槽作在的分组中的记录</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/09/%E6%95%B0%E6%8D%AE%E5%BA%93/%E7%AC%AC%E5%8D%81%E4%B9%9D%E7%AB%A0%20%E8%AF%B4%E8%BF%87%E7%9A%84%E8%AF%9D%E5%B0%B1%E4%B8%80%E5%AE%9A%E8%A6%81%E5%81%9A%E5%88%B0-redo%E6%97%A5%E5%BF%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/09/%E6%95%B0%E6%8D%AE%E5%BA%93/%E7%AC%AC%E5%8D%81%E4%B9%9D%E7%AB%A0%20%E8%AF%B4%E8%BF%87%E7%9A%84%E8%AF%9D%E5%B0%B1%E4%B8%80%E5%AE%9A%E8%A6%81%E5%81%9A%E5%88%B0-redo%E6%97%A5%E5%BF%97/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-05-09 15:59:27" itemprop="dateCreated datePublished" datetime="2022-05-09T15:59:27+00:00">2022-05-09</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="第十九章-说过的话就一定要做到-redo日志"><a href="#第十九章-说过的话就一定要做到-redo日志" class="headerlink" title="第十九章 说过的话就一定要做到-redo日志"></a>第十九章 说过的话就一定要做到-redo日志</h1><h2 id="一、事先说明"><a href="#一、事先说明" class="headerlink" title="一、事先说明"></a>一、事先说明</h2><p>本章会频繁提到之前说的InnoDB记录行格式、页面格式、索引原理、表空间组成等基础知识</p>
-<h2 id="二、redo日志是什么"><a href="#二、redo日志是什么" class="headerlink" title="二、redo日志是什么"></a>二、redo日志是什么</h2><p>InnoDB以页为单位进行管理存储空间的，</p>
 
       
     </div>
@@ -1022,7 +1139,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">116</span>
+          <span class="site-state-item-count">118</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

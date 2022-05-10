@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/3.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/3.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="一、准备工作MySQL中负责对表进行数据的读取写入工作的部分是存储引擎 二、InnoDB页简介InnoDB是一个将表中数据存储到磁盘的存储引擎。InnoDB是将数据划分为若干页，以页作为磁盘和内存之间交互的基本单位  页的默认大小为16KB  三、InnoDB行格式四种行格式 1、指定行格式的语法创建表或者修改表的语句中去实现 2、COMPACT行格式（1）记录额外信息 变长字段的长度列表 NUL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hello Programmer">
+<meta property="og:url" content="http://example.com/2022/05/10/%E6%95%B0%E6%8D%AE%E5%BA%93/%E7%AC%AC%E5%9B%9B%E7%AB%A0%20InnoDB%E8%AE%B0%E5%BD%95%E5%AD%98%E5%82%A8%E6%A0%BC%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Hello Programmer">
+<meta property="og:description" content="一、准备工作MySQL中负责对表进行数据的读取写入工作的部分是存储引擎 二、InnoDB页简介InnoDB是一个将表中数据存储到磁盘的存储引擎。InnoDB是将数据划分为若干页，以页作为磁盘和内存之间交互的基本单位  页的默认大小为16KB  三、InnoDB行格式四种行格式 1、指定行格式的语法创建表或者修改表的语句中去实现 2、COMPACT行格式（1）记录额外信息 变长字段的长度列表 NUL">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-10T15:47:57.514Z">
+<meta property="article:modified_time" content="2022-05-10T15:47:57.514Z">
+<meta property="article:author" content="xty">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/05/10/%E6%95%B0%E6%8D%AE%E5%BA%93/%E7%AC%AC%E5%9B%9B%E7%AB%A0%20InnoDB%E8%AE%B0%E5%BD%95%E5%AD%98%E5%82%A8%E6%A0%BC%E5%BC%8F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | Hello Programmer</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hello Programmer</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/10/%E6%95%B0%E6%8D%AE%E5%BA%93/%E7%AC%AC%E5%9B%9B%E7%AB%A0%20InnoDB%E8%AE%B0%E5%BD%95%E5%AD%98%E5%82%A8%E6%A0%BC%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-10 15:47:57" itemprop="dateCreated datePublished" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a>一、准备工作</h2><p>MySQL中负责对表进行数据的读取写入工作的部分是存储引擎</p>
+<h2 id="二、InnoDB页简介"><a href="#二、InnoDB页简介" class="headerlink" title="二、InnoDB页简介"></a>二、InnoDB页简介</h2><p>InnoDB是一个将表中数据存储到磁盘的存储引擎。InnoDB是将数据划分为若干页，以页作为磁盘和内存之间交互的基本单位</p>
+<blockquote>
+<p>页的默认大小为16KB</p>
+</blockquote>
+<h2 id="三、InnoDB行格式"><a href="#三、InnoDB行格式" class="headerlink" title="三、InnoDB行格式"></a>三、InnoDB行格式</h2><p>四种行格式</p>
+<h3 id="1、指定行格式的语法"><a href="#1、指定行格式的语法" class="headerlink" title="1、指定行格式的语法"></a>1、指定行格式的语法</h3><p>创建表或者修改表的语句中去实现</p>
+<h3 id="2、COMPACT行格式"><a href="#2、COMPACT行格式" class="headerlink" title="2、COMPACT行格式"></a>2、COMPACT行格式</h3><h4 id="（1）记录额外信息"><a href="#（1）记录额外信息" class="headerlink" title="（1）记录额外信息"></a>（1）记录额外信息</h4><ul>
+<li>变长字段的长度列表</li>
+<li>NULL值列表</li>
+<li>记录头信息</li>
+</ul>
+<h4 id="（2）记录真实数据"><a href="#（2）记录真实数据" class="headerlink" title="（2）记录真实数据"></a>（2）记录真实数据</h4><p>InnoDB表主键生成策略：优先使用用户自定义的主键；如果用户未定义主键，选取一个不允许为NULL的UNIQUE键作为主键；若都没有，则会为表添加一个row_id隐藏列作为主键</p>
+<h4 id="（3）CHAR（M）列的存储格式"><a href="#（3）CHAR（M）列的存储格式" class="headerlink" title="（3）CHAR（M）列的存储格式"></a>（3）CHAR（M）列的存储格式</h4><h3 id="3、REDUNDANT行格式"><a href="#3、REDUNDANT行格式" class="headerlink" title="3、REDUNDANT行格式"></a>3、REDUNDANT行格式</h3><h4 id="（1）字段长度偏移列表"><a href="#（1）字段长度偏移列表" class="headerlink" title="（1）字段长度偏移列表"></a>（1）字段长度偏移列表</h4><h4 id="（2）记录头信息"><a href="#（2）记录头信息" class="headerlink" title="（2）记录头信息"></a>（2）记录头信息</h4><h4 id="（3）记录头信息中的1byte-offs-flag的值是怎么选择的"><a href="#（3）记录头信息中的1byte-offs-flag的值是怎么选择的" class="headerlink" title="（3）记录头信息中的1byte_offs_flag的值是怎么选择的"></a>（3）记录头信息中的1byte_offs_flag的值是怎么选择的</h4><h4 id="（4）REDUNDANT行格式中的NULL值的处理"><a href="#（4）REDUNDANT行格式中的NULL值的处理" class="headerlink" title="（4）REDUNDANT行格式中的NULL值的处理"></a>（4）REDUNDANT行格式中的NULL值的处理</h4><h4 id="（5）CHAR（M）列的存储格式"><a href="#（5）CHAR（M）列的存储格式" class="headerlink" title="（5）CHAR（M）列的存储格式"></a>（5）CHAR（M）列的存储格式</h4><h3 id="4、溢出列"><a href="#4、溢出列" class="headerlink" title="4、溢出列"></a>4、溢出列</h3><h4 id="（1）溢出列"><a href="#（1）溢出列" class="headerlink" title="（1）溢出列"></a>（1）溢出列</h4><h4 id="（2）产生溢出列的临界点"><a href="#（2）产生溢出列的临界点" class="headerlink" title="（2）产生溢出列的临界点"></a>（2）产生溢出列的临界点</h4><h3 id="5、DYNAMIC行格式和COMPRESSED行格式"><a href="#5、DYNAMIC行格式和COMPRESSED行格式" class="headerlink" title="5、DYNAMIC行格式和COMPRESSED行格式"></a>5、DYNAMIC行格式和COMPRESSED行格式</h3><h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><p>页是InnoDB中磁盘与内存交互的基本单位，也是InnoDB管理存储空间的基本单位，默认大小为16KB</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/05/10/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%9B%BE%E8%A7%A3TCPIP/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/05/10/%E6%95%B0%E6%8D%AE%E5%BA%93/%E7%AC%AC%E5%8D%81%E4%B9%9D%E7%AB%A0%20%E8%AF%B4%E8%BF%87%E7%9A%84%E8%AF%9D%E5%B0%B1%E4%B8%80%E5%AE%9A%E8%A6%81%E5%81%9A%E5%88%B0-redo%E6%97%A5%E5%BF%97/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">一、准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81InnoDB%E9%A1%B5%E7%AE%80%E4%BB%8B"><span class="nav-number">2.</span> <span class="nav-text">二、InnoDB页简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81InnoDB%E8%A1%8C%E6%A0%BC%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">三、InnoDB行格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E6%8C%87%E5%AE%9A%E8%A1%8C%E6%A0%BC%E5%BC%8F%E7%9A%84%E8%AF%AD%E6%B3%95"><span class="nav-number">3.1.</span> <span class="nav-text">1、指定行格式的语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81COMPACT%E8%A1%8C%E6%A0%BC%E5%BC%8F"><span class="nav-number">3.2.</span> <span class="nav-text">2、COMPACT行格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E8%AE%B0%E5%BD%95%E9%A2%9D%E5%A4%96%E4%BF%A1%E6%81%AF"><span class="nav-number">3.2.1.</span> <span class="nav-text">（1）记录额外信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E8%AE%B0%E5%BD%95%E7%9C%9F%E5%AE%9E%E6%95%B0%E6%8D%AE"><span class="nav-number">3.2.2.</span> <span class="nav-text">（2）记录真实数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%883%EF%BC%89CHAR%EF%BC%88M%EF%BC%89%E5%88%97%E7%9A%84%E5%AD%98%E5%82%A8%E6%A0%BC%E5%BC%8F"><span class="nav-number">3.2.3.</span> <span class="nav-text">（3）CHAR（M）列的存储格式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81REDUNDANT%E8%A1%8C%E6%A0%BC%E5%BC%8F"><span class="nav-number">3.3.</span> <span class="nav-text">3、REDUNDANT行格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E5%AD%97%E6%AE%B5%E9%95%BF%E5%BA%A6%E5%81%8F%E7%A7%BB%E5%88%97%E8%A1%A8"><span class="nav-number">3.3.1.</span> <span class="nav-text">（1）字段长度偏移列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E8%AE%B0%E5%BD%95%E5%A4%B4%E4%BF%A1%E6%81%AF"><span class="nav-number">3.3.2.</span> <span class="nav-text">（2）记录头信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%883%EF%BC%89%E8%AE%B0%E5%BD%95%E5%A4%B4%E4%BF%A1%E6%81%AF%E4%B8%AD%E7%9A%841byte-offs-flag%E7%9A%84%E5%80%BC%E6%98%AF%E6%80%8E%E4%B9%88%E9%80%89%E6%8B%A9%E7%9A%84"><span class="nav-number">3.3.3.</span> <span class="nav-text">（3）记录头信息中的1byte_offs_flag的值是怎么选择的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%884%EF%BC%89REDUNDANT%E8%A1%8C%E6%A0%BC%E5%BC%8F%E4%B8%AD%E7%9A%84NULL%E5%80%BC%E7%9A%84%E5%A4%84%E7%90%86"><span class="nav-number">3.3.4.</span> <span class="nav-text">（4）REDUNDANT行格式中的NULL值的处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%885%EF%BC%89CHAR%EF%BC%88M%EF%BC%89%E5%88%97%E7%9A%84%E5%AD%98%E5%82%A8%E6%A0%BC%E5%BC%8F"><span class="nav-number">3.3.5.</span> <span class="nav-text">（5）CHAR（M）列的存储格式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81%E6%BA%A2%E5%87%BA%E5%88%97"><span class="nav-number">3.4.</span> <span class="nav-text">4、溢出列</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E6%BA%A2%E5%87%BA%E5%88%97"><span class="nav-number">3.4.1.</span> <span class="nav-text">（1）溢出列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E4%BA%A7%E7%94%9F%E6%BA%A2%E5%87%BA%E5%88%97%E7%9A%84%E4%B8%B4%E7%95%8C%E7%82%B9"><span class="nav-number">3.4.2.</span> <span class="nav-text">（2）产生溢出列的临界点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%E3%80%81DYNAMIC%E8%A1%8C%E6%A0%BC%E5%BC%8F%E5%92%8CCOMPRESSED%E8%A1%8C%E6%A0%BC%E5%BC%8F"><span class="nav-number">3.5.</span> <span class="nav-text">5、DYNAMIC行格式和COMPRESSED行格式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">四、总结</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="xty"
+      src="/images/4.png">
+  <p class="site-author-name" itemprop="name">xty</p>
+  <div class="site-description" itemprop="description">This is xty Blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">118</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/woshixty" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;woshixty" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xty</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script data-pjax>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+    </div>
+</body>
+</html>

@@ -154,6 +154,364 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/18/DeepLearning/numpy%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/04/18/DeepLearning/numpy%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">NumPy常用操作</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-04-18 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-18T00:00:00+00:00">2021-04-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-10 15:47:57" itemprop="dateModified" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">深度学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="NumPy常用操作"><a href="#NumPy常用操作" class="headerlink" title="NumPy常用操作"></a>NumPy常用操作</h1><h2 id="一、NumPy是什么"><a href="#一、NumPy是什么" class="headerlink" title="一、NumPy是什么"></a>一、NumPy是什么</h2><p>NumPy是Python的一个用于科学计算的基础包。它提供了多维数组对象，多种衍生的对象（例如隐藏数组和矩阵）和一个用于数组快速运算的混合的程序，包括数学，逻辑，排序，选择，I/O，离散傅立叶变换，基础线性代数，基础统计操作，随机模拟等等。–摘自知乎</p>
+<p>NumPy提供了两种基本的对象:<code> ndarray</code>和<code> ufunc</code>. ndarray是存储单一数据类型的多维数组, 而ufunc则是对数组处理的函数</p>
+<h2 id="二、NumPy主要特点"><a href="#二、NumPy主要特点" class="headerlink" title="二、NumPy主要特点"></a>二、NumPy主要特点</h2><ul>
+<li>ndarray, 快速, 节省空间的多维数组, 提供数组化的算术运算和高级的广播功能</li>
+<li>使用标准的数学函数对整个数组的数据进行快速运算, 不需要写循环</li>
+<li>读/写磁盘上的阵列数据和操作存储器映像文件的工具</li>
+<li>线性代数、随机数生成、傅立叶变换</li>
+<li>集成C、C++、Fortran代码的工具</li>
+</ul>
+<h2 id="三、NumPy的使用"><a href="#三、NumPy的使用" class="headerlink" title="三、NumPy的使用"></a>三、NumPy的使用</h2><h3 id="1、生成NumPy的ndarray的几种方式"><a href="#1、生成NumPy的ndarray的几种方式" class="headerlink" title="1、生成NumPy的ndarray的几种方式"></a>1、生成NumPy的ndarray的几种方式</h3><p>NumPy封装了一种新的数据类型: <code> ndarray</code>, 一个多维数组对象, 该对象封装了许多常用的数学运算符号。</p>
+<h4 id="a、从已有的数据中创建"><a href="#a、从已有的数据中创建" class="headerlink" title="a、从已有的数据中创建"></a>a、从已有的数据中创建</h4><ul>
+<li>将列表转化为ndarray. (可以尝试着把两个东西输出看看, 会有不一样的发现)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">num_list = [<span class="number">3.14</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">92</span>]</span><br><span class="line">nd = np.array(num_list)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>前套列表转化为多位ndarray</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">num_list = [[<span class="number">3.14</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">92</span>], [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]]</span><br><span class="line">nd = np.array(num_list)</span><br></pre></td></tr></table></figure>
+
+<h4 id="b、使用random模块生成ndarray"><a href="#b、使用random模块生成ndarray" class="headerlink" title="b、使用random模块生成ndarray"></a>b、使用random模块生成ndarray</h4><p>有时候我们需要对一些变量进行初始化, 我们就可以使用random模块来生成。random又分为多种函数: 1.random生成0~1之间的随机数、2.uniform生成均匀分布的随机数、3.randn生成标准正态的随机数、4.normal生成正态分布的、5.shuffle随机打乱顺序、6.seeb设置种子. 如下代码:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 你每次执行都是不一样的结果</span></span><br><span class="line">nd = np.random.random([<span class="number">3</span>, <span class="number">3</span>])</span><br><span class="line">print(nd)</span><br></pre></td></tr></table></figure>
+
+<p>我的打印结果:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[[0.0818346  0.23860994 0.64879857]</span><br><span class="line"> [0.06154791 0.72195076 0.9455963 ]</span><br><span class="line"> [0.44779405 0.17841636 0.98912378]]</span><br></pre></td></tr></table></figure>
+
+<h4 id="c、创建特定形状的多维数组"><a href="#c、创建特定形状的多维数组" class="headerlink" title="c、创建特定形状的多维数组"></a>c、创建特定形状的多维数组</h4><p>可以生成一些特殊矩阵, 直接上代码:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 3×3矩阵，矩阵元素均为0</span></span><br><span class="line">nd1 = np.zeros([<span class="number">3</span>, <span class="number">3</span>])</span><br><span class="line">print(nd1)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3×3矩阵，矩阵元素均为1</span></span><br><span class="line">nd2 = np.ones([<span class="number">3</span>, <span class="number">3</span>])</span><br><span class="line">print(nd2)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3阶的单位矩阵</span></span><br><span class="line">nd3 = np.eye(<span class="number">3</span>)</span><br><span class="line">print(nd3)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3阶对角矩阵</span></span><br><span class="line">nd4 = np.diag([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">print(nd4)</span><br></pre></td></tr></table></figure>
+
+<p>将数据保存到磁盘然后读取</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">nd1 = np.random.random([<span class="number">3</span>, <span class="number">3</span>])</span><br><span class="line">print(nd1)</span><br><span class="line">numpy.savetxt(X=nd1, fname=<span class="string">&#x27;test.txt&#x27;</span>)</span><br><span class="line">nd0 = np.loadtxt(<span class="string">&#x27;test.txt&#x27;</span>)</span><br><span class="line">print(nd0)</span><br></pre></td></tr></table></figure>
+
+<h4 id="d、利用arange函数"><a href="#d、利用arange函数" class="headerlink" title="d、利用arange函数"></a>d、利用arange函数</h4><p>arange是numpy模块中的函数, 废话少说, 实践出真知:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 从0到10，每次加一生成的数组</span></span><br><span class="line">print(np.arange(<span class="number">10</span>))</span><br><span class="line"><span class="comment"># 从3到10，每次加一生成的数组</span></span><br><span class="line">print(np.arange(<span class="number">3</span>, <span class="number">10</span>))</span><br><span class="line"><span class="comment"># 从1到11（不等于11），每次加二生成的数组</span></span><br><span class="line">print(np.arange(<span class="number">1</span>, <span class="number">11</span>, <span class="number">2</span>))</span><br><span class="line"><span class="comment"># 从9一直到-1（不等于-1），每次减一生成的数组</span></span><br><span class="line">print(np.arange(<span class="number">9</span>, <span class="number">-1</span>, <span class="number">-1</span>))</span><br></pre></td></tr></table></figure>
+
+<p>可以看见, 该函数格式为: <code> arange([start], stop, [step], dtype=None)</code>, start和stop指定范围, start默认为0, stop必须指定, step为步长。</p>
+<h3 id="2、NumPy存取元素"><a href="#2、NumPy存取元素" class="headerlink" title="2、NumPy存取元素"></a>2、NumPy存取元素</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">nd = np.diag([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>])</span><br><span class="line">print(nd)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取第四个元素，一个元素即一个数组，起始元素为0</span></span><br><span class="line">print(<span class="string">&quot;nd[4]:&quot;</span>)</span><br><span class="line">print(nd[<span class="number">4</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 截取一段数据，从3开始，小于6</span></span><br><span class="line">print(<span class="string">&quot;nd[3:6]:&quot;</span>)</span><br><span class="line">print(nd[<span class="number">3</span>:<span class="number">6</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 截取固定间隔数据，从3开始，小于6，每次加二</span></span><br><span class="line">print(<span class="string">&quot;nd[1:6:2]:&quot;</span>)</span><br><span class="line">print(nd[<span class="number">1</span>:<span class="number">6</span>:<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 倒序取数</span></span><br><span class="line">print(<span class="string">&quot;nd[::-1]:&quot;</span>)</span><br><span class="line">print(nd[::<span class="number">-1</span>])</span><br></pre></td></tr></table></figure>
+
+<p>以上操作仅仅是操作矩阵的行, 如要操作列, 继续往下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">nd = np.arange(<span class="number">25</span>).reshape([<span class="number">5</span>, <span class="number">5</span>])</span><br><span class="line">print(nd)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 截取多维数组一个区域内的数据，如下：截取2到3行，2到四列的数据</span></span><br><span class="line">print(<span class="string">&quot;nd[1:3, 1:2]:&quot;</span>)</span><br><span class="line">print(nd[<span class="number">1</span>:<span class="number">3</span>, <span class="number">1</span>:<span class="number">4</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 截取多维数组一个区域内的数据，生成一个一维数组</span></span><br><span class="line">print(<span class="string">&quot;nd[(nd &gt; 3) &amp; (nd &lt; 10)]:&quot;</span>)</span><br><span class="line">print(nd[(nd &gt; <span class="number">3</span>) &amp; (nd &lt; <span class="number">10</span>)])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 截取多维数组的2、3行</span></span><br><span class="line">print(<span class="string">&quot;nd[1:3, :]:&quot;</span>)</span><br><span class="line">print(nd[<span class="number">1</span>:<span class="number">3</span>, :])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 截取多维数组的2、3列</span></span><br><span class="line">print(<span class="string">&quot;nd[:, 1:3]:&quot;</span>)</span><br><span class="line">print(nd[:, <span class="number">1</span>:<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+
+<p>以上学会了吗?</p>
+<p>另外, 还可以通过random.choice函数从指定的样本随机抽取数据, 此处略。</p>
+<h3 id="3、矩阵操作"><a href="#3、矩阵操作" class="headerlink" title="3、矩阵操作"></a>3、矩阵操作</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">nd = np.arange(<span class="number">9</span>).reshape([<span class="number">3</span>, <span class="number">3</span>])</span><br><span class="line">print(nd)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 矩阵砖置</span></span><br><span class="line">print(<span class="string">&quot;nd矩阵转置：&quot;</span>)</span><br><span class="line">print(np.transpose(nd))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 矩阵的乘法</span></span><br><span class="line">print(<span class="string">&quot;a✖️b矩阵的乘法：&quot;</span>)</span><br><span class="line">a = np.arange(<span class="number">12</span>).reshape([<span class="number">3</span>, <span class="number">4</span>])  <span class="comment"># 三行四列的矩阵</span></span><br><span class="line">b = np.arange(<span class="number">8</span>).reshape([<span class="number">4</span>, <span class="number">2</span>])  <span class="comment"># 四行两列的矩阵</span></span><br><span class="line">print(a.dot(b))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 求矩阵的迹</span></span><br><span class="line">print(<span class="string">&quot;a矩阵的迹：&quot;</span>)</span><br><span class="line">print(a.trace())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算行列式</span></span><br><span class="line">print(<span class="string">&quot;计算c的行列式：&quot;</span>)</span><br><span class="line">c = np.arange(<span class="number">4</span>).reshape([<span class="number">2</span>, <span class="number">2</span>])</span><br><span class="line">print(np.linalg.det(c))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 计算逆矩阵</span></span><br><span class="line">print(<span class="string">&quot;c的逆矩阵：&quot;</span>)</span><br><span class="line">print(np.linalg.solve(c, np.eye(<span class="number">2</span>)))</span><br></pre></td></tr></table></figure>
+
+<p>我们在上面使用了<code> numpy.linalg</code>的函数, 下面咱们整理了一份表(<code> numpy.linalg</code>常用的函数):</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>diag</td>
+<td>一维数组的形式返回方阵的对角线元素</td>
+</tr>
+<tr>
+<td>dot</td>
+<td>矩阵乘法</td>
+</tr>
+<tr>
+<td>trace</td>
+<td>求迹, 对角线元素之和</td>
+</tr>
+<tr>
+<td>det</td>
+<td>计算矩阵列式</td>
+</tr>
+<tr>
+<td>eig</td>
+<td>计算方阵的特征值与特征向量</td>
+</tr>
+<tr>
+<td>inv</td>
+<td>计算方阵的逆</td>
+</tr>
+<tr>
+<td>qr</td>
+<td>计算qr分解</td>
+</tr>
+<tr>
+<td>svd</td>
+<td>计算奇异值分解svd</td>
+</tr>
+<tr>
+<td>solve</td>
+<td>解线性方程组: Ax=b, 其中A为方阵</td>
+</tr>
+<tr>
+<td>lstsq</td>
+<td>计算Ax=b的最小二乘解</td>
+</tr>
+</tbody></table>
+<h3 id="4、数据的合并与展开"><a href="#4、数据的合并与展开" class="headerlink" title="4、数据的合并与展开"></a>4、数据的合并与展开</h3><h4 id="a、合并一维数组"><a href="#a、合并一维数组" class="headerlink" title="a、合并一维数组"></a>a、合并一维数组</h4><h4 id="b、多维数组的合并"><a href="#b、多维数组的合并" class="headerlink" title="b、多维数组的合并"></a>b、多维数组的合并</h4><h4 id="c、矩阵展平"><a href="#c、矩阵展平" class="headerlink" title="c、矩阵展平"></a>c、矩阵展平</h4><h3 id="5、通用函数"><a href="#5、通用函数" class="headerlink" title="5、通用函数"></a>5、通用函数</h3>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/26/Java/Java_%E6%B3%A8%E8%A7%A3%E5%AD%A6%E4%B9%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/26/Java/Java_%E6%B3%A8%E8%A7%A3%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">Java注解学习</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-26 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-26T00:00:00+00:00">2021-01-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-10 15:47:57" itemprop="dateModified" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>当初学习Java的时候并没有特别去学习和理解注解（Annotation），写了一段时间springboot项目之后，准备回来重修。</p>
+</blockquote>
+<h3 id="一、注解（Annotation）到底是个啥玩意？"><a href="#一、注解（Annotation）到底是个啥玩意？" class="headerlink" title="一、注解（Annotation）到底是个啥玩意？"></a>一、注解（Annotation）到底是个啥玩意？</h3><p>所谓注解（Annotation），其实就是代码里的特殊标记，能够在代码编译、类加载、运行的时候被读取并对它进行相应的处理。说白了其实可以理解为“贴在代码上的便签”，通过使用注解使得程序开发在不改变程序原有逻辑的基础上，在源文件里嵌入一些补充信息。</p>
+<p>注解其实可以为程序元素（类、方法、成员变量等）设置元数据，但到底啥是设置元数据，往后面看就行了。</p>
+<p>需要注意的一点是，注解实际上并不影响程序执行，但是你若想要它发挥一定的做用，你就得通过配套工具对注解中的信息进行处理，就相当于是你在代码上贴了“标签”，你得写一段程序来检查这个“标签”</p>
+<h3 id="二、Java的基本注解"><a href="#二、Java的基本注解" class="headerlink" title="二、Java的基本注解"></a>二、Java的基本注解</h3><h4 id="1-限定重写父类方法：-Override注解"><a href="#1-限定重写父类方法：-Override注解" class="headerlink" title="1. 限定重写父类方法： @Override注解"></a>1. 限定重写父类方法： @Override注解</h4><blockquote>
+<p>这个注解我们太熟悉了！强制子类重写父类方法，它能帮助程序员放置一些低级错误：重写的方法名写错了等</p>
+<p>只要重写的方法名不一致就会报错</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">father</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">info</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">son</span> <span class="keyword">extends</span> <span class="title">father</span> </span>&#123;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">info</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       System.out.println(<span class="string">&quot;Java&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-Java-9增强的-Deprecated"><a href="#2-Java-9增强的-Deprecated" class="headerlink" title="2. Java 9增强的@Deprecated"></a>2. Java 9增强的@Deprecated</h4><blockquote>
+<p>用于标注某个类、方法已过时，当被使用的时候会报警告</p>
+<p>这个注解有两个属性：</p>
+<ul>
+<li>since：该元素哪个版本会过时</li>
+<li>forRemoval：该元素在将来是否会被删除</li>
+</ul>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 注意：这个注解时JDK9之后的增强版</span></span><br><span class="line"><span class="meta">@Deprecated( since = &quot;9&quot;, forRemoval = true)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">father</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">info</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-抑制编译器警告：-SuppressWarnings-以及-“堆污染”警告与Java-9增强的：-SafeVarargs"><a href="#3-抑制编译器警告：-SuppressWarnings-以及-“堆污染”警告与Java-9增强的：-SafeVarargs" class="headerlink" title="3. 抑制编译器警告：@SuppressWarnings 以及 “堆污染”警告与Java 9增强的：@SafeVarargs"></a>3. 抑制编译器警告：@SuppressWarnings 以及 “堆污染”警告与Java 9增强的：@SafeVarargs</h4><blockquote>
+<p>感觉这俩注解没啥好说的，我们一般也不会用到</p>
+<ul>
+<li>@SuppressWarnings就是可以让程序元素不报警，包括这个程序元素的所有子元素</li>
+<li>@SafeVarargs防止堆污染</li>
+</ul>
+</blockquote>
+<h4 id="4-函数式接口：-FunctionalInterface"><a href="#4-函数式接口：-FunctionalInterface" class="headerlink" title="4. 函数式接口：@FunctionalInterface"></a>4. 函数式接口：@FunctionalInterface</h4><blockquote>
+<p>保证某个接口一定是函数式接口，即只含有抽象函数的接口，他只能修饰接口</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@FunctionalInterface</span></span><br><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">func</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">a</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;a&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">b</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;b&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//唯一的抽象方法</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">c</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="三、JDK元注解"><a href="#三、JDK元注解" class="headerlink" title="三、JDK元注解"></a>三、JDK元注解</h3><p>所谓元注解，就是修饰注解的注解（禁止套娃！），我们先来康康几个常用的注解吧</p>
+<h4 id="1-Retention注解"><a href="#1-Retention注解" class="headerlink" title="1. @Retention注解"></a>1. @Retention注解</h4><blockquote>
+<p>@Retention指定被修饰的注解可以存活多长时间，他的value值为以下三个</p>
+<ul>
+<li><p><code>RetentionPolicy.SOURCE</code>–编译器把注解记录在文件中，当运行Java程序时，JVM不可获取注解信息</p>
+</li>
+<li><p><code>RetentionPolicy.CLASS</code>–编译器把注解记录在文件中，当运行Java程序时，JVM可以通过反射获取注解信息</p>
+</li>
+<li><p><code>RetentionPolicy.RUNTIME</code>–只保留在源码中，编译器直接丢弃，例如@data注解，他只是在编译时候让编译器给类加上getter setter之后就被丢弃了</p>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @data注解</span></span><br><span class="line"><span class="meta">@Target(ElementType.TYPE)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.SOURCE)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Data &#123;</span><br><span class="line">   <span class="function">String <span class="title">staticConstructor</span><span class="params">()</span> <span class="keyword">default</span> &quot;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-Target注解"><a href="#2-Target注解" class="headerlink" title="2. @Target注解"></a>2. @Target注解</h4><blockquote>
+<p>@Target指定被修饰的注解能修饰哪些程序单元，这里有很多，就不细讲了，咱们举一个栗子吧！</p>
+<ul>
+<li><code>ElementType.TYPE</code>–可以修饰类、接口（包括注解类型）、枚举定义</li>
+</ul>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这是ElementType枚举类内部</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">enum</span> <span class="title">ElementType</span> </span>&#123;</span><br><span class="line">    <span class="comment">/** Class, interface (including annotation type), or enum declaration */</span></span><br><span class="line">    TYPE,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Field declaration (includes enum constants) */</span></span><br><span class="line">    FIELD,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Method declaration */</span></span><br><span class="line">    METHOD,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Formal parameter declaration */</span></span><br><span class="line">    PARAMETER,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Constructor declaration */</span></span><br><span class="line">    CONSTRUCTOR,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Local variable declaration */</span></span><br><span class="line">    LOCAL_VARIABLE,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Annotation type declaration */</span></span><br><span class="line">    ANNOTATION_TYPE,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/** Package declaration */</span></span><br><span class="line">    PACKAGE,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Type parameter declaration</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@since</span> 1.8</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    TYPE_PARAMETER,</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Use of a type</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@since</span> 1.8</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    TYPE_USE</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-Documented注解"><a href="#3-Documented注解" class="headerlink" title="3. @Documented注解"></a>3. @Documented注解</h4><blockquote>
+<p>被@Documented修饰的注解可以被javaDoc工具提取成文档</p>
+</blockquote>
+<h4 id="4-Inherited注解"><a href="#4-Inherited注解" class="headerlink" title="4. @Inherited注解"></a>4. @Inherited注解</h4><blockquote>
+<p>@Inherited修饰的注解具有继承性，如@Inherited修饰了@a注解，而@a修饰了father这个基类，则father的子类son也相当于被@a修饰</p>
+<p>可能有点绕哈，来人！上代码！</p>
+</blockquote>
+<p>定义注解：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 这是被@Inherited修饰的接口</span></span><br><span class="line"><span class="meta">@Target(ElementType.TYPE)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="meta">@Inherited</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> inheritedTest &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>定义类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@inheritedTest</span>  <span class="comment">//@inheritedTest具有继承性 </span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">father</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">info</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// son是father的子类，故son也相当于被@inheritedTest修饰了</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">son</span> <span class="keyword">extends</span> <span class="title">father</span> </span>&#123;</span><br><span class="line">   <span class="meta">@Override</span></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">info</span><span class="params">()</span> </span>&#123;</span><br><span class="line">       System.out.println(<span class="string">&quot;Java&quot;</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="四、自定义注解"><a href="#四、自定义注解" class="headerlink" title="四、自定义注解"></a>四、自定义注解</h3><h4 id="1-定义注解"><a href="#1-定义注解" class="headerlink" title="1. 定义注解"></a>1. 定义注解</h4><blockquote>
+<p>其实注解就是接口，所以定义注解和定义接口差不多，在关键字<code>interface</code>前加一个<code>@</code>即可，如下定义@MyTag注解：</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyTag &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-注解的成员变量"><a href="#2-注解的成员变量" class="headerlink" title="2. 注解的成员变量"></a>2. 注解的成员变量</h4><blockquote>
+<p>成员变量在注解定义中以无参方法的形式来声明，方法名和返回值分别为变量的名字与类型，如下</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> MyTag &#123;</span><br><span class="line">    <span class="function">String <span class="title">name</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">age</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function">String <span class="title">college</span><span class="params">()</span> <span class="keyword">default</span> &quot;计算机学院&quot;</span>;  <span class="comment">// 指定默认值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-提取注解信息"><a href="#3-提取注解信息" class="headerlink" title="3. 提取注解信息"></a>3. 提取注解信息</h4><p>废话不多说，直接上代码！！！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">getInfoTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@inheritedTest</span>  <span class="comment">// 该注解具有继承性</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">father</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">info</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Hello&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 继承father类</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">son</span> <span class="keyword">extends</span> <span class="title">father</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">info</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Java&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ClassNotFoundException </span>&#123;</span><br><span class="line">        <span class="comment">// 获取son类上面的所有注解</span></span><br><span class="line">        Annotation[] aArray = Class.forName(<span class="string">&quot;son&quot;</span>).getAnnotations();</span><br><span class="line">        <span class="comment">// 遍历所有注解</span></span><br><span class="line">        <span class="keyword">for</span> (Annotation a:aArray) &#123;</span><br><span class="line">            System.out.println(a);</span><br><span class="line">            <span class="comment">// 如果注解是@inheritedTest类型</span></span><br><span class="line">            <span class="keyword">if</span> (a <span class="keyword">instanceof</span> inheritedTest)</span><br><span class="line">                <span class="comment">// 强转为@inheritedTest类型并取出@inheritedTest中的name值</span></span><br><span class="line">                System.out.println(((inheritedTest) a).name());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="五、自定义注解使用示例"><a href="#五、自定义注解使用示例" class="headerlink" title="五、自定义注解使用示例"></a>五、自定义注解使用示例</h3><p>之前写项目遇到过一个问题：如何比较自由的拦截token</p>
+<p>以前是直接写一个拦截类然后再写一个配置类从而达到拦截部分请求的目的</p>
+<p>使用注解解决方法如下：</p>
+<h4 id="1-定义一个注解"><a href="#1-定义一个注解" class="headerlink" title="1. 定义一个注解"></a>1. 定义一个注解</h4><blockquote>
+<p>定义了注解的目标以及存活时间</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Target(&#123;ElementType.METHOD,ElementType.TYPE&#125;)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> AuthenToken &#123;</span><br><span class="line">    <span class="function"><span class="keyword">boolean</span> <span class="title">required</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">true</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-注解拦截器"><a href="#2-注解拦截器" class="headerlink" title="2. 注解拦截器"></a>2. 注解拦截器</h4><blockquote>
+<p>拦截器就是处理这个”标签”工具</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AuthenticationInterceptor</span> <span class="keyword">implements</span> <span class="title">HandlerInterceptor</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    StudentDao studentDao;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">preHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        String token = request.getHeader(<span class="string">&quot;token&quot;</span>);     <span class="comment">//从请求头中获取token</span></span><br><span class="line">        <span class="comment">// 这里就可以写处理逻辑啦！！！</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">postHandle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterCompletion</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="六、学无止境"><a href="#六、学无止境" class="headerlink" title="六、学无止境"></a>六、学无止境</h3><p>关于Java注解可以学的东西还有很多，这篇文只讲了其中很小一部分，希望继续多多钻研。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/01/23/%E3%80%8A%E7%AE%97%E6%B3%95%E7%AC%AC%E5%9B%9B%E7%89%88%E3%80%8B/%E7%AC%AC%E4%B8%89%E7%AB%A0%E6%9F%A5%E6%89%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -185,7 +543,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-09 15:59:27" itemprop="dateModified" datetime="2022-05-09T15:59:27+00:00">2022-05-09</time>
+                <time title="修改时间：2022-05-10 15:47:57" itemprop="dateModified" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -331,7 +689,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-09 15:59:27" itemprop="dateModified" datetime="2022-05-09T15:59:27+00:00">2022-05-09</time>
+                <time title="修改时间：2022-05-10 15:47:57" itemprop="dateModified" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -445,7 +803,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-09 15:59:27" itemprop="dateModified" datetime="2022-05-09T15:59:27+00:00">2022-05-09</time>
+                <time title="修改时间：2022-05-10 15:47:57" itemprop="dateModified" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -599,7 +957,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-09 15:59:27" itemprop="dateModified" datetime="2022-05-09T15:59:27+00:00">2022-05-09</time>
+                <time title="修改时间：2022-05-10 15:47:57" itemprop="dateModified" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -700,7 +1058,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-09 15:59:27" itemprop="dateModified" datetime="2022-05-09T15:59:27+00:00">2022-05-09</time>
+                <time title="修改时间：2022-05-10 15:47:57" itemprop="dateModified" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1030,7 +1388,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-09 15:59:27" itemprop="dateModified" datetime="2022-05-09T15:59:27+00:00">2022-05-09</time>
+                <time title="修改时间：2022-05-10 15:47:57" itemprop="dateModified" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1142,7 +1500,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-09 15:59:27" itemprop="dateModified" datetime="2022-05-09T15:59:27+00:00">2022-05-09</time>
+                <time title="修改时间：2022-05-10 15:47:57" itemprop="dateModified" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1462,7 +1820,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-09 15:59:27" itemprop="dateModified" datetime="2022-05-09T15:59:27+00:00">2022-05-09</time>
+                <time title="修改时间：2022-05-10 15:47:57" itemprop="dateModified" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1673,252 +2031,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/20/Java/Java%E5%90%8E%E7%AB%AF%E7%94%9F%E6%88%90%E4%BA%8C%E7%BB%B4%E7%A0%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/20/Java/Java%E5%90%8E%E7%AB%AF%E7%94%9F%E6%88%90%E4%BA%8C%E7%BB%B4%E7%A0%81/" class="post-title-link" itemprop="url">Java后端生成二维码</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-11-20 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-20T00:00:00+00:00">2020-11-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-09 15:59:27" itemprop="dateModified" datetime="2022-05-09T15:59:27+00:00">2022-05-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>搬运博客:</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhang_z_ming/article/details/84027480">生成二维码(java后端)</a></p>
-<blockquote>
-<p>有一个需求：就是实现 放票 抢票 检票 的功能</p>
-</blockquote>
-<h3 id="生成二维码"><a href="#生成二维码" class="headerlink" title="生成二维码"></a>生成二维码</h3><blockquote>
-<p>先引入两个jar包</p>
-</blockquote>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.google.zxing&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;javase&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;3.3.1&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br><span class="line">&lt;!-- https:<span class="comment">//mvnrepository.com/artifact/com.google.zxing/core --&gt;</span></span><br><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.google.zxing&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;core&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;3.3.1&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>生成方法如下</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.payplatform.util;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.awt.image.BufferedImage;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"><span class="keyword">import</span> javax.imageio.ImageIO;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.BarcodeFormat;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.Binarizer;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.BinaryBitmap;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.EncodeHintType;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.LuminanceSource;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.MultiFormatReader;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.MultiFormatWriter;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.NotFoundException;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.Result;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.WriterException;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.client.j2se.BufferedImageLuminanceSource;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.common.BitMatrix;</span><br><span class="line"><span class="keyword">import</span> com.google.zxing.common.HybridBinarizer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QRCodeUtil</span> </span>&#123;</span><br><span class="line">	<span class="comment">//二维码颜色  </span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> BLACK = <span class="number">0xFF000000</span>;  </span><br><span class="line">    <span class="comment">//二维码颜色  </span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> WHITE = <span class="number">0xFFFFFFFF</span>;  </span><br><span class="line">  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		zxingCodeCreate(<span class="string">&quot;http://www.baidu.com&quot;</span>, <span class="number">300</span>, <span class="number">300</span>, <span class="string">&quot;D:/qrcode.jpg&quot;</span>, <span class="string">&quot;jpg&quot;</span>);</span><br><span class="line"><span class="comment">//    	zxingCodeAnalyze(&quot;D:/qrcode.jpg&quot;);</span></span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">/** </span></span><br><span class="line"><span class="comment">     * 生成二维码</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> text    二维码内容</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> width    二维码宽 </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> height    二维码高 </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> outPutPath    二维码生成保存路径 </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> imageType     二维码生成格式 </span></span><br><span class="line"><span class="comment">     */</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">zxingCodeCreate</span><span class="params">(String text, <span class="keyword">int</span> width, <span class="keyword">int</span> height, String outPutPath, String imageType)</span></span>&#123;  </span><br><span class="line">        Map&lt;EncodeHintType, String&gt; his = <span class="keyword">new</span> HashMap&lt;EncodeHintType, String&gt;();  </span><br><span class="line">        <span class="comment">//设置编码字符集  </span></span><br><span class="line">        his.put(EncodeHintType.CHARACTER_SET, <span class="string">&quot;utf-8&quot;</span>);  </span><br><span class="line">        <span class="keyword">try</span> &#123;  </span><br><span class="line">            <span class="comment">//1、生成二维码  </span></span><br><span class="line">            BitMatrix encode = <span class="keyword">new</span> MultiFormatWriter().encode(text, BarcodeFormat.QR_CODE, width, height, his);  </span><br><span class="line">              </span><br><span class="line">            <span class="comment">//2、获取二维码宽高  </span></span><br><span class="line">            <span class="keyword">int</span> codeWidth = encode.getWidth();  </span><br><span class="line">            <span class="keyword">int</span> codeHeight = encode.getHeight();  </span><br><span class="line">              </span><br><span class="line">            <span class="comment">//3、将二维码放入缓冲流  </span></span><br><span class="line">            BufferedImage image = <span class="keyword">new</span> BufferedImage(codeWidth, codeHeight, BufferedImage.TYPE_INT_RGB);  </span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; codeWidth; i++) &#123;  </span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; codeHeight; j++) &#123;  </span><br><span class="line">                    <span class="comment">//4、循环将二维码内容定入图片  </span></span><br><span class="line">                    image.setRGB(i, j, encode.get(i, j) ? BLACK : WHITE);  </span><br><span class="line">                &#125;  </span><br><span class="line">            &#125;  </span><br><span class="line">            File outPutImage = <span class="keyword">new</span> File(outPutPath);  </span><br><span class="line">            <span class="comment">//如果图片不存在创建图片  </span></span><br><span class="line">            <span class="keyword">if</span>(!outPutImage.exists())  </span><br><span class="line">                outPutImage.createNewFile();  </span><br><span class="line">            <span class="comment">//5、将二维码写入图片  </span></span><br><span class="line">            ImageIO.write(image, imageType, outPutImage);  </span><br><span class="line">        &#125; <span class="keyword">catch</span> (WriterException e) &#123;  </span><br><span class="line">            e.printStackTrace();  </span><br><span class="line">            System.out.println(<span class="string">&quot;二维码生成失败&quot;</span>);  </span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;  </span><br><span class="line">            e.printStackTrace();  </span><br><span class="line">            System.out.println(<span class="string">&quot;生成二维码图片失败&quot;</span>);  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">      </span><br><span class="line">    <span class="comment">/** </span></span><br><span class="line"><span class="comment">     * 二维码解析 </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> analyzePath    二维码路径 </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> </span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> IOException </span></span><br><span class="line"><span class="comment">     */</span>  </span><br><span class="line">    <span class="meta">@SuppressWarnings(&#123; &quot;rawtypes&quot;, &quot;unchecked&quot; &#125;)</span>  </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">zxingCodeAnalyze</span><span class="params">(String analyzePath)</span> <span class="keyword">throws</span> Exception</span>&#123;  </span><br><span class="line">        MultiFormatReader formatReader = <span class="keyword">new</span> MultiFormatReader();  </span><br><span class="line">        String resultStr = <span class="keyword">null</span>;  </span><br><span class="line">        <span class="keyword">try</span> &#123;  </span><br><span class="line">            File file = <span class="keyword">new</span> File(analyzePath);  </span><br><span class="line">            <span class="keyword">if</span> (!file.exists())  </span><br><span class="line">            &#123;  </span><br><span class="line">                <span class="keyword">return</span> <span class="string">&quot;二维码不存在&quot;</span>;  </span><br><span class="line">            &#125;  </span><br><span class="line">            BufferedImage image = ImageIO.read(file);  </span><br><span class="line">            LuminanceSource source = <span class="keyword">new</span> BufferedImageLuminanceSource(image);  </span><br><span class="line">            Binarizer binarizer = <span class="keyword">new</span> HybridBinarizer(source);    </span><br><span class="line">            BinaryBitmap binaryBitmap = <span class="keyword">new</span> BinaryBitmap(binarizer);  </span><br><span class="line">            Map hints = <span class="keyword">new</span> HashMap();  </span><br><span class="line">            hints.put(EncodeHintType.CHARACTER_SET, <span class="string">&quot;UTF-8&quot;</span>);  </span><br><span class="line">            Result result = formatReader.decode(binaryBitmap, hints); </span><br><span class="line">            resultStr = result.getText();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (NotFoundException e) &#123;  </span><br><span class="line">            e.printStackTrace();  </span><br><span class="line">        &#125;    </span><br><span class="line">        System.out.println(resultStr);</span><br><span class="line">        <span class="keyword">return</span> resultStr;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/15/springboot/springboot%E5%86%99%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E6%B3%A8%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/15/springboot/springboot%E5%86%99%E9%A1%B9%E7%9B%AE%E6%97%B6%E9%81%87%E5%88%B0%E7%9A%84%E6%B3%A8%E8%A7%A3/" class="post-title-link" itemprop="url">springboot写项目时遇到的各种注解</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-11-15 00:00:00" itemprop="dateCreated datePublished" datetime="2020-11-15T00:00:00+00:00">2020-11-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-09 15:59:27" itemprop="dateModified" datetime="2022-05-09T15:59:27+00:00">2022-05-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SpringBoot/" itemprop="url" rel="index"><span itemprop="name">SpringBoot</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>平常经常使用springboot注解·，但是并不理解</p>
-<p>故做一点总结</p>
-</blockquote>
-<h3 id="Data-注解"><a href="#Data-注解" class="headerlink" title="@Data 注解"></a>@Data 注解</h3><blockquote>
-<p>@Data 注解的主要作用是提高代码的简洁，使用这个注解可以省去代码中大量的get()、 set()、 toString()等方法；</p>
-</blockquote>
-<p> @Data 注解要先引入lombok，lombok 是什么，它是一个工具类库，可以用简单的注解形式来简化代码，提高开发效率。</p>
-<p> 原理：</p>
-<ul>
-<li>Lombok本质上就是一个实现了“JSR 269 API”的程序。在使用javac的过程中，它产生作用的具体流程如下</li>
-<li>javac对源代码进行分析，生成了一棵抽象语法树（AST）</li>
-<li>运行过程中调用实现了“JSR 269 API”的Lombok程序</li>
-<li>此时Lombok就对第一步骤得到的AST进行处理，找到@Data注解所在类对应的语法树（AST），然后修改该语法树（AST），增加getter和          setter方法定义的相应树节点</li>
-<li>javac使用修改后的抽象语法树（AST）生成字节码文件，即给class增加新的节点（代码块）</li>
-</ul>
-<p>优点：<br>能通过注解的形式自动生成构造器、getter/setter、equals、hashcode、toString等方法，提高了一定的开发效率<br>让代码变得简洁，不用过多的去关注相应的方法<br>属性做修改时，也简化了维护为这些属性所生成的getter/setter方法等</p>
-<p>缺点：<br>不支持多种参数构造器的重载<br>虽然省去了手动创建getter/setter方法的麻烦，但大大降低了源代码的可读性和完整性，降低了阅读源代码的舒适度</p>
-<blockquote>
-<p> 常用的几个注解：<br>@Data ： 注在类上，提供类的get、set、equals、hashCode、canEqual、toString方法<br>@AllArgsConstructor ： 注在类上，提供类的全参构造<br>@NoArgsConstructor ： 注在类上，提供类的无参构造<br>@Setter ： 注在属性上，提供 set 方法<br>@Getter ： 注在属性上，提供 get 方法<br>@EqualsAndHashCode ： 注在类上，提供对应的 equals 和 hashCode 方法<br>@Log4j/@Slf4j ： 注在类上，提供对应的 Logger 对象，变量名为 log</p>
-</blockquote>
-<h3 id="Repository-Controller-Service-Component-四大注解"><a href="#Repository-Controller-Service-Component-四大注解" class="headerlink" title="@Repository @Controller @Service  @Component 四大注解"></a>@Repository @Controller @Service  @Component 四大注解</h3><blockquote>
-<p>依然不是很理解这四大注解的作用, 于是下面摘抄了一些笔记</p>
-</blockquote>
-<p>1、@controller 控制器（注入服务）<br>用于标注控制层，相当于struts中的action层</p>
-<p>2、@service 服务（注入dao）<br>用于标注服务层，主要用来进行业务的逻辑处理</p>
-<p>3、@repository（实现dao访问）<br>用于标注数据访问层，也可以说用于标注数据访问组件，即DAO组件.</p>
-<p>4、@component （把普通pojo实例化到spring容器中，相当于配置文件中的 <bean id="" class=""/><br>泛指各种组件，就是说当我们的类不属于各种归类的时候（不属于@Controller、@Services等的时候），我们就可以使用@Component来标注这个类。</p>
-<h3 id="Autowired-注解"><a href="#Autowired-注解" class="headerlink" title="@Autowired 注解"></a>@Autowired 注解</h3><blockquote>
-<p>@Autowired 是一个注释，它可以对类成员变量、方法及构造函数进行标注，让 spring 完成 bean 自动装配的工作。</p>
-<p>@Autowired 默认是按照类去匹配，配合 @Qualifier 指定按照名称去装配 bean。</p>
-</blockquote>
-<p>通俗理解就是 这个注解就是spring可以自动帮你把bean里面引用的对象的setter/getter方法省略，它会自动帮你set/get。</p>
-<p>常见用法</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> blog.service.ArticleService;</span><br><span class="line"><span class="keyword">import</span> blog.service.TagService;</span><br><span class="line"><span class="keyword">import</span> blog.service.TypeService;</span><br><span class="line"> </span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestController</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">	<span class="comment">//成员属性字段使用 @Autowired，无需字段的 set 方法</span></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="keyword">private</span> TypeService typeService;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//set 方法使用 @Autowired</span></span><br><span class="line">	<span class="keyword">private</span> ArticleService articleService;</span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setArticleService</span><span class="params">(ArticleService articleService)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.articleService = articleService;</span><br><span class="line">	&#125;</span><br><span class="line"> </span><br><span class="line">	<span class="comment">//构造方法使用 @Autowired</span></span><br><span class="line">	<span class="keyword">private</span> TagService tagService;</span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">TestController</span><span class="params">(TagService tagService)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.tagService = tagService; </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="RestController-Controller-ResponseBody-注解"><a href="#RestController-Controller-ResponseBody-注解" class="headerlink" title="@RestController @Controller @ResponseBody 注解"></a>@RestController @Controller @ResponseBody 注解</h3><blockquote>
-<p>在Spring中@RestController的作用等同于@Controller + @ResponseBody。</p>
-<p>所以想要理解@RestController注解就要先了解@Controller和@ResponseBody注解。</p>
-</blockquote>
-<p>在一个类上添加@Controller注解，表明了这个类是一个控制器类。但想要让这个类成为一个处理请求的处理器光有@Controller注解是不够的，他还需要进一步修炼才能成为一个处理器。</p>
-<ul>
-<li><p>第一种方式在spring容器中创建该类的实例<br><code>&lt;bean class=&quot;test.controller.MyController&quot; /&gt; </code></p>
-<p>上述这种方式是在spring容器中注入单个bean，当项目比较大，控制器类比较多时，用这种方式向Spring容器中注入bean非常的让人苦恼，索性有第二种方式。</p>
-</li>
-<li><p>第二种方式在spring容器中创建该类的实例<br><code>&lt;context:component-scan base-scan=&quot;test.controller&quot; /&gt; </code></p>
-<p>这种方式会扫描指定包中的所有类，并生成相应的bean注入到spring容器中。使用这种方式当然能够极大提高我们的开发效率，但是有时候我们不想某一类型的类注入到spring容器中，这个时候第下面种方式可以解决。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;context:component-scan base-<span class="keyword">package</span>=<span class="string">&quot;test&quot;</span> &gt;</span><br><span class="line">  　　&lt;context:include-filter type=<span class="string">&quot;annotation&quot;</span> expression=<span class="string">&quot;org.springframework.stereotype.Service&quot;</span>/&gt;</span><br><span class="line">&lt;/context:component-scan&gt;</span><br></pre></td></tr></table></figure>
-
-<p>上述代码表示扫描test包中除有@Service注解之外的类</p>
-</li>
-</ul>
-<blockquote>
-<p>将@Controller注解的类注入Spring容器中，只是该类成为处理器的第一步，想要修炼大成，还需要在该类中添加注解@RequestMapping。</p>
-</blockquote>
-<ul>
-<li>@RequestMapping</li>
-</ul>
-<p>@RequestMapping注解是用来映射请求的，即指明处理器可以处理哪些URL请求，该注解既可以用在类上，也可以用在方法上。</p>
-<p>当使用@RequestMapping标记控制器类时，方法的请求地址是相对类的请求地址而言的；当没有使用@RequestMapping标记类时，方法的请求地址是绝对路</p>
-<p>径；@RequestMapping的地址可以是uri变量，并且通过@PathVariable注解获取作为方法的参数。也可以是通配符来筛选请求地址。</p>
-<ul>
-<li>@ResponseBody注解</li>
-</ul>
-<p>@ResponseBody表示方法的返回值直接以指定的格式写入Http response body中，而不是解析为跳转路径。</p>
-<p>格式的转换是通过HttpMessageConverter中的方法实现的，因为它是一个接口，因此由其实现类完成转换。</p>
-<p>如果要求方法返回的是json格式数据，而不是跳转页面，可以直接在类上标注@RestController，而不用在每个方法中标注</p>
-<p>@ResponseBody，简化了开发过程。</p>
-<h3 id="Component"><a href="#Component" class="headerlink" title="@Component"></a>@Component</h3><p>组件，放在类上，说明这个类呗spring管理了，即bean。他有几个衍生注解，在web开发中会按照三层架构分层，功能类似，代表被spring托管</p>
-<ul>
-<li><p>dao【@Repository】</p>
-</li>
-<li><p>service【@Service】</p>
-</li>
-<li><p>controller 【@Controller】</p>
-<p>四个注解功能一样</p>
-</li>
-</ul>
-<h3 id="Autowried"><a href="#Autowried" class="headerlink" title="@Autowried"></a>@Autowried</h3><p>@Autowried通过类型名字自动装配，如果@Autowried不能自动装配属性，就用@Qualifier(value = “xxx”)匹配</p>
-<h3 id="Resource"><a href="#Resource" class="headerlink" title="@Resource"></a>@Resource</h3><p>自动通过名字类型装配</p>
-<h3 id="Scope-“singleton”"><a href="#Scope-“singleton”" class="headerlink" title="@Scope(“singleton”)"></a>@Scope(“singleton”)</h3><p>单例、原型等等模式</p>
-<h3 id="Aspect"><a href="#Aspect" class="headerlink" title="@Aspect"></a>@Aspect</h3><p>标注这个类是一个切面类</p>
-<h3 id="Before-“execution-…-”"><a href="#Before-“execution-…-”" class="headerlink" title="@Before(“execution(* …)”)"></a>@Before(“execution(* …)”)</h3><p>before方法</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1990,7 +2102,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">116</span>
+          <span class="site-state-item-count">118</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
