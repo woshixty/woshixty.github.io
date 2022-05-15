@@ -154,7 +154,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/10/Docker%E5%AD%A6%E4%B9%A0/DockerSwarm/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/15/C++/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20%E4%BD%BF%E7%94%A8%E7%B1%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -168,7 +168,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/10/Docker%E5%AD%A6%E4%B9%A0/DockerSwarm/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/05/15/C++/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20%E4%BD%BF%E7%94%A8%E7%B1%BB/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -178,7 +178,241 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-10 15:47:57" itemprop="dateCreated datePublished" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
+              <time title="创建时间：2022-05-15 17:00:40" itemprop="dateCreated datePublished" datetime="2022-05-15T17:00:40+00:00">2022-05-15</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="三、友元"><a href="#三、友元" class="headerlink" title="三、友元"></a>三、友元</h3><p>通常情况下，公有类方法是访问类的唯一途径，有时不方便，于是我们诞生了另外一种形式的访问权限：友元</p>
+<p>分为三类：</p>
+<ul>
+<li>友元函数</li>
+<li>友元类</li>
+<li>友元成员函数</li>
+</ul>
+<h4 id="1、创建友元函数"><a href="#1、创建友元函数" class="headerlink" title="1、创建友元函数"></a>1、创建友元函数</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">friend</span> Time <span class="keyword">operator</span>*(<span class="keyword">const</span> Time &amp; t, <span class="keyword">double</span> m);</span><br></pre></td></tr></table></figure>
+
+<p>放在类声明中，加上关键字<code>friend</code></p>
+<ul>
+<li>虽然是在类声明中声明的，但是并不是成员函数</li>
+<li>与成员函数的访问权限相同</li>
+</ul>
+<h4 id="2、常用的友元：重载-lt-lt-运算符"><a href="#2、常用的友元：重载-lt-lt-运算符" class="headerlink" title="2、常用的友元：重载&lt;&lt;运算符"></a>2、常用的友元：重载&lt;&lt;运算符</h4><h5 id="（1）第一种重载版本"><a href="#（1）第一种重载版本" class="headerlink" title="（1）第一种重载版本"></a>（1）第一种重载版本</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Time <span class="keyword">operator</span>&lt;&lt;(ostream &amp;os, <span class="keyword">const</span> Time &amp; t) &#123;</span><br><span class="line">    os &lt;&lt; t.hours &lt;&lt; t.minutes;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="（2）第二种重载版本"><a href="#（2）第二种重载版本" class="headerlink" title="（2）第二种重载版本"></a>（2）第二种重载版本</h5><p>如果使用第一种重载版本，如下语句就会发生异常</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; time &lt;&lt; <span class="string">&quot;time&quot;</span> &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<p>所以我们采用如下方式，让其返回<code>ostream</code>对象引用即可：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ostream &amp;  <span class="keyword">operator</span>&lt;&lt;(ostream &amp;os, <span class="keyword">const</span> Time &amp; t) &#123;</span><br><span class="line">    os &lt;&lt; t.hours &lt;&lt; t.minutes;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>只有在类声明的原型中才能使用friend关键字，否则函数定义也是原型，否则不能在函数定义中使用该关键字</p>
+</blockquote>
+<h3 id="六、类的自动转换和强制类型转换"><a href="#六、类的自动转换和强制类型转换" class="headerlink" title="六、类的自动转换和强制类型转换"></a>六、类的自动转换和强制类型转换</h3><p>内置类型转换：如果两种类型兼容，则会自动转换为接收类型的变量的类型</p>
+<p>不自动转化不兼容的类型，如下是非法的：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p = <span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<p>但是可以强制类型转化</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p = (<span class="keyword">int</span> *)<span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1、转换函数"><a href="#1、转换函数" class="headerlink" title="1、转换函数"></a>1、转换函数</h4>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/15/C++/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0%20%E7%B1%BB%E7%BB%A7%E6%89%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/15/C++/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0%20%E7%B1%BB%E7%BB%A7%E6%89%BF/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-15 17:00:40" itemprop="dateCreated datePublished" datetime="2022-05-15T17:00:40+00:00">2022-05-15</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<ul>
+<li>Is-a关系的继承</li>
+<li>如何以公有方式从一个类派生出另一个类</li>
+<li>保护访问</li>
+<li>构造函数成员初始化列表</li>
+<li>向下和向上强制转换</li>
+<li>虚成员函数</li>
+<li>早期（静态）联编与晚期（动态）联编</li>
+<li>抽象基类</li>
+<li>纯虚函数</li>
+<li>何时以及如何使用公有继承</li>
+</ul>
+</blockquote>
+<p>面向对象编程的主要目的之一便是提供可重用的代码</p>
+<h1 id="一、一个简单的基类"><a href="#一、一个简单的基类" class="headerlink" title="一、一个简单的基类"></a>一、一个简单的基类</h1><p>从一个类派生出另一个类的时候原始类称为基类，继承类称为派生类</p>
+<p>程序清单tabtenn0.h</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/15/C++/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%E7%B1%BB%E5%92%8C%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/15/C++/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%E7%B1%BB%E5%92%8C%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-15 17:00:40" itemprop="dateCreated datePublished" datetime="2022-05-15T17:00:40+00:00">2022-05-15</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>对类成员使用动态内存分配</p>
+<p>隐式和显示复制构造函数</p>
+<p>隐式和显式重载赋值运算符</p>
+<p>在构造函数中使用new所必需完成的工作</p>
+<p>使用静态类成员</p>
+<p>将定位new运算符用于对象</p>
+<p>使用指向对象的指针</p>
+<p>实现队列抽象数据类型（ADT）</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/15/Docker%E5%AD%A6%E4%B9%A0/DockerSwarm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/15/Docker%E5%AD%A6%E4%B9%A0/DockerSwarm/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-15 17:00:40" itemprop="dateCreated datePublished" datetime="2022-05-15T17:00:40+00:00">2022-05-15</time>
             </span>
 
           
@@ -218,7 +452,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/10/Docker%E5%AD%A6%E4%B9%A0/%E5%BA%94%E7%94%A8%E7%9A%84%E5%AE%B9%E5%99%A8%E5%8C%96/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/15/Docker%E5%AD%A6%E4%B9%A0/%E5%BA%94%E7%94%A8%E7%9A%84%E5%AE%B9%E5%99%A8%E5%8C%96/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -232,7 +466,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/10/Docker%E5%AD%A6%E4%B9%A0/%E5%BA%94%E7%94%A8%E7%9A%84%E5%AE%B9%E5%99%A8%E5%8C%96/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/05/15/Docker%E5%AD%A6%E4%B9%A0/%E5%BA%94%E7%94%A8%E7%9A%84%E5%AE%B9%E5%99%A8%E5%8C%96/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -242,7 +476,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-10 15:47:57" itemprop="dateCreated datePublished" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
+              <time title="创建时间：2022-05-15 17:00:40" itemprop="dateCreated datePublished" datetime="2022-05-15T17:00:40+00:00">2022-05-15</time>
             </span>
 
           
@@ -276,7 +510,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/10/Go/Untitled/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/15/Go/Untitled%201/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -290,7 +524,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/10/Go/Untitled/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/05/15/Go/Untitled%201/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -300,7 +534,64 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-10 15:47:57" itemprop="dateCreated datePublished" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
+              <time title="创建时间：2022-05-15 17:00:40" itemprop="dateCreated datePublished" datetime="2022-05-15T17:00:40+00:00">2022-05-15</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/15/Go/Untitled/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/15/Go/Untitled/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-15 17:00:40" itemprop="dateCreated datePublished" datetime="2022-05-15T17:00:40+00:00">2022-05-15</time>
             </span>
 
           
@@ -370,7 +661,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/10/Go/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%8C%85%EF%BC%88Packet%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/15/Go/%E7%AC%AC%E4%B9%9D%E7%AB%A0%20%E5%B9%B6%E5%8F%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -384,7 +675,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/10/Go/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%8C%85%EF%BC%88Packet%EF%BC%89/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/05/15/Go/%E7%AC%AC%E4%B9%9D%E7%AB%A0%20%E5%B9%B6%E5%8F%91/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -394,7 +685,139 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-10 15:47:57" itemprop="dateCreated datePublished" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
+              <time title="创建时间：2022-05-15 17:00:40" itemprop="dateCreated datePublished" datetime="2022-05-15T17:00:40+00:00">2022-05-15</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>并发是指在同一时间内可以执行多个任务</p>
+<p>Go语言通过编译器运行时（runtime），从语言上支持了并发的特性，通过goroutine特性完成并发。goroutine由Go语言的运行时调度完成，而线程是通过操作系统调度完成。</p>
+<h1 id="一、轻量级线程（goroutine）-根据需要随时创建的“线程”"><a href="#一、轻量级线程（goroutine）-根据需要随时创建的“线程”" class="headerlink" title="一、轻量级线程（goroutine）-根据需要随时创建的“线程”"></a>一、轻量级线程（goroutine）-根据需要随时创建的“线程”</h1><p>Go程序从main包的main()函数开始，就会为mian()函数创建一个默认goroutine</p>
+<h2 id="1、使用普通函数创建goroutine"><a href="#1、使用普通函数创建goroutine" class="headerlink" title="1、使用普通函数创建goroutine"></a>1、使用普通函数创建goroutine</h2><p>使用go关键字，将running()函数并发执行</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">running</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> times <span class="keyword">int</span></span><br><span class="line">	<span class="comment">// 构建一个无限循环</span></span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		times++</span><br><span class="line">		fmt.Println(<span class="string">&quot;tick&quot;</span>, times)</span><br><span class="line">		<span class="comment">// 延迟一秒</span></span><br><span class="line">		time.Sleep(time.Second)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// 并发执行程序</span></span><br><span class="line">	<span class="keyword">go</span> running()</span><br><span class="line">	<span class="comment">// 接收命令行输入，不做任何事</span></span><br><span class="line">	<span class="keyword">var</span> input <span class="keyword">string</span></span><br><span class="line">	fmt.Scanln(&amp;input)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、使用匿名函数创建goroutine"><a href="#2、使用匿名函数创建goroutine" class="headerlink" title="2、使用匿名函数创建goroutine"></a>2、使用匿名函数创建goroutine</h2><p>在main中创建一个匿名函数并为匿名函数启动goroutine</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">var</span> times <span class="keyword">int</span></span><br><span class="line">		<span class="keyword">for</span> &#123;</span><br><span class="line">			times++;</span><br><span class="line">			fmt.Println(<span class="string">&quot;tick&quot;</span>, times)</span><br><span class="line">			time.Sleep(time.Second)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>所有goroutine函数都会在main()函数结束以后一同结束</p>
+</blockquote>
+<h2 id="3、调整并发的运行性能（GOMAXPROCS）"><a href="#3、调整并发的运行性能（GOMAXPROCS）" class="headerlink" title="3、调整并发的运行性能（GOMAXPROCS）"></a>3、调整并发的运行性能（GOMAXPROCS）</h2><p>一般情况下可以使用<code>runtime.numCPU()</code>查询cpu数量，并使用<code>runtime.GOMAXPROCS()</code>函数进行设置</p>
+<h2 id="4、并发和并行"><a href="#4、并发和并行" class="headerlink" title="4、并发和并行"></a>4、并发和并行</h2><ul>
+<li>并发（concurrency）：将任务在不同的时间点交给处理器进行处理</li>
+<li>并行（parallelism）：将任务分配给每个单独的处理器独立完成</li>
+</ul>
+<h2 id="5、Go中的协程（goroutine）和普通协程（coroutine）"><a href="#5、Go中的协程（goroutine）和普通协程（coroutine）" class="headerlink" title="5、Go中的协程（goroutine）和普通协程（coroutine）"></a>5、Go中的协程（goroutine）和普通协程（coroutine）</h2><ul>
+<li>goroutine可能发生并行操作，coroutine始终顺序执行</li>
+<li>goroutine见使用channel通信，coroutine使用yieId和resume操作</li>
+</ul>
+<h1 id="二、通道（channel）-在多个goroutine间的通信管道"><a href="#二、通道（channel）-在多个goroutine间的通信管道" class="headerlink" title="二、通道（channel）-在多个goroutine间的通信管道"></a>二、通道（channel）-在多个goroutine间的通信管道</h1><p>Go语言提倡使用通信的方式代替共享内存，就是所谓的通道（channel）</p>
+<h2 id="1、通道的特性"><a href="#1、通道的特性" class="headerlink" title="1、通道的特性"></a>1、通道的特性</h2><p>任何时候，只能有一个goroutine进行发送和获取数据</p>
+<h2 id="2、通道的使用：并发打印数字"><a href="#2、通道的使用：并发打印数字" class="headerlink" title="2、通道的使用：并发打印数字"></a>2、通道的使用：并发打印数字</h2><p>创建一个无缓冲通道，使用无缓冲通道时，装入方将被阻塞，直到数据在另一个goroutine被取出</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printer</span><span class="params">(c <span class="keyword">chan</span> <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="comment">// 开始无限循环等待数据</span></span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		<span class="comment">// 从channel中获取一个数据</span></span><br><span class="line">		data := &lt;-c</span><br><span class="line">		<span class="comment">// 将0视为结束</span></span><br><span class="line">		<span class="keyword">if</span> data == <span class="number">0</span> &#123;</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 打印数据</span></span><br><span class="line">		fmt.Println(data)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 通知main函数已经循环结束</span></span><br><span class="line">	c &lt;- <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// 创建一个channel</span></span><br><span class="line">	c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">	<span class="comment">// 并发执行printer，传入channel</span></span><br><span class="line">	<span class="keyword">go</span> printer(c)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++ &#123;</span><br><span class="line">		<span class="comment">// 通过channel将数据传给printer</span></span><br><span class="line">		c &lt;- i</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 通知并发的printer结束循环等待</span></span><br><span class="line">	c &lt;- <span class="number">0</span></span><br><span class="line">	<span class="comment">// 等待printer结束</span></span><br><span class="line">	&lt;-c</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、单向通道-通道中的单行道"><a href="#3、单向通道-通道中的单行道" class="headerlink" title="3、单向通道-通道中的单行道"></a>3、单向通道-通道中的单行道</h2><p>Go通道可以在声明时约束其操作方向，如只发送或接收</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line"><span class="comment">// 声明一个只能发送的通道类型，并赋值未ch</span></span><br><span class="line"><span class="keyword">var</span> chSendOnly <span class="keyword">chan</span>&lt;- <span class="keyword">int</span> = ch</span><br><span class="line"><span class="comment">// 声明一个只能接受的通道类型</span></span><br><span class="line"><span class="keyword">var</span> chRecvOnly &lt;-<span class="keyword">chan</span> <span class="keyword">int</span> = ch</span><br><span class="line">chSendOnly &lt;- <span class="number">0</span></span><br><span class="line">&lt;- chRecvOnly</span><br></pre></td></tr></table></figure>
+
+<h2 id="4、带缓冲的通道"><a href="#4、带缓冲的通道" class="headerlink" title="4、带缓冲的通道"></a>4、带缓冲的通道</h2><p>带缓冲的通道无需等待接收方接收即可完成发送过程，并且不会阻塞，只有存储空间满的时候才会发生阻塞</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个3个元素缓冲区大小的整形通道</span></span><br><span class="line">ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">3</span>)</span><br><span class="line"><span class="comment">// 查看当前通道的大小</span></span><br><span class="line">fmt.Println(<span class="built_in">len</span>(ch))</span><br><span class="line"><span class="comment">// 发送三个整形元素到通道</span></span><br><span class="line">ch &lt;- <span class="number">1</span></span><br><span class="line">ch &lt;- <span class="number">2</span></span><br><span class="line">ch &lt;- <span class="number">3</span></span><br><span class="line"><span class="comment">// 查看当前通道的大小</span></span><br><span class="line">fmt.Println(<span class="built_in">len</span>(ch))</span><br></pre></td></tr></table></figure>
+
+<p>阻塞条件：</p>
+<ul>
+<li>带缓冲通道满继续发送数据</li>
+<li>带缓冲通道空继续接收数据</li>
+</ul>
+<blockquote>
+<p>Go语言对通道限制长度的原因</p>
+<p>一方生产数据，一方消费数据，当提供数据一方速度大于消费数据一方速度时候，若不限制长度，会撑爆内存</p>
+</blockquote>
+<h2 id="5、模拟远程过程调用（RPC）"><a href="#5、模拟远程过程调用（RPC）" class="headerlink" title="5、模拟远程过程调用（RPC）"></a>5、模拟远程过程调用（RPC）</h2><p>服务器开发会使用RPC（远程调用）简化通信过程，使得远程通信如同本地函数调用一样</p>
+<h3 id="（1）客户端请求和接收封装"><a href="#（1）客户端请求和接收封装" class="headerlink" title="（1）客户端请求和接收封装"></a>（1）客户端请求和接收封装</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 模拟RPC客户端请求和接收</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">RPCClient</span><span class="params">(ch <span class="keyword">chan</span> <span class="keyword">string</span>, req <span class="keyword">string</span>)</span> <span class="params">(<span class="keyword">string</span>, error)</span></span> &#123;</span><br><span class="line">	<span class="comment">// 向服务器发送请求</span></span><br><span class="line">	ch &lt;- req</span><br><span class="line">	<span class="comment">// 等待服务器返回</span></span><br><span class="line">	<span class="keyword">select</span> &#123;</span><br><span class="line">	<span class="comment">// 接收到数据</span></span><br><span class="line">	<span class="keyword">case</span> ack := &lt;-ch:</span><br><span class="line">		<span class="keyword">return</span> ack, <span class="literal">nil</span> </span><br><span class="line">	<span class="comment">// 超时</span></span><br><span class="line">	<span class="keyword">case</span> &lt;-time.After(time.Second):</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;&quot;</span>, errors.New(<span class="string">&quot;time Out&quot;</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>模拟socket向服务器发送一个字符串，服务器接收后结束阻塞执行下一行</li>
+<li>使用select进行多路复用</li>
+<li><code>time.After(time.Second)</code>通过这个返回的通道在指定时间后返回当前时间</li>
+</ul>
+<p>两个case会同时执行，看哪个通道先返回数据</p>
+<h3 id="（2）服务器接收和返回数据"><a href="#（2）服务器接收和返回数据" class="headerlink" title="（2）服务器接收和返回数据"></a>（2）服务器接收和返回数据</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 模拟RPC服务端接收客户端请求和相应</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">RPCServer</span><span class="params">(ch <span class="keyword">chan</span> <span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		<span class="comment">// 接收客户端请求</span></span><br><span class="line">		data := &lt;-ch</span><br><span class="line">		<span class="comment">// 打印接受的数据</span></span><br><span class="line">		fmt.Println(<span class="string">&quot;server received : &quot;</span>, data)</span><br><span class="line">		<span class="comment">// 向客户端反馈已收到</span></span><br><span class="line">		ch &lt;-<span class="string">&quot;roger&quot;</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用无限循环处理客户端请求</p>
+<p>在main函数中分别调用两个函数，输出如下：</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Go/1.png">
+
+<h3 id="（3）模拟超时"><a href="#（3）模拟超时" class="headerlink" title="（3）模拟超时"></a>（3）模拟超时</h3><p>在RPCServer中加入一段代码即可：<code>time.Sleep(time.Second * 2)</code>，通过睡眠阻塞代码</p>
+<h1 id="四、同步-保证并发环境下数据访问的正确性"><a href="#四、同步-保证并发环境下数据访问的正确性" class="headerlink" title="四、同步-保证并发环境下数据访问的正确性"></a>四、同步-保证并发环境下数据访问的正确性</h1><p>在某些轻量级场合，原子访问（atomic包）、互斥锁（sync.Mutex）以及等待组（sync.WaitGroup）能最大程度满足需求</p>
+<h2 id="1、竞态检测-检测代码并发环境下可能出现的问题"><a href="#1、竞态检测-检测代码并发环境下可能出现的问题" class="headerlink" title="1、竞态检测-检测代码并发环境下可能出现的问题"></a>1、竞态检测-检测代码并发环境下可能出现的问题</h2><p>我们执行以下代码，就会发现错误</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> (</span><br><span class="line">	seq <span class="keyword">int64</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">GenID</span><span class="params">()</span> <span class="title">int64</span></span> &#123;</span><br><span class="line">	<span class="comment">// 尝试原子增加序号</span></span><br><span class="line">	atomic.AddInt64(&amp;seq, <span class="number">1</span>)</span><br><span class="line">	<span class="keyword">return</span> seq</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line">		<span class="keyword">go</span> GenID()</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(GenID())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果每次都不一样，原因是<code>return seq</code>有竞态问题，将代码改成如下所示就没问题了：<code>return atomic.AddInt64(&amp;seq, 1)</code></p>
+<h2 id="2、互斥锁（sync-Mutex）"><a href="#2、互斥锁（sync-Mutex）" class="headerlink" title="2、互斥锁（sync.Mutex）"></a>2、互斥锁（sync.Mutex）</h2><p>使用锁非常简单</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明锁</span></span><br><span class="line"><span class="keyword">var</span> lock sync.Mutex</span><br><span class="line"><span class="comment">// 锁定</span></span><br><span class="line">lock.Lock()</span><br><span class="line"><span class="comment">// 取消锁定</span></span><br><span class="line">lock.Unlock()</span><br></pre></td></tr></table></figure>
+
+<p>加锁解锁过程保证原子性</p>
+<h2 id="3、读写互斥锁（sync-RWMutex）"><a href="#3、读写互斥锁（sync-RWMutex）" class="headerlink" title="3、读写互斥锁（sync.RWMutex）"></a>3、读写互斥锁（sync.RWMutex）</h2><p>在读多写少的环境中，可以使用读写互斥锁</p>
+<p>基本使用类似</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lockr sync.RWMutex</span><br><span class="line">lockr.RLock()</span><br><span class="line">lockr.RLocker()</span><br></pre></td></tr></table></figure>
+
+<h2 id="4、等待组（sync-WaitGroup）"><a href="#4、等待组（sync-WaitGroup）" class="headerlink" title="4、等待组（sync.WaitGroup）"></a>4、等待组（sync.WaitGroup）</h2><p>保证并发环境中完成指定的任务数，等待组内部有一个计数器，计数器的值可以通过调用方法进行加减</p>
+<p>直接上代码看演示</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// 声明一个等待组</span></span><br><span class="line">	<span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line">	<span class="comment">// 准备一系列网站</span></span><br><span class="line">	<span class="keyword">var</span> urls = []<span class="keyword">string</span>&#123;</span><br><span class="line">		<span class="string">&quot;https://www.github.com&quot;</span>,</span><br><span class="line">		<span class="string">&quot;https://www.qiniu.com/&quot;</span>,</span><br><span class="line">		<span class="string">&quot;https://www.baidu.com/&quot;</span>,</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> _, url := <span class="keyword">range</span> urls &#123;</span><br><span class="line">		wg.Add(<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(url <span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">			<span class="keyword">defer</span> wg.Done()</span><br><span class="line">			_, err := http.Get(url)</span><br><span class="line">			fmt.Println(url, err)</span><br><span class="line">			<span class="comment">// 传递url</span></span><br><span class="line">		&#125;(url)</span><br><span class="line">	&#125;</span><br><span class="line">	wg.Wait()</span><br><span class="line">	fmt.Println(<span class="string">&quot;over&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>所有的任务（网站响应）完成后，wait就会停止阻塞状态向下执行</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/15/Go/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%8C%85%EF%BC%88Packet%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/15/Go/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%8C%85%EF%BC%88Packet%EF%BC%89/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-15 17:00:40" itemprop="dateCreated datePublished" datetime="2022-05-15T17:00:40+00:00">2022-05-15</time>
             </span>
 
           
@@ -427,7 +850,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/10/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E4%B8%80%E8%8A%82%E8%AF%BE%E4%B8%89%E4%B8%AA%E5%B0%8F%E9%A1%B9%E7%9B%AE/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/15/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E4%B8%80%E8%8A%82%E8%AF%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -441,7 +864,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/10/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E4%B8%80%E8%8A%82%E8%AF%BE%E4%B8%89%E4%B8%AA%E5%B0%8F%E9%A1%B9%E7%9B%AE/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/05/15/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E4%B8%80%E8%8A%82%E8%AF%BE/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -451,7 +874,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-10 15:47:57" itemprop="dateCreated datePublished" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
+              <time title="创建时间：2022-05-15 17:00:40" itemprop="dateCreated datePublished" datetime="2022-05-15T17:00:40+00:00">2022-05-15</time>
             </span>
 
           
@@ -482,12 +905,18 @@
 <p>使用Go发送网络请求，解析JSON，并使用相应的代码生成工具提高开发效率</p>
 <h4 id="1、抓包"><a href="#1、抓包" class="headerlink" title="1、抓包"></a>1、抓包</h4><p>抓取第三方翻译平台的API</p>
 <p><a target="_blank" rel="noopener" href="https://fanyi.caiyunapp.com/">https://fanyi.caiyunapp.com/</a></p>
-<p>按f12打开开发人员工具</p>
+<p>按f12打开开发人员工具，找到正确的请求</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Go/bytedance/1.png">
+
 <h4 id="2、代码生成"><a href="#2、代码生成" class="headerlink" title="2、代码生成"></a>2、代码生成</h4><p>右键请求</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Go/bytedance/2.png">
+
 <p>复制结果如下：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">curl &#x27;https://api.interpreter.caiyunai.com/v1/dict&#x27; \</span><br><span class="line">  -H &#x27;Accept: application/json, text/plain, */*&#x27; \</span><br><span class="line">  -H &#x27;Accept-Language: en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7&#x27; \</span><br><span class="line">  -H &#x27;Connection: keep-alive&#x27; \</span><br><span class="line">  -H &#x27;Content-Type: application/json;charset=UTF-8&#x27; \</span><br><span class="line">  -H &#x27;Origin: https://fanyi.caiyunapp.com&#x27; \</span><br><span class="line">  -H &#x27;Referer: https://fanyi.caiyunapp.com/&#x27; \</span><br><span class="line">  -H &#x27;Sec-Fetch-Dest: empty&#x27; \</span><br><span class="line">  -H &#x27;Sec-Fetch-Mode: cors&#x27; \</span><br><span class="line">  -H &#x27;Sec-Fetch-Site: cross-site&#x27; \</span><br><span class="line">  -H &#x27;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36&#x27; \</span><br><span class="line">  -H &#x27;X-Authorization: token:qgemv4jr1y38jyq6vhvi&#x27; \</span><br><span class="line">  -H &#x27;app-name: xy&#x27; \</span><br><span class="line">  -H &#x27;device-id: &#x27; \</span><br><span class="line">  -H &#x27;os-type: web&#x27; \</span><br><span class="line">  -H &#x27;os-version: &#x27; \</span><br><span class="line">  -H &#x27;sec-ch-ua: &quot; Not A;Brand&quot;;v=&quot;99&quot;, &quot;Chromium&quot;;v=&quot;101&quot;, &quot;Google Chrome&quot;;v=&quot;101&quot;&#x27; \</span><br><span class="line">  -H &#x27;sec-ch-ua-mobile: ?0&#x27; \</span><br><span class="line">  -H &#x27;sec-ch-ua-platform: &quot;macOS&quot;&#x27; \</span><br><span class="line">  --data-raw &#x27;&#123;&quot;trans_type&quot;:&quot;en2zh&quot;,&quot;source&quot;:&quot;good&quot;&#125;&#x27; \</span><br><span class="line">  --compressed</span><br></pre></td></tr></table></figure>
 
-<p><a target="_blank" rel="noopener" href="https://curlconverter.com/#go">https://curlconverter.com/#go</a></p>
+<p>然后我们就去这个平台生成代码：<a target="_blank" rel="noopener" href="https://curlconverter.com/#go">Go代码生成</a></p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Go/bytedance/3.png">
+
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;io/ioutil&quot;</span></span><br><span class="line">	<span class="string">&quot;log&quot;</span></span><br><span class="line">	<span class="string">&quot;net/http&quot;</span></span><br><span class="line">	<span class="string">&quot;strings&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	client := &amp;http.Client&#123;&#125;</span><br><span class="line">	<span class="keyword">var</span> data = strings.NewReader(<span class="string">`&#123;&quot;trans_type&quot;:&quot;en2zh&quot;,&quot;source&quot;:&quot;good&quot;&#125;`</span>)</span><br><span class="line">  <span class="comment">// 创建请求</span></span><br><span class="line">	req, err := http.NewRequest(<span class="string">&quot;POST&quot;</span>, <span class="string">&quot;https://api.interpreter.caiyunai.com/v1/dict&quot;</span>, data)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line">  <span class="comment">// 设置请求头</span></span><br><span class="line">	req.Header.Set(<span class="string">&quot;Accept&quot;</span>, <span class="string">&quot;application/json, text/plain, */*&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;Accept-Language&quot;</span>, <span class="string">&quot;en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;Connection&quot;</span>, <span class="string">&quot;keep-alive&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;Content-Type&quot;</span>, <span class="string">&quot;application/json;charset=UTF-8&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;Origin&quot;</span>, <span class="string">&quot;https://fanyi.caiyunapp.com&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;Referer&quot;</span>, <span class="string">&quot;https://fanyi.caiyunapp.com/&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;Sec-Fetch-Dest&quot;</span>, <span class="string">&quot;empty&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;Sec-Fetch-Mode&quot;</span>, <span class="string">&quot;cors&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;Sec-Fetch-Site&quot;</span>, <span class="string">&quot;cross-site&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;User-Agent&quot;</span>, <span class="string">&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;X-Authorization&quot;</span>, <span class="string">&quot;token:qgemv4jr1y38jyq6vhvi&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;app-name&quot;</span>, <span class="string">&quot;xy&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;os-type&quot;</span>, <span class="string">&quot;web&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;sec-ch-ua&quot;</span>, <span class="string">`&quot; Not A;Brand&quot;;v=&quot;99&quot;, &quot;Chromium&quot;;v=&quot;101&quot;, &quot;Google Chrome&quot;;v=&quot;101&quot;`</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;sec-ch-ua-mobile&quot;</span>, <span class="string">&quot;?0&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;sec-ch-ua-platform&quot;</span>, <span class="string">`&quot;macOS&quot;`</span>)</span><br><span class="line">  <span class="comment">// 发起请求</span></span><br><span class="line">	resp, err := client.Do(req)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">defer</span> resp.Body.Close()</span><br><span class="line">  <span class="comment">// 读取响应</span></span><br><span class="line">	bodyText, err := ioutil.ReadAll(resp.Body)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">&quot;%s\n&quot;</span>, bodyText)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h4 id="3、生成requst-body"><a href="#3、生成requst-body" class="headerlink" title="3、生成requst body"></a>3、生成requst body</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> DictRequest <span class="keyword">struct</span> &#123;</span><br><span class="line">	TransType <span class="keyword">string</span> <span class="string">`json:&quot;trans_type&quot;`</span></span><br><span class="line">	Source    <span class="keyword">string</span> <span class="string">`json:&quot;source&quot;`</span></span><br><span class="line">	UserID    <span class="keyword">string</span> <span class="string">`json:&quot;user_id&quot;`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -496,7 +925,9 @@
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">request := DictRequest&#123;TransType: <span class="string">&quot;en2zh&quot;</span>, Source: <span class="string">&quot;good&quot;</span>&#125;</span><br><span class="line">buf, err := json.Marshal(request)</span><br></pre></td></tr></table></figure>
 
 <h4 id="4、response-body的解析"><a href="#4、response-body的解析" class="headerlink" title="4、response body的解析"></a>4、response body的解析</h4><p>由于结构复杂，为了防止出错，我们使用第三方代码生成工具</p>
-<p><a target="_blank" rel="noopener" href="https://oktools.net/">https://oktools.net/</a></p>
+<p>去这个平台进行Go结构体的生成：<a target="_blank" rel="noopener" href="https://oktools.net/">Go结构体</a></p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Go/bytedance/4.png">
+
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> AutoGenerated <span class="keyword">struct</span> &#123;</span><br><span class="line">	Rc <span class="keyword">int</span> <span class="string">`json:&quot;rc&quot;`</span></span><br><span class="line">	Wiki Wiki <span class="string">`json:&quot;wiki&quot;`</span></span><br><span class="line">	Dictionary Dictionary <span class="string">`json:&quot;dictionary&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> Description <span class="keyword">struct</span> &#123;</span><br><span class="line">	Source <span class="keyword">string</span> <span class="string">`json:&quot;source&quot;`</span></span><br><span class="line">	Target <span class="keyword">interface</span>&#123;&#125; <span class="string">`json:&quot;target&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> Item <span class="keyword">struct</span> &#123;</span><br><span class="line">	Source <span class="keyword">string</span> <span class="string">`json:&quot;source&quot;`</span></span><br><span class="line">	Target <span class="keyword">string</span> <span class="string">`json:&quot;target&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> Wiki <span class="keyword">struct</span> &#123;</span><br><span class="line">	KnownInLaguages <span class="keyword">int</span> <span class="string">`json:&quot;known_in_laguages&quot;`</span></span><br><span class="line">	Description Description <span class="string">`json:&quot;description&quot;`</span></span><br><span class="line">	ID <span class="keyword">string</span> <span class="string">`json:&quot;id&quot;`</span></span><br><span class="line">	Item Item <span class="string">`json:&quot;item&quot;`</span></span><br><span class="line">	ImageURL <span class="keyword">string</span> <span class="string">`json:&quot;image_url&quot;`</span></span><br><span class="line">	IsSubject <span class="keyword">string</span> <span class="string">`json:&quot;is_subject&quot;`</span></span><br><span class="line">	Sitelink <span class="keyword">string</span> <span class="string">`json:&quot;sitelink&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> Prons <span class="keyword">struct</span> &#123;</span><br><span class="line">	EnUs <span class="keyword">string</span> <span class="string">`json:&quot;en-us&quot;`</span></span><br><span class="line">	En <span class="keyword">string</span> <span class="string">`json:&quot;en&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> Dictionary <span class="keyword">struct</span> &#123;</span><br><span class="line">	Prons Prons <span class="string">`json:&quot;prons&quot;`</span></span><br><span class="line">	Explanations []<span class="keyword">string</span> <span class="string">`json:&quot;explanations&quot;`</span></span><br><span class="line">	Synonym []<span class="keyword">string</span> <span class="string">`json:&quot;synonym&quot;`</span></span><br><span class="line">	Antonym []<span class="keyword">string</span> <span class="string">`json:&quot;antonym&quot;`</span></span><br><span class="line">	WqxExample []WqxExample[]<span class="keyword">string</span> <span class="string">`json:&quot;wqx_example&quot;`</span></span><br><span class="line">	Entry <span class="keyword">string</span> <span class="string">`json:&quot;entry&quot;`</span></span><br><span class="line">	Type <span class="keyword">string</span> <span class="string">`json:&quot;type&quot;`</span></span><br><span class="line">	Related []<span class="keyword">interface</span>&#123;&#125; <span class="string">`json:&quot;related&quot;`</span></span><br><span class="line">	Source <span class="keyword">string</span> <span class="string">`json:&quot;source&quot;`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>接下来就反序列化response body了：</p>
@@ -532,683 +963,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/18/Mysql/MySQL%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%90%E8%A1%8C%E7%9A%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/18/Mysql/MySQL%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%90%E8%A1%8C%E7%9A%84/" class="post-title-link" itemprop="url">MySQL是怎样运行的</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-18 00:00:00" itemprop="dateCreated datePublished" datetime="2022-03-18T00:00:00+00:00">2022-03-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-10 15:47:57" itemprop="dateModified" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/10/Java/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E8%89%BA%E6%9C%AF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/03/10/Java/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9A%84%E8%89%BA%E6%9C%AF/" class="post-title-link" itemprop="url">Java并发编程艺术</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-03-10 00:00:00" itemprop="dateCreated datePublished" datetime="2022-03-10T00:00:00+00:00">2022-03-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-10 15:47:57" itemprop="dateModified" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="一、并发编程的艺术挑战"><a href="#一、并发编程的艺术挑战" class="headerlink" title="一、并发编程的艺术挑战"></a>一、并发编程的艺术挑战</h1><h2 id="1、上下文切换"><a href="#1、上下文切换" class="headerlink" title="1、上下文切换"></a>1、上下文切换</h2><h2 id="2、死锁"><a href="#2、死锁" class="headerlink" title="2、死锁"></a>2、死锁</h2><h2 id="3、资源限制的挑战"><a href="#3、资源限制的挑战" class="headerlink" title="3、资源限制的挑战"></a>3、资源限制的挑战</h2><h1 id="二、Java并发机制的底层实现原理"><a href="#二、Java并发机制的底层实现原理" class="headerlink" title="二、Java并发机制的底层实现原理"></a>二、Java并发机制的底层实现原理</h1><p>Java所实现的并发机制依赖于JVM的实现与CPU指令</p>
-<h2 id="1、volatile的应用"><a href="#1、volatile的应用" class="headerlink" title="1、volatile的应用"></a>1、volatile的应用</h2><p>volatile是轻量级的sychornized，它在多处理器的开发中保证了共享变量的“可见性”</p>
-<h2 id="2、sychornized的实现原理与应用"><a href="#2、sychornized的实现原理与应用" class="headerlink" title="2、sychornized的实现原理与应用"></a>2、sychornized的实现原理与应用</h2><p>重量级锁</p>
-<p>为了减少获取锁和释放锁而造成的性能损失，引入了偏向锁和轻量级锁，以及锁的存储结构和升级过程</p>
-<h3 id="（1）Java对象头"><a href="#（1）Java对象头" class="headerlink" title="（1）Java对象头"></a>（1）Java对象头</h3><h3 id="（2）锁的升级与对比"><a href="#（2）锁的升级与对比" class="headerlink" title="（2）锁的升级与对比"></a>（2）锁的升级与对比</h3><h2 id="3、原子操作的实现原理"><a href="#3、原子操作的实现原理" class="headerlink" title="3、原子操作的实现原理"></a>3、原子操作的实现原理</h2><p>原子操作（atomic operation）意为“不可被中断的一个或者一组操作系统”</p>
-<h2 id="4、本章小结"><a href="#4、本章小结" class="headerlink" title="4、本章小结"></a>4、本章小结</h2><h1 id="四、Java并发编程基础"><a href="#四、Java并发编程基础" class="headerlink" title="四、Java并发编程基础"></a>四、Java并发编程基础</h1><p>线程作为操作系统调度的最小单位，多个线程能够同时执行，这将显著提升程序性能，多核环境下尤为明显</p>
-<h2 id="1、线程简介"><a href="#1、线程简介" class="headerlink" title="1、线程简介"></a>1、线程简介</h2><h3 id="（1）什么是线程"><a href="#（1）什么是线程" class="headerlink" title="（1）什么是线程"></a>（1）什么是线程</h3><p>现代操作系统在运行一个程序时会为其创建一个进程，现代操作系统调度的最小单位是线程，也叫轻量级进程，在一个进程里可以创建多个线程，每个线程拥有自己的计数器、堆栈、局部变量等属性，并且能够访问共享的内存变量。</p>
-<h3 id="（2）为什么使用多线程"><a href="#（2）为什么使用多线程" class="headerlink" title="（2）为什么使用多线程"></a>（2）为什么使用多线程</h3><ul>
-<li>更多的处理器核心</li>
-<li>更快的响应时间</li>
-<li>更好的线程模型</li>
-</ul>
-<h3 id="（3）线程的优先级"><a href="#（3）线程的优先级" class="headerlink" title="（3）线程的优先级"></a>（3）线程的优先级</h3><p>通过下面的代码来设置线程的优先级</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> priority = i &lt; <span class="number">5</span> ? Thread.MIN_PRIORITY : Thread.MAX_PRIORITY;</span><br><span class="line">thread.setPriority(priority);</span><br></pre></td></tr></table></figure>
-
-<p>线程的优先级不能作为程序正确性的依赖</p>
-<h3 id="（4）线程的状态"><a href="#（4）线程的状态" class="headerlink" title="（4）线程的状态"></a>（4）线程的状态</h3><ul>
-<li>NEW</li>
-<li>RUNNABLE</li>
-<li>BLOCKED</li>
-<li>WAITING</li>
-<li>TIME_WAITING</li>
-<li>TERMINATED</li>
-</ul>
-<p>线程在自身的生命周期中，并不是固定的处在某个状态而是随着代码的执行在不同的状态中切换</p>
-<h3 id="（5）Daemon线程"><a href="#（5）Daemon线程" class="headerlink" title="（5）Daemon线程"></a>（5）Daemon线程</h3><p>Daemon线程是一种支持类型的线程，因为它主要被用作程序中后台调度以及支持性工作，这意味着，当一个java虚拟机中不存在非Daemon线程的时候，JAVA虚拟机将会退出，可以通过调用Thread.setDaemon(true)将线程设置为Daemon线程</p>
-<p>如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Daemon</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> DaemonRunner());</span><br><span class="line">        thread.setDaemon(<span class="keyword">true</span>);</span><br><span class="line">        thread.start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">DaemonRunner</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                SleepUtils.second(<span class="number">100</span>);</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;DaemonThread finally run.&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2、启动和终止线程"><a href="#2、启动和终止线程" class="headerlink" title="2、启动和终止线程"></a>2、启动和终止线程</h2><h3 id="（1）构造线程"><a href="#（1）构造线程" class="headerlink" title="（1）构造线程"></a>（1）构造线程</h3><p>构造线程时要考虑线程所属的线程组、线程优先级、是否为Daemon线程等等</p>
-<h3 id="（2）启动线程"><a href="#（2）启动线程" class="headerlink" title="（2）启动线程"></a>（2）启动线程</h3><p>通过<code>start()</code>方法启动线程</p>
-<h3 id="（3）理解中断"><a href="#（3）理解中断" class="headerlink" title="（3）理解中断"></a>（3）理解中断</h3><p>终端可以理解为线程的一个标志位属性，他用来表示一个运行中的线程是否被其他线程进行了中断操作</p>
-<h2 id="3、线程间通信"><a href="#3、线程间通信" class="headerlink" title="3、线程间通信"></a>3、线程间通信</h2><h2 id="4、线程应用实例"><a href="#4、线程应用实例" class="headerlink" title="4、线程应用实例"></a>4、线程应用实例</h2><h2 id="5、本章小结"><a href="#5、本章小结" class="headerlink" title="5、本章小结"></a>5、本章小结</h2><h1 id="五、Java中的锁"><a href="#五、Java中的锁" class="headerlink" title="五、Java中的锁"></a>五、Java中的锁</h1><p>Java并发包中的与锁相关的API和组件</p>
-<h2 id="1、Lock接口"><a href="#1、Lock接口" class="headerlink" title="1、Lock接口"></a>1、Lock接口</h2><p>锁是用来控制多个线程访问共享资源的方式，Lock接口出现之前，Java是靠<code>synchronized</code>关键字来实现锁功能的</p>
-<p>与<code>synchrnized</code>相比：</p>
-<ul>
-<li>需要自己显式的获取与释放锁，缺少了隐式获取释放锁的便捷性</li>
-<li>拥有了锁获取与释放的可操作性、可中断的获取锁以及超时获取锁等同步特性</li>
-</ul>
-<p>Lock是一个接口，它定义了锁获取和释放的基本操作</p>
-<table>
-<thead>
-<tr>
-<th><code>void</code></th>
-<th><code>lock()</code>获得锁。</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>void</code></td>
-<td><code>lockInterruptibly()</code>获取锁定，除非当前线程是 <a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/lang/Thread.html#interrupt--">interrupted</a> 。</td>
-</tr>
-<tr>
-<td><code>Condition</code></td>
-<td><code>newCondition()</code>返回一个新<a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/util/concurrent/locks/Condition.html"><code>Condition</code></a>绑定到该实例<code>Lock</code>实例。</td>
-</tr>
-<tr>
-<td><code>boolean</code></td>
-<td><code>tryLock()</code>只有在调用时才可以获得锁。</td>
-</tr>
-<tr>
-<td><code>boolean</code></td>
-<td><code>tryLock(long time, TimeUnit unit)</code>如果在给定的等待时间内是空闲的，并且当前的线程尚未得到 <a target="_blank" rel="noopener" href="https://www.matools.com/file/manual/jdk_api_1.8_google/java/lang/Thread.html#interrupt--">interrupted，</a>则获取该锁。</td>
-</tr>
-<tr>
-<td><code>void</code></td>
-<td><code>unlock()</code>释放锁。</td>
-</tr>
-</tbody></table>
-<h2 id="2、队列同步器"><a href="#2、队列同步器" class="headerlink" title="2、队列同步器"></a>2、队列同步器</h2><p>队列同步器（AbstractQueuedSynchornizer），是用来构建锁或者其他同步组件的基础框架</p>
-<p>锁和同步器之间的关系：</p>
-<ul>
-<li>锁是面向使用者的，它定义了使用者与锁交互的接口，隐藏了实现细节</li>
-<li>同步器是面向锁的开发者的，简化了锁的实现方式，屏蔽了同步状态管理、线程排队、等待与唤醒灯底层操作</li>
-</ul>
-<p>锁和同步器很好的隔离了使用者和实现者所需要关注的领域</p>
-<p>同步器提供的模板方法基本分为以下三类：</p>
-<ul>
-<li>独占式获取与释放同步状态</li>
-<li>共享式获取与释放同步状态</li>
-<li>查询同步队列中的等待线程情况</li>
-</ul>
-<p>队列同步器的实现分析</p>
-<h2 id="3、重入锁"><a href="#3、重入锁" class="headerlink" title="3、重入锁"></a>3、重入锁</h2><p>重入锁（ReentrantLock），顾名思义，就是支持重进入的锁，表示该锁支持一个线程对资源的重复加锁</p>
-<h3 id="（1）实现重进入"><a href="#（1）实现重进入" class="headerlink" title="（1）实现重进入"></a>（1）实现重进入</h3><ul>
-<li>线程再次获得锁</li>
-<li>锁的最终释放</li>
-</ul>
-<h3 id="（2）公平与非公平获取锁的区别"><a href="#（2）公平与非公平获取锁的区别" class="headerlink" title="（2）公平与非公平获取锁的区别"></a>（2）公平与非公平获取锁的区别</h3><p>如果一个锁是公平的，那么获取锁的顺序就应该符合请求的绝对时间排序，也就是<code>FIFO</code></p>
-<p>非公平性锁虽然可能造成线程“饥饿”，但是极少的线程切换，保证了更大的吞吐量</p>
-<h2 id="4、读写锁"><a href="#4、读写锁" class="headerlink" title="4、读写锁"></a>4、读写锁</h2><p>之前提到的锁基本都是“排他锁”，这些锁同一时刻只能允许一个线程进行访问，而读写锁在同一时刻可以允许多个线程同时访问，但是在写线程访问的时候，其他的读线程和写线程均被阻塞</p>
-<h3 id="（1）读写锁的接口与示例"><a href="#（1）读写锁的接口与示例" class="headerlink" title="（1）读写锁的接口与示例"></a>（1）读写锁的接口与示例</h3><p><code>ReadWriteLock</code>仅定义了获取读锁和写锁的两个方法：<code>readLock()</code>和<code>writeLock()</code></p>
-<p>下面通过代码来说明读写锁的使用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Cache</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Map&lt;String, Object&gt;    map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> ReentrantReadWriteLock rwl = <span class="keyword">new</span> ReentrantReadWriteLock();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Lock                   r   = rwl.readLock();</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Lock                   w   = rwl.writeLock();</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 获取key对应的value</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Object <span class="title">get</span><span class="params">(String key)</span> </span>&#123;</span><br><span class="line">        r.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> map.get(key);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            r.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 设置key对应的value，并返回旧的value</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Object <span class="title">put</span><span class="params">(String key, Object value)</span> </span>&#123;</span><br><span class="line">        w.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> map.put(key, value);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            w.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 清空所有内容</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        w.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            map.clear();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            w.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="（2）读写锁的实现分析"><a href="#（2）读写锁的实现分析" class="headerlink" title="（2）读写锁的实现分析"></a>（2）读写锁的实现分析</h3><p>接下来分析<code>ReentrantReadWriteLock</code>的实现，包括：</p>
-<ul>
-<li>读写状态的设计</li>
-<li>写锁的获取与释放</li>
-<li>读锁的获取与释放</li>
-<li>锁降级</li>
-</ul>
-<h2 id="5、LockSupport工具"><a href="#5、LockSupport工具" class="headerlink" title="5、LockSupport工具"></a>5、LockSupport工具</h2><p>当需要阻塞或唤醒一个线程的时候，都会使用<code>LockSupport</code>工具类来完成相应工作</p>
-<h2 id="6、Condition接口"><a href="#6、Condition接口" class="headerlink" title="6、Condition接口"></a>6、Condition接口</h2><p>任意一个Java对象，都有一组监视器方法（定义在java.lang.Object上），主要包括：</p>
-<ul>
-<li><code>wait()</code></li>
-<li><code>wait(long timeout)</code></li>
-<li><code>notify()</code></li>
-<li><code>notifyAll()</code></li>
-</ul>
-<p>这些方法与<code>synchornized</code>同步关键字配合，实现了等待/通知模式，Condition接口也提供了类似于Object的监视器方法</p>
-<h3 id="（1）代码示例"><a href="#（1）代码示例" class="headerlink" title="（1）代码示例"></a>（1）代码示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConditionUseCase</span> </span>&#123;</span><br><span class="line">    Lock      lock      = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line">    Condition condition = lock.newCondition();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">conditionWait</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        lock.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          	<span class="comment">// 释放锁并在此等待</span></span><br><span class="line">            condition.await();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">conditionSignal</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        lock.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            condition.signal();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>获取一个<code>Condition</code>必须通过<code>Lock</code>的<code>newCondition()</code>方法</p>
-<h3 id="（2）Condition的实现分析"><a href="#（2）Condition的实现分析" class="headerlink" title="（2）Condition的实现分析"></a>（2）Condition的实现分析</h3><p><code>ConditionObject</code>是<code>AbstractQueuedSynchronizer</code>的内部类，下面将分析<code>Condition</code>的实现，主要包括：等待队列、等待和通知</p>
-<ul>
-<li>等待队列</li>
-<li>等待</li>
-<li>通知</li>
-</ul>
-<h2 id="7、本章小结"><a href="#7、本章小结" class="headerlink" title="7、本章小结"></a>7、本章小结</h2><p>本章介绍了Java并发包中与锁相关的API和组件，并剖析了队列同步器、重入锁、读写锁以及Condition等API的实现细节</p>
-<h1 id="六、Java并发容器和框架"><a href="#六、Java并发容器和框架" class="headerlink" title="六、Java并发容器和框架"></a>六、Java并发容器和框架</h1><h2 id="1、ConcurrentHashMap的实现原理与使用"><a href="#1、ConcurrentHashMap的实现原理与使用" class="headerlink" title="1、ConcurrentHashMap的实现原理与使用"></a>1、ConcurrentHashMap的实现原理与使用</h2><h3 id="（1）为什么使用ConcurrentHashMap？"><a href="#（1）为什么使用ConcurrentHashMap？" class="headerlink" title="（1）为什么使用ConcurrentHashMap？"></a>（1）为什么使用ConcurrentHashMap？</h3><ul>
-<li><p>线程不安全的HashMap</p>
-</li>
-<li><p>效率低下的HashTable</p>
-<p>所有访问HashTable的线程都必须竞争同一把锁</p>
-</li>
-<li><p>ConcurrentHashMap的锁分段技术可以有效提升并发访问率</p>
-</li>
-</ul>
-<h3 id="（2）ConcurrentHashMap的结构"><a href="#（2）ConcurrentHashMap的结构" class="headerlink" title="（2）ConcurrentHashMap的结构"></a>（2）ConcurrentHashMap的结构</h3><img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Java/ConcurrentHashMap.jpeg">
-
-<p>通过上图可知，ConcurrentHashMap由Segment数组和HashEntry数组结构组成。Segment是一种可重入锁（ReentrantLock），扮演锁的角色，HashEntry用于存储键值对数据。</p>
-<p>一个ConcurrentHashMap包含一个Segment数组，Segment结构与HashMap类似，是一种链表数组结构</p>
-<p>一个Segment包含一个HashEntry数组，每个HashEntry是一个链表结构的元素，每个Segment守护着一个HashEntry数组里面的元素</p>
-<p>当对HashEntry里面的数据进行修改的时候，必须先获得与它对应的Segment锁</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Java/ConcurrentHashMap%E7%BB%93%E6%9E%84%E5%9B%BE.jpeg">
-
-<h3 id="（3）ConcurrentHashMap的初始化"><a href="#（3）ConcurrentHashMap的初始化" class="headerlink" title="（3）ConcurrentHashMap的初始化"></a>（3）ConcurrentHashMap的初始化</h3><p>通过<code>initialCapacity</code>、<code>loadFactory</code>和<code>concurrencyLevel</code>等几个参数来初始化Segment数组</p>
-<p>通过<code>segmentShift（段偏移量）</code>、<code>segmentMask（段掩码）</code>、<code>每个Segment里面的HashEntry数</code>来实现的</p>
-<h3 id="（4）定位Segment"><a href="#（4）定位Segment" class="headerlink" title="（4）定位Segment"></a>（4）定位Segment</h3><p>两次散列计算，放置Hash冲突</p>
-<h3 id="（5）ConcurrentHashMap的操作"><a href="#（5）ConcurrentHashMap的操作" class="headerlink" title="（5）ConcurrentHashMap的操作"></a>（5）ConcurrentHashMap的操作</h3><ul>
-<li><p>get</p>
-<p>使用volatile保证不会读到过期值</p>
-</li>
-<li><p>put</p>
-<p>定位Segment，判断是否需要扩容，定位添加元素位置将其放入HashEntry中去</p>
-</li>
-<li><p>size</p>
-</li>
-</ul>
-<h2 id="2、ConcurrentLinkedQueue"><a href="#2、ConcurrentLinkedQueue" class="headerlink" title="2、ConcurrentLinkedQueue"></a>2、ConcurrentLinkedQueue</h2><p>实现一个线程安全的队列有两种方式：阻塞算法和非阻塞算法</p>
-<p>ConcurrentLinkedQueue是一个基于链接节点的无界线程安全队列，采用了“wait-free”算法（CAS算法）来实现</p>
-<h3 id="（1）ConcurrentLinkedQueue的结构"><a href="#（1）ConcurrentLinkedQueue的结构" class="headerlink" title="（1）ConcurrentLinkedQueue的结构"></a>（1）ConcurrentLinkedQueue的结构</h3><img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Java/ConcurrentLinkedQueue%E7%B1%BB%E5%9B%BE.jpeg">
-
-
-
-<h1 id="七、Java中的13个原子操作类"><a href="#七、Java中的13个原子操作类" class="headerlink" title="七、Java中的13个原子操作类"></a>七、Java中的13个原子操作类</h1><p>多线程同时更新一个变量的时候，可能得到意料之外的值，例如：<code>i++</code></p>
-<h2 id="1、原子更新基本类型类"><a href="#1、原子更新基本类型类" class="headerlink" title="1、原子更新基本类型类"></a>1、原子更新基本类型类</h2><ul>
-<li>AtomicBoolean</li>
-<li>AtomicInteger</li>
-<li>AtomicLong</li>
-</ul>
-<h2 id="2、原子更新数组"><a href="#2、原子更新数组" class="headerlink" title="2、原子更新数组"></a>2、原子更新数组</h2><ul>
-<li>AtomicIntegerArray</li>
-<li>AtomicLongArray</li>
-<li>AtomicReferenceArray</li>
-</ul>
-<h2 id="3、原子更新引用类型类"><a href="#3、原子更新引用类型类" class="headerlink" title="3、原子更新引用类型类"></a>3、原子更新引用类型类</h2><ul>
-<li>AtomicReference</li>
-<li>AtomicReferenceFieldIdUpdater</li>
-<li>AtomicMarkableReference</li>
-</ul>
-<h2 id="4、原子更新字段类"><a href="#4、原子更新字段类" class="headerlink" title="4、原子更新字段类"></a>4、原子更新字段类</h2><ul>
-<li>AtomicIntegerFieldIdUpdater</li>
-<li>AtomicLongFieldIdUpdater</li>
-<li>AtomicStampedReference</li>
-</ul>
-<h2 id="5、本章小结-1"><a href="#5、本章小结-1" class="headerlink" title="5、本章小结"></a>5、本章小结</h2><p>在适当的场景下使用这些类</p>
-<h1 id="八、Java中的并发工具类"><a href="#八、Java中的并发工具类" class="headerlink" title="八、Java中的并发工具类"></a>八、Java中的并发工具类</h1><p>CountDownLatch、CyclicBarrier和Semaphore工具类提供了一种并发流程控制手段，Exchanger提供了一种在线程间交换数据的一种手段</p>
-<h2 id="1、等待多线程完成的CountDownLatch"><a href="#1、等待多线程完成的CountDownLatch" class="headerlink" title="1、等待多线程完成的CountDownLatch"></a>1、等待多线程完成的CountDownLatch</h2><p>它允许一个或多个线程等待其他线程完成操作</p>
-<h2 id="2、同步屏障CyclicBarrier"><a href="#2、同步屏障CyclicBarrier" class="headerlink" title="2、同步屏障CyclicBarrier"></a>2、同步屏障CyclicBarrier</h2><h3 id="（1）CyclicBarrier简介"><a href="#（1）CyclicBarrier简介" class="headerlink" title="（1）CyclicBarrier简介"></a>（1）CyclicBarrier简介</h3><h3 id="（2）CyclicBarrier的应用场景"><a href="#（2）CyclicBarrier的应用场景" class="headerlink" title="（2）CyclicBarrier的应用场景"></a>（2）CyclicBarrier的应用场景</h3><h3 id="（3）CyclicBarrier和CountDownLatch的区别"><a href="#（3）CyclicBarrier和CountDownLatch的区别" class="headerlink" title="（3）CyclicBarrier和CountDownLatch的区别"></a>（3）CyclicBarrier和CountDownLatch的区别</h3><h2 id="3、控制并发线程数的Semaphore"><a href="#3、控制并发线程数的Semaphore" class="headerlink" title="3、控制并发线程数的Semaphore"></a>3、控制并发线程数的Semaphore</h2><h2 id="4、线程间交换数据的Echanger"><a href="#4、线程间交换数据的Echanger" class="headerlink" title="4、线程间交换数据的Echanger"></a>4、线程间交换数据的Echanger</h2><h2 id="5、本章小结-2"><a href="#5、本章小结-2" class="headerlink" title="5、本章小结"></a>5、本章小结</h2><h1 id="九、Java中的线程池"><a href="#九、Java中的线程池" class="headerlink" title="九、Java中的线程池"></a>九、Java中的线程池</h1><p>几乎所有需要异步或者并发执行任务的程序都可以使用线程池，合理地使用线程池有三个好处：</p>
-<ul>
-<li>降低资源的消耗</li>
-<li>提高响应的速度</li>
-<li>提高线程的可管理性</li>
-</ul>
-<h2 id="1、线程池的实现原理"><a href="#1、线程池的实现原理" class="headerlink" title="1、线程池的实现原理"></a>1、线程池的实现原理</h2><p>线程池处理流程如下：</p>
-<p>a、判断核心线程池里面的线程是否都在执行任务</p>
-<p>b、判断工作队列是否已满</p>
-<p>c、判断线程池里面的线程是否都处于工作状态</p>
-<h2 id="2、线程池的使用"><a href="#2、线程池的使用" class="headerlink" title="2、线程池的使用"></a>2、线程池的使用</h2><h3 id="（1）线程池的创建"><a href="#（1）线程池的创建" class="headerlink" title="（1）线程池的创建"></a>（1）线程池的创建</h3><h3 id="（2）向线程池提交任务"><a href="#（2）向线程池提交任务" class="headerlink" title="（2）向线程池提交任务"></a>（2）向线程池提交任务</h3><h3 id="（3）关闭线程池"><a href="#（3）关闭线程池" class="headerlink" title="（3）关闭线程池"></a>（3）关闭线程池</h3><h3 id="（4）合理地配置线程池"><a href="#（4）合理地配置线程池" class="headerlink" title="（4）合理地配置线程池"></a>（4）合理地配置线程池</h3><ul>
-<li><p>任务的性质</p>
-<p>CPU密集型任务、IO密集型任务和混合型任务</p>
-</li>
-<li><p>任务的优先级</p>
-<p>高、中和低</p>
-</li>
-<li><p>任务的执行时间</p>
-<p>长、中和短</p>
-</li>
-<li><p>任务的依赖性</p>
-<p>是否依赖其他系统的资源，如数据库连接等</p>
-</li>
-</ul>
-<h3 id="（5）线程池的监控"><a href="#（5）线程池的监控" class="headerlink" title="（5）线程池的监控"></a>（5）线程池的监控</h3><h2 id="3、本章小结"><a href="#3、本章小结" class="headerlink" title="3、本章小结"></a>3、本章小结</h2><p>本章介绍了为什么使用线程池、如何使用线程池和线程池的使用原理。</p>
-<h1 id="十、Executor框架"><a href="#十、Executor框架" class="headerlink" title="十、Executor框架"></a>十、Executor框架</h1><p>在Java中，使用线程来异步执行任务。但是线程的创建与销毁都会消耗大量的系统资源。Java的线程既是工作单元，也是执行机制，JDK5开始，将工作单元与执行机制分离开来了。工作单元包括Runnable和Callable，而执行机制由Executor框架提供。</p>
-<h2 id="1、Executor框架简介"><a href="#1、Executor框架简介" class="headerlink" title="1、Executor框架简介"></a>1、Executor框架简介</h2><h3 id="（1）Executor框架的两级调度"><a href="#（1）Executor框架的两级调度" class="headerlink" title="（1）Executor框架的两级调度"></a>（1）Executor框架的两级调度</h3><p>应用程序通过Executor框架控制上层的调度，而下层的调度由系统内核控制</p>
-<h3 id="（2）Executor框架的结构与成员"><a href="#（2）Executor框架的结构与成员" class="headerlink" title="（2）Executor框架的结构与成员"></a>（2）Executor框架的结构与成员</h3><p>Executor的结构和Executor框架包含的成员组件</p>
-<h2 id="2、ThreadPoolExecutor详解"><a href="#2、ThreadPoolExecutor详解" class="headerlink" title="2、ThreadPoolExecutor详解"></a>2、ThreadPoolExecutor详解</h2><p>Executor框架的核心类是ThreadPoolExecutor，他是线程池的实现类</p>
-<h3 id="（1）FixedThreadPool详解"><a href="#（1）FixedThreadPool详解" class="headerlink" title="（1）FixedThreadPool详解"></a>（1）FixedThreadPool详解</h3><p>可重用固定线程数的线程池</p>
-<h3 id="（2）SingleThreadExecutor详解"><a href="#（2）SingleThreadExecutor详解" class="headerlink" title="（2）SingleThreadExecutor详解"></a>（2）SingleThreadExecutor详解</h3><p>使用单个worker线程的线程池</p>
-<h3 id="（3）CachedThreadPool详解"><a href="#（3）CachedThreadPool详解" class="headerlink" title="（3）CachedThreadPool详解"></a>（3）CachedThreadPool详解</h3><p>根据需要创建新线程的线程池</p>
-<h2 id="3、ScheduleThreadPoolExecutor详解"><a href="#3、ScheduleThreadPoolExecutor详解" class="headerlink" title="3、ScheduleThreadPoolExecutor详解"></a>3、ScheduleThreadPoolExecutor详解</h2><p>他继承自ThreadPoolExecutor，主要用来在给定的延迟之后执行任务，或者定期执行任务。</p>
-<h3 id="（1）ScheduleThreadPoolExecutor的运行机制"><a href="#（1）ScheduleThreadPoolExecutor的运行机制" class="headerlink" title="（1）ScheduleThreadPoolExecutor的运行机制"></a>（1）ScheduleThreadPoolExecutor的运行机制</h3><h3 id="（2）ScheduleThreadPoolExecutor的实现"><a href="#（2）ScheduleThreadPoolExecutor的实现" class="headerlink" title="（2）ScheduleThreadPoolExecutor的实现"></a>（2）ScheduleThreadPoolExecutor的实现</h3><h2 id="4、FutureTask详解"><a href="#4、FutureTask详解" class="headerlink" title="4、FutureTask详解"></a>4、FutureTask详解</h2><p>FutureTask除了实现Future接口以外，还实现了Runnable接口。因此FutureTask可以提交给Executor执行，也可以调用线程直接执行</p>
-<ul>
-<li>未启动</li>
-<li>已启动</li>
-<li>已完成</li>
-</ul>
-<h3 id="1、FutureTask简介"><a href="#1、FutureTask简介" class="headerlink" title="1、FutureTask简介"></a>1、FutureTask简介</h3><h3 id="2、FutureTask的使用"><a href="#2、FutureTask的使用" class="headerlink" title="2、FutureTask的使用"></a>2、FutureTask的使用</h3><h3 id="3、FutureTask的实现"><a href="#3、FutureTask的实现" class="headerlink" title="3、FutureTask的实现"></a>3、FutureTask的实现</h3><h2 id="5、本章小结-3"><a href="#5、本章小结-3" class="headerlink" title="5、本章小结"></a>5、本章小结</h2><h1 id="十一、Java并发编程实践"><a href="#十一、Java并发编程实践" class="headerlink" title="十一、Java并发编程实践"></a>十一、Java并发编程实践</h1><h2 id="1、生产者和消费者模式"><a href="#1、生产者和消费者模式" class="headerlink" title="1、生产者和消费者模式"></a>1、生产者和消费者模式</h2><h3 id="（1）生产者消费者模式实战"><a href="#（1）生产者消费者模式实战" class="headerlink" title="（1）生产者消费者模式实战"></a>（1）生产者消费者模式实战</h3><h3 id="（2）多生产者多消费者场景"><a href="#（2）多生产者多消费者场景" class="headerlink" title="（2）多生产者多消费者场景"></a>（2）多生产者多消费者场景</h3><h3 id="（3）线程池与生产消费者模式"><a href="#（3）线程池与生产消费者模式" class="headerlink" title="（3）线程池与生产消费者模式"></a>（3）线程池与生产消费者模式</h3><h2 id="2、线上问题定位"><a href="#2、线上问题定位" class="headerlink" title="2、线上问题定位"></a>2、线上问题定位</h2><h2 id="3、性能测试"><a href="#3、性能测试" class="headerlink" title="3、性能测试"></a>3、性能测试</h2><h2 id="4、异步任务池"><a href="#4、异步任务池" class="headerlink" title="4、异步任务池"></a>4、异步任务池</h2><h2 id="5、本章小结-4"><a href="#5、本章小结-4" class="headerlink" title="5、本章小结"></a>5、本章小结</h2><h1 id="E、一些小概念"><a href="#E、一些小概念" class="headerlink" title="E、一些小概念"></a>E、一些小概念</h1><h2 id="1、什么是线程的中断"><a href="#1、什么是线程的中断" class="headerlink" title="1、什么是线程的中断"></a>1、什么是线程的中断</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/28/Netty%E5%AD%A6%E4%B9%A0/Untitled/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/28/Netty%E5%AD%A6%E4%B9%A0/Untitled/" class="post-title-link" itemprop="url">NIO学习</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-28 00:00:00" itemprop="dateCreated datePublished" datetime="2022-02-28T00:00:00+00:00">2022-02-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-10 15:47:57" itemprop="dateModified" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Netty/" itemprop="url" rel="index"><span itemprop="name">Netty</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="NIO基础"><a href="#NIO基础" class="headerlink" title="NIO基础"></a>NIO基础</h2><p>non-blocking IO（非阻塞IO）</p>
-<h3 id="1、三大组件"><a href="#1、三大组件" class="headerlink" title="1、三大组件"></a>1、三大组件</h3><h4 id="1-1、Channel-amp-Buffer"><a href="#1-1、Channel-amp-Buffer" class="headerlink" title="1.1、Channel &amp; Buffer"></a>1.1、Channel &amp; Buffer</h4><ul>
-<li>Channel：</li>
-</ul>
-<p>基本概念：</p>
-<p>常见的Channel：</p>
-<ul>
-<li>Buffer：</li>
-</ul>
-<p>基本概念：</p>
-<p>常见的Buffer：</p>
-<h4 id="1-2、Selector"><a href="#1-2、Selector" class="headerlink" title="1.2、Selector"></a>1.2、Selector</h4><p>基本概念：多线程版本的缺点、线程池版本的缺点、Selector版本的服务器设计</p>
-<h3 id="2、ByteBuffer"><a href="#2、ByteBuffer" class="headerlink" title="2、ByteBuffer"></a>2、ByteBuffer</h3><h4 id="2-1、ByteBuffer正确使用姿势"><a href="#2-1、ByteBuffer正确使用姿势" class="headerlink" title="2.1、ByteBuffer正确使用姿势"></a>2.1、ByteBuffer正确使用姿势</h4><ul>
-<li>向buffer中写入数据，例如调用channel.read(buffer)</li>
-<li>调用buffer.flip()切换至<strong>读模式</strong></li>
-<li>从buffer读取数据，例如调用buffer.get()</li>
-<li>调用clear()或compact()切换至<strong>写模式</strong></li>
-<li>重复以上步骤</li>
-</ul>
-<h4 id="2-2、ByteBuffer结构"><a href="#2-2、ByteBuffer结构" class="headerlink" title="2.2、ByteBuffer结构"></a>2.2、ByteBuffer结构</h4><h4 id="2-3、ByteBuffer常见方法"><a href="#2-3、ByteBuffer常见方法" class="headerlink" title="2.3、ByteBuffer常见方法"></a>2.3、ByteBuffer常见方法</h4><h4 id="2-4、Scattering-Reads"><a href="#2-4、Scattering-Reads" class="headerlink" title="2.4、Scattering Reads"></a>2.4、Scattering Reads</h4><p>分散读取</p>
-<h3 id="3、文件编程"><a href="#3、文件编程" class="headerlink" title="3、文件编程"></a>3、文件编程</h3><h4 id="3-1、FileChannel"><a href="#3-1、FileChannel" class="headerlink" title="3.1、FileChannel"></a>3.1、FileChannel</h4><blockquote>
-<p>FileChannel只能工作在阻塞模式下</p>
-</blockquote>
-<ul>
-<li><p>获取</p>
-</li>
-<li><p>读取</p>
-</li>
-<li><p>写入</p>
-</li>
-<li><p>关闭</p>
-</li>
-<li><p>位置</p>
-</li>
-<li><p>大小</p>
-</li>
-<li><p>强制写入</p>
-</li>
-</ul>
-<h4 id="3-2、两个Channel传输数据"><a href="#3-2、两个Channel传输数据" class="headerlink" title="3.2、两个Channel传输数据"></a>3.2、两个Channel传输数据</h4><h4 id="3-3、Path"><a href="#3-3、Path" class="headerlink" title="3.3、Path"></a>3.3、Path</h4><p>JDK7加入了<code>Path</code>和<code>Paths</code>类</p>
-<ul>
-<li><code>Path</code>用来表示文件路径</li>
-<li><code>Paths</code>是工具类，用来获取<code>Path</code>实例</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Path source = Paths.get(<span class="string">&quot;Netty学习/netty-demo/data.txt&quot;</span>);</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="3-4、Files（工具类）"><a href="#3-4、Files（工具类）" class="headerlink" title="3.4、Files（工具类）"></a>3.4、Files（工具类）</h4><p>检查文件是否存在</p>
-<p>创建一级目录</p>
-<p>创建多级目录</p>
-<p>拷贝文件</p>
-<p>移动文件</p>
-<p>删除文件</p>
-<p>删除目录</p>
-<p>遍历目录文件</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/10/Java/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/10/Java/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">Java并发编程</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-10 00:00:00" itemprop="dateCreated datePublished" datetime="2022-02-10T00:00:00+00:00">2022-02-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-10 15:47:57" itemprop="dateModified" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h2><h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3><ul>
-<li>程序由指令和数据组成，这些指令要执行的话，就要加载到内存，指令运行过程中还需要用到磁盘、网络等设备。进程就是用来加载指令、管理内存、管理IO的</li>
-<li>当一个程序被运行，从磁盘加载这个程序的代码到内存，这就开启了一个进程</li>
-<li>进程可以认为是程序的一个实例</li>
-</ul>
-<h3 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h3><ul>
-<li>一个进程内可以分为一到多个线程</li>
-<li>一个线程就是一到指令流</li>
-<li>Java中，线程作为最小的调度单位，进程作为资源分配的最小单位</li>
-</ul>
-<h3 id="二者对比"><a href="#二者对比" class="headerlink" title="二者对比"></a>二者对比</h3><ul>
-<li>进程基本上相互独立，而线程存在于进程内，是进程的一个子集</li>
-<li>进程拥有共享的资源：例如内存空间</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/21/%E3%80%8A%E7%AE%97%E6%B3%95%E7%AC%AC%E5%9B%9B%E7%89%88%E3%80%8B/%E7%AC%AC%E4%BA%8C%E7%AB%A0%E6%8E%92%E5%BA%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/21/%E3%80%8A%E7%AE%97%E6%B3%95%E7%AC%AC%E5%9B%9B%E7%89%88%E3%80%8B/%E7%AC%AC%E4%BA%8C%E7%AB%A0%E6%8E%92%E5%BA%8F/" class="post-title-link" itemprop="url">排序算法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-01-21 00:00:00" itemprop="dateCreated datePublished" datetime="2022-01-21T00:00:00+00:00">2022-01-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-10 15:47:57" itemprop="dateModified" datetime="2022-05-10T15:47:57+00:00">2022-05-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="一、初级排序算法"><a href="#一、初级排序算法" class="headerlink" title="一、初级排序算法"></a>一、初级排序算法</h3><h4 id="1、选择排序"><a href="#1、选择排序" class="headerlink" title="1、选择排序"></a>1、选择排序</h4><p>思路：找到数组中最小的元素，其次，将它和数组的第一个元素交换位置，再找第二小，如此往复。</p>
-<p>有两个鲜明的特点：<code> 运行时间和输入无关</code>和<code> 数据移动是最少的</code>。</p>
-<p>直接上代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Selection</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//将a[]按照升序排列</span></span><br><span class="line">        <span class="keyword">int</span> N = a.length;  <span class="comment">//数组长度</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">            <span class="comment">//将a[i]和a[i + 1···N]中最小的元素交换</span></span><br><span class="line">            <span class="keyword">int</span> min = i;  <span class="comment">//最小元素索引</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; N; j++)</span><br><span class="line">                <span class="keyword">if</span> (less(a[j], a[min]))</span><br><span class="line">                    min = j;</span><br><span class="line">            exch(a, i, min);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">less</span><span class="params">(Comparable a, Comparable b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a.compareTo(b) &lt; <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">exch</span><span class="params">(Comparable[] a, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        Comparable t = a[i];</span><br><span class="line">        a[i] = a[j];</span><br><span class="line">        a[j] = t;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="2、插入排序"><a href="#2、插入排序" class="headerlink" title="2、插入排序"></a>2、插入排序</h4><p>插入排序对于实际应用中常见的某些类型的非随机数组非常有效。依次找到最大的元素并移动到最末尾，然后再找第二大……</p>
-<p>直接上代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Insertion</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//将a[]按照升序排列</span></span><br><span class="line">        <span class="keyword">int</span> N = a.length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N; i++)</span><br><span class="line">            <span class="comment">//将a[i]插入到a[i-1]、a[i-2]、a[i-3]...之中</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &gt; <span class="number">0</span> &amp;&amp; less(a[j], a[j-<span class="number">1</span>]); j--)</span><br><span class="line">                exch(a, j, j - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">less</span><span class="params">(Comparable a, Comparable b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a.compareTo(b) &lt; <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">exch</span><span class="params">(Comparable[] a, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        Comparable t = a[i];</span><br><span class="line">        a[i] = a[j];</span><br><span class="line">        a[j] = t;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="3、希尔排序"><a href="#3、希尔排序" class="headerlink" title="3、希尔排序"></a>3、希尔排序</h4><h3 id="二、归并排序"><a href="#二、归并排序" class="headerlink" title="二、归并排序"></a>二、归并排序</h3><h4 id="1、自顶向下的归并排序"><a href="#1、自顶向下的归并排序" class="headerlink" title="1、自顶向下的归并排序"></a>1、自顶向下的归并排序</h4><h4 id="2、自底向上的归并排序"><a href="#2、自底向上的归并排序" class="headerlink" title="2、自底向上的归并排序"></a>2、自底向上的归并排序</h4><h4 id="3、排序算法的复杂度"><a href="#3、排序算法的复杂度" class="headerlink" title="3、排序算法的复杂度"></a>3、排序算法的复杂度</h4><h3 id="三、快速排序"><a href="#三、快速排序" class="headerlink" title="三、快速排序"></a>三、快速排序</h3><h4 id="1、基本的算法"><a href="#1、基本的算法" class="headerlink" title="1、基本的算法"></a>1、基本的算法</h4><h4 id="2、性能特点"><a href="#2、性能特点" class="headerlink" title="2、性能特点"></a>2、性能特点</h4><h4 id="3、算法改进"><a href="#3、算法改进" class="headerlink" title="3、算法改进"></a>3、算法改进</h4><h3 id="四、优先队列"><a href="#四、优先队列" class="headerlink" title="四、优先队列"></a>四、优先队列</h3><p>有时候，我们不需要将所有的元素排序，例如手机要运行优先级高的程序，每次取优先级最高的程序出来运行就可以了，而不必将所有程序按照优先级排序。</p>
-<p>这种情况下，需要一个合适的数据结构：<code> 删除最大元素</code>和<code> 插入元素</code>，这种数据结构叫做<code> 优先队列</code>。</p>
-<h4 id="1、堆的定义"><a href="#1、堆的定义" class="headerlink" title="1、堆的定义"></a>1、堆的定义</h4><p>数据结构<code>二叉堆</code>能够很好的实现优先队列的基本操作。在二叉堆数组中，每个元素要保证大于等于另外的两个特定位置的元素，相应的，这两个特定位置的元素又要保证大于各自位置特定两个位置的元素，如此套娃。</p>
-<blockquote>
-<p>当一棵二叉树的每个结点都大于等于它的两个特定节点时，它被称为堆有序</p>
-</blockquote>
-<h4 id="2、堆的算法"><a href="#2、堆的算法" class="headerlink" title="2、堆的算法"></a>2、堆的算法</h4><h4 id="3、堆排序"><a href="#3、堆排序" class="headerlink" title="3、堆排序"></a>3、堆排序</h4><h3 id="五、应用"><a href="#五、应用" class="headerlink" title="五、应用"></a>五、应用</h3>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1276,7 +1034,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">118</span>
+          <span class="site-state-item-count">126</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
