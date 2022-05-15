@@ -22,8 +22,6 @@ redolog
 
 由其他三个特性来保证的
 
-
-
 # 2、MVVC
 
 ## （1）MVCC解决的问题到底是啥
@@ -101,8 +99,6 @@ https://www.cnblogs.com/fengzheng/p/12557762.html
 | 可重复读 | 不可能 | 不可能     | 可能   |
 | 串行化   | 不可能 | 不可能     | 不可能 |
 
-
-
 # 4、MySQL索引
 
 https://www.cnblogs.com/zsql/p/13808417.html
@@ -137,3 +133,30 @@ Memory存储引擎默认是Hash索引
 
 索引存在于磁盘，MySQL的索引类型与存储引擎是相关的，innobd存储引擎数据文件和索引文件全都放在ibd文件中，而myisam的数据文件全都放在myd文件中，索引放在myi文件中，判断条件：数据和索引是否是分开的
 
+# 5、数据库事务、主键和外键的区别
+
+- 事务即用户定义的一个数据库操作序列，这些操作要么全做要全不做，是一个不可分割的工作单位，它具有四个特性，即ACID：原子性、一致性、隔离性、持续性
+- 主键是能确定一条记录的唯一标识
+- 外键用于与另一张表的关联，是能确定另一张表记录的字段，用于保持数据的一致性
+
+# 6、简单介绍having和where的区别
+
+- 用的地方不一样
+
+  where可以用于`select`、`update`、`delete`和`insert into values(select * from table where …)`语句中
+
+  having只能用于`select`语句中
+
+- 执行的顺序不一样
+
+  where的搜索条件是在执行语句进行分组之前应用
+
+  having的搜索条件是在分组条件后执行的，即如果where和having一起用时，where会先执行，having后执行
+
+- 子句有区别
+
+  where子句中的条件表达式having都可以跟
+
+  having子句中的有些表达式where不可以跟，例如集合函数（sum、count、avg、max和min）
+
+总之，WHERE 子句用来筛选 FROM 子句中指定的操作所产生的行。GROUP BY 子句用来分组 WHERE 子句的输出。HAVING 子句用来从分组的结果中筛选行。
