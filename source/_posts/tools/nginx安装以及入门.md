@@ -49,10 +49,6 @@ rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0
    1:nginx-release-centos-7-0.el7.ngx ################################# [100%]
 ```
 
-
-
-
-
 3.**然后执行 yum repolist 查看一下，发现 Nginx 已经安装到本机了**
 
 ```powershell

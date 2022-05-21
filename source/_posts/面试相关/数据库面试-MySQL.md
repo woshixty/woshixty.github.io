@@ -129,9 +129,18 @@ Inodb存储引擎默认是B+Tree索引
 
 Memory存储引擎默认是Hash索引
 
+[Hash索引](https://cloud.tencent.com/developer/article/1770574)
+
 ## （5）聚簇和非聚簇索引的区别
 
 索引存在于磁盘，MySQL的索引类型与存储引擎是相关的，innobd存储引擎数据文件和索引文件全都放在ibd文件中，而myisam的数据文件全都放在myd文件中，索引放在myi文件中，判断条件：数据和索引是否是分开的
+
+## （6）索引分类
+
+按数据结构分类可分为：B+tree索引、Hash索引、Full-text索引
+按物理存储分类可分为：聚簇索引、二级索引（辅助索引）
+按字段特性分类可分为：主键索引、普通索引、前缀索引
+按字段个数分类可分为：单列索引、联合索引（复合索引、组合索引）
 
 # 5、数据库事务、主键和外键的区别
 
@@ -159,4 +168,79 @@ Memory存储引擎默认是Hash索引
 
   having子句中的有些表达式where不可以跟，例如集合函数（sum、count、avg、max和min）
 
-总之，WHERE 子句用来筛选 FROM 子句中指定的操作所产生的行。GROUP BY 子句用来分组 WHERE 子句的输出。HAVING 子句用来从分组的结果中筛选行。
+总之，WHERE 子句用来筛选 FROM 子句中指定的操作所产生的行。GROUP BY 子句用来分组 WHERE 子句的输出。HAVING 子句用来从分组的结果中筛选行
+
+# 7、SQL优化技巧
+
+[SQL优化技巧](https://www.51cto.com/article/623584.html)
+
+MySQL优化的五个原则：
+
+- 减少数据的访问
+
+  压缩、索引等手段减少磁盘IO
+
+- 返回更少的数据
+
+  只返回需要的字段和数据分页处理，减少磁盘 IO 及网络 IO
+
+- 减少交互次数
+
+  批量 DML 操作，函数存储等减少数据连接次数
+
+- 减少服务器 CPU 开销
+
+  减少数据库排序操作以及全表查询，减少 CPU 内存占用
+
+- 利用更多资源
+
+  使用表分区，可以增加并行操作，更大限度利用 CPU 资源
+
+总结到SQL：
+
+- 最大化利用索引
+- 尽可能避免全表扫描
+- 减少无效数据的查询
+
+## （1）避免不走索引的场景
+
+- **避免在字段开头模糊查询**，会导致数据库放弃索引全表扫描
+
+  如：`SELECT * FROM t WHERE username LIKE '%陈%' `
+
+  改为：`SELECT * FROM t WHERE username LIKE '陈%' `
+
+- **尽量避免使用 in 和 not in**，会导致引擎走全表扫描
+
+- 如果是子查询，可以用 exists 代替
+
+  如：`select * from A where A.id in (select id from B);`
+
+  改为：`select * from A where exists (select * from B where B.id = A.id); `
+
+- **尽量避免使用 or**，会导致数据库引擎放弃索引进行全表扫描
+
+  可以用 union 代替 or，如下：
+
+  `SELECT * FROM t WHERE id = 1 OR id = 3`改为
+
+  `SELECT * FROM t WHERE id = 1 UNION SELECT * FROM t WHERE id = 3`
+
+- **尽量避免进行 null 值的判断**，会导致数据库引擎放弃索引进行全表扫描
+
+  如：`SELECT * FROM t WHERE score IS NULL`
+
+  改为0值判断：`SELECT * FROM t WHERE score = 0 `
+
+- **查询条件不能用 <> 或者 !=**
+
+  使用索引列作为条件进行查询时，需要避免使用<>或者!=等判断条件
+
+- **order by 条件要与 where 中条件一致，否则 order by 不会利用索引进行排序**
+
+  如：`SELECT * FROM t order by age;`
+
+  改为：`SELECT * FROM t where age > 0 order by age;`
+
+## 8、联合索引和单独建立索引的区别
+
