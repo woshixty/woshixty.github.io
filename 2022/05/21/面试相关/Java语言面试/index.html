@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/3.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/3.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1、JDK1.8的新特性有哪些一、接口的默认方法二、Lambda表达式三、函数式接口四、方法与构造函数引用五、Lambda作用域六、访问局部变量七、访问对象字段于静态变量八、访问接口的默认方法2、Java抽象类和接口有什么区别语法与语意的区别 什么时候用抽象类，什么时候用接口 抽象类 -&gt; 有一种既有抽象概念（植物、动物） 接口 -&gt; 共同特征（例如具有某种会飞的功能） 相同点： 都不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hello Programmer">
+<meta property="og:url" content="http://example.com/2022/05/21/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/Java%E8%AF%AD%E8%A8%80%E9%9D%A2%E8%AF%95/index.html">
+<meta property="og:site_name" content="Hello Programmer">
+<meta property="og:description" content="1、JDK1.8的新特性有哪些一、接口的默认方法二、Lambda表达式三、函数式接口四、方法与构造函数引用五、Lambda作用域六、访问局部变量七、访问对象字段于静态变量八、访问接口的默认方法2、Java抽象类和接口有什么区别语法与语意的区别 什么时候用抽象类，什么时候用接口 抽象类 -&gt; 有一种既有抽象概念（植物、动物） 接口 -&gt; 共同特征（例如具有某种会飞的功能） 相同点： 都不">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-21T14:03:09.782Z">
+<meta property="article:modified_time" content="2022-05-21T14:03:09.782Z">
+<meta property="article:author" content="xty">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/05/21/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/Java%E8%AF%AD%E8%A8%80%E9%9D%A2%E8%AF%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | Hello Programmer</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hello Programmer</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/21/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/Java%E8%AF%AD%E8%A8%80%E9%9D%A2%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-21 14:03:09" itemprop="dateCreated datePublished" datetime="2022-05-21T14:03:09+00:00">2022-05-21</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1、JDK1-8的新特性有哪些"><a href="#1、JDK1-8的新特性有哪些" class="headerlink" title="1、JDK1.8的新特性有哪些"></a>1、JDK1.8的新特性有哪些</h1><h2 id="一、接口的默认方法"><a href="#一、接口的默认方法" class="headerlink" title="一、接口的默认方法"></a>一、接口的默认方法</h2><h2 id="二、Lambda表达式"><a href="#二、Lambda表达式" class="headerlink" title="二、Lambda表达式"></a>二、Lambda表达式</h2><h2 id="三、函数式接口"><a href="#三、函数式接口" class="headerlink" title="三、函数式接口"></a>三、函数式接口</h2><h2 id="四、方法与构造函数引用"><a href="#四、方法与构造函数引用" class="headerlink" title="四、方法与构造函数引用"></a>四、方法与构造函数引用</h2><h2 id="五、Lambda作用域"><a href="#五、Lambda作用域" class="headerlink" title="五、Lambda作用域"></a>五、Lambda作用域</h2><h2 id="六、访问局部变量"><a href="#六、访问局部变量" class="headerlink" title="六、访问局部变量"></a>六、访问局部变量</h2><h2 id="七、访问对象字段于静态变量"><a href="#七、访问对象字段于静态变量" class="headerlink" title="七、访问对象字段于静态变量"></a>七、访问对象字段于静态变量</h2><h2 id="八、访问接口的默认方法"><a href="#八、访问接口的默认方法" class="headerlink" title="八、访问接口的默认方法"></a>八、访问接口的默认方法</h2><h1 id="2、Java抽象类和接口有什么区别"><a href="#2、Java抽象类和接口有什么区别" class="headerlink" title="2、Java抽象类和接口有什么区别"></a>2、Java抽象类和接口有什么区别</h1><p>语法与语意的区别</p>
+<p>什么时候用抽象类，什么时候用接口</p>
+<p>抽象类 -&gt; 有一种既有抽象概念（植物、动物）</p>
+<p>接口 -&gt; 共同特征（例如具有某种会飞的功能）</p>
+<h4 id="相同点："><a href="#相同点：" class="headerlink" title="相同点："></a>相同点：</h4><ul>
+<li>都不能被实例化</li>
+<li>接口的实现类和抽象类的子类都只有在实现了接口或抽象类中的方法以后才能被实例化</li>
+</ul>
+<h4 id="不同点："><a href="#不同点：" class="headerlink" title="不同点："></a>不同点：</h4><ul>
+<li><p>接口中的方法只有定义（JDK1.8中可以有default方法），抽象类的方法可以定义与实现</p>
+</li>
+<li><p>关键字不同：<code>implement</code>和<code>extends</code>，类可以实现多个接口，但只能继承一个类</p>
+</li>
+<li><p>接口强调功能的实现，抽象类强调所属关系</p>
+</li>
+<li><p>接口中的成员变量默认都是<code> public static final</code>，必须初始化，不可被修改</p>
+<p>抽象类的成员变量默认是default，可以被重新定义，也可以被修改</p>
+</li>
+<li><p>接口中的成员方法都是<code> public、abstract</code>的</p>
+<p>抽象方法都是要被<code> abstract</code>修饰的不能被<code> private、synchronized、native</code>等修饰，不带花括号</p>
+</li>
+</ul>
+<h1 id="3、HashMap"><a href="#3、HashMap" class="headerlink" title="3、HashMap"></a>3、HashMap</h1><h2 id="（1）底层原理"><a href="#（1）底层原理" class="headerlink" title="（1）底层原理"></a>（1）底层原理</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/79507868">https://zhuanlan.zhihu.com/p/79507868</a></p>
+<h2 id="（2）HashMap在扩容上做了哪些处理"><a href="#（2）HashMap在扩容上做了哪些处理" class="headerlink" title="（2）HashMap在扩容上做了哪些处理"></a>（2）HashMap在扩容上做了哪些处理</h2><p>JDK1.8不需要再像JDK1.7一样重新计算hash，只需要看原来的hash值新增的那一位bit是1还是0就好</p>
+<h2 id="（3）HashMap有哪些线程安全的方式"><a href="#（3）HashMap有哪些线程安全的方式" class="headerlink" title="（3）HashMap有哪些线程安全的方式"></a>（3）HashMap有哪些线程安全的方式</h2><ul>
+<li>方法一：</li>
+</ul>
+<p>通过<code>Collections.synchronizedMap()</code>返回一个新的Map，这个新的Map就是线程安全的。这个要求大家习惯基于接口编程，因为返回的并不是HashMap，而是一个Map实现。</p>
+<ul>
+<li>方法二：</li>
+</ul>
+<p>重新改写了HashMap，具体可以查看<code>java.util.concurrentHashMap</code>，是一个支持并发的HashMap。这个方法比方法一有了很大的改进。</p>
+<h1 id="4、HashMap和HashTable的区别"><a href="#4、HashMap和HashTable的区别" class="headerlink" title="4、HashMap和HashTable的区别"></a>4、HashMap和HashTable的区别</h1><ul>
+<li><p>HashTable线程同步但效率低，HashMap相反但效率高</p>
+<p>线程同步：指的是多线程的时候数据的安全性，synchronized关键字</p>
+</li>
+<li><p>HashTable不允许&lt;key, value&gt;空值，HashMap允许</p>
+</li>
+<li><p>HashTable使用Enumeration，HashMap使用Iterator</p>
+</li>
+<li><p>HashTable（默认为11）扩容方式：2*old+1，HashMap（默认为16）扩容方式为：2的指数倍</p>
+</li>
+<li><p>HashTable继承自Dictionary类，HashMap继承自AbstractMap类</p>
+</li>
+</ul>
+<h1 id="5、Comparetor和Comparable"><a href="#5、Comparetor和Comparable" class="headerlink" title="5、Comparetor和Comparable"></a>5、Comparetor和Comparable</h1><p>在Java中当自定义的类需要进行比较的时候，可以通过这两种方式</p>
+<p>Comparable是一个比较接口，一旦某个类实现该接口，就代表这个类“支持排序比较”，而Comparator是一个比较器，通过建立一个“该类的比较器”来实现排序</p>
+<p>Comparable相当于“内部比较器”，而Comparator相当于“外部比较器”</p>
+<p>Comparable实现简单，只需实现接口即可进行比较，但是需要修改源码，但是Comparetor好处是不需要修改源码，只是实现一个比较器，将需要比较的两个对象传禁区就行</p>
+<h1 id="6、线程池的实现原理"><a href="#6、线程池的实现原理" class="headerlink" title="6、线程池的实现原理"></a>6、线程池的实现原理</h1><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6866054685044768782">https://juejin.cn/post/6866054685044768782</a></p>
+<p>线程池的核心参数：</p>
+<ul>
+<li><code>corePoolSize</code>：线程池核心线程数量</li>
+<li><code>maximumPoolSize</code>：线程池会创建的最大线程数量</li>
+<li><code>keepAliveTime</code>：线程池中大于核心线程数那部分线程的最大空闲存活时间</li>
+<li><code>workQueue</code>：保存等待执行任务的一个阻塞队列，当线程池所有的线程都在运行的时候，提交的任务会保存在阻塞队列中</li>
+<li><code>threadFactory</code>：创建线程的一个工厂，默认为<code>DefaultThreadFactory</code>类</li>
+<li><code>handler</code>：线程拒绝策略</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/05/21/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/Javc%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%9D%A2%E8%AF%95/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/05/21/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%9B%BE%E8%A7%A3TCPIP/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1%E3%80%81JDK1-8%E7%9A%84%E6%96%B0%E7%89%B9%E6%80%A7%E6%9C%89%E5%93%AA%E4%BA%9B"><span class="nav-number">1.</span> <span class="nav-text">1、JDK1.8的新特性有哪些</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%8E%A5%E5%8F%A3%E7%9A%84%E9%BB%98%E8%AE%A4%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">一、接口的默认方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text">二、Lambda表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.3.</span> <span class="nav-text">三、函数式接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E6%96%B9%E6%B3%95%E4%B8%8E%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%BC%95%E7%94%A8"><span class="nav-number">1.4.</span> <span class="nav-text">四、方法与构造函数引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81Lambda%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">1.5.</span> <span class="nav-text">五、Lambda作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E8%AE%BF%E9%97%AE%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F"><span class="nav-number">1.6.</span> <span class="nav-text">六、访问局部变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E8%AE%BF%E9%97%AE%E5%AF%B9%E8%B1%A1%E5%AD%97%E6%AE%B5%E4%BA%8E%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F"><span class="nav-number">1.7.</span> <span class="nav-text">七、访问对象字段于静态变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E8%AE%BF%E9%97%AE%E6%8E%A5%E5%8F%A3%E7%9A%84%E9%BB%98%E8%AE%A4%E6%96%B9%E6%B3%95"><span class="nav-number">1.8.</span> <span class="nav-text">八、访问接口的默认方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2%E3%80%81Java%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB"><span class="nav-number">2.</span> <span class="nav-text">2、Java抽象类和接口有什么区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E5%90%8C%E7%82%B9%EF%BC%9A"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">相同点：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C%E7%82%B9%EF%BC%9A"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">不同点：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3%E3%80%81HashMap"><span class="nav-number">3.</span> <span class="nav-text">3、HashMap</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86"><span class="nav-number">3.1.</span> <span class="nav-text">（1）底层原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%882%EF%BC%89HashMap%E5%9C%A8%E6%89%A9%E5%AE%B9%E4%B8%8A%E5%81%9A%E4%BA%86%E5%93%AA%E4%BA%9B%E5%A4%84%E7%90%86"><span class="nav-number">3.2.</span> <span class="nav-text">（2）HashMap在扩容上做了哪些处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%883%EF%BC%89HashMap%E6%9C%89%E5%93%AA%E4%BA%9B%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-number">3.3.</span> <span class="nav-text">（3）HashMap有哪些线程安全的方式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4%E3%80%81HashMap%E5%92%8CHashTable%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">4.</span> <span class="nav-text">4、HashMap和HashTable的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5%E3%80%81Comparetor%E5%92%8CComparable"><span class="nav-number">5.</span> <span class="nav-text">5、Comparetor和Comparable</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6%E3%80%81%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-number">6.</span> <span class="nav-text">6、线程池的实现原理</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="xty"
+      src="/images/4.png">
+  <p class="site-author-name" itemprop="name">xty</p>
+  <div class="site-description" itemprop="description">This is xty Blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/woshixty" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;woshixty" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xty</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script data-pjax>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+    </div>
+</body>
+</html>
