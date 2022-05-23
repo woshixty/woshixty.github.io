@@ -154,7 +154,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/21/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E5%9B%9B%E8%8A%82%E8%AF%BE/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/23/Problems/M1%20Mac%20%E5%AE%89%E8%A3%85%20Qt/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -168,7 +168,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/21/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E5%9B%9B%E8%8A%82%E8%AF%BE/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/05/23/Problems/M1%20Mac%20%E5%AE%89%E8%A3%85%20Qt/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -178,332 +178,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-21 14:03:09" itemprop="dateCreated datePublished" datetime="2022-05-21T14:03:09+00:00">2022-05-21</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>x高性能Go语言发行版优化与落地实践</p>
-<p>本节课主要内容</p>
-<ul>
-<li><p>优化</p>
-<p>内存管理优化</p>
-<p>编译器优化</p>
-</li>
-<li><p>背景</p>
-<p>自动内存管理和Go内存管理</p>
-<p>编译器优化</p>
-</li>
-</ul>
-<p>性能优化是什么？</p>
-<p>提升软件系统处理能力，减少不必要消耗</p>
-<p>为什么做性能优化？</p>
-<p>用户体验、资源的高效利用</p>
-<p>怎么做优化？</p>
-<ul>
-<li>业务层优化</li>
-<li>语言运行时优化</li>
-</ul>
-<p>总结：</p>
-<ul>
-<li>性能优化的基本问题</li>
-<li>性能优化的两个层面</li>
-<li>性能优化的可维护性</li>
-</ul>
-<h1 id="一、自动内存管理"><a href="#一、自动内存管理" class="headerlink" title="一、自动内存管理"></a>一、自动内存管理</h1><h2 id="1、自动内存管理"><a href="#1、自动内存管理" class="headerlink" title="1、自动内存管理"></a>1、自动内存管理</h2><ul>
-<li><p>动态内存</p>
-<p>程序运行时内存的动态分配：<code>malloc()</code></p>
-</li>
-<li><p>自动内存管理</p>
-<p>避免手动内存管理</p>
-<p>保证内存的使用的正确性和安全性：double-free-problem 和 use-after-free problem</p>
-</li>
-</ul>
-<p>相关概念</p>
-<ul>
-<li><p>Mutator</p>
-<p>业务线程，分配新的对象，修改对象的指向关系</p>
-</li>
-<li><p>Collector</p>
-<p>GC线程，找到存活对象，回收死亡对象</p>
-</li>
-<li><p>Serial GC</p>
-<p>只有一个collector</p>
-</li>
-<li><p>Parallel GC</p>
-<p>支持多个collector</p>
-</li>
-<li><p>Concurrent GC</p>
-<p>业务线程和GC线程同时执行，必须感知对象指向关系的改变</p>
-</li>
-<li><p>评价GC 算法</p>
-<p>安全性（Safety）：不能回收存活的对象 基本要求</p>
-<p>吞吐率（Throughput）：花在GC上的时间</p>
-<p>暂停时间（Pause time）：stop the world（STW）业务是否感知</p>
-<p>内存开销 （Space overhead）GC 元数据开销</p>
-</li>
-<li><p>追踪垃圾回收（Tracing garbage collection）</p>
-</li>
-<li><p>引用计数（Reference counting）</p>
-</li>
-</ul>
-<h2 id="2、追踪垃圾回收"><a href="#2、追踪垃圾回收" class="headerlink" title="2、追踪垃圾回收"></a>2、追踪垃圾回收</h2><p>回收条件：指针指向关系不可达</p>
-<p>标记根对象：静态变量、全局变量、常量、线程栈</p>
-<p>标记：找到可达对象</p>
-<ul>
-<li>求指针指向关系的传递闭包：从根对象出发，找到所有可达对象</li>
-</ul>
-<p>清理：所有不可达对象</p>
-<ul>
-<li>Copying GC</li>
-<li>Mark-Sweep GC</li>
-<li>Mark-Compact GC</li>
-</ul>
-<p>根据对象的生命周期选择不同的标记清理策略</p>
-<h2 id="3、分代GC（Generational-GC）"><a href="#3、分代GC（Generational-GC）" class="headerlink" title="3、分代GC（Generational GC）"></a>3、分代GC（Generational GC）</h2><ul>
-<li><p>分代假说 (Generational hypothesis)： most objects die young</p>
-</li>
-<li><p>Intuition：很多对象在分配出来后很快就不再使用了</p>
-</li>
-<li><p>每个对象都有年龄：经历过 GC 的次数</p>
-</li>
-<li><p>目的：针对年轻和老年的对象，制定不同的 GC 策路，降低整体内存管理的开销，不同年龄的对象处于 heap的不同区域</p>
-</li>
-<li><p>年轻代 (Young generation)</p>
-<p>常规的对象分配</p>
-<p>由于存活对象很少，可以采用 copying collection</p>
-<p>GC 吞吐率很高</p>
-</li>
-<li><p>老年代 (Old generation)</p>
-<p>对象趋向于一直活着，反复复制开销较大</p>
-<p>可以采用 mark-sweep collection</p>
-</li>
-</ul>
-<h2 id="4、引用计数"><a href="#4、引用计数" class="headerlink" title="4、引用计数"></a>4、引用计数</h2><ul>
-<li><p>每个对象都有一个与之关联的引用数目</p>
-</li>
-<li><p>对象存活的条件：当且仅当引用数大于 0</p>
-</li>
-<li><p>优点</p>
-<p>内存管理的操作被平雄到程序执行过程中</p>
-<p>内存管理不需要了解runtime 的实现细节：C++ 智能指针 (smart pointer)</p>
-</li>
-<li><p>缺点</p>
-<p>维护引用计数的开销较大：通过原子操作保证对引用计数操作的原子性和可见性<br>无法回收环形数据结构—weak reference<br>内存开销：每个对象都引1入的额外内存空间存储引用数目<br>回收内存时依然可能引发暂停</p>
-</li>
-</ul>
-<h2 id="5、总结"><a href="#5、总结" class="headerlink" title="5、总结"></a>5、总结</h2><ul>
-<li>背景和意义</li>
-<li>概念和评价方法</li>
-<li>追踪垃圾回收</li>
-<li>引用回收</li>
-<li>分代GC</li>
-</ul>
-<h1 id="二、Go内存管理"><a href="#二、Go内存管理" class="headerlink" title="二、Go内存管理"></a>二、Go内存管理</h1><h2 id="1、Go内存分配"><a href="#1、Go内存分配" class="headerlink" title="1、Go内存分配"></a>1、Go内存分配</h2><h1 id="三、编译器和静态分析"><a href="#三、编译器和静态分析" class="headerlink" title="三、编译器和静态分析"></a>三、编译器和静态分析</h1><h1 id="四、Go编译器优化"><a href="#四、Go编译器优化" class="headerlink" title="四、Go编译器优化"></a>四、Go编译器优化</h1>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/21/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E8%AF%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/21/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E8%AF%BE/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-05-21 14:03:09" itemprop="dateCreated datePublished" datetime="2022-05-21T14:03:09+00:00">2022-05-21</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="3、网络接入-ARP协议"><a href="#3、网络接入-ARP协议" class="headerlink" title="3、网络接入-ARP协议"></a>3、网络接入-ARP协议</h2><ul>
-<li>逻辑网段相同才能发送ARP</li>
-<li>ARP请求广播，ARP答应单播</li>
-<li>免费ARP？ARP代理？</li>
-</ul>
-<h2 id="4、网络接入协议"><a href="#4、网络接入协议" class="headerlink" title="4、网络接入协议"></a>4、网络接入协议</h2><ul>
-<li>唯一标识，互联网通用</li>
-<li>Mac地址不能代替IP地址吗</li>
-</ul>
-<h2 id="5、网络接入-NAT"><a href="#5、网络接入-NAT" class="headerlink" title="5、网络接入-NAT"></a>5、网络接入-NAT</h2><ul>
-<li>家里路由器是怎么上网的？</li>
-<li>多个内网客户端访问同一个目标地址</li>
-</ul>
-<h2 id="6、网络传输-数据包"><a href="#6、网络传输-数据包" class="headerlink" title="6、网络传输-数据包"></a>6、网络传输-数据包</h2><h2 id="7、网络传输-先请求DNS协议"><a href="#7、网络传输-先请求DNS协议" class="headerlink" title="7、网络传输-先请求DNS协议"></a>7、网络传输-先请求DNS协议</h2><p>递归迭代</p>
-<h2 id="8、网络传输-DNS的传输协议"><a href="#8、网络传输-DNS的传输协议" class="headerlink" title="8、网络传输-DNS的传输协议"></a>8、网络传输-DNS的传输协议</h2><h2 id="9、网络传输-TCP"><a href="#9、网络传输-TCP" class="headerlink" title="9、网络传输-TCP"></a>9、网络传输-TCP</h2><p>TCP保活机制</p>
-<p>通过MSS防止分片</p>
-<p>三次握手确认MSS，TCP的OPTION字段</p>
-<p>Sequence Number</p>
-<p>Acknowledge Number</p>
-<p>Timewaite</p>
-<h2 id="10、网络传输协议-HTTP-HTTP-1-1"><a href="#10、网络传输协议-HTTP-HTTP-1-1" class="headerlink" title="10、网络传输协议-HTTP/HTTP 1.1"></a>10、网络传输协议-HTTP/HTTP 1.1</h2><ul>
-<li>为什么不同TCP通信</li>
-<li>为什么网络上那么多HTTP通信</li>
-<li>HTTP只是多了一层规矩</li>
-</ul>
-<p>做了哪些优化</p>
-<ul>
-<li>长连接</li>
-</ul>
-<h2 id="11、网络传输-SSL-TLS握手"><a href="#11、网络传输-SSL-TLS握手" class="headerlink" title="11、网络传输-SSL/TLS握手"></a>11、网络传输-SSL/TLS握手</h2><p>第三方机构CA</p>
-<h1 id="二、"><a href="#二、" class="headerlink" title="二、"></a>二、</h1><h2 id="1、网络提速-HTTP2-0"><a href="#1、网络提速-HTTP2-0" class="headerlink" title="1、网络提速-HTTP2.0"></a>1、网络提速-HTTP2.0</h2><h2 id="3、网络提速-QUIC-HTTP3-0"><a href="#3、网络提速-QUIC-HTTP3-0" class="headerlink" title="3、网络提速-QUIC/HTTP3.0"></a>3、网络提速-QUIC/HTTP3.0</h2><ul>
-<li>TCP or UDP</li>
-<li>Kernel or Userspace</li>
-<li>0 RTT</li>
-<li>弱网优势</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/21/Java/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/21/Java/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3Java%E8%99%9A%E6%8B%9F%E6%9C%BA/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-05-21 14:03:09" itemprop="dateCreated datePublished" datetime="2022-05-21T14:03:09+00:00">2022-05-21</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/aspirant/p/8662690.html">垃圾回收</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/aspirant/p/6841955.html">内存模型</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/21/Problems/M1%20Mac%20%E5%AE%89%E8%A3%85%20Qt/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/21/Problems/M1%20Mac%20%E5%AE%89%E8%A3%85%20Qt/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-05-21 14:03:09" itemprop="dateCreated datePublished" datetime="2022-05-21T14:03:09+00:00">2022-05-21</time>
+              <time title="创建时间：2022-05-23 10:27:32" itemprop="dateCreated datePublished" datetime="2022-05-23T10:27:32+00:00">2022-05-23</time>
             </span>
 
           
@@ -565,7 +240,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/21/Shell%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/%E7%AC%AC%E4%BA%94%E7%AB%A0%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E4%B8%89%E5%89%91%E5%AE%A2%E4%B9%8Bgrep/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/23/Shell%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/%E7%AC%AC%E4%BA%94%E7%AB%A0%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E4%B8%89%E5%89%91%E5%AE%A2%E4%B9%8Bgrep/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -579,7 +254,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/21/Shell%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/%E7%AC%AC%E4%BA%94%E7%AB%A0%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E4%B8%89%E5%89%91%E5%AE%A2%E4%B9%8Bgrep/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/05/23/Shell%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/%E7%AC%AC%E4%BA%94%E7%AB%A0%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E4%B8%89%E5%89%91%E5%AE%A2%E4%B9%8Bgrep/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -589,7 +264,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-21 14:03:09" itemprop="dateCreated datePublished" datetime="2022-05-21T14:03:09+00:00">2022-05-21</time>
+              <time title="创建时间：2022-05-23 10:27:32" itemprop="dateCreated datePublished" datetime="2022-05-23T10:27:32+00:00">2022-05-23</time>
             </span>
 
           
@@ -622,7 +297,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/21/2022--5-21/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/23/2022--5-21/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -636,7 +311,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/21/2022--5-21/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/05/23/2022--5-21/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -646,7 +321,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-21 14:03:09" itemprop="dateCreated datePublished" datetime="2022-05-21T14:03:09+00:00">2022-05-21</time>
+              <time title="创建时间：2022-05-23 10:27:32" itemprop="dateCreated datePublished" datetime="2022-05-23T10:27:32+00:00">2022-05-23</time>
             </span>
 
           
@@ -694,7 +369,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/21/2022-05-09/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/23/2022-05-09/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -708,7 +383,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/21/2022-05-09/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/05/23/2022-05-09/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -718,7 +393,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-21 14:03:09" itemprop="dateCreated datePublished" datetime="2022-05-21T14:03:09+00:00">2022-05-21</time>
+              <time title="创建时间：2022-05-23 10:27:32" itemprop="dateCreated datePublished" datetime="2022-05-23T10:27:32+00:00">2022-05-23</time>
             </span>
 
           
@@ -843,7 +518,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/21/2022-05-14/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/23/2022-05-14/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -857,7 +532,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/21/2022-05-14/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/05/23/2022-05-14/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -867,7 +542,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-21 14:03:09" itemprop="dateCreated datePublished" datetime="2022-05-21T14:03:09+00:00">2022-05-21</time>
+              <time title="创建时间：2022-05-23 10:27:32" itemprop="dateCreated datePublished" datetime="2022-05-23T10:27:32+00:00">2022-05-23</time>
             </span>
 
           
@@ -1018,7 +693,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/21/C++/5%E6%9C%887%E6%97%A5%E4%B8%8A%E8%AF%BE/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/23/C++/5%E6%9C%887%E6%97%A5%E4%B8%8A%E8%AF%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -1032,7 +707,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/21/C++/5%E6%9C%887%E6%97%A5%E4%B8%8A%E8%AF%BE/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/05/23/C++/5%E6%9C%887%E6%97%A5%E4%B8%8A%E8%AF%BE/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -1042,7 +717,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-21 14:03:09" itemprop="dateCreated datePublished" datetime="2022-05-21T14:03:09+00:00">2022-05-21</time>
+              <time title="创建时间：2022-05-23 10:27:32" itemprop="dateCreated datePublished" datetime="2022-05-23T10:27:32+00:00">2022-05-23</time>
             </span>
 
           
@@ -1082,7 +757,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/21/C++/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20%E4%BD%BF%E7%94%A8%E7%B1%BB/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/23/C++/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20%E4%BD%BF%E7%94%A8%E7%B1%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -1096,7 +771,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/21/C++/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20%E4%BD%BF%E7%94%A8%E7%B1%BB/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/05/23/C++/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20%E4%BD%BF%E7%94%A8%E7%B1%BB/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -1106,7 +781,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-21 14:03:09" itemprop="dateCreated datePublished" datetime="2022-05-21T14:03:09+00:00">2022-05-21</time>
+              <time title="创建时间：2022-05-23 10:27:32" itemprop="dateCreated datePublished" datetime="2022-05-23T10:27:32+00:00">2022-05-23</time>
             </span>
 
           
@@ -1155,6 +830,359 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p = (<span class="keyword">int</span> *)<span class="number">10</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="1、转换函数"><a href="#1、转换函数" class="headerlink" title="1、转换函数"></a>1、转换函数</h4>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/23/C++/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0%20%E7%B1%BB%E7%BB%A7%E6%89%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/23/C++/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0%20%E7%B1%BB%E7%BB%A7%E6%89%BF/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-23 10:27:32" itemprop="dateCreated datePublished" datetime="2022-05-23T10:27:32+00:00">2022-05-23</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<ul>
+<li>Is-a关系的继承</li>
+<li>如何以公有方式从一个类派生出另一个类</li>
+<li>保护访问</li>
+<li>构造函数成员初始化列表</li>
+<li>向下和向上强制转换</li>
+<li>虚成员函数</li>
+<li>早期（静态）联编与晚期（动态）联编</li>
+<li>抽象基类</li>
+<li>纯虚函数</li>
+<li>何时以及如何使用公有继承</li>
+</ul>
+</blockquote>
+<p>面向对象编程的主要目的之一便是提供可重用的代码</p>
+<h1 id="一、一个简单的基类"><a href="#一、一个简单的基类" class="headerlink" title="一、一个简单的基类"></a>一、一个简单的基类</h1><p>从一个类派生出另一个类的时候原始类称为基类，继承类称为派生类</p>
+<p>程序清单tabtenn0.h</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/23/C++/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%E7%B1%BB%E5%92%8C%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/23/C++/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%E7%B1%BB%E5%92%8C%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-23 10:27:32" itemprop="dateCreated datePublished" datetime="2022-05-23T10:27:32+00:00">2022-05-23</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>对类成员使用动态内存分配</p>
+<p>隐式和显示复制构造函数</p>
+<p>隐式和显式重载赋值运算符</p>
+<p>在构造函数中使用new所必需完成的工作</p>
+<p>使用静态类成员</p>
+<p>将定位new运算符用于对象</p>
+<p>使用指向对象的指针</p>
+<p>实现队列抽象数据类型（ADT）</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/23/C++/%E9%87%91%E5%B1%B1%E7%AC%AC%E5%9B%9B%E6%AC%A1%E8%AF%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/23/C++/%E9%87%91%E5%B1%B1%E7%AC%AC%E5%9B%9B%E6%AC%A1%E8%AF%BE/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-23 10:27:32" itemprop="dateCreated datePublished" datetime="2022-05-23T10:27:32+00:00">2022-05-23</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="一、C-的模版"><a href="#一、C-的模版" class="headerlink" title="一、C++的模版"></a>一、C++的模版</h1><h2 id="1、泛型编程"><a href="#1、泛型编程" class="headerlink" title="1、泛型编程"></a>1、泛型编程</h2><h3 id="（1）概念"><a href="#（1）概念" class="headerlink" title="（1）概念"></a>（1）概念</h3><p>编写不依赖具体数据类型的程序</p>
+<h3 id="（2）目标"><a href="#（2）目标" class="headerlink" title="（2）目标"></a>（2）目标</h3><ul>
+<li>将程序尽可能通用</li>
+<li>将算法从数据结构中抽象出来</li>
+</ul>
+<h3 id="（3）应用"><a href="#（3）应用" class="headerlink" title="（3）应用"></a>（3）应用</h3><ul>
+<li>c++模版为范型程序设计提供了基础</li>
+<li>STL（标准模版库 Standard Template Library）是范型程序设计的例子</li>
+</ul>
+<h2 id="2、模板简介"><a href="#2、模板简介" class="headerlink" title="2、模板简介"></a>2、模板简介</h2><h3 id="（1）什么是模版"><a href="#（1）什么是模版" class="headerlink" title="（1）什么是模版"></a>（1）什么是模版</h3><p>模板是支持参数化多态的工具，是一种对类型进行参数化的工具</p>
+<h3 id="（2）模板分类"><a href="#（2）模板分类" class="headerlink" title="（2）模板分类"></a>（2）模板分类</h3><ul>
+<li><p>函数模版</p>
+<p>针对参数类型不同的函数</p>
+</li>
+<li><p>类模板</p>
+<p>针对仅数据成员和成员函数类型不同的类</p>
+</li>
+</ul>
+<h3 id="（3）工作方式"><a href="#（3）工作方式" class="headerlink" title="（3）工作方式"></a>（3）工作方式</h3><p>模版只是说明，需要实例化后才能执行和使用</p>
+<ul>
+<li>函数模板 -&gt; 模板函数</li>
+<li>类模板 -&gt; 模板类 -&gt; 对象</li>
+</ul>
+<p><code>-&gt;</code>：实例化</p>
+<blockquote>
+<p>模板的声明和定义只能在全局、命名空间或类范围内进行</p>
+<p>即不能在局部范围、函数内进行</p>
+</blockquote>
+<h2 id="3、函数模板"><a href="#3、函数模板" class="headerlink" title="3、函数模板"></a>3、函数模板</h2><h3 id="（1）概念-1"><a href="#（1）概念-1" class="headerlink" title="（1）概念"></a>（1）概念</h3><p>所谓函数模板，就是一个通用函数，返回值和参数类型不具体指定，使用虚拟类型来替代（占位符），这个通用函数就叫函数模版（Function Template）</p>
+<h3 id="（2）定义形式"><a href="#（2）定义形式" class="headerlink" title="（2）定义形式"></a>（2）定义形式</h3><ul>
+<li><p>一</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">template&lt;typename 类型参数&gt;</span><br><span class="line">返回类型 函数名(模版形参表)</span><br><span class="line">&#123;</span><br><span class="line">	函数体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>二</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">template&lt;class T&gt;</span><br><span class="line">返回类型 函数名(模版形参表)</span><br><span class="line">&#123;</span><br><span class="line">	函数体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<blockquote>
+<p>template：声明模板的关键字</p>
+<p>typename和class都是表示他们之后的参数都是一个类型的参数，class是早期c++版本使用的</p>
+</blockquote>
+<h3 id="（3）代码示例"><a href="#（3）代码示例" class="headerlink" title="（3）代码示例"></a>（3）代码示例</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function">T <span class="title">doSum</span><span class="params">(T a, T b)</span> </span>&#123;</span><br><span class="line">    T temp = a + b;</span><br><span class="line">    <span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m = doSum(<span class="number">10</span> ,<span class="number">20</span>);</span><br><span class="line">    <span class="keyword">float</span> n = doSum(<span class="number">10.1</span>, <span class="number">20.2</span>);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; m &lt;&lt; <span class="string">&quot;  &quot;</span> &lt;&lt; n &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="（4）重载"><a href="#（4）重载" class="headerlink" title="（4）重载"></a>（4）重载</h3><ul>
+<li><p>函数模版支持函数重载，参数列表不一样</p>
+</li>
+<li><p>编译器调用函数的顺序</p>
+<p>1、先搜索参数完全匹配的普通函数</p>
+<p>2、其次搜索参数匹配的模版函数</p>
+<p>3、最后搜索自动类型转换后能匹配的普通函数</p>
+</li>
+</ul>
+<h2 id="4、类模板"><a href="#4、类模板" class="headerlink" title="4、类模板"></a>4、类模板</h2><h3 id="（1）简介"><a href="#（1）简介" class="headerlink" title="（1）简介"></a>（1）简介</h3><p>建立一个通用类</p>
+<h3 id="（2）代码具体实现格式"><a href="#（2）代码具体实现格式" class="headerlink" title="（2）代码具体实现格式"></a>（2）代码具体实现格式</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明类以及方法</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">deleteEle</span><span class="params">(T data)</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 类外定义方法</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">bool</span> Test&lt;T&gt;::deleteEle(T data) &#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; data &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="二、STL"><a href="#二、STL" class="headerlink" title="二、STL"></a>二、STL</h1><h2 id="1、简介"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介</h2><h3 id="（1）简单介绍"><a href="#（1）简单介绍" class="headerlink" title="（1）简单介绍"></a>（1）简单介绍</h3><ul>
+<li><p>标准模版库</p>
+</li>
+<li><p>一些“容器”的集合：list、vector、set、map等等</p>
+</li>
+<li><p>标准化组件，实现可重用</p>
+</li>
+<li><p>六大部分</p>
+<p>容器、迭代器、空间配置器、配接器、算法、仿函数</p>
+</li>
+</ul>
+<h3 id="（2）详解"><a href="#（2）详解" class="headerlink" title="（2）详解"></a>（2）详解</h3><ul>
+<li><p>容器</p>
+<p>一些封装数据结构的模板类，如：vector、list</p>
+</li>
+<li><p>算法</p>
+<p>大量数据结构算法</p>
+</li>
+<li><p>迭代器</p>
+<p>对容器中数据的读写通过迭代器实现</p>
+</li>
+<li><p>函数对象</p>
+<p>将运算符重载为成员函数，这个类就称为函数对象类</p>
+</li>
+<li><p>适配器</p>
+<p>将一个类的接口适配成用户指定的形式</p>
+</li>
+<li><p>内存分配器</p>
+<p>内存申请和释放</p>
+</li>
+</ul>
+<h3 id="（3）代码示例-1"><a href="#（3）代码示例-1" class="headerlink" title="（3）代码示例"></a>（3）代码示例</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">6</span>] = &#123;<span class="number">26</span>, <span class="number">5</span>, <span class="number">76</span>, <span class="number">1</span>, <span class="number">6</span>, <span class="number">3</span>&#125;;</span><br><span class="line">    vector&lt;int, allocator&lt;int&gt;&gt; vi(a, a + 6);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; count_if(vi.begin(), vi.end(), not1(bind2nd(less&lt;<span class="keyword">int</span>&gt;(), <span class="number">40</span>)));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>(a, a + 6)</p>
+<p>赋予初值</p>
+</li>
+<li><p>vector：container（容器）</p>
+</li>
+<li><p>allocator<int>：allocator（分配器）</p>
+<p>默认会有对应规则</p>
+</li>
+<li><p>count_if：algorithms（算法）</p>
+<p>查询符合条件的元素个数</p>
+</li>
+<li><p>vi.begin()、vi.end()：iterators（迭代器）</p>
+</li>
+<li><p>not1、bind2nd：函数适配器</p>
+<p>not1：取反，统计大于等于40的数</p>
+</li>
+<li><p>less<int>：函数对象</p>
+<p>查找所有小于int的数据，通过bind2nd：绑定40，查找所有小于40的数</p>
+</li>
+</ul>
+<h2 id="2、容器"><a href="#2、容器" class="headerlink" title="2、容器"></a>2、容器</h2><h3 id="（1）简介-1"><a href="#（1）简介-1" class="headerlink" title="（1）简介"></a>（1）简介</h3><ul>
+<li><p>Sequence Container（序列式容器）</p>
+<p>Array、Vectror、Deque、List、Forward-List</p>
+</li>
+<li><p>Associative Container（关联容器：key-value）</p>
+<p>set（红黑树）、map、multiset/multimap</p>
+</li>
+<li><p>Unsorted Container（无定式容器，本质hash map）</p>
+<p>通过Hash表的链地址法进行查找操作</p>
+</li>
+</ul>
+<h3 id="（2）vector"><a href="#（2）vector" class="headerlink" title="（2）vector"></a>（2）vector</h3><h4 id="a、简单介绍"><a href="#a、简单介绍" class="headerlink" title="a、简单介绍"></a>a、简单介绍</h4><p>封装了动态大小数组的顺序容器</p>
+<p>功能：</p>
+<ul>
+<li>动态数组</li>
+<li>尾端增删元素</li>
+</ul>
+<h4 id="b、函数API"><a href="#b、函数API" class="headerlink" title="b、函数API"></a>b、函数API</h4><p><a target="_blank" rel="noopener" href="https://www.apiref.com/cpp-zh/cpp/container/vector.html">C++中文- API参考文档</a></p>
+<ul>
+<li><p>创建vector</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建vector</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v1;</span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">v2</span><span class="params">(v1)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">v3</span><span class="params">(<span class="number">10</span>, <span class="number">-1</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; <span class="title">v4</span><span class="params">(<span class="number">10</span>, <span class="string">&quot;hi&quot;</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>基本使用</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">5</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line"><span class="comment">// 本质为一个模板类</span></span><br><span class="line"><span class="comment">// 半开区间：[&amp;a[0], &amp;a[5])</span></span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">vt</span><span class="params">(&amp;a[<span class="number">0</span>], &amp;a[<span class="number">5</span>])</span></span>;</span><br><span class="line"><span class="comment">// 1 第一个元素</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;first data = &quot;</span> &lt;&lt; vt.front() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">// 2 最后一个元素</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;last data = &quot;</span> &lt;&lt; vt.back() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">// 3 元素个数</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;data size = &quot;</span> &lt;&lt; vt.size() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">// 4 输出数组</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; vt.size(); ++i)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; vt[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="c、迭代器"><a href="#c、迭代器" class="headerlink" title="c、迭代器"></a>c、迭代器</h4><ul>
+<li><p>简介：</p>
+<p>迭代器是一个复杂的指针，可以读写容器中的对象，本质为运算符的重载</p>
+</li>
+<li><p>格式：</p>
+<p><code>vector&lt;int&gt;::iterator iterator = vt.begin();</code></p>
+</li>
+<li><p>使用范例</p>
+<pre><code class="c++">vector&lt;int&gt;::iterator it;
+for(it = vt.begin(); it != vt.end(); ++it)
+&#123;
+  cout &lt;&lt; *it &lt;&lt; endl;
+&#125;
+</code></pre>
+</li>
+</ul>
+<h4 id="d、底层剖析"><a href="#d、底层剖析" class="headerlink" title="d、底层剖析"></a>d、底层剖析</h4><h1 id="三、设计模式"><a href="#三、设计模式" class="headerlink" title="三、设计模式"></a>三、设计模式</h1><h1 id="四、explict关键字"><a href="#四、explict关键字" class="headerlink" title="四、explict关键字"></a>四、explict关键字</h1>
       
     </div>
 
@@ -1240,7 +1268,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-count">127</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
