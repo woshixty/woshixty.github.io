@@ -9,9 +9,19 @@ categories: Java
 
 ## 1、上下文切换
 
+### （1）多线程一定快吗？
+
+### （2）测试上下文切换的次数和时长
+
+### （3）如何减少上下文切换
+
+### （4）减少上下文切换实战
+
 ## 2、死锁
 
 ## 3、资源限制的挑战
+
+## 4、本章小结
 
 # 二、Java并发机制的底层实现原理
 
@@ -37,9 +47,39 @@ volatile是轻量级的sychornized，它在多处理器的开发中保证了共�
 
 ## 4、本章小结
 
+# 三、Java内存模型
 
+## 1、Java内存模型的基础
 
+### （1）并发编程模型的两个关键问题
 
+### （2）Java内存模型的抽象结构
+
+### （3）从源代码到指令序列的重排序
+
+### （4）并发编程模型的分类
+
+### （5）happens-before简介
+
+## 2、重排序
+
+### （1）数据依赖性
+
+### （2）as-if-serial语意
+
+### （3）程序顺序规则
+
+### （4）重排序对多线程的影响
+
+### 3、顺序一致性
+
+### （1）数据竞争与顺序一致性
+
+### （2）顺序一致性内存模型
+
+### （3）同步程序的执行特性
+
+### （4）未同步程序的执行特性
 
 # 四、Java并发编程基础
 
@@ -49,7 +89,7 @@ volatile是轻量级的sychornized，它在多处理器的开发中保证了共�
 
 ### （1）什么是线程
 
-现代操作系统在运行一个程序时会为其创建一个进程，现代操作系统调度的最小单位是线程，也叫轻量级进程，在一个进程里可以创建多个线程，每个线程拥有自己的计数器、堆栈、局部变量等属性，并且能够访问共享的内存变量。
+现代操作系统在运行一个程序时会为其创建一个进程，**现代操作系统调度的最小单位是线程，也叫轻量级进程**，在一个进程里可以创建多个线程，每个线程拥有自己的计数器、堆栈、局部变量等属性，并且能够访问共享的内存变量。
 
 ### （2）为什么使用多线程
 
@@ -120,7 +160,78 @@ public class Daemon {
 
 终端可以理解为线程的一个标志位属性，他用来表示一个运行中的线程是否被其他线程进行了中断操作
 
+### （4）过期的suspend()、resume()和stop()
+
+以上三个方法分别对应暂停、恢复和重启
+
+不建议使用的原因：
+
+- `suspend()`方法调用后不释放锁进入睡眠，容易死锁
+- `stop()`终结一个线程时不保证资源的正常释放
+
+### （5）安全的终止线程
+
+中断状态是线程的一个标识位，中断操作是一种简便的线程间交互方式
+
+```java
+public class Shutdown {
+    public static void main(String[] args) throws Exception {
+        /**
+         * 方式一
+         */
+        Runner one = new Runner();
+        Thread countThread = new Thread(one, "CountThread");
+        countThread.start();
+        // 睡眠1秒，main线程对CountThread进行中断，使CountThread能够感知中断而结束
+        TimeUnit.SECONDS.sleep(1);
+        countThread.interrupt();
+        /**
+         * 方式二
+         */
+        Runner two = new Runner();
+        countThread = new Thread(two, "CountThread");
+        countThread.start();
+        // 睡眠1秒，main线程对Runner two进行取消，使CountThread能够感知on为false而结束
+        TimeUnit.SECONDS.sleep(1);
+        two.cancel();
+    }
+
+    private static class Runner implements Runnable {
+        private long i;
+        private volatile boolean on = true;
+
+        @Override
+        public void run() {
+            while (on && !Thread.currentThread().isInterrupted()) {
+                i++;
+            }
+            System.out.println("Count i = " + i);
+        }
+
+        public void cancel() {
+            on = false;
+        }
+    }
+}
+```
+
 ## 3、线程间通信
+
+线程间需要相互配合工作
+
+### （1）volatile和synchornized关键字
+
+
+
+### （2）等待/通知机制
+
+### （3）等待/通知的经典范式
+
+### （4）管道输入/输出流
+
+### （5）Thread.join()的使用
+
+### （6）ThreadLocal的使用
 
 ## 4、线程应用实例
 

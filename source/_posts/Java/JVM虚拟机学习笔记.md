@@ -7,6 +7,10 @@ categories: Java
 
 https://www.yuque.com/u21195183/jvm/ar6bqp#60990303
 
+<a href="https://www.cnblogs.com/aspirant/p/8662690.html">垃圾回收</a>
+
+<a href="https://www.cnblogs.com/aspirant/p/6841955.html">内存模型</a>
+
 ## Java虚拟机
 
 ### 1、Java虚拟机栈帧
