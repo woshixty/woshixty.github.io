@@ -154,7 +154,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/23/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E4%B8%80%E8%8A%82%E8%AF%BE/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/26/Go/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0%20%E5%AE%9E%E6%88%98%E6%BC%94%E7%BB%83/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -168,7 +168,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/23/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E4%B8%80%E8%8A%82%E8%AF%BE/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/05/26/Go/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0%20%E5%AE%9E%E6%88%98%E6%BC%94%E7%BB%83/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -178,7 +178,130 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-23 10:27:32" itemprop="dateCreated datePublished" datetime="2022-05-23T10:27:32+00:00">2022-05-23</time>
+              <time title="创建时间：2022-05-26 17:13:39" itemprop="dateCreated datePublished" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>剖析cellnet包网络库，设计并实现Socket聊天功能</p>
+</blockquote>
+<p>cellnet的设计理念是：高性能、简单、方便、开箱即用</p>
+<h1 id="一、了解cellnet网络库的特性、流程与架构"><a href="#一、了解cellnet网络库的特性、流程与架构" class="headerlink" title="一、了解cellnet网络库的特性、流程与架构"></a>一、了解cellnet网络库的特性、流程与架构</h1><h2 id="1、cellnet网络库的特性"><a href="#1、cellnet网络库的特性" class="headerlink" title="1、cellnet网络库的特性"></a>1、cellnet网络库的特性</h2><h2 id="2、cellnet网络库的流程以及架构"><a href="#2、cellnet网络库的流程以及架构" class="headerlink" title="2、cellnet网络库的流程以及架构"></a>2、cellnet网络库的流程以及架构</h2><h1 id="二、管理TCP-Scket连接"><a href="#二、管理TCP-Scket连接" class="headerlink" title="二、管理TCP Scket连接"></a>二、管理TCP Scket连接</h1><h2 id="1、理解Socket的事件类型"><a href="#1、理解Socket的事件类型" class="headerlink" title="1、理解Socket的事件类型"></a>1、理解Socket的事件类型</h2><h2 id="2、管理事件回调"><a href="#2、管理事件回调" class="headerlink" title="2、管理事件回调"></a>2、管理事件回调</h2><h2 id="3、连接器（Connector）"><a href="#3、连接器（Connector）" class="headerlink" title="3、连接器（Connector）"></a>3、连接器（Connector）</h2><h2 id="4、会话管理（SessionManager）"><a href="#4、会话管理（SessionManager）" class="headerlink" title="4、会话管理（SessionManager）"></a>4、会话管理（SessionManager）</h2><h2 id="5、接收器（Acceptor）"><a href="#5、接收器（Acceptor）" class="headerlink" title="5、接收器（Acceptor）"></a>5、接收器（Acceptor）</h2><h1 id="三、组织接收和发送数据流程的Socket会话（Session）"><a href="#三、组织接收和发送数据流程的Socket会话（Session）" class="headerlink" title="三、组织接收和发送数据流程的Socket会话（Session）"></a>三、组织接收和发送数据流程的Socket会话（Session）</h1><h2 id="1、在会话开始时启动goroutine和派发事件"><a href="#1、在会话开始时启动goroutine和派发事件" class="headerlink" title="1、在会话开始时启动goroutine和派发事件"></a>1、在会话开始时启动goroutine和派发事件</h2><h2 id="2、会话中的接收数据循环"><a href="#2、会话中的接收数据循环" class="headerlink" title="2、会话中的接收数据循环"></a>2、会话中的接收数据循环</h2><h2 id="3、会话中的发送数据循环"><a href="#3、会话中的发送数据循环" class="headerlink" title="3、会话中的发送数据循环"></a>3、会话中的发送数据循环</h2><h1 id="四、排队处理事件的事件队列（EventQueue）"><a href="#四、排队处理事件的事件队列（EventQueue）" class="headerlink" title="四、排队处理事件的事件队列（EventQueue）"></a>四、排队处理事件的事件队列（EventQueue）</h1><h2 id="1、实现事件队列"><a href="#1、实现事件队列" class="headerlink" title="1、实现事件队列"></a>1、实现事件队列</h2><h2 id="2、使用不同的事件队列模式处理数据"><a href="#2、使用不同的事件队列模式处理数据" class="headerlink" title="2、使用不同的事件队列模式处理数据"></a>2、使用不同的事件队列模式处理数据</h2><h1 id="五、消息编码（codec）-让cellnet支持消息的多种编码格式"><a href="#五、消息编码（codec）-让cellnet支持消息的多种编码格式" class="headerlink" title="五、消息编码（codec）-让cellnet支持消息的多种编码格式"></a>五、消息编码（codec）-让cellnet支持消息的多种编码格式</h1><h1 id="六、消息元信息（MessageMeta）-消息ID、消息名称和消息类型的关联关系"><a href="#六、消息元信息（MessageMeta）-消息ID、消息名称和消息类型的关联关系" class="headerlink" title="六、消息元信息（MessageMeta）-消息ID、消息名称和消息类型的关联关系"></a>六、消息元信息（MessageMeta）-消息ID、消息名称和消息类型的关联关系</h1><h2 id="1、理解消息元信息"><a href="#1、理解消息元信息" class="headerlink" title="1、理解消息元信息"></a>1、理解消息元信息</h2><h2 id="2、注册消息元信息"><a href="#2、注册消息元信息" class="headerlink" title="2、注册消息元信息"></a>2、注册消息元信息</h2><h2 id="3、示例：使用消息元信息"><a href="#3、示例：使用消息元信息" class="headerlink" title="3、示例：使用消息元信息"></a>3、示例：使用消息元信息</h2><h2 id="4、实现消息的编码（EncodeMessage-）和解码（DecodeMessage-）函数"><a href="#4、实现消息的编码（EncodeMessage-）和解码（DecodeMessage-）函数" class="headerlink" title="4、实现消息的编码（EncodeMessage()）和解码（DecodeMessage()）函数"></a>4、实现消息的编码（EncodeMessage()）和解码（DecodeMessage()）函数</h2><h1 id="七、接收和发送封包（Packet）"><a href="#七、接收和发送封包（Packet）" class="headerlink" title="七、接收和发送封包（Packet）"></a>七、接收和发送封包（Packet）</h1><h2 id="1、接收可变长度封包"><a href="#1、接收可变长度封包" class="headerlink" title="1、接收可变长度封包"></a>1、接收可变长度封包</h2><h2 id="2、了解封包数据读取器（PacketReader）"><a href="#2、了解封包数据读取器（PacketReader）" class="headerlink" title="2、了解封包数据读取器（PacketReader）"></a>2、了解封包数据读取器（PacketReader）</h2><h2 id="3、了解封包数据写入器（PacketWriter）"><a href="#3、了解封包数据写入器（PacketWriter）" class="headerlink" title="3、了解封包数据写入器（PacketWriter）"></a>3、了解封包数据写入器（PacketWriter）</h2><h2 id="4、读取自定义封包及数据"><a href="#4、读取自定义封包及数据" class="headerlink" title="4、读取自定义封包及数据"></a>4、读取自定义封包及数据</h2><h2 id="5、写入自定义封包及数据"><a href="#5、写入自定义封包及数据" class="headerlink" title="5、写入自定义封包及数据"></a>5、写入自定义封包及数据</h2><h2 id="6、响应消息处理事件"><a href="#6、响应消息处理事件" class="headerlink" title="6、响应消息处理事件"></a>6、响应消息处理事件</h2><h1 id="八、使用cellnet实现聊天功能"><a href="#八、使用cellnet实现聊天功能" class="headerlink" title="八、使用cellnet实现聊天功能"></a>八、使用cellnet实现聊天功能</h1><h2 id="1、定义聊天协议"><a href="#1、定义聊天协议" class="headerlink" title="1、定义聊天协议"></a>1、定义聊天协议</h2><h2 id="2、实现客户端功能"><a href="#2、实现客户端功能" class="headerlink" title="2、实现客户端功能"></a>2、实现客户端功能</h2><h2 id="3、实现服务器功能"><a href="#3、实现服务器功能" class="headerlink" title="3、实现服务器功能"></a>3、实现服务器功能</h2><h2 id="4、运行聊天服务器和客户端"><a href="#4、运行聊天服务器和客户端" class="headerlink" title="4、运行聊天服务器和客户端"></a>4、运行聊天服务器和客户端</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/26/Go/%E7%AC%AC%E5%8D%81%E7%AB%A0%20%E5%8F%8D%E5%B0%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/26/Go/%E7%AC%AC%E5%8D%81%E7%AB%A0%20%E5%8F%8D%E5%B0%84/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-26 17:13:39" itemprop="dateCreated datePublished" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>反射是指程序运行期间对程序本身进行访问和修改的能力</p>
+<p>Go程序在运行期间使用reflect包访问程序的反射信息</p>
+<h1 id="一、反射的类型对象（reflect-Type）"><a href="#一、反射的类型对象（reflect-Type）" class="headerlink" title="一、反射的类型对象（reflect.Type）"></a>一、反射的类型对象（reflect.Type）</h1><p>在Go中，使用<code>reflect.TypeOf()</code>函数便可以获取任意值的类型对象，一言不合上代码</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> a <span class="keyword">int</span></span><br><span class="line">	typeOf := reflect.TypeOf(a)</span><br><span class="line">	fmt.Println(typeOf)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1、理解反射类型的类型（Type）与种类（Kind）"><a href="#1、理解反射类型的类型（Type）与种类（Kind）" class="headerlink" title="1、理解反射类型的类型（Type）与种类（Kind）"></a>1、理解反射类型的类型（Type）与种类（Kind）</h2>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/26/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E4%B8%80%E8%8A%82%E8%AF%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/26/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E4%B8%80%E8%8A%82%E8%AF%BE/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-26 17:13:39" itemprop="dateCreated datePublished" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
             </span>
 
           
@@ -306,7 +429,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/23/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E4%BA%8C%E8%8A%82%E8%AF%BE/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/26/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E4%BA%8C%E8%8A%82%E8%AF%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -320,7 +443,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/23/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E4%BA%8C%E8%8A%82%E8%AF%BE/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/05/26/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E4%BA%8C%E8%8A%82%E8%AF%BE/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -330,7 +453,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-23 10:27:32" itemprop="dateCreated datePublished" datetime="2022-05-23T10:27:32+00:00">2022-05-23</time>
+              <time title="创建时间：2022-05-26 17:13:39" itemprop="dateCreated datePublished" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
             </span>
 
           
@@ -472,7 +595,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/23/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E5%9B%9B%E8%8A%82%E8%AF%BE/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/26/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E5%9B%9B%E8%8A%82%E8%AF%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -486,7 +609,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/23/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E5%9B%9B%E8%8A%82%E8%AF%BE/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/05/26/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E5%9B%9B%E8%8A%82%E8%AF%BE/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -496,7 +619,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-23 10:27:32" itemprop="dateCreated datePublished" datetime="2022-05-23T10:27:32+00:00">2022-05-23</time>
+              <time title="创建时间：2022-05-26 17:13:39" itemprop="dateCreated datePublished" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
             </span>
 
           
@@ -645,7 +768,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/23/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E8%AF%BE/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/26/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E8%AF%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -659,7 +782,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/23/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E8%AF%BE/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/05/26/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E8%AF%BE/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -669,7 +792,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-23 10:27:32" itemprop="dateCreated datePublished" datetime="2022-05-23T10:27:32+00:00">2022-05-23</time>
+              <time title="创建时间：2022-05-26 17:13:39" itemprop="dateCreated datePublished" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
             </span>
 
           
@@ -738,66 +861,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/23/Go/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20%E7%BC%96%E8%AF%91%E4%B8%8E%E5%B7%A5%E5%85%B7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/23/Go/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20%E7%BC%96%E8%AF%91%E4%B8%8E%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-05-23 10:27:32" itemprop="dateCreated datePublished" datetime="2022-05-23T10:27:32+00:00">2022-05-23</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Go语言工具链，从获取源码、编译、文档、测试、性能分析，到源码格式化、源码提示、重构工具等等非常丰富</p>
-<p>可以使用测试框架编写单元测试，使用性能分析工具将CPU耗用、内存分配、竞态问题以图形化方式展现出来</p>
-<h1 id="一、编译"><a href="#一、编译" class="headerlink" title="一、编译"></a>一、编译</h1><p><code>go build</code>指令可以将源码编译成可执行文件，有多种编译方式：无参数编译、文件列表编译、指定包编译等等</p>
-<h2 id="1、无参数编译"><a href="#1、无参数编译" class="headerlink" title="1、无参数编译"></a>1、无参数编译</h2><img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Go/bytedance/5.png" align="left">
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/18/Mysql/MySQL%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%90%E8%A1%8C%E7%9A%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -829,7 +892,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-23 10:27:32" itemprop="dateModified" datetime="2022-05-23T10:27:32+00:00">2022-05-23</time>
+                <time title="修改时间：2022-05-26 17:13:39" itemprop="dateModified" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -902,7 +965,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-23 10:27:32" itemprop="dateModified" datetime="2022-05-23T10:27:32+00:00">2022-05-23</time>
+                <time title="修改时间：2022-05-26 17:13:39" itemprop="dateModified" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1204,7 +1267,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-23 10:27:32" itemprop="dateModified" datetime="2022-05-23T10:27:32+00:00">2022-05-23</time>
+                <time title="修改时间：2022-05-26 17:13:39" itemprop="dateModified" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1333,7 +1396,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-23 10:27:32" itemprop="dateModified" datetime="2022-05-23T10:27:32+00:00">2022-05-23</time>
+                <time title="修改时间：2022-05-26 17:13:39" itemprop="dateModified" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1376,98 +1439,6 @@
 <p>当一棵二叉树的每个结点都大于等于它的两个特定节点时，它被称为堆有序</p>
 </blockquote>
 <h4 id="2、堆的算法"><a href="#2、堆的算法" class="headerlink" title="2、堆的算法"></a>2、堆的算法</h4><h4 id="3、堆排序"><a href="#3、堆排序" class="headerlink" title="3、堆排序"></a>3、堆排序</h4><h3 id="五、应用"><a href="#五、应用" class="headerlink" title="五、应用"></a>五、应用</h3>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/10/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/10/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%E6%89%93%E5%8D%B0%E4%BA%8C%E5%8F%89%E6%A0%91/" class="post-title-link" itemprop="url">力扣-从上到下打印二叉树</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-01-10 00:00:00" itemprop="dateCreated datePublished" datetime="2022-01-10T00:00:00+00:00">2022-01-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-23 10:27:32" itemprop="dateModified" datetime="2022-05-23T10:27:32+00:00">2022-05-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%88%B7%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>题目链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/">https://leetcode-cn.com/problems/cong-shang-dao-xia-da-yin-er-cha-shu-lcof/</a></p>
-<p>犯了一个非常低级的错误，特意记录一下</p>
-<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>从上到下打印出二叉树的每个节点，同一层的节点按照从左到右的顺序打印。</p>
-<p>例如：给定二叉树 <code>[3,9,20,null,null,15,7]</code></p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  3</span><br><span class="line"> &#x2F; \</span><br><span class="line">9  20</span><br><span class="line">  &#x2F;  \</span><br><span class="line"> 15   7</span><br></pre></td></tr></table></figure>
-
-<p>返回：</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[3,9,20,15,7]</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>很简单，就是用一个队列做辅助来实现层序遍历</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>我的代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] levelOrder(TreeNode root) &#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">0</span>];</span><br><span class="line">        Queue&lt;TreeNode&gt; list = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        Queue&lt;TreeNode&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        queue.offer(root);</span><br><span class="line">        <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">            TreeNode poll = queue.poll();</span><br><span class="line">            list.offer(poll);</span><br><span class="line">            <span class="keyword">if</span> (poll.left != <span class="keyword">null</span>)</span><br><span class="line">                queue.offer(poll.left);</span><br><span class="line">            <span class="keyword">if</span> (poll.right != <span class="keyword">null</span>)</span><br><span class="line">                queue.offer(poll.right);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span>[] result = <span class="keyword">new</span> <span class="keyword">int</span>[list.size()];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; list.size(); i++)</span><br><span class="line">            result[i] = list.poll().val;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>错误原因：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; list.size(); i++)</span><br><span class="line">  	result[i] = list.poll().val;</span><br></pre></td></tr></table></figure>
-
-<p>注意看上面这段代码，for循环里面的判断条件是<code> i &lt; list.size()</code>，而<code> list.size()</code>大小是动态的，因为<code> list.poll().val</code>！！！非常低级的一个错误</p>
-
       
     </div>
 
@@ -1553,7 +1524,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">127</span>
+          <span class="site-state-item-count">128</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
