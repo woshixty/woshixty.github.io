@@ -221,19 +221,179 @@ public class Shutdown {
 
 ### （1）volatile和synchornized关键字
 
+volatile保证了所有线程对变量访问的可见性
 
+synchornized保证了多个线程在同一时刻只有一个线程处于同步块中，本质是对一个对象监视器进行获取
 
 ### （2）等待/通知机制
 
+- notify()
+
+- notifyAll()
+
+- wait()
+
+  会释放锁
+
+直接上代码
+
+```java
+public class WaitNotify {
+    static boolean flag = true;
+    static Object lock = new Object();
+
+    public static void main(String[] args) throws Exception {
+        Thread waitThread = new Thread(new Wait(), "WaitThread");
+        waitThread.start();
+        TimeUnit.SECONDS.sleep(1);
+
+        Thread notifyThread = new Thread(new Notify(), "NotifyThread");
+        notifyThread.start();
+    }
+
+    static class Wait implements Runnable {
+        public void run() {
+            // 加锁，拥有lock的Monitor
+            synchronized (lock) {
+                // 当条件不满足时，继续wait，同时释放了lock的锁
+                while (flag) {
+                    try {
+                        System.out.println(Thread.currentThread() + " flag is true. wait @ "
+                                + new SimpleDateFormat("HH:mm:ss").format(new Date()));
+                        lock.wait();
+                    } catch (InterruptedException e) {
+                    }
+                }
+                // 条件满足时，完成工作
+                System.out.println(Thread.currentThread() + " flag is false. running @ "
+                        + new SimpleDateFormat("HH:mm:ss").format(new Date()));
+            }
+        }
+    }
+
+    static class Notify implements Runnable {
+        public void run() {
+            // 加锁，拥有lock的Monitor
+            synchronized (lock) {
+                // 获取lock的锁，然后进行通知，通知时不会释放lock的锁，
+                // 直到当前线程释放了lock后，WaitThread才能从wait方法中返回
+                System.out.println(Thread.currentThread() + " hold lock. notify @ " + new SimpleDateFormat("HH:mm:ss").format(new Date()));
+                lock.notifyAll();
+                flag = false;
+                SleepUtils.second(5);
+            }
+            // 再次加锁
+            synchronized (lock) {
+                System.out.println(Thread.currentThread() + " hold lock again. sleep @ "
+                        + new SimpleDateFormat("HH:mm:ss").format(new Date()));
+                SleepUtils.second(5);
+            }
+        }
+    }
+}
+```
+
 ### （3）等待/通知的经典范式
+
+生产者消费者模式
+
+```tex
+synchornized(对象) {
+  while(条件不足) {
+  	对象.wait();
+  }
+  // 处理逻辑
+}
+```
 
 ### （4）管道输入/输出流
 
+管道输入输出流主要包括下面四种实现：`PipedOutputStream`、`PipedInputStream`、`PipedReader`、`PipedWriter`
+
+```java
+public class Piped {
+    public static void main(String[] args) throws Exception {
+        PipedWriter out = new PipedWriter();
+        PipedReader in = new PipedReader();
+        // 将输出流和输入流进行连接，否则在使用时会抛出IOException
+        out.connect(in);
+        Thread printThread = new Thread(new Print(in), "PrintThread");
+        printThread.start();
+        int receive;
+        try {
+            while ((receive = System.in.read()) != -1)
+                out.write(receive);
+        } finally {
+            out.close();
+        }
+    }
+
+    static class Print implements Runnable {
+        private PipedReader in;
+
+        public Print(PipedReader in) {
+            this.in = in;
+        }
+        
+        public void run() {
+            int receive;
+            try {
+                while ((receive = in.read()) != -1)
+                    System.out.print((char) receive);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+}
+```
+
 ### （5）Thread.join()的使用
+
+等待线程终止以后才会返回
 
 ### （6）ThreadLocal的使用
 
+ThreadLocal，即线程变量，是一个以ThreadLocal对象为键，任意对象为值的存储结构。这个结构被附带到线程上面，并且可以set和get，具体直接看代码
+
+```java
+public class Profiler {
+    // 第一次get()方法调用时会进行初始化（如果set方法没有调用），每个线程会调用一次
+    private static final ThreadLocal<Integer> VALUE_THREADLOCAL = ThreadLocal.withInitial(() -> new Random().nextInt());
+
+    public static void set() {
+        VALUE_THREADLOCAL.set(new Random().nextInt());
+    }
+
+    public static String get() {
+        return VALUE_THREADLOCAL.get().toString();
+    }
+
+    public static void main(String[] args) throws Exception {
+        new ThreadTest().run();
+        new ThreadTest().run();
+        new ThreadTest().run();
+    }
+}
+
+class ThreadTest extends Thread {
+    @Override
+    public void run() {
+        Profiler.set();
+        System.out.println(Profiler.get());
+    }
+}
+```
+
 ## 4、线程应用实例
+
+### (1)等待超时模式
+
+### （2）简单的数据库连接池
+
+### （3）线程池技术以及示例
+
+### （4）基于线程池技术的Web服务器
 
 ## 5、本章小结
 
