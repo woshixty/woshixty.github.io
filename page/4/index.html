@@ -154,7 +154,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/26/C++/%E9%87%91%E5%B1%B1%E7%AC%AC%E5%9B%9B%E6%AC%A1%E8%AF%BE/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/27/Go/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0%20%E5%AE%9E%E6%88%98%E6%BC%94%E7%BB%83/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -168,7 +168,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/26/C++/%E9%87%91%E5%B1%B1%E7%AC%AC%E5%9B%9B%E6%AC%A1%E8%AF%BE/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/05/27/Go/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0%20%E5%AE%9E%E6%88%98%E6%BC%94%E7%BB%83/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -178,7 +178,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-26 17:13:39" itemprop="dateCreated datePublished" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
+              <time title="创建时间：2022-05-27 17:08:49" itemprop="dateCreated datePublished" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
             </span>
 
           
@@ -192,160 +192,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="一、C-的模版"><a href="#一、C-的模版" class="headerlink" title="一、C++的模版"></a>一、C++的模版</h1><h2 id="1、泛型编程"><a href="#1、泛型编程" class="headerlink" title="1、泛型编程"></a>1、泛型编程</h2><h3 id="（1）概念"><a href="#（1）概念" class="headerlink" title="（1）概念"></a>（1）概念</h3><p>编写不依赖具体数据类型的程序</p>
-<h3 id="（2）目标"><a href="#（2）目标" class="headerlink" title="（2）目标"></a>（2）目标</h3><ul>
-<li>将程序尽可能通用</li>
-<li>将算法从数据结构中抽象出来</li>
-</ul>
-<h3 id="（3）应用"><a href="#（3）应用" class="headerlink" title="（3）应用"></a>（3）应用</h3><ul>
-<li>c++模版为范型程序设计提供了基础</li>
-<li>STL（标准模版库 Standard Template Library）是范型程序设计的例子</li>
-</ul>
-<h2 id="2、模板简介"><a href="#2、模板简介" class="headerlink" title="2、模板简介"></a>2、模板简介</h2><h3 id="（1）什么是模版"><a href="#（1）什么是模版" class="headerlink" title="（1）什么是模版"></a>（1）什么是模版</h3><p>模板是支持参数化多态的工具，是一种对类型进行参数化的工具</p>
-<h3 id="（2）模板分类"><a href="#（2）模板分类" class="headerlink" title="（2）模板分类"></a>（2）模板分类</h3><ul>
-<li><p>函数模版</p>
-<p>针对参数类型不同的函数</p>
-</li>
-<li><p>类模板</p>
-<p>针对仅数据成员和成员函数类型不同的类</p>
-</li>
-</ul>
-<h3 id="（3）工作方式"><a href="#（3）工作方式" class="headerlink" title="（3）工作方式"></a>（3）工作方式</h3><p>模版只是说明，需要实例化后才能执行和使用</p>
-<ul>
-<li>函数模板 -&gt; 模板函数</li>
-<li>类模板 -&gt; 模板类 -&gt; 对象</li>
-</ul>
-<p><code>-&gt;</code>：实例化</p>
-<blockquote>
-<p>模板的声明和定义只能在全局、命名空间或类范围内进行</p>
-<p>即不能在局部范围、函数内进行</p>
+          <blockquote>
+<p>剖析cellnet包网络库，设计并实现Socket聊天功能</p>
 </blockquote>
-<h2 id="3、函数模板"><a href="#3、函数模板" class="headerlink" title="3、函数模板"></a>3、函数模板</h2><h3 id="（1）概念-1"><a href="#（1）概念-1" class="headerlink" title="（1）概念"></a>（1）概念</h3><p>所谓函数模板，就是一个通用函数，返回值和参数类型不具体指定，使用虚拟类型来替代（占位符），这个通用函数就叫函数模版（Function Template）</p>
-<h3 id="（2）定义形式"><a href="#（2）定义形式" class="headerlink" title="（2）定义形式"></a>（2）定义形式</h3><ul>
-<li><p>一</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">template&lt;typename 类型参数&gt;</span><br><span class="line">返回类型 函数名(模版形参表)</span><br><span class="line">&#123;</span><br><span class="line">	函数体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>二</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">template&lt;class T&gt;</span><br><span class="line">返回类型 函数名(模版形参表)</span><br><span class="line">&#123;</span><br><span class="line">	函数体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<blockquote>
-<p>template：声明模板的关键字</p>
-<p>typename和class都是表示他们之后的参数都是一个类型的参数，class是早期c++版本使用的</p>
-</blockquote>
-<h3 id="（3）代码示例"><a href="#（3）代码示例" class="headerlink" title="（3）代码示例"></a>（3）代码示例</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function">T <span class="title">doSum</span><span class="params">(T a, T b)</span> </span>&#123;</span><br><span class="line">    T temp = a + b;</span><br><span class="line">    <span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m = doSum(<span class="number">10</span> ,<span class="number">20</span>);</span><br><span class="line">    <span class="keyword">float</span> n = doSum(<span class="number">10.1</span>, <span class="number">20.2</span>);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; m &lt;&lt; <span class="string">&quot;  &quot;</span> &lt;&lt; n &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="（4）重载"><a href="#（4）重载" class="headerlink" title="（4）重载"></a>（4）重载</h3><ul>
-<li><p>函数模版支持函数重载，参数列表不一样</p>
-</li>
-<li><p>编译器调用函数的顺序</p>
-<p>1、先搜索参数完全匹配的普通函数</p>
-<p>2、其次搜索参数匹配的模版函数</p>
-<p>3、最后搜索自动类型转换后能匹配的普通函数</p>
-</li>
-</ul>
-<h2 id="4、类模板"><a href="#4、类模板" class="headerlink" title="4、类模板"></a>4、类模板</h2><h3 id="（1）简介"><a href="#（1）简介" class="headerlink" title="（1）简介"></a>（1）简介</h3><p>建立一个通用类</p>
-<h3 id="（2）代码具体实现格式"><a href="#（2）代码具体实现格式" class="headerlink" title="（2）代码具体实现格式"></a>（2）代码具体实现格式</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明类以及方法</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">deleteEle</span><span class="params">(T data)</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 类外定义方法</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">bool</span> Test&lt;T&gt;::deleteEle(T data) &#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; data &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="二、STL"><a href="#二、STL" class="headerlink" title="二、STL"></a>二、STL</h1><h2 id="1、简介"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介</h2><h3 id="（1）简单介绍"><a href="#（1）简单介绍" class="headerlink" title="（1）简单介绍"></a>（1）简单介绍</h3><ul>
-<li><p>标准模版库</p>
-</li>
-<li><p>一些“容器”的集合：list、vector、set、map等等</p>
-</li>
-<li><p>标准化组件，实现可重用</p>
-</li>
-<li><p>六大部分</p>
-<p>容器、迭代器、空间配置器、配接器、算法、仿函数</p>
-</li>
-</ul>
-<h3 id="（2）详解"><a href="#（2）详解" class="headerlink" title="（2）详解"></a>（2）详解</h3><ul>
-<li><p>容器</p>
-<p>一些封装数据结构的模板类，如：vector、list</p>
-</li>
-<li><p>算法</p>
-<p>大量数据结构算法</p>
-</li>
-<li><p>迭代器</p>
-<p>对容器中数据的读写通过迭代器实现</p>
-</li>
-<li><p>函数对象</p>
-<p>将运算符重载为成员函数，这个类就称为函数对象类</p>
-</li>
-<li><p>适配器</p>
-<p>将一个类的接口适配成用户指定的形式</p>
-</li>
-<li><p>内存分配器</p>
-<p>内存申请和释放</p>
-</li>
-</ul>
-<h3 id="（3）代码示例-1"><a href="#（3）代码示例-1" class="headerlink" title="（3）代码示例"></a>（3）代码示例</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">6</span>] = &#123;<span class="number">26</span>, <span class="number">5</span>, <span class="number">76</span>, <span class="number">1</span>, <span class="number">6</span>, <span class="number">3</span>&#125;;</span><br><span class="line">    vector&lt;int, allocator&lt;int&gt;&gt; vi(a, a + 6);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; count_if(vi.begin(), vi.end(), not1(bind2nd(less&lt;<span class="keyword">int</span>&gt;(), <span class="number">40</span>)));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>(a, a + 6)</p>
-<p>赋予初值</p>
-</li>
-<li><p>vector：container（容器）</p>
-</li>
-<li><p>allocator<int>：allocator（分配器）</p>
-<p>默认会有对应规则</p>
-</li>
-<li><p>count_if：algorithms（算法）</p>
-<p>查询符合条件的元素个数</p>
-</li>
-<li><p>vi.begin()、vi.end()：iterators（迭代器）</p>
-</li>
-<li><p>not1、bind2nd：函数适配器</p>
-<p>not1：取反，统计大于等于40的数</p>
-</li>
-<li><p>less<int>：函数对象</p>
-<p>查找所有小于int的数据，通过bind2nd：绑定40，查找所有小于40的数</p>
-</li>
-</ul>
-<h2 id="2、容器"><a href="#2、容器" class="headerlink" title="2、容器"></a>2、容器</h2><h3 id="（1）简介-1"><a href="#（1）简介-1" class="headerlink" title="（1）简介"></a>（1）简介</h3><ul>
-<li><p>Sequence Container（序列式容器）</p>
-<p>Array、Vectror、Deque、List、Forward-List</p>
-</li>
-<li><p>Associative Container（关联容器：key-value）</p>
-<p>set（红黑树）、map、multiset/multimap</p>
-</li>
-<li><p>Unsorted Container（无定式容器，本质hash map）</p>
-<p>通过Hash表的链地址法进行查找操作</p>
-</li>
-</ul>
-<h3 id="（2）vector"><a href="#（2）vector" class="headerlink" title="（2）vector"></a>（2）vector</h3><h4 id="a、简单介绍"><a href="#a、简单介绍" class="headerlink" title="a、简单介绍"></a>a、简单介绍</h4><p>封装了动态大小数组的顺序容器</p>
-<p>功能：</p>
-<ul>
-<li>动态数组</li>
-<li>尾端增删元素</li>
-</ul>
-<h4 id="b、函数API"><a href="#b、函数API" class="headerlink" title="b、函数API"></a>b、函数API</h4><p><a target="_blank" rel="noopener" href="https://www.apiref.com/cpp-zh/cpp/container/vector.html">C++中文- API参考文档</a></p>
-<ul>
-<li><p>创建vector</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建vector</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v1;</span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">v2</span><span class="params">(v1)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">v3</span><span class="params">(<span class="number">10</span>, <span class="number">-1</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; <span class="title">v4</span><span class="params">(<span class="number">10</span>, <span class="string">&quot;hi&quot;</span>)</span></span>;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>基本使用</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">5</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line"><span class="comment">// 本质为一个模板类</span></span><br><span class="line"><span class="comment">// 半开区间：[&amp;a[0], &amp;a[5])</span></span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">vt</span><span class="params">(&amp;a[<span class="number">0</span>], &amp;a[<span class="number">5</span>])</span></span>;</span><br><span class="line"><span class="comment">// 1 第一个元素</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;first data = &quot;</span> &lt;&lt; vt.front() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">// 2 最后一个元素</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;last data = &quot;</span> &lt;&lt; vt.back() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">// 3 元素个数</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;data size = &quot;</span> &lt;&lt; vt.size() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">// 4 输出数组</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; vt.size(); ++i)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; vt[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h4 id="c、迭代器"><a href="#c、迭代器" class="headerlink" title="c、迭代器"></a>c、迭代器</h4><ul>
-<li><p>简介：</p>
-<p>迭代器是一个复杂的指针，可以读写容器中的对象，本质为运算符的重载</p>
-</li>
-<li><p>格式：</p>
-<p><code>vector&lt;int&gt;::iterator iterator = vt.begin();</code></p>
-</li>
-<li><p>使用范例</p>
-<pre><code class="c++">vector&lt;int&gt;::iterator it;
-for(it = vt.begin(); it != vt.end(); ++it)
-&#123;
-  cout &lt;&lt; *it &lt;&lt; endl;
-&#125;
-</code></pre>
-</li>
-</ul>
-<h4 id="d、底层剖析"><a href="#d、底层剖析" class="headerlink" title="d、底层剖析"></a>d、底层剖析</h4><h1 id="三、设计模式"><a href="#三、设计模式" class="headerlink" title="三、设计模式"></a>三、设计模式</h1><h1 id="四、explict关键字"><a href="#四、explict关键字" class="headerlink" title="四、explict关键字"></a>四、explict关键字</h1>
+<p>cellnet的设计理念是：高性能、简单、方便、开箱即用</p>
+<h1 id="一、了解cellnet网络库的特性、流程与架构"><a href="#一、了解cellnet网络库的特性、流程与架构" class="headerlink" title="一、了解cellnet网络库的特性、流程与架构"></a>一、了解cellnet网络库的特性、流程与架构</h1><h2 id="1、cellnet网络库的特性"><a href="#1、cellnet网络库的特性" class="headerlink" title="1、cellnet网络库的特性"></a>1、cellnet网络库的特性</h2><h2 id="2、cellnet网络库的流程以及架构"><a href="#2、cellnet网络库的流程以及架构" class="headerlink" title="2、cellnet网络库的流程以及架构"></a>2、cellnet网络库的流程以及架构</h2><h1 id="二、管理TCP-Scket连接"><a href="#二、管理TCP-Scket连接" class="headerlink" title="二、管理TCP Scket连接"></a>二、管理TCP Scket连接</h1><h2 id="1、理解Socket的事件类型"><a href="#1、理解Socket的事件类型" class="headerlink" title="1、理解Socket的事件类型"></a>1、理解Socket的事件类型</h2><h2 id="2、管理事件回调"><a href="#2、管理事件回调" class="headerlink" title="2、管理事件回调"></a>2、管理事件回调</h2><h2 id="3、连接器（Connector）"><a href="#3、连接器（Connector）" class="headerlink" title="3、连接器（Connector）"></a>3、连接器（Connector）</h2><h2 id="4、会话管理（SessionManager）"><a href="#4、会话管理（SessionManager）" class="headerlink" title="4、会话管理（SessionManager）"></a>4、会话管理（SessionManager）</h2><h2 id="5、接收器（Acceptor）"><a href="#5、接收器（Acceptor）" class="headerlink" title="5、接收器（Acceptor）"></a>5、接收器（Acceptor）</h2><h1 id="三、组织接收和发送数据流程的Socket会话（Session）"><a href="#三、组织接收和发送数据流程的Socket会话（Session）" class="headerlink" title="三、组织接收和发送数据流程的Socket会话（Session）"></a>三、组织接收和发送数据流程的Socket会话（Session）</h1><h2 id="1、在会话开始时启动goroutine和派发事件"><a href="#1、在会话开始时启动goroutine和派发事件" class="headerlink" title="1、在会话开始时启动goroutine和派发事件"></a>1、在会话开始时启动goroutine和派发事件</h2><h2 id="2、会话中的接收数据循环"><a href="#2、会话中的接收数据循环" class="headerlink" title="2、会话中的接收数据循环"></a>2、会话中的接收数据循环</h2><h2 id="3、会话中的发送数据循环"><a href="#3、会话中的发送数据循环" class="headerlink" title="3、会话中的发送数据循环"></a>3、会话中的发送数据循环</h2><h1 id="四、排队处理事件的事件队列（EventQueue）"><a href="#四、排队处理事件的事件队列（EventQueue）" class="headerlink" title="四、排队处理事件的事件队列（EventQueue）"></a>四、排队处理事件的事件队列（EventQueue）</h1><h2 id="1、实现事件队列"><a href="#1、实现事件队列" class="headerlink" title="1、实现事件队列"></a>1、实现事件队列</h2><h2 id="2、使用不同的事件队列模式处理数据"><a href="#2、使用不同的事件队列模式处理数据" class="headerlink" title="2、使用不同的事件队列模式处理数据"></a>2、使用不同的事件队列模式处理数据</h2><h1 id="五、消息编码（codec）-让cellnet支持消息的多种编码格式"><a href="#五、消息编码（codec）-让cellnet支持消息的多种编码格式" class="headerlink" title="五、消息编码（codec）-让cellnet支持消息的多种编码格式"></a>五、消息编码（codec）-让cellnet支持消息的多种编码格式</h1><h1 id="六、消息元信息（MessageMeta）-消息ID、消息名称和消息类型的关联关系"><a href="#六、消息元信息（MessageMeta）-消息ID、消息名称和消息类型的关联关系" class="headerlink" title="六、消息元信息（MessageMeta）-消息ID、消息名称和消息类型的关联关系"></a>六、消息元信息（MessageMeta）-消息ID、消息名称和消息类型的关联关系</h1><h2 id="1、理解消息元信息"><a href="#1、理解消息元信息" class="headerlink" title="1、理解消息元信息"></a>1、理解消息元信息</h2><h2 id="2、注册消息元信息"><a href="#2、注册消息元信息" class="headerlink" title="2、注册消息元信息"></a>2、注册消息元信息</h2><h2 id="3、示例：使用消息元信息"><a href="#3、示例：使用消息元信息" class="headerlink" title="3、示例：使用消息元信息"></a>3、示例：使用消息元信息</h2><h2 id="4、实现消息的编码（EncodeMessage-）和解码（DecodeMessage-）函数"><a href="#4、实现消息的编码（EncodeMessage-）和解码（DecodeMessage-）函数" class="headerlink" title="4、实现消息的编码（EncodeMessage()）和解码（DecodeMessage()）函数"></a>4、实现消息的编码（EncodeMessage()）和解码（DecodeMessage()）函数</h2><h1 id="七、接收和发送封包（Packet）"><a href="#七、接收和发送封包（Packet）" class="headerlink" title="七、接收和发送封包（Packet）"></a>七、接收和发送封包（Packet）</h1><h2 id="1、接收可变长度封包"><a href="#1、接收可变长度封包" class="headerlink" title="1、接收可变长度封包"></a>1、接收可变长度封包</h2><h2 id="2、了解封包数据读取器（PacketReader）"><a href="#2、了解封包数据读取器（PacketReader）" class="headerlink" title="2、了解封包数据读取器（PacketReader）"></a>2、了解封包数据读取器（PacketReader）</h2><h2 id="3、了解封包数据写入器（PacketWriter）"><a href="#3、了解封包数据写入器（PacketWriter）" class="headerlink" title="3、了解封包数据写入器（PacketWriter）"></a>3、了解封包数据写入器（PacketWriter）</h2><h2 id="4、读取自定义封包及数据"><a href="#4、读取自定义封包及数据" class="headerlink" title="4、读取自定义封包及数据"></a>4、读取自定义封包及数据</h2><h2 id="5、写入自定义封包及数据"><a href="#5、写入自定义封包及数据" class="headerlink" title="5、写入自定义封包及数据"></a>5、写入自定义封包及数据</h2><h2 id="6、响应消息处理事件"><a href="#6、响应消息处理事件" class="headerlink" title="6、响应消息处理事件"></a>6、响应消息处理事件</h2><h1 id="八、使用cellnet实现聊天功能"><a href="#八、使用cellnet实现聊天功能" class="headerlink" title="八、使用cellnet实现聊天功能"></a>八、使用cellnet实现聊天功能</h1><h2 id="1、定义聊天协议"><a href="#1、定义聊天协议" class="headerlink" title="1、定义聊天协议"></a>1、定义聊天协议</h2><h2 id="2、实现客户端功能"><a href="#2、实现客户端功能" class="headerlink" title="2、实现客户端功能"></a>2、实现客户端功能</h2><h2 id="3、实现服务器功能"><a href="#3、实现服务器功能" class="headerlink" title="3、实现服务器功能"></a>3、实现服务器功能</h2><h2 id="4、运行聊天服务器和客户端"><a href="#4、运行聊天服务器和客户端" class="headerlink" title="4、运行聊天服务器和客户端"></a>4、运行聊天服务器和客户端</h2>
       
     </div>
 
@@ -364,7 +215,7 @@ for(it = vt.begin(); it != vt.end(); ++it)
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/26/Docker%E5%AD%A6%E4%B9%A0/DockerSwarm/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/27/Go/%E7%AC%AC%E5%8D%81%E7%AB%A0%20%E5%8F%8D%E5%B0%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -378,7 +229,7 @@ for(it = vt.begin(); it != vt.end(); ++it)
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/26/Docker%E5%AD%A6%E4%B9%A0/DockerSwarm/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/05/27/Go/%E7%AC%AC%E5%8D%81%E7%AB%A0%20%E5%8F%8D%E5%B0%84/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -388,7 +239,7 @@ for(it = vt.begin(); it != vt.end(); ++it)
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-26 17:13:39" itemprop="dateCreated datePublished" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
+              <time title="创建时间：2022-05-27 17:08:49" itemprop="dateCreated datePublished" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
             </span>
 
           
@@ -402,14 +253,12 @@ for(it = vt.begin(); it != vt.end(); ++it)
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>接下来探讨的话题将是规模方面（Scale）的，有请<code>Docker Swarm</code>登场</p>
-<p>概括来说，Swarm有两个核心组件：</p>
-<ul>
-<li>安全集群</li>
-<li>编排引擎</li>
-</ul>
-<h2 id="一、Docker-Swarm-简介"><a href="#一、Docker-Swarm-简介" class="headerlink" title="一、Docker Swarm-简介"></a>一、Docker Swarm-简介</h2><p><code>Docker Swarm</code>包含两个方面：一个企业级的Docker安全集群、一个微服务应用编排引擎</p>
+          <p>反射是指程序运行期间对程序本身进行访问和修改的能力</p>
+<p>Go程序在运行期间使用reflect包访问程序的反射信息</p>
+<h1 id="一、反射的类型对象（reflect-Type）"><a href="#一、反射的类型对象（reflect-Type）" class="headerlink" title="一、反射的类型对象（reflect.Type）"></a>一、反射的类型对象（reflect.Type）</h1><p>在Go中，使用<code>reflect.TypeOf()</code>函数便可以获取任意值的类型对象，一言不合上代码</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> a <span class="keyword">int</span></span><br><span class="line">	typeOf := reflect.TypeOf(a)</span><br><span class="line">	fmt.Println(typeOf)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h2 id="1、理解反射类型的类型（Type）与种类（Kind）"><a href="#1、理解反射类型的类型（Type）与种类（Kind）" class="headerlink" title="1、理解反射类型的类型（Type）与种类（Kind）"></a>1、理解反射类型的类型（Type）与种类（Kind）</h2>
       
     </div>
 
@@ -428,7 +277,7 @@ for(it = vt.begin(); it != vt.end(); ++it)
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/26/Docker%E5%AD%A6%E4%B9%A0/%E5%BA%94%E7%94%A8%E7%9A%84%E5%AE%B9%E5%99%A8%E5%8C%96/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/27/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E4%B8%80%E8%8A%82%E8%AF%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -442,7 +291,7 @@ for(it = vt.begin(); it != vt.end(); ++it)
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/26/Docker%E5%AD%A6%E4%B9%A0/%E5%BA%94%E7%94%A8%E7%9A%84%E5%AE%B9%E5%99%A8%E5%8C%96/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/05/27/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E4%B8%80%E8%8A%82%E8%AF%BE/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -452,7 +301,7 @@ for(it = vt.begin(); it != vt.end(); ++it)
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-26 17:13:39" itemprop="dateCreated datePublished" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
+              <time title="创建时间：2022-05-27 17:08:49" itemprop="dateCreated datePublished" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
             </span>
 
           
@@ -466,100 +315,100 @@ for(it = vt.begin(); it != vt.end(); ++it)
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Docker的核心思想就是将应用整合到容器中，并且能在容器中运行</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/26/Go/Untitled/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/26/Go/Untitled/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-05-26 17:13:39" itemprop="dateCreated datePublished" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Go语言基础-包（Packet）"><a href="#Go语言基础-包（Packet）" class="headerlink" title="Go语言基础-包（Packet）"></a>Go语言基础-包（Packet）</h2><p>Go语言源码复用建立在包的基础之上</p>
-<p>Go语言的包与文件夹一一对应，所有与包有关的操作必须依赖于工作目录（GOPATH）</p>
-<h3 id="一、工作目录（GOPATH）"><a href="#一、工作目录（GOPATH）" class="headerlink" title="一、工作目录（GOPATH）"></a>一、工作目录（GOPATH）</h3><p>GOPATH是GO语言使用的一个环境变量，使用绝对路径提供项目的工作目录。</p>
-<h4 id="1、使用命令行查看GOPATH"><a href="#1、使用命令行查看GOPATH" class="headerlink" title="1、使用命令行查看GOPATH"></a>1、使用命令行查看GOPATH</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go env</span><br></pre></td></tr></table></figure>
-
-<p>执行上面的指令可以得到以下输出（部分）</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">GO111MODULE=&quot;on&quot;</span><br><span class="line">GOARCH=&quot;arm64&quot;</span><br><span class="line">GOBIN=&quot;/opt/homebrew/Cellar/go/1.18.1/bin&quot;</span><br><span class="line">GOCACHE=&quot;/Users/xietingyu/Library/Caches/go-build&quot;</span><br><span class="line">GOENV=&quot;/Users/xietingyu/Library/Application Support/go/env&quot;</span><br><span class="line">......</span><br><span class="line">GOPATH=&quot;/Users/xietingyu/go&quot;</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>GOARCH：目标处理器架构</li>
-<li>GOBIN：编译器和链接器安装位置</li>
+          <p>第一次课程前半部分讲了Go基本语法，后半部分讲了三个小项目</p>
+<h2 id="零、Go基础"><a href="#零、Go基础" class="headerlink" title="零、Go基础"></a>零、Go基础</h2><h3 id="1、基本语法"><a href="#1、基本语法" class="headerlink" title="1、基本语法"></a>1、基本语法</h3><ul>
+<li><p>变量</p>
+<p>声明、初始化、匿名变量</p>
+</li>
+<li><p>数据类型</p>
+<p>整形、浮点型、布尔、字符型、字符串、切片、</p>
+</li>
+<li><p>指针</p>
+</li>
+<li><p>变量的生命周期</p>
+</li>
+<li><p>常量</p>
+</li>
+<li><p>变量别名</p>
+</li>
 </ul>
-<p>就不一一解释了，由上命令行输出可见，GOPATH路径为：<code>/Users/xietingyu/go</code></p>
-<h4 id="2、使用GOPATH的工程结构"><a href="#2、使用GOPATH的工程结构" class="headerlink" title="2、使用GOPATH的工程结构"></a>2、使用GOPATH的工程结构</h4><p>代码保存在<code>$GOPATH/src</code>下</p>
-<p>工程经过编译后的二进制文件在<code>$GOPATH/bin</code>下</p>
-<p>生成的中间缓存文件在<code>$GOPATH/pkg</code>下</p>
-<h4 id="3、设置和使用GOPATH"><a href="#3、设置和使用GOPATH" class="headerlink" title="3、设置和使用GOPATH"></a>3、设置和使用GOPATH</h4><h5 id="（1）设置当前目录为GOPATH"><a href="#（1）设置当前目录为GOPATH" class="headerlink" title="（1）设置当前目录为GOPATH"></a>（1）设置当前目录为GOPATH</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export GOPATH=`pwd`</span><br></pre></td></tr></table></figure>
-
-<h5 id="（2）建立GOPATH的源码路径"><a href="#（2）建立GOPATH的源码路径" class="headerlink" title="（2）建立GOPATH的源码路径"></a>（2）建立GOPATH的源码路径</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p src/hello</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>-p：表示递归创建·文件夹</li>
+<h3 id="2、容器"><a href="#2、容器" class="headerlink" title="2、容器"></a>2、容器</h3><ul>
+<li><p>数组</p>
+<p>声明、初始化、遍历</p>
+</li>
+<li><p>切片（slice）</p>
+<p>make()、append()</p>
+</li>
+<li><p>映射（map）</p>
+</li>
+<li><p>列表（list）</p>
+</li>
 </ul>
-<h5 id="（3）添加main-go文件"><a href="#（3）添加main-go文件" class="headerlink" title="（3）添加main.go文件"></a>（3）添加main.go文件</h5><p>先进入<code>src/hello</code>文件夹</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd src/hello</span><br></pre></td></tr></table></figure>
+<h3 id="3、流程控制"><a href="#3、流程控制" class="headerlink" title="3、流程控制"></a>3、流程控制</h3><ul>
+<li>条件判断：if</li>
+<li>循环：for</li>
+<li>键值循环：for range</li>
+<li>分支选择：switch</li>
+<li>代码跳转：goto</li>
+</ul>
+<h2 id="一、猜字谜游戏"><a href="#一、猜字谜游戏" class="headerlink" title="一、猜字谜游戏"></a>一、猜字谜游戏</h2><h3 id="1、代码版本一"><a href="#1、代码版本一" class="headerlink" title="1、代码版本一"></a>1、代码版本一</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;math/rand&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	maxNum := <span class="number">100</span></span><br><span class="line">	secretNumber := rand.Intn(maxNum)</span><br><span class="line">	fmt.Println(<span class="string">&quot;The secret number is &quot;</span>, secretNumber)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>使用vim创建文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim hello.go</span><br></pre></td></tr></table></figure>
+<p>每次运行输出的数字都是同样的</p>
+<p>随机数种子</p>
+<h3 id="2、代码版本二"><a href="#2、代码版本二" class="headerlink" title="2、代码版本二"></a>2、代码版本二</h3><p>需要设置代码随机数种子，设置为当前的时间戳</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rand.Seed(time.Now().UnixNano())</span><br></pre></td></tr></table></figure>
 
-<p>写入以下代码</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	fmt.Println(<span class="string">&quot;hello&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3、代码版本三"><a href="#3、代码版本三" class="headerlink" title="3、代码版本三"></a>3、代码版本三</h3><p>实现用户的输入输出</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">reader := bufio.NewReader(os.Stdin)</span><br><span class="line">input, err := reader.ReadString(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">  fmt.Println(<span class="string">&quot;An error occured while reading input. Please try again&quot;</span>, err)</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line">input = strings.TrimSuffix(input, <span class="string">&quot;\n&quot;</span>)</span><br></pre></td></tr></table></figure>
 
-<h5 id="（4）编译运行"><a href="#（4）编译运行" class="headerlink" title="（4）编译运行"></a>（4）编译运行</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go install hello</span><br></pre></td></tr></table></figure>
+<h3 id="4、代码版本四"><a href="#4、代码版本四" class="headerlink" title="4、代码版本四"></a>4、代码版本四</h3><p>使用循环实现游戏的循环</p>
+<p>变量、循环、函数、文件流、错误处理等</p>
+<h2 id="二、命令行版本词典"><a href="#二、命令行版本词典" class="headerlink" title="二、命令行版本词典"></a>二、命令行版本词典</h2><p>调用第三方API</p>
+<p>使用Go发送网络请求，解析JSON，并使用相应的代码生成工具提高开发效率</p>
+<h3 id="1、抓包"><a href="#1、抓包" class="headerlink" title="1、抓包"></a>1、抓包</h3><p>抓取第三方翻译平台的API</p>
+<p><a target="_blank" rel="noopener" href="https://fanyi.caiyunapp.com/">https://fanyi.caiyunapp.com/</a></p>
+<p>按f12打开开发人员工具，找到正确的请求</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Go/bytedance/1.png">
 
-<p>在<code>bin</code>目录下会有名为hello的可执行文件</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./hello</span><br></pre></td></tr></table></figure>
+<h3 id="2、代码生成"><a href="#2、代码生成" class="headerlink" title="2、代码生成"></a>2、代码生成</h3><p>右键请求</p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Go/bytedance/2.png">
+
+<p>复制结果如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">curl &#x27;https://api.interpreter.caiyunai.com/v1/dict&#x27; \</span><br><span class="line">  -H &#x27;Accept: application/json, text/plain, */*&#x27; \</span><br><span class="line">  -H &#x27;Accept-Language: en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7&#x27; \</span><br><span class="line">  -H &#x27;Connection: keep-alive&#x27; \</span><br><span class="line">  -H &#x27;Content-Type: application/json;charset=UTF-8&#x27; \</span><br><span class="line">  -H &#x27;Origin: https://fanyi.caiyunapp.com&#x27; \</span><br><span class="line">  -H &#x27;Referer: https://fanyi.caiyunapp.com/&#x27; \</span><br><span class="line">  -H &#x27;Sec-Fetch-Dest: empty&#x27; \</span><br><span class="line">  -H &#x27;Sec-Fetch-Mode: cors&#x27; \</span><br><span class="line">  -H &#x27;Sec-Fetch-Site: cross-site&#x27; \</span><br><span class="line">  -H &#x27;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36&#x27; \</span><br><span class="line">  -H &#x27;X-Authorization: token:qgemv4jr1y38jyq6vhvi&#x27; \</span><br><span class="line">  -H &#x27;app-name: xy&#x27; \</span><br><span class="line">  -H &#x27;device-id: &#x27; \</span><br><span class="line">  -H &#x27;os-type: web&#x27; \</span><br><span class="line">  -H &#x27;os-version: &#x27; \</span><br><span class="line">  -H &#x27;sec-ch-ua: &quot; Not A;Brand&quot;;v=&quot;99&quot;, &quot;Chromium&quot;;v=&quot;101&quot;, &quot;Google Chrome&quot;;v=&quot;101&quot;&#x27; \</span><br><span class="line">  -H &#x27;sec-ch-ua-mobile: ?0&#x27; \</span><br><span class="line">  -H &#x27;sec-ch-ua-platform: &quot;macOS&quot;&#x27; \</span><br><span class="line">  --data-raw &#x27;&#123;&quot;trans_type&quot;:&quot;en2zh&quot;,&quot;source&quot;:&quot;good&quot;&#125;&#x27; \</span><br><span class="line">  --compressed</span><br></pre></td></tr></table></figure>
+
+<p>然后我们就去这个平台生成代码：<a target="_blank" rel="noopener" href="https://curlconverter.com/#go">Go代码生成</a></p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Go/bytedance/3.png">
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;io/ioutil&quot;</span></span><br><span class="line">	<span class="string">&quot;log&quot;</span></span><br><span class="line">	<span class="string">&quot;net/http&quot;</span></span><br><span class="line">	<span class="string">&quot;strings&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	client := &amp;http.Client&#123;&#125;</span><br><span class="line">	<span class="keyword">var</span> data = strings.NewReader(<span class="string">`&#123;&quot;trans_type&quot;:&quot;en2zh&quot;,&quot;source&quot;:&quot;good&quot;&#125;`</span>)</span><br><span class="line">  <span class="comment">// 创建请求</span></span><br><span class="line">	req, err := http.NewRequest(<span class="string">&quot;POST&quot;</span>, <span class="string">&quot;https://api.interpreter.caiyunai.com/v1/dict&quot;</span>, data)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line">  <span class="comment">// 设置请求头</span></span><br><span class="line">	req.Header.Set(<span class="string">&quot;Accept&quot;</span>, <span class="string">&quot;application/json, text/plain, */*&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;Accept-Language&quot;</span>, <span class="string">&quot;en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;Connection&quot;</span>, <span class="string">&quot;keep-alive&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;Content-Type&quot;</span>, <span class="string">&quot;application/json;charset=UTF-8&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;Origin&quot;</span>, <span class="string">&quot;https://fanyi.caiyunapp.com&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;Referer&quot;</span>, <span class="string">&quot;https://fanyi.caiyunapp.com/&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;Sec-Fetch-Dest&quot;</span>, <span class="string">&quot;empty&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;Sec-Fetch-Mode&quot;</span>, <span class="string">&quot;cors&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;Sec-Fetch-Site&quot;</span>, <span class="string">&quot;cross-site&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;User-Agent&quot;</span>, <span class="string">&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;X-Authorization&quot;</span>, <span class="string">&quot;token:qgemv4jr1y38jyq6vhvi&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;app-name&quot;</span>, <span class="string">&quot;xy&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;os-type&quot;</span>, <span class="string">&quot;web&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;sec-ch-ua&quot;</span>, <span class="string">`&quot; Not A;Brand&quot;;v=&quot;99&quot;, &quot;Chromium&quot;;v=&quot;101&quot;, &quot;Google Chrome&quot;;v=&quot;101&quot;`</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;sec-ch-ua-mobile&quot;</span>, <span class="string">&quot;?0&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;sec-ch-ua-platform&quot;</span>, <span class="string">`&quot;macOS&quot;`</span>)</span><br><span class="line">  <span class="comment">// 发起请求</span></span><br><span class="line">	resp, err := client.Do(req)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">defer</span> resp.Body.Close()</span><br><span class="line">  <span class="comment">// 读取响应</span></span><br><span class="line">	bodyText, err := ioutil.ReadAll(resp.Body)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">&quot;%s\n&quot;</span>, bodyText)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、生成requst-body"><a href="#3、生成requst-body" class="headerlink" title="3、生成requst body"></a>3、生成requst body</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> DictRequest <span class="keyword">struct</span> &#123;</span><br><span class="line">	TransType <span class="keyword">string</span> <span class="string">`json:&quot;trans_type&quot;`</span></span><br><span class="line">	Source    <span class="keyword">string</span> <span class="string">`json:&quot;source&quot;`</span></span><br><span class="line">	UserID    <span class="keyword">string</span> <span class="string">`json:&quot;user_id&quot;`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将请求结构体序列化为JSON：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">request := DictRequest&#123;TransType: <span class="string">&quot;en2zh&quot;</span>, Source: <span class="string">&quot;good&quot;</span>&#125;</span><br><span class="line">buf, err := json.Marshal(request)</span><br></pre></td></tr></table></figure>
+
+<h3 id="4、response-body的解析"><a href="#4、response-body的解析" class="headerlink" title="4、response body的解析"></a>4、response body的解析</h3><p>由于结构复杂，为了防止出错，我们使用第三方代码生成工具</p>
+<p>去这个平台进行Go结构体的生成：<a target="_blank" rel="noopener" href="https://oktools.net/">Go结构体</a></p>
+<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Go/bytedance/4.png">
+
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> AutoGenerated <span class="keyword">struct</span> &#123;</span><br><span class="line">	Rc <span class="keyword">int</span> <span class="string">`json:&quot;rc&quot;`</span></span><br><span class="line">	Wiki Wiki <span class="string">`json:&quot;wiki&quot;`</span></span><br><span class="line">	Dictionary Dictionary <span class="string">`json:&quot;dictionary&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> Description <span class="keyword">struct</span> &#123;</span><br><span class="line">	Source <span class="keyword">string</span> <span class="string">`json:&quot;source&quot;`</span></span><br><span class="line">	Target <span class="keyword">interface</span>&#123;&#125; <span class="string">`json:&quot;target&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> Item <span class="keyword">struct</span> &#123;</span><br><span class="line">	Source <span class="keyword">string</span> <span class="string">`json:&quot;source&quot;`</span></span><br><span class="line">	Target <span class="keyword">string</span> <span class="string">`json:&quot;target&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> Wiki <span class="keyword">struct</span> &#123;</span><br><span class="line">	KnownInLaguages <span class="keyword">int</span> <span class="string">`json:&quot;known_in_laguages&quot;`</span></span><br><span class="line">	Description Description <span class="string">`json:&quot;description&quot;`</span></span><br><span class="line">	ID <span class="keyword">string</span> <span class="string">`json:&quot;id&quot;`</span></span><br><span class="line">	Item Item <span class="string">`json:&quot;item&quot;`</span></span><br><span class="line">	ImageURL <span class="keyword">string</span> <span class="string">`json:&quot;image_url&quot;`</span></span><br><span class="line">	IsSubject <span class="keyword">string</span> <span class="string">`json:&quot;is_subject&quot;`</span></span><br><span class="line">	Sitelink <span class="keyword">string</span> <span class="string">`json:&quot;sitelink&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> Prons <span class="keyword">struct</span> &#123;</span><br><span class="line">	EnUs <span class="keyword">string</span> <span class="string">`json:&quot;en-us&quot;`</span></span><br><span class="line">	En <span class="keyword">string</span> <span class="string">`json:&quot;en&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> Dictionary <span class="keyword">struct</span> &#123;</span><br><span class="line">	Prons Prons <span class="string">`json:&quot;prons&quot;`</span></span><br><span class="line">	Explanations []<span class="keyword">string</span> <span class="string">`json:&quot;explanations&quot;`</span></span><br><span class="line">	Synonym []<span class="keyword">string</span> <span class="string">`json:&quot;synonym&quot;`</span></span><br><span class="line">	Antonym []<span class="keyword">string</span> <span class="string">`json:&quot;antonym&quot;`</span></span><br><span class="line">	WqxExample []WqxExample[]<span class="keyword">string</span> <span class="string">`json:&quot;wqx_example&quot;`</span></span><br><span class="line">	Entry <span class="keyword">string</span> <span class="string">`json:&quot;entry&quot;`</span></span><br><span class="line">	Type <span class="keyword">string</span> <span class="string">`json:&quot;type&quot;`</span></span><br><span class="line">	Related []<span class="keyword">interface</span>&#123;&#125; <span class="string">`json:&quot;related&quot;`</span></span><br><span class="line">	Source <span class="keyword">string</span> <span class="string">`json:&quot;source&quot;`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接下来就反序列化response body了：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dictResponse DictResponse</span><br><span class="line">err = json.Unmarshal(bodyText, &amp;dictResponse)</span><br></pre></td></tr></table></figure>
+
+<p>获取JSON中指定的信息</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fmt.Println(<span class="string">&quot;UK:&quot;</span>, dictResponse.Dictionary.Prons.En, <span class="string">&quot;US:&quot;</span>, dictResponse.Dictionary.Prons.EnUs)</span><br></pre></td></tr></table></figure>
+
+<h3 id="5、获取命令行参数"><a href="#5、获取命令行参数" class="headerlink" title="5、获取命令行参数"></a>5、获取命令行参数</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="built_in">len</span>(os.Args) != <span class="number">2</span> &#123;</span><br><span class="line">  fmt.Fprintf(os.Stderr, <span class="string">`usage: simpleDict WORD</span></span><br><span class="line"><span class="string">example: simpleDict hello</span></span><br><span class="line"><span class="string">		`</span>)</span><br><span class="line">  os.Exit(<span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line">word := os.Args[<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、SOCKET5代理服务器"><a href="#三、SOCKET5代理服务器" class="headerlink" title="三、SOCKET5代理服务器"></a>三、SOCKET5代理服务器</h2><h3 id="1、socks5原理"><a href="#1、socks5原理" class="headerlink" title="1、socks5原理"></a>1、socks5原理</h3><h3 id="2、向一个连接读写数据"><a href="#2、向一个连接读写数据" class="headerlink" title="2、向一个连接读写数据"></a>2、向一个连接读写数据</h3><p>读数据：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">reader := bufio.NewReader(conn)</span><br><span class="line">b, err := reader.ReadByte()</span><br></pre></td></tr></table></figure>
+
+<p>写数据：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_, err = conn.Write([]<span class="keyword">byte</span>&#123;b&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="4、连接的各个流程"><a href="#4、连接的各个流程" class="headerlink" title="4、连接的各个流程"></a>4、连接的各个流程</h3><p>基于字节流，根据协议规则，依次读取字节，将字节拼接成不同的具体数据</p>
+<h3 id="5、实现双向的数据转发"><a href="#5、实现双向的数据转发" class="headerlink" title="5、实现双向的数据转发"></a>5、实现双向的数据转发</h3><p>任何一个方向的数据copy失败，我们就返回这个函数，并关闭连接清理数据</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ctx, cancel := context.WithCancel(context.Background())</span><br><span class="line"><span class="keyword">defer</span> cancel()</span><br><span class="line"><span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">  _, _ = io.Copy(dest, reader)</span><br><span class="line">  cancel()</span><br><span class="line">&#125;()</span><br><span class="line"><span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">  _, _ = io.Copy(conn, dest)</span><br><span class="line">  cancel()</span><br><span class="line">&#125;()</span><br><span class="line">&lt;-ctx.Done()</span><br></pre></td></tr></table></figure>
 
 
       
@@ -580,7 +429,7 @@ for(it = vt.begin(); it != vt.end(); ++it)
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/26/Go/%E5%B0%86%E6%88%91%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%BC%80%E6%94%BE%E7%BB%99%E7%94%A8%E6%88%B7/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/27/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E4%BA%8C%E8%8A%82%E8%AF%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -594,7 +443,7 @@ for(it = vt.begin(); it != vt.end(); ++it)
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/26/Go/%E5%B0%86%E6%88%91%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%BC%80%E6%94%BE%E7%BB%99%E7%94%A8%E6%88%B7/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/05/27/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E4%BA%8C%E8%8A%82%E8%AF%BE/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -604,7 +453,7 @@ for(it = vt.begin(); it != vt.end(); ++it)
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-26 17:13:39" itemprop="dateCreated datePublished" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
+              <time title="创建时间：2022-05-27 17:08:49" itemprop="dateCreated datePublished" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
             </span>
 
           
@@ -618,365 +467,381 @@ for(it = vt.begin(); it != vt.end(); ++it)
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>这节课程能学到的啥？</p>
-<h1 id="一、接入问题引入"><a href="#一、接入问题引入" class="headerlink" title="一、接入问题引入"></a>一、接入问题引入</h1><h2 id="1、经典问题引入"><a href="#1、经典问题引入" class="headerlink" title="1、经典问题引入"></a>1、经典问题引入</h2><p>输入域名到网页加载出来，经历了哪些过程？</p>
-<ul>
-<li>域名解析</li>
-<li>TCP建立连接</li>
-<li>SSL握手</li>
-<li>……</li>
-</ul>
-<p>DNS -&gt; TCP -&gt; TLS -&gt; HTTP请求</p>
-<h2 id="2、字节接入架构"><a href="#2、字节接入架构" class="headerlink" title="2、字节接入架构"></a>2、字节接入架构</h2><p>《》</p>
-<h1 id="二、企业接入升级打怪之路"><a href="#二、企业接入升级打怪之路" class="headerlink" title="二、企业接入升级打怪之路"></a>二、企业接入升级打怪之路</h1><h2 id="1、使用域名系统"><a href="#1、使用域名系统" class="headerlink" title="1、使用域名系统"></a>1、使用域名系统</h2><h3 id="（1）Host管理"><a href="#（1）Host管理" class="headerlink" title="（1）Host管理"></a>（1）Host管理</h3><ul>
-<li>流量和负载</li>
-<li>名称冲突</li>
-<li>时效性</li>
-</ul>
-<h3 id="（2）使用域名系统"><a href="#（2）使用域名系统" class="headerlink" title="（2）使用域名系统"></a>（2）使用域名系统</h3><p>《》</p>
-<p>解决Host管理的问题</p>
-<p>关于域名空间：</p>
-<p>顶级域gTLD：gov、edu、com、mil、org等</p>
-<p>域名报文格式：</p>
-<p>《》</p>
-<h3 id="（3）域名的购买"><a href="#（3）域名的购买" class="headerlink" title="（3）域名的购买"></a>（3）域名的购买</h3><p>各大云厂商可以购买</p>
-<h3 id="（4）如何开放外部用户访问"><a href="#（4）如何开放外部用户访问" class="headerlink" title="（4）如何开放外部用户访问"></a>（4）如何开放外部用户访问</h3><p>《》</p>
-<h2 id="2、自建DNS服务器"><a href="#2、自建DNS服务器" class="headerlink" title="2、自建DNS服务器"></a>2、自建DNS服务器</h2><h3 id="（1）问题背景"><a href="#（1）问题背景" class="headerlink" title="（1）问题背景"></a>（1）问题背景</h3><ul>
-<li>效率低下</li>
-<li>容易被攻击</li>
-<li>容易出问题</li>
-<li>扩大公司自己的影响力</li>
-</ul>
-<h3 id="（2）DNS查询过程"><a href="#（2）DNS查询过程" class="headerlink" title="（2）DNS查询过程"></a>（2）DNS查询过程</h3><p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000023694985">深入理解DNS解析过程</a></p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Go/bytedance/6.png">
+          <h1 id="一、语言进阶"><a href="#一、语言进阶" class="headerlink" title="一、语言进阶"></a>一、语言进阶</h1><p>并发与并行</p>
+<p>并发：多线程在单核CPU上运行</p>
+<p>并行：多线程程序在多核程序上运行</p>
+<h2 id="1、Goroutine"><a href="#1、Goroutine" class="headerlink" title="1、Goroutine"></a>1、Goroutine</h2><p>协程：用户态，轻量级线程，栈MB级别</p>
+<p>线程：内核态，线程跑多个协程，栈KB级别</p>
+<p>创建协程代码：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">hello</span><span class="params">(i <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="built_in">println</span>(<span class="string">&quot;hello goroutine : &quot;</span> + fmt.Sprint(i))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">5</span>; i++ &#123;</span><br><span class="line">		<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(j <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">			hello(j)</span><br><span class="line">		&#125;(i)</span><br><span class="line">	&#125;</span><br><span class="line">	time.Sleep(time.Second)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="（3）DNS记录类型"><a href="#（3）DNS记录类型" class="headerlink" title="（3）DNS记录类型"></a>（3）DNS记录类型</h3><img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Go/bytedance/7.png">
+<h2 id="2、CSP（Communicating-Sequential-Processes）"><a href="#2、CSP（Communicating-Sequential-Processes）" class="headerlink" title="2、CSP（Communicating Sequential Processes）"></a>2、CSP（Communicating Sequential Processes）</h2><p>提倡通过通信共享内存而不是通过共享内存实现通信</p>
+<h2 id="3、Channel"><a href="#3、Channel" class="headerlink" title="3、Channel"></a>3、Channel</h2><p>通过make(chan 元素类型，, [缓冲大小])</p>
+<ul>
+<li>有缓冲通道</li>
+<li>无缓冲通道</li>
+</ul>
+<p>代码示例：</p>
+<p>A协程发送0～9数字；B协程计算输入数字的平方；主协程输出最后的平方数</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">CalSquare</span><span class="params">()</span></span> &#123;</span><br><span class="line">	src := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">	dest := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">3</span>)</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">defer</span> <span class="built_in">close</span>(src)</span><br><span class="line">		<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line">			src &lt;- i</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">defer</span> <span class="built_in">close</span>(dest)</span><br><span class="line">		<span class="keyword">for</span> i := <span class="keyword">range</span> src &#123;</span><br><span class="line">			dest &lt;- i * i</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">for</span> i := <span class="keyword">range</span> dest &#123;</span><br><span class="line">		<span class="built_in">println</span>(i)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="（4）权威DNS系统架构"><a href="#（4）权威DNS系统架构" class="headerlink" title="（4）权威DNS系统架构"></a>（4）权威DNS系统架构</h3><p>Q：企业需要那种DNS？</p>
-<p>A：权威DNS</p>
-<p>常见的开源DNS：bind、nsd、knot、coredns</p>
+<h2 id="4、并发安全Lock"><a href="#4、并发安全Lock" class="headerlink" title="4、并发安全Lock"></a>4、并发安全Lock</h2><h2 id="5、WaitGroup"><a href="#5、WaitGroup" class="headerlink" title="5、WaitGroup"></a>5、WaitGroup</h2><p>计数器，开启协程+1；执行结束-1；主协程阻塞直到计数器为0</p>
+<h2 id="6、小结"><a href="#6、小结" class="headerlink" title="6、小结"></a>6、小结</h2><ul>
+<li>Goroutine</li>
+<li>Channel</li>
+<li>Sync</li>
+</ul>
+<h1 id="二、依赖管理"><a href="#二、依赖管理" class="headerlink" title="二、依赖管理"></a>二、依赖管理</h1><h2 id="1、Go依赖管理演进"><a href="#1、Go依赖管理演进" class="headerlink" title="1、Go依赖管理演进"></a>1、Go依赖管理演进</h2><p>GOPATH -&gt; Go Vender -&gt; Go Module</p>
+<h3 id="（1）GOPATH"><a href="#（1）GOPATH" class="headerlink" title="（1）GOPATH"></a>（1）GOPATH</h3><ul>
+<li>项目代码直接依赖src下的代码</li>
+<li>go get下载最新的代码到src目录下</li>
+</ul>
+<p>无法实现package的多版本控制</p>
+<h3 id="（2）Go-Vender"><a href="#（2）Go-Vender" class="headerlink" title="（2）Go Vender"></a>（2）Go Vender</h3><ul>
+<li>增加vender文件，存放所有的依赖包副本</li>
+<li>为每一个项目引入一份依赖副本</li>
+</ul>
+<p>无法控制依赖版本</p>
+<h3 id="（3）Go-Module"><a href="#（3）Go-Module" class="headerlink" title="（3）Go Module"></a>（3）Go Module</h3><ul>
+<li>通过<code>go.mod</code>文件管理依赖包版本</li>
+<li>通过<code>go get/go mod</code>指令工具管理依赖包</li>
+</ul>
+<p>定义版本规则和管理项目依赖关系</p>
+<h2 id="2、依赖管理"><a href="#2、依赖管理" class="headerlink" title="2、依赖管理"></a>2、依赖管理</h2><ul>
+<li>配置文件：go.mod</li>
+<li>中心仓库管理依赖库：Proxy</li>
+<li>本地工具：go get/mod</li>
+</ul>
+<h3 id="（1）依赖配置-go-mod"><a href="#（1）依赖配置-go-mod" class="headerlink" title="（1）依赖配置-go.mod"></a>（1）依赖配置-go.mod</h3><p>也就是编写go.mod</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 依赖管理基本单元</span></span><br><span class="line">module github.com/Moonlight-Zhao/<span class="keyword">go</span>-project-example</span><br><span class="line"></span><br><span class="line"><span class="comment">// 原生库</span></span><br><span class="line"><span class="keyword">go</span> <span class="number">1.16</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 描述单元依赖</span></span><br><span class="line">require (</span><br><span class="line">  <span class="comment">// 依赖标识：[Module Path][Version / Pseudo-version]</span></span><br><span class="line">	github.com/gin-contrib/sse v0<span class="number">.1</span><span class="number">.0</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h3 id="（2）依赖配置-version"><a href="#（2）依赖配置-version" class="headerlink" title="（2）依赖配置-version"></a>（2）依赖配置-version</h3><ul>
+<li>语义化版本</li>
+<li>基于commit伪版本</li>
+</ul>
+<h3 id="（3）依赖配置-indirect"><a href="#（3）依赖配置-indirect" class="headerlink" title="（3）依赖配置-indirect"></a>（3）依赖配置-indirect</h3><p>直接依赖和间接依赖</p>
+<h3 id="（4）依赖配置-incompatible"><a href="#（4）依赖配置-incompatible" class="headerlink" title="（4）依赖配置-incompatible"></a>（4）依赖配置-incompatible</h3><p>主版本2+模块会在模块路径增加/vN后缀</p>
+<p>对于没有go.mod文件并且主版本2+的依赖，会加上该关键字</p>
+<h3 id="（5）工具"><a href="#（5）工具" class="headerlink" title="（5）工具"></a>（5）工具</h3><p>go get</p>
+<p>go mod (init / download / tidy)</p>
+<h2 id="3、小结"><a href="#3、小结" class="headerlink" title="3、小结"></a>3、小结</h2><ul>
+<li>Go依赖管理演进</li>
+<li>Go Module依赖管理方案</li>
+</ul>
+<h1 id="三、测试"><a href="#三、测试" class="headerlink" title="三、测试"></a>三、测试</h1><p>回归测试 -&gt; 集成测试 -&gt; 单元测试（测试成本逐渐降低）</p>
+<h2 id="1、单元测试"><a href="#1、单元测试" class="headerlink" title="1、单元测试"></a>1、单元测试</h2><h3 id="（1）规则"><a href="#（1）规则" class="headerlink" title="（1）规则"></a>（1）规则</h3><ul>
+<li>所有测试文件以<code>_test.go</code>结尾</li>
+<li>func TestXxx(*testing.T)</li>
+<li>初始化逻辑放到TestMain中</li>
+</ul>
+<h3 id="（2）单元测试-assert"><a href="#（2）单元测试-assert" class="headerlink" title="（2）单元测试-assert"></a>（2）单元测试-assert</h3><p>待测试函数：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">HelloTom</span><span class="params">()</span> <span class="title">string</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">&quot;Susan&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试代码：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestHelloTom</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	output := HelloTom()</span><br><span class="line">	expectOutput := <span class="string">&quot;Tom&quot;</span></span><br><span class="line">	assert.Equal(t, expectOutput, output)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、单元测试-依赖"><a href="#2、单元测试-依赖" class="headerlink" title="2、单元测试-依赖"></a>2、单元测试-依赖</h2><p>外部依赖 =&gt; 稳定&amp;幂等</p>
+<h2 id="3、单元测试-Mock"><a href="#3、单元测试-Mock" class="headerlink" title="3、单元测试-Mock"></a>3、单元测试-Mock</h2><p>monkey：<a target="_blank" rel="noopener" href="https://github.com/bouk/monkey">https://github.com/bouk/monkey</a></p>
 <ul>
-<li>DNS Query</li>
-<li>DNS response</li>
-<li>DNS Update</li>
-<li>DNS Notify</li>
-<li>DNS XFR</li>
+<li>为一个函数打桩</li>
+<li>为一个方法打桩</li>
 </ul>
-<h2 id="3、接入HTTPS协议"><a href="#3、接入HTTPS协议" class="headerlink" title="3、接入HTTPS协议"></a>3、接入HTTPS协议</h2><h3 id="（1）问题背景-1"><a href="#（1）问题背景-1" class="headerlink" title="（1）问题背景"></a>（1）问题背景</h3><ul>
-<li>出现白页</li>
-<li>返回403</li>
-<li>页面弹出广告</li>
+<p>不依赖于本地文件</p>
+<h2 id="4、基准测试"><a href="#4、基准测试" class="headerlink" title="4、基准测试"></a>4、基准测试</h2><ul>
+<li>优化代码</li>
+<li>内置的测试框架提供了基准测试能力</li>
 </ul>
-<p>HTTP明文传输，所以使用HTTPS</p>
-<h3 id="（2）对称加密和非对称加密"><a href="#（2）对称加密和非对称加密" class="headerlink" title="（2）对称加密和非对称加密"></a>（2）对称加密和非对称加密</h3><ul>
-<li>对称加密：一份密钥</li>
+<h2 id="5、小结"><a href="#5、小结" class="headerlink" title="5、小结"></a>5、小结</h2><ul>
+<li>单元测试</li>
+<li>Mock测试</li>
+<li>基准测试</li>
 </ul>
-<p>《》</p>
-<ul>
-<li>非对称加密：公钥和私钥</li>
-</ul>
-<p>《》</p>
-<h3 id="（3）SSL通信过程"><a href="#（3）SSL通信过程" class="headerlink" title="（3）SSL通信过程"></a>（3）SSL通信过程</h3><ul>
-<li>client random</li>
-<li>server random</li>
-<li>premaster secret</li>
-<li>加密算法协商</li>
-</ul>
-<p>得到密钥：session key</p>
-<h3 id="（4）证书链"><a href="#（4）证书链" class="headerlink" title="（4）证书链"></a>（4）证书链</h3><p>client收到证书会进行验证：</p>
-<ul>
-<li>颁发机构是否可信</li>
-<li>与实际访问域名是否一致</li>
-<li>检查数字签名是否一致</li>
-<li>检查证书的有效期</li>
-<li>检查证书的撤回状态</li>
-</ul>
-<p>证书链验证签名</p>
-<p>证书摘要信息 - 数字签名 - 上级CA公钥</p>
-<h3 id="（5）使用HTTPS"><a href="#（5）使用HTTPS" class="headerlink" title="（5）使用HTTPS"></a>（5）使用HTTPS</h3><p>《》</p>
-<h2 id="4、接入全站加速"><a href="#4、接入全站加速" class="headerlink" title="4、接入全站加速"></a>4、接入全站加速</h2><h3 id="（1）问题背景-2"><a href="#（1）问题背景-2" class="headerlink" title="（1）问题背景"></a>（1）问题背景</h3><ul>
-<li>源站容量低</li>
-<li>报文经过网络设备越多，丢包、劫持、mtu</li>
-<li>自主选路网络链路长</li>
-</ul>
-<h3 id="（2）解决方案"><a href="#（2）解决方案" class="headerlink" title="（2）解决方案"></a>（2）解决方案</h3><ul>
-<li><p>源站容量</p>
-<p>后端机器扩容、静态加速缓存</p>
+<h1 id="四、项目实战"><a href="#四、项目实战" class="headerlink" title="四、项目实战"></a>四、项目实战</h1><h2 id="1、分层结构"><a href="#1、分层结构" class="headerlink" title="1、分层结构"></a>1、分层结构</h2><ul>
+<li><p>数据层</p>
+<p>数据Model，外部数据的增删改查</p>
 </li>
-<li><p>网络传输</p>
-<p>动态加速DCDN</p>
+<li><p>逻辑层</p>
+<p>业务Entity，处理核心业务逻辑的输出</p>
+</li>
+<li><p>视图层</p>
+<p>视图View，处理和外部交互逻辑</p>
 </li>
 </ul>
-<p>全站加速：静态加速 + 动态加速</p>
-<h3 id="（3）静态加速CDN"><a href="#（3）静态加速CDN" class="headerlink" title="（3）静态加速CDN"></a>（3）静态加速CDN</h3><p>缓存静态文件</p>
+<h2 id="2、组件工具"><a href="#2、组件工具" class="headerlink" title="2、组件工具"></a>2、组件工具</h2><ul>
+<li><p>Gin高性能go web框架</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/gin-gonic/gin">https://github.com/gin-gonic/gin</a></p>
+</li>
+<li><p>Go mod</p>
+<p>go mod init</p>
+<p>go get <a target="_blank" rel="noopener" href="https://github.com/gin-gonic/gin.v1@v1.3.0">https://github.com/gin-gonic/gin.v1@v1.3.0</a></p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/27/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E5%9B%9B%E8%8A%82%E8%AF%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/27/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E5%9B%9B%E8%8A%82%E8%AF%BE/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-27 17:08:49" itemprop="dateCreated datePublished" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>x高性能Go语言发行版优化与落地实践</p>
+<p>本节课主要内容</p>
 <ul>
-<li>缓解运营商之间互联的瓶颈造成的影响</li>
-<li>减轻了各省出口带宽的压力</li>
-<li>优化网络热点内容分布</li>
+<li><p>优化</p>
+<p>内存管理优化</p>
+<p>编译器优化</p>
+</li>
+<li><p>背景</p>
+<p>自动内存管理和Go内存管理</p>
+<p>编译器优化</p>
+</li>
 </ul>
-<h3 id="（4）动态加速DCDN"><a href="#（4）动态加速DCDN" class="headerlink" title="（4）动态加速DCDN"></a>（4）动态加速DCDN</h3><p>针对 POST 等非静态请求等不能在用户边缘缓存的业务，基于智能选路技术，从众多回源线路中择优选择一条线路进行传输</p>
-<h3 id="（5）DCDN原理"><a href="#（5）DCDN原理" class="headerlink" title="（5）DCDN原理"></a>（5）DCDN原理</h3><p><a target="_blank" rel="noopener" href="https://network.51cto.com/article/680148.html">CDN的原理</a></p>
-<h2 id="5、Nginx"><a href="#5、Nginx" class="headerlink" title="5、Nginx"></a>5、Nginx</h2><h3 id="（1）反向代理"><a href="#（1）反向代理" class="headerlink" title="（1）反向代理"></a>（1）反向代理</h3><p>《》</p>
-<h3 id="（2）内部架构"><a href="#（2）内部架构" class="headerlink" title="（2）内部架构"></a>（2）内部架构</h3><p>《》</p>
-<h3 id="（3）事件驱动模型"><a href="#（3）事件驱动模型" class="headerlink" title="（3）事件驱动模型"></a>（3）事件驱动模型</h3><p>异步非阻塞模型、减少OS进程切换</p>
-<h3 id="（4）简单调优"><a href="#（4）简单调优" class="headerlink" title="（4）简单调优"></a>（4）简单调优</h3><p>《》</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/26/Go/%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%AE%8C%E6%95%B4%E7%9A%84%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%AB%AF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/26/Go/%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%AE%8C%E6%95%B4%E7%9A%84%E5%8D%9A%E5%AE%A2%E5%90%8E%E7%AB%AF/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-05-26 17:13:39" itemprop="dateCreated datePublished" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="一、博客之旅"><a href="#一、博客之旅" class="headerlink" title="一、博客之旅"></a>一、博客之旅</h1><h2 id="1、gin"><a href="#1、gin" class="headerlink" title="1、gin"></a>1、gin</h2><p><a target="_blank" rel="noopener" href="https://github.com/gin-gonic/gin">gin的github地址</a></p>
-<p>gin是Go语言编写的HTTP Web框架</p>
-<p>gin的特点：小巧、精美、易用</p>
-<h2 id="2、初始化项目"><a href="#2、初始化项目" class="headerlink" title="2、初始化项目"></a>2、初始化项目</h2><p>以下三个命令初始化了一个项目：</p>
+<p>性能优化是什么？</p>
+<p>提升软件系统处理能力，减少不必要消耗</p>
+<p>为什么做性能优化？</p>
+<p>用户体验、资源的高效利用</p>
+<p>怎么做优化？</p>
 <ul>
-<li><code>mkdir blog-service</code></li>
-<li><code>cd blog-service</code></li>
-<li><code>go mod init github.com/go-programming-tour-book/blog-service</code></li>
+<li>业务层优化</li>
+<li>语言运行时优化</li>
 </ul>
-<h2 id="3、安装gin"><a href="#3、安装gin" class="headerlink" title="3、安装gin"></a>3、安装gin</h2><p>安装相关模块</p>
-<p>​    <code>go get -u github.com/gin-gonic/gin@1.6.3</code></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/26/Go/%E6%9E%B6%E6%9E%84%E5%88%9D%E6%8E%A2-%E8%B0%81%E5%8A%A8%E4%BA%86%E6%88%91%E7%9A%84%E8%9B%8B%E7%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/26/Go/%E6%9E%B6%E6%9E%84%E5%88%9D%E6%8E%A2-%E8%B0%81%E5%8A%A8%E4%BA%86%E6%88%91%E7%9A%84%E8%9B%8B%E7%B3%95/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-05-26 17:13:39" itemprop="dateCreated datePublished" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/26/Go/%E7%AC%AC%E4%B9%9D%E7%AB%A0%20%E5%B9%B6%E5%8F%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/26/Go/%E7%AC%AC%E4%B9%9D%E7%AB%A0%20%E5%B9%B6%E5%8F%91/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-05-26 17:13:39" itemprop="dateCreated datePublished" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>并发是指在同一时间内可以执行多个任务</p>
-<p>Go语言通过编译器运行时（runtime），从语言上支持了并发的特性，通过goroutine特性完成并发。goroutine由Go语言的运行时调度完成，而线程是通过操作系统调度完成。</p>
-<h1 id="一、轻量级线程（goroutine）-根据需要随时创建的“线程”"><a href="#一、轻量级线程（goroutine）-根据需要随时创建的“线程”" class="headerlink" title="一、轻量级线程（goroutine）-根据需要随时创建的“线程”"></a>一、轻量级线程（goroutine）-根据需要随时创建的“线程”</h1><p>Go程序从main包的main()函数开始，就会为mian()函数创建一个默认goroutine</p>
-<h2 id="1、使用普通函数创建goroutine"><a href="#1、使用普通函数创建goroutine" class="headerlink" title="1、使用普通函数创建goroutine"></a>1、使用普通函数创建goroutine</h2><p>使用go关键字，将running()函数并发执行</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">running</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> times <span class="keyword">int</span></span><br><span class="line">	<span class="comment">// 构建一个无限循环</span></span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		times++</span><br><span class="line">		fmt.Println(<span class="string">&quot;tick&quot;</span>, times)</span><br><span class="line">		<span class="comment">// 延迟一秒</span></span><br><span class="line">		time.Sleep(time.Second)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// 并发执行程序</span></span><br><span class="line">	<span class="keyword">go</span> running()</span><br><span class="line">	<span class="comment">// 接收命令行输入，不做任何事</span></span><br><span class="line">	<span class="keyword">var</span> input <span class="keyword">string</span></span><br><span class="line">	fmt.Scanln(&amp;input)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2、使用匿名函数创建goroutine"><a href="#2、使用匿名函数创建goroutine" class="headerlink" title="2、使用匿名函数创建goroutine"></a>2、使用匿名函数创建goroutine</h2><p>在main中创建一个匿名函数并为匿名函数启动goroutine</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">var</span> times <span class="keyword">int</span></span><br><span class="line">		<span class="keyword">for</span> &#123;</span><br><span class="line">			times++;</span><br><span class="line">			fmt.Println(<span class="string">&quot;tick&quot;</span>, times)</span><br><span class="line">			time.Sleep(time.Second)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>所有goroutine函数都会在main()函数结束以后一同结束</p>
-</blockquote>
-<h2 id="3、调整并发的运行性能（GOMAXPROCS）"><a href="#3、调整并发的运行性能（GOMAXPROCS）" class="headerlink" title="3、调整并发的运行性能（GOMAXPROCS）"></a>3、调整并发的运行性能（GOMAXPROCS）</h2><p>一般情况下可以使用<code>runtime.numCPU()</code>查询cpu数量，并使用<code>runtime.GOMAXPROCS()</code>函数进行设置</p>
-<h2 id="4、并发和并行"><a href="#4、并发和并行" class="headerlink" title="4、并发和并行"></a>4、并发和并行</h2><ul>
-<li>并发（concurrency）：将任务在不同的时间点交给处理器进行处理</li>
-<li>并行（parallelism）：将任务分配给每个单独的处理器独立完成</li>
-</ul>
-<h2 id="5、Go中的协程（goroutine）和普通协程（coroutine）"><a href="#5、Go中的协程（goroutine）和普通协程（coroutine）" class="headerlink" title="5、Go中的协程（goroutine）和普通协程（coroutine）"></a>5、Go中的协程（goroutine）和普通协程（coroutine）</h2><ul>
-<li>goroutine可能发生并行操作，coroutine始终顺序执行</li>
-<li>goroutine见使用channel通信，coroutine使用yieId和resume操作</li>
-</ul>
-<h1 id="二、通道（channel）-在多个goroutine间的通信管道"><a href="#二、通道（channel）-在多个goroutine间的通信管道" class="headerlink" title="二、通道（channel）-在多个goroutine间的通信管道"></a>二、通道（channel）-在多个goroutine间的通信管道</h1><p>Go语言提倡使用通信的方式代替共享内存，就是所谓的通道（channel）</p>
-<h2 id="1、通道的特性"><a href="#1、通道的特性" class="headerlink" title="1、通道的特性"></a>1、通道的特性</h2><p>任何时候，只能有一个goroutine进行发送和获取数据</p>
-<h2 id="2、通道的使用：并发打印数字"><a href="#2、通道的使用：并发打印数字" class="headerlink" title="2、通道的使用：并发打印数字"></a>2、通道的使用：并发打印数字</h2><p>创建一个无缓冲通道，使用无缓冲通道时，装入方将被阻塞，直到数据在另一个goroutine被取出</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">printer</span><span class="params">(c <span class="keyword">chan</span> <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="comment">// 开始无限循环等待数据</span></span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		<span class="comment">// 从channel中获取一个数据</span></span><br><span class="line">		data := &lt;-c</span><br><span class="line">		<span class="comment">// 将0视为结束</span></span><br><span class="line">		<span class="keyword">if</span> data == <span class="number">0</span> &#123;</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 打印数据</span></span><br><span class="line">		fmt.Println(data)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 通知main函数已经循环结束</span></span><br><span class="line">	c &lt;- <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// 创建一个channel</span></span><br><span class="line">	c := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">	<span class="comment">// 并发执行printer，传入channel</span></span><br><span class="line">	<span class="keyword">go</span> printer(c)</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++ &#123;</span><br><span class="line">		<span class="comment">// 通过channel将数据传给printer</span></span><br><span class="line">		c &lt;- i</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 通知并发的printer结束循环等待</span></span><br><span class="line">	c &lt;- <span class="number">0</span></span><br><span class="line">	<span class="comment">// 等待printer结束</span></span><br><span class="line">	&lt;-c</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="3、单向通道-通道中的单行道"><a href="#3、单向通道-通道中的单行道" class="headerlink" title="3、单向通道-通道中的单行道"></a>3、单向通道-通道中的单行道</h2><p>Go通道可以在声明时约束其操作方向，如只发送或接收</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line"><span class="comment">// 声明一个只能发送的通道类型，并赋值未ch</span></span><br><span class="line"><span class="keyword">var</span> chSendOnly <span class="keyword">chan</span>&lt;- <span class="keyword">int</span> = ch</span><br><span class="line"><span class="comment">// 声明一个只能接受的通道类型</span></span><br><span class="line"><span class="keyword">var</span> chRecvOnly &lt;-<span class="keyword">chan</span> <span class="keyword">int</span> = ch</span><br><span class="line">chSendOnly &lt;- <span class="number">0</span></span><br><span class="line">&lt;- chRecvOnly</span><br></pre></td></tr></table></figure>
-
-<h2 id="4、带缓冲的通道"><a href="#4、带缓冲的通道" class="headerlink" title="4、带缓冲的通道"></a>4、带缓冲的通道</h2><p>带缓冲的通道无需等待接收方接收即可完成发送过程，并且不会阻塞，只有存储空间满的时候才会发生阻塞</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个3个元素缓冲区大小的整形通道</span></span><br><span class="line">ch := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">3</span>)</span><br><span class="line"><span class="comment">// 查看当前通道的大小</span></span><br><span class="line">fmt.Println(<span class="built_in">len</span>(ch))</span><br><span class="line"><span class="comment">// 发送三个整形元素到通道</span></span><br><span class="line">ch &lt;- <span class="number">1</span></span><br><span class="line">ch &lt;- <span class="number">2</span></span><br><span class="line">ch &lt;- <span class="number">3</span></span><br><span class="line"><span class="comment">// 查看当前通道的大小</span></span><br><span class="line">fmt.Println(<span class="built_in">len</span>(ch))</span><br></pre></td></tr></table></figure>
-
-<p>阻塞条件：</p>
+<p>总结：</p>
 <ul>
-<li>带缓冲通道满继续发送数据</li>
-<li>带缓冲通道空继续接收数据</li>
+<li>性能优化的基本问题</li>
+<li>性能优化的两个层面</li>
+<li>性能优化的可维护性</li>
 </ul>
-<blockquote>
-<p>Go语言对通道限制长度的原因</p>
-<p>一方生产数据，一方消费数据，当提供数据一方速度大于消费数据一方速度时候，若不限制长度，会撑爆内存</p>
-</blockquote>
-<h2 id="5、模拟远程过程调用（RPC）"><a href="#5、模拟远程过程调用（RPC）" class="headerlink" title="5、模拟远程过程调用（RPC）"></a>5、模拟远程过程调用（RPC）</h2><p>服务器开发会使用RPC（远程调用）简化通信过程，使得远程通信如同本地函数调用一样</p>
-<h3 id="（1）客户端请求和接收封装"><a href="#（1）客户端请求和接收封装" class="headerlink" title="（1）客户端请求和接收封装"></a>（1）客户端请求和接收封装</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 模拟RPC客户端请求和接收</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">RPCClient</span><span class="params">(ch <span class="keyword">chan</span> <span class="keyword">string</span>, req <span class="keyword">string</span>)</span> <span class="params">(<span class="keyword">string</span>, error)</span></span> &#123;</span><br><span class="line">	<span class="comment">// 向服务器发送请求</span></span><br><span class="line">	ch &lt;- req</span><br><span class="line">	<span class="comment">// 等待服务器返回</span></span><br><span class="line">	<span class="keyword">select</span> &#123;</span><br><span class="line">	<span class="comment">// 接收到数据</span></span><br><span class="line">	<span class="keyword">case</span> ack := &lt;-ch:</span><br><span class="line">		<span class="keyword">return</span> ack, <span class="literal">nil</span> </span><br><span class="line">	<span class="comment">// 超时</span></span><br><span class="line">	<span class="keyword">case</span> &lt;-time.After(time.Second):</span><br><span class="line">		<span class="keyword">return</span> <span class="string">&quot;&quot;</span>, errors.New(<span class="string">&quot;time Out&quot;</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h1 id="一、自动内存管理"><a href="#一、自动内存管理" class="headerlink" title="一、自动内存管理"></a>一、自动内存管理</h1><h2 id="1、自动内存管理"><a href="#1、自动内存管理" class="headerlink" title="1、自动内存管理"></a>1、自动内存管理</h2><ul>
+<li><p>动态内存</p>
+<p>程序运行时内存的动态分配：<code>malloc()</code></p>
+</li>
+<li><p>自动内存管理</p>
+<p>避免手动内存管理</p>
+<p>保证内存的使用的正确性和安全性：double-free-problem 和 use-after-free problem</p>
+</li>
+</ul>
+<p>相关概念</p>
 <ul>
-<li>模拟socket向服务器发送一个字符串，服务器接收后结束阻塞执行下一行</li>
-<li>使用select进行多路复用</li>
-<li><code>time.After(time.Second)</code>通过这个返回的通道在指定时间后返回当前时间</li>
+<li><p>Mutator</p>
+<p>业务线程，分配新的对象，修改对象的指向关系</p>
+</li>
+<li><p>Collector</p>
+<p>GC线程，找到存活对象，回收死亡对象</p>
+</li>
+<li><p>Serial GC</p>
+<p>只有一个collector</p>
+</li>
+<li><p>Parallel GC</p>
+<p>支持多个collector</p>
+</li>
+<li><p>Concurrent GC</p>
+<p>业务线程和GC线程同时执行，必须感知对象指向关系的改变</p>
+</li>
+<li><p>评价GC 算法</p>
+<p>安全性（Safety）：不能回收存活的对象 基本要求</p>
+<p>吞吐率（Throughput）：花在GC上的时间</p>
+<p>暂停时间（Pause time）：stop the world（STW）业务是否感知</p>
+<p>内存开销 （Space overhead）GC 元数据开销</p>
+</li>
+<li><p>追踪垃圾回收（Tracing garbage collection）</p>
+</li>
+<li><p>引用计数（Reference counting）</p>
+</li>
 </ul>
-<p>两个case会同时执行，看哪个通道先返回数据</p>
-<h3 id="（2）服务器接收和返回数据"><a href="#（2）服务器接收和返回数据" class="headerlink" title="（2）服务器接收和返回数据"></a>（2）服务器接收和返回数据</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 模拟RPC服务端接收客户端请求和相应</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">RPCServer</span><span class="params">(ch <span class="keyword">chan</span> <span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> &#123;</span><br><span class="line">		<span class="comment">// 接收客户端请求</span></span><br><span class="line">		data := &lt;-ch</span><br><span class="line">		<span class="comment">// 打印接受的数据</span></span><br><span class="line">		fmt.Println(<span class="string">&quot;server received : &quot;</span>, data)</span><br><span class="line">		<span class="comment">// 向客户端反馈已收到</span></span><br><span class="line">		ch &lt;-<span class="string">&quot;roger&quot;</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2、追踪垃圾回收"><a href="#2、追踪垃圾回收" class="headerlink" title="2、追踪垃圾回收"></a>2、追踪垃圾回收</h2><p>回收条件：指针指向关系不可达</p>
+<p>标记根对象：静态变量、全局变量、常量、线程栈</p>
+<p>标记：找到可达对象</p>
+<ul>
+<li>求指针指向关系的传递闭包：从根对象出发，找到所有可达对象</li>
+</ul>
+<p>清理：所有不可达对象</p>
+<ul>
+<li>Copying GC</li>
+<li>Mark-Sweep GC</li>
+<li>Mark-Compact GC</li>
+</ul>
+<p>根据对象的生命周期选择不同的标记清理策略</p>
+<h2 id="3、分代GC（Generational-GC）"><a href="#3、分代GC（Generational-GC）" class="headerlink" title="3、分代GC（Generational GC）"></a>3、分代GC（Generational GC）</h2><ul>
+<li><p>分代假说 (Generational hypothesis)： most objects die young</p>
+</li>
+<li><p>Intuition：很多对象在分配出来后很快就不再使用了</p>
+</li>
+<li><p>每个对象都有年龄：经历过 GC 的次数</p>
+</li>
+<li><p>目的：针对年轻和老年的对象，制定不同的 GC 策路，降低整体内存管理的开销，不同年龄的对象处于 heap的不同区域</p>
+</li>
+<li><p>年轻代 (Young generation)</p>
+<p>常规的对象分配</p>
+<p>由于存活对象很少，可以采用 copying collection</p>
+<p>GC 吞吐率很高</p>
+</li>
+<li><p>老年代 (Old generation)</p>
+<p>对象趋向于一直活着，反复复制开销较大</p>
+<p>可以采用 mark-sweep collection</p>
+</li>
+</ul>
+<h2 id="4、引用计数"><a href="#4、引用计数" class="headerlink" title="4、引用计数"></a>4、引用计数</h2><ul>
+<li><p>每个对象都有一个与之关联的引用数目</p>
+</li>
+<li><p>对象存活的条件：当且仅当引用数大于 0</p>
+</li>
+<li><p>优点</p>
+<p>内存管理的操作被平雄到程序执行过程中</p>
+<p>内存管理不需要了解runtime 的实现细节：C++ 智能指针 (smart pointer)</p>
+</li>
+<li><p>缺点</p>
+<p>维护引用计数的开销较大：通过原子操作保证对引用计数操作的原子性和可见性<br>无法回收环形数据结构—weak reference<br>内存开销：每个对象都引1入的额外内存空间存储引用数目<br>回收内存时依然可能引发暂停</p>
+</li>
+</ul>
+<h2 id="5、总结"><a href="#5、总结" class="headerlink" title="5、总结"></a>5、总结</h2><ul>
+<li>背景和意义</li>
+<li>概念和评价方法</li>
+<li>追踪垃圾回收</li>
+<li>引用回收</li>
+<li>分代GC</li>
+</ul>
+<h1 id="二、Go内存管理"><a href="#二、Go内存管理" class="headerlink" title="二、Go内存管理"></a>二、Go内存管理</h1><h2 id="1、Go内存分配"><a href="#1、Go内存分配" class="headerlink" title="1、Go内存分配"></a>1、Go内存分配</h2><h1 id="三、编译器和静态分析"><a href="#三、编译器和静态分析" class="headerlink" title="三、编译器和静态分析"></a>三、编译器和静态分析</h1><h1 id="四、Go编译器优化"><a href="#四、Go编译器优化" class="headerlink" title="四、Go编译器优化"></a>四、Go编译器优化</h1>
+      
+    </div>
 
-<p>使用无限循环处理客户端请求</p>
-<p>在main函数中分别调用两个函数，输出如下：</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Go/1.png">
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
 
-<h3 id="（3）模拟超时"><a href="#（3）模拟超时" class="headerlink" title="（3）模拟超时"></a>（3）模拟超时</h3><p>在RPCServer中加入一段代码即可：<code>time.Sleep(time.Second * 2)</code>，通过睡眠阻塞代码</p>
-<h1 id="四、同步-保证并发环境下数据访问的正确性"><a href="#四、同步-保证并发环境下数据访问的正确性" class="headerlink" title="四、同步-保证并发环境下数据访问的正确性"></a>四、同步-保证并发环境下数据访问的正确性</h1><p>在某些轻量级场合，原子访问（atomic包）、互斥锁（sync.Mutex）以及等待组（sync.WaitGroup）能最大程度满足需求</p>
-<h2 id="1、竞态检测-检测代码并发环境下可能出现的问题"><a href="#1、竞态检测-检测代码并发环境下可能出现的问题" class="headerlink" title="1、竞态检测-检测代码并发环境下可能出现的问题"></a>1、竞态检测-检测代码并发环境下可能出现的问题</h2><p>我们执行以下代码，就会发现错误</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> (</span><br><span class="line">	seq <span class="keyword">int64</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">GenID</span><span class="params">()</span> <span class="title">int64</span></span> &#123;</span><br><span class="line">	<span class="comment">// 尝试原子增加序号</span></span><br><span class="line">	atomic.AddInt64(&amp;seq, <span class="number">1</span>)</span><br><span class="line">	<span class="keyword">return</span> seq</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line">		<span class="keyword">go</span> GenID()</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Println(GenID())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/27/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E8%AF%BE/">
 
-<p>输出结果每次都不一样，原因是<code>return seq</code>有竞态问题，将代码改成如下所示就没问题了：<code>return atomic.AddInt64(&amp;seq, 1)</code></p>
-<h2 id="2、互斥锁（sync-Mutex）"><a href="#2、互斥锁（sync-Mutex）" class="headerlink" title="2、互斥锁（sync.Mutex）"></a>2、互斥锁（sync.Mutex）</h2><p>使用锁非常简单</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明锁</span></span><br><span class="line"><span class="keyword">var</span> lock sync.Mutex</span><br><span class="line"><span class="comment">// 锁定</span></span><br><span class="line">lock.Lock()</span><br><span class="line"><span class="comment">// 取消锁定</span></span><br><span class="line">lock.Unlock()</span><br></pre></td></tr></table></figure>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
 
-<p>加锁解锁过程保证原子性</p>
-<h2 id="3、读写互斥锁（sync-RWMutex）"><a href="#3、读写互斥锁（sync-RWMutex）" class="headerlink" title="3、读写互斥锁（sync.RWMutex）"></a>3、读写互斥锁（sync.RWMutex）</h2><p>在读多写少的环境中，可以使用读写互斥锁</p>
-<p>基本使用类似</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lockr sync.RWMutex</span><br><span class="line">lockr.RLock()</span><br><span class="line">lockr.RLocker()</span><br></pre></td></tr></table></figure>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/27/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E8%AF%BE/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
 
-<h2 id="4、等待组（sync-WaitGroup）"><a href="#4、等待组（sync-WaitGroup）" class="headerlink" title="4、等待组（sync.WaitGroup）"></a>4、等待组（sync.WaitGroup）</h2><p>保证并发环境中完成指定的任务数，等待组内部有一个计数器，计数器的值可以通过调用方法进行加减</p>
-<p>直接上代码看演示</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// 声明一个等待组</span></span><br><span class="line">	<span class="keyword">var</span> wg sync.WaitGroup</span><br><span class="line">	<span class="comment">// 准备一系列网站</span></span><br><span class="line">	<span class="keyword">var</span> urls = []<span class="keyword">string</span>&#123;</span><br><span class="line">		<span class="string">&quot;https://www.github.com&quot;</span>,</span><br><span class="line">		<span class="string">&quot;https://www.qiniu.com/&quot;</span>,</span><br><span class="line">		<span class="string">&quot;https://www.baidu.com/&quot;</span>,</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> _, url := <span class="keyword">range</span> urls &#123;</span><br><span class="line">		wg.Add(<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(url <span class="keyword">string</span>)</span></span> &#123;</span><br><span class="line">			<span class="keyword">defer</span> wg.Done()</span><br><span class="line">			_, err := http.Get(url)</span><br><span class="line">			fmt.Println(url, err)</span><br><span class="line">			<span class="comment">// 传递url</span></span><br><span class="line">		&#125;(url)</span><br><span class="line">	&#125;</span><br><span class="line">	wg.Wait()</span><br><span class="line">	fmt.Println(<span class="string">&quot;over&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-<p>所有的任务（网站响应）完成后，wait就会停止阻塞状态向下执行</p>
+              <time title="创建时间：2022-05-27 17:08:49" itemprop="dateCreated datePublished" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="3、网络接入-ARP协议"><a href="#3、网络接入-ARP协议" class="headerlink" title="3、网络接入-ARP协议"></a>3、网络接入-ARP协议</h2><ul>
+<li>逻辑网段相同才能发送ARP</li>
+<li>ARP请求广播，ARP答应单播</li>
+<li>免费ARP？ARP代理？</li>
+</ul>
+<h2 id="4、网络接入协议"><a href="#4、网络接入协议" class="headerlink" title="4、网络接入协议"></a>4、网络接入协议</h2><ul>
+<li>唯一标识，互联网通用</li>
+<li>Mac地址不能代替IP地址吗</li>
+</ul>
+<h2 id="5、网络接入-NAT"><a href="#5、网络接入-NAT" class="headerlink" title="5、网络接入-NAT"></a>5、网络接入-NAT</h2><ul>
+<li>家里路由器是怎么上网的？</li>
+<li>多个内网客户端访问同一个目标地址</li>
+</ul>
+<h2 id="6、网络传输-数据包"><a href="#6、网络传输-数据包" class="headerlink" title="6、网络传输-数据包"></a>6、网络传输-数据包</h2><h2 id="7、网络传输-先请求DNS协议"><a href="#7、网络传输-先请求DNS协议" class="headerlink" title="7、网络传输-先请求DNS协议"></a>7、网络传输-先请求DNS协议</h2><p>递归迭代</p>
+<h2 id="8、网络传输-DNS的传输协议"><a href="#8、网络传输-DNS的传输协议" class="headerlink" title="8、网络传输-DNS的传输协议"></a>8、网络传输-DNS的传输协议</h2><h2 id="9、网络传输-TCP"><a href="#9、网络传输-TCP" class="headerlink" title="9、网络传输-TCP"></a>9、网络传输-TCP</h2><p>TCP保活机制</p>
+<p>通过MSS防止分片</p>
+<p>三次握手确认MSS，TCP的OPTION字段</p>
+<p>Sequence Number</p>
+<p>Acknowledge Number</p>
+<p>Timewaite</p>
+<h2 id="10、网络传输协议-HTTP-HTTP-1-1"><a href="#10、网络传输协议-HTTP-HTTP-1-1" class="headerlink" title="10、网络传输协议-HTTP/HTTP 1.1"></a>10、网络传输协议-HTTP/HTTP 1.1</h2><ul>
+<li>为什么不同TCP通信</li>
+<li>为什么网络上那么多HTTP通信</li>
+<li>HTTP只是多了一层规矩</li>
+</ul>
+<p>做了哪些优化</p>
+<ul>
+<li>长连接</li>
+</ul>
+<h2 id="11、网络传输-SSL-TLS握手"><a href="#11、网络传输-SSL-TLS握手" class="headerlink" title="11、网络传输-SSL/TLS握手"></a>11、网络传输-SSL/TLS握手</h2><p>第三方机构CA</p>
+<h1 id="二、"><a href="#二、" class="headerlink" title="二、"></a>二、</h1><h2 id="1、网络提速-HTTP2-0"><a href="#1、网络提速-HTTP2-0" class="headerlink" title="1、网络提速-HTTP2.0"></a>1、网络提速-HTTP2.0</h2><h2 id="3、网络提速-QUIC-HTTP3-0"><a href="#3、网络提速-QUIC-HTTP3-0" class="headerlink" title="3、网络提速-QUIC/HTTP3.0"></a>3、网络提速-QUIC/HTTP3.0</h2><ul>
+<li>TCP or UDP</li>
+<li>Kernel or Userspace</li>
+<li>0 RTT</li>
+<li>弱网优势</li>
+</ul>
 
       
     </div>
@@ -996,7 +861,7 @@ for(it = vt.begin(); it != vt.end(); ++it)
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/26/Go/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%8C%85%EF%BC%88Packet%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/27/2022--5-21/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -1010,7 +875,7 @@ for(it = vt.begin(); it != vt.end(); ++it)
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/26/Go/%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%8C%85%EF%BC%88Packet%EF%BC%89/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/05/27/2022--5-21/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -1020,7 +885,7 @@ for(it = vt.begin(); it != vt.end(); ++it)
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-26 17:13:39" itemprop="dateCreated datePublished" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
+              <time title="创建时间：2022-05-27 17:08:49" itemprop="dateCreated datePublished" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
             </span>
 
           
@@ -1034,7 +899,22 @@ for(it = vt.begin(); it != vt.end(); ++it)
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <h1 id="一、操作系统"><a href="#一、操作系统" class="headerlink" title="一、操作系统"></a>一、操作系统</h1><h2 id="1、操作系统四大特性"><a href="#1、操作系统四大特性" class="headerlink" title="1、操作系统四大特性"></a>1、操作系统四大特性</h2><h1 id="二、计算机网络"><a href="#二、计算机网络" class="headerlink" title="二、计算机网络"></a>二、计算机网络</h1><h2 id="1、HTTP1-1的有点与缺点"><a href="#1、HTTP1-1的有点与缺点" class="headerlink" title="1、HTTP1.1的有点与缺点"></a>1、HTTP1.1的有点与缺点</h2><h1 id="三、数据库"><a href="#三、数据库" class="headerlink" title="三、数据库"></a>三、数据库</h1><h2 id="1、如何保证Redis的高可用"><a href="#1、如何保证Redis的高可用" class="headerlink" title="1、如何保证Redis的高可用"></a>1、如何保证Redis的高可用</h2><h2 id="2、索引的分类"><a href="#2、索引的分类" class="headerlink" title="2、索引的分类"></a>2、索引的分类</h2><h2 id="3、你平时是怎么建立索引的"><a href="#3、你平时是怎么建立索引的" class="headerlink" title="3、你平时是怎么建立索引的"></a>3、你平时是怎么建立索引的</h2><p>有什么技巧或者需要考虑的</p>
+<h2 id="4、联合索引和单独建立索引的区别"><a href="#4、联合索引和单独建立索引的区别" class="headerlink" title="4、联合索引和单独建立索引的区别"></a>4、联合索引和单独建立索引的区别</h2><h2 id="5、SQL你平时是怎么优化查询的"><a href="#5、SQL你平时是怎么优化查询的" class="headerlink" title="5、SQL你平时是怎么优化查询的"></a>5、SQL你平时是怎么优化查询的</h2><h2 id="6、一致性hash"><a href="#6、一致性hash" class="headerlink" title="6、一致性hash"></a>6、一致性hash</h2><p>分布式缓存</p>
+<h2 id="7、Nginx能做什么"><a href="#7、Nginx能做什么" class="headerlink" title="7、Nginx能做什么"></a>7、Nginx能做什么</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903670434250759">https://juejin.cn/post/6844903670434250759</a></p>
+<ul>
+<li><p>反向代理</p>
+<p>反向代理（Reverse Proxy）方式是指以代理服务器来接受internet上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给internet上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器</p>
+</li>
+<li><p>负载均衡</p>
+<p>摊到多个操作单元上进行执行</p>
+</li>
+<li><p>HTTP服务器（包含动静分离）</p>
+</li>
+<li><p>正向代理</p>
+</li>
+</ul>
+<h1 id="四、数据结构与算法"><a href="#四、数据结构与算法" class="headerlink" title="四、数据结构与算法"></a>四、数据结构与算法</h1><h2 id="1、简单讲讲B-Tree"><a href="#1、简单讲讲B-Tree" class="headerlink" title="1、简单讲讲B+Tree"></a>1、简单讲讲B+Tree</h2><h2 id="2、栈溢出Stack-Overflow"><a href="#2、栈溢出Stack-Overflow" class="headerlink" title="2、栈溢出Stack Overflow"></a>2、栈溢出Stack Overflow</h2>
       
     </div>
 
@@ -1053,7 +933,7 @@ for(it = vt.begin(); it != vt.end(); ++it)
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/26/Go/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20%E7%BC%96%E8%AF%91%E4%B8%8E%E5%B7%A5%E5%85%B7/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/27/2022-05-09/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -1067,7 +947,7 @@ for(it = vt.begin(); it != vt.end(); ++it)
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/26/Go/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20%E7%BC%96%E8%AF%91%E4%B8%8E%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/05/27/2022-05-09/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -1077,7 +957,7 @@ for(it = vt.begin(); it != vt.end(); ++it)
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-26 17:13:39" itemprop="dateCreated datePublished" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
+              <time title="创建时间：2022-05-27 17:08:49" itemprop="dateCreated datePublished" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
             </span>
 
           
@@ -1091,10 +971,338 @@ for(it = vt.begin(); it != vt.end(); ++it)
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Go语言工具链，从获取源码、编译、文档、测试、性能分析，到源码格式化、源码提示、重构工具等等非常丰富</p>
-<p>可以使用测试框架编写单元测试，使用性能分析工具将CPU耗用、内存分配、竞态问题以图形化方式展现出来</p>
-<h1 id="一、编译"><a href="#一、编译" class="headerlink" title="一、编译"></a>一、编译</h1><p><code>go build</code>指令可以将源码编译成可执行文件，有多种编译方式：无参数编译、文件列表编译、指定包编译等等</p>
-<h2 id="1、无参数编译"><a href="#1、无参数编译" class="headerlink" title="1、无参数编译"></a>1、无参数编译</h2><img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Go/bytedance/5.png" align="left">
+          <h2 id="一、TCP分片和UDP分片"><a href="#一、TCP分片和UDP分片" class="headerlink" title="一、TCP分片和UDP分片"></a>一、TCP分片和UDP分片</h2><h3 id="1、为什么？"><a href="#1、为什么？" class="headerlink" title="1、为什么？"></a>1、为什么？</h3><p>数据报太大，拆分成小数据包</p>
+<h3 id="2、怎么做？"><a href="#2、怎么做？" class="headerlink" title="2、怎么做？"></a>2、怎么做？</h3><h4 id="（1）TCP分片是在传输层"><a href="#（1）TCP分片是在传输层" class="headerlink" title="（1）TCP分片是在传输层"></a>（1）TCP分片是在传输层</h4><p>如果在IP层分片，如果当一个IP包丢失，那么整个IP报文的所有分片都得重传</p>
+<p>TCP是由超时重传机制，重传丢失的TCP报文</p>
+<h4 id="（2）UDP是在IP层"><a href="#（2）UDP是在IP层" class="headerlink" title="（2）UDP是在IP层"></a>（2）UDP是在IP层</h4><p>UDP传输不可靠</p>
+<h2 id="二、第二次握手丢失情况"><a href="#二、第二次握手丢失情况" class="headerlink" title="二、第二次握手丢失情况"></a>二、第二次握手丢失情况</h2><p>重传5次</p>
+<ul>
+<li><p>客户端角度</p>
+<p>认为第一次握手SYN报文丢失或者第二次握手ACK-SYN报文，会重传SYN请求连接报文</p>
+</li>
+<li><p>服务器角度</p>
+<p>没有收到第三次ACK报文，认为第二次握手ACK-SYN报文或者第三次ACK丢失，会重传第二次握手ACK-SYN报文</p>
+</li>
+</ul>
+<h2 id="三、进程的上下文切换"><a href="#三、进程的上下文切换" class="headerlink" title="三、进程的上下文切换"></a>三、进程的上下文切换</h2><p>实际上linux内核中，进程上下文包括进程的虚拟地址空间和硬件上下文</p>
+<h3 id="1、是什么？"><a href="#1、是什么？" class="headerlink" title="1、是什么？"></a>1、是什么？</h3><p>分配CPU资源的一个过程，一个运行的进程切换到另外一个进程去运行</p>
+<h3 id="2、为什么？"><a href="#2、为什么？" class="headerlink" title="2、为什么？"></a>2、为什么？</h3><p>为了使得计算机能够并发执行多个进程</p>
+<h3 id="3、怎么做？"><a href="#3、怎么做？" class="headerlink" title="3、怎么做？"></a>3、怎么做？</h3><p>先保存当前进程的PCB状态，再加载下一个进程的PCB状态</p>
+<h2 id="四、线程池"><a href="#四、线程池" class="headerlink" title="四、线程池"></a>四、线程池</h2><p>线程池参数、线程池拒绝策略和等待队列类型之间的关系</p>
+<p>拒绝策略</p>
+<ul>
+<li>直接抛弃</li>
+<li>抛弃最老的</li>
+<li>丢弃抛异常的</li>
+<li>当前线程直接执行</li>
+</ul>
+<h2 id="五、MySQL日志"><a href="#五、MySQL日志" class="headerlink" title="五、MySQL日志"></a>五、MySQL日志</h2><p>binlog、redo log、undo log</p>
+<p>binlog（归档）：记录对数据库进行修改的更新操作，用于数据库的同步和恢复（比如主从数据库之间使用bin log进行同步），只在事务结束时写入</p>
+<p>redo log（重做）：记录InnoDB引擎的事务，保证事物的持久性，执行过程中会不断写入</p>
+<p>undo log（回滚）：undo log会记录数据的版本，可以实现事务的回滚，回滚到某个版本的数据，实现MVCC</p>
+<h2 id="六、主从复制"><a href="#六、主从复制" class="headerlink" title="六、主从复制"></a>六、主从复制</h2><h3 id="1、是什么？-1"><a href="#1、是什么？-1" class="headerlink" title="1、是什么？"></a>1、是什么？</h3><p><strong>MySQL 主从复制是指数据可以从一个MySQL数据库服务器主节点复制到一个或多个从节点</strong>。MySQL 默认采用<strong>异步复制</strong>方式，这样从节点不用一直访问主服务器来更新自己的数据，数据的更新可以在远程连接上进行，从节点可以复制主数据库中的所有数据库或者特定的数据库，或者特定的表</p>
+<h3 id="2、为什么？-1"><a href="#2、为什么？-1" class="headerlink" title="2、为什么？"></a>2、为什么？</h3><ul>
+<li>读写分离</li>
+<li>数据的实时备份</li>
+<li>高可用</li>
+</ul>
+<h3 id="3、怎么做？-1"><a href="#3、怎么做？-1" class="headerlink" title="3、怎么做？"></a>3、怎么做？</h3><p>增量发送</p>
+<p>主节点接收到来自从节点的I/O请求后，通过负责复制的I/O进程（log dump 线程）根据请求信息读取指定日志指定位置之后的日志信息，返回给从节点。返回信息中除了日志所包含的信息之外，还包括本次返回的信息的bin-log file 的以及bin-log position（bin-log中的下一个指定更新位置）</p>
+<h2 id="七、死锁问题"><a href="#七、死锁问题" class="headerlink" title="七、死锁问题"></a>七、死锁问题</h2><h3 id="1、什么是死锁？"><a href="#1、什么是死锁？" class="headerlink" title="1、什么是死锁？"></a>1、什么是死锁？</h3><p>死锁是指两个或以上进程在执行过程中，由于资源竞争造成的一种阻塞现象，若无外力作用，将一直阻塞下去。我们称这种现象为系统产生了死锁或者系统处于死锁状态</p>
+<h3 id="2、产生死锁的原因有哪些？"><a href="#2、产生死锁的原因有哪些？" class="headerlink" title="2、产生死锁的原因有哪些？"></a>2、产生死锁的原因有哪些？</h3><ul>
+<li>系统资源不足</li>
+<li>程序执行顺序不当</li>
+<li>资源分配不当</li>
+</ul>
+<h3 id="3、产生死锁的必要条件"><a href="#3、产生死锁的必要条件" class="headerlink" title="3、产生死锁的必要条件"></a>3、产生死锁的必要条件</h3><ul>
+<li><p>互斥条件</p>
+<p>一个资源只能被一个进程使用</p>
+</li>
+<li><p>请求与保持条件</p>
+<p>请求资源阻塞时，对已获得的资源并不释放</p>
+</li>
+<li><p>不剥夺条件</p>
+<p>进程已获得的资源，除非自己释放，否则不能被剥夺</p>
+</li>
+<li><p>循环等待条件</p>
+<p>进程之间形成一种头尾相接的资源等待关系</p>
+</li>
+</ul>
+<h3 id="4、如何解决死锁？"><a href="#4、如何解决死锁？" class="headerlink" title="4、如何解决死锁？"></a>4、如何解决死锁？</h3><p>在系统设计、进程调度等方面注意不要让四个必要条件成立，确定合理的资源分配算法、防止进程处于等待状态下占用资源</p>
+<h2 id="八、TCP协议如何保证可靠传输"><a href="#八、TCP协议如何保证可靠传输" class="headerlink" title="八、TCP协议如何保证可靠传输"></a>八、TCP协议如何保证可靠传输</h2><p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000022944999">https://segmentfault.com/a/1190000022944999</a></p>
+<p>通过下面几种机制共同保证可靠传输</p>
+<h3 id="1、数据块划分"><a href="#1、数据块划分" class="headerlink" title="1、数据块划分"></a>1、数据块划分</h3><p>应用数据被划分为TCP认为合适发送的数据块</p>
+<h3 id="2、数据排序"><a href="#2、数据排序" class="headerlink" title="2、数据排序"></a>2、数据排序</h3><p>TCP会对每个数据进行编号，接收端对收到的数据进行排序，将有序的数据传给应用层</p>
+<h3 id="3、校验和"><a href="#3、校验和" class="headerlink" title="3、校验和"></a>3、校验和</h3><p>发送端和接收端分别计算数据的数据的校验和，如果数据有差错就丢弃</p>
+<h3 id="4、数据包去重"><a href="#4、数据包去重" class="headerlink" title="4、数据包去重"></a>4、数据包去重</h3><p>丢弃重复接收的数据</p>
+<h3 id="5、超时重传"><a href="#5、超时重传" class="headerlink" title="5、超时重传"></a>5、超时重传</h3><p>当TCP发出一个段后，会启动一个定时器，等待接收方会送确认报文，如果不能及时收到一个确认就重传</p>
+<h3 id="6、流量控制"><a href="#6、流量控制" class="headerlink" title="6、流量控制"></a>6、流量控制</h3><p>连接双方都有固定大小的缓冲区，接收端只允许发送端发送接收段缓冲区大小的数据，当接收方来不及处理发送方发送的确认数据时候，会提示发送方降低发送速率。TCP使用滑动窗口协议实现流量控制</p>
+<h3 id="7、拥塞避免"><a href="#7、拥塞避免" class="headerlink" title="7、拥塞避免"></a>7、拥塞避免</h3><ul>
+<li>慢开始</li>
+<li>拥塞避免</li>
+<li>快重传和快恢复</li>
+</ul>
+<h3 id="8、ARQ协议"><a href="#8、ARQ协议" class="headerlink" title="8、ARQ协议"></a>8、ARQ协议</h3><p>发送完一个分组就停止等待确认报文，收到确认报文后在发送下一个分组数据</p>
+<h2 id="九、Redis为什么这么快？"><a href="#九、Redis为什么这么快？" class="headerlink" title="九、Redis为什么这么快？"></a>九、Redis为什么这么快？</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6978280894704386079">https://juejin.cn/post/6978280894704386079</a></p>
+<ul>
+<li><p>基于内存实现省去了磁盘IO的消耗</p>
+</li>
+<li><p>底层实现了高效的数据结构</p>
+</li>
+<li><p>合理的数据编码</p>
+</li>
+<li><p>合理的线程模型</p>
+<p>单线程（避免了上下文切换和竞争锁的切换）：是指Redis网络IO和键值对读写是由一个线程来完成的，其他诸如持久化、异步删除、集群数据同步由额外的线程执行</p>
+</li>
+<li><p>I/O多路复用</p>
+<p>I/O：网络IO</p>
+<p>多路：多个网络连接</p>
+<p>复用：复用同于一个线程</p>
+<p>是一种同步的IO模型，实现一个线程可以监视多个文件句柄</p>
+</li>
+<li><p>虚拟内存机制</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/27/2022-05-14/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/27/2022-05-14/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-27 17:08:49" itemprop="dateCreated datePublished" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="一、操作系统"><a href="#一、操作系统" class="headerlink" title="一、操作系统"></a>一、操作系统</h1><h2 id="1、线程切换比进程切换开销要小"><a href="#1、线程切换比进程切换开销要小" class="headerlink" title="1、线程切换比进程切换开销要小"></a>1、线程切换比进程切换开销要小</h2><h3 id="（1）线程进程切换的流程"><a href="#（1）线程进程切换的流程" class="headerlink" title="（1）线程进程切换的流程"></a>（1）线程进程切换的流程</h3><p>进程切换分为两步：</p>
+<ul>
+<li>切换页表以使用新的地址空间，所有已经缓存的内存地址一瞬间都作废了</li>
+<li>切换内核栈和硬件上下文</li>
+</ul>
+<p>对于linux来说，线程和进程的最大区别就在于地址空间，因为每个进程都有自己的虚拟地址空间，而线程是共享所在进程的虚拟地址空间的，因此同一个进程中的线程进行线程切换时不涉及虚拟地址空间的转换</p>
+<h3 id="（2）虚拟地址空间切换会比较耗时"><a href="#（2）虚拟地址空间切换会比较耗时" class="headerlink" title="（2）虚拟地址空间切换会比较耗时"></a>（2）虚拟地址空间切换会比较耗时</h3><p>进程都有自己的虚拟地址空间，把虚拟地址转换为物理地址需要查找页表，页表查找是一个很慢的过程，因此通常使用Cache来缓存常用的地址映射</p>
+<p>由于每个进程都有自己的虚拟地址空间，都有自己的页表，那么当进程切换后页表也要进行切换，页表切换后TLB就失效了，Cache失效导致命中率降低，那么虚拟地址转换为物理地址就会变慢，表现出来的就是程序运行会变慢，而线程切换则不会导致TLB失效，因为线程无需切换地址空间</p>
+<h1 id="二、计算机网络"><a href="#二、计算机网络" class="headerlink" title="二、计算机网络"></a>二、计算机网络</h1><h2 id="1、HTPP状态码"><a href="#1、HTPP状态码" class="headerlink" title="1、HTPP状态码"></a>1、HTPP状态码</h2><table>
+<thead>
+<tr>
+<th align="center">状态码</th>
+<th align="center">类别</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1XX</td>
+<td align="center">信息性状态码</td>
+</tr>
+<tr>
+<td align="center">2XX</td>
+<td align="center">成功状态码</td>
+</tr>
+<tr>
+<td align="center">3XX</td>
+<td align="center">重定向状态码</td>
+</tr>
+<tr>
+<td align="center">4XX</td>
+<td align="center">客户端错误状态码</td>
+</tr>
+<tr>
+<td align="center">5XX</td>
+<td align="center">服务端错误状态码</td>
+</tr>
+</tbody></table>
+<p>1XX</p>
+<ul>
+<li>100 Continue：表示正常，客户端可以继续发送请求</li>
+<li>101 Switching Protocols：切换协议，服务器根据客户端的请求切换协议。</li>
+</ul>
+<p>2XX</p>
+<ul>
+<li>200 OK：请求成功</li>
+<li>201 Created：已创建，表示成功请求并创建了新的资源</li>
+<li>202 Accepted：已接受，已接受请求，但未处理完成。</li>
+<li>204 No Content：无内容，服务器成功处理，但未返回内容。</li>
+<li>205 Reset Content：重置内容，服务器处理成功，客户端应重置文档视图。</li>
+<li>206 Partial Content：表示客户端进行了范围请求，响应报文应包含Content-Range指定范围的实体内容</li>
+</ul>
+<p>3XX</p>
+<ul>
+<li>301 Moved Permanently：永久性重定向</li>
+<li>302 Found：临时重定向</li>
+<li>303 See Other：和301功能类似，但要求客户端采用get方法获取资源</li>
+<li>304 Not Modified：所请求的资源未修改，服务器返回此状态码时，不会返回任何资源。</li>
+<li>305 Use Proxy：所请求的资源必须通过代理访问</li>
+<li>307 Temporary Redirect： 临时重定向，与302类似，要求使用get请求重定向。</li>
+</ul>
+<p>4XX</p>
+<ul>
+<li>400 Bad Request：客户端请求的语法错误，服务器无法理解。</li>
+<li>401 Unauthorized：表示发送的请求需要有认证信息。</li>
+<li>403 Forbidden：服务器理解用户的请求，但是拒绝执行该请求</li>
+<li>404 Not Found：服务器无法根据客户端的请求找到资源。</li>
+<li>405 Method Not Allowed：客户端请求中的方法被禁止</li>
+<li>406 Not Acceptable：服务器无法根据客户端请求的内容特性完成请求</li>
+<li>408 Request Time-out：服务器等待客户端发送的请求时间过长，超时</li>
+</ul>
+<p>5XX</p>
+<ul>
+<li>500 Internal Server Error：服务器内部错误，无法完成请求</li>
+<li>501 Not Implemented：服务器不支持请求的功能，无法完成请求</li>
+<li>502 Bad Gateway：指错误网关，无效网关；在互联网中表示一种网络错误；表现在WEB浏览器中给出的页面反馈；它通常并不意味着上游服务器已关闭（无响应网关网关/98992)/代理） ，而是上游服务器和网关/代理使用不一致的协议交换数据</li>
+</ul>
+<h2 id="2、HTTP请求头"><a href="#2、HTTP请求头" class="headerlink" title="2、HTTP请求头"></a>2、HTTP请求头</h2><p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000018234763">https://segmentfault.com/a/1190000018234763</a></p>
+<h3 id="（1）General"><a href="#（1）General" class="headerlink" title="（1）General"></a>（1）General</h3><p>（不属于headers，只用于收集请求url和响应的status等信息）</p>
+<ul>
+<li>Request URL</li>
+<li>Request Method</li>
+<li>Status Code</li>
+<li>Remote Address</li>
+</ul>
+<h3 id="（2）Request-Headers"><a href="#（2）Request-Headers" class="headerlink" title="（2）Request Headers"></a>（2）Request Headers</h3><ul>
+<li>Accept</li>
+<li>Accept-Encoding</li>
+<li>Connection</li>
+<li>Cookie</li>
+<li>Host</li>
+<li>Origin</li>
+<li>User-Agent</li>
+</ul>
+<h3 id="（3）Response-Headers"><a href="#（3）Response-Headers" class="headerlink" title="（3）Response Headers"></a>（3）Response Headers</h3><ul>
+<li>cache-control</li>
+<li>connection</li>
+<li>data</li>
+</ul>
+<h2 id="3、第二次挥手和第三次挥手能否合并"><a href="#3、第二次挥手和第三次挥手能否合并" class="headerlink" title="3、第二次挥手和第三次挥手能否合并"></a>3、第二次挥手和第三次挥手能否合并</h2><p>可以合并</p>
+<p>TCP四次挥手里，第二次和第三次挥手之间，是有可能有数据传输的。第三次挥手的目的是为了告诉主动方，”被动方没有数据要发了”。</p>
+<p>在第一次挥手之后，如果被动方没有数据要发给主动方。第二和第三次挥手是<strong>有可能</strong>合并传输的。这样就出现了三次挥手。</p>
+<h2 id="4、Get和Post请求区别"><a href="#4、Get和Post请求区别" class="headerlink" title="4、Get和Post请求区别"></a>4、Get和Post请求区别</h2><ul>
+<li>HTTP报文层面GET请求将信息放到url中，POST请求将信息放到请求体中</li>
+<li>数据库层面，GET请求是幂等性和安全性的，POST不是</li>
+<li>缓存层面，GET 请求能够被缓存，POST不可以</li>
+</ul>
+<h2 id="5、滑动窗口"><a href="#5、滑动窗口" class="headerlink" title="5、滑动窗口"></a>5、滑动窗口</h2><p><img src="https://img-blog.csdnimg.cn/7bbfb14f714f44e79c9020323e8772a8.png" alt="在这里插入图片描述"></p>
+<ul>
+<li><p>滑动窗口的组成</p>
+<p>四大组成部分</p>
+</li>
+<li><p>发送过程</p>
+<p>当已经发送的窗口收到确认时，窗口会向右移，之前在窗口右边的分组就会移动到窗口内部</p>
+</li>
+</ul>
+<h1 id="一、数据库"><a href="#一、数据库" class="headerlink" title="一、数据库"></a>一、数据库</h1><h2 id="1、三大范式"><a href="#1、三大范式" class="headerlink" title="1、三大范式"></a>1、三大范式</h2><p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000013695030">https://segmentfault.com/a/1190000013695030</a></p>
+<h3 id="（1）第一范式"><a href="#（1）第一范式" class="headerlink" title="（1）第一范式"></a>（1）第一范式</h3><p>属性的原子性，不可再分</p>
+<h3 id="（2）第二范式"><a href="#（2）第二范式" class="headerlink" title="（2）第二范式"></a>（2）第二范式</h3><p>消除所有非主属性对主属性的部分依赖</p>
+<h3 id="（3）第三范式"><a href="#（3）第三范式" class="headerlink" title="（3）第三范式"></a>（3）第三范式</h3><p>消除非主属性对主属性的传递依赖</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/27/C++/5%E6%9C%887%E6%97%A5%E4%B8%8A%E8%AF%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/27/C++/5%E6%9C%887%E6%97%A5%E4%B8%8A%E8%AF%BE/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-27 17:08:49" itemprop="dateCreated datePublished" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>运算符重载</p>
+<p>为什么需要运算符重载</p>
+<p>对自定义的类进行运算的时候、会使得代码在理解的会有更直观的认识</p>
+<p>所谓重载，就是给一个已经有的函数赋予新的功能</p>
+<p>运算符函数可以重载为成员函数和友元函数，成员函数有this指针，而友元函数没有this指针</p>
+<p>c++继承</p>
+<p>三种继承方式：public、protected、private</p>
+
       
     </div>
 

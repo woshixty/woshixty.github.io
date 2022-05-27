@@ -154,7 +154,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/26/Go/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0%20%E5%AE%9E%E6%88%98%E6%BC%94%E7%BB%83/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/27/C++/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20%E4%BD%BF%E7%94%A8%E7%B1%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -168,7 +168,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/26/Go/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0%20%E5%AE%9E%E6%88%98%E6%BC%94%E7%BB%83/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/05/27/C++/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20%E4%BD%BF%E7%94%A8%E7%B1%BB/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -178,7 +178,98 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-26 17:13:39" itemprop="dateCreated datePublished" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
+              <time title="创建时间：2022-05-27 17:08:49" itemprop="dateCreated datePublished" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="三、友元"><a href="#三、友元" class="headerlink" title="三、友元"></a>三、友元</h3><p>通常情况下，公有类方法是访问类的唯一途径，有时不方便，于是我们诞生了另外一种形式的访问权限：友元</p>
+<p>分为三类：</p>
+<ul>
+<li>友元函数</li>
+<li>友元类</li>
+<li>友元成员函数</li>
+</ul>
+<h4 id="1、创建友元函数"><a href="#1、创建友元函数" class="headerlink" title="1、创建友元函数"></a>1、创建友元函数</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">friend</span> Time <span class="keyword">operator</span>*(<span class="keyword">const</span> Time &amp; t, <span class="keyword">double</span> m);</span><br></pre></td></tr></table></figure>
+
+<p>放在类声明中，加上关键字<code>friend</code></p>
+<ul>
+<li>虽然是在类声明中声明的，但是并不是成员函数</li>
+<li>与成员函数的访问权限相同</li>
+</ul>
+<h4 id="2、常用的友元：重载-lt-lt-运算符"><a href="#2、常用的友元：重载-lt-lt-运算符" class="headerlink" title="2、常用的友元：重载&lt;&lt;运算符"></a>2、常用的友元：重载&lt;&lt;运算符</h4><h5 id="（1）第一种重载版本"><a href="#（1）第一种重载版本" class="headerlink" title="（1）第一种重载版本"></a>（1）第一种重载版本</h5><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Time <span class="keyword">operator</span>&lt;&lt;(ostream &amp;os, <span class="keyword">const</span> Time &amp; t) &#123;</span><br><span class="line">    os &lt;&lt; t.hours &lt;&lt; t.minutes;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="（2）第二种重载版本"><a href="#（2）第二种重载版本" class="headerlink" title="（2）第二种重载版本"></a>（2）第二种重载版本</h5><p>如果使用第一种重载版本，如下语句就会发生异常</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span> &lt;&lt; time &lt;&lt; <span class="string">&quot;time&quot;</span> &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+<p>所以我们采用如下方式，让其返回<code>ostream</code>对象引用即可：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ostream &amp;  <span class="keyword">operator</span>&lt;&lt;(ostream &amp;os, <span class="keyword">const</span> Time &amp; t) &#123;</span><br><span class="line">    os &lt;&lt; t.hours &lt;&lt; t.minutes;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>只有在类声明的原型中才能使用friend关键字，否则函数定义也是原型，否则不能在函数定义中使用该关键字</p>
+</blockquote>
+<h3 id="六、类的自动转换和强制类型转换"><a href="#六、类的自动转换和强制类型转换" class="headerlink" title="六、类的自动转换和强制类型转换"></a>六、类的自动转换和强制类型转换</h3><p>内置类型转换：如果两种类型兼容，则会自动转换为接收类型的变量的类型</p>
+<p>不自动转化不兼容的类型，如下是非法的：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p = <span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<p>但是可以强制类型转化</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p = (<span class="keyword">int</span> *)<span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="1、转换函数"><a href="#1、转换函数" class="headerlink" title="1、转换函数"></a>1、转换函数</h4>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/27/C++/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0%20%E7%B1%BB%E7%BB%A7%E6%89%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/27/C++/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0%20%E7%B1%BB%E7%BB%A7%E6%89%BF/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-27 17:08:49" itemprop="dateCreated datePublished" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
             </span>
 
           
@@ -193,222 +284,23 @@
 
       
           <blockquote>
-<p>剖析cellnet包网络库，设计并实现Socket聊天功能</p>
+<ul>
+<li>Is-a关系的继承</li>
+<li>如何以公有方式从一个类派生出另一个类</li>
+<li>保护访问</li>
+<li>构造函数成员初始化列表</li>
+<li>向下和向上强制转换</li>
+<li>虚成员函数</li>
+<li>早期（静态）联编与晚期（动态）联编</li>
+<li>抽象基类</li>
+<li>纯虚函数</li>
+<li>何时以及如何使用公有继承</li>
+</ul>
 </blockquote>
-<p>cellnet的设计理念是：高性能、简单、方便、开箱即用</p>
-<h1 id="一、了解cellnet网络库的特性、流程与架构"><a href="#一、了解cellnet网络库的特性、流程与架构" class="headerlink" title="一、了解cellnet网络库的特性、流程与架构"></a>一、了解cellnet网络库的特性、流程与架构</h1><h2 id="1、cellnet网络库的特性"><a href="#1、cellnet网络库的特性" class="headerlink" title="1、cellnet网络库的特性"></a>1、cellnet网络库的特性</h2><h2 id="2、cellnet网络库的流程以及架构"><a href="#2、cellnet网络库的流程以及架构" class="headerlink" title="2、cellnet网络库的流程以及架构"></a>2、cellnet网络库的流程以及架构</h2><h1 id="二、管理TCP-Scket连接"><a href="#二、管理TCP-Scket连接" class="headerlink" title="二、管理TCP Scket连接"></a>二、管理TCP Scket连接</h1><h2 id="1、理解Socket的事件类型"><a href="#1、理解Socket的事件类型" class="headerlink" title="1、理解Socket的事件类型"></a>1、理解Socket的事件类型</h2><h2 id="2、管理事件回调"><a href="#2、管理事件回调" class="headerlink" title="2、管理事件回调"></a>2、管理事件回调</h2><h2 id="3、连接器（Connector）"><a href="#3、连接器（Connector）" class="headerlink" title="3、连接器（Connector）"></a>3、连接器（Connector）</h2><h2 id="4、会话管理（SessionManager）"><a href="#4、会话管理（SessionManager）" class="headerlink" title="4、会话管理（SessionManager）"></a>4、会话管理（SessionManager）</h2><h2 id="5、接收器（Acceptor）"><a href="#5、接收器（Acceptor）" class="headerlink" title="5、接收器（Acceptor）"></a>5、接收器（Acceptor）</h2><h1 id="三、组织接收和发送数据流程的Socket会话（Session）"><a href="#三、组织接收和发送数据流程的Socket会话（Session）" class="headerlink" title="三、组织接收和发送数据流程的Socket会话（Session）"></a>三、组织接收和发送数据流程的Socket会话（Session）</h1><h2 id="1、在会话开始时启动goroutine和派发事件"><a href="#1、在会话开始时启动goroutine和派发事件" class="headerlink" title="1、在会话开始时启动goroutine和派发事件"></a>1、在会话开始时启动goroutine和派发事件</h2><h2 id="2、会话中的接收数据循环"><a href="#2、会话中的接收数据循环" class="headerlink" title="2、会话中的接收数据循环"></a>2、会话中的接收数据循环</h2><h2 id="3、会话中的发送数据循环"><a href="#3、会话中的发送数据循环" class="headerlink" title="3、会话中的发送数据循环"></a>3、会话中的发送数据循环</h2><h1 id="四、排队处理事件的事件队列（EventQueue）"><a href="#四、排队处理事件的事件队列（EventQueue）" class="headerlink" title="四、排队处理事件的事件队列（EventQueue）"></a>四、排队处理事件的事件队列（EventQueue）</h1><h2 id="1、实现事件队列"><a href="#1、实现事件队列" class="headerlink" title="1、实现事件队列"></a>1、实现事件队列</h2><h2 id="2、使用不同的事件队列模式处理数据"><a href="#2、使用不同的事件队列模式处理数据" class="headerlink" title="2、使用不同的事件队列模式处理数据"></a>2、使用不同的事件队列模式处理数据</h2><h1 id="五、消息编码（codec）-让cellnet支持消息的多种编码格式"><a href="#五、消息编码（codec）-让cellnet支持消息的多种编码格式" class="headerlink" title="五、消息编码（codec）-让cellnet支持消息的多种编码格式"></a>五、消息编码（codec）-让cellnet支持消息的多种编码格式</h1><h1 id="六、消息元信息（MessageMeta）-消息ID、消息名称和消息类型的关联关系"><a href="#六、消息元信息（MessageMeta）-消息ID、消息名称和消息类型的关联关系" class="headerlink" title="六、消息元信息（MessageMeta）-消息ID、消息名称和消息类型的关联关系"></a>六、消息元信息（MessageMeta）-消息ID、消息名称和消息类型的关联关系</h1><h2 id="1、理解消息元信息"><a href="#1、理解消息元信息" class="headerlink" title="1、理解消息元信息"></a>1、理解消息元信息</h2><h2 id="2、注册消息元信息"><a href="#2、注册消息元信息" class="headerlink" title="2、注册消息元信息"></a>2、注册消息元信息</h2><h2 id="3、示例：使用消息元信息"><a href="#3、示例：使用消息元信息" class="headerlink" title="3、示例：使用消息元信息"></a>3、示例：使用消息元信息</h2><h2 id="4、实现消息的编码（EncodeMessage-）和解码（DecodeMessage-）函数"><a href="#4、实现消息的编码（EncodeMessage-）和解码（DecodeMessage-）函数" class="headerlink" title="4、实现消息的编码（EncodeMessage()）和解码（DecodeMessage()）函数"></a>4、实现消息的编码（EncodeMessage()）和解码（DecodeMessage()）函数</h2><h1 id="七、接收和发送封包（Packet）"><a href="#七、接收和发送封包（Packet）" class="headerlink" title="七、接收和发送封包（Packet）"></a>七、接收和发送封包（Packet）</h1><h2 id="1、接收可变长度封包"><a href="#1、接收可变长度封包" class="headerlink" title="1、接收可变长度封包"></a>1、接收可变长度封包</h2><h2 id="2、了解封包数据读取器（PacketReader）"><a href="#2、了解封包数据读取器（PacketReader）" class="headerlink" title="2、了解封包数据读取器（PacketReader）"></a>2、了解封包数据读取器（PacketReader）</h2><h2 id="3、了解封包数据写入器（PacketWriter）"><a href="#3、了解封包数据写入器（PacketWriter）" class="headerlink" title="3、了解封包数据写入器（PacketWriter）"></a>3、了解封包数据写入器（PacketWriter）</h2><h2 id="4、读取自定义封包及数据"><a href="#4、读取自定义封包及数据" class="headerlink" title="4、读取自定义封包及数据"></a>4、读取自定义封包及数据</h2><h2 id="5、写入自定义封包及数据"><a href="#5、写入自定义封包及数据" class="headerlink" title="5、写入自定义封包及数据"></a>5、写入自定义封包及数据</h2><h2 id="6、响应消息处理事件"><a href="#6、响应消息处理事件" class="headerlink" title="6、响应消息处理事件"></a>6、响应消息处理事件</h2><h1 id="八、使用cellnet实现聊天功能"><a href="#八、使用cellnet实现聊天功能" class="headerlink" title="八、使用cellnet实现聊天功能"></a>八、使用cellnet实现聊天功能</h1><h2 id="1、定义聊天协议"><a href="#1、定义聊天协议" class="headerlink" title="1、定义聊天协议"></a>1、定义聊天协议</h2><h2 id="2、实现客户端功能"><a href="#2、实现客户端功能" class="headerlink" title="2、实现客户端功能"></a>2、实现客户端功能</h2><h2 id="3、实现服务器功能"><a href="#3、实现服务器功能" class="headerlink" title="3、实现服务器功能"></a>3、实现服务器功能</h2><h2 id="4、运行聊天服务器和客户端"><a href="#4、运行聊天服务器和客户端" class="headerlink" title="4、运行聊天服务器和客户端"></a>4、运行聊天服务器和客户端</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/26/Go/%E7%AC%AC%E5%8D%81%E7%AB%A0%20%E5%8F%8D%E5%B0%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/26/Go/%E7%AC%AC%E5%8D%81%E7%AB%A0%20%E5%8F%8D%E5%B0%84/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-05-26 17:13:39" itemprop="dateCreated datePublished" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>反射是指程序运行期间对程序本身进行访问和修改的能力</p>
-<p>Go程序在运行期间使用reflect包访问程序的反射信息</p>
-<h1 id="一、反射的类型对象（reflect-Type）"><a href="#一、反射的类型对象（reflect-Type）" class="headerlink" title="一、反射的类型对象（reflect.Type）"></a>一、反射的类型对象（reflect.Type）</h1><p>在Go中，使用<code>reflect.TypeOf()</code>函数便可以获取任意值的类型对象，一言不合上代码</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> a <span class="keyword">int</span></span><br><span class="line">	typeOf := reflect.TypeOf(a)</span><br><span class="line">	fmt.Println(typeOf)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="1、理解反射类型的类型（Type）与种类（Kind）"><a href="#1、理解反射类型的类型（Type）与种类（Kind）" class="headerlink" title="1、理解反射类型的类型（Type）与种类（Kind）"></a>1、理解反射类型的类型（Type）与种类（Kind）</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/26/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E4%B8%80%E8%8A%82%E8%AF%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/26/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E4%B8%80%E8%8A%82%E8%AF%BE/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-05-26 17:13:39" itemprop="dateCreated datePublished" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>第一次课程前半部分讲了Go基本语法，后半部分讲了三个小项目</p>
-<h2 id="零、Go基础"><a href="#零、Go基础" class="headerlink" title="零、Go基础"></a>零、Go基础</h2><h3 id="1、基本语法"><a href="#1、基本语法" class="headerlink" title="1、基本语法"></a>1、基本语法</h3><ul>
-<li><p>变量</p>
-<p>声明、初始化、匿名变量</p>
-</li>
-<li><p>数据类型</p>
-<p>整形、浮点型、布尔、字符型、字符串、切片、</p>
-</li>
-<li><p>指针</p>
-</li>
-<li><p>变量的生命周期</p>
-</li>
-<li><p>常量</p>
-</li>
-<li><p>变量别名</p>
-</li>
-</ul>
-<h3 id="2、容器"><a href="#2、容器" class="headerlink" title="2、容器"></a>2、容器</h3><ul>
-<li><p>数组</p>
-<p>声明、初始化、遍历</p>
-</li>
-<li><p>切片（slice）</p>
-<p>make()、append()</p>
-</li>
-<li><p>映射（map）</p>
-</li>
-<li><p>列表（list）</p>
-</li>
-</ul>
-<h3 id="3、流程控制"><a href="#3、流程控制" class="headerlink" title="3、流程控制"></a>3、流程控制</h3><ul>
-<li>条件判断：if</li>
-<li>循环：for</li>
-<li>键值循环：for range</li>
-<li>分支选择：switch</li>
-<li>代码跳转：goto</li>
-</ul>
-<h2 id="一、猜字谜游戏"><a href="#一、猜字谜游戏" class="headerlink" title="一、猜字谜游戏"></a>一、猜字谜游戏</h2><h3 id="1、代码版本一"><a href="#1、代码版本一" class="headerlink" title="1、代码版本一"></a>1、代码版本一</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;math/rand&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	maxNum := <span class="number">100</span></span><br><span class="line">	secretNumber := rand.Intn(maxNum)</span><br><span class="line">	fmt.Println(<span class="string">&quot;The secret number is &quot;</span>, secretNumber)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>每次运行输出的数字都是同样的</p>
-<p>随机数种子</p>
-<h3 id="2、代码版本二"><a href="#2、代码版本二" class="headerlink" title="2、代码版本二"></a>2、代码版本二</h3><p>需要设置代码随机数种子，设置为当前的时间戳</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rand.Seed(time.Now().UnixNano())</span><br></pre></td></tr></table></figure>
-
-<h3 id="3、代码版本三"><a href="#3、代码版本三" class="headerlink" title="3、代码版本三"></a>3、代码版本三</h3><p>实现用户的输入输出</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">reader := bufio.NewReader(os.Stdin)</span><br><span class="line">input, err := reader.ReadString(<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"><span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">  fmt.Println(<span class="string">&quot;An error occured while reading input. Please try again&quot;</span>, err)</span><br><span class="line">  <span class="keyword">return</span></span><br><span class="line">&#125;</span><br><span class="line">input = strings.TrimSuffix(input, <span class="string">&quot;\n&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<h3 id="4、代码版本四"><a href="#4、代码版本四" class="headerlink" title="4、代码版本四"></a>4、代码版本四</h3><p>使用循环实现游戏的循环</p>
-<p>变量、循环、函数、文件流、错误处理等</p>
-<h2 id="二、命令行版本词典"><a href="#二、命令行版本词典" class="headerlink" title="二、命令行版本词典"></a>二、命令行版本词典</h2><p>调用第三方API</p>
-<p>使用Go发送网络请求，解析JSON，并使用相应的代码生成工具提高开发效率</p>
-<h3 id="1、抓包"><a href="#1、抓包" class="headerlink" title="1、抓包"></a>1、抓包</h3><p>抓取第三方翻译平台的API</p>
-<p><a target="_blank" rel="noopener" href="https://fanyi.caiyunapp.com/">https://fanyi.caiyunapp.com/</a></p>
-<p>按f12打开开发人员工具，找到正确的请求</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Go/bytedance/1.png">
-
-<h3 id="2、代码生成"><a href="#2、代码生成" class="headerlink" title="2、代码生成"></a>2、代码生成</h3><p>右键请求</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Go/bytedance/2.png">
-
-<p>复制结果如下：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">curl &#x27;https://api.interpreter.caiyunai.com/v1/dict&#x27; \</span><br><span class="line">  -H &#x27;Accept: application/json, text/plain, */*&#x27; \</span><br><span class="line">  -H &#x27;Accept-Language: en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7&#x27; \</span><br><span class="line">  -H &#x27;Connection: keep-alive&#x27; \</span><br><span class="line">  -H &#x27;Content-Type: application/json;charset=UTF-8&#x27; \</span><br><span class="line">  -H &#x27;Origin: https://fanyi.caiyunapp.com&#x27; \</span><br><span class="line">  -H &#x27;Referer: https://fanyi.caiyunapp.com/&#x27; \</span><br><span class="line">  -H &#x27;Sec-Fetch-Dest: empty&#x27; \</span><br><span class="line">  -H &#x27;Sec-Fetch-Mode: cors&#x27; \</span><br><span class="line">  -H &#x27;Sec-Fetch-Site: cross-site&#x27; \</span><br><span class="line">  -H &#x27;User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36&#x27; \</span><br><span class="line">  -H &#x27;X-Authorization: token:qgemv4jr1y38jyq6vhvi&#x27; \</span><br><span class="line">  -H &#x27;app-name: xy&#x27; \</span><br><span class="line">  -H &#x27;device-id: &#x27; \</span><br><span class="line">  -H &#x27;os-type: web&#x27; \</span><br><span class="line">  -H &#x27;os-version: &#x27; \</span><br><span class="line">  -H &#x27;sec-ch-ua: &quot; Not A;Brand&quot;;v=&quot;99&quot;, &quot;Chromium&quot;;v=&quot;101&quot;, &quot;Google Chrome&quot;;v=&quot;101&quot;&#x27; \</span><br><span class="line">  -H &#x27;sec-ch-ua-mobile: ?0&#x27; \</span><br><span class="line">  -H &#x27;sec-ch-ua-platform: &quot;macOS&quot;&#x27; \</span><br><span class="line">  --data-raw &#x27;&#123;&quot;trans_type&quot;:&quot;en2zh&quot;,&quot;source&quot;:&quot;good&quot;&#125;&#x27; \</span><br><span class="line">  --compressed</span><br></pre></td></tr></table></figure>
-
-<p>然后我们就去这个平台生成代码：<a target="_blank" rel="noopener" href="https://curlconverter.com/#go">Go代码生成</a></p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Go/bytedance/3.png">
-
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;io/ioutil&quot;</span></span><br><span class="line">	<span class="string">&quot;log&quot;</span></span><br><span class="line">	<span class="string">&quot;net/http&quot;</span></span><br><span class="line">	<span class="string">&quot;strings&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	client := &amp;http.Client&#123;&#125;</span><br><span class="line">	<span class="keyword">var</span> data = strings.NewReader(<span class="string">`&#123;&quot;trans_type&quot;:&quot;en2zh&quot;,&quot;source&quot;:&quot;good&quot;&#125;`</span>)</span><br><span class="line">  <span class="comment">// 创建请求</span></span><br><span class="line">	req, err := http.NewRequest(<span class="string">&quot;POST&quot;</span>, <span class="string">&quot;https://api.interpreter.caiyunai.com/v1/dict&quot;</span>, data)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line">  <span class="comment">// 设置请求头</span></span><br><span class="line">	req.Header.Set(<span class="string">&quot;Accept&quot;</span>, <span class="string">&quot;application/json, text/plain, */*&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;Accept-Language&quot;</span>, <span class="string">&quot;en-US,en;q=0.9,zh-CN;q=0.8,zh;q=0.7&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;Connection&quot;</span>, <span class="string">&quot;keep-alive&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;Content-Type&quot;</span>, <span class="string">&quot;application/json;charset=UTF-8&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;Origin&quot;</span>, <span class="string">&quot;https://fanyi.caiyunapp.com&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;Referer&quot;</span>, <span class="string">&quot;https://fanyi.caiyunapp.com/&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;Sec-Fetch-Dest&quot;</span>, <span class="string">&quot;empty&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;Sec-Fetch-Mode&quot;</span>, <span class="string">&quot;cors&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;Sec-Fetch-Site&quot;</span>, <span class="string">&quot;cross-site&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;User-Agent&quot;</span>, <span class="string">&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;X-Authorization&quot;</span>, <span class="string">&quot;token:qgemv4jr1y38jyq6vhvi&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;app-name&quot;</span>, <span class="string">&quot;xy&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;os-type&quot;</span>, <span class="string">&quot;web&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;sec-ch-ua&quot;</span>, <span class="string">`&quot; Not A;Brand&quot;;v=&quot;99&quot;, &quot;Chromium&quot;;v=&quot;101&quot;, &quot;Google Chrome&quot;;v=&quot;101&quot;`</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;sec-ch-ua-mobile&quot;</span>, <span class="string">&quot;?0&quot;</span>)</span><br><span class="line">	req.Header.Set(<span class="string">&quot;sec-ch-ua-platform&quot;</span>, <span class="string">`&quot;macOS&quot;`</span>)</span><br><span class="line">  <span class="comment">// 发起请求</span></span><br><span class="line">	resp, err := client.Do(req)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">defer</span> resp.Body.Close()</span><br><span class="line">  <span class="comment">// 读取响应</span></span><br><span class="line">	bodyText, err := ioutil.ReadAll(resp.Body)</span><br><span class="line">	<span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">		log.Fatal(err)</span><br><span class="line">	&#125;</span><br><span class="line">	fmt.Printf(<span class="string">&quot;%s\n&quot;</span>, bodyText)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="3、生成requst-body"><a href="#3、生成requst-body" class="headerlink" title="3、生成requst body"></a>3、生成requst body</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> DictRequest <span class="keyword">struct</span> &#123;</span><br><span class="line">	TransType <span class="keyword">string</span> <span class="string">`json:&quot;trans_type&quot;`</span></span><br><span class="line">	Source    <span class="keyword">string</span> <span class="string">`json:&quot;source&quot;`</span></span><br><span class="line">	UserID    <span class="keyword">string</span> <span class="string">`json:&quot;user_id&quot;`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>将请求结构体序列化为JSON：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">request := DictRequest&#123;TransType: <span class="string">&quot;en2zh&quot;</span>, Source: <span class="string">&quot;good&quot;</span>&#125;</span><br><span class="line">buf, err := json.Marshal(request)</span><br></pre></td></tr></table></figure>
-
-<h3 id="4、response-body的解析"><a href="#4、response-body的解析" class="headerlink" title="4、response body的解析"></a>4、response body的解析</h3><p>由于结构复杂，为了防止出错，我们使用第三方代码生成工具</p>
-<p>去这个平台进行Go结构体的生成：<a target="_blank" rel="noopener" href="https://oktools.net/">Go结构体</a></p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/Go/bytedance/4.png">
-
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> AutoGenerated <span class="keyword">struct</span> &#123;</span><br><span class="line">	Rc <span class="keyword">int</span> <span class="string">`json:&quot;rc&quot;`</span></span><br><span class="line">	Wiki Wiki <span class="string">`json:&quot;wiki&quot;`</span></span><br><span class="line">	Dictionary Dictionary <span class="string">`json:&quot;dictionary&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> Description <span class="keyword">struct</span> &#123;</span><br><span class="line">	Source <span class="keyword">string</span> <span class="string">`json:&quot;source&quot;`</span></span><br><span class="line">	Target <span class="keyword">interface</span>&#123;&#125; <span class="string">`json:&quot;target&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> Item <span class="keyword">struct</span> &#123;</span><br><span class="line">	Source <span class="keyword">string</span> <span class="string">`json:&quot;source&quot;`</span></span><br><span class="line">	Target <span class="keyword">string</span> <span class="string">`json:&quot;target&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> Wiki <span class="keyword">struct</span> &#123;</span><br><span class="line">	KnownInLaguages <span class="keyword">int</span> <span class="string">`json:&quot;known_in_laguages&quot;`</span></span><br><span class="line">	Description Description <span class="string">`json:&quot;description&quot;`</span></span><br><span class="line">	ID <span class="keyword">string</span> <span class="string">`json:&quot;id&quot;`</span></span><br><span class="line">	Item Item <span class="string">`json:&quot;item&quot;`</span></span><br><span class="line">	ImageURL <span class="keyword">string</span> <span class="string">`json:&quot;image_url&quot;`</span></span><br><span class="line">	IsSubject <span class="keyword">string</span> <span class="string">`json:&quot;is_subject&quot;`</span></span><br><span class="line">	Sitelink <span class="keyword">string</span> <span class="string">`json:&quot;sitelink&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> Prons <span class="keyword">struct</span> &#123;</span><br><span class="line">	EnUs <span class="keyword">string</span> <span class="string">`json:&quot;en-us&quot;`</span></span><br><span class="line">	En <span class="keyword">string</span> <span class="string">`json:&quot;en&quot;`</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">type</span> Dictionary <span class="keyword">struct</span> &#123;</span><br><span class="line">	Prons Prons <span class="string">`json:&quot;prons&quot;`</span></span><br><span class="line">	Explanations []<span class="keyword">string</span> <span class="string">`json:&quot;explanations&quot;`</span></span><br><span class="line">	Synonym []<span class="keyword">string</span> <span class="string">`json:&quot;synonym&quot;`</span></span><br><span class="line">	Antonym []<span class="keyword">string</span> <span class="string">`json:&quot;antonym&quot;`</span></span><br><span class="line">	WqxExample []WqxExample[]<span class="keyword">string</span> <span class="string">`json:&quot;wqx_example&quot;`</span></span><br><span class="line">	Entry <span class="keyword">string</span> <span class="string">`json:&quot;entry&quot;`</span></span><br><span class="line">	Type <span class="keyword">string</span> <span class="string">`json:&quot;type&quot;`</span></span><br><span class="line">	Related []<span class="keyword">interface</span>&#123;&#125; <span class="string">`json:&quot;related&quot;`</span></span><br><span class="line">	Source <span class="keyword">string</span> <span class="string">`json:&quot;source&quot;`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>接下来就反序列化response body了：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> dictResponse DictResponse</span><br><span class="line">err = json.Unmarshal(bodyText, &amp;dictResponse)</span><br></pre></td></tr></table></figure>
-
-<p>获取JSON中指定的信息</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fmt.Println(<span class="string">&quot;UK:&quot;</span>, dictResponse.Dictionary.Prons.En, <span class="string">&quot;US:&quot;</span>, dictResponse.Dictionary.Prons.EnUs)</span><br></pre></td></tr></table></figure>
-
-<h3 id="5、获取命令行参数"><a href="#5、获取命令行参数" class="headerlink" title="5、获取命令行参数"></a>5、获取命令行参数</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="built_in">len</span>(os.Args) != <span class="number">2</span> &#123;</span><br><span class="line">  fmt.Fprintf(os.Stderr, <span class="string">`usage: simpleDict WORD</span></span><br><span class="line"><span class="string">example: simpleDict hello</span></span><br><span class="line"><span class="string">		`</span>)</span><br><span class="line">  os.Exit(<span class="number">1</span>)</span><br><span class="line">&#125;</span><br><span class="line">word := os.Args[<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
-
-<h2 id="三、SOCKET5代理服务器"><a href="#三、SOCKET5代理服务器" class="headerlink" title="三、SOCKET5代理服务器"></a>三、SOCKET5代理服务器</h2><h3 id="1、socks5原理"><a href="#1、socks5原理" class="headerlink" title="1、socks5原理"></a>1、socks5原理</h3><h3 id="2、向一个连接读写数据"><a href="#2、向一个连接读写数据" class="headerlink" title="2、向一个连接读写数据"></a>2、向一个连接读写数据</h3><p>读数据：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">reader := bufio.NewReader(conn)</span><br><span class="line">b, err := reader.ReadByte()</span><br></pre></td></tr></table></figure>
-
-<p>写数据：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_, err = conn.Write([]<span class="keyword">byte</span>&#123;b&#125;)</span><br></pre></td></tr></table></figure>
-
-<h3 id="4、连接的各个流程"><a href="#4、连接的各个流程" class="headerlink" title="4、连接的各个流程"></a>4、连接的各个流程</h3><p>基于字节流，根据协议规则，依次读取字节，将字节拼接成不同的具体数据</p>
-<h3 id="5、实现双向的数据转发"><a href="#5、实现双向的数据转发" class="headerlink" title="5、实现双向的数据转发"></a>5、实现双向的数据转发</h3><p>任何一个方向的数据copy失败，我们就返回这个函数，并关闭连接清理数据</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ctx, cancel := context.WithCancel(context.Background())</span><br><span class="line"><span class="keyword">defer</span> cancel()</span><br><span class="line"><span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">  _, _ = io.Copy(dest, reader)</span><br><span class="line">  cancel()</span><br><span class="line">&#125;()</span><br><span class="line"><span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">  _, _ = io.Copy(conn, dest)</span><br><span class="line">  cancel()</span><br><span class="line">&#125;()</span><br><span class="line">&lt;-ctx.Done()</span><br></pre></td></tr></table></figure>
+<p>面向对象编程的主要目的之一便是提供可重用的代码</p>
+<h1 id="一、一个简单的基类"><a href="#一、一个简单的基类" class="headerlink" title="一、一个简单的基类"></a>一、一个简单的基类</h1><p>从一个类派生出另一个类的时候原始类称为基类，继承类称为派生类</p>
+<p>程序清单tabtenn0.h</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
 
 
       
@@ -429,7 +321,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/26/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E4%BA%8C%E8%8A%82%E8%AF%BE/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/27/C++/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%E7%B1%BB%E5%92%8C%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -443,7 +335,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/26/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E4%BA%8C%E8%8A%82%E8%AF%BE/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/05/27/C++/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%E7%B1%BB%E5%92%8C%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -453,7 +345,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-26 17:13:39" itemprop="dateCreated datePublished" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
+              <time title="创建时间：2022-05-27 17:08:49" itemprop="dateCreated datePublished" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
             </span>
 
           
@@ -467,115 +359,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="一、语言进阶"><a href="#一、语言进阶" class="headerlink" title="一、语言进阶"></a>一、语言进阶</h1><p>并发与并行</p>
-<p>并发：多线程在单核CPU上运行</p>
-<p>并行：多线程程序在多核程序上运行</p>
-<h2 id="1、Goroutine"><a href="#1、Goroutine" class="headerlink" title="1、Goroutine"></a>1、Goroutine</h2><p>协程：用户态，轻量级线程，栈MB级别</p>
-<p>线程：内核态，线程跑多个协程，栈KB级别</p>
-<p>创建协程代码：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">hello</span><span class="params">(i <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	<span class="built_in">println</span>(<span class="string">&quot;hello goroutine : &quot;</span> + fmt.Sprint(i))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">5</span>; i++ &#123;</span><br><span class="line">		<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">(j <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">			hello(j)</span><br><span class="line">		&#125;(i)</span><br><span class="line">	&#125;</span><br><span class="line">	time.Sleep(time.Second)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2、CSP（Communicating-Sequential-Processes）"><a href="#2、CSP（Communicating-Sequential-Processes）" class="headerlink" title="2、CSP（Communicating Sequential Processes）"></a>2、CSP（Communicating Sequential Processes）</h2><p>提倡通过通信共享内存而不是通过共享内存实现通信</p>
-<h2 id="3、Channel"><a href="#3、Channel" class="headerlink" title="3、Channel"></a>3、Channel</h2><p>通过make(chan 元素类型，, [缓冲大小])</p>
-<ul>
-<li>有缓冲通道</li>
-<li>无缓冲通道</li>
-</ul>
-<p>代码示例：</p>
-<p>A协程发送0～9数字；B协程计算输入数字的平方；主协程输出最后的平方数</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">CalSquare</span><span class="params">()</span></span> &#123;</span><br><span class="line">	src := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>)</span><br><span class="line">	dest := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">int</span>, <span class="number">3</span>)</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">defer</span> <span class="built_in">close</span>(src)</span><br><span class="line">		<span class="keyword">for</span> i := <span class="number">0</span>; i &lt; <span class="number">10</span>; i++ &#123;</span><br><span class="line">			src &lt;- i</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">		<span class="keyword">defer</span> <span class="built_in">close</span>(dest)</span><br><span class="line">		<span class="keyword">for</span> i := <span class="keyword">range</span> src &#123;</span><br><span class="line">			dest &lt;- i * i</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;()</span><br><span class="line">	<span class="keyword">for</span> i := <span class="keyword">range</span> dest &#123;</span><br><span class="line">		<span class="built_in">println</span>(i)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="4、并发安全Lock"><a href="#4、并发安全Lock" class="headerlink" title="4、并发安全Lock"></a>4、并发安全Lock</h2><h2 id="5、WaitGroup"><a href="#5、WaitGroup" class="headerlink" title="5、WaitGroup"></a>5、WaitGroup</h2><p>计数器，开启协程+1；执行结束-1；主协程阻塞直到计数器为0</p>
-<h2 id="6、小结"><a href="#6、小结" class="headerlink" title="6、小结"></a>6、小结</h2><ul>
-<li>Goroutine</li>
-<li>Channel</li>
-<li>Sync</li>
-</ul>
-<h1 id="二、依赖管理"><a href="#二、依赖管理" class="headerlink" title="二、依赖管理"></a>二、依赖管理</h1><h2 id="1、Go依赖管理演进"><a href="#1、Go依赖管理演进" class="headerlink" title="1、Go依赖管理演进"></a>1、Go依赖管理演进</h2><p>GOPATH -&gt; Go Vender -&gt; Go Module</p>
-<h3 id="（1）GOPATH"><a href="#（1）GOPATH" class="headerlink" title="（1）GOPATH"></a>（1）GOPATH</h3><ul>
-<li>项目代码直接依赖src下的代码</li>
-<li>go get下载最新的代码到src目录下</li>
-</ul>
-<p>无法实现package的多版本控制</p>
-<h3 id="（2）Go-Vender"><a href="#（2）Go-Vender" class="headerlink" title="（2）Go Vender"></a>（2）Go Vender</h3><ul>
-<li>增加vender文件，存放所有的依赖包副本</li>
-<li>为每一个项目引入一份依赖副本</li>
-</ul>
-<p>无法控制依赖版本</p>
-<h3 id="（3）Go-Module"><a href="#（3）Go-Module" class="headerlink" title="（3）Go Module"></a>（3）Go Module</h3><ul>
-<li>通过<code>go.mod</code>文件管理依赖包版本</li>
-<li>通过<code>go get/go mod</code>指令工具管理依赖包</li>
-</ul>
-<p>定义版本规则和管理项目依赖关系</p>
-<h2 id="2、依赖管理"><a href="#2、依赖管理" class="headerlink" title="2、依赖管理"></a>2、依赖管理</h2><ul>
-<li>配置文件：go.mod</li>
-<li>中心仓库管理依赖库：Proxy</li>
-<li>本地工具：go get/mod</li>
-</ul>
-<h3 id="（1）依赖配置-go-mod"><a href="#（1）依赖配置-go-mod" class="headerlink" title="（1）依赖配置-go.mod"></a>（1）依赖配置-go.mod</h3><p>也就是编写go.mod</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 依赖管理基本单元</span></span><br><span class="line">module github.com/Moonlight-Zhao/<span class="keyword">go</span>-project-example</span><br><span class="line"></span><br><span class="line"><span class="comment">// 原生库</span></span><br><span class="line"><span class="keyword">go</span> <span class="number">1.16</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 描述单元依赖</span></span><br><span class="line">require (</span><br><span class="line">  <span class="comment">// 依赖标识：[Module Path][Version / Pseudo-version]</span></span><br><span class="line">	github.com/gin-contrib/sse v0<span class="number">.1</span><span class="number">.0</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<h3 id="（2）依赖配置-version"><a href="#（2）依赖配置-version" class="headerlink" title="（2）依赖配置-version"></a>（2）依赖配置-version</h3><ul>
-<li>语义化版本</li>
-<li>基于commit伪版本</li>
-</ul>
-<h3 id="（3）依赖配置-indirect"><a href="#（3）依赖配置-indirect" class="headerlink" title="（3）依赖配置-indirect"></a>（3）依赖配置-indirect</h3><p>直接依赖和间接依赖</p>
-<h3 id="（4）依赖配置-incompatible"><a href="#（4）依赖配置-incompatible" class="headerlink" title="（4）依赖配置-incompatible"></a>（4）依赖配置-incompatible</h3><p>主版本2+模块会在模块路径增加/vN后缀</p>
-<p>对于没有go.mod文件并且主版本2+的依赖，会加上该关键字</p>
-<h3 id="（5）工具"><a href="#（5）工具" class="headerlink" title="（5）工具"></a>（5）工具</h3><p>go get</p>
-<p>go mod (init / download / tidy)</p>
-<h2 id="3、小结"><a href="#3、小结" class="headerlink" title="3、小结"></a>3、小结</h2><ul>
-<li>Go依赖管理演进</li>
-<li>Go Module依赖管理方案</li>
-</ul>
-<h1 id="三、测试"><a href="#三、测试" class="headerlink" title="三、测试"></a>三、测试</h1><p>回归测试 -&gt; 集成测试 -&gt; 单元测试（测试成本逐渐降低）</p>
-<h2 id="1、单元测试"><a href="#1、单元测试" class="headerlink" title="1、单元测试"></a>1、单元测试</h2><h3 id="（1）规则"><a href="#（1）规则" class="headerlink" title="（1）规则"></a>（1）规则</h3><ul>
-<li>所有测试文件以<code>_test.go</code>结尾</li>
-<li>func TestXxx(*testing.T)</li>
-<li>初始化逻辑放到TestMain中</li>
-</ul>
-<h3 id="（2）单元测试-assert"><a href="#（2）单元测试-assert" class="headerlink" title="（2）单元测试-assert"></a>（2）单元测试-assert</h3><p>待测试函数：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">HelloTom</span><span class="params">()</span> <span class="title">string</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">&quot;Susan&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>测试代码：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">TestHelloTom</span><span class="params">(t *testing.T)</span></span> &#123;</span><br><span class="line">	output := HelloTom()</span><br><span class="line">	expectOutput := <span class="string">&quot;Tom&quot;</span></span><br><span class="line">	assert.Equal(t, expectOutput, output)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2、单元测试-依赖"><a href="#2、单元测试-依赖" class="headerlink" title="2、单元测试-依赖"></a>2、单元测试-依赖</h2><p>外部依赖 =&gt; 稳定&amp;幂等</p>
-<h2 id="3、单元测试-Mock"><a href="#3、单元测试-Mock" class="headerlink" title="3、单元测试-Mock"></a>3、单元测试-Mock</h2><p>monkey：<a target="_blank" rel="noopener" href="https://github.com/bouk/monkey">https://github.com/bouk/monkey</a></p>
-<ul>
-<li>为一个函数打桩</li>
-<li>为一个方法打桩</li>
-</ul>
-<p>不依赖于本地文件</p>
-<h2 id="4、基准测试"><a href="#4、基准测试" class="headerlink" title="4、基准测试"></a>4、基准测试</h2><ul>
-<li>优化代码</li>
-<li>内置的测试框架提供了基准测试能力</li>
-</ul>
-<h2 id="5、小结"><a href="#5、小结" class="headerlink" title="5、小结"></a>5、小结</h2><ul>
-<li>单元测试</li>
-<li>Mock测试</li>
-<li>基准测试</li>
-</ul>
-<h1 id="四、项目实战"><a href="#四、项目实战" class="headerlink" title="四、项目实战"></a>四、项目实战</h1><h2 id="1、分层结构"><a href="#1、分层结构" class="headerlink" title="1、分层结构"></a>1、分层结构</h2><ul>
-<li><p>数据层</p>
-<p>数据Model，外部数据的增删改查</p>
-</li>
-<li><p>逻辑层</p>
-<p>业务Entity，处理核心业务逻辑的输出</p>
-</li>
-<li><p>视图层</p>
-<p>视图View，处理和外部交互逻辑</p>
-</li>
-</ul>
-<h2 id="2、组件工具"><a href="#2、组件工具" class="headerlink" title="2、组件工具"></a>2、组件工具</h2><ul>
-<li><p>Gin高性能go web框架</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/gin-gonic/gin">https://github.com/gin-gonic/gin</a></p>
-</li>
-<li><p>Go mod</p>
-<p>go mod init</p>
-<p>go get <a target="_blank" rel="noopener" href="https://github.com/gin-gonic/gin.v1@v1.3.0">https://github.com/gin-gonic/gin.v1@v1.3.0</a></p>
-</li>
-</ul>
+          <blockquote>
+<p>对类成员使用动态内存分配</p>
+<p>隐式和显示复制构造函数</p>
+<p>隐式和显式重载赋值运算符</p>
+<p>在构造函数中使用new所必需完成的工作</p>
+<p>使用静态类成员</p>
+<p>将定位new运算符用于对象</p>
+<p>使用指向对象的指针</p>
+<p>实现队列抽象数据类型（ADT）</p>
+</blockquote>
 
       
     </div>
@@ -595,7 +388,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/26/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E5%9B%9B%E8%8A%82%E8%AF%BE/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/27/C++/%E9%87%91%E5%B1%B1%E7%AC%AC%E5%9B%9B%E6%AC%A1%E8%AF%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -609,7 +402,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/26/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E7%AC%AC%E5%9B%9B%E8%8A%82%E8%AF%BE/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/05/27/C++/%E9%87%91%E5%B1%B1%E7%AC%AC%E5%9B%9B%E6%AC%A1%E8%AF%BE/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -619,7 +412,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-26 17:13:39" itemprop="dateCreated datePublished" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
+              <time title="创建时间：2022-05-27 17:08:49" itemprop="dateCreated datePublished" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
             </span>
 
           
@@ -633,123 +426,160 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>x高性能Go语言发行版优化与落地实践</p>
-<p>本节课主要内容</p>
+          <h1 id="一、C-的模版"><a href="#一、C-的模版" class="headerlink" title="一、C++的模版"></a>一、C++的模版</h1><h2 id="1、泛型编程"><a href="#1、泛型编程" class="headerlink" title="1、泛型编程"></a>1、泛型编程</h2><h3 id="（1）概念"><a href="#（1）概念" class="headerlink" title="（1）概念"></a>（1）概念</h3><p>编写不依赖具体数据类型的程序</p>
+<h3 id="（2）目标"><a href="#（2）目标" class="headerlink" title="（2）目标"></a>（2）目标</h3><ul>
+<li>将程序尽可能通用</li>
+<li>将算法从数据结构中抽象出来</li>
+</ul>
+<h3 id="（3）应用"><a href="#（3）应用" class="headerlink" title="（3）应用"></a>（3）应用</h3><ul>
+<li>c++模版为范型程序设计提供了基础</li>
+<li>STL（标准模版库 Standard Template Library）是范型程序设计的例子</li>
+</ul>
+<h2 id="2、模板简介"><a href="#2、模板简介" class="headerlink" title="2、模板简介"></a>2、模板简介</h2><h3 id="（1）什么是模版"><a href="#（1）什么是模版" class="headerlink" title="（1）什么是模版"></a>（1）什么是模版</h3><p>模板是支持参数化多态的工具，是一种对类型进行参数化的工具</p>
+<h3 id="（2）模板分类"><a href="#（2）模板分类" class="headerlink" title="（2）模板分类"></a>（2）模板分类</h3><ul>
+<li><p>函数模版</p>
+<p>针对参数类型不同的函数</p>
+</li>
+<li><p>类模板</p>
+<p>针对仅数据成员和成员函数类型不同的类</p>
+</li>
+</ul>
+<h3 id="（3）工作方式"><a href="#（3）工作方式" class="headerlink" title="（3）工作方式"></a>（3）工作方式</h3><p>模版只是说明，需要实例化后才能执行和使用</p>
 <ul>
-<li><p>优化</p>
-<p>内存管理优化</p>
-<p>编译器优化</p>
+<li>函数模板 -&gt; 模板函数</li>
+<li>类模板 -&gt; 模板类 -&gt; 对象</li>
+</ul>
+<p><code>-&gt;</code>：实例化</p>
+<blockquote>
+<p>模板的声明和定义只能在全局、命名空间或类范围内进行</p>
+<p>即不能在局部范围、函数内进行</p>
+</blockquote>
+<h2 id="3、函数模板"><a href="#3、函数模板" class="headerlink" title="3、函数模板"></a>3、函数模板</h2><h3 id="（1）概念-1"><a href="#（1）概念-1" class="headerlink" title="（1）概念"></a>（1）概念</h3><p>所谓函数模板，就是一个通用函数，返回值和参数类型不具体指定，使用虚拟类型来替代（占位符），这个通用函数就叫函数模版（Function Template）</p>
+<h3 id="（2）定义形式"><a href="#（2）定义形式" class="headerlink" title="（2）定义形式"></a>（2）定义形式</h3><ul>
+<li><p>一</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">template&lt;typename 类型参数&gt;</span><br><span class="line">返回类型 函数名(模版形参表)</span><br><span class="line">&#123;</span><br><span class="line">	函数体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>背景</p>
-<p>自动内存管理和Go内存管理</p>
-<p>编译器优化</p>
+<li><p>二</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">template&lt;class T&gt;</span><br><span class="line">返回类型 函数名(模版形参表)</span><br><span class="line">&#123;</span><br><span class="line">	函数体</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
-<p>性能优化是什么？</p>
-<p>提升软件系统处理能力，减少不必要消耗</p>
-<p>为什么做性能优化？</p>
-<p>用户体验、资源的高效利用</p>
-<p>怎么做优化？</p>
+<blockquote>
+<p>template：声明模板的关键字</p>
+<p>typename和class都是表示他们之后的参数都是一个类型的参数，class是早期c++版本使用的</p>
+</blockquote>
+<h3 id="（3）代码示例"><a href="#（3）代码示例" class="headerlink" title="（3）代码示例"></a>（3）代码示例</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function">T <span class="title">doSum</span><span class="params">(T a, T b)</span> </span>&#123;</span><br><span class="line">    T temp = a + b;</span><br><span class="line">    <span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m = doSum(<span class="number">10</span> ,<span class="number">20</span>);</span><br><span class="line">    <span class="keyword">float</span> n = doSum(<span class="number">10.1</span>, <span class="number">20.2</span>);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; m &lt;&lt; <span class="string">&quot;  &quot;</span> &lt;&lt; n &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="（4）重载"><a href="#（4）重载" class="headerlink" title="（4）重载"></a>（4）重载</h3><ul>
+<li><p>函数模版支持函数重载，参数列表不一样</p>
+</li>
+<li><p>编译器调用函数的顺序</p>
+<p>1、先搜索参数完全匹配的普通函数</p>
+<p>2、其次搜索参数匹配的模版函数</p>
+<p>3、最后搜索自动类型转换后能匹配的普通函数</p>
+</li>
+</ul>
+<h2 id="4、类模板"><a href="#4、类模板" class="headerlink" title="4、类模板"></a>4、类模板</h2><h3 id="（1）简介"><a href="#（1）简介" class="headerlink" title="（1）简介"></a>（1）简介</h3><p>建立一个通用类</p>
+<h3 id="（2）代码具体实现格式"><a href="#（2）代码具体实现格式" class="headerlink" title="（2）代码具体实现格式"></a>（2）代码具体实现格式</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明类以及方法</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">deleteEle</span><span class="params">(T data)</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 类外定义方法</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">bool</span> Test&lt;T&gt;::deleteEle(T data) &#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; data &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="二、STL"><a href="#二、STL" class="headerlink" title="二、STL"></a>二、STL</h1><h2 id="1、简介"><a href="#1、简介" class="headerlink" title="1、简介"></a>1、简介</h2><h3 id="（1）简单介绍"><a href="#（1）简单介绍" class="headerlink" title="（1）简单介绍"></a>（1）简单介绍</h3><ul>
+<li><p>标准模版库</p>
+</li>
+<li><p>一些“容器”的集合：list、vector、set、map等等</p>
+</li>
+<li><p>标准化组件，实现可重用</p>
+</li>
+<li><p>六大部分</p>
+<p>容器、迭代器、空间配置器、配接器、算法、仿函数</p>
+</li>
+</ul>
+<h3 id="（2）详解"><a href="#（2）详解" class="headerlink" title="（2）详解"></a>（2）详解</h3><ul>
+<li><p>容器</p>
+<p>一些封装数据结构的模板类，如：vector、list</p>
+</li>
+<li><p>算法</p>
+<p>大量数据结构算法</p>
+</li>
+<li><p>迭代器</p>
+<p>对容器中数据的读写通过迭代器实现</p>
+</li>
+<li><p>函数对象</p>
+<p>将运算符重载为成员函数，这个类就称为函数对象类</p>
+</li>
+<li><p>适配器</p>
+<p>将一个类的接口适配成用户指定的形式</p>
+</li>
+<li><p>内存分配器</p>
+<p>内存申请和释放</p>
+</li>
+</ul>
+<h3 id="（3）代码示例-1"><a href="#（3）代码示例-1" class="headerlink" title="（3）代码示例"></a>（3）代码示例</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">6</span>] = &#123;<span class="number">26</span>, <span class="number">5</span>, <span class="number">76</span>, <span class="number">1</span>, <span class="number">6</span>, <span class="number">3</span>&#125;;</span><br><span class="line">    vector&lt;int, allocator&lt;int&gt;&gt; vi(a, a + 6);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; count_if(vi.begin(), vi.end(), not1(bind2nd(less&lt;<span class="keyword">int</span>&gt;(), <span class="number">40</span>)));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <ul>
-<li>业务层优化</li>
-<li>语言运行时优化</li>
+<li><p>(a, a + 6)</p>
+<p>赋予初值</p>
+</li>
+<li><p>vector：container（容器）</p>
+</li>
+<li><p>allocator<int>：allocator（分配器）</p>
+<p>默认会有对应规则</p>
+</li>
+<li><p>count_if：algorithms（算法）</p>
+<p>查询符合条件的元素个数</p>
+</li>
+<li><p>vi.begin()、vi.end()：iterators（迭代器）</p>
+</li>
+<li><p>not1、bind2nd：函数适配器</p>
+<p>not1：取反，统计大于等于40的数</p>
+</li>
+<li><p>less<int>：函数对象</p>
+<p>查找所有小于int的数据，通过bind2nd：绑定40，查找所有小于40的数</p>
+</li>
 </ul>
-<p>总结：</p>
+<h2 id="2、容器"><a href="#2、容器" class="headerlink" title="2、容器"></a>2、容器</h2><h3 id="（1）简介-1"><a href="#（1）简介-1" class="headerlink" title="（1）简介"></a>（1）简介</h3><ul>
+<li><p>Sequence Container（序列式容器）</p>
+<p>Array、Vectror、Deque、List、Forward-List</p>
+</li>
+<li><p>Associative Container（关联容器：key-value）</p>
+<p>set（红黑树）、map、multiset/multimap</p>
+</li>
+<li><p>Unsorted Container（无定式容器，本质hash map）</p>
+<p>通过Hash表的链地址法进行查找操作</p>
+</li>
+</ul>
+<h3 id="（2）vector"><a href="#（2）vector" class="headerlink" title="（2）vector"></a>（2）vector</h3><h4 id="a、简单介绍"><a href="#a、简单介绍" class="headerlink" title="a、简单介绍"></a>a、简单介绍</h4><p>封装了动态大小数组的顺序容器</p>
+<p>功能：</p>
 <ul>
-<li>性能优化的基本问题</li>
-<li>性能优化的两个层面</li>
-<li>性能优化的可维护性</li>
+<li>动态数组</li>
+<li>尾端增删元素</li>
 </ul>
-<h1 id="一、自动内存管理"><a href="#一、自动内存管理" class="headerlink" title="一、自动内存管理"></a>一、自动内存管理</h1><h2 id="1、自动内存管理"><a href="#1、自动内存管理" class="headerlink" title="1、自动内存管理"></a>1、自动内存管理</h2><ul>
-<li><p>动态内存</p>
-<p>程序运行时内存的动态分配：<code>malloc()</code></p>
-</li>
-<li><p>自动内存管理</p>
-<p>避免手动内存管理</p>
-<p>保证内存的使用的正确性和安全性：double-free-problem 和 use-after-free problem</p>
-</li>
-</ul>
-<p>相关概念</p>
+<h4 id="b、函数API"><a href="#b、函数API" class="headerlink" title="b、函数API"></a>b、函数API</h4><p><a target="_blank" rel="noopener" href="https://www.apiref.com/cpp-zh/cpp/container/vector.html">C++中文- API参考文档</a></p>
 <ul>
-<li><p>Mutator</p>
-<p>业务线程，分配新的对象，修改对象的指向关系</p>
+<li><p>创建vector</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建vector</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v1;</span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">v2</span><span class="params">(v1)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">v3</span><span class="params">(<span class="number">10</span>, <span class="number">-1</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; <span class="title">v4</span><span class="params">(<span class="number">10</span>, <span class="string">&quot;hi&quot;</span>)</span></span>;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>Collector</p>
-<p>GC线程，找到存活对象，回收死亡对象</p>
-</li>
-<li><p>Serial GC</p>
-<p>只有一个collector</p>
-</li>
-<li><p>Parallel GC</p>
-<p>支持多个collector</p>
-</li>
-<li><p>Concurrent GC</p>
-<p>业务线程和GC线程同时执行，必须感知对象指向关系的改变</p>
-</li>
-<li><p>评价GC 算法</p>
-<p>安全性（Safety）：不能回收存活的对象 基本要求</p>
-<p>吞吐率（Throughput）：花在GC上的时间</p>
-<p>暂停时间（Pause time）：stop the world（STW）业务是否感知</p>
-<p>内存开销 （Space overhead）GC 元数据开销</p>
-</li>
-<li><p>追踪垃圾回收（Tracing garbage collection）</p>
-</li>
-<li><p>引用计数（Reference counting）</p>
+<li><p>基本使用</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[<span class="number">5</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;</span><br><span class="line"><span class="comment">// 本质为一个模板类</span></span><br><span class="line"><span class="comment">// 半开区间：[&amp;a[0], &amp;a[5])</span></span><br><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; <span class="title">vt</span><span class="params">(&amp;a[<span class="number">0</span>], &amp;a[<span class="number">5</span>])</span></span>;</span><br><span class="line"><span class="comment">// 1 第一个元素</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;first data = &quot;</span> &lt;&lt; vt.front() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">// 2 最后一个元素</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;last data = &quot;</span> &lt;&lt; vt.back() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">// 3 元素个数</span></span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;data size = &quot;</span> &lt;&lt; vt.size() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"><span class="comment">// 4 输出数组</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; vt.size(); ++i)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; vt[i] &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
 </li>
 </ul>
-<h2 id="2、追踪垃圾回收"><a href="#2、追踪垃圾回收" class="headerlink" title="2、追踪垃圾回收"></a>2、追踪垃圾回收</h2><p>回收条件：指针指向关系不可达</p>
-<p>标记根对象：静态变量、全局变量、常量、线程栈</p>
-<p>标记：找到可达对象</p>
-<ul>
-<li>求指针指向关系的传递闭包：从根对象出发，找到所有可达对象</li>
-</ul>
-<p>清理：所有不可达对象</p>
-<ul>
-<li>Copying GC</li>
-<li>Mark-Sweep GC</li>
-<li>Mark-Compact GC</li>
-</ul>
-<p>根据对象的生命周期选择不同的标记清理策略</p>
-<h2 id="3、分代GC（Generational-GC）"><a href="#3、分代GC（Generational-GC）" class="headerlink" title="3、分代GC（Generational GC）"></a>3、分代GC（Generational GC）</h2><ul>
-<li><p>分代假说 (Generational hypothesis)： most objects die young</p>
+<h4 id="c、迭代器"><a href="#c、迭代器" class="headerlink" title="c、迭代器"></a>c、迭代器</h4><ul>
+<li><p>简介：</p>
+<p>迭代器是一个复杂的指针，可以读写容器中的对象，本质为运算符的重载</p>
 </li>
-<li><p>Intuition：很多对象在分配出来后很快就不再使用了</p>
+<li><p>格式：</p>
+<p><code>vector&lt;int&gt;::iterator iterator = vt.begin();</code></p>
 </li>
-<li><p>每个对象都有年龄：经历过 GC 的次数</p>
-</li>
-<li><p>目的：针对年轻和老年的对象，制定不同的 GC 策路，降低整体内存管理的开销，不同年龄的对象处于 heap的不同区域</p>
-</li>
-<li><p>年轻代 (Young generation)</p>
-<p>常规的对象分配</p>
-<p>由于存活对象很少，可以采用 copying collection</p>
-<p>GC 吞吐率很高</p>
-</li>
-<li><p>老年代 (Old generation)</p>
-<p>对象趋向于一直活着，反复复制开销较大</p>
-<p>可以采用 mark-sweep collection</p>
+<li><p>使用范例</p>
+<pre><code class="c++">vector&lt;int&gt;::iterator it;
+for(it = vt.begin(); it != vt.end(); ++it)
+&#123;
+  cout &lt;&lt; *it &lt;&lt; endl;
+&#125;
+</code></pre>
 </li>
 </ul>
-<h2 id="4、引用计数"><a href="#4、引用计数" class="headerlink" title="4、引用计数"></a>4、引用计数</h2><ul>
-<li><p>每个对象都有一个与之关联的引用数目</p>
-</li>
-<li><p>对象存活的条件：当且仅当引用数大于 0</p>
-</li>
-<li><p>优点</p>
-<p>内存管理的操作被平雄到程序执行过程中</p>
-<p>内存管理不需要了解runtime 的实现细节：C++ 智能指针 (smart pointer)</p>
-</li>
-<li><p>缺点</p>
-<p>维护引用计数的开销较大：通过原子操作保证对引用计数操作的原子性和可见性<br>无法回收环形数据结构—weak reference<br>内存开销：每个对象都引1入的额外内存空间存储引用数目<br>回收内存时依然可能引发暂停</p>
-</li>
-</ul>
-<h2 id="5、总结"><a href="#5、总结" class="headerlink" title="5、总结"></a>5、总结</h2><ul>
-<li>背景和意义</li>
-<li>概念和评价方法</li>
-<li>追踪垃圾回收</li>
-<li>引用回收</li>
-<li>分代GC</li>
-</ul>
-<h1 id="二、Go内存管理"><a href="#二、Go内存管理" class="headerlink" title="二、Go内存管理"></a>二、Go内存管理</h1><h2 id="1、Go内存分配"><a href="#1、Go内存分配" class="headerlink" title="1、Go内存分配"></a>1、Go内存分配</h2><h1 id="三、编译器和静态分析"><a href="#三、编译器和静态分析" class="headerlink" title="三、编译器和静态分析"></a>三、编译器和静态分析</h1><h1 id="四、Go编译器优化"><a href="#四、Go编译器优化" class="headerlink" title="四、Go编译器优化"></a>四、Go编译器优化</h1>
+<h4 id="d、底层剖析"><a href="#d、底层剖析" class="headerlink" title="d、底层剖析"></a>d、底层剖析</h4><h1 id="三、设计模式"><a href="#三、设计模式" class="headerlink" title="三、设计模式"></a>三、设计模式</h1><h1 id="四、explict关键字"><a href="#四、explict关键字" class="headerlink" title="四、explict关键字"></a>四、explict关键字</h1>
       
     </div>
 
@@ -768,7 +598,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/26/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E8%AF%BE/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/27/Docker%E5%AD%A6%E4%B9%A0/DockerSwarm/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -782,7 +612,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/26/Go/%E9%9D%92%E8%AE%AD%E8%90%A5%E8%AF%BE/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/05/27/Docker%E5%AD%A6%E4%B9%A0/DockerSwarm/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -792,7 +622,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-26 17:13:39" itemprop="dateCreated datePublished" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
+              <time title="创建时间：2022-05-27 17:08:49" itemprop="dateCreated datePublished" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
             </span>
 
           
@@ -806,42 +636,71 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="3、网络接入-ARP协议"><a href="#3、网络接入-ARP协议" class="headerlink" title="3、网络接入-ARP协议"></a>3、网络接入-ARP协议</h2><ul>
-<li>逻辑网段相同才能发送ARP</li>
-<li>ARP请求广播，ARP答应单播</li>
-<li>免费ARP？ARP代理？</li>
-</ul>
-<h2 id="4、网络接入协议"><a href="#4、网络接入协议" class="headerlink" title="4、网络接入协议"></a>4、网络接入协议</h2><ul>
-<li>唯一标识，互联网通用</li>
-<li>Mac地址不能代替IP地址吗</li>
-</ul>
-<h2 id="5、网络接入-NAT"><a href="#5、网络接入-NAT" class="headerlink" title="5、网络接入-NAT"></a>5、网络接入-NAT</h2><ul>
-<li>家里路由器是怎么上网的？</li>
-<li>多个内网客户端访问同一个目标地址</li>
-</ul>
-<h2 id="6、网络传输-数据包"><a href="#6、网络传输-数据包" class="headerlink" title="6、网络传输-数据包"></a>6、网络传输-数据包</h2><h2 id="7、网络传输-先请求DNS协议"><a href="#7、网络传输-先请求DNS协议" class="headerlink" title="7、网络传输-先请求DNS协议"></a>7、网络传输-先请求DNS协议</h2><p>递归迭代</p>
-<h2 id="8、网络传输-DNS的传输协议"><a href="#8、网络传输-DNS的传输协议" class="headerlink" title="8、网络传输-DNS的传输协议"></a>8、网络传输-DNS的传输协议</h2><h2 id="9、网络传输-TCP"><a href="#9、网络传输-TCP" class="headerlink" title="9、网络传输-TCP"></a>9、网络传输-TCP</h2><p>TCP保活机制</p>
-<p>通过MSS防止分片</p>
-<p>三次握手确认MSS，TCP的OPTION字段</p>
-<p>Sequence Number</p>
-<p>Acknowledge Number</p>
-<p>Timewaite</p>
-<h2 id="10、网络传输协议-HTTP-HTTP-1-1"><a href="#10、网络传输协议-HTTP-HTTP-1-1" class="headerlink" title="10、网络传输协议-HTTP/HTTP 1.1"></a>10、网络传输协议-HTTP/HTTP 1.1</h2><ul>
-<li>为什么不同TCP通信</li>
-<li>为什么网络上那么多HTTP通信</li>
-<li>HTTP只是多了一层规矩</li>
-</ul>
-<p>做了哪些优化</p>
+          <p>接下来探讨的话题将是规模方面（Scale）的，有请<code>Docker Swarm</code>登场</p>
+<p>概括来说，Swarm有两个核心组件：</p>
 <ul>
-<li>长连接</li>
+<li>安全集群</li>
+<li>编排引擎</li>
 </ul>
-<h2 id="11、网络传输-SSL-TLS握手"><a href="#11、网络传输-SSL-TLS握手" class="headerlink" title="11、网络传输-SSL/TLS握手"></a>11、网络传输-SSL/TLS握手</h2><p>第三方机构CA</p>
-<h1 id="二、"><a href="#二、" class="headerlink" title="二、"></a>二、</h1><h2 id="1、网络提速-HTTP2-0"><a href="#1、网络提速-HTTP2-0" class="headerlink" title="1、网络提速-HTTP2.0"></a>1、网络提速-HTTP2.0</h2><h2 id="3、网络提速-QUIC-HTTP3-0"><a href="#3、网络提速-QUIC-HTTP3-0" class="headerlink" title="3、网络提速-QUIC/HTTP3.0"></a>3、网络提速-QUIC/HTTP3.0</h2><ul>
-<li>TCP or UDP</li>
-<li>Kernel or Userspace</li>
-<li>0 RTT</li>
-<li>弱网优势</li>
-</ul>
+<h2 id="一、Docker-Swarm-简介"><a href="#一、Docker-Swarm-简介" class="headerlink" title="一、Docker Swarm-简介"></a>一、Docker Swarm-简介</h2><p><code>Docker Swarm</code>包含两个方面：一个企业级的Docker安全集群、一个微服务应用编排引擎</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/27/Docker%E5%AD%A6%E4%B9%A0/%E5%BA%94%E7%94%A8%E7%9A%84%E5%AE%B9%E5%99%A8%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/27/Docker%E5%AD%A6%E4%B9%A0/%E5%BA%94%E7%94%A8%E7%9A%84%E5%AE%B9%E5%99%A8%E5%8C%96/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-27 17:08:49" itemprop="dateCreated datePublished" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Docker的核心思想就是将应用整合到容器中，并且能在容器中运行</p>
 
       
     </div>
@@ -892,7 +751,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-26 17:13:39" itemprop="dateModified" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
+                <time title="修改时间：2022-05-27 17:08:49" itemprop="dateModified" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -965,7 +824,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-26 17:13:39" itemprop="dateModified" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
+                <time title="修改时间：2022-05-27 17:08:49" itemprop="dateModified" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1030,7 +889,31 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Shutdown</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 方式一</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        Runner one = <span class="keyword">new</span> Runner();</span><br><span class="line">        Thread countThread = <span class="keyword">new</span> Thread(one, <span class="string">&quot;CountThread&quot;</span>);</span><br><span class="line">        countThread.start();</span><br><span class="line">        <span class="comment">// 睡眠1秒，main线程对CountThread进行中断，使CountThread能够感知中断而结束</span></span><br><span class="line">        TimeUnit.SECONDS.sleep(<span class="number">1</span>);</span><br><span class="line">        countThread.interrupt();</span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 方式二</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        Runner two = <span class="keyword">new</span> Runner();</span><br><span class="line">        countThread = <span class="keyword">new</span> Thread(two, <span class="string">&quot;CountThread&quot;</span>);</span><br><span class="line">        countThread.start();</span><br><span class="line">        <span class="comment">// 睡眠1秒，main线程对Runner two进行取消，使CountThread能够感知on为false而结束</span></span><br><span class="line">        TimeUnit.SECONDS.sleep(<span class="number">1</span>);</span><br><span class="line">        two.cancel();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Runner</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">long</span> i;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">boolean</span> on = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">while</span> (on &amp;&amp; !Thread.currentThread().isInterrupted()) &#123;</span><br><span class="line">                i++;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">&quot;Count i = &quot;</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">cancel</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            on = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="3、线程间通信"><a href="#3、线程间通信" class="headerlink" title="3、线程间通信"></a>3、线程间通信</h2><p>线程间需要相互配合工作</p>
-<h3 id="（1）volatile和synchornized关键字"><a href="#（1）volatile和synchornized关键字" class="headerlink" title="（1）volatile和synchornized关键字"></a>（1）volatile和synchornized关键字</h3><h3 id="（2）等待-通知机制"><a href="#（2）等待-通知机制" class="headerlink" title="（2）等待/通知机制"></a>（2）等待/通知机制</h3><h3 id="（3）等待-通知的经典范式"><a href="#（3）等待-通知的经典范式" class="headerlink" title="（3）等待/通知的经典范式"></a>（3）等待/通知的经典范式</h3><h3 id="（4）管道输入-输出流"><a href="#（4）管道输入-输出流" class="headerlink" title="（4）管道输入/输出流"></a>（4）管道输入/输出流</h3><h3 id="（5）Thread-join-的使用"><a href="#（5）Thread-join-的使用" class="headerlink" title="（5）Thread.join()的使用"></a>（5）Thread.join()的使用</h3><h3 id="（6）ThreadLocal的使用"><a href="#（6）ThreadLocal的使用" class="headerlink" title="（6）ThreadLocal的使用"></a>（6）ThreadLocal的使用</h3><h2 id="4、线程应用实例"><a href="#4、线程应用实例" class="headerlink" title="4、线程应用实例"></a>4、线程应用实例</h2><h2 id="5、本章小结"><a href="#5、本章小结" class="headerlink" title="5、本章小结"></a>5、本章小结</h2><h1 id="五、Java中的锁"><a href="#五、Java中的锁" class="headerlink" title="五、Java中的锁"></a>五、Java中的锁</h1><p>Java并发包中的与锁相关的API和组件</p>
+<h3 id="（1）volatile和synchornized关键字"><a href="#（1）volatile和synchornized关键字" class="headerlink" title="（1）volatile和synchornized关键字"></a>（1）volatile和synchornized关键字</h3><p>volatile保证了所有线程对变量访问的可见性</p>
+<p>synchornized保证了多个线程在同一时刻只有一个线程处于同步块中，本质是对一个对象监视器进行获取</p>
+<h3 id="（2）等待-通知机制"><a href="#（2）等待-通知机制" class="headerlink" title="（2）等待/通知机制"></a>（2）等待/通知机制</h3><ul>
+<li><p>notify()</p>
+</li>
+<li><p>notifyAll()</p>
+</li>
+<li><p>wait()</p>
+<p>会释放锁</p>
+</li>
+</ul>
+<p>直接上代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WaitNotify</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">static</span> Object lock = <span class="keyword">new</span> Object();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        Thread waitThread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Wait(), <span class="string">&quot;WaitThread&quot;</span>);</span><br><span class="line">        waitThread.start();</span><br><span class="line">        TimeUnit.SECONDS.sleep(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        Thread notifyThread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Notify(), <span class="string">&quot;NotifyThread&quot;</span>);</span><br><span class="line">        notifyThread.start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Wait</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="comment">// 加锁，拥有lock的Monitor</span></span><br><span class="line">            <span class="keyword">synchronized</span> (lock) &#123;</span><br><span class="line">                <span class="comment">// 当条件不满足时，继续wait，同时释放了lock的锁</span></span><br><span class="line">                <span class="keyword">while</span> (flag) &#123;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        System.out.println(Thread.currentThread() + <span class="string">&quot; flag is true. wait @ &quot;</span></span><br><span class="line">                                + <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;HH:mm:ss&quot;</span>).format(<span class="keyword">new</span> Date()));</span><br><span class="line">                        lock.wait();</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// 条件满足时，完成工作</span></span><br><span class="line">                System.out.println(Thread.currentThread() + <span class="string">&quot; flag is false. running @ &quot;</span></span><br><span class="line">                        + <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;HH:mm:ss&quot;</span>).format(<span class="keyword">new</span> Date()));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Notify</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="comment">// 加锁，拥有lock的Monitor</span></span><br><span class="line">            <span class="keyword">synchronized</span> (lock) &#123;</span><br><span class="line">                <span class="comment">// 获取lock的锁，然后进行通知，通知时不会释放lock的锁，</span></span><br><span class="line">                <span class="comment">// 直到当前线程释放了lock后，WaitThread才能从wait方法中返回</span></span><br><span class="line">                System.out.println(Thread.currentThread() + <span class="string">&quot; hold lock. notify @ &quot;</span> + <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;HH:mm:ss&quot;</span>).format(<span class="keyword">new</span> Date()));</span><br><span class="line">                lock.notifyAll();</span><br><span class="line">                flag = <span class="keyword">false</span>;</span><br><span class="line">                SleepUtils.second(<span class="number">5</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 再次加锁</span></span><br><span class="line">            <span class="keyword">synchronized</span> (lock) &#123;</span><br><span class="line">                System.out.println(Thread.currentThread() + <span class="string">&quot; hold lock again. sleep @ &quot;</span></span><br><span class="line">                        + <span class="keyword">new</span> SimpleDateFormat(<span class="string">&quot;HH:mm:ss&quot;</span>).format(<span class="keyword">new</span> Date()));</span><br><span class="line">                SleepUtils.second(<span class="number">5</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="（3）等待-通知的经典范式"><a href="#（3）等待-通知的经典范式" class="headerlink" title="（3）等待/通知的经典范式"></a>（3）等待/通知的经典范式</h3><p>生产者消费者模式</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">synchornized(对象) &#123;</span><br><span class="line">  while(条件不足) &#123;</span><br><span class="line">  	对象.wait();</span><br><span class="line">  &#125;</span><br><span class="line">  &#x2F;&#x2F; 处理逻辑</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="（4）管道输入-输出流"><a href="#（4）管道输入-输出流" class="headerlink" title="（4）管道输入/输出流"></a>（4）管道输入/输出流</h3><p>管道输入输出流主要包括下面四种实现：<code>PipedOutputStream</code>、<code>PipedInputStream</code>、<code>PipedReader</code>、<code>PipedWriter</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Piped</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        PipedWriter out = <span class="keyword">new</span> PipedWriter();</span><br><span class="line">        PipedReader in = <span class="keyword">new</span> PipedReader();</span><br><span class="line">        <span class="comment">// 将输出流和输入流进行连接，否则在使用时会抛出IOException</span></span><br><span class="line">        out.connect(in);</span><br><span class="line">        Thread printThread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> Print(in), <span class="string">&quot;PrintThread&quot;</span>);</span><br><span class="line">        printThread.start();</span><br><span class="line">        <span class="keyword">int</span> receive;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">while</span> ((receive = System.in.read()) != -<span class="number">1</span>)</span><br><span class="line">                out.write(receive);</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            out.close();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Print</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> PipedReader in;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Print</span><span class="params">(PipedReader in)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.in = in;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">int</span> receive;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">while</span> ((receive = in.read()) != -<span class="number">1</span>)</span><br><span class="line">                    System.out.print((<span class="keyword">char</span>) receive);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (IOException ex) &#123;</span><br><span class="line">                ex.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="（5）Thread-join-的使用"><a href="#（5）Thread-join-的使用" class="headerlink" title="（5）Thread.join()的使用"></a>（5）Thread.join()的使用</h3><p>等待线程终止以后才会返回</p>
+<h3 id="（6）ThreadLocal的使用"><a href="#（6）ThreadLocal的使用" class="headerlink" title="（6）ThreadLocal的使用"></a>（6）ThreadLocal的使用</h3><p>ThreadLocal，即线程变量，是一个以ThreadLocal对象为键，任意对象为值的存储结构。这个结构被附带到线程上面，并且可以set和get，具体直接看代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Profiler</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 第一次get()方法调用时会进行初始化（如果set方法没有调用），每个线程会调用一次</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> ThreadLocal&lt;Integer&gt; VALUE_THREADLOCAL = ThreadLocal.withInitial(() -&gt; <span class="keyword">new</span> Random().nextInt());</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        VALUE_THREADLOCAL.set(<span class="keyword">new</span> Random().nextInt());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">get</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> VALUE_THREADLOCAL.get().toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> ThreadTest().run();</span><br><span class="line">        <span class="keyword">new</span> ThreadTest().run();</span><br><span class="line">        <span class="keyword">new</span> ThreadTest().run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreadTest</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Profiler.set();</span><br><span class="line">        System.out.println(Profiler.get());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4、线程应用实例"><a href="#4、线程应用实例" class="headerlink" title="4、线程应用实例"></a>4、线程应用实例</h2><h3 id="1-等待超时模式"><a href="#1-等待超时模式" class="headerlink" title="(1)等待超时模式"></a>(1)等待超时模式</h3><h3 id="（2）简单的数据库连接池"><a href="#（2）简单的数据库连接池" class="headerlink" title="（2）简单的数据库连接池"></a>（2）简单的数据库连接池</h3><h3 id="（3）线程池技术以及示例"><a href="#（3）线程池技术以及示例" class="headerlink" title="（3）线程池技术以及示例"></a>（3）线程池技术以及示例</h3><h3 id="（4）基于线程池技术的Web服务器"><a href="#（4）基于线程池技术的Web服务器" class="headerlink" title="（4）基于线程池技术的Web服务器"></a>（4）基于线程池技术的Web服务器</h3><h2 id="5、本章小结"><a href="#5、本章小结" class="headerlink" title="5、本章小结"></a>5、本章小结</h2><h1 id="五、Java中的锁"><a href="#五、Java中的锁" class="headerlink" title="五、Java中的锁"></a>五、Java中的锁</h1><p>Java并发包中的与锁相关的API和组件</p>
 <h2 id="1、Lock接口"><a href="#1、Lock接口" class="headerlink" title="1、Lock接口"></a>1、Lock接口</h2><p>锁是用来控制多个线程访问共享资源的方式，Lock接口出现之前，Java是靠<code>synchronized</code>关键字来实现锁功能的</p>
 <p>与<code>synchrnized</code>相比：</p>
 <ul>
@@ -1267,7 +1150,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-26 17:13:39" itemprop="dateModified" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
+                <time title="修改时间：2022-05-27 17:08:49" itemprop="dateModified" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1396,7 +1279,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-26 17:13:39" itemprop="dateModified" datetime="2022-05-26T17:13:39+00:00">2022-05-26</time>
+                <time title="修改时间：2022-05-27 17:08:49" itemprop="dateModified" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
