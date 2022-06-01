@@ -387,13 +387,320 @@ class ThreadTest extends Thread {
 
 ## 4、线程应用实例
 
-### (1)等待超时模式
+### （1）等待超时模式
+
+场景例如：调用某个方法等待一段时间（给定一个时间段），如果方法能在给定时间内给出结果就返回，否则返回默认结果
+
+```java
+public synchronized Object get(long mills) throws InterruptedException {
+  long future = System.currentTimeMillis();
+  long remaining = mills;
+  // 当前超时大于0 并且 返回值不满足要求
+  Object result = null;
+  while (result == null && remaining > 0) {
+    wait(remaining);
+    remaining = future - System.currentTimeMillis();
+  }
+  return result;
+}
+```
 
 ### （2）简单的数据库连接池
 
+客户端获取连接的过程就是一个等待超时模型
+
+```java
+public class ConnectionPool {
+
+    private LinkedList<Connection> pool = new LinkedList<>();
+
+    public ConnectionPool(int initialSize) {
+        if (initialSize > 0) {
+            for (int i = 0; i < initialSize; i++) {
+                pool.addLast(ConnectionDriver.createConnection());
+            }
+        }
+    }
+
+    public void releaseConnection(Connection connection) {
+        if (connection != null) {
+            synchronized (pool) {
+                // 添加后需要进行通知，这样其他消费者能够感知到链接池中已经归还了一个链接
+                pool.addLast(connection);
+                pool.notifyAll();
+            }
+        }
+    }
+
+    // 在mills内无法获取到连接，将会返回null
+    public Connection fetchConnection(long mills) throws InterruptedException {
+        synchronized (pool) {
+            // 完全超时
+            if (mills <= 0) {
+                while (pool.isEmpty()) {
+                    pool.wait();
+                }
+                return pool.removeFirst();
+            } else {
+                long future = System.currentTimeMillis() + mills;
+                long remaining = mills;
+                while (pool.isEmpty() && remaining > 0) {
+                    pool.wait(remaining);
+                    remaining = future - System.currentTimeMillis();
+                }
+                Connection result = null;
+                if (!pool.isEmpty()) {
+                    result = pool.removeFirst();
+                }
+                return result;
+            }
+        }
+    }
+}
+```
+
+我们自己通过动态代理去生成Connection类
+
+```java
+public class ConnectionDriver {
+    static class ConnectionHandler implements InvocationHandler {
+        public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+            if (method.getName().equals("commit")) {
+                TimeUnit.MILLISECONDS.sleep(100);
+            }
+            return null;
+        }
+    }
+
+    // 创建一个Connection的代理，在commit时休眠1秒
+    public static final Connection createConnection() {
+        return (Connection) Proxy.newProxyInstance(ConnectionDriver.class.getClassLoader(), new Class<?>[]{Connection.class},
+                new ConnectionHandler());
+    }
+}
+```
+
+通过下面的函数模拟简易数据库连接池的工作
+
+```java
+public class ConnectionPoolTest {
+    static ConnectionPool pool = new ConnectionPool(10);
+    // 保证所有ConnectionRunner能够同时开始
+    static CountDownLatch start = new CountDownLatch(1);
+    // main线程将会等待所有ConnectionRunner结束后才能继续执行
+    static CountDownLatch end;
+
+    public static void main(String[] args) throws Exception {
+        // 线程数量，可以线程数量进行观察
+        int threadCount = 50;
+        end = new CountDownLatch(threadCount);
+        int count = 20;
+        AtomicInteger got = new AtomicInteger();
+        AtomicInteger notGot = new AtomicInteger();
+        for (int i = 0; i < threadCount; i++) {
+            Thread thread = new Thread(new ConnetionRunner(count, got, notGot), "ConnectionRunnerThread");
+            thread.start();
+        }
+        start.countDown();
+        end.await();
+        System.out.println("total invoke: " + (threadCount * count));
+        System.out.println("got connection:  " + got);
+        System.out.println("not got connection " + notGot);
+    }
+
+    static class ConnetionRunner implements Runnable {
+        int count;
+        AtomicInteger got;
+        AtomicInteger notGot;
+
+        public ConnetionRunner(int count, AtomicInteger got, AtomicInteger notGot) {
+            this.count = count;
+            this.got = got;
+            this.notGot = notGot;
+        }
+
+        public void run() {
+            try {
+                start.await();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            while (count > 0) {
+                try {
+                    // 从线程池中获取连接，如果1000ms内无法获取到，将会返回null
+                    // 分别统计连接获取的数量got和未获取到的数量notGot
+                    Connection connection = pool.fetchConnection(1000);
+                    if (connection != null) {
+                        try {
+                            connection.createStatement();
+                            connection.commit();
+                        } finally {
+                            pool.releaseConnection(connection);
+                            got.incrementAndGet();
+                        }
+                    } else {
+                        notGot.incrementAndGet();
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                } finally {
+                    count--;
+                }
+            }
+            end.countDown();
+        }
+    }
+}
+```
+
+使用`CountDownLatch`来进行线程间的同步
+
 ### （3）线程池技术以及示例
 
+线程池一方面消除了频繁创建和消亡线程的系统资源开销，另一方面面对过量任务的提交能够平缓劣势
+
+##### a、定义线程池接口
+
+```java
+public interface ThreadPool<Job extends Runnable> {
+    // 执行一个Job，这个Job需要实现Runnable
+    void execute(Job job);
+    // 关闭线程池
+    void shutdown();
+    // 增加工作者线程
+    void addWorkers(int num);
+    // 减少工作者线程
+    void removeWorker(int num);
+    // 得到正在等待执行的任务数量
+    int getJobSize();
+}
+```
+
+##### b、线程池接口的默认实现
+
+线程池添加任务时，会向`LinkedList<Job>`添加一个任务，之后在每个线程中同步去获取移除`Job`，并执行run方法
+
+本质为使用一个线程安全的队列连接工作者线程和客户端线程，客户端线程将任务放入工作队列就返回，尔工作者线程不断的取出任务执行
+
+```java
+public class DefaultThreadPool<Job extends Runnable> implements ThreadPool<Job> {
+    // 线程池最大限制数
+    private static final int MAX_WORKER_NUMBERS = 10;
+    // 线程池默认的数量
+    private static final int DEFAULT_WORKER_NUMBERS = 5;
+    // 线程池最小的数量
+    private static final int MIN_WORKER_NUMBERS = 1;
+    // 这是一个工作列表，将会向里面插入工作
+    private final LinkedList<Job> jobs = new LinkedList<>();
+    // 工作者列表
+    private final List<Worker> workers = Collections.synchronizedList(new ArrayList<Worker>());
+    // 工作者线程的数量
+    private int workerNum = DEFAULT_WORKER_NUMBERS;
+    // 线程编号生成
+    private AtomicLong threadNum = new AtomicLong();
+
+    public DefaultThreadPool() {
+        initializeWokers(DEFAULT_WORKER_NUMBERS);
+    }
+
+    public DefaultThreadPool(int num) {
+        workerNum = num > MAX_WORKER_NUMBERS ? MAX_WORKER_NUMBERS : num < MIN_WORKER_NUMBERS ? MIN_WORKER_NUMBERS : num;
+        initializeWokers(workerNum);
+    }
+
+    public void execute(Job job) {
+        if (job != null)
+            // 添加一个工作，然后进行通知
+            synchronized (jobs) {
+                jobs.addLast(job);
+                jobs.notify();
+            }
+    }
+
+    public void shutdown() {
+        for (Worker worker : workers)
+            worker.shutdown();
+    }
+
+    public void addWorkers(int num) {
+        synchronized (jobs) {
+            // 限制新增的Worker数量不能超过最大值
+            if (num + this.workerNum > MAX_WORKER_NUMBERS)
+                num = MAX_WORKER_NUMBERS - this.workerNum;
+            initializeWokers(num);
+            this.workerNum += num;
+        }
+    }
+
+    public void removeWorker(int num) {
+        synchronized (jobs) {
+            if (num >= this.workerNum)
+                throw new IllegalArgumentException("beyond workNum");
+            // 按照给定的数量停止Worker
+            int count = 0;
+            while (count < num) {
+                workers.get(count).shutdown();
+                count++;
+            }
+            this.workerNum -= count;
+        }
+    }
+
+    public int getJobSize() {
+        return jobs.size();
+    }
+
+    // 初始化线程工作者
+    private void initializeWokers(int num) {
+        for (int i = 0; i < num; i++) {
+            Worker worker = new Worker();
+            workers.add(worker);
+            Thread thread = new Thread(worker, "ThreadPool-Worker-" + threadNum.incrementAndGet());
+            thread.start();
+        }
+    }
+
+    // 工作者，负责消费任务
+    class Worker implements Runnable {
+        // 是否工作
+        private volatile boolean running = true;
+
+        public void run() {
+            while (running) {
+                Job job;
+                synchronized (jobs) {
+                    // 如果工作者列表是空的，那么就wait
+                    while (jobs.isEmpty()) {
+                        try {
+                            jobs.wait();
+                        } catch (InterruptedException ex) {
+                            // 感知到外部对WorkerThread的中断操作，返回
+                            Thread.currentThread().interrupt();
+                            return;
+                        }
+                    }
+                    // 取出一个Job
+                    job = jobs.removeFirst();
+                }
+                if (job != null)
+                    try {
+                        job.run();
+                    } catch (Exception ex) {
+                        // 忽略Job执行中的Exception
+                    }
+            }
+        }
+        
+        public void shutdown() {
+            running = false;
+        }
+    }
+}
+```
+
 ### （4）基于线程池技术的Web服务器
+
+
 
 ## 5、本章小结
 
