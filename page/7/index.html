@@ -154,6 +154,84 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/03/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/11/03/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" class="post-title-link" itemprop="url">力扣-两数之和</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-11-03 00:00:00" itemprop="dateCreated datePublished" datetime="2021-11-03T00:00:00+00:00">2021-11-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-06-01 06:03:04" itemprop="dateModified" datetime="2022-06-01T06:03:04+00:00">2022-06-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%88%B7%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>题目链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/two-sum/">https://leetcode-cn.com/problems/two-sum/</a></p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target  的那 两个 整数，并返回它们的数组下标。你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。你可以按任意顺序返回答案。</p>
+<h3 id="题目分析"><a href="#题目分析" class="headerlink" title="题目分析"></a>题目分析</h3><p>使用哈希表解题，贼舒服。</p>
+<h3 id="Java题解"><a href="#Java题解" class="headerlink" title="Java题解"></a>Java题解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        HashMap&lt;Integer, Integer&gt; hashMap = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) &#123;</span><br><span class="line">            <span class="keyword">if</span> (hashMap.containsKey(target - num)) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;i, hashMap.get(target - num)&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">            hashMap.put(num, i++);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/30/Shell%E8%84%9A%E6%9C%AC%E7%BC%96%E7%A8%8B/%E7%AC%AC%E4%B8%89%E7%AB%A0%E5%87%BD%E6%95%B0%E7%9A%84%E9%AB%98%E7%BA%A7%E7%94%A8%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -185,7 +263,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-27 17:08:49" itemprop="dateModified" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
+                <time title="修改时间：2022-06-01 06:03:04" itemprop="dateModified" datetime="2022-06-01T06:03:04+00:00">2022-06-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -332,7 +410,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-27 17:08:49" itemprop="dateModified" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
+                <time title="修改时间：2022-06-01 06:03:04" itemprop="dateModified" datetime="2022-06-01T06:03:04+00:00">2022-06-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -406,7 +484,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-27 17:08:49" itemprop="dateModified" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
+                <time title="修改时间：2022-06-01 06:03:04" itemprop="dateModified" datetime="2022-06-01T06:03:04+00:00">2022-06-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -606,7 +684,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-27 17:08:49" itemprop="dateModified" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
+                <time title="修改时间：2022-06-01 06:03:04" itemprop="dateModified" datetime="2022-06-01T06:03:04+00:00">2022-06-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -710,7 +788,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-27 17:08:49" itemprop="dateModified" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
+                <time title="修改时间：2022-06-01 06:03:04" itemprop="dateModified" datetime="2022-06-01T06:03:04+00:00">2022-06-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -801,7 +879,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-27 17:08:49" itemprop="dateModified" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
+                <time title="修改时间：2022-06-01 06:03:04" itemprop="dateModified" datetime="2022-06-01T06:03:04+00:00">2022-06-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -953,7 +1031,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-27 17:08:49" itemprop="dateModified" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
+                <time title="修改时间：2022-06-01 06:03:04" itemprop="dateModified" datetime="2022-06-01T06:03:04+00:00">2022-06-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1066,7 +1144,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-27 17:08:49" itemprop="dateModified" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
+                <time title="修改时间：2022-06-01 06:03:04" itemprop="dateModified" datetime="2022-06-01T06:03:04+00:00">2022-06-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1150,7 +1228,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-27 17:08:49" itemprop="dateModified" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
+                <time title="修改时间：2022-06-01 06:03:04" itemprop="dateModified" datetime="2022-06-01T06:03:04+00:00">2022-06-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1180,234 +1258,6 @@
 <h3 id="5、immunisation"><a href="#5、immunisation" class="headerlink" title="5、immunisation"></a>5、immunisation</h3><p>免疫接种</p>
 <h2 id="二、Phrase"><a href="#二、Phrase" class="headerlink" title="二、Phrase"></a>二、Phrase</h2><h3 id="1、ramp-up"><a href="#1、ramp-up" class="headerlink" title="1、ramp up"></a>1、ramp up</h3><p>提高，使增加</p>
 <h2 id="三、SpecificNoun"><a href="#三、SpecificNoun" class="headerlink" title="三、SpecificNoun"></a>三、SpecificNoun</h2><h3 id="1、Delta-Covid-variant"><a href="#1、Delta-Covid-variant" class="headerlink" title="1、Delta Covid variant"></a>1、Delta Covid variant</h3><p>Delta新冠肺炎变异毒株（Covid：冠状病毒，是Corona Virus Disease的缩写）</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/06/spring/WebFlux%E5%85%A5%E9%97%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/06/spring/WebFlux%E5%85%A5%E9%97%A8/" class="post-title-link" itemprop="url">spring-WebFlux</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-06 00:00:00" itemprop="dateCreated datePublished" datetime="2021-07-06T00:00:00+00:00">2021-07-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-27 17:08:49" itemprop="dateModified" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Spring/" itemprop="url" rel="index"><span itemprop="name">Spring</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="一、SpringWebFlux介绍"><a href="#一、SpringWebFlux介绍" class="headerlink" title="一、SpringWebFlux介绍"></a>一、SpringWebFlux介绍</h3><p>可以直接去官网看看：<a target="_blank" rel="noopener" href="https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html">https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html</a></p>
-<p>（1）是Spring5添加的新的模块，用于web开发的，功能与SpringMVC类似的，WebFlux使用的当前一种比较流行的响应式编程框架</p>
-<p>（2）使用传统的web框架，比如SpringMVC，这些基于Servlet容器，WebFlux是一种异步非阻塞的框架，异步非阻塞框架在Servlet3.1以后才支持，核心是基于Reactor相关API实现的</p>
-<p>（3）异步非阻塞：</p>
-<ul>
-<li><p>异步与同步</p>
-<blockquote>
-<p>针对调用者来说，调用者发送请求，如果等着对方回应之后才去做其他事情就是<code> 同步</code>；如果发送请求之后，不等对方回应就去做其他事情就是<code> 异步</code></p>
-</blockquote>
-</li>
-<li><p>非阻塞与阻塞</p>
-<blockquote>
-<p>针对被调用者而言，被调用者在收到请求之后，做完任务之后才给出反馈就是<code> 阻塞</code>；收到请求之后马上给出反馈然后再去做事情就是就是<code> 非阻塞</code></p>
-</blockquote>
-</li>
-</ul>
-<p>（4）WebFlux的特点：</p>
-<ul>
-<li>1、非阻塞式：可以在有限的资源下，提高系统的吞吐量和伸缩性，以Reactor为基础实现函数式编程</li>
-<li>2、Spring5基于Java8，WebFlux使用Java8函数式编程的方式实现路由请求</li>
-</ul>
-<p>（5）与SpringMVC比较</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/WebFlux/spring-mvc-and-webflux-venn.png">
-
-<ul>
-<li>1、上述两个框架都可以使用注解方式，都运行在Tomcat等容器中</li>
-<li>2、SpringMVC采用命令式编程，WebFlux采用异步式响应编程</li>
-</ul>
-<p>网关使用<code>异步式响应编程</code>更好，因为网关需要处理更多的请求</p>
-<h3 id="二、响应式编程（Java实现）"><a href="#二、响应式编程（Java实现）" class="headerlink" title="二、响应式编程（Java实现）"></a>二、响应式编程（Java实现）</h3><h4 id="（1）什么是响应式编程"><a href="#（1）什么是响应式编程" class="headerlink" title="（1）什么是响应式编程"></a>（1）什么是响应式编程</h4><blockquote>
-<p><strong>简称RP（Reactive Programming）</strong></p>
-<p>响应式编程是一种<code> 面向数据流</code>和<code> 变化传播</code>的编程范式。这意味着可以在编程语言中很方便地表达静态或动态的数据流，而相关的计算模型会自动将变化的值通过数据流进行传播。</p>
-</blockquote>
-<p>根据数据或者数据流发生变化，相应的计算模型就会根据值的变化而变化，例如：电子表格程序就是响应式编程的一个例子。单元格可以包含字面值或类似”=B1+C1”的公式，而包含公式的单元格的值会依据其他单元格的值的变化而变化。</p>
-<h4 id="（2）Java8及其之前的版本"><a href="#（2）Java8及其之前的版本" class="headerlink" title="（2）Java8及其之前的版本"></a>（2）Java8及其之前的版本</h4><p>提供了<code> 观察者模式</code>的两个类：<code> Observer</code>和<code> Observable</code>。即观察你关心的数据的变化，一旦出现变化，就发出通知。</p>
-<p>直接上代码，代码中我们设置了改变并进行了通知：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ObserverDemo</span> <span class="keyword">extends</span> <span class="title">Observable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ObserverDemo observer = <span class="keyword">new</span> ObserverDemo();</span><br><span class="line">        <span class="comment">//添加观察者</span></span><br><span class="line">        observer.addObserver((o, arg) -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;发生变化&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">        observer.addObserver((o, arg) -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;手动改变观察者通知，准备改变&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="comment">//数据变化</span></span><br><span class="line">        observer.setChanged();</span><br><span class="line">        <span class="comment">//通知</span></span><br><span class="line">        observer.notifyObservers();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="（3）Java9及其之后的版本"><a href="#（3）Java9及其之后的版本" class="headerlink" title="（3）Java9及其之后的版本"></a>（3）Java9及其之后的版本</h4><p>使用<code> Flow</code>实现，这里直接看下面代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建我自己的订阅者</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MySubscriber</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">Flow</span>.<span class="title">Subscriber</span> </span>&#123;</span><br><span class="line">    <span class="comment">//发布者与订阅者之间的纽带</span></span><br><span class="line">    <span class="keyword">private</span> Flow.Subscription subscription;</span><br><span class="line">    <span class="comment">//订阅时会触发该问题</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSubscribe</span><span class="params">(Flow.Subscription subscription)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.subscription = subscription;</span><br><span class="line">        <span class="comment">//开始请求数据</span></span><br><span class="line">        subscription.request(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//接收到数据是会触发该方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onNext</span><span class="params">(Object item)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;获取到数据&quot;</span> + item);</span><br><span class="line">        <span class="comment">//请求下一条数据</span></span><br><span class="line">        subscription.request(<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//订阅出错时</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable throwable)</span> </span>&#123;</span><br><span class="line">        throwable.printStackTrace();</span><br><span class="line">        <span class="keyword">synchronized</span> (<span class="string">&quot;java&quot;</span>) &#123;</span><br><span class="line">            <span class="string">&quot;java&quot;</span>.notifyAll();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//订阅结束时触发该方法</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onComplete</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;订阅结束时&quot;</span>);</span><br><span class="line">        <span class="keyword">synchronized</span> (<span class="string">&quot;java&quot;</span>) &#123;</span><br><span class="line">            <span class="string">&quot;java&quot;</span>.notifyAll();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PubSubTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建一个SubmissionPublisher作为发布者</span></span><br><span class="line">        SubmissionPublisher&lt;String&gt; publisher = <span class="keyword">new</span> SubmissionPublisher&lt;&gt;();</span><br><span class="line">        <span class="comment">//创建订阅者</span></span><br><span class="line">        MySubscriber&lt;String&gt; subscriber = <span class="keyword">new</span> MySubscriber&lt;&gt;();</span><br><span class="line">        <span class="comment">//注册订阅者</span></span><br><span class="line">        publisher.subscribe(subscriber);</span><br><span class="line">        <span class="comment">//发布几个数据项</span></span><br><span class="line">        System.out.println(<span class="string">&quot;开发发布数据...&quot;</span>);</span><br><span class="line">        List.of(<span class="string">&quot;Java&quot;</span>, <span class="string">&quot;Go&quot;</span>, <span class="string">&quot;Erlang&quot;</span>, <span class="string">&quot;Swift&quot;</span>, <span class="string">&quot;Lua&quot;</span>)</span><br><span class="line">                .forEach(im -&gt; &#123;</span><br><span class="line">                    <span class="comment">//提交数据</span></span><br><span class="line">                    publisher.submit(im);</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        Thread.sleep(<span class="number">500</span>);</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">        <span class="comment">//发布结束</span></span><br><span class="line">        publisher.close();</span><br><span class="line">        <span class="comment">//发布结束之后，为了让线程不会死亡，暂停线程</span></span><br><span class="line">        <span class="keyword">synchronized</span> (<span class="string">&quot;java&quot;</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="string">&quot;java&quot;</span>.wait();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h3 id="三、响应式编程（Reactor实现）"><a href="#三、响应式编程（Reactor实现）" class="headerlink" title="三、响应式编程（Reactor实现）"></a>三、响应式编程（Reactor实现）</h3><h4 id="（1）规范框架"><a href="#（1）规范框架" class="headerlink" title="（1）规范框架"></a>（1）规范框架</h4><p>响应式编程操作中，<code> Reactor</code>是满足<code> Reactive</code>规范框架</p>
-<h4 id="（2）核心类"><a href="#（2）核心类" class="headerlink" title="（2）核心类"></a>（2）核心类</h4><p><code> Reactor</code>有两个核心类，<code>Mono</code>和<code> Flux</code>，这两个类实现接口<code> Publisher</code>，提供丰富操作符。<code> Flux</code>对象实现发布者，返回N个元素；<code> Mono</code>实现发布者，返回0或者一个元素</p>
-<h4 id="（3）三种信号"><a href="#（3）三种信号" class="headerlink" title="（3）三种信号"></a>（3）三种信号</h4><p><code> Flux</code>和<code> Mono</code>都是数据流的发布者，使用<code> Flux</code>和<code> Mono</code>都可以发出三中信号：<code>元素值</code>、<code> 错误信号</code>、<code> 完成信号</code>（错误信号与完成信号用于告诉订阅者数据流结束了，他俩都是终止信号，错误信号在终止数据流时会同时将错误信息传递给订阅者）</p>
-<p>以下图片说明了两者的区别（Flux返回0个或者多个元素，Mono返回一个元素）：</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/WebFlux/FluxAndMono.jpeg">
-
-<h4 id="（4）代码演示"><a href="#（4）代码演示" class="headerlink" title="（4）代码演示"></a>（4）代码演示</h4><p>接下来咱们直接在代码上来实现：</p>
-<ul>
-<li>引入依赖</li>
-</ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.projectreactor<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>reactor-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>代码编写</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestReactor</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//just方法直接声明</span></span><br><span class="line">        Flux.just(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>);</span><br><span class="line">        Mono.just(<span class="number">1</span>);</span><br><span class="line">        <span class="comment">//其他方法进行声明</span></span><br><span class="line">        Integer[] array = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;;</span><br><span class="line">        Flux.fromArray(array);</span><br><span class="line"></span><br><span class="line">        List&lt;Integer&gt; list = Arrays.asList(array);</span><br><span class="line">        Flux.fromIterable(list);</span><br><span class="line"></span><br><span class="line">        Stream&lt;Integer&gt; stream = list.stream();</span><br><span class="line">        Flux.fromStream(stream);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="（5）三种信号的特点"><a href="#（5）三种信号的特点" class="headerlink" title="（5）三种信号的特点"></a>（5）三种信号的特点</h4><ul>
-<li>错误信号和完成信号都是终止信号，是不能共存的</li>
-<li>如果没有发送任何元素值，而是直接发送错误信号或者完成信号，表示的是空数据流</li>
-<li>如果没有错误信号，没有完成信号，表示的是无线信号流</li>
-</ul>
-<h4 id="（6）订阅"><a href="#（6）订阅" class="headerlink" title="（6）订阅"></a>（6）订阅</h4><p>调用<code> just</code>或者其他方法只是声明数据流，数据流并没有发出，只有进行订阅之后才会触发数据流，不订阅啥都不会发生</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Flux.just(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>).subscribe(System.out::println);</span><br><span class="line">Mono.just(<span class="number">1</span>).subscribe(System.out::println);</span><br></pre></td></tr></table></figure>
-
-<h4 id="（7）操作符"><a href="#（7）操作符" class="headerlink" title="（7）操作符"></a>（7）操作符</h4><p>对数据流进行一道道操作，成为操作符，比如工厂流水线</p>
-<ul>
-<li><p>map</p>
-<p>将元素映射为新元素</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/WebFlux/map.png">
-</li>
-<li><p>flatMap</p>
-<p>将元素映射为流（将多个元素转成流，然后将多个流转成一个大流）</p>
-<img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/WebFlux/flatMap.png">
-
-
-
-</li>
-</ul>
-<h3 id="四、WebFlux执行流程和核心API"><a href="#四、WebFlux执行流程和核心API" class="headerlink" title="四、WebFlux执行流程和核心API"></a>四、WebFlux执行流程和核心API</h3><p>SpringWebFlux基于Reactor，默认使用的容器是Netty，Netty是高性能的NIO框架，异步非阻塞的框架</p>
-<h4 id="（1）Netty"><a href="#（1）Netty" class="headerlink" title="（1）Netty"></a>（1）Netty</h4><ul>
-<li>NIO（非阻塞）</li>
-<li>BIO（阻塞）</li>
-</ul>
-<h4 id="（2）-SpringWebFlux执行过程和SpringMVC相似的"><a href="#（2）-SpringWebFlux执行过程和SpringMVC相似的" class="headerlink" title="（2） SpringWebFlux执行过程和SpringMVC相似的"></a>（2） SpringWebFlux执行过程和SpringMVC相似的</h4><ul>
-<li><p><code> SpringWebFlux</code>核心控制器<code> DispatchHandler</code>，实现接口<code> WebHandler</code></p>
-</li>
-<li><p>接口<code> WebHandler</code>有一个方法：</p>
-<blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">WebHandler</span> </span>&#123;</span><br><span class="line">    <span class="function">Mono&lt;Void&gt; <span class="title">handle</span><span class="params">(ServerWebExchange var1)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</blockquote>
-</li>
-</ul>
-<h4 id="（3）SpringWebFlux里面的DispatcherHandler，负责请求的处理"><a href="#（3）SpringWebFlux里面的DispatcherHandler，负责请求的处理" class="headerlink" title="（3）SpringWebFlux里面的DispatcherHandler，负责请求的处理"></a>（3）SpringWebFlux里面的DispatcherHandler，负责请求的处理</h4><ul>
-<li>HandlerMapping：请求查询到处理的方法</li>
-<li>HandlerAdapter：真正负责请求处理</li>
-<li>HandlerResultHandler：响应结果处理</li>
-</ul>
-<h4 id="（4）SpringWebFlux函数式编程"><a href="#（4）SpringWebFlux函数式编程" class="headerlink" title="（4）SpringWebFlux函数式编程"></a>（4）SpringWebFlux函数式编程</h4><p><code> SpringWebFlux</code>实现函数式编程，有两个接口：<code> RouterFunction（路由处理）</code>和<code> HandlerFunction（处理函数）</code></p>
-<h3 id="五、SpringWebFLux（基于注解编程模型）"><a href="#五、SpringWebFLux（基于注解编程模型）" class="headerlink" title="五、SpringWebFLux（基于注解编程模型）"></a>五、SpringWebFLux（基于注解编程模型）</h3><p><code> SpringWebFlux</code>实现方式有两种：<code> 注解编程模型</code>和<code> 函数式编程模型</code></p>
-<p>使用注解编程模型方式，和之前的<code> SpringMVC</code>使用相似，只需要将相关依赖配置到项目中，<code> SpringBoot</code>自动配置相关运行容器，默认情况下使用Netty服务器</p>
-<h4 id="（1）创建SpringBoot工程，引入-WebFlux依赖"><a href="#（1）创建SpringBoot工程，引入-WebFlux依赖" class="headerlink" title="（1）创建SpringBoot工程，引入 WebFlux依赖"></a>（1）创建SpringBoot工程，引入<code> WebFlux</code>依赖</h4><p> 依赖如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-webflux<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="（2）配置启动端口号"><a href="#（2）配置启动端口号" class="headerlink" title="（2）配置启动端口号"></a>（2）配置启动端口号</h5><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">server.port</span>=<span class="string">8081</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="（3）创建包和相关类"><a href="#（3）创建包和相关类" class="headerlink" title="（3）创建包和相关类"></a>（3）创建包和相关类</h4><ul>
-<li><p>实体类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String gender;</span><br><span class="line">    <span class="keyword">private</span> Integer age;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>接口定义操作</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line">    <span class="comment">//根据ID查询用户</span></span><br><span class="line">    <span class="function">Mono&lt;User&gt; <span class="title">getUserById</span><span class="params">(<span class="keyword">int</span> id)</span></span>;</span><br><span class="line">    <span class="comment">//查询所有用户</span></span><br><span class="line">    <span class="function">Flux&lt;User&gt; <span class="title">getAllUser</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">//添加用户</span></span><br><span class="line">    <span class="function">Mono&lt;Void&gt; <span class="title">saveUserInfo</span><span class="params">(Mono&lt;User&gt; user)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>接口的实现类</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserServiceImpl</span> <span class="keyword">implements</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line">    <span class="comment">//创建map集合存储数据</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Map&lt;Integer,User&gt; users = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//无参构造</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">UserServiceImpl</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.users.put(<span class="number">1</span>,<span class="keyword">new</span> User(<span class="string">&quot;lucy&quot;</span>,<span class="string">&quot;nan&quot;</span>,<span class="number">20</span>));</span><br><span class="line">        <span class="keyword">this</span>.users.put(<span class="number">2</span>,<span class="keyword">new</span> User(<span class="string">&quot;mary&quot;</span>,<span class="string">&quot;nv&quot;</span>,<span class="number">30</span>));</span><br><span class="line">        <span class="keyword">this</span>.users.put(<span class="number">3</span>,<span class="keyword">new</span> User(<span class="string">&quot;jack&quot;</span>,<span class="string">&quot;nv&quot;</span>,<span class="number">50</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//根据id查询</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Mono&lt;User&gt; <span class="title">getUserById</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Mono.justOrEmpty(<span class="keyword">this</span>.users.get(id));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//查询多个用户</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Flux&lt;User&gt; <span class="title">getAllUser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Flux.fromIterable(<span class="keyword">this</span>.users.values());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//添加用户</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Mono&lt;Void&gt; <span class="title">saveUserInfo</span><span class="params">(Mono&lt;User&gt; userMono)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userMono.doOnNext(person -&gt; &#123;</span><br><span class="line">            <span class="comment">//向map集合里面放值</span></span><br><span class="line">            <span class="keyword">int</span> id = users.size()+<span class="number">1</span>;</span><br><span class="line">            users.put(id,person);</span><br><span class="line">        &#125;).thenEmpty(Mono.empty());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>编写Controller层</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//注入service</span></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//id查询</span></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/user/&#123;id&#125;&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Mono&lt;User&gt; <span class="title">geetUserId</span><span class="params">(<span class="meta">@PathVariable</span> <span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userService.getUserById(id);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//查询所有</span></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/user&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Flux&lt;User&gt; <span class="title">getUsers</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userService.getAllUser();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//添加</span></span><br><span class="line">    <span class="meta">@PostMapping(&quot;/saveuser&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Mono&lt;Void&gt; <span class="title">saveUser</span><span class="params">(<span class="meta">@RequestBody</span> User user)</span> </span>&#123;</span><br><span class="line">        Mono&lt;User&gt; userMono = Mono.just(user);</span><br><span class="line">        <span class="keyword">return</span> userService.saveUserInfo(userMono);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>说明：</p>
-<ul>
-<li><code> SpringMVC</code>方式，同步阻塞的方式，基于<code> SpringMVC + Servlet + Tomcat</code></li>
-<li><code> SpringWebFlux</code>方式，异步非阻塞的方式，基于<code> SpringWebFlux + Reactor + Netty</code></li>
-</ul>
-</li>
-</ul>
-<h3 id="六、SpringWebFLux（基于函数式编程模型）"><a href="#六、SpringWebFLux（基于函数式编程模型）" class="headerlink" title="六、SpringWebFLux（基于函数式编程模型）"></a>六、SpringWebFLux（基于函数式编程模型）</h3><ul>
-<li><p>在使用函数式编程模型操作的时候，需要自己初始化服务器</p>
-</li>
-<li><p>基于函数式编程模型的时候，有两个核心接口：</p>
-<p><code> RouterFunction（实现路由的功能）</code>和<code> HandlerFunction（处理请求生成响应的函数）</code></p>
-<p>核心任务：定义两个函数式接口的实现并且启动需要的服务器</p>
-</li>
-<li><p><code> SpringWebFlux</code>请求和响应不再是<code> ServletRequest</code>和<code> ServletResponse</code></p>
-</li>
-</ul>
-<h4 id="（1）创建Handler（具体实现方法）"><a href="#（1）创建Handler（具体实现方法）" class="headerlink" title="（1）创建Handler（具体实现方法）"></a>（1）创建Handler（具体实现方法）</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserHandler</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> UserService userService;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">UserHandler</span><span class="params">(UserService userService)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userService = userService;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//根据ID查询</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Mono&lt;ServerResponse&gt; <span class="title">getUserById</span><span class="params">(ServerRequest request)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//获取id值</span></span><br><span class="line">        <span class="keyword">int</span> userId = Integer.parseInt(request.pathVariable(<span class="string">&quot;id&quot;</span>));</span><br><span class="line">        <span class="comment">//空值处理</span></span><br><span class="line">        Mono&lt;ServerResponse&gt; notFound = ServerResponse.notFound().build();</span><br><span class="line">        <span class="comment">//调用Service方法得到数据</span></span><br><span class="line">        Mono&lt;User&gt; userMono = <span class="keyword">this</span>.userService.getUserById(userId);</span><br><span class="line">        <span class="comment">//将userMono进行转换返回，使用Reactor的操作符flatMap</span></span><br><span class="line">        <span class="keyword">return</span> userMono.flatMap(person -&gt; ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)</span><br><span class="line">                .body(fromObject(person))</span><br><span class="line">        ).switchIfEmpty(notFound);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//查询所有</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Mono&lt;ServerResponse&gt; <span class="title">getAllUsers</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//调用Service得到结果</span></span><br><span class="line">        Flux&lt;User&gt; users = <span class="keyword">this</span>.userService.getAllUser();</span><br><span class="line">        <span class="keyword">return</span> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(users, User.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//添加</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Mono&lt;ServerResponse&gt; <span class="title">saveUser</span><span class="params">(ServerRequest request)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//得到User对象</span></span><br><span class="line">        Mono&lt;User&gt; userMono = request.bodyToMono(User.class);</span><br><span class="line">        <span class="keyword">return</span> ServerResponse.ok().build(<span class="keyword">this</span>.userService.saveUserInfo(userMono));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="（2）初始化服务器，编写Router"><a href="#（2）初始化服务器，编写Router" class="headerlink" title="（2）初始化服务器，编写Router"></a>（2）初始化服务器，编写Router</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Server</span> </span>&#123;</span><br><span class="line">    <span class="comment">//1、创建路由</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RouterFunction&lt;ServerResponse&gt; <span class="title">routingFunction</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建Handler对象 </span></span><br><span class="line">        UserService userService = <span class="keyword">new</span> UserServiceImpl();</span><br><span class="line">        UserHandler handler = <span class="keyword">new</span> UserHandler(userService);</span><br><span class="line">        <span class="comment">//设置路由</span></span><br><span class="line">        <span class="keyword">return</span> RouterFunctions.route(</span><br><span class="line">                GET(<span class="string">&quot;/users/&#123;id&#125;&quot;</span>).and(accept(MediaType.APPLICATION_JSON)), handler::getUserById</span><br><span class="line">        ).andRoute(</span><br><span class="line">                GET(<span class="string">&quot;/users&quot;</span>).and(accept(MediaType.APPLICATION_JSON)), handler::getAllUsers</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="（3）创建服务器完成适配"><a href="#（3）创建服务器完成适配" class="headerlink" title="（3）创建服务器完成适配"></a>（3）创建服务器完成适配</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Server</span> </span>&#123;</span><br><span class="line">    <span class="comment">//1、创建路由</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> RouterFunction&lt;ServerResponse&gt; <span class="title">routingFunction</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//创建Handler对象</span></span><br><span class="line">        UserService userService = <span class="keyword">new</span> UserServiceImpl();</span><br><span class="line">        UserHandler handler = <span class="keyword">new</span> UserHandler(userService);</span><br><span class="line">        <span class="comment">//设置路由</span></span><br><span class="line">        <span class="keyword">return</span> RouterFunctions.route(</span><br><span class="line">                GET(<span class="string">&quot;/users/&#123;id&#125;&quot;</span>).and(accept(MediaType.APPLICATION_JSON)), handler::getUserById</span><br><span class="line">        ).andRoute(</span><br><span class="line">                GET(<span class="string">&quot;/users&quot;</span>).and(accept(MediaType.APPLICATION_JSON)), handler::getAllUsers</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//2、创建服务器，完成适配</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">createReactorServer</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//路由和handler适配</span></span><br><span class="line">        RouterFunction&lt;ServerResponse&gt; route = routingFunction();</span><br><span class="line">        HttpHandler httpHandler = toHttpHandler(route);</span><br><span class="line">        ReactorHttpHandlerAdapter adapter = <span class="keyword">new</span> ReactorHttpHandlerAdapter(httpHandler);</span><br><span class="line">        <span class="comment">//创建服务器</span></span><br><span class="line">        HttpServer httpServer = HttpServer.create();</span><br><span class="line">        httpServer.handle(adapter).bindNow();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="（4）最终调用"><a href="#（4）最终调用" class="headerlink" title="（4）最终调用"></a>（4）最终调用</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">  Server server = <span class="keyword">new</span> Server();</span><br><span class="line">  server.createReactorServer();</span><br><span class="line">  System.out.println(<span class="string">&quot;enter to exit&quot;</span>);</span><br><span class="line">  System.in.read();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="（5）使用WebClient调用"><a href="#（5）使用WebClient调用" class="headerlink" title="（5）使用WebClient调用"></a>（5）使用WebClient调用</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//调用服务器地址</span></span><br><span class="line">        WebClient webClient = WebClient.create(<span class="string">&quot;http://127.0.0.1:56264&quot;</span>);</span><br><span class="line">        <span class="comment">//根据id查询</span></span><br><span class="line">        String id = <span class="string">&quot;1&quot;</span>;</span><br><span class="line">        User user = webClient.get().uri(<span class="string">&quot;/users/&#123;id&#125;&quot;</span>, id).accept(MediaType.APPLICATION_JSON).</span><br><span class="line">                retrieve().bodyToMono(User.class).block();</span><br><span class="line">        System.out.println(user.getName());</span><br><span class="line">        <span class="comment">//查询所有</span></span><br><span class="line">        Flux&lt;User&gt; results = webClient.get().uri(<span class="string">&quot;/users&quot;</span>).accept(MediaType.APPLICATION_JSON).</span><br><span class="line">                retrieve().bodyToFlux(User.class);</span><br><span class="line">        results.map(stu -&gt; stu.getName()).buffer().doOnNext(System.out::println).blockFirst();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
 
       
     </div>
@@ -1494,7 +1344,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-count">129</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

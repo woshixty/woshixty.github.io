@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/3.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/3.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="一、页面置换算法进程运行时，若其访问的页面不在内存而需将其调入，但内存已无空闲空间时，就需要从内存中调出一页程序或数据，送入磁盘的对换区 1、最佳置换算法（OPT）该算法选择淘汰的页面是以后不会使用的，或者是最长时间内不再被访问的页面，以此来保证最低的缺页率 由于无法预知，所以该算法无法实现 2、先进先出（FIFO）优先淘汰最早进入内存的页面 将掉入内存的页面按照先后次序排成一个队列，设置一个指针">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hello Programmer">
+<meta property="og:url" content="http://example.com/2022/06/01/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%9D%A2%E8%AF%95/index.html">
+<meta property="og:site_name" content="Hello Programmer">
+<meta property="og:description" content="一、页面置换算法进程运行时，若其访问的页面不在内存而需将其调入，但内存已无空闲空间时，就需要从内存中调出一页程序或数据，送入磁盘的对换区 1、最佳置换算法（OPT）该算法选择淘汰的页面是以后不会使用的，或者是最长时间内不再被访问的页面，以此来保证最低的缺页率 由于无法预知，所以该算法无法实现 2、先进先出（FIFO）优先淘汰最早进入内存的页面 将掉入内存的页面按照先后次序排成一个队列，设置一个指针">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-06-01T06:03:04.629Z">
+<meta property="article:modified_time" content="2022-06-01T06:03:04.629Z">
+<meta property="article:author" content="xty">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2022/06/01/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%9D%A2%E8%AF%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | Hello Programmer</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hello Programmer</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/01/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%9D%A2%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-01 06:03:04" itemprop="dateCreated datePublished" datetime="2022-06-01T06:03:04+00:00">2022-06-01</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="一、页面置换算法"><a href="#一、页面置换算法" class="headerlink" title="一、页面置换算法"></a>一、页面置换算法</h1><p>进程运行时，若其访问的页面不在内存而需将其调入，但内存已无空闲空间时，就需要从内存中调出一页程序或数据，送入磁盘的对换区</p>
+<h2 id="1、最佳置换算法（OPT）"><a href="#1、最佳置换算法（OPT）" class="headerlink" title="1、最佳置换算法（OPT）"></a>1、最佳置换算法（OPT）</h2><p>该算法选择淘汰的页面是以后不会使用的，或者是最长时间内不再被访问的页面，以此来保证最低的缺页率</p>
+<p>由于无法预知，所以该算法无法实现</p>
+<h2 id="2、先进先出（FIFO）"><a href="#2、先进先出（FIFO）" class="headerlink" title="2、先进先出（FIFO）"></a>2、先进先出（FIFO）</h2><p>优先淘汰最早进入内存的页面</p>
+<p>将掉入内存的页面按照先后次序排成一个队列，设置一个指针指向总指向最早的界面</p>
+<p>有些页面会经常被访问，所以不适用</p>
+<h2 id="3、最近最久未使用（LRU）"><a href="#3、最近最久未使用（LRU）" class="headerlink" title="3、最近最久未使用（LRU）"></a>3、最近最久未使用（LRU）</h2><p>选择最近最长时间未访问过的页面予以淘汰，它认为过去一段时间内未访问过的页面，在最近的将来可能也不会被访问</p>
+<p>为每个页面设置一个访问字段记录自从上次访问以来所经历的时间，淘汰页面时选择访问字段值最大的一个淘汰</p>
+<p>性能比较好，但是需要寄存器和栈的支持，实现起来开销比较大</p>
+<h2 id="4、时钟（CLOCK）"><a href="#4、时钟（CLOCK）" class="headerlink" title="4、时钟（CLOCK）"></a>4、时钟（CLOCK）</h2><p>简单的CLOCK算法是给每一帧关联一个附加位，称为使用位</p>
+<p>当某一页首次装入主存时，该帧的使用位设置为1；当该页随后再被访问到时，它的使用位也被置为1</p>
+<p>每当需要淘汰页面时就寻找使用位为0的页面，并将经过的页面置为0</p>
+<h1 id="二、进程、线程、协程"><a href="#二、进程、线程、协程" class="headerlink" title="二、进程、线程、协程"></a>二、进程、线程、协程</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/fanguangdexiaoyuer/p/10834737.html">https://www.cnblogs.com/fanguangdexiaoyuer/p/10834737.html</a></p>
+<h2 id="1、三者的概念"><a href="#1、三者的概念" class="headerlink" title="1、三者的概念"></a>1、三者的概念</h2><h3 id="（1）进程"><a href="#（1）进程" class="headerlink" title="（1）进程"></a>（1）进程</h3><p>进程是一个具有一定独立功能的程序在一个数据集上的一次动态执行的过程，是操作系统进行资源分配和调度的一个独立单位，是应用程序运行的载体</p>
+<p>进程一般有三部分组成：程序、数据集合和进程控制块</p>
+<ul>
+<li>程序描述了进程所要完成的功能，是程序执行的指令集</li>
+<li>数据集合是程序在执行时候所需的数据和工作区</li>
+<li>进程控制块（PCB）描述了进程的描述信息和控制信息，是进程的唯一标识</li>
+</ul>
+<p>进程的特征</p>
+<ul>
+<li>动态性：进程是一次执行的过程，是有生命期的，动态产生和动态消亡的</li>
+<li>并发性：任何进程都可以和其他进程一起并发执行的</li>
+<li>独立性：进程是系统进行资源调度和分配的独立单位</li>
+<li>结构性：进程由程序、数据和PCB组成</li>
+</ul>
+<h3 id="（2）线程"><a href="#（2）线程" class="headerlink" title="（2）线程"></a>（2）线程</h3><p>线程是能够拥有资源和独立运行的最小单位，也是程序执行的最小单位</p>
+<p>线程是程序执行过程中一个单一的顺序控制流程，是程序执行流中的最小单元</p>
+<h3 id="（3）协程"><a href="#（3）协程" class="headerlink" title="（3）协程"></a>（3）协程</h3><p>基于线程之上，但是比线程更加轻量级的存在，这种由程序猿自己写程序来管理的轻量级线程叫做“用户空间线程”，对内核来说不可见</p>
+<p>是程序猿自己开辟的异步任务</p>
+<h2 id="2、通信方式的差异"><a href="#2、通信方式的差异" class="headerlink" title="2、通信方式的差异"></a>2、通信方式的差异</h2><h3 id="（1）进程的通信"><a href="#（1）进程的通信" class="headerlink" title="（1）进程的通信"></a>（1）进程的通信</h3><ul>
+<li><p>管道（Pipe）</p>
+<p>匿名管道、有名管道</p>
+</li>
+<li><p>信号（Signal）</p>
+</li>
+<li><p>信号量（Semaphore）</p>
+<p>本质是一个计数器</p>
+</li>
+<li><p>共享内存（Shared Memory）</p>
+</li>
+<li><p>消息队列（Message Queue）</p>
+</li>
+<li><p>套接字（Socket）</p>
+</li>
+</ul>
+<h3 id="（2）线程的通信"><a href="#（2）线程的通信" class="headerlink" title="（2）线程的通信"></a>（2）线程的通信</h3><ul>
+<li><p>锁机制：包括互斥锁、条件变量、读写锁</p>
+<p>wait/notify 等待机制</p>
+<p>volatile 共享内存</p>
+<p>countDownLatch 并发工具</p>
+<p>cyclicBarrier 并发工具</p>
+</li>
+<li><p>信号量机制（Semaphore）</p>
+</li>
+<li><p>信号机制（Signal）</p>
+</li>
+</ul>
+<h1 id="3、死锁问题"><a href="#3、死锁问题" class="headerlink" title="3、死锁问题"></a>3、死锁问题</h1><h2 id="（1）什么是死锁？"><a href="#（1）什么是死锁？" class="headerlink" title="（1）什么是死锁？"></a>（1）什么是死锁？</h2><p>死锁是指两个或以上进程在执行过程中，由于资源竞争造成的一种阻塞现象，若无外力作用，将一直阻塞下去。我们称这种现象为系统产生了死锁或者系统处于死锁状态</p>
+<h2 id="（2）产生死锁的原因有哪些？"><a href="#（2）产生死锁的原因有哪些？" class="headerlink" title="（2）产生死锁的原因有哪些？"></a>（2）产生死锁的原因有哪些？</h2><ul>
+<li>系统资源不足</li>
+<li>程序执行顺序不当</li>
+<li>资源分配不当</li>
+</ul>
+<h2 id="（3）产生死锁的必要条件"><a href="#（3）产生死锁的必要条件" class="headerlink" title="（3）产生死锁的必要条件"></a>（3）产生死锁的必要条件</h2><ul>
+<li><p>互斥条件</p>
+<p>一个资源只能被一个进程使用</p>
+</li>
+<li><p>请求与保持条件</p>
+<p>请求资源阻塞时，对已获得的资源并不释放</p>
+</li>
+<li><p>不剥夺条件</p>
+<p>进程已获得的资源，除非自己释放，否则不能被剥夺</p>
+</li>
+<li><p>循环等待条件</p>
+<p>进程之间形成一种头尾相接的资源等待关系</p>
+</li>
+</ul>
+<h2 id="（4）如何解决死锁？"><a href="#（4）如何解决死锁？" class="headerlink" title="（4）如何解决死锁？"></a>（4）如何解决死锁？</h2><p>在系统设计、进程调度等方面注意不要让四个必要条件成立，确定合理的资源分配算法、防止进程处于等待状态下占用资源</p>
+<h1 id="4、操作系统四大特性"><a href="#4、操作系统四大特性" class="headerlink" title="4、操作系统四大特性"></a>4、操作系统四大特性</h1><p><a target="_blank" rel="noopener" href="https://bbs.huaweicloud.com/blogs/323535">https://bbs.huaweicloud.com/blogs/323535</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/106120802">https://zhuanlan.zhihu.com/p/106120802</a></p>
+<blockquote>
+<p>现代操作系统都具有并发、共享、虚拟和异步的特性，其中并发是其它三个特征的前提</p>
+<p>共享和并发是操作系统的两个最基本的特征，虚拟以并发和共享为前提，异步是并发和共享的必然结果</p>
+</blockquote>
+<h2 id="（1）并发"><a href="#（1）并发" class="headerlink" title="（1）并发"></a>（1）并发</h2><p><strong>并发</strong>是指宏观上在一段时间内能同时运行多个程序，而<strong>并行</strong>则指同一时刻能运行多个指令。<strong>并发</strong>需要硬件支持，如多流水线或者多处理器</p>
+<ul>
+<li>并发性是指两个或多个事件在同一时间间隔内发生；操作系统通过引入进程和线程，使得程序能够并发运行。在多道程序环境下，<strong>并发</strong>性是指在一段时间内宏观上有多个程序同时运行，但在单处理机系统中，每一时刻只能由一道程序执行，所以微观上程序是分时地交替执行的。</li>
+<li><strong>并行性</strong>是指两个或多个事件在同一时刻发生</li>
+</ul>
+<h2 id="（2）共享"><a href="#（2）共享" class="headerlink" title="（2）共享"></a>（2）共享</h2><p>共享是指系统中的资源可以被多个并发进程共同使用</p>
+<p>有两种共享方式：<code>互斥共享</code>、<code>同时共享</code></p>
+<h2 id="（3）虚拟"><a href="#（3）虚拟" class="headerlink" title="（3）虚拟"></a>（3）虚拟</h2><p>虚拟技术把一个物理实体转换为多个逻辑实体</p>
+<p>主要有两种虚拟技术：<code>时分复用技术</code>、<code>空分复用技术</code></p>
+<p>例如多进程在同一处理器上并发执行使用了时分复用技术</p>
+<h2 id="（4）异步"><a href="#（4）异步" class="headerlink" title="（4）异步"></a>（4）异步</h2><p>异步指进程不是一次性执行完毕，而是走走停停，以不可知的速度向前推进</p>
+<p>产生原因：操作系统允许多个并发进程共享资源，使得每个进程的运行过程受到其他进程制约，使进程的执行不是一气呵成，而是以停停走走的方式运行</p>
+<p>有了并发性才会有异步性</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/06/01/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%9D%A2%E8%AF%95-MySQL/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/06/01/%E9%9D%A2%E8%AF%95%E7%9B%B8%E5%85%B3/Spring%E9%9D%A2%E8%AF%95/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E9%A1%B5%E9%9D%A2%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">一、页面置换算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E6%9C%80%E4%BD%B3%E7%BD%AE%E6%8D%A2%E7%AE%97%E6%B3%95%EF%BC%88OPT%EF%BC%89"><span class="nav-number">1.1.</span> <span class="nav-text">1、最佳置换算法（OPT）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E5%85%88%E8%BF%9B%E5%85%88%E5%87%BA%EF%BC%88FIFO%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">2、先进先出（FIFO）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3%E3%80%81%E6%9C%80%E8%BF%91%E6%9C%80%E4%B9%85%E6%9C%AA%E4%BD%BF%E7%94%A8%EF%BC%88LRU%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">3、最近最久未使用（LRU）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4%E3%80%81%E6%97%B6%E9%92%9F%EF%BC%88CLOCK%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">4、时钟（CLOCK）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%BF%9B%E7%A8%8B%E3%80%81%E7%BA%BF%E7%A8%8B%E3%80%81%E5%8D%8F%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">二、进程、线程、协程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1%E3%80%81%E4%B8%89%E8%80%85%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">2.1.</span> <span class="nav-text">1、三者的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E8%BF%9B%E7%A8%8B"><span class="nav-number">2.1.1.</span> <span class="nav-text">（1）进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E7%BA%BF%E7%A8%8B"><span class="nav-number">2.1.2.</span> <span class="nav-text">（2）线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%883%EF%BC%89%E5%8D%8F%E7%A8%8B"><span class="nav-number">2.1.3.</span> <span class="nav-text">（3）协程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E3%80%81%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F%E7%9A%84%E5%B7%AE%E5%BC%82"><span class="nav-number">2.2.</span> <span class="nav-text">2、通信方式的差异</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E8%BF%9B%E7%A8%8B%E7%9A%84%E9%80%9A%E4%BF%A1"><span class="nav-number">2.2.1.</span> <span class="nav-text">（1）进程的通信</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E7%BA%BF%E7%A8%8B%E7%9A%84%E9%80%9A%E4%BF%A1"><span class="nav-number">2.2.2.</span> <span class="nav-text">（2）线程的通信</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3%E3%80%81%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">3、死锁问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E4%BB%80%E4%B9%88%E6%98%AF%E6%AD%BB%E9%94%81%EF%BC%9F"><span class="nav-number">3.1.</span> <span class="nav-text">（1）什么是死锁？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E4%BA%A7%E7%94%9F%E6%AD%BB%E9%94%81%E7%9A%84%E5%8E%9F%E5%9B%A0%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F"><span class="nav-number">3.2.</span> <span class="nav-text">（2）产生死锁的原因有哪些？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%883%EF%BC%89%E4%BA%A7%E7%94%9F%E6%AD%BB%E9%94%81%E7%9A%84%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="nav-number">3.3.</span> <span class="nav-text">（3）产生死锁的必要条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%884%EF%BC%89%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E6%AD%BB%E9%94%81%EF%BC%9F"><span class="nav-number">3.4.</span> <span class="nav-text">（4）如何解决死锁？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4%E3%80%81%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9B%9B%E5%A4%A7%E7%89%B9%E6%80%A7"><span class="nav-number">4.</span> <span class="nav-text">4、操作系统四大特性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E5%B9%B6%E5%8F%91"><span class="nav-number">4.1.</span> <span class="nav-text">（1）并发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E5%85%B1%E4%BA%AB"><span class="nav-number">4.2.</span> <span class="nav-text">（2）共享</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%883%EF%BC%89%E8%99%9A%E6%8B%9F"><span class="nav-number">4.3.</span> <span class="nav-text">（3）虚拟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EF%BC%884%EF%BC%89%E5%BC%82%E6%AD%A5"><span class="nav-number">4.4.</span> <span class="nav-text">（4）异步</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="xty"
+      src="/images/4.png">
+  <p class="site-author-name" itemprop="name">xty</p>
+  <div class="site-description" itemprop="description">This is xty Blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">129</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/woshixty" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;woshixty" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xty</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script data-pjax>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+    </div>
+</body>
+</html>

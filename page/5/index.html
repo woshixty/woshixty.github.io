@@ -154,7 +154,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/27/C++/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20%E4%BD%BF%E7%94%A8%E7%B1%BB/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/01/2022-05-21/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -168,7 +168,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/27/C++/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20%E4%BD%BF%E7%94%A8%E7%B1%BB/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/06/01/2022-05-21/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -178,7 +178,372 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-27 17:08:49" itemprop="dateCreated datePublished" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
+              <time title="创建时间：2022-06-01 06:03:04" itemprop="dateCreated datePublished" datetime="2022-06-01T06:03:04+00:00">2022-06-01</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="一、操作系统"><a href="#一、操作系统" class="headerlink" title="一、操作系统"></a>一、操作系统</h1><h2 id="1、操作系统四大特性"><a href="#1、操作系统四大特性" class="headerlink" title="1、操作系统四大特性"></a>1、操作系统四大特性</h2><h3 id="（1）并发"><a href="#（1）并发" class="headerlink" title="（1）并发"></a>（1）并发</h3><h4 id="a、并发与并行的区别"><a href="#a、并发与并行的区别" class="headerlink" title="a、并发与并行的区别"></a>a、并发与并行的区别</h4><h4 id="b、单核与多核的并发与并行"><a href="#b、单核与多核的并发与并行" class="headerlink" title="b、单核与多核的并发与并行"></a>b、单核与多核的并发与并行</h4><h4 id="c、引入进程实现并发"><a href="#c、引入进程实现并发" class="headerlink" title="c、引入进程实现并发"></a>c、引入进程实现并发</h4><h3 id="（2）共享"><a href="#（2）共享" class="headerlink" title="（2）共享"></a>（2）共享</h3><p>共享是指系统中的资源可以被多个并发进程共同使用，互斥共享的资源称为临界资源</p>
+<ul>
+<li>互斥共享</li>
+<li>同时共享</li>
+</ul>
+<h3 id="（3）虚拟"><a href="#（3）虚拟" class="headerlink" title="（3）虚拟"></a>（3）虚拟</h3><p>虚拟技术把一个物理实体转换为多个逻辑实体</p>
+<ul>
+<li><p>时分复用技术</p>
+<p>多个进程能在同一个处理器上并发</p>
+</li>
+<li><p>空分复用技术</p>
+<p>多个程序同时放入内存中，互不影响</p>
+</li>
+</ul>
+<p>所谓虚拟是指通过某项技术把一个物理实体变为若干个逻辑上的对应</p>
+<h3 id="（4）异步"><a href="#（4）异步" class="headerlink" title="（4）异步"></a>（4）异步</h3><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/liuchuo/article/details/51986221">操作系统的异步性</a></p>
+<p>描述的是进程这种以不可预知的速度走走停停、何时开始何时暂停何时结束不可预知的性质</p>
+<h1 id="二、计算机网络"><a href="#二、计算机网络" class="headerlink" title="二、计算机网络"></a>二、计算机网络</h1><h2 id="1、HTTP发展"><a href="#1、HTTP发展" class="headerlink" title="1、HTTP发展"></a>1、HTTP发展</h2><h3 id="（1）HTTP-0-9"><a href="#（1）HTTP-0-9" class="headerlink" title="（1）HTTP 0.9"></a>（1）HTTP 0.9</h3><p>只支持 GET 请求</p>
+<h3 id="（2）HTTP-1-0"><a href="#（2）HTTP-1-0" class="headerlink" title="（2）HTTP 1.0"></a>（2）HTTP 1.0</h3><p>优化点：</p>
+<ul>
+<li><p>请求方式的多样化</p>
+<p>增加了 POST 命令和 HEAD 命令</p>
+</li>
+<li><p>支持发送任何格式的内容</p>
+<p>图片、视频、音频等等</p>
+</li>
+<li><p>请求和回应的格式</p>
+<p>头信息、状态码、缓存</p>
+</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>连接无法复用</li>
+<li>Head-Of-Line Blocking（HOLB，队头阻塞）</li>
+</ul>
+<h3 id="（3）HTTP-1-1"><a href="#（3）HTTP-1-1" class="headerlink" title="（3）HTTP 1.1"></a>（3）HTTP 1.1</h3><p>优化点：</p>
+<ul>
+<li><p>缓存处理</p>
+<p>增加了缓存头来控制缓存策略</p>
+</li>
+<li><p>带宽优化及网络连接的使用</p>
+<p>引入了range头域，允许只请求资源的某个部分</p>
+</li>
+<li><p>错误通知的管理</p>
+<p>增加了错误码</p>
+</li>
+<li><p>长链接</p>
+<p>keep-alive 可以复用一部分连接，传送多个 HTTP 请求和响应</p>
+</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li><p>域名分片等情况下仍然需要建立多个 connection</p>
+</li>
+<li><p>pipeling 只部分解决了 HOLB</p>
+<p>没有解决服务器的队头阻塞，服务器只能按序处理连接请求</p>
+</li>
+<li><p>协议开销大</p>
+<p>header 里携带的内容过大</p>
+</li>
+</ul>
+<h3 id="（4）HTTP-2-0"><a href="#（4）HTTP-2-0" class="headerlink" title="（4）HTTP 2.0"></a>（4）HTTP 2.0</h3><ul>
+<li><p>二进制格式传输数据</p>
+<p>解析起来更高效</p>
+</li>
+<li><p>支持对 Header 压缩</p>
+</li>
+<li><p>多路复用</p>
+<p>多路复用很好地解决了浏览器限制同一个域名下的请求数量的问题</p>
+</li>
+</ul>
+<h1 id="三、数据库"><a href="#三、数据库" class="headerlink" title="三、数据库"></a>三、数据库</h1><h2 id="1、如何保证Redis的高可用"><a href="#1、如何保证Redis的高可用" class="headerlink" title="1、如何保证Redis的高可用"></a>1、如何保证Redis的高可用</h2><h3 id="（1）哨兵模式"><a href="#（1）哨兵模式" class="headerlink" title="（1）哨兵模式"></a>（1）哨兵模式</h3><p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000039766545">哨兵模式</a></p>
+<h3 id="（2）集群分区"><a href="#（2）集群分区" class="headerlink" title="（2）集群分区"></a>（2）集群分区</h3><h3 id="（3）节点通信机制"><a href="#（3）节点通信机制" class="headerlink" title="（3）节点通信机制"></a>（3）节点通信机制</h3><h2 id="2、索引的分类"><a href="#2、索引的分类" class="headerlink" title="2、索引的分类"></a>2、索引的分类</h2><p>按数据结构分类可分为：B+tree索引、Hash索引、Full-text索引</p>
+<blockquote>
+<p> Hash索引适于key-value查询，通过Hash索引比B-tree索引查询更加迅速，但Hash索引不支持范围查找例如&lt;&gt;&lt;==,&gt;==等</p>
+</blockquote>
+<p>按物理存储分类可分为：聚簇索引、二级索引（辅助索引）</p>
+<p>按字段特性分类可分为：主键索引、普通索引、前缀索引</p>
+<p>按字段个数分类可分为：单列索引、联合索引（复合索引、组合索引）</p>
+<h2 id="3、你平时是怎么建立索引的"><a href="#3、你平时是怎么建立索引的" class="headerlink" title="3、你平时是怎么建立索引的"></a>3、你平时是怎么建立索引的</h2><p>有什么技巧或者需要考虑的</p>
+<h3 id="（1）索引的类型"><a href="#（1）索引的类型" class="headerlink" title="（1）索引的类型"></a>（1）索引的类型</h3><h4 id="UNIQUE（唯一索引）"><a href="#UNIQUE（唯一索引）" class="headerlink" title="UNIQUE（唯一索引）"></a><strong>UNIQUE</strong>（唯一索引）</h4><p>不可以出现相同的值，可以有NULL值</p>
+<h4 id="INDEX（普通索引）"><a href="#INDEX（普通索引）" class="headerlink" title="INDEX（普通索引）"></a><strong>INDEX</strong>（普通索引）</h4><p>允许出现相同的索引内容</p>
+<h4 id="PRIMARY-KEY（主键索引）"><a href="#PRIMARY-KEY（主键索引）" class="headerlink" title="PRIMARY KEY（主键索引）"></a><strong>PRIMARY KEY</strong>（主键索引）</h4><p>不允许出现相同的值，且不能为NULL值，一个表只能有一个primary_key索引</p>
+<h4 id="fulltext-index（全文索引）"><a href="#fulltext-index（全文索引）" class="headerlink" title="fulltext index（全文索引）"></a><strong>fulltext index</strong>（全文索引）</h4><p>上述三种索引都是针对列的值发挥作用，但全文索引，可以针对值中的某个单词，比如一篇文章中的某个词，然而并没有什么卵用，因为只有myisam以及英文支持，并且效率低</p>
+<h3 id="（2）创建索引的技巧"><a href="#（2）创建索引的技巧" class="headerlink" title="（2）创建索引的技巧"></a>（2）创建索引的技巧</h3><ol>
+<li><p>维度高的列创建索引</p>
+<p>数据列中不重复值出现的个数，这个数量越高，维度就越高</p>
+<p>如数据表中存在8行数据a,b ,c,d,a,b,c,d这个表的维度为4</p>
+<p>要为维度高的列创建索引，如性别和年龄，那年龄的维度就高于性别。性别这样的列不适合创建索引，因为维度过低</p>
+</li>
+<li><p>对 where、on、group by、order by 中出现的列使用索引</p>
+</li>
+<li><p>对较小的数据列使用索引</p>
+<p>这样会使索引文件更小，同时内存中也可以装载更多的索引键</p>
+</li>
+<li><p>为较长的字符串使用前缀索引</p>
+</li>
+<li><p>不要过多创建索引，除了增加额外的磁盘空间外，对于DML操作的速度影响很大，因为其每增删改一次就得从新建立索引</p>
+</li>
+<li><p>使用组合索引，可以减少文件索引大小，在使用时速度要优于多个单列索引</p>
+</li>
+</ol>
+<h2 id="4、联合索引和单独建立索引的区别"><a href="#4、联合索引和单独建立索引的区别" class="headerlink" title="4、联合索引和单独建立索引的区别"></a>4、联合索引和单独建立索引的区别</h2><h2 id="5、SQL你平时是怎么优化查询的"><a href="#5、SQL你平时是怎么优化查询的" class="headerlink" title="5、SQL你平时是怎么优化查询的"></a>5、SQL你平时是怎么优化查询的</h2><h3 id="（1）MySQL优化的五个原则"><a href="#（1）MySQL优化的五个原则" class="headerlink" title="（1）MySQL优化的五个原则"></a>（1）MySQL优化的五个原则</h3><ul>
+<li><p>减少数据的访问</p>
+<p>压缩、索引等手段减少磁盘IO</p>
+</li>
+<li><p>返回更少的数据</p>
+<p>只返回需要的字段和数据分页处理，减少磁盘 IO 及网络 IO</p>
+</li>
+<li><p>减少交互次数</p>
+<p>批量 DML 操作，函数存储等减少数据连接次数</p>
+</li>
+<li><p>减少服务器 CPU 开销</p>
+<p>减少数据库排序操作以及全表查询，减少 CPU 内存占用</p>
+</li>
+<li><p>利用更多资源</p>
+<p>使用表分区，可以增加并行操作，更大限度利用 CPU 资源</p>
+</li>
+</ul>
+<p>总结到SQL：</p>
+<ul>
+<li>最大化利用索引</li>
+<li>尽可能避免全表扫描</li>
+<li>减少无效数据的查询</li>
+</ul>
+<h3 id="（2）避免不走索引的场景"><a href="#（2）避免不走索引的场景" class="headerlink" title="（2）避免不走索引的场景"></a>（2）避免不走索引的场景</h3><ul>
+<li><p><strong>避免在字段开头模糊查询</strong>，会导致数据库放弃索引全表扫描</p>
+<p>如：<code>SELECT * FROM t WHERE username LIKE &#39;%陈%&#39; </code></p>
+<p>改为：<code>SELECT * FROM t WHERE username LIKE &#39;陈%&#39; </code></p>
+</li>
+<li><p><strong>尽量避免使用 in 和 not in</strong>，会导致引擎走全表扫描</p>
+</li>
+<li><p>如果是子查询，可以用 exists 代替</p>
+<p>如：<code>select * from A where A.id in (select id from B);</code></p>
+<p>改为：<code>select * from A where exists (select * from B where B.id = A.id); </code></p>
+</li>
+<li><p><strong>尽量避免使用 or</strong>，会导致数据库引擎放弃索引进行全表扫描</p>
+<p>可以用 union 代替 or，如下：</p>
+<p><code>SELECT * FROM t WHERE id = 1 OR id = 3</code>改为</p>
+<p><code>SELECT * FROM t WHERE id = 1 UNION SELECT * FROM t WHERE id = 3</code></p>
+</li>
+<li><p><strong>尽量避免进行 null 值的判断</strong>，会导致数据库引擎放弃索引进行全表扫描</p>
+<p>如：<code>SELECT * FROM t WHERE score IS NULL</code></p>
+<p>改为0值判断：<code>SELECT * FROM t WHERE score = 0 </code></p>
+</li>
+<li><p><strong>查询条件不能用 &lt;&gt; 或者 !=</strong></p>
+<p>使用索引列作为条件进行查询时，需要避免使用&lt;&gt;或者!=等判断条件</p>
+</li>
+<li><p><strong>order by 条件要与 where 中条件一致，否则 order by 不会利用索引进行排序</strong></p>
+<p>如：<code>SELECT * FROM t order by age;</code></p>
+<p>改为：<code>SELECT * FROM t where age &gt; 0 order by age;</code></p>
+</li>
+</ul>
+<h2 id="6、一致性Hash"><a href="#6、一致性Hash" class="headerlink" title="6、一致性Hash"></a>6、一致性Hash</h2><p>分布式缓存</p>
+<h2 id="7、Nginx能做什么"><a href="#7、Nginx能做什么" class="headerlink" title="7、Nginx能做什么"></a>7、Nginx能做什么</h2><p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903670434250759">https://juejin.cn/post/6844903670434250759</a></p>
+<ul>
+<li><p>反向代理</p>
+<p>反向代理（Reverse Proxy）方式是指以代理服务器来接受internet上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给internet上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器</p>
+</li>
+<li><p>负载均衡</p>
+<p>摊到多个操作单元上进行执行</p>
+</li>
+<li><p>HTTP服务器（包含动静分离）</p>
+</li>
+<li><p>正向代理</p>
+</li>
+</ul>
+<h2 id="8、Redis缓存异常"><a href="#8、Redis缓存异常" class="headerlink" title="8、Redis缓存异常"></a>8、Redis缓存异常</h2><ul>
+<li>雪崩</li>
+<li>击穿</li>
+<li>穿透</li>
+</ul>
+<p>​    <img src="https://cos-1301609895.cos.ap-nanjing.myqcloud.com/redis/35A11197A2396F5725D807CD797F4AD5.jpg"></p>
+<h1 id="四、数据结构与算法"><a href="#四、数据结构与算法" class="headerlink" title="四、数据结构与算法"></a>四、数据结构与算法</h1><h2 id="1、简单讲讲B-Tree"><a href="#1、简单讲讲B-Tree" class="headerlink" title="1、简单讲讲B+Tree"></a>1、简单讲讲B+Tree</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/27700617">https://zhuanlan.zhihu.com/p/27700617</a></p>
+<h2 id="2、栈溢出Stack-Overflow"><a href="#2、栈溢出Stack-Overflow" class="headerlink" title="2、栈溢出Stack Overflow"></a>2、栈溢出Stack Overflow</h2><h3 id="（1）什么是栈溢出"><a href="#（1）什么是栈溢出" class="headerlink" title="（1）什么是栈溢出"></a>（1）什么是栈溢出</h3><p>栈溢出指的是程序向栈中某个变量中写入的字节数超过了这个变量本身所申请的字节数，因而导致栈中与其相邻的变量的值被改变</p>
+<h3 id="（2）栈溢出的原因"><a href="#（2）栈溢出的原因" class="headerlink" title="（2）栈溢出的原因"></a>（2）栈溢出的原因</h3><ul>
+<li><p>局部数组过大</p>
+<p>局部变量是在栈中分配的</p>
+</li>
+<li><p>递归调用层次太多</p>
+<p>递归函数在执行的时候会进行压栈操作</p>
+</li>
+<li><p>指针或者数组越界</p>
+<p>例如字符串拷贝的时候</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/01/2022-05-29/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/06/01/2022-05-29/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-01 06:03:04" itemprop="dateCreated datePublished" datetime="2022-06-01T06:03:04+00:00">2022-06-01</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>监控组件：Spring Boot Actuator</strong></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/01/C++/5%E6%9C%887%E6%97%A5%E4%B8%8A%E8%AF%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/06/01/C++/5%E6%9C%887%E6%97%A5%E4%B8%8A%E8%AF%BE/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-01 06:03:04" itemprop="dateCreated datePublished" datetime="2022-06-01T06:03:04+00:00">2022-06-01</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>运算符重载</p>
+<p>为什么需要运算符重载</p>
+<p>对自定义的类进行运算的时候、会使得代码在理解的会有更直观的认识</p>
+<p>所谓重载，就是给一个已经有的函数赋予新的功能</p>
+<p>运算符函数可以重载为成员函数和友元函数，成员函数有this指针，而友元函数没有this指针</p>
+<p>c++继承</p>
+<p>三种继承方式：public、protected、private</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/01/C++/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20%E4%BD%BF%E7%94%A8%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/4.png">
+      <meta itemprop="name" content="xty">
+      <meta itemprop="description" content="This is xty Blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello Programmer">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/06/01/C++/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0%20%E4%BD%BF%E7%94%A8%E7%B1%BB/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-01 06:03:04" itemprop="dateCreated datePublished" datetime="2022-06-01T06:03:04+00:00">2022-06-01</time>
             </span>
 
           
@@ -245,7 +610,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/27/C++/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0%20%E7%B1%BB%E7%BB%A7%E6%89%BF/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/01/C++/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0%20%E7%B1%BB%E7%BB%A7%E6%89%BF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -259,7 +624,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/27/C++/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0%20%E7%B1%BB%E7%BB%A7%E6%89%BF/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/06/01/C++/%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0%20%E7%B1%BB%E7%BB%A7%E6%89%BF/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -269,7 +634,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-27 17:08:49" itemprop="dateCreated datePublished" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
+              <time title="创建时间：2022-06-01 06:03:04" itemprop="dateCreated datePublished" datetime="2022-06-01T06:03:04+00:00">2022-06-01</time>
             </span>
 
           
@@ -321,7 +686,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/27/C++/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%E7%B1%BB%E5%92%8C%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/01/C++/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%E7%B1%BB%E5%92%8C%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -335,7 +700,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/27/C++/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%E7%B1%BB%E5%92%8C%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/06/01/C++/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0%20%E7%B1%BB%E5%92%8C%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -345,7 +710,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-27 17:08:49" itemprop="dateCreated datePublished" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
+              <time title="创建时间：2022-06-01 06:03:04" itemprop="dateCreated datePublished" datetime="2022-06-01T06:03:04+00:00">2022-06-01</time>
             </span>
 
           
@@ -388,7 +753,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/27/C++/%E9%87%91%E5%B1%B1%E7%AC%AC%E5%9B%9B%E6%AC%A1%E8%AF%BE/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/01/C++/%E9%87%91%E5%B1%B1%E7%AC%AC%E5%9B%9B%E6%AC%A1%E8%AF%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/4.png">
@@ -402,7 +767,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/05/27/C++/%E9%87%91%E5%B1%B1%E7%AC%AC%E5%9B%9B%E6%AC%A1%E8%AF%BE/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2022/06/01/C++/%E9%87%91%E5%B1%B1%E7%AC%AC%E5%9B%9B%E6%AC%A1%E8%AF%BE/" class="post-title-link" itemprop="url">未命名</a>
         </h2>
 
         <div class="post-meta">
@@ -412,7 +777,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-05-27 17:08:49" itemprop="dateCreated datePublished" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
+              <time title="创建时间：2022-06-01 06:03:04" itemprop="dateCreated datePublished" datetime="2022-06-01T06:03:04+00:00">2022-06-01</time>
             </span>
 
           
@@ -598,128 +963,6 @@ for(it = vt.begin(); it != vt.end(); ++it)
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/27/Docker%E5%AD%A6%E4%B9%A0/DockerSwarm/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/27/Docker%E5%AD%A6%E4%B9%A0/DockerSwarm/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-05-27 17:08:49" itemprop="dateCreated datePublished" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>接下来探讨的话题将是规模方面（Scale）的，有请<code>Docker Swarm</code>登场</p>
-<p>概括来说，Swarm有两个核心组件：</p>
-<ul>
-<li>安全集群</li>
-<li>编排引擎</li>
-</ul>
-<h2 id="一、Docker-Swarm-简介"><a href="#一、Docker-Swarm-简介" class="headerlink" title="一、Docker Swarm-简介"></a>一、Docker Swarm-简介</h2><p><code>Docker Swarm</code>包含两个方面：一个企业级的Docker安全集群、一个微服务应用编排引擎</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/05/27/Docker%E5%AD%A6%E4%B9%A0/%E5%BA%94%E7%94%A8%E7%9A%84%E5%AE%B9%E5%99%A8%E5%8C%96/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/05/27/Docker%E5%AD%A6%E4%B9%A0/%E5%BA%94%E7%94%A8%E7%9A%84%E5%AE%B9%E5%99%A8%E5%8C%96/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-05-27 17:08:49" itemprop="dateCreated datePublished" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Docker的核心思想就是将应用整合到容器中，并且能在容器中运行</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/18/Mysql/MySQL%E6%98%AF%E6%80%8E%E6%A0%B7%E8%BF%90%E8%A1%8C%E7%9A%84/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -751,7 +994,7 @@ for(it = vt.begin(); it != vt.end(); ++it)
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-27 17:08:49" itemprop="dateModified" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
+                <time title="修改时间：2022-06-01 06:03:04" itemprop="dateModified" datetime="2022-06-01T06:03:04+00:00">2022-06-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -824,7 +1067,7 @@ for(it = vt.begin(); it != vt.end(); ++it)
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-27 17:08:49" itemprop="dateModified" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
+                <time title="修改时间：2022-06-01 06:03:04" itemprop="dateModified" datetime="2022-06-01T06:03:04+00:00">2022-06-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -913,7 +1156,27 @@ for(it = vt.begin(); it != vt.end(); ++it)
 <h3 id="（6）ThreadLocal的使用"><a href="#（6）ThreadLocal的使用" class="headerlink" title="（6）ThreadLocal的使用"></a>（6）ThreadLocal的使用</h3><p>ThreadLocal，即线程变量，是一个以ThreadLocal对象为键，任意对象为值的存储结构。这个结构被附带到线程上面，并且可以set和get，具体直接看代码</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Profiler</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 第一次get()方法调用时会进行初始化（如果set方法没有调用），每个线程会调用一次</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> ThreadLocal&lt;Integer&gt; VALUE_THREADLOCAL = ThreadLocal.withInitial(() -&gt; <span class="keyword">new</span> Random().nextInt());</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        VALUE_THREADLOCAL.set(<span class="keyword">new</span> Random().nextInt());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">get</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> VALUE_THREADLOCAL.get().toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> ThreadTest().run();</span><br><span class="line">        <span class="keyword">new</span> ThreadTest().run();</span><br><span class="line">        <span class="keyword">new</span> ThreadTest().run();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ThreadTest</span> <span class="keyword">extends</span> <span class="title">Thread</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        Profiler.set();</span><br><span class="line">        System.out.println(Profiler.get());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="4、线程应用实例"><a href="#4、线程应用实例" class="headerlink" title="4、线程应用实例"></a>4、线程应用实例</h2><h3 id="1-等待超时模式"><a href="#1-等待超时模式" class="headerlink" title="(1)等待超时模式"></a>(1)等待超时模式</h3><h3 id="（2）简单的数据库连接池"><a href="#（2）简单的数据库连接池" class="headerlink" title="（2）简单的数据库连接池"></a>（2）简单的数据库连接池</h3><h3 id="（3）线程池技术以及示例"><a href="#（3）线程池技术以及示例" class="headerlink" title="（3）线程池技术以及示例"></a>（3）线程池技术以及示例</h3><h3 id="（4）基于线程池技术的Web服务器"><a href="#（4）基于线程池技术的Web服务器" class="headerlink" title="（4）基于线程池技术的Web服务器"></a>（4）基于线程池技术的Web服务器</h3><h2 id="5、本章小结"><a href="#5、本章小结" class="headerlink" title="5、本章小结"></a>5、本章小结</h2><h1 id="五、Java中的锁"><a href="#五、Java中的锁" class="headerlink" title="五、Java中的锁"></a>五、Java中的锁</h1><p>Java并发包中的与锁相关的API和组件</p>
+<h2 id="4、线程应用实例"><a href="#4、线程应用实例" class="headerlink" title="4、线程应用实例"></a>4、线程应用实例</h2><h3 id="（1）等待超时模式"><a href="#（1）等待超时模式" class="headerlink" title="（1）等待超时模式"></a>（1）等待超时模式</h3><p>场景例如：调用某个方法等待一段时间（给定一个时间段），如果方法能在给定时间内给出结果就返回，否则返回默认结果</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> Object <span class="title">get</span><span class="params">(<span class="keyword">long</span> mills)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">  <span class="keyword">long</span> future = System.currentTimeMillis();</span><br><span class="line">  <span class="keyword">long</span> remaining = mills;</span><br><span class="line">  <span class="comment">// 当前超时大于0 并且 返回值不满足要求</span></span><br><span class="line">  Object result = <span class="keyword">null</span>;</span><br><span class="line">  <span class="keyword">while</span> (result == <span class="keyword">null</span> &amp;&amp; remaining &gt; <span class="number">0</span>) &#123;</span><br><span class="line">    wait(remaining);</span><br><span class="line">    remaining = future - System.currentTimeMillis();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="（2）简单的数据库连接池"><a href="#（2）简单的数据库连接池" class="headerlink" title="（2）简单的数据库连接池"></a>（2）简单的数据库连接池</h3><p>客户端获取连接的过程就是一个等待超时模型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConnectionPool</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> LinkedList&lt;Connection&gt; pool = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ConnectionPool</span><span class="params">(<span class="keyword">int</span> initialSize)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (initialSize &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; initialSize; i++) &#123;</span><br><span class="line">                pool.addLast(ConnectionDriver.createConnection());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">releaseConnection</span><span class="params">(Connection connection)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (connection != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">synchronized</span> (pool) &#123;</span><br><span class="line">                <span class="comment">// 添加后需要进行通知，这样其他消费者能够感知到链接池中已经归还了一个链接</span></span><br><span class="line">                pool.addLast(connection);</span><br><span class="line">                pool.notifyAll();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在mills内无法获取到连接，将会返回null</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Connection <span class="title">fetchConnection</span><span class="params">(<span class="keyword">long</span> mills)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (pool) &#123;</span><br><span class="line">            <span class="comment">// 完全超时</span></span><br><span class="line">            <span class="keyword">if</span> (mills &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">while</span> (pool.isEmpty()) &#123;</span><br><span class="line">                    pool.wait();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> pool.removeFirst();</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">long</span> future = System.currentTimeMillis() + mills;</span><br><span class="line">                <span class="keyword">long</span> remaining = mills;</span><br><span class="line">                <span class="keyword">while</span> (pool.isEmpty() &amp;&amp; remaining &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    pool.wait(remaining);</span><br><span class="line">                    remaining = future - System.currentTimeMillis();</span><br><span class="line">                &#125;</span><br><span class="line">                Connection result = <span class="keyword">null</span>;</span><br><span class="line">                <span class="keyword">if</span> (!pool.isEmpty()) &#123;</span><br><span class="line">                    result = pool.removeFirst();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> result;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们自己通过动态代理去生成Connection类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConnectionDriver</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ConnectionHandler</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (method.getName().equals(<span class="string">&quot;commit&quot;</span>)) &#123;</span><br><span class="line">                TimeUnit.MILLISECONDS.sleep(<span class="number">100</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建一个Connection的代理，在commit时休眠1秒</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Connection <span class="title">createConnection</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (Connection) Proxy.newProxyInstance(ConnectionDriver.class.getClassLoader(), <span class="keyword">new</span> Class&lt;?&gt;[]&#123;Connection.class&#125;,</span><br><span class="line">                <span class="keyword">new</span> ConnectionHandler());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过下面的函数模拟简易数据库连接池的工作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConnectionPoolTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> ConnectionPool pool = <span class="keyword">new</span> ConnectionPool(<span class="number">10</span>);</span><br><span class="line">    <span class="comment">// 保证所有ConnectionRunner能够同时开始</span></span><br><span class="line">    <span class="keyword">static</span> CountDownLatch start = <span class="keyword">new</span> CountDownLatch(<span class="number">1</span>);</span><br><span class="line">    <span class="comment">// main线程将会等待所有ConnectionRunner结束后才能继续执行</span></span><br><span class="line">    <span class="keyword">static</span> CountDownLatch end;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">// 线程数量，可以线程数量进行观察</span></span><br><span class="line">        <span class="keyword">int</span> threadCount = <span class="number">50</span>;</span><br><span class="line">        end = <span class="keyword">new</span> CountDownLatch(threadCount);</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">20</span>;</span><br><span class="line">        AtomicInteger got = <span class="keyword">new</span> AtomicInteger();</span><br><span class="line">        AtomicInteger notGot = <span class="keyword">new</span> AtomicInteger();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; threadCount; i++) &#123;</span><br><span class="line">            Thread thread = <span class="keyword">new</span> Thread(<span class="keyword">new</span> ConnetionRunner(count, got, notGot), <span class="string">&quot;ConnectionRunnerThread&quot;</span>);</span><br><span class="line">            thread.start();</span><br><span class="line">        &#125;</span><br><span class="line">        start.countDown();</span><br><span class="line">        end.await();</span><br><span class="line">        System.out.println(<span class="string">&quot;total invoke: &quot;</span> + (threadCount * count));</span><br><span class="line">        System.out.println(<span class="string">&quot;got connection:  &quot;</span> + got);</span><br><span class="line">        System.out.println(<span class="string">&quot;not got connection &quot;</span> + notGot);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ConnetionRunner</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count;</span><br><span class="line">        AtomicInteger got;</span><br><span class="line">        AtomicInteger notGot;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">ConnetionRunner</span><span class="params">(<span class="keyword">int</span> count, AtomicInteger got, AtomicInteger notGot)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.count = count;</span><br><span class="line">            <span class="keyword">this</span>.got = got;</span><br><span class="line">            <span class="keyword">this</span>.notGot = notGot;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                start.await();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">                ex.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">while</span> (count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    <span class="comment">// 从线程池中获取连接，如果1000ms内无法获取到，将会返回null</span></span><br><span class="line">                    <span class="comment">// 分别统计连接获取的数量got和未获取到的数量notGot</span></span><br><span class="line">                    Connection connection = pool.fetchConnection(<span class="number">1000</span>);</span><br><span class="line">                    <span class="keyword">if</span> (connection != <span class="keyword">null</span>) &#123;</span><br><span class="line">                        <span class="keyword">try</span> &#123;</span><br><span class="line">                            connection.createStatement();</span><br><span class="line">                            connection.commit();</span><br><span class="line">                        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                            pool.releaseConnection(connection);</span><br><span class="line">                            got.incrementAndGet();</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        notGot.incrementAndGet();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">                    ex.printStackTrace();</span><br><span class="line">                &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                    count--;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            end.countDown();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>CountDownLatch</code>来进行线程间的同步</p>
+<h3 id="（3）线程池技术以及示例"><a href="#（3）线程池技术以及示例" class="headerlink" title="（3）线程池技术以及示例"></a>（3）线程池技术以及示例</h3><p>线程池一方面消除了频繁创建和消亡线程的系统资源开销，另一方面面对过量任务的提交能够平缓劣势</p>
+<h5 id="a、定义线程池接口"><a href="#a、定义线程池接口" class="headerlink" title="a、定义线程池接口"></a>a、定义线程池接口</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ThreadPool</span>&lt;<span class="title">Job</span> <span class="keyword">extends</span> <span class="title">Runnable</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">// 执行一个Job，这个Job需要实现Runnable</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">execute</span><span class="params">(Job job)</span></span>;</span><br><span class="line">    <span class="comment">// 关闭线程池</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">shutdown</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="comment">// 增加工作者线程</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addWorkers</span><span class="params">(<span class="keyword">int</span> num)</span></span>;</span><br><span class="line">    <span class="comment">// 减少工作者线程</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">removeWorker</span><span class="params">(<span class="keyword">int</span> num)</span></span>;</span><br><span class="line">    <span class="comment">// 得到正在等待执行的任务数量</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getJobSize</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="b、线程池接口的默认实现"><a href="#b、线程池接口的默认实现" class="headerlink" title="b、线程池接口的默认实现"></a>b、线程池接口的默认实现</h5><p>线程池添加任务时，会向<code>LinkedList&lt;Job&gt;</code>添加一个任务，之后在每个线程中同步去获取移除<code>Job</code>，并执行run方法</p>
+<p>本质为使用一个线程安全的队列连接工作者线程和客户端线程，客户端线程将任务放入工作队列就返回，尔工作者线程不断的取出任务执行</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultThreadPool</span>&lt;<span class="title">Job</span> <span class="keyword">extends</span> <span class="title">Runnable</span>&gt; <span class="keyword">implements</span> <span class="title">ThreadPool</span>&lt;<span class="title">Job</span>&gt; </span>&#123;</span><br><span class="line">    <span class="comment">// 线程池最大限制数</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MAX_WORKER_NUMBERS = <span class="number">10</span>;</span><br><span class="line">    <span class="comment">// 线程池默认的数量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DEFAULT_WORKER_NUMBERS = <span class="number">5</span>;</span><br><span class="line">    <span class="comment">// 线程池最小的数量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> MIN_WORKER_NUMBERS = <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 这是一个工作列表，将会向里面插入工作</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> LinkedList&lt;Job&gt; jobs = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    <span class="comment">// 工作者列表</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> List&lt;Worker&gt; workers = Collections.synchronizedList(<span class="keyword">new</span> ArrayList&lt;Worker&gt;());</span><br><span class="line">    <span class="comment">// 工作者线程的数量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> workerNum = DEFAULT_WORKER_NUMBERS;</span><br><span class="line">    <span class="comment">// 线程编号生成</span></span><br><span class="line">    <span class="keyword">private</span> AtomicLong threadNum = <span class="keyword">new</span> AtomicLong();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DefaultThreadPool</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        initializeWokers(DEFAULT_WORKER_NUMBERS);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">DefaultThreadPool</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        workerNum = num &gt; MAX_WORKER_NUMBERS ? MAX_WORKER_NUMBERS : num &lt; MIN_WORKER_NUMBERS ? MIN_WORKER_NUMBERS : num;</span><br><span class="line">        initializeWokers(workerNum);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(Job job)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (job != <span class="keyword">null</span>)</span><br><span class="line">            <span class="comment">// 添加一个工作，然后进行通知</span></span><br><span class="line">            <span class="keyword">synchronized</span> (jobs) &#123;</span><br><span class="line">                jobs.addLast(job);</span><br><span class="line">                jobs.notify();</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shutdown</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (Worker worker : workers)</span><br><span class="line">            worker.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addWorkers</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (jobs) &#123;</span><br><span class="line">            <span class="comment">// 限制新增的Worker数量不能超过最大值</span></span><br><span class="line">            <span class="keyword">if</span> (num + <span class="keyword">this</span>.workerNum &gt; MAX_WORKER_NUMBERS)</span><br><span class="line">                num = MAX_WORKER_NUMBERS - <span class="keyword">this</span>.workerNum;</span><br><span class="line">            initializeWokers(num);</span><br><span class="line">            <span class="keyword">this</span>.workerNum += num;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeWorker</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">synchronized</span> (jobs) &#123;</span><br><span class="line">            <span class="keyword">if</span> (num &gt;= <span class="keyword">this</span>.workerNum)</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">&quot;beyond workNum&quot;</span>);</span><br><span class="line">            <span class="comment">// 按照给定的数量停止Worker</span></span><br><span class="line">            <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">while</span> (count &lt; num) &#123;</span><br><span class="line">                workers.get(count).shutdown();</span><br><span class="line">                count++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">this</span>.workerNum -= count;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getJobSize</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> jobs.size();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 初始化线程工作者</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">initializeWokers</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num; i++) &#123;</span><br><span class="line">            Worker worker = <span class="keyword">new</span> Worker();</span><br><span class="line">            workers.add(worker);</span><br><span class="line">            Thread thread = <span class="keyword">new</span> Thread(worker, <span class="string">&quot;ThreadPool-Worker-&quot;</span> + threadNum.incrementAndGet());</span><br><span class="line">            thread.start();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 工作者，负责消费任务</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Worker</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 是否工作</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">boolean</span> running = <span class="keyword">true</span>;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">while</span> (running) &#123;</span><br><span class="line">                Job job;</span><br><span class="line">                <span class="keyword">synchronized</span> (jobs) &#123;</span><br><span class="line">                    <span class="comment">// 如果工作者列表是空的，那么就wait</span></span><br><span class="line">                    <span class="keyword">while</span> (jobs.isEmpty()) &#123;</span><br><span class="line">                        <span class="keyword">try</span> &#123;</span><br><span class="line">                            jobs.wait();</span><br><span class="line">                        &#125; <span class="keyword">catch</span> (InterruptedException ex) &#123;</span><br><span class="line">                            <span class="comment">// 感知到外部对WorkerThread的中断操作，返回</span></span><br><span class="line">                            Thread.currentThread().interrupt();</span><br><span class="line">                            <span class="keyword">return</span>;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="comment">// 取出一个Job</span></span><br><span class="line">                    job = jobs.removeFirst();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (job != <span class="keyword">null</span>)</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        job.run();</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (Exception ex) &#123;</span><br><span class="line">                        <span class="comment">// 忽略Job执行中的Exception</span></span><br><span class="line">                    &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shutdown</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            running = <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="（4）基于线程池技术的Web服务器"><a href="#（4）基于线程池技术的Web服务器" class="headerlink" title="（4）基于线程池技术的Web服务器"></a>（4）基于线程池技术的Web服务器</h3><h2 id="5、本章小结"><a href="#5、本章小结" class="headerlink" title="5、本章小结"></a>5、本章小结</h2><h1 id="五、Java中的锁"><a href="#五、Java中的锁" class="headerlink" title="五、Java中的锁"></a>五、Java中的锁</h1><p>Java并发包中的与锁相关的API和组件</p>
 <h2 id="1、Lock接口"><a href="#1、Lock接口" class="headerlink" title="1、Lock接口"></a>1、Lock接口</h2><p>锁是用来控制多个线程访问共享资源的方式，Lock接口出现之前，Java是靠<code>synchronized</code>关键字来实现锁功能的</p>
 <p>与<code>synchrnized</code>相比：</p>
 <ul>
@@ -1150,7 +1413,7 @@ for(it = vt.begin(); it != vt.end(); ++it)
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-27 17:08:49" itemprop="dateModified" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
+                <time title="修改时间：2022-06-01 06:03:04" itemprop="dateModified" datetime="2022-06-01T06:03:04+00:00">2022-06-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1244,98 +1507,6 @@ for(it = vt.begin(); it != vt.end(); ++it)
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/21/%E3%80%8A%E7%AE%97%E6%B3%95%E7%AC%AC%E5%9B%9B%E7%89%88%E3%80%8B/%E7%AC%AC%E4%BA%8C%E7%AB%A0%E6%8E%92%E5%BA%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/4.png">
-      <meta itemprop="name" content="xty">
-      <meta itemprop="description" content="This is xty Blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hello Programmer">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/01/21/%E3%80%8A%E7%AE%97%E6%B3%95%E7%AC%AC%E5%9B%9B%E7%89%88%E3%80%8B/%E7%AC%AC%E4%BA%8C%E7%AB%A0%E6%8E%92%E5%BA%8F/" class="post-title-link" itemprop="url">排序算法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-01-21 00:00:00" itemprop="dateCreated datePublished" datetime="2022-01-21T00:00:00+00:00">2022-01-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-27 17:08:49" itemprop="dateModified" datetime="2022-05-27T17:08:49+00:00">2022-05-27</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="一、初级排序算法"><a href="#一、初级排序算法" class="headerlink" title="一、初级排序算法"></a>一、初级排序算法</h3><h4 id="1、选择排序"><a href="#1、选择排序" class="headerlink" title="1、选择排序"></a>1、选择排序</h4><p>思路：找到数组中最小的元素，其次，将它和数组的第一个元素交换位置，再找第二小，如此往复。</p>
-<p>有两个鲜明的特点：<code> 运行时间和输入无关</code>和<code> 数据移动是最少的</code>。</p>
-<p>直接上代码：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Selection</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//将a[]按照升序排列</span></span><br><span class="line">        <span class="keyword">int</span> N = a.length;  <span class="comment">//数组长度</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; i++) &#123;</span><br><span class="line">            <span class="comment">//将a[i]和a[i + 1···N]中最小的元素交换</span></span><br><span class="line">            <span class="keyword">int</span> min = i;  <span class="comment">//最小元素索引</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; N; j++)</span><br><span class="line">                <span class="keyword">if</span> (less(a[j], a[min]))</span><br><span class="line">                    min = j;</span><br><span class="line">            exch(a, i, min);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">less</span><span class="params">(Comparable a, Comparable b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a.compareTo(b) &lt; <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">exch</span><span class="params">(Comparable[] a, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        Comparable t = a[i];</span><br><span class="line">        a[i] = a[j];</span><br><span class="line">        a[j] = t;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="2、插入排序"><a href="#2、插入排序" class="headerlink" title="2、插入排序"></a>2、插入排序</h4><p>插入排序对于实际应用中常见的某些类型的非随机数组非常有效。依次找到最大的元素并移动到最末尾，然后再找第二大……</p>
-<p>直接上代码</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Insertion</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//将a[]按照升序排列</span></span><br><span class="line">        <span class="keyword">int</span> N = a.length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; N; i++)</span><br><span class="line">            <span class="comment">//将a[i]插入到a[i-1]、a[i-2]、a[i-3]...之中</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &gt; <span class="number">0</span> &amp;&amp; less(a[j], a[j-<span class="number">1</span>]); j--)</span><br><span class="line">                exch(a, j, j - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">less</span><span class="params">(Comparable a, Comparable b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a.compareTo(b) &lt; <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">exch</span><span class="params">(Comparable[] a, <span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        Comparable t = a[i];</span><br><span class="line">        a[i] = a[j];</span><br><span class="line">        a[j] = t;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="3、希尔排序"><a href="#3、希尔排序" class="headerlink" title="3、希尔排序"></a>3、希尔排序</h4><h3 id="二、归并排序"><a href="#二、归并排序" class="headerlink" title="二、归并排序"></a>二、归并排序</h3><h4 id="1、自顶向下的归并排序"><a href="#1、自顶向下的归并排序" class="headerlink" title="1、自顶向下的归并排序"></a>1、自顶向下的归并排序</h4><h4 id="2、自底向上的归并排序"><a href="#2、自底向上的归并排序" class="headerlink" title="2、自底向上的归并排序"></a>2、自底向上的归并排序</h4><h4 id="3、排序算法的复杂度"><a href="#3、排序算法的复杂度" class="headerlink" title="3、排序算法的复杂度"></a>3、排序算法的复杂度</h4><h3 id="三、快速排序"><a href="#三、快速排序" class="headerlink" title="三、快速排序"></a>三、快速排序</h3><h4 id="1、基本的算法"><a href="#1、基本的算法" class="headerlink" title="1、基本的算法"></a>1、基本的算法</h4><h4 id="2、性能特点"><a href="#2、性能特点" class="headerlink" title="2、性能特点"></a>2、性能特点</h4><h4 id="3、算法改进"><a href="#3、算法改进" class="headerlink" title="3、算法改进"></a>3、算法改进</h4><h3 id="四、优先队列"><a href="#四、优先队列" class="headerlink" title="四、优先队列"></a>四、优先队列</h3><p>有时候，我们不需要将所有的元素排序，例如手机要运行优先级高的程序，每次取优先级最高的程序出来运行就可以了，而不必将所有程序按照优先级排序。</p>
-<p>这种情况下，需要一个合适的数据结构：<code> 删除最大元素</code>和<code> 插入元素</code>，这种数据结构叫做<code> 优先队列</code>。</p>
-<h4 id="1、堆的定义"><a href="#1、堆的定义" class="headerlink" title="1、堆的定义"></a>1、堆的定义</h4><p>数据结构<code>二叉堆</code>能够很好的实现优先队列的基本操作。在二叉堆数组中，每个元素要保证大于等于另外的两个特定位置的元素，相应的，这两个特定位置的元素又要保证大于各自位置特定两个位置的元素，如此套娃。</p>
-<blockquote>
-<p>当一棵二叉树的每个结点都大于等于它的两个特定节点时，它被称为堆有序</p>
-</blockquote>
-<h4 id="2、堆的算法"><a href="#2、堆的算法" class="headerlink" title="2、堆的算法"></a>2、堆的算法</h4><h4 id="3、堆排序"><a href="#3、堆排序" class="headerlink" title="3、堆排序"></a>3、堆排序</h4><h3 id="五、应用"><a href="#五、应用" class="headerlink" title="五、应用"></a>五、应用</h3>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1407,7 +1578,7 @@ for(it = vt.begin(); it != vt.end(); ++it)
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">128</span>
+          <span class="site-state-item-count">129</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
