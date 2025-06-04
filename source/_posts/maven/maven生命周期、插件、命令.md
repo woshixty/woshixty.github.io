@@ -28,5 +28,3 @@ maven相关命令：
 （1）mvn clean
 
 （2）mvn compile：编译代码与拷贝文件
-
-（3）
