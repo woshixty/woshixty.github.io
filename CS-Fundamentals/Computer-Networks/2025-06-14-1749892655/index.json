@@ -1,0 +1,42 @@
+{
+  "version": "2.0",
+  "clipId": "1749892655",
+  "format": "md",
+  "title": "Epoll的本质（内部实现原理）",
+  "link": "https://www.cnblogs.com/looyee/articles/12964911.html",
+  "category": "计算机网络",
+  "tags": [
+    "linux",
+    "epoll",
+    "network"
+  ],
+  "created_at": "2025-06-14 17:17:35",
+  "mainPath": "index.md",
+  "paths": [
+    "index.json",
+    "a-title_Epoll的本质-内部实现原理",
+    "assets/1749892655-a98dd795b83fac8da381eb30e90bc425.png",
+    "assets/1749892655-53ee002d8f890c2585b28f85554f3362.png",
+    "assets/1749892655-5e3a809b9651d920f16f4ae0dfad5f93.png",
+    "assets/1749892655-8a86ae1530030024060e98ce4a4c18ae.png",
+    "assets/1749892655-98cdc4641d8cbd1462206c390b61bcfd.png",
+    "assets/1749892655-cba1887d54b35ac582f4ffc0fed19cad.png",
+    "assets/1749892655-e6279a8c6de51458f5931e897794d9dc.png",
+    "assets/1749892655-90194dfe2b48b5f73c110c0548c12292.png",
+    "assets/1749892655-c34a8983d54f4742e55ad77d27f51358.png",
+    "assets/1749892655-2c8d98d5f08ca34b55746cd5b79092f5.png",
+    "assets/1749892655-054aac88d53693f29fca01ad94b71570.png",
+    "assets/1749892655-e44626e275a37b686be8e6ed9cc92306.png",
+    "assets/1749892655-3aa906014e173edbf1ada023874a103b.png",
+    "assets/1749892655-a0e2bf392872da5342b14f5712c201d7.png",
+    "assets/1749892655-0c30fdc8112c353891909f590e125833.png",
+    "assets/1749892655-8d72701a1c06502f0da08c68f77df6cc.png",
+    "assets/1749892655-549fd98da89794dd1405ecd3f0407765.png",
+    "assets/1749892655-7a77775c78f684b92abc501c40c533d1.png",
+    "assets/1749892655-83ffe26453a778fa95ab25611b84c3a9.png",
+    "assets/1749892655-4dee42660a6bcf6dd06a30bec3e5c4a8.png",
+    "assets/1749892655-b1c5ae778250b1bd567550962db26c91.png",
+    "assets/1749892655-921f16006dabe89f70b0bf946b9d2617.png",
+    "index.md"
+  ]
+}
