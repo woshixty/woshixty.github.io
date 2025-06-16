@@ -1,0 +1,21 @@
+{
+  "version": "2.0",
+  "clipId": "1750087379",
+  "format": "md",
+  "title": "Linux下1号进程的前世(kernel_init)今生(init进程)----Linux进程的管理与调度（六）",
+  "link": "https://www.cnblogs.com/linhaostudy/p/9641439.html#!comments",
+  "category": "Linux相关机制",
+  "tags": [
+    "linux",
+    "task"
+  ],
+  "created_at": "2025-06-16 23:22:59",
+  "mainPath": "index.md",
+  "paths": [
+    "index.json",
+    "a-title_Linux下1号进程的前世-kernel_init-今生-init进程-Linux进程的管理与调度-六",
+    "assets/1750087379-aa806d7b7815509bae892dc1aa306d5c.png",
+    "assets/1750087379-508393a5bba6fe462ffbf49ed4453ddd.png",
+    "index.md"
+  ]
+}
