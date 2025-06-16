@@ -1,0 +1,21 @@
+{
+  "version": "2.0",
+  "clipId": "1749900608",
+  "format": "md",
+  "title": "Linux进程的管理与调度（一） - Linux进程描述符task_struct结构体",
+  "link": "https://www.cnblogs.com/linhaostudy/p/9568775.html",
+  "category": "Linux相关机制",
+  "tags": [
+    "linux",
+    "task"
+  ],
+  "created_at": "2025-06-14 19:30:08",
+  "mainPath": "index.md",
+  "paths": [
+    "index.json",
+    "a-title_Linux进程的管理与调度-一-Linux进程描述符task_struct结构体",
+    "assets/1749900608-939a36fcd4708c229ee2989560c1853f.png",
+    "assets/1749900608-b0acd6767c08904894077cd776972c6e.png",
+    "index.md"
+  ]
+}
