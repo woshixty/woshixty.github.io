@@ -1,0 +1,20 @@
+{
+  "version": "2.0",
+  "clipId": "1750087361",
+  "format": "md",
+  "title": "Linux下0号进程的前世(init_task进程)今生(idle进程)----Linux进程的管理与调度（五）【转】",
+  "link": "https://www.cnblogs.com/linhaostudy/p/9640955.html",
+  "category": "Linux相关机制",
+  "tags": [
+    "linux",
+    "task"
+  ],
+  "created_at": "2025-06-16 23:22:41",
+  "mainPath": "index.md",
+  "paths": [
+    "index.json",
+    "a-title_Linux下0号进程的前世-init_task进程-今生-idle进程-Linux进程的管理与调度-五-转",
+    "assets/1750087361-06fb9ed7a63f9c434297f2dcbf1f88df.png",
+    "index.md"
+  ]
+}
