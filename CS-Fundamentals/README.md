@@ -12,7 +12,7 @@
 | 分类 | 文件/目录 | 简介 |
 |------|-----------|------|
 | 数据结构与算法 | `Data-Structures/` | 常用数据结构、复杂度分析与基础算法 |
-| 操作系统 | [`Operating-Systems/`](Operating-Systems) | 包括进程线程、内存管理、文件系统等概念 |
+| 操作系统 | [`Operating-Systems/`](./Operating-Systems) | 包括进程线程、内存管理、文件系统等概念 |
 | 计算机网络 | [`Computer-Networks/`](./Computer-Networks) | TCP/IP 协议栈、分层模型、网络安全等 |
 | 数据库系统 | `Databases/` | 数据库原理、事务、索引与SQL优化 |
 
