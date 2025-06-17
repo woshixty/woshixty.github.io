@@ -7,8 +7,8 @@
 - [`CS-Fundamentals/`](./CS-Fundamentals/) 计算机基础知识
 - [`Programming-Languages/`](./Programming-Languages) 计算机语言
 - [`Dev-Tips/`](./Dev-Tips/) 开发技巧与工具
-- [`Reading-Notes/`](./Reading-Notes/) 阅读书籍与文章笔记
 - [`Software-Reverse-Engineering/`](./Software-Reverse-Engineering/) 软件逆向
+- [`Reading-Notes/`](./Reading-Notes/) 阅读书籍与文章笔记
 - [`Essays/`](./Essays/) 我的原创文章与想法
 - ...
 
