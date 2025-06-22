@@ -18,6 +18,7 @@
 | Linux系统 | [`Linux进程的管理与调度（五）`](./2025-06-16-1750087361/index.md) | Linux下0号进程的前世(init_task进程)今生(idle进程) |
 | Linux系统 | [`Linux进程的管理与调度（六）`](./2025-06-16-1750087379/index.md) | Linux下1号进程的前世(kernel_init)今生(init进程) |
 | Linux系统 | [`Linux 信号处理原理与实现`](./2025-06-14-1749900161/index.md) | Linux 信号处理原理与实现 |
+| Linux系统 | [`Linux共享内存讲解`](./2025-06-22-1750602749/index.md) | Linux共享内存讲解 |
 
 ---
 
