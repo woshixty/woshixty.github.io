@@ -21,10 +21,12 @@
 | Linux系统 | [`Linux共享内存讲解`](./Linux/2025-06-22-1750602749/index.md) | Linux共享内存讲解 |
 
 《windows核心编程系列》一 谈谈windows中的错误处理机制
+《windows核心编程系列》二 谈谈ANSI和Unicode字符集
 
 | 分类 | 文件/目录 | 简介 |
 |------|-----------|------|
 | Windows系统 | [`《windows核心编程系列》一`](./Windows/2025-06-23-1750692782/index.md) | 谈谈windows中的错误处理机制 |
+| Windows系统 | [`《windows核心编程系列》二`](./Windows/2025-06-23-1750693288/index.md) | 谈谈ANSI和Unicode字符集 |
 
 ---
 
