@@ -1,4 +1,4 @@
- # 💻 操作系统（Operating Systems）
+# 💻 操作系统（Operating Systems）
 
 本目录收录了操作系统相关的学习笔记与总结，涵盖进程管理、内存管理、文件系统等核心概念。  
 重点关注Linux操作系统的实现细节，帮助理解操作系统的工作原理。
@@ -19,9 +19,6 @@
 | Linux系统 | [`Linux进程的管理与调度（六）`](./Linux/2025-06-16-1750087379/index.md) | Linux下1号进程的前世(kernel_init)今生(init进程) |
 | Linux系统 | [`Linux 信号处理原理与实现`](./Linux/2025-06-14-1749900161/index.md) | Linux 信号处理原理与实现 |
 | Linux系统 | [`Linux共享内存讲解`](./Linux/2025-06-22-1750602749/index.md) | Linux共享内存讲解 |
-
-《windows核心编程系列》一 谈谈windows中的错误处理机制
-《windows核心编程系列》二 谈谈ANSI和Unicode字符集
 
 | 分类 | 文件/目录 | 简介 |
 |------|-----------|------|
