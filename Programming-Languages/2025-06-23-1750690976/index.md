@@ -1,3 +1,4 @@
+转载自: [C/C++ 宏编程的艺术](https://zhuanlan.zhihu.com/p/152354031)
 
 ![C/C++ 宏编程的艺术](assets/1750690976-a6e8257137339a3a73c933df99eba515)
 
