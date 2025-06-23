@@ -20,18 +20,18 @@ C++ 作为一门历史悠久且功能强大的编程语言，提供了一套丰�
 
 ## 第二章: 基本类型类别（Primary Type Categories）
 
-1.  **基础类型 (`[std::is_fundamental](https://zhida.zhihu.com/search?content_id=239093850&content_type=Article&match_order=1&q=std%3A%3Ais_fundamental&zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NTA4NjM3ODQsInEiOiJzdGQ6OmlzX2Z1bmRhbWVudGFsIiwiemhpZGFfc291cmNlIjoiZW50aXR5IiwiY29udGVudF9pZCI6MjM5MDkzODUwLCJjb250ZW50X3R5cGUiOiJBcnRpY2xlIiwibWF0Y2hfb3JkZXIiOjEsInpkX3Rva2VuIjpudWxsfQ.Px5RQUdbE2lRvxbhEdUJlHR7LIodz1F51NM9L0-yYUk&zhida_source=entity)`) 和标量类型 (`[std::is_scalar](https://zhida.zhihu.com/search?content_id=239093850&content_type=Article&match_order=1&q=std%3A%3Ais_scalar&zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NTA4NjM3ODQsInEiOiJzdGQ6OmlzX3NjYWxhciIsInpoaWRhX3NvdXJjZSI6ImVudGl0eSIsImNvbnRlbnRfaWQiOjIzOTA5Mzg1MCwiY29udGVudF90eXBlIjoiQXJ0aWNsZSIsIm1hdGNoX29yZGVyIjoxLCJ6ZF90b2tlbiI6bnVsbH0.EOF8HcCFo26aw0GrR69a0Vj5Xq0Rmx4kHFTgf8q3qvU&zhida_source=entity)`) 有一定交叉。**
+1.  **基础类型 ([std::is_fundamental](https://zhida.zhihu.com/search?content_id=239093850&content_type=Article&match_order=1&q=std%3A%3Ais_fundamental&zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NTA4NjM3ODQsInEiOiJzdGQ6OmlzX2Z1bmRhbWVudGFsIiwiemhpZGFfc291cmNlIjoiZW50aXR5IiwiY29udGVudF9pZCI6MjM5MDkzODUwLCJjb250ZW50X3R5cGUiOiJBcnRpY2xlIiwibWF0Y2hfb3JkZXIiOjEsInpkX3Rva2VuIjpudWxsfQ.Px5RQUdbE2lRvxbhEdUJlHR7LIodz1F51NM9L0-yYUk&zhida_source=entity)) 和标量类型 ([std::is_scalar](https://zhida.zhihu.com/search?content_id=239093850&content_type=Article&match_order=1&q=std%3A%3Ais_scalar&zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NTA4NjM3ODQsInEiOiJzdGQ6OmlzX3NjYWxhciIsInpoaWRhX3NvdXJjZSI6ImVudGl0eSIsImNvbnRlbnRfaWQiOjIzOTA5Mzg1MCwiY29udGVudF90eXBlIjoiQXJ0aWNsZSIsIm1hdGNoX29yZGVyIjoxLCJ6ZF90b2tlbiI6bnVsbH0.EOF8HcCFo26aw0GrR69a0Vj5Xq0Rmx4kHFTgf8q3qvU&zhida_source=entity)) 有一定交叉。**
 
 *   基础类型包括算术类型（整数和浮点数）和 `void` 类型。
 *   标量类型包括算术类型、枚举类型、指针类型、成员指针以及 `nullptr_t`。  
     
 
-*   **整数类型 (`[std::is_integral](https://zhida.zhihu.com/search?content_id=239093850&content_type=Article&match_order=1&q=std%3A%3Ais_integral&zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NTA4NjM3ODQsInEiOiJzdGQ6OmlzX2ludGVncmFsIiwiemhpZGFfc291cmNlIjoiZW50aXR5IiwiY29udGVudF9pZCI6MjM5MDkzODUwLCJjb250ZW50X3R5cGUiOiJBcnRpY2xlIiwibWF0Y2hfb3JkZXIiOjEsInpkX3Rva2VuIjpudWxsfQ.QbEx17FI0kutQ72WQXqu0BjV9kHmghQ29_HkABuybYY&zhida_source=entity)`) 是算术类型 (`std::is_arithmetic`) 的子集。**  
+*   **整数类型 ([std::is_integral](https://zhida.zhihu.com/search?content_id=239093850&content_type=Article&match_order=1&q=std%3A%3Ais_integral&zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NTA4NjM3ODQsInEiOiJzdGQ6OmlzX2ludGVncmFsIiwiemhpZGFfc291cmNlIjoiZW50aXR5IiwiY29udGVudF9pZCI6MjM5MDkzODUwLCJjb250ZW50X3R5cGUiOiJBcnRpY2xlIiwibWF0Y2hfb3JkZXIiOjEsInpkX3Rva2VuIjpudWxsfQ.QbEx17FI0kutQ72WQXqu0BjV9kHmghQ29_HkABuybYY&zhida_source=entity)) 是算术类型 (`std::is_arithmetic`) 的子集。**  
     
 *   整数类型包括 `int`, `char`, `long` 等。
 *   算术类型包括整数类型和浮点类型（如 `float`, `double`）。  
     
-*   **浮点类型 (`[std::is_floating_point](https://zhida.zhihu.com/search?content_id=239093850&content_type=Article&match_order=1&q=std%3A%3Ais_floating_point&zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NTA4NjM3ODQsInEiOiJzdGQ6OmlzX2Zsb2F0aW5nX3BvaW50IiwiemhpZGFfc291cmNlIjoiZW50aXR5IiwiY29udGVudF9pZCI6MjM5MDkzODUwLCJjb250ZW50X3R5cGUiOiJBcnRpY2xlIiwibWF0Y2hfb3JkZXIiOjEsInpkX3Rva2VuIjpudWxsfQ.hMjDEWVG-y_fPiBC4vfIH2mAR0olawQIzmxzWrGFK7o&zhida_source=entity)`) 是算术类型 (`std::is_arithmetic`) 的子集。**  
+*   **浮点类型 ([std::is_floating_point](https://zhida.zhihu.com/search?content_id=239093850&content_type=Article&match_order=1&q=std%3A%3Ais_floating_point&zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NTA4NjM3ODQsInEiOiJzdGQ6OmlzX2Zsb2F0aW5nX3BvaW50IiwiemhpZGFfc291cmNlIjoiZW50aXR5IiwiY29udGVudF9pZCI6MjM5MDkzODUwLCJjb250ZW50X3R5cGUiOiJBcnRpY2xlIiwibWF0Y2hfb3JkZXIiOjEsInpkX3Rva2VuIjpudWxsfQ.hMjDEWVG-y_fPiBC4vfIH2mAR0olawQIzmxzWrGFK7o&zhida_source=entity)) 是算术类型 (`std::is_arithmetic`) 的子集。**  
     
 
 *   浮点类型包括 `float`, `double`, `long double`。  
@@ -45,12 +45,12 @@ C++ 作为一门历史悠久且功能强大的编程语言，提供了一套丰�
     
 *   **成员指针类型 (`std::is_member_pointer`) 是标量类型 (`std::is_scalar`) 的子集。**  
     
-*   **类类型 (`[std::is_class](https://zhida.zhihu.com/search?content_id=239093850&content_type=Article&match_order=1&q=std%3A%3Ais_class&zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NTA4NjM3ODQsInEiOiJzdGQ6OmlzX2NsYXNzIiwiemhpZGFfc291cmNlIjoiZW50aXR5IiwiY29udGVudF9pZCI6MjM5MDkzODUwLCJjb250ZW50X3R5cGUiOiJBcnRpY2xlIiwibWF0Y2hfb3JkZXIiOjEsInpkX3Rva2VuIjpudWxsfQ.AlUGpa21r3E-uJR6mQk_N2CBk6111Vj-wubEjtUHmYs&zhida_source=entity)`) 是复合类型 (`std::is_compound`) 的子集。**
+*   **类类型 ([std::is_class](https://zhida.zhihu.com/search?content_id=239093850&content_type=Article&match_order=1&q=std%3A%3Ais_class&zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NTA4NjM3ODQsInEiOiJzdGQ6OmlzX2NsYXNzIiwiemhpZGFfc291cmNlIjoiZW50aXR5IiwiY29udGVudF9pZCI6MjM5MDkzODUwLCJjb250ZW50X3R5cGUiOiJBcnRpY2xlIiwibWF0Y2hfb3JkZXIiOjEsInpkX3Rva2VuIjpudWxsfQ.AlUGpa21r3E-uJR6mQk_N2CBk6111Vj-wubEjtUHmYs&zhida_source=entity)) 是复合类型 (`std::is_compound`) 的子集。**
 
 *   **复合类型包括类类型、枚举类型、联合类型、数组类型、函数类型,指针类型等。**  
     
 
-*   **联合类型 (`[std::is_union](https://zhida.zhihu.com/search?content_id=239093850&content_type=Article&match_order=1&q=std%3A%3Ais_union&zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NTA4NjM3ODQsInEiOiJzdGQ6OmlzX3VuaW9uIiwiemhpZGFfc291cmNlIjoiZW50aXR5IiwiY29udGVudF9pZCI6MjM5MDkzODUwLCJjb250ZW50X3R5cGUiOiJBcnRpY2xlIiwibWF0Y2hfb3JkZXIiOjEsInpkX3Rva2VuIjpudWxsfQ.kI-Ilyd-UGYIZiLH7NP6xuBX-dpw8O4QYLFMO5f7YLc&zhida_source=entity)`) 是复合类型 (`std::is_compound`) 的子集。**  
+*   **联合类型 ([std::is_union](https://zhida.zhihu.com/search?content_id=239093850&content_type=Article&match_order=1&q=std%3A%3Ais_union&zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NTA4NjM3ODQsInEiOiJzdGQ6OmlzX3VuaW9uIiwiemhpZGFfc291cmNlIjoiZW50aXR5IiwiY29udGVudF9pZCI6MjM5MDkzODUwLCJjb250ZW50X3R5cGUiOiJBcnRpY2xlIiwibWF0Y2hfb3JkZXIiOjEsInpkX3Rva2VuIjpudWxsfQ.kI-Ilyd-UGYIZiLH7NP6xuBX-dpw8O4QYLFMO5f7YLc&zhida_source=entity)) 是复合类型 (`std::is_compound`) 的子集。**  
     
 *   **数组类型 (`std::is_array`) 是复合类型 (`std::is_compound`) 的子集。**  
     
@@ -85,7 +85,7 @@ std::is_void_v<int>             // false
 
 ### 2.1.2 std::is\_null\_pointer
 
-`std::is_null_pointer`是另一个用于类型检查的特征，它用于判断一个类型是否为`[std::nullptr_t](https://zhida.zhihu.com/search?content_id=239093850&content_type=Article&match_order=1&q=std%3A%3Anullptr_t&zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NTA4NjM3ODQsInEiOiJzdGQ6Om51bGxwdHJfdCIsInpoaWRhX3NvdXJjZSI6ImVudGl0eSIsImNvbnRlbnRfaWQiOjIzOTA5Mzg1MCwiY29udGVudF90eXBlIjoiQXJ0aWNsZSIsIm1hdGNoX29yZGVyIjoxLCJ6ZF90b2tlbiI6bnVsbH0.lybbgfNVCLx8nWJs1K4DCBNNXeqEzgYSKAtuniRHZqs&zhida_source=entity)`类型。`std::nullptr_t`是C++11引入的一个新类型，用于表示空指针字面量`nullptr`。
+`std::is_null_pointer`是另一个用于类型检查的特征，它用于判断一个类型是否为[std::nullptr_t](https://zhida.zhihu.com/search?content_id=239093850&content_type=Article&match_order=1&q=std%3A%3Anullptr_t&zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NTA4NjM3ODQsInEiOiJzdGQ6Om51bGxwdHJfdCIsInpoaWRhX3NvdXJjZSI6ImVudGl0eSIsImNvbnRlbnRfaWQiOjIzOTA5Mzg1MCwiY29udGVudF90eXBlIjoiQXJ0aWNsZSIsIm1hdGNoX29yZGVyIjoxLCJ6ZF90b2tlbiI6bnVsbH0.lybbgfNVCLx8nWJs1K4DCBNNXeqEzgYSKAtuniRHZqs&zhida_source=entity)类型。`std::nullptr_t`是C++11引入的一个新类型，用于表示空指针字面量`nullptr`。
 
 使用`std::is_null_pointer`的方式与`std::is_void`类似，示例如下：
 
