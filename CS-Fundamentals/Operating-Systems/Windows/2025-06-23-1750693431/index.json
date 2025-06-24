@@ -1,0 +1,19 @@
+{
+  "version": "2.0",
+  "clipId": "1750693431",
+  "format": "md",
+  "title": "《windows核心编程系列》三 谈谈内核对象及句柄的本质",
+  "link": "https://www.cnblogs.com/weekbo/p/9054483.html",
+  "category": "Windows",
+  "tags": [
+    "Windows"
+  ],
+  "created_at": "2025-06-23 23:43:51",
+  "mainPath": "index.md",
+  "paths": [
+    "index.json",
+    "a-title_windows核心编程系列-三-谈谈内核对象及句柄的本质",
+    "assets/1750693431-ade0f6f0ad6de10c59f937f752746b63.png",
+    "index.md"
+  ]
+}
