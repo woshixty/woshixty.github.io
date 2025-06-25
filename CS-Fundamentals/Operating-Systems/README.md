@@ -27,6 +27,7 @@
 | Windows系统 | [`《windows核心编程系列》三`](./Windows/2025-06-23-1750693431/index.md) | 谈谈内核对象及句柄的本质 |
 | Windows系统 | [`《windows核心编程系列》四`](./Windows/2025-06-23-1750693451/index.md) | 谈谈进程的建立和终止 |
 | Windows系统 | [`《windows核心编程系列》五`](./Windows/2025-06-23-1750693486/index.md) | 谈谈线程基础 |
+| Windows系统 | [`《windows核心编程系列》六`](./Windows/2025-06-25-1750865964/index.md) | 谈谈线程调度、优先级和关联性 |
 
 ---
 
