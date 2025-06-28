@@ -21,8 +21,7 @@
 ## 🎯 折腾记录
 
 ### 移动设备折腾
-- [安卓设备Root过程记录](./Mobile-Devices/安卓设备Root过程记录.md)
-- [Root后ChatGPT无法使用的解决方案](./Mobile-Devices/Root后ChatGPT无法使用的解决方案.md)
+- [Root后ChatGPT无法使用的解决方案](./Mobile-Devices/2025-06-28-1749885422/index.md)
 - [iPhone越狱经验分享](./Mobile-Devices/iPhone越狱经验分享.md)
 
 ### 网络设备折腾
