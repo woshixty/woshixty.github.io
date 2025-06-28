@@ -8,6 +8,7 @@
 - [`Programming-Languages/`](./Programming-Languages) 计算机语言
 - [`Dev-Tips/`](./Dev-Tips/) 开发技巧与工具
 - [`Software-Reverse-Engineering/`](./Software-Reverse-Engineering/) 软件逆向
+- [`Tech-Adventures/`](./Tech-Adventures/) 技术折腾与探索
 - [`Reading-Notes/`](./Reading-Notes/) 阅读书籍与文章笔记
 - [`Essays/`](./Essays/) 我的原创文章与想法
 - ...
