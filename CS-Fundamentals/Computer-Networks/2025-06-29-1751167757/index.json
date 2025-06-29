@@ -1,0 +1,23 @@
+{
+  "version": "2.0",
+  "clipId": "1751167757",
+  "format": "md",
+  "title": "网络编程篇：TCP应用开发与握手设计",
+  "link": "https://xzcoder.com/posts/network/01-tcp-echo.html#%E5%BA%94%E7%94%A8%E5%B1%82%E6%8F%A1%E6%89%8B%E7%BC%96%E7%A0%81",
+  "category": "计算机网络",
+  "tags": [
+    "network"
+  ],
+  "created_at": "2025-06-29 11:29:17",
+  "mainPath": "index.md",
+  "paths": [
+    "index.json",
+    "a-title_网络编程篇-TCP应用开发与握手设计",
+    "assets/1751167757-ead352fda340388f5ea60e415e846596.png",
+    "assets/1751167757-96be58a63d8c2c9f26be65b67d30e2f8.png",
+    "assets/1751167757-b53b69962d25519951724acf0cf5ef00.png",
+    "assets/1751167757-37ac8a7faf9f0b6f104858a74be48754.png",
+    "assets/1751167757-85e5679e8617458f88fb0329b6fa2658.png",
+    "index.md"
+  ]
+}
