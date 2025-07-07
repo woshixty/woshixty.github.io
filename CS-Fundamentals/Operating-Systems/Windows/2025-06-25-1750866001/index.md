@@ -407,7 +407,8 @@ typedef struct ELEMENT  
     DWORD tid;  
     int num;  
     //CMutexAndSemaphoreTestDlg *pDlg;  
-}*PELEMENT;  
+}*PELEMENT;
+
 class CQueue  
 {
 public:
