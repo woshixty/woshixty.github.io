@@ -1,0 +1,22 @@
+{
+  "version": "2.0",
+  "clipId": "1750866001",
+  "format": "md",
+  "title": "《Windows核心编程系列》 八 谈谈用内核对象进行线程同步",
+  "link": "https://www.cnblogs.com/weekbo/p/9054503.html",
+  "category": "Windows",
+  "tags": [
+    "Windows"
+  ],
+  "created_at": "2025-06-25 23:40:01",
+  "mainPath": "index.md",
+  "paths": [
+    "index.json",
+    "a-title_Windows核心编程系列-八-谈谈用内核对象进行线程同步",
+    "assets/1750866001-6b116e0fbbe11519062ecd30aa70a3b5.jpg",
+    "assets/1750866001-47aba031943f3009780c1975d5728c87.jpg",
+    "assets/1750866001-4314f55a78bdd35f3f06e4c93d5d76b0.jpg",
+    "assets/1750866001-ade0f6f0ad6de10c59f937f752746b63.png",
+    "index.md"
+  ]
+}

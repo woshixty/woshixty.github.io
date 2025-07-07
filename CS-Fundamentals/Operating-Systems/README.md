@@ -29,6 +29,7 @@
 | Windows系统 | [`《windows核心编程系列》五`](./Windows/2025-06-23-1750693486/index.md) | 谈谈线程基础 |
 | Windows系统 | [`《windows核心编程系列》六`](./Windows/2025-06-25-1750865964/index.md) | 谈谈线程调度、优先级和关联性 |
 | Windows系统 | [`《windows核心编程系列》七`](./Windows/2025-06-25-1750865983/index.md) | 谈谈用户模式下的线程同步 |
+| Windows系统 | [`《windows核心编程系列》八`](./Windows/2025-06-25-1750866001/index.md) | 谈谈用内核对象进行线程同步 |
 
 ---
 
