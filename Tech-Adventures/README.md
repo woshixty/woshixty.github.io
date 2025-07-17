@@ -22,7 +22,7 @@
 
 ### 移动设备折腾
 - [Root后ChatGPT无法使用的解决方案](./Mobile-Devices/2025-06-28-1749885422/index.md)
-- [iPhone越狱经验分享](./Mobile-Devices/iPhone越狱经验分享.md)
+- [为啥现在的 iPhone 不能越狱了？](./Mobile-Devices/2025-07-17-1752766954/index.md)
 
 ### 网络设备折腾
 - [OpenWrt软路由搭建指南](./Network-Devices/OpenWrt软路由搭建指南.md)
