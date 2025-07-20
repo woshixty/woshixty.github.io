@@ -1,0 +1,18 @@
+{
+  "version": "2.0",
+  "clipId": "1752934313",
+  "format": "md",
+  "title": "使用usbmuxd服务，通过USB连接与PC端、Mac端实现通信，Peertalk的使用",
+  "link": "https://www.jianshu.com/p/eba133891ec6",
+  "category": "Phone知识",
+  "tags": [
+    "Mobile"
+  ],
+  "created_at": "2025-07-19 22:11:53",
+  "mainPath": "index.md",
+  "paths": [
+    "index.json",
+    "a-title_使用usbmuxd服务-通过USB连接与PC端、Mac端实现通信-Peertalk的使用",
+    "index.md"
+  ]
+}
