@@ -20,16 +20,22 @@
 
 ## 🎯 折腾记录
 
-### 移动设备折腾
-- [Root后ChatGPT无法使用的解决方案](./Mobile-Devices/2025-06-28-1749885422/index.md)
+### 一、移动设备折腾
+
+#### 1、iPhone
+- [iTunes与iPhone的通信协议usbmuxd解析](./Mobile-Devices/2025-07-19-1752934202/index.md)
 - [为啥现在的 iPhone 不能越狱了？](./Mobile-Devices/2025-07-17-1752766954/index.md)
 - [解锁巨魔商店：使用心得与 IPA 资源](./Mobile-Devices/2025-07-18-1752850257/index.md)
 
-### 网络设备折腾
+#### 2、Android
+- [Root后ChatGPT无法使用的解决方案](./Mobile-Devices/2025-06-28-1749885422/index.md)
+
+
+### 二、网络设备折腾
 - [OpenWrt软路由搭建指南](./Network-Devices/OpenWrt软路由搭建指南.md)
 - [路由器刷机踩坑记](./Network-Devices/路由器刷机踩坑记.md)
 
-### 存储设备折腾
+### 三、存储设备折腾
 - [NAS搭建完整指南](./Storage-Devices/NAS搭建完整指南.md)
 - [家庭存储方案对比](./Storage-Devices/家庭存储方案对比.md)
 
