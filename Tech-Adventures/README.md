@@ -25,6 +25,7 @@
 #### 1、iPhone
 - [iTunes与iPhone的通信协议usbmuxd解析](./Mobile-Devices/2025-07-19-1752934202/index.md)
 - [usbmuxd服务 - 通过USB与Win、Mac实现通信](./Mobile-Devices/2025-07-19-1752934313/index.md)
+- [对 usbmuxd 的一点研究](./Mobile-Devices/2025-07-20-1753014702/index.md)
 - [为啥现在的 iPhone 不能越狱了？](./Mobile-Devices/2025-07-17-1752766954/index.md)
 - [解锁巨魔商店：使用心得与 IPA 资源](./Mobile-Devices/2025-07-18-1752850257/index.md)
 
