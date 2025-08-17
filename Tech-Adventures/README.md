@@ -41,8 +41,8 @@
 - [路由器刷机踩坑记](./Network-Devices/路由器刷机踩坑记.md)
 
 ### 三、存储设备折腾
-- [NAS搭建完整指南](./Storage-Devices/NAS搭建完整指南.md)
-- [家庭存储方案对比](./Storage-Devices/家庭存储方案对比.md)
+- [数据恢复原理简单解析](./Data-Recovery/2025-07-30-1753886470/index.md)
+- [电脑文件恢复技术原理](./Data-Recovery/2025-07-30-1753886488/index.md)
 
 ---
 
