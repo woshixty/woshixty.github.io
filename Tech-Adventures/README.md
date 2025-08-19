@@ -45,6 +45,7 @@
 - [电脑文件恢复技术原理](./Data-Recovery/2025-07-30-1753886488/index.md)
 - [安卓QQ的聊天数据恢复技术原理](./Data-Recovery/2025-07-30-1753886505/index.md)
 - [安卓手机照片恢复技术原理](./Data-Recovery/2025-07-30-1753886525/index.md)
+- [Telegram撤回消息恢复技术原理](./Data-Recovery/2025-07-30-1753886545/index.md)
 
 ---
 
