@@ -47,6 +47,8 @@
 - [安卓手机照片恢复技术原理](./Data-Recovery/2025-07-30-1753886525/index.md)
 - [Telegram撤回消息恢复技术原理](./Data-Recovery/2025-07-30-1753886545/index.md)
 - [WhatsApp数据恢复技术原理](./Data-Recovery/2025-07-30-1753886559/index.md)
+- [SD卡数据恢复技术原理](./Data-Recovery/2025-07-30-1753886573/index.md)
+- [iOS 通讯录恢复技术原理](./Data-Recovery/2025-07-30-1753886588/index.md)
 
 ---
 
