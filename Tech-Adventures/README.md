@@ -34,6 +34,7 @@
 #### 2、Android
 - [Root后ChatGPT无法使用的解决方案](./Mobile-Devices/2025-06-28-1749885422/index.md)
 - [介绍一个跳过开屏广告的软件：gkd](./Mobile-Devices/2025-07-26-1753512991/index.md)
+- [Android 15 Appium Inspector 抓取 UI](./Mobile-Devices/2025-11-08-1749885422/index.md)
 
 
 ### 二、网络设备折腾
