@@ -1,18 +1,18 @@
-转载自 [jadx-ai-mcp环境搭建AI逆向分析JAVA代码](https://mp.weixin.qq.com/s?__biz=MzI2Mzk4MjczMQ==&mid=2247484452&idx=1&sn=a32ba648aefb3141734606f502a7b6d4)
+灵感来自 [jadx-ai-mcp环境搭建AI逆向分析JAVA代码](https://mp.weixin.qq.com/s?__biz=MzI2Mzk4MjczMQ==&mid=2247484452&idx=1&sn=a32ba648aefb3141734606f502a7b6d4)
 
-# jadx-ai-mcp环境搭建AI逆向分析JAVA代码
+# Claude + JADX + MCP 逆向分析 Android APK 的完整实战（Windows 10）
 
-⚡ 全自动 MCP 服务器 + JADX 插件，通过 MCP 与 LLM 通信，使用 Claude 等 LLM 分析 Android APK — 轻松发现漏洞、分析 APK 和进行逆向工程。
+> MCP 服务器 + JADX 插件，通过 MCP 与 LLM 通信，使用 Claude 等 LLM 分析 Android APK — 轻松发现漏洞、分析 APK 和进行逆向工程，以 Shizuku.apk 为例，搭建 “JADX ⇨ MCP Server ⇨ Claude Desktop” 的 AI 逆向分析链路，记录中途踩过的坑
 
 https://github.com/zinja-coder/jadx-ai-mcp
 
-## 🤖 JADX-AI-MCP是什么？
+## JADX-AI-MCP是什么？
 
-**JADX-AI-MCP是**JADX 反编译器的一个插件，它直接与模型上下文协议 (MCP)集成，**为 Claude 等 LLM**提供实时逆向工程支持。
+**JADX-AI-MCP是** JADX 反编译器的一个插件，它直接与模型上下文协议 (MCP)集成，**为 Claude 等 LLM**提供实时逆向工程支持。
 
 想象一下：“反编译 → 上下文感知代码审查 → AI 建议”——所有过程都是实时进行的。
 
-![高级序列图](assets/1763291558-50308fd5daa6d3188a220c9fd3968bbd.webp)
+![高级序列图](assets/image.png)
 
 ### 参与者与角色
 
